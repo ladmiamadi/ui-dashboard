@@ -1,0 +1,65 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/eslint-recommended"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "sort-imports": [
+            "warn",
+            {
+                "ignoreCase": false,
+                "ignoreDeclarationSort": false,
+                "ignoreMemberSort": false,
+                "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+            }
+        ],
+        "react/no-unescaped-entities": 0,
+        "space-infix-ops": "warn",
+        "object-curly-spacing": [2, "always"],
+        "max-len": ["error", { "code": 120 }],
+        "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1 }],
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": ["error", {
+            "vars": "all",
+            "args": "after-used",
+            "ignoreRestSiblings": false
+        }]
+    }
+}
