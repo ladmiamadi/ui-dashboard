@@ -13,7 +13,7 @@ export class App extends React.Component {
       <Router>
         <Provider store={ store }>
           <AppContainer>
-              <TalentsListPage />
+            <TalentsListPage />
           </AppContainer>
         </Provider>
       </Router>

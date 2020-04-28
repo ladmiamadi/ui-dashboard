@@ -1,6 +1,9 @@
 import { RematchRootState, init } from '@rematch/core';
+import * as talents from '../../talents/state/models/talents';
 
-const models = {};
+const models = {
+  ...talents
+};
 
 export const store = init({
   models,

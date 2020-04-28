@@ -1,5 +1,6 @@
 export interface Talent {
   id: number,
-  nom: string,
-  prenom: string,
+  photo: string,
+  firstname: string,
+  lastname: string,
 }

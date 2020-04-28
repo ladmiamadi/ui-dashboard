@@ -1,6 +1,6 @@
 import { Container } from 'reactstrap';
 import React from 'react';
-import { TalentsListContainer } from './TalentsListContainer';
+import TalentsListContainer from './TalentsListContainer';
 
 export class TalentsListPage extends React.Component {
   render() {
