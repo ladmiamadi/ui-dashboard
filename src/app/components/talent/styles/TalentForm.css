@@ -5,6 +5,7 @@ html {
 .talent-form {
     display: flex;
     flex-flow: column;
+    font-size: 2rem;
 }
 
 .form-section, .form-head {
@@ -63,4 +64,14 @@ html {
 .date > * {
     display: inline-block;
     width: 30%;
+}
+
+.section-add {
+    display: flex;
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px ridge #151515;
 }
