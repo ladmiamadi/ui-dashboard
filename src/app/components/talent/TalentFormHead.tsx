@@ -6,7 +6,7 @@ export class TalentFormHead extends React.Component {
     return(
       <div className="form-head">
         <h1 className="talent-title">Gestion des talents: Nom Prénom</h1>
-        <img src="" alt=""/>
+        <img src="https://place-hold.it/300x300" alt="pic"/>
         <div className="head-block">
           <FieldForm
             type="text"

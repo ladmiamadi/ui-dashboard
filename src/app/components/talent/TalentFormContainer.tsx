@@ -1,5 +1,6 @@
 /* eslint-disable sort-imports */
 import React from 'react';
+import { Container } from 'reactstrap';
 import './styles/TalentForm.css';
 import TalentFormHead from './TalentFormHead';
 import TalentFormAddress from './TalentFormAddress';
@@ -15,18 +16,20 @@ export class TalentFormContainer extends React.Component {
   render() {
     return(
       <div className="talent-form-page">
-        <form action="#" method="post">
-          <TalentFormHead />
-          <TalentFormAddress />
-          <TalentFormSchool />
-          <TalentFormInternship />
-          <TalentFormJob />
-          <TalentFormSkills />
-          <TalentFormLanguages />
-          <TalentFormFormation />
-          <TalentFormExperience />
-          <button type="submit">Sauvegarder les changements</button>
-        </form>
+        <Container>
+          <form className="talent-form" action="#" method="post">
+            <TalentFormHead />
+            <TalentFormAddress />
+            <TalentFormSchool />
+            <TalentFormInternship />
+            <TalentFormJob />
+            <TalentFormSkills />
+            <TalentFormLanguages />
+            <TalentFormFormation />
+            <TalentFormExperience />
+            <button type="submit">Sauvegarder les changements</button>
+          </form>
+        </Container>
       </div>
     );
   }

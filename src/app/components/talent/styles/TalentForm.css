@@ -1,0 +1,66 @@
+html {
+    font-size: 62.5%;
+}
+
+.talent-form {
+    display: flex;
+    flex-flow: column;
+}
+
+.form-section, .form-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.form-head img {
+    width: 30%;
+    object-fit: contain;
+}
+
+.talent-title {
+    width: 100%;
+    text-align: center;
+}
+
+.head-block {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.connexion-box {
+    border: 1px solid #151515;
+    width: 30%;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 1.7rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-section {
+    border: 3px solid #151515;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+* + .form-section {
+    margin-top: 20px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+}
+
+.form-group > * + * {
+    margin-left: 5px;
+}
+
+.date > * {
+    display: inline-block;
+    width: 30%;
+}
