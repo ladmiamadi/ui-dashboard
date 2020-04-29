@@ -1,10 +1,12 @@
+import { Button } from 'reactstrap';
 import FieldForm from './utils/FieldForm';
 import React from 'react';
-import { ModalLanguage } from './utils/ModalLanguage';
+import { ModalLanguage } from './ModalLanguage';
 import { ModalCustom } from './utils/ModalCustom';
 
 interface State {
   isModalShown: boolean,
+  optionsLevelLanguage: string[]
 }
 
 interface Props {}
@@ -14,7 +16,8 @@ export class TalentFormHead extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      isModalShown: false
+      isModalShown: false,
+      optionsLevelLanguage:  ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'Langue Maternelle']
     };
   }
 
@@ -24,27 +27,29 @@ export class TalentFormHead extends React.Component<Props, State> {
     return(
       <div className="form-section">
         <div className="section-add">
-          <h6 >Langues: </h6>
-          <button  className="form-add-button" onClick={ this.toggleModal } >Ajouter une langue</button>
+          <h6>Langues: </h6>
+          <Button  onClick={ this.toggleModal } className="form-add-button">Ajouter une langue</Button>
           <ModalCustom
-            isModalShown={ this.state.isModalShown }
-            toggleModal={ this.toggleModal }
+            isModalShown= { this.state.isModalShown }
+            toggleModal= { this.toggleModal }
+            titleModal= 'Ajouter une langue'
           >
-            <ModalLanguage/>
+            <ModalLanguage
+              optionsLevelLanguage={ this.state.optionsLevelLanguage }
+            />
           </ModalCustom>
-
         </div>
         <FieldForm
           type="select"
           keyName="language-french"
           label="Français: "
-          selectOptions={ ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'Langue Maternelle'] }
+          selectOptions={ this.state.optionsLevelLanguage }
         />
         <FieldForm
           type="select"
           keyName="language-english"
           label="Anglais: "
-          selectOptions={ ['A1', 'A2', 'B1', 'B2', 'C1', 'C2','Langue Maternelle'] }
+          selectOptions={ this.state.optionsLevelLanguage }
         />
       </div>
     );

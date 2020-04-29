@@ -11,7 +11,8 @@ interface Props {
     rows?: number,
     label: string,
     regExp?: string | RegExp,
-    keyName: string
+    keyName: string,
+  showOtherComponents?: (value:boolean) => void
 }
 
 interface State {
@@ -26,13 +27,20 @@ export class FieldForm extends React.Component<Props,State> {
       className: 'form-input'
     };
   }
-  
+
+  showLevelLanguage = (value:string) =>{
+    if (value !== 'Aucun' && this.props.showOtherComponents) {
+      this.props.showOtherComponents(true);
+    }
+  }
+
   render() {
     if(this.props.type === 'select') {
       return (
         <FormGroup>
           <Label className='form-label' for={ this.props.keyName }>{ this.props.label }</Label>
           <Input
+            onChange= { event => this.showLevelLanguage(event.target.value) }
             className='form-input'
             type={ this.props.type }
             id={ this.props.keyName }
