@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'reactstrap';
+import { Button, Row } from 'reactstrap';
 import { FieldForm } from './utils/FieldForm';
 
 interface Props {
@@ -38,26 +38,31 @@ export class ModalLanguage extends React.Component<Props,State> {
   render() {
     return (
       <>
-        <FieldForm
-          type="select"
-          keyName="language"
-          label="Ajouter une nouvelle langue"
-          selectOptions={ this.state.optionLanguage }
-          showOtherComponents={ this.levelLanguageIsShowing }
-        />
-        {
-          this.state.optionLanguageHasValue &&
-           <FieldForm
-             type="select"
-             label="niveau"
-             keyName='level-language'
-             selectOptions={ this.props.optionsLevelLanguage }
-             showOtherComponents={ this.buttonAddLanguageIsShowing }
-           />
+        <Row>
+          <FieldForm
+            type="select"
+            keyName="language"
+            label="Ajouter une nouvelle langue"
+            selectOptions={ this.state.optionLanguage }
+            showOtherComponents={ this.levelLanguageIsShowing }
+          />
+        </Row>
+        {this.state.optionLanguageHasValue &&
+          <Row className=" d-flex">
+            <FieldForm
+              type="select"
+              label="niveau"
+              keyName='level-language'
+              selectOptions={ this.props.optionsLevelLanguage }
+              showOtherComponents={ this.buttonAddLanguageIsShowing }
+            />
+          </Row>
         }
         {
           this.state.optionLevelLanguageHasValue &&
-          <Button> Ajouter un client </Button>
+            <Row>
+              <Button className="form-add-button" color='default'> Ajouter une langue </Button>
+            </Row>
         }
       </>
     );

@@ -28,16 +28,7 @@ export class TalentFormHead extends React.Component<Props, State> {
       <div className="form-section">
         <div className="section-add">
           <h6>Langues: </h6>
-          <Button  onClick={ this.toggleModal } className="form-add-button">Ajouter une langue</Button>
-          <ModalCustom
-            isModalShown= { this.state.isModalShown }
-            toggleModal= { this.toggleModal }
-            titleModal= 'Ajouter une langue'
-          >
-            <ModalLanguage
-              optionsLevelLanguage={ this.state.optionsLevelLanguage }
-            />
-          </ModalCustom>
+          <Button  onClick={ this.toggleModal } className="form-add-button" color='default'>Ajouter une langue</Button>
         </div>
         <FieldForm
           type="select"
@@ -53,6 +44,15 @@ export class TalentFormHead extends React.Component<Props, State> {
           className="medium"
           selectOptions={ this.state.optionsLevelLanguage }
         />
+        <ModalCustom
+          isModalShown= { this.state.isModalShown }
+          toggleModal= { this.toggleModal }
+          titleModal= 'Ajouter une langue'
+        >
+          <ModalLanguage
+            optionsLevelLanguage={ this.state.optionsLevelLanguage }
+          />
+        </ModalCustom>
       </div>
     );
   }

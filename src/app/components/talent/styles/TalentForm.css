@@ -149,6 +149,12 @@ html {
     margin: 20px auto;
 }
 
+.form-add-button {
+    background: #F0F0F0;
+    border: 0.1rem solid black;
+    padding: 0.5rem ;
+}
+
 @media (max-width: 768px) {
     .form-label {
         font-size: 1.5rem;
