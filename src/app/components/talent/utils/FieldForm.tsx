@@ -74,8 +74,57 @@ export class FieldForm extends React.Component<Props,State> {
               <OptionList selectOptions='year' />
             </Input>
           </div>
+        </FormGroup>  
+      );
+    } else if(this.props.type === 'checkbox') {
+      return(
+        <FormGroup className={ this.props.className }>
+          <Label className='form-label' for={ this.props.keyName }>{ this.props.label }</Label>
+          <div className="checkbox-days">
+            <div>
+              <Input
+                className='form-input'
+                type='checkbox'
+              /> Lundi
+            </div>
+            <div>
+              <Input
+                className='form-input'
+                type='checkbox'
+              /> Mardi
+            </div>
+            <div>
+              <Input
+                className='form-input'
+                type='checkbox'
+              /> Mercredi
+            </div>
+            <div>
+              <Input
+                className='form-input'
+                type='checkbox'
+              /> Jeudi
+            </div>
+            <div>
+              <Input
+                className='form-input'
+                type='checkbox'
+              /> Vendredi
+            </div>
+            <div>
+              <Input
+                className='form-input'
+                type='checkbox'
+              /> Samedi
+            </div>
+            <div>
+              <Input
+                className='form-input'
+                type='checkbox'
+              /> Dimanche
+            </div>
+          </div>
         </FormGroup>
-                
       );
     } else {
       return (

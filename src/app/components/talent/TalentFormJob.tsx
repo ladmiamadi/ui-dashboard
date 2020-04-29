@@ -22,6 +22,7 @@ export class TalentFormHead extends React.Component {
           keyName="job-description"
           label="Description: "
           className="large"
+          rows={5}
         />
         <FieldForm
           type="text"
