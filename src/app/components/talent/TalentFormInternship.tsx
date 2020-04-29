@@ -26,7 +26,7 @@ export class TalentFormHead extends React.Component {
           type="checkbox"
           keyName="internship-days"
           label="Jour(s) d'activité: "
-          className="large"
+          className="large days"
         />
         <FieldForm
           type="text"
