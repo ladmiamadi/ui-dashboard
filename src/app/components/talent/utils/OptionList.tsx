@@ -4,21 +4,14 @@ interface Props{
   selectOptions?: string[] | string
 }
 
-interface State{
-  option: string[] | null
-}
-
-export class OptionList extends React.Component <Props, State> {
+export class OptionList extends React.Component <Props> {
   constructor(props:Props) {
     super(props);
-
-    this.state = {
-      option: null
-    };
   }
   render() {
     let currentYear = new Date();
     let dateArray = [];
+    
     if (this.props.selectOptions === 'day') {
       for (let dayNumber = 1; dayNumber <= 31; dayNumber++) {
         dateArray.push(dayNumber.toString());

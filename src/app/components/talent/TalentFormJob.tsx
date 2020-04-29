@@ -32,7 +32,7 @@ export class TalentFormHead extends React.Component {
         />
         <FieldForm
           type="text"
-          keyName="job-wished-pay"
+          keyName="job-desired-pay"
           label="Salaire souhaité: "
           className="medium"
         />
