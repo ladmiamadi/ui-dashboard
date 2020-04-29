@@ -11,7 +11,7 @@ html {
 .form-section, .form-head {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
 .form-head img {
@@ -52,13 +52,52 @@ html {
     margin-top: 20px;
 }
 
+.form-head .form-group {
+    width: 100%;
+}
+
 .form-group {
     display: flex;
+    justify-content: space-evenly;
     align-items: center;
 }
 
-.form-group > * + * {
-    margin-left: 5px;
+.form-head .form-group .form-input {
+    width: 100%;
+}
+
+.form-label {
+    font-size: 2rem;
+    margin-right: 10px;
+    min-width: fit-content;
+}
+
+.form-group .form-input {
+    font-size: 1.5rem;
+    width: fit-content;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.form-group.large {
+    width: 100%;
+}
+
+.form-group.medium {
+    width: 45%;
+}
+
+.form-group.medium + .form-group.medium {
+    margin-left: 5%;
+}
+
+.form-group.large .form-label + *, .form-group.medium .form-label + * {
+    width: 100%;
+}
+
+.date {
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 .date > * {
@@ -74,4 +113,13 @@ html {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px ridge #151515;
+}
+
+.section-add > * {
+    font-size: 2rem;
+}
+
+.form-button {
+    width: 60%;
+    margin: 20px auto;
 }

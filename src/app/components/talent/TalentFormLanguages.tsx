@@ -14,12 +14,14 @@ export class TalentFormHead extends React.Component {
           keyName="language-french"
           label="Français: "
           selectOptions={ ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] }
+          className="medium"
         />
         <FieldForm
           type="select"
           keyName="language-english"
           label="Anglais: "
           selectOptions={ ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] }
+          className="medium"
         />
       </div>
     );

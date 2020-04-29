@@ -9,6 +9,7 @@ export class TalentFormHead extends React.Component {
           type="text"
           keyName="street"
           label="Rue: "
+          className="medium"
         />
         <FieldForm
           type="text"
@@ -29,6 +30,7 @@ export class TalentFormHead extends React.Component {
           type="text"
           keyName="city"
           label="Ville: "
+          className="medium"
         />
         <FieldForm
           type="select"
@@ -45,7 +47,7 @@ export class TalentFormHead extends React.Component {
           type="select"
           keyName="search"
           label="Actuellement en recherche: "
-          selectOptions={ ['aaa', 'bbb'] }
+          selectOptions={ ['Oui', 'Non'] }
         />
       </div>
     );
