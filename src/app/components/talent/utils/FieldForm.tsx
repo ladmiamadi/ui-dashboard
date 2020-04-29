@@ -12,6 +12,7 @@ interface Props {
     label: string,
     regExp?: string | RegExp,
     keyName: string,
+    className?: string
   showOtherComponents?: (value:boolean) => void
 }
 
@@ -37,7 +38,7 @@ export class FieldForm extends React.Component<Props,State> {
   render() {
     if(this.props.type === 'select') {
       return (
-        <FormGroup>
+        <FormGroup className={ this.props.className }>
           <Label className='form-label' for={ this.props.keyName }>{ this.props.label }</Label>
           <Input
             onChange= { event => this.showLevelLanguage(event.target.value) }
@@ -53,7 +54,7 @@ export class FieldForm extends React.Component<Props,State> {
       );
     } else if(this.props.type === 'date') {
       return (
-        <FormGroup>
+        <FormGroup className={ this.props.className }>
           <Label className='form-label' for={ this.props.keyName }>{ this.props.label }</Label>
           <div className="date">
             <Input
@@ -82,11 +83,60 @@ export class FieldForm extends React.Component<Props,State> {
             </Input>
           </div>
         </FormGroup>
-                
+      );
+    } else if(this.props.type === 'checkbox') {
+      return(
+        <FormGroup className={ this.props.className }>
+          <Label className='form-label' for={ this.props.keyName }>{ this.props.label }</Label>
+          <div className="checkbox-days">
+            <div>
+              <Input
+                className='form-input'
+                type='checkbox'
+              /> Lundi
+            </div>
+            <div>
+              <Input
+                className='form-input'
+                type='checkbox'
+              /> Mardi
+            </div>
+            <div>
+              <Input
+                className='form-input'
+                type='checkbox'
+              /> Mercredi
+            </div>
+            <div>
+              <Input
+                className='form-input'
+                type='checkbox'
+              /> Jeudi
+            </div>
+            <div>
+              <Input
+                className='form-input'
+                type='checkbox'
+              /> Vendredi
+            </div>
+            <div>
+              <Input
+                className='form-input'
+                type='checkbox'
+              /> Samedi
+            </div>
+            <div>
+              <Input
+                className='form-input'
+                type='checkbox'
+              /> Dimanche
+            </div>
+          </div>
+        </FormGroup>
       );
     } else {
       return (
-        <FormGroup>
+        <FormGroup className={ this.props.className }>
           <Label className='form-label' for={ this.props.keyName }>{ this.props.label }</Label>
           <Input
             className={ this.state.className }

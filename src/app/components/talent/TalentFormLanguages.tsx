@@ -43,12 +43,14 @@ export class TalentFormHead extends React.Component<Props, State> {
           type="select"
           keyName="language-french"
           label="Français: "
+          className="medium"
           selectOptions={ this.state.optionsLevelLanguage }
         />
         <FieldForm
           type="select"
           keyName="language-english"
           label="Anglais: "
+          className="medium"
           selectOptions={ this.state.optionsLevelLanguage }
         />
       </div>

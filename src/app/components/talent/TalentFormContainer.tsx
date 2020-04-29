@@ -27,7 +27,7 @@ export class TalentFormContainer extends React.Component {
             <TalentFormLanguages />
             <TalentFormFormation />
             <TalentFormExperience />
-            <button type="submit">Sauvegarder les changements</button>
+            <button className="form-button" type="submit">Sauvegarder les changements</button>
           </form>
         </Container>
       </div>

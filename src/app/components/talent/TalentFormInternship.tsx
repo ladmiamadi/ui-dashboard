@@ -10,6 +10,7 @@ export class TalentFormHead extends React.Component {
           keyName="internship-status"
           label="Statut du stage: "
           selectOptions={ ['aaa', 'bbb'] }
+          className="large"
         />
         <FieldForm
           type="date"
@@ -25,11 +26,13 @@ export class TalentFormHead extends React.Component {
           type="checkbox"
           keyName="internship-days"
           label="Jour(s) d'activité: "
+          className="large days"
         />
         <FieldForm
           type="text"
           keyName="internship-hours"
           label="Horaire: "
+          className="large"
         />
       </div>
     );

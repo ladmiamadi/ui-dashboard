@@ -9,28 +9,30 @@ export class TalentFormHead extends React.Component {
           <h6>Formations: </h6>
           <button className="form-add-button">Ajouter une formation</button>
         </div>
-        <div className="add-section">
-          <FieldForm
-            type="text"
-            keyName="formation-school"
-            label="École: "
-          />
-          <FieldForm
-            type="date"
-            keyName="formation-start"
-            label="Début formation: "
-          />
-          <FieldForm
-            type="date"
-            keyName="formation-end"
-            label="Fin: "
-          />
-          <FieldForm
-            type="text"
-            keyName="formation-diploma"
-            label="Diplôme obtenu: "
-          />
-        </div>
+        <FieldForm
+          type="text"
+          keyName="formation-school"
+          label="École: "
+          className="large"
+        />
+        <FieldForm
+          type="date"
+          keyName="formation-start"
+          label="Début formation: "
+          className="medium"
+        />
+        <FieldForm
+          type="date"
+          keyName="formation-end"
+          label="Fin: "
+          className="medium"
+        />
+        <FieldForm
+          type="text"
+          keyName="formation-diploma"
+          label="Diplôme obtenu: "
+          className="large"
+        />
       </div>
     );
   }

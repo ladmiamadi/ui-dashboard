@@ -9,21 +9,25 @@ export class TalentFormHead extends React.Component {
           type="text"
           keyName="school"
           label="École: "
+          className="large"
         />
         <FieldForm
           type="text"
           keyName="school-phone"
           label="Téléphone École: "
+          className="medium"
         />
         <FieldForm
           type="text"
           keyName="school-mail"
           label="Mail École: "
+          className="medium"
         />
         <FieldForm
           type="text"
           keyName="school-contact"
           label="Personne de contact: "
+          className="large"
         />
       </div>
     );
