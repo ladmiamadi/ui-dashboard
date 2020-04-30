@@ -43,7 +43,7 @@ export class FieldForm extends React.Component<Props> {
           <div className='date'>
             <Input
               className='form-input'
-              type= 'select'
+              type='select'
               id={ this.props.keyName }
               defaultValue='Jour'
             >
@@ -51,7 +51,7 @@ export class FieldForm extends React.Component<Props> {
             </Input>
             <Input
               className='form-input'
-              type= 'select'
+              type='select'
               id={ this.props.keyName }
               defaultValue='Mois'
             >
@@ -59,7 +59,7 @@ export class FieldForm extends React.Component<Props> {
             </Input>
             <Input
               className='form-input'
-              type= 'select'
+              type='select'
               id={ this.props.keyName }
               defaultValue='Année'
             >
