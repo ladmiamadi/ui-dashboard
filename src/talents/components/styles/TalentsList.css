@@ -1,0 +1,35 @@
+.talents-list-page-title {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-size: 1.7rem;
+  font-family: "Roboto", "sans-serif";
+}
+
+.table-talents {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 10px;
+}
+
+.table td, .table th {
+  padding: .25rem;
+   border: none;
+}
+
+.search-bar {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.id-card {
+  display: flex;
+  flex-direction: column;
+  width: 80px;
+  border: 1px solid black;
+  align-items: center;
+  margin: 10px;
+}

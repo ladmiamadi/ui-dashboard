@@ -5,6 +5,7 @@ import { SearchBar } from '../../app/utils/SearchBar';
 import { RootState } from './../../app/state/store';
 import { connect } from 'react-redux';
 import { TalentsListTable } from './TalentsListTable';
+import  './styles/TalentsList.css';
 
 interface Props {
   talents: Talent[],
@@ -32,12 +33,14 @@ export class TalentsList extends React.Component <Props, State> {
   render() {
     return (
       <Container className='container-talents-list-table'>
-        <SearchBar
-          handleSearch={ this.handleSearch }
-          name="name"
-          iconName="search"
-          placeholder="Rechercher un talent..."
-        />
+        <div className="search-bar">
+          <SearchBar
+            handleSearch={ this.handleSearch }
+            name="name"
+            iconName="search"
+            placeholder="Rechercher un talent..."
+          />
+        </div>
         <TalentsListTable talents={ this.props.talents } />
       </Container>
     );

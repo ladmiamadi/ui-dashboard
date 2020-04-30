@@ -1,6 +1,5 @@
 import { IconDefinition, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
