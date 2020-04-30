@@ -2,7 +2,7 @@ import React from 'react';
 
 export class TalentFormHead extends React.Component {
   render() {
-    return(
+    return (
       <div className="form-section">
         <div className="section-add">
           <h6>Skills</h6>

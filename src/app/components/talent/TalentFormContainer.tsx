@@ -14,7 +14,7 @@ import TalentFormExperience from './TalentFormExperience';
 
 export class TalentFormContainer extends React.Component {
   render() {
-    return(
+    return (
       <div className="talent-form-page">
         <Container>
           <form className="talent-form" action="#" method="post">

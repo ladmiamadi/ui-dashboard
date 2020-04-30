@@ -69,7 +69,7 @@ export class FieldForm extends React.Component<Props> {
         </FormGroup>  
       );
     } else if(this.props.type === 'checkbox') {
-      return(
+      return (
         <FormGroup className={ this.props.className }>
           <Label className='form-label' for={ this.props.keyName }>{ this.props.label }</Label>
           <div className='checkbox-days'>

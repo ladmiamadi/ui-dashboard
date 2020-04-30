@@ -3,7 +3,7 @@ import React from 'react';
 
 export class TalentFormHead extends React.Component {
   render() {
-    return(
+    return (
       <div className="form-section">
         <FieldForm
           type="text"

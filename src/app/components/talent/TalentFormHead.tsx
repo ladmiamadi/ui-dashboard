@@ -3,7 +3,7 @@ import React from 'react';
 
 export class TalentFormHead extends React.Component {
   render() {
-    return(
+    return (
       <div className="form-head">
         <h1 className="talent-title">Gestion des talents: Nom Prénom</h1>
         <img src="https://place-hold.it/300x300" alt="pic"/>
@@ -26,7 +26,7 @@ export class TalentFormHead extends React.Component {
           />
           <FieldForm
             type="text"
-            keyName="mail"
+            keyName="email"
             label="Mail: "
           />
           <FieldForm
