@@ -5,9 +5,6 @@ interface Props{
 }
 
 export class OptionList extends React.Component <Props> {
-  constructor(props:Props) {
-    super(props);
-  }
   render() {
     let currentYear = new Date();
     let dateArray = [];

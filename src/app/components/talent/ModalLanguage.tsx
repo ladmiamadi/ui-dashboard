@@ -1,15 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Button, Row } from 'reactstrap';
-import { FieldForm } from './utils/FieldForm';
+import { RootDispatch, RootState, } from '../../state/store';
+import { Language } from './state';
+import FieldForm from './utils/FieldForm';
 
 interface Props {
-  optionsLevelLanguage: string[]
+  optionsLevelLanguage: string[],
+  language: Language,
+  resetLanguage: () => void
 }
 
 interface State {
   optionLanguage: string[],
-  optionLanguageHasValue: boolean
-  optionLevelLanguageHasValue: boolean
 }
 
 export class ModalLanguage extends React.Component<Props,State> {
@@ -26,14 +29,12 @@ export class ModalLanguage extends React.Component<Props,State> {
         'Romanian','Russian','Samoan','Serbian','Slovak','Slovenian','Spanish','Swahili','Swedish ','Tamil','Tatar',
         'Telugu','Thai','Tibetan','Tonga','Turkish','Ukrainian','Urdu','Uzbek','Vietnamese','Welsh','Xhosa'
       ],
-      optionLanguageHasValue: false,
-      optionLevelLanguageHasValue: false,
     };
   }
 
-  levelLanguageIsShowing = (value:boolean) =>{ this.setState({ optionLanguageHasValue: value });};
-
-  buttonAddLanguageIsShowing = (value:boolean) =>{ this.setState({ optionLevelLanguageHasValue : value });}
+  componentDidMount(): void {
+    this.props.resetLanguage();
+  }
 
   render() {
     return (
@@ -44,22 +45,20 @@ export class ModalLanguage extends React.Component<Props,State> {
             keyName="language"
             label="Ajouter une nouvelle langue"
             selectOptions={ this.state.optionLanguage }
-            showOtherComponents={ this.levelLanguageIsShowing }
           />
         </Row>
-        {this.state.optionLanguageHasValue &&
+        { this.props.language.language !==''&&
           <Row className=" d-flex">
             <FieldForm
               type="select"
               label="niveau"
-              keyName='level-language'
+              keyName='level'
               selectOptions={ this.props.optionsLevelLanguage }
-              showOtherComponents={ this.buttonAddLanguageIsShowing }
             />
           </Row>
         }
         {
-          this.state.optionLevelLanguageHasValue &&
+          this.props.language.level !=='' &&
             <Row>
               <Button className="form-add-button" color='default'> Ajouter une langue </Button>
             </Row>
@@ -68,3 +67,14 @@ export class ModalLanguage extends React.Component<Props,State> {
     );
   }
 }
+
+const  mapState = (state: RootState) => ({
+  language: state.language.language
+});
+
+const  mapDispatch = ( dispatch: RootDispatch) => ({
+  postLanguage: dispatch.language.postLanguage,
+  resetLanguage: dispatch.language.resetLanguage,
+});
+
+export default connect(mapState, mapDispatch)(ModalLanguage);

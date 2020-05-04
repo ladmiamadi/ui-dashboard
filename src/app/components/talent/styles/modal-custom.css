@@ -1,9 +1,13 @@
 
 .modal-language-content {
-    padding: 2.5rem;
+    padding: 2rem;
 }
 
 .modal-language-content button {
     font-size: 1.5rem;
+}
+
+.header-modal {
+    font-size: 2.5rem;
 }
 

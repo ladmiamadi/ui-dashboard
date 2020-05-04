@@ -1,7 +1,7 @@
 import { Button } from 'reactstrap';
 import FieldForm from './utils/FieldForm';
 import React from 'react';
-import { ModalLanguage } from './ModalLanguage';
+import ModalLanguage from './ModalLanguage';
 import { ModalCustom } from './utils/ModalCustom';
 
 interface State {

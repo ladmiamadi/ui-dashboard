@@ -1,9 +1,12 @@
 import { RematchRootState, init } from '@rematch/core';
+import * as language  from '../components/talent/state/models/userLanguage';
 
-const models = {};
+const models = {
+  ...language
+};
 
 export const store = init({
-  models,
+  models
 });
 
 export type RootState = RematchRootState<typeof models>

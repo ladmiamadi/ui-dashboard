@@ -13,10 +13,6 @@ interface Props {
 }
 
 export class ModalCustom extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   render() {
     return (
       <div>

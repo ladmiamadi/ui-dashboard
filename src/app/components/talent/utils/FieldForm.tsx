@@ -1,30 +1,34 @@
 /* eslint-disable max-len */
 /* eslint-disable sort-imports */
 import React from 'react';
+import { connect } from 'react-redux';
 import Input, { InputType } from 'reactstrap/lib/Input';
 import { FormGroup, Label } from 'reactstrap';
+import { RootDispatch, RootState } from '../../../state/store';
+import { Language } from '../state';
+import { UpdateLanguagePayload } from '../state/models/userLanguage';
 import { OptionList } from './OptionList';
 
 interface Props {
-    type: InputType,
-    selectOptions?: string[],
-    rows?: number,
-    label: string,
-    regExp?: string | RegExp,
-    keyName: string,
-    className?: string
-  showOtherComponents?: (value:boolean) => void
+  type: InputType,
+  selectOptions?: string[],
+  rows?: number,
+  label: string,
+  regExp?: string | RegExp,
+  keyName: string,
+  className?: string
+  language: Language,
+  updateLanguage: (payload: UpdateLanguagePayload) => void
 }
 
 export class FieldForm extends React.Component<Props> {
-  constructor(props: Props){
-    super(props);
-  }
+  updateLanguage = (value:string, property:string) =>{
+    const payload = {
+      property: property,
+      value: value
+    };
 
-  showLevelLanguage = (value:string) =>{
-    if (value !== 'Aucun' && this.props.showOtherComponents) {
-      this.props.showOtherComponents(true);
-    }
+    this.props.updateLanguage(payload);
   }
 
   render() {
@@ -33,7 +37,7 @@ export class FieldForm extends React.Component<Props> {
         <FormGroup className={ this.props.className }>
           <Label className='form-label' for={ this.props.keyName }>{ this.props.label }</Label>
           <Input
-            onChange= { event => this.showLevelLanguage(event.target.value) }
+            onChange= { event => this.updateLanguage(event.target.value, this.props.keyName) }
             className='form-input'
             type={ this.props.type }
             id={ this.props.keyName }
@@ -142,4 +146,12 @@ export class FieldForm extends React.Component<Props> {
   }
 }
 
-export default FieldForm;
+const mapState = (state: RootState) => ({
+  language: state.language.language
+});
+
+const mapDispatch = (dispatch: RootDispatch) => ({
+  updateLanguage: dispatch.language.updateLanguage
+});
+
+export default connect(mapState, mapDispatch)(FieldForm);
