@@ -7,7 +7,7 @@ export class TalentFormJob extends React.Component {
     return (
       <div className="form-section">
         <TextFormField
-          keyName="desired-job"
+          keyName="job-desired"
           label="Métier souhaité: "
           className="large"
         />
