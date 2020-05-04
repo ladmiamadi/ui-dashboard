@@ -5,10 +5,10 @@ import TalentFormAddress from './TalentFormAddress';
 import TalentFormExperience from './TalentFormExperience';
 import TalentFormFormation from './TalentFormFormation';
 import TalentFormHead from './TalentFormHead';
+import TalentFormInstitution from './TalentFormInstitution';
 import TalentFormInternship from './TalentFormInternship';
 import TalentFormJob from './TalentFormJob';
 import TalentFormLanguages from './TalentFormLanguages';
-import TalentFormSchool from './TalentFormSchool';
 import TalentFormSkills from './TalentFormSkills';
 
 export class TalentFormPage extends React.Component {
@@ -19,7 +19,7 @@ export class TalentFormPage extends React.Component {
           <form className="talent-form">
             <TalentFormHead />
             <TalentFormAddress />
-            <TalentFormSchool />
+            <TalentFormInstitution />
             <TalentFormInternship />
             <TalentFormJob />
             <TalentFormSkills />
