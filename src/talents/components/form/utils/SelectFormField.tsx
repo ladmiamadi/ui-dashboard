@@ -4,7 +4,7 @@ import { OptionList } from './OptionList';
 import React from 'react';
 
 interface Props {
-    selectOptions?: string[],
+    options?: string[],
     rows?: number,
     label: string,
     keyName: string,
@@ -23,7 +23,7 @@ export class SelectFormField extends React.Component<Props> {
           defaultValue='Aucun'
         >
           <option disabled>Aucun</option>
-          <OptionList selectOptions={ this.props.selectOptions } />
+          <OptionList options={ this.props.options } />
         </Input>
       </FormGroup>
     );

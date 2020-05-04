@@ -11,7 +11,7 @@ import TalentFormLanguages from './TalentFormLanguages';
 import TalentFormSchool from './TalentFormSchool';
 import TalentFormSkills from './TalentFormSkills';
 
-export class TalentFormContainer extends React.Component {
+export class TalentFormPage extends React.Component {
   render() {
     return (
       <div className="talent-form-page">
@@ -34,4 +34,4 @@ export class TalentFormContainer extends React.Component {
   }
 }
 
-export default TalentFormContainer;
+export default TalentFormPage;

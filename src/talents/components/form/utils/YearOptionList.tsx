@@ -1,19 +1,21 @@
 import React  from 'react';
+import OptionList from './OptionList';
 
-export class YearOptionList extends React.Component {
+interface Props {
+  toYear: number,
+  fromYear: number
+}
+
+export class YearOptionList extends React.Component<Props> {
+  private createArrayOfYears() {
+    const numberOfValues = (this.props.toYear - this.props.fromYear) + 1;
+    let currentYear = this.props.fromYear;
+  
+    return Array.from(Array(numberOfValues)).map(() => String(currentYear++));
+  }
+  
   render() {
-    let currentYear = new Date();
-    let yearArray = [];
-    
-    for (let yearNumber = 1920; yearNumber <= currentYear.getFullYear(); yearNumber++) {
-      yearArray.push(yearNumber.toString());
-    }
-
-    if(yearArray.length > 0) {
-      return yearArray.map((item,key) =>
-        <option key={ key } className='dropdown-option'>{ item }</option>     
-      );
-    }
+    return <OptionList options={ this.createArrayOfYears() } />;
   }
 }
 

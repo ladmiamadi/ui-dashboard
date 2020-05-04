@@ -1,15 +1,17 @@
 import React  from 'react';
 
 interface Props {
-  selectOptions?: string[];
+  options?: string[];
 }
 
 export class OptionList extends React.Component <Props> {
   render() {
-    if(Array.isArray(this.props.selectOptions)) {
-      return this.props.selectOptions.map((item,key) =>
+    if(Array.isArray(this.props.options)) {
+      return this.props.options.map((item,key) =>
         <option key={ key } className='dropdown-option'>{ item }</option>     
       );
     }
   }
 }
+
+export default OptionList;

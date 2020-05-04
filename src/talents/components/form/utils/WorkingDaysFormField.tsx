@@ -8,7 +8,7 @@ interface Props {
     className?: string
 }
 
-export class CheckboxFormField extends React.Component<Props> {
+export class WorkingDaysFormField extends React.Component<Props> {
   render() {
     return (
       <FormGroup className={ this.props.className }>
@@ -62,4 +62,4 @@ export class CheckboxFormField extends React.Component<Props> {
   }
 }
 
-export default CheckboxFormField;
+export default WorkingDaysFormField;

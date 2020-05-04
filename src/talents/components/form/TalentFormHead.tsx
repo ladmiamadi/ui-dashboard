@@ -20,7 +20,7 @@ export class TalentFormHead extends React.Component {
           <SelectFormField
             keyName="function"
             label="Fonction: "
-            selectOptions={ ['aaa', 'bbb'] }
+            options={ ['aaa', 'bbb'] }
           />
           <TextFormField
             keyName="email"

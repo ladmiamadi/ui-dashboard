@@ -2,8 +2,8 @@ import './styles/App.css';
 import AppContainer from './AppContainer';
 import { Provider } from 'react-redux';
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import TalentFormContainer from '../../talents/components/form/TalentFormContainer';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
+import TalentFormPage from '../../talents/components/form/TalentFormPage';
 import { store } from '../state/store';
 
 export class App extends React.Component {
@@ -12,7 +12,7 @@ export class App extends React.Component {
       <Router>
         <Provider store={ store }>
           <AppContainer>
-            <TalentFormContainer />
+            <Route path="/talent" exact component={ TalentFormPage } />
           </AppContainer>
         </Provider>
       </Router>
