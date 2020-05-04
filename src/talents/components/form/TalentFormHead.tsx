@@ -1,5 +1,6 @@
-import FieldForm from './utils/FieldForm';
 import React from 'react';
+import SelectFormField from './utils/SelectFormField';
+import TextFormField from './utils/TextFormField';
 
 export class TalentFormHead extends React.Component {
   render() {
@@ -8,34 +9,28 @@ export class TalentFormHead extends React.Component {
         <h1 className="talent-title">Gestion des talents: Nom Prénom</h1>
         <img src="https://place-hold.it/300x300" alt="pic"/>
         <div className="head-block">
-          <FieldForm
-            type="text"
+          <TextFormField
             keyName="lastname"
             label="Nom: "
           />
-          <FieldForm
-            type="text"
+          <TextFormField
             keyName="firstname"
             label="Prénom: "
           />
-          <FieldForm
-            type="select"
+          <SelectFormField
             keyName="function"
             label="Fonction: "
             selectOptions={ ['aaa', 'bbb'] }
           />
-          <FieldForm
-            type="text"
+          <TextFormField
             keyName="email"
             label="Mail: "
           />
-          <FieldForm
-            type="text"
+          <TextFormField
             keyName="phone"
             label="Téléphone: "
           />
-          <FieldForm
-            type="text"
+          <TextFormField
             keyName="place"
             label="Localisation: "
           />

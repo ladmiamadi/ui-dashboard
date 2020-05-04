@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class TalentFormHead extends React.Component {
+export class TalentFormSkills extends React.Component {
   render() {
     return (
       <div className="form-section">
@@ -13,4 +13,4 @@ export class TalentFormHead extends React.Component {
   }
 }
 
-export default TalentFormHead;
+export default TalentFormSkills;

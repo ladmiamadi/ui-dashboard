@@ -1,30 +1,26 @@
-import FieldForm from './utils/FieldForm';
 import React from 'react';
+import TextFormField from './utils/TextFormField';
 
-export class TalentFormHead extends React.Component {
+export class TalentFormSchool extends React.Component {
   render() {
     return (
       <div className="form-section">
-        <FieldForm
-          type="text"
+        <TextFormField
           keyName="school"
           label="École: "
           className="large"
         />
-        <FieldForm
-          type="text"
+        <TextFormField
           keyName="school-phone"
           label="Téléphone École: "
           className="medium"
         />
-        <FieldForm
-          type="text"
+        <TextFormField
           keyName="school-email"
           label="Mail École: "
           className="medium"
         />
-        <FieldForm
-          type="text"
+        <TextFormField
           keyName="school-contact"
           label="Personne de contact: "
           className="large"
@@ -34,4 +30,4 @@ export class TalentFormHead extends React.Component {
   }
 }
 
-export default TalentFormHead;
+export default TalentFormSchool;

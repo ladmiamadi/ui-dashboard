@@ -1,37 +1,33 @@
-import FieldForm from './utils/FieldForm';
 import React from 'react';
+import TextFormField from './utils/TextFormField';
+import TextareaFormField from './utils/TextareaFormField';
 
-export class TalentFormHead extends React.Component {
+export class TalentFormJob extends React.Component {
   render() {
     return (
       <div className="form-section">
-        <FieldForm
-          type="text"
+        <TextFormField
           keyName="job-wished"
           label="Métier souhaité: "
           className="large"
         />
-        <FieldForm
-          type="text"
+        <TextFormField
           keyName="job-mobility"
           label="Mobilité: "
           className="large"
         />
-        <FieldForm
-          type="textarea"
+        <TextareaFormField
           keyName="job-description"
           label="Description: "
           className="large"
           rows={ 5 }
         />
-        <FieldForm
-          type="text"
+        <TextFormField
           keyName="job-actual-pay"
           label="Salaire actuel: "
           className="medium"
         />
-        <FieldForm
-          type="text"
+        <TextFormField
           keyName="job-desired-pay"
           label="Salaire souhaité: "
           className="medium"
@@ -41,4 +37,4 @@ export class TalentFormHead extends React.Component {
   }
 }
 
-export default TalentFormHead;
+export default TalentFormJob;

@@ -1,7 +1,8 @@
-import FieldForm from './utils/FieldForm';
 import React from 'react';
+import DateFormField from './utils/DateFormField';
+import TextFormField from './utils/TextFormField';
 
-export class TalentFormHead extends React.Component {
+export class TalentFormFormation extends React.Component {
   render() {
     return (
       <div className="form-section">
@@ -9,26 +10,22 @@ export class TalentFormHead extends React.Component {
           <h6>Formations: </h6>
           <button className="form-add-button">Ajouter une formation</button>
         </div>
-        <FieldForm
-          type="text"
+        <TextFormField
           keyName="formation-school"
           label="École: "
           className="large"
         />
-        <FieldForm
-          type="date"
+        <DateFormField
           keyName="formation-start"
           label="Début formation: "
           className="medium"
         />
-        <FieldForm
-          type="date"
+        <DateFormField
           keyName="formation-end"
           label="Fin: "
           className="medium"
         />
-        <FieldForm
-          type="text"
+        <TextFormField
           keyName="formation-diploma"
           label="Diplôme obtenu: "
           className="large"
@@ -38,4 +35,4 @@ export class TalentFormHead extends React.Component {
   }
 }
 
-export default TalentFormHead;
+export default TalentFormFormation;
