@@ -1,7 +1,9 @@
-import { FormGroup, Label } from 'reactstrap';
-import Input from 'reactstrap/lib/Input';
-import { OptionList } from './OptionList';
 import React from 'react';
+import { FormGroup, Label } from 'reactstrap';
+import DayOptionList from './DayOptionList';
+import Input from 'reactstrap/lib/Input';
+import MonthOptionList from './MonthOptionList';
+import YearOptionList from './YearOptionList';
 
 interface Props {
     selectOptions?: string[],
@@ -22,7 +24,7 @@ export class DateFormField extends React.Component<Props> {
             id={ this.props.keyName }
             defaultValue='Jour'
           >
-            <OptionList selectOptions='day' />
+            <DayOptionList />
           </Input>
           <Input
             className='form-input'
@@ -30,7 +32,7 @@ export class DateFormField extends React.Component<Props> {
             id={ this.props.keyName }
             defaultValue='Mois'
           >
-            <OptionList selectOptions='month' />
+            <MonthOptionList />
           </Input>
           <Input
             className='form-input'
@@ -38,7 +40,7 @@ export class DateFormField extends React.Component<Props> {
             id={ this.props.keyName }
             defaultValue='Année'
           >
-            <OptionList selectOptions='year' />
+            <YearOptionList />
           </Input>
         </div>
       </FormGroup>  
