@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormGroup, Label } from 'reactstrap';
+import IncrementalNumberOptionsList from './IncrementalNumberOptionsList';
 import Input from 'reactstrap/lib/Input';
-import RepeatedNumberOptionList from './RepeatedNumberOptionList';
 import YearOptionList from './YearOptionList';
 
 interface Props {
@@ -24,7 +24,7 @@ export class DateFormField extends React.Component<Props> {
             id={ this.props.keyName }
             defaultValue='Jour'
           >
-            <RepeatedNumberOptionList numberOfOptions={31} />
+            <IncrementalNumberOptionsList numberOfOptions={31} />
           </Input>
           <Input
             className='form-input'
@@ -32,7 +32,7 @@ export class DateFormField extends React.Component<Props> {
             id={ this.props.keyName }
             defaultValue='Mois'
           >
-            <RepeatedNumberOptionList numberOfOptions={12} />
+            <IncrementalNumberOptionsList numberOfOptions={12} />
           </Input>
           <Input
             className='form-input'

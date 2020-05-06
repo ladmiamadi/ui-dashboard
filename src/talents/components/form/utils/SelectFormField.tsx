@@ -4,7 +4,7 @@ import { OptionList } from './OptionList';
 import React from 'react';
 
 interface Props {
-    options?: string[],
+    options: string[],
     rows?: number,
     label: string,
     keyName: string,
