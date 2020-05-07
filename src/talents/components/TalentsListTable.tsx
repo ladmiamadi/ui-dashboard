@@ -20,7 +20,7 @@ export class TalentsListTable extends React.Component <Props> {
             />
           ))}
         </thead>
-      </Table>  
+      </Table>
     );
   }
 }

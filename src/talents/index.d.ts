@@ -3,4 +3,5 @@ export interface Talent {
   photo: string,
   firstname: string,
   lastname: string,
+  validationRequest: boolean,
 }
