@@ -5,7 +5,7 @@ import { SearchBar } from '../../app/utils/SearchBar';
 import { RootState } from './../../app/state/store';
 import { connect } from 'react-redux';
 import { TalentsListTable } from './TalentsListTable';
-import  './styles/TalentsList.css';
+import './styles/TalentsList.css';
 
 interface Props {
   talents: Talent[],

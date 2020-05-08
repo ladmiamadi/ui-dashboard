@@ -28,7 +28,9 @@ export class TalentModal extends React.Component <Props, State> {
   }
 
   redirect = () => {
-    history.push('/test');
+    history.push({
+    pathname: '/test',
+    state: {userId : this.props.talent.id}});
   }
   
   render() {

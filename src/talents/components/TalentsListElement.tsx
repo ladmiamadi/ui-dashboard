@@ -1,9 +1,9 @@
 import React from 'react';
 import { Talent } from '..';
-import { CustomModal } from '../../app/components/modal/CustomModal';
-import  './styles/TalentsList.css';
 import { TalentModal } from './modal/TalentModal';
+import { CustomModal } from '../../app/components/modal/CustomModal';
 import history from '../../app/components/history';
+import  './styles/TalentsList.css';
 
 interface Props {
   talent: Talent,
@@ -23,7 +23,7 @@ export class TalentsListElement extends React.Component <Props, State> {
   }
   
   toggleModal = () => {
-    if(this.props.talent.validationRequest) {
+    if(this.props.talent.status === "Demande de modification en cours") {
       this.setState({
         isModalShown: !this.state.isModalShown
       });
@@ -35,7 +35,7 @@ export class TalentsListElement extends React.Component <Props, State> {
     return (
       <>
         <tr className="id-card" onClick={ this.toggleModal }>
-          <td>{ this.props.talent.id }</td>
+          <td><img src={ this.props.talent.picture_path }/></td>
           <td>{ this.props.talent.firstname }</td>
           <td>{ this.props.talent.lastname }</td>
         </tr>
