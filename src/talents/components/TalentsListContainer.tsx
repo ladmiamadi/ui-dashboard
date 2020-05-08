@@ -3,6 +3,7 @@ import { RootDispatch, RootState } from './../../app/state/store';
 import { connect } from 'react-redux';
 import { Talent } from '..';
 import TalentsList from './TalentsList';
+import { Loader } from '../../app/utils/Loader';
 
 interface Props {
   talents: Talent[],
@@ -15,6 +16,10 @@ export class TalentsListContainer extends React.Component <Props> {
   }
 
   render() {
+
+    if(!this.props.talents.length) {
+      return <Loader />;
+    }
     return <TalentsList />;
   }
 }

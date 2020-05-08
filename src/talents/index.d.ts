@@ -4,4 +4,5 @@ export interface Talent {
   picture_path: string,
   firstname: string,
   lastname: string,
+  status: string,
 }

@@ -10,7 +10,7 @@ export class TalentsListElement extends React.Component <Props> {
   render() {
     return (
       <tr className="id-card">
-        <td>{ this.props.talent.picture_path }</td>
+        <td><img src={ this.props.talent.picture_path } /></td>
         <td>{ this.props.talent.firstname }</td>
         <td>{ this.props.talent.lastname }</td>
       </tr>

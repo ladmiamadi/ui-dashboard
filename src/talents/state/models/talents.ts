@@ -17,7 +17,7 @@ export const talents = createModel ({
   effects: {
     async fetchTalents() {
       try {
-        const {data} = await apiService.get('/talents');
+        const { data } = await apiService.get('/talents');
         console.log(data);
         this.updateTalents(data);
       } catch (error) {

@@ -3,7 +3,7 @@ import './styles/App.css';
 import AppContainer from './AppContainer';
 import { Provider } from 'react-redux';
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import { TalentsListPage } from '../../talents/components/TalentsListPage';
 import { store } from '../state/store';
 
@@ -13,7 +13,7 @@ export class App extends React.Component {
       <Router>
         <Provider store={ store }>
           <AppContainer>
-            <TalentsListPage />
+            <Route path="/talents" exact component= { TalentsListPage } />
           </AppContainer>
         </Provider>
       </Router>
