@@ -2,7 +2,7 @@ import React from 'react';
 import { Table } from 'reactstrap';
 import { Talent } from '..';
 import { TalentsListElement } from './TalentsListElement';
-import  './styles/TalentsList.css';
+import './styles/TalentsList.css';
 
 interface Props {
   talents: Talent[]

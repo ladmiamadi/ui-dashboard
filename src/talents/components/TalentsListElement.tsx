@@ -1,6 +1,6 @@
 import React from 'react';
 import { Talent } from '..';
-import  './styles/TalentsList.css';
+import './styles/TalentsList.css';
 
 interface Props {
   talent: Talent,
