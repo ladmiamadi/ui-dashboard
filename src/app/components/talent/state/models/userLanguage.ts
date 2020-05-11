@@ -24,7 +24,6 @@ export const language = createModel({
     updateLanguage: (state: LanguageState, payload: UpdateLanguagePayload): LanguageState  => {
       const language = { ...state.language } as any;
       language[payload.property] = payload.value;
-      console.log(language);
       return {
         ...state, language
       };
