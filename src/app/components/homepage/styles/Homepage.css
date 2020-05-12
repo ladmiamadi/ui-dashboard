@@ -1,0 +1,52 @@
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    font-size: 1.8rem;
+    font-family: 'Ubuntu', sans-serif;
+    color: #888;
+}
+
+.card-title {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'Heebo', sans-serif
+}
+
+.section-top-border {
+    padding: 50px 0;
+    border-top: 1px dotted #eee;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+article.container {
+    top: 70px;
+}
+
+article a:hover {
+    text-decoration: none;
+    color: #7c1c0e;
+}
+
+.link-text {
+    color: #e22104;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.7rem;
+}
+
+.link-text:hover {
+    text-decoration: none;
+    color: #9d000f;
+}
+
+.row-homepage {
+    position: relative;
+    top: 80px;
+    z-index: 0;
+}
