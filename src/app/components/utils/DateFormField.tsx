@@ -5,7 +5,7 @@ import Input from 'reactstrap/lib/Input';
 import { YearOptionList } from './YearOptionList';
 
 interface Props {
-  selectOptions?: string[],
+  options?: string[],
   label: string,
   keyName: string,
   className?: string
