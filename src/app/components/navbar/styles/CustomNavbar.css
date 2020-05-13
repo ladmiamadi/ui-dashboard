@@ -135,7 +135,6 @@
 }
 
 @media only screen and (max-width: 576px) {
-
     .info-user {
         height: 10px;
         text-align: left;
@@ -262,4 +261,3 @@
         margin-right: 2px;
     }
 }
-
