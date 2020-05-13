@@ -82,4 +82,3 @@ const mapDispatch = (dispatch: any) => ({
 });
 
 export default connect(mapState, mapDispatch)(CustomNavbar);
-
