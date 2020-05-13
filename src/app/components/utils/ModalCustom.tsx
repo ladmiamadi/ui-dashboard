@@ -20,7 +20,7 @@ export class ModalCustom extends React.Component<Props> {
           <ModalHeader toggle={ this.props.toggleModal }>
             <h5 className='header-modal'>{ this.props.titleModal }</h5>
           </ModalHeader>
-          <ModalBody  className="modal-content">
+          <ModalBody className="modal-content">
             { this.props.children }
           </ModalBody>
         </Modal>
