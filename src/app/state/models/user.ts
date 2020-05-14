@@ -13,7 +13,7 @@ export const user = createModel({
     user: createEmptyUser(),
   },
   reducers: {
-    updateUser: (state: UserState, user: User): UserState => ({ user }),
+    updateUser: (state: UserState, user: User): UserState => ({ ...state, user: user }),
     resetUser: (): UserState => ({ user: createEmptyUser() }),
   },
   effects: {

@@ -4,8 +4,8 @@ import { Route, BrowserRouter as Router } from 'react-router-dom';
 import AppContainer from './AppContainer';
 import { Provider } from 'react-redux';
 import { store } from '../state/store';
-import  Homepage  from './homepage/Homepage';
-import  Navbar  from './navbar/CustomNavbar';
+import Homepage from './homepage/Homepage';
+import CustomNavbar from './navbar/CustomNavbar';
 
 export class App extends React.Component {
   render() {
@@ -13,7 +13,7 @@ export class App extends React.Component {
       <Router>
         <Provider store={ store } >
           <AppContainer>
-            <Navbar />
+            <CustomNavbar />
             <Route path="/" exact component={ Homepage } />
           </AppContainer>
         </Provider>

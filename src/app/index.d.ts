@@ -2,7 +2,6 @@ export interface User {
   id: number | string | null;
   username: string;
   email: string;
-  hubspotOwnerId: HubspotOwnerType;
 }
 
 export interface Module {
