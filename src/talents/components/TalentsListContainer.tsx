@@ -1,12 +1,12 @@
 import React from 'react';
 import { RootDispatch, RootState } from './../../app/state/store';
 import { connect } from 'react-redux';
-import { Talent } from '..';
+import { User } from '..';
 import TalentsList from './TalentsList';
 import { Loader } from '../../app/utils/Loader';
 
 interface Props {
-  talents: Talent[],
+  talents: User[],
   fetchTalents: () => Promise<void>,
 }
 

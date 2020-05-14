@@ -1,11 +1,11 @@
 import React from 'react';
 import { Table } from 'reactstrap';
-import { Talent } from '..';
+import { User } from '..';
 import { TalentsListElement } from './TalentsListElement';
 import './styles/TalentsList.css';
 
 interface Props {
-  talents: Talent[]
+  talents: User[]
 }
 
 export class TalentsListTable extends React.Component <Props> {
