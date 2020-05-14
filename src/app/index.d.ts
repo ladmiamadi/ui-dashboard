@@ -7,7 +7,6 @@ export interface User {
 export interface Module {
   name: string;
   description: string;
-  linkText: HubspotOwnerType;
 }
 
 export interface Transaction {
@@ -18,14 +17,7 @@ export interface Transaction {
   commissionAmount: number;
   date: string;
   description: string;
-  ownerId: HubspotOwnerType;
   isSelected: boolean;
-}
-
-export enum HubspotOwnerType {
-  ADMIN = '37896147',
-  ANTONIO = '42803862',
-  NONE = '',
 }
 
 export interface Client {

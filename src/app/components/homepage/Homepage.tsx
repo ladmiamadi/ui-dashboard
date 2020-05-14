@@ -21,7 +21,6 @@ export class Homepage extends React.Component<Props> {
                     <div className="card-body">
                       <h5 className="card-title">{ module.name }</h5>
                       <p className="card-text">{ module.description }</p>
-                      <a className="link-text" href="/">{ module.linkText }</a>
                     </div>
                   </div>
                 </div>) }
