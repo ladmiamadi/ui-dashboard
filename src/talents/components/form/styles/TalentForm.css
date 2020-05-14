@@ -105,20 +105,20 @@ html {
     width: 30%;
 }
 
-.checkbox-days {
+.checkboxes {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     padding: 0 2%;
 }
 
-.checkbox-days > * {
+.checkboxes > * {
     width: 20%;
     display: flex;
     align-items: center;
 }
 
-.checkbox-days .form-check-input {
+.checkboxes .form-check-input {
     position: static;
     margin-right: 1rem;
     width: 2rem;
@@ -188,11 +188,11 @@ html {
         margin-left: 0;
     }
 
-    .checkbox-days .form-check-input {
+    .checkboxes .form-check-input {
         width: 2rem;
     }
 
-    .checkbox-days > * {
+    .checkboxes > * {
         width: 20%;
         font-size: 1.5rem;
     }
@@ -207,15 +207,15 @@ html {
         width: 100%;
     }
 
-    .checkbox-days {
+    .checkboxes {
         justify-content: space-between;
     }
 
-    .checkbox-days .form-check-input {
+    .checkboxes .form-check-input {
         width: 1.5rem;
     }
 
-    .checkbox-days > * {
+    .checkboxes > * {
         width: 50%;
         padding: 0 20px;
     }

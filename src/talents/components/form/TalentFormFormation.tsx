@@ -1,6 +1,6 @@
 import React from 'react';
-import DateFormField from './utils/DateFormField';
-import TextFormField from './utils/TextFormField';
+import { DateFormField } from '../../../app/components/utils/DateFormField';
+import { FieldForm } from '../../../app/components/utils/FieldForm';
 
 export class TalentFormFormation extends React.Component {
   render() {
@@ -10,10 +10,11 @@ export class TalentFormFormation extends React.Component {
           <h6>Formations: </h6>
           <button className="form-add-button">Ajouter une formation</button>
         </div>
-        <TextFormField
+        <FieldForm
           keyName="formation-school"
           label="École: "
           className="large"
+          type='text'
         />
         <DateFormField
           keyName="formation-start"
@@ -25,10 +26,11 @@ export class TalentFormFormation extends React.Component {
           label="Fin: "
           className="medium"
         />
-        <TextFormField
+        <FieldForm
           keyName="formation-diploma"
           label="Diplôme obtenu: "
           className="large"
+          type='text'
         />
       </div>
     );

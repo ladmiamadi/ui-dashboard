@@ -1,8 +1,8 @@
 import React from 'react';
-import DateFormField from './utils/DateFormField';
-import SelectFormField from './utils/SelectFormField';
-import TextFormField from './utils/TextFormField';
-import WorkingDaysFormField from './utils/WorkingDaysFormField';
+import { DateFormField } from '../../../app/components/utils/DateFormField';
+import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import { FieldForm } from '../../../app/components/utils/FieldForm';
+import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormField';
 
 export class TalentFormInternship extends React.Component {
   render() {
@@ -22,15 +22,17 @@ export class TalentFormInternship extends React.Component {
           keyName="internship-end"
           label="Fin: "
         />
-        <WorkingDaysFormField
+        <CheckboxFormField
           keyName="internship-days"
           label="Jour(s) d'activité: "
           className="large days"
+          checkboxes={ ['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche'] }
         />
-        <TextFormField
+        <FieldForm
           keyName="internship-hours"
           label="Horaire: "
           className="large"
+          type='text'
         />
       </div>
     );

@@ -1,29 +1,33 @@
 import React from 'react';
-import TextFormField from './utils/TextFormField';
+import { FieldForm } from '../../../app/components/utils/FieldForm';
 
 export class TalentFormInstitution extends React.Component {
   render() {
     return (
       <div className="form-section">
-        <TextFormField
+        <FieldForm
           keyName="institution"
           label="École: "
           className="large"
+          type='text'
         />
-        <TextFormField
+        <FieldForm
           keyName="institution-phone"
           label="Téléphone École: "
           className="medium"
+          type='text'
         />
-        <TextFormField
+        <FieldForm
           keyName="institution-email"
           label="Mail École: "
           className="medium"
+          type='text'
         />
-        <TextFormField
+        <FieldForm
           keyName="institution-contact"
           label="Personne de contact: "
           className="large"
+          type='text'
         />
       </div>
     );

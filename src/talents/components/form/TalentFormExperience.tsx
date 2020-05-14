@@ -1,7 +1,6 @@
 import React from 'react';
-import DateFormField from './utils/DateFormField';
-import TextFormField from './utils/TextFormField';
-import TextareaFormField from './utils/TextareaFormField';
+import { DateFormField } from '../../../app/components/utils/DateFormField';
+import { FieldForm } from '../../../app/components/utils/FieldForm';
 
 export class TalentFormExperience extends React.Component {
   render() {
@@ -11,10 +10,11 @@ export class TalentFormExperience extends React.Component {
           <h6>Expérience: </h6>
           <button className="form-add-button">Ajouter une expérience</button>
         </div>
-        <TextFormField
+        <FieldForm
           keyName="experience-company"
           label="Entreprise: "
           className="large"
+          type='text'
         />
         <DateFormField
           keyName="experience-start"
@@ -26,16 +26,18 @@ export class TalentFormExperience extends React.Component {
           label="Fin: "
           className="medium"
         />
-        <TextFormField
+        <FieldForm
           keyName="experience-position"
           label="Poste: "
           className="large"
+          type='text'
         />
-        <TextareaFormField
+        <FieldForm
           keyName="experience-works"
           label="Tâches effectuées: "
           className="large"
           rows={ 5 }
+          type='textarea'
         />
       </div>
     );

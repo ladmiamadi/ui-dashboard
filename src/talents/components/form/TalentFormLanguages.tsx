@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectFormField from './utils/SelectFormField';
+import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 
 export class TalentFormLanguages extends React.Component {
   render() {
