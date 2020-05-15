@@ -1,5 +1,5 @@
-import FieldForm from './utils/FieldForm';
 import React from 'react';
+import { FieldForm } from '../utils/FieldForm';
 
 export class TalentFormHead extends React.Component {
   render() {

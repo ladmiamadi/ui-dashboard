@@ -1,8 +1,8 @@
 import { Button } from 'reactstrap';
-import FieldForm from './utils/FieldForm';
+import { SelectFormField } from '../utils/SelectFormField';
 import React from 'react';
 import ModalLanguage from './ModalLanguage';
-import { ModalCustom } from './utils/ModalCustom';
+import { ModalCustom } from '../utils/ModalCustom';
 
 interface State {
   isModalShown: boolean,
@@ -30,19 +30,17 @@ export class TalentFormHead extends React.Component<Props, State> {
           <h6>Langues: </h6>
           <Button  onClick={ this.toggleModal } className="form-add-button" color='default'>Ajouter une langue</Button>
         </div>
-        <FieldForm
-          type="select"
+        <SelectFormField
           keyName="language-french"
           label="Français: "
           className="medium"
-          selectOptions={ this.state.optionsLevelLanguage }
+          options={ this.state.optionsLevelLanguage }
         />
-        <FieldForm
-          type="select"
+        <SelectFormField
           keyName="language-english"
           label="Anglais: "
           className="medium"
-          selectOptions={ this.state.optionsLevelLanguage }
+          options={ this.state.optionsLevelLanguage }
         />
         <ModalCustom
           isModalShown= { this.state.isModalShown }

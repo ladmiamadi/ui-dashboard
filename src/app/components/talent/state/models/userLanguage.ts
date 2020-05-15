@@ -1,5 +1,4 @@
 import { createModel } from '@rematch/core';
-import { apiService } from '../../../../http/service';
 import { LanguageFactory } from '../../helpers/LanguageFactory';
 import { Language } from '../index';
 import { Toastify } from '../../../../../helpers/Toastify';
@@ -24,6 +23,7 @@ export const language = createModel({
     updateLanguage: (state: LanguageState, payload: UpdateLanguagePayload): LanguageState  => {
       const language = { ...state.language } as any;
       language[payload.property] = payload.value;
+      console.log(language);
       return {
         ...state, language
       };

@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import { Button, Row } from 'reactstrap';
 import { RootDispatch, RootState, } from '../../state/store';
 import { Language } from './state';
-import FieldForm from './utils/FieldForm';
+import { SelectFormField } from '../utils/SelectFormField';
+import { UpdateLanguagePayload } from './state/models/userLanguage';
 
 interface Props {
   optionsLevelLanguage: string[],
   language: Language,
-  resetLanguage: () => void
+  resetLanguage: () => void,
+  updateLanguage: (payload:UpdateLanguagePayload)=> void
 }
 
 interface State {
@@ -36,29 +38,40 @@ export class ModalLanguage extends React.Component<Props,State> {
     this.props.resetLanguage();
   }
 
+  updateLanguage(value:string, property:string): void {
+    const payload = {
+      property: property,
+      value: value
+    };
+    console.log('ici payload',payload);
+
+    this.props.updateLanguage(payload);
+
+  }
+
   render() {
     return (
       <>
         <Row>
-          <FieldForm
-            type="select"
+          <SelectFormField
             keyName="language"
             label="Ajouter une nouvelle langue"
-            selectOptions={ this.state.optionLanguage }
+            options={ this.state.optionLanguage }
+            updateModel={ this.updateLanguage }
           />
         </Row>
-        { this.props.language.language !==''&&
+        { this.props.language.language !== '' &&
           <Row className=" d-flex">
-            <FieldForm
-              type="select"
+            <SelectFormField
               label="niveau"
               keyName='level'
-              selectOptions={ this.props.optionsLevelLanguage }
+              options={ this.props.optionsLevelLanguage }
+              updateModel={ this.updateLanguage }
             />
           </Row>
         }
         {
-          this.props.language.level !=='' &&
+          this.props.language.level !== '' &&
             <Row>
               <Button className="form-add-button" color='default'> Ajouter une langue </Button>
             </Row>
@@ -75,6 +88,7 @@ const  mapState = (state: RootState) => ({
 const  mapDispatch = ( dispatch: RootDispatch) => ({
   postLanguage: dispatch.language.postLanguage,
   resetLanguage: dispatch.language.resetLanguage,
+  updateLanguage: dispatch.language.updateLanguage
 });
 
 export default connect(mapState, mapDispatch)(ModalLanguage);
