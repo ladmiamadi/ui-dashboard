@@ -1,43 +1,43 @@
-import FieldForm from './utils/FieldForm';
 import React from 'react';
+import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import { FieldForm } from '../../../app/components/utils/FieldForm';
 
 export class TalentFormHead extends React.Component {
   render() {
-    return(
+    return (
       <div className="form-head">
         <h1 className="talent-title">Gestion des talents: Nom Prénom</h1>
         <img src="https://place-hold.it/300x300" alt="pic"/>
         <div className="head-block">
           <FieldForm
-            type="text"
             keyName="lastname"
             label="Nom: "
+            type='text'
           />
           <FieldForm
-            type="text"
             keyName="firstname"
             label="Prénom: "
+            type='text'
           />
-          <FieldForm
-            type="select"
+          <SelectFormField
             keyName="function"
             label="Fonction: "
-            selectOptions={ ['aaa', 'bbb'] }
+            options={ ['aaa', 'bbb'] }
           />
           <FieldForm
-            type="text"
-            keyName="mail"
+            keyName="email"
             label="Mail: "
+            type='text'
           />
           <FieldForm
-            type="text"
             keyName="phone"
             label="Téléphone: "
+            type='text'
           />
           <FieldForm
-            type="text"
             keyName="place"
             label="Localisation: "
+            type='text'
           />
         </div>
         <div className="connexion-box">

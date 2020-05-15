@@ -1,57 +1,56 @@
-import FieldForm from './utils/FieldForm';
 import React from 'react';
+import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import { FieldForm } from '../../../app/components/utils/FieldForm';
 
-export class TalentFormHead extends React.Component {
+export class TalentFormAddress extends React.Component {
   render() {
-    return(
+    return (
       <div className="form-section">
         <FieldForm
-          type="text"
           keyName="street"
           label="Rue: "
           className="medium"
+          type='text'
         />
         <FieldForm
-          type="text"
           keyName="number"
           label="Num: "
+          type='text'
         />
         <FieldForm
-          type="text"
           keyName="postal-box"
           label="BP: "
+          type='text'
         />
         <FieldForm
-          type="text"
           keyName="postal-code"
           label="Code Postal: "
+          type='text'
         />
         <FieldForm
-          type="text"
           keyName="city"
           label="Ville: "
           className="medium"
+          type='text'
         />
-        <FieldForm
-          type="select"
+        <SelectFormField
           keyName="country"
           label="Pays: "
-          selectOptions={ ['aaa', 'bbb'] }
+          options={ ['aaa', 'bbb'] }
         />
         <FieldForm
-          type="date"
           keyName="DOB"
           label="Date de naissance: "
+          type='text'
         />
-        <FieldForm
-          type="select"
+        <SelectFormField
           keyName="search"
           label="Actuellement en recherche: "
-          selectOptions={ ['Oui', 'Non'] }
+          options={ ['Oui', 'Non'] }
         />
       </div>
     );
   }
 }
 
-export default TalentFormHead;
+export default TalentFormAddress;

@@ -1,6 +1,6 @@
 import { Button } from 'reactstrap';
-import { SelectFormField } from '../utils/SelectFormField';
 import React from 'react';
+import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import ModalLanguage from './ModalLanguage';
 import { ModalCustom } from '../utils/ModalCustom';
 
@@ -11,7 +11,7 @@ interface State {
 
 interface Props {}
 
-export class TalentFormHead extends React.Component<Props, State> {
+export class TalentFormLanguages extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -24,7 +24,7 @@ export class TalentFormHead extends React.Component<Props, State> {
   toggleModal =  () => this.setState({ isModalShown: !this.state.isModalShown });
 
   render() {
-    return(
+    return (
       <div className="form-section">
         <div className="section-add">
           <h6>Langues: </h6>
@@ -56,4 +56,4 @@ export class TalentFormHead extends React.Component<Props, State> {
   }
 }
 
-export default TalentFormHead;
+export default TalentFormLanguages;

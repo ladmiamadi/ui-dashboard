@@ -1,11 +1,10 @@
-/* eslint-disable sort-imports */
-import React from 'react';
 import './styles/App.css';
-import { BrowserRouter as Router } from 'react-router-dom';
 import AppContainer from './AppContainer';
 import { Provider } from 'react-redux';
+import React from 'react';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
+import TalentFormPage from '../../talents/components/form/TalentFormPage';
 import { store } from '../state/store';
-import TalentFormContainer from './talent/TalentFormContainer';
 
 export class App extends React.Component {
   render() {
@@ -13,7 +12,7 @@ export class App extends React.Component {
       <Router>
         <Provider store={ store }>
           <AppContainer>
-            <TalentFormContainer />
+            <Route path="/talent" exact component={ TalentFormPage } />
           </AppContainer>
         </Provider>
       </Router>

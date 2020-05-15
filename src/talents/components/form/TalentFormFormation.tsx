@@ -1,41 +1,40 @@
-import FieldForm from './utils/FieldForm';
 import React from 'react';
+import { DateFormField } from '../../../app/components/utils/DateFormField';
+import { FieldForm } from '../../../app/components/utils/FieldForm';
 
-export class TalentFormHead extends React.Component {
+export class TalentFormFormation extends React.Component {
   render() {
-    return(
+    return (
       <div className="form-section">
         <div className="section-add">
           <h6>Formations: </h6>
           <button className="form-add-button">Ajouter une formation</button>
         </div>
         <FieldForm
-          type="text"
           keyName="formation-school"
           label="École: "
           className="large"
+          type='text'
         />
-        <FieldForm
-          type="date"
+        <DateFormField
           keyName="formation-start"
           label="Début formation: "
           className="medium"
         />
-        <FieldForm
-          type="date"
+        <DateFormField
           keyName="formation-end"
           label="Fin: "
           className="medium"
         />
         <FieldForm
-          type="text"
           keyName="formation-diploma"
           label="Diplôme obtenu: "
           className="large"
+          type='text'
         />
       </div>
     );
   }
 }
 
-export default TalentFormHead;
+export default TalentFormFormation;
