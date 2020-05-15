@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../state/store';
 import './styles/CustomNavbar.css';
-import logoHDM from '../../assets/logoHDM.png';
+import logoHDM from '../../assets/LogoHDM.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { Module, User } from '../../index.d';
@@ -46,7 +46,7 @@ export class CustomNavbar extends React.Component<Props, State> {
         <div className="nav nav-bar">
           <div className="container container-nav">
             <div className='link-dashboard'>
-              <a href="/"><img className='logo-hdm' src={ logoHDM } alt="logo Hommes de métier" /> ADMIN DASHBOARD</a>
+              <a href="/"><img className='logo-hdm' src={ logoHDM } alt="logo Hommes de métier" /><span className='logo-title'>ADMIN DASHBOARD</span></a>
             </div>
             <button id='toggle' className={ toggleClassName } onClick={ this.showOrHide }>
               <div className="nav-icon">
