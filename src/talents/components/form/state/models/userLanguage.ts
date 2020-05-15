@@ -1,7 +1,8 @@
 import { createModel } from '@rematch/core';
 import { LanguageFactory } from '../../helpers/LanguageFactory';
-import { Language } from '../index';
+//import { UserLanguage }  from '../../../../../app/index';
 import { Toastify } from '../../../../../helpers/Toastify';
+import { Language } from '../index';
 
 export type LanguageState = {
   language: Language,
@@ -15,12 +16,13 @@ export interface UpdateLanguagePayload {
 
 export const language = createModel({
   state: {
-    language: {},
+    language: LanguageFactory.createEmptyLanguage(),
     isPosting: false,
   } as LanguageState ,
   reducers: {
     setIsPosting: (state: LanguageState, payload: boolean): LanguageState => ({ ...state, isPosting: payload }),
     updateLanguage: (state: LanguageState, payload: UpdateLanguagePayload): LanguageState  => {
+      console.log('tu rentre here?');
       const language = { ...state.language } as any;
       language[payload.property] = payload.value;
       console.log(language);

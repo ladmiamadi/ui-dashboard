@@ -2,7 +2,7 @@ import { Button } from 'reactstrap';
 import React from 'react';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import ModalLanguage from './ModalLanguage';
-import { ModalCustom } from '../utils/ModalCustom';
+import { ModalCustom } from '../../../app/components/utils/ModalCustom';
 
 interface State {
   isModalShown: boolean,

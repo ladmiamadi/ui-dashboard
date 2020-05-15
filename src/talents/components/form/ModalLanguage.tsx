@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Row } from 'reactstrap';
-import { RootDispatch, RootState, } from '../../state/store';
-import { Language } from './state';
-import { SelectFormField } from '../utils/SelectFormField';
+import { RootDispatch, RootState, } from '../../../app/state/store';
+//import { UserLanguage } from '../../../app/index';
+import { Language } from './state/index';
+import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { UpdateLanguagePayload } from './state/models/userLanguage';
 
 interface Props {
@@ -36,9 +37,10 @@ export class ModalLanguage extends React.Component<Props,State> {
 
   componentDidMount(): void {
     this.props.resetLanguage();
+    console.log(this.props.language);
   }
 
-  updateLanguage(value:string, property:string): void {
+  updateLanguageTest = (property:string, value:string) => {
     const payload = {
       property: property,
       value: value
@@ -57,7 +59,7 @@ export class ModalLanguage extends React.Component<Props,State> {
             keyName="language"
             label="Ajouter une nouvelle langue"
             options={ this.state.optionLanguage }
-            updateModel={ this.updateLanguage }
+            updateModel={ this.updateLanguageTest }
           />
         </Row>
         { this.props.language.language !== '' &&
@@ -66,14 +68,14 @@ export class ModalLanguage extends React.Component<Props,State> {
               label="niveau"
               keyName='level'
               options={ this.props.optionsLevelLanguage }
-              updateModel={ this.updateLanguage }
+              updateModel={ this.updateLanguageTest }
             />
           </Row>
         }
         {
           this.props.language.level !== '' &&
             <Row>
-              <Button className="form-add-button" color='default'> Ajouter une langue </Button>
+              <Button className="form-add-button modal-button" color='default'> Ajouter une langue </Button>
             </Row>
         }
       </>

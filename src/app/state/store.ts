@@ -1,5 +1,5 @@
 import { RematchRootState, init } from '@rematch/core';
-import * as language  from '../components/talent/state/models/userLanguage';
+import * as language  from '../../talents/components/form/state/models/userLanguage';
 
 const models = {
   ...language

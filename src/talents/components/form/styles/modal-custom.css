@@ -1,9 +1,13 @@
 
-.modal-language-content {
+.modal-body-content {
     padding: 2rem;
 }
 
-.modal-language-content button {
+.modal-body-content-content button {
+    font-size: 1.5rem;
+}
+
+.modal-button{
     font-size: 1.5rem;
 }
 
