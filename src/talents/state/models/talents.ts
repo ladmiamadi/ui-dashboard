@@ -1,4 +1,4 @@
-import { User } from '../../index';
+import { User } from '../../../app';
 import { Toastify } from '../../../helpers/Toastify';
 import { apiService } from '../../../app/http/service';
 import { createModel } from '@rematch/core';
@@ -18,9 +18,6 @@ export const talents = createModel ({
     async fetchTalents() {
       try {
         const { data } = await apiService.get('/api/users');
-        console.log(data);
-        //const { users } = data['hydra:member'];
-        //console.log(users);
         this.updateTalents(data);
       } catch (error) {
         (new Toastify()).error(`Something went wrong. ${ error.message }`);

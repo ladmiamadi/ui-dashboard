@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table } from 'reactstrap';
-import { User } from '..';
+import { User } from '../../app';
 import { TalentsListElement } from './TalentsListElement';
 import './styles/TalentsList.css';
 

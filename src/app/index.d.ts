@@ -62,7 +62,11 @@ export interface UserProfile {
   expectedSalary: number,
   status: string,
   environment: string
-  picture_path: string,
+  picture: MediaObject,
+}
+
+export interface MediaObject {
+  filePath: string,
 }
 
 export interface UserAbsence {
@@ -165,7 +169,7 @@ export interface Job {
   LongDescriptionInDutch: string,
   position: string,
   link: string,
-  picturePath: string,
+  picture: MediaObject,
   isOpen: boolean,
   createdDate: Date,
   updatedDate: Date,

@@ -1,11 +1,11 @@
-import React from 'react';
-import { User } from '..';
-import { Container } from 'reactstrap';
-import { SearchBar } from '../../app/utils/SearchBar';
-import { RootState } from './../../app/state/store';
-import { connect } from 'react-redux';
-import { TalentsListTable } from './TalentsListTable';
 import './styles/TalentsList.css';
+import { Container } from 'reactstrap';
+import React from 'react';
+import { RootState } from '../../app/state/store';
+import { SearchBar } from '../../app/utils/SearchBar';
+import { TalentsListTable } from './TalentsListTable';
+import { User } from '../../app';
+import { connect } from 'react-redux';
 
 interface Props {
   talents: User[],

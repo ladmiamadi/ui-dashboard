@@ -33,3 +33,11 @@
   align-items: center;
   margin: 10px;
 }
+
+.profilePicture {
+  width: 50%;
+  height: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

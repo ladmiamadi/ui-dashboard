@@ -1,7 +1,7 @@
 import React from 'react';
-import { RootDispatch, RootState } from './../../app/state/store';
+import { RootDispatch, RootState } from '../../app/state/store';
 import { connect } from 'react-redux';
-import { User } from '..';
+import { User } from '../../app';
 import TalentsList from './TalentsList';
 import { Loader } from '../../app/utils/Loader';
 
