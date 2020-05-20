@@ -21,9 +21,9 @@ export class SearchBar extends React.Component<Props> {
   render() {
     return (
       <InputGroup id="input">
-        <InputGroupAddon  addonType="prepend">
+        <InputGroupAddon addonType="prepend">
           <InputGroupText className="logo-search">
-            <FontAwesomeIcon  icon={ this.props.icon ? this.props.icon : faSearchs } />
+            <FontAwesomeIcon icon={ this.props.icon ? this.props.icon : faSearchs } />
           </InputGroupText>
         </InputGroupAddon>
         <Input placeholder={ this.props.placeholder }

@@ -13,12 +13,12 @@ export class TalentsListTable extends React.Component <Props> {
     return (
       <Table>
         <thead className="table-talents">
-          {this.props.talents.map((talent,i) => (
+          { this.props.talents.map((talent,i) => (
             <TalentsListElement
               key={ i }
               talent={ talent }
             />
-          ))}
+          )) }
         </thead>
       </Table>  
     );

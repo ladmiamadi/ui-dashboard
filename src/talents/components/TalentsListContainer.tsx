@@ -16,7 +16,7 @@ export class TalentsListContainer extends React.Component <Props> {
   }
 
   render() {
-    if(!this.props.talents.length) {
+    if (!this.props.talents.length) {
       return <Loader />;
     }
     

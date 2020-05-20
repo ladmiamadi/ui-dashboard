@@ -11,12 +11,12 @@ export class TalentsListElement extends React.Component <Props> {
     let path = 'http://hdmnetwork.com/media/';
     return (
       <tr className="id-card">
-        { this.props.talent.userProfiles.filter((profile)=> profile.environment === 'live').map((profile) =>
+        { this.props.talent.userProfiles.filter((profile) => profile.environment === 'live').map((profile) =>
           <>
             <td><img
-              className={'profilePicture'}
+              className={ 'profilePicture' }
               alt='picture'
-              src={ profile.picture ? path + profile.picture.filePath : ''}/></td>
+              src={ profile.picture ? path + profile.picture.filePath : '' }/></td>
             <td>{ profile.lastName }</td>
             <td>{ profile.firstName }</td>
           </>
