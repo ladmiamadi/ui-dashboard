@@ -103,16 +103,6 @@ export interface UserExperience {
   task: string,
 }
 
-export interface Client {
-  id: number;
-  firstname: string;
-  lastname: string;
-  user: string;
-  phone: number;
-  address: string;
-  email: string;
-}
-
 export interface UserTraining {
   id: number,
   user: User,

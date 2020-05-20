@@ -14,7 +14,7 @@ export const user = createModel({
   },
   reducers: {
     updateUser: (state: UserState, user: User): UserState => ({ ...state, user: user }),
-    resetUser: (): UserState => ({ user: createEmptyUser() }),
+    resetUser: (state: UserState): UserState => ({ ...state, user: createEmptyUser() }),
   },
   effects: {
     async fetchUser() {
