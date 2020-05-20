@@ -58,7 +58,7 @@ export class CustomNavbar extends React.Component<Props, State> {
                 <a key={ index } href="/">{ (module.name.toUpperCase()) }</a>) }
               <button
                 className="logo-out">
-                 {/*  onClick={ this.props.logout }*/}           {/*  Waiting the authentication component*/}
+                {/*  onClick={ this.props.logout }*/}           {/*  Waiting the authentication component*/}
                 <FontAwesomeIcon className="icon-logout" icon={ faSignOutAlt } />
               </button>
             </div>
