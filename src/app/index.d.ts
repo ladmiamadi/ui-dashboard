@@ -1,7 +1,12 @@
+export interface User {
+  id: number | string | null;
+  username: string;
+  email: string;
+}
+
 export interface Module {
   name: string;
   description: string;
-  linkText: HubspotOwnerType;
 }
 
 export interface User {
@@ -85,6 +90,15 @@ export interface UserContract {
   type: string,
   createdDate: Date,
   updatedDate: Date,
+export interface Transaction {
+  id: number;
+  name: string;
+  phase: string;
+  amount: number;
+  commissionAmount: number;
+  date: string;
+  description: string;
+  isSelected: boolean;
 }
 
 export interface UserLanguage {
@@ -102,6 +116,15 @@ export interface UserExperience {
   endDate: Date,
   position: string,
   task: string,
+
+export interface Client {
+  id: number;
+  firstname: string;
+  lastname: string;
+  user: string;
+  phone: number;
+  address: string;
+  email: string;
 }
 
 export interface UserTraining {

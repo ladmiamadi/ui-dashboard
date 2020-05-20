@@ -1,0 +1,262 @@
+.component-nav {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+.info-user {
+    height: auto;
+    color: #888;
+    text-align: right;
+    background-color: #F6F6F6;
+    font-size: 1.7rem;
+}
+
+.nav-bar{
+    box-shadow: 0 8px 20px -15px;
+    height: auto;
+    line-height: 70px;
+    width: 100vw;
+    background: white;
+}
+
+.link-dashboard {
+    margin-left: 0;
+    display: flex;
+    font-family: Ubuntu,sans-serif;
+}
+
+.link-dashboard a {
+    color: #E22104;
+    margin-left: 15px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.logo-hdm {
+    box-sizing: border-box;
+    height: 100%;
+    width: 70px;
+    object-fit: scale-down;
+    margin-right: 10px;
+}
+
+.menu {
+    display: flex;
+    padding: 0 15px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #202E31;
+    margin-right: 45px;
+    line-height: 70px;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.menu a:hover {
+    color: #E22104;
+}
+
+.menu .logo-out {
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    margin-right: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    font-size: 1.8rem;
+}
+
+.menu .logo-out:hover {
+    color: #E22104;
+}
+
+.fas {
+    height: 70px;
+    width: 100px;
+}
+
+.burger {
+    margin: 0 40px 0 0;
+    font-size: 16px;
+    line-height: 70px;
+    display: none;
+}
+
+#toggle {
+    display: none;
+    border: none;
+    background: transparent;
+    outline: 0;
+}
+
+.container-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    width: 100%;
+}
+
+.nav-icon {
+    margin: 0 10px;
+    width: 25px;
+    height: 21px;
+}
+
+.nav-icon:after,
+.nav-icon:before,
+.nav-icon div {
+    background-color: #e22104;
+    border-radius: 3px;
+    content: '';
+    display: block;
+    height: 3px;
+    margin: 4px 0;
+    transition: all .2s ease-in-out;
+}
+
+#toggle.active .nav-icon:before {
+    transform: translateY(7px) rotate(135deg);
+}
+
+#toggle.active .nav-icon:after {
+    transform: translateY(-7px) rotate(-135deg);
+}
+
+#toggle.active .nav-icon div {
+    transform: scale(0);
+}
+
+@media only screen and (max-width: 576px) {
+    .info-user {
+        height: 10px;
+        text-align: left;
+    }
+
+    .user-box {
+        display: none;
+    }
+
+    .burger {
+        display: block;
+        cursor: pointer;
+        color: #E22104;
+    }
+
+    .link-dashboard {
+        margin-left: 0;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .link-dashboard a {
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 2rem;
+    }
+
+    .menu {
+        text-align: center;
+        width: 100%;
+        display: none;
+    }
+
+    .menu a {
+        display: block;
+        margin: 0;
+    }
+
+    #toggle {
+        display: block;
+    }
+
+    #toggle.active + .menu {
+        display: block;
+        text-align: left;
+        padding-left: 15px;
+        z-index: 1;
+        background-color: #FFF;
+        overflow-y: hidden;
+        margin: 0;
+    }
+
+    .container-nav {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        padding: 0;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+
+    .nav {
+        height: auto;
+    }
+
+    .burger {
+        margin: 0;
+        display: block;
+        cursor: pointer;
+        color: #E22104;
+    }
+
+    .link-dashboard {
+        margin-left: 0;
+        display: flex;
+    }
+
+    .menu {
+        text-align: center;
+        display: none;
+        width: 100%;
+    }
+
+    .menu a {
+        display: block;
+        margin: 0;
+        height: 50px;
+    }
+
+    #toggle {
+        display: block;
+    }
+
+    #toggle.active + .menu {
+        display: block;
+        text-align: left;
+        padding-left: 15px;
+        z-index: 1;
+        background-color: #FFF;
+        overflow-y: hidden;
+
+        margin: 0;
+    }
+
+    .container-nav {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    .info-user {
+        height: 10px;
+    }
+
+    .user-box {
+        display: none;
+    }
+
+    .link-dashboard a {
+        font-size: 1.8rem;
+        margin-right: 2px;
+    }
+}
