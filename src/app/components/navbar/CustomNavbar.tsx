@@ -39,7 +39,7 @@ export class CustomNavbar extends React.Component<Props, State> {
         <div className='info-user'>
           <div className="container">
             <div className="user-box">
-              { this.props.user.username } ({ this.props.user.email })
+              ({ this.props.user.username })
             </div>
           </div>
         </div>
