@@ -8,8 +8,8 @@ import TalentFormHead from './TalentFormHead';
 import TalentFormInstitution from './TalentFormInstitution';
 import TalentFormInternship from './TalentFormInternship';
 import TalentFormJob from './TalentFormJob';
-import TalentFormLanguages from './TalentFormLanguages';
 import TalentFormSkills from './TalentFormSkills';
+import TalentFormLanguages from './TalentFormLanguages';
 
 export class TalentFormPage extends React.Component {
   render() {

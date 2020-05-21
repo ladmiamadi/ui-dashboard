@@ -1,7 +1,8 @@
 import { createModel } from '@rematch/core';
+import { apiService } from '../../../../../app/http/service';
 import { LanguageFactory } from '../../helpers/LanguageFactory';
 //import { UserLanguage }  from '../../../../../app/index';
-import { Toastify } from '../../../../../helpers/Toastify';
+//import { Toastify } from '../../../../../helpers/Toastify';
 import { Language } from '../index';
 
 export type LanguageState = {
@@ -22,10 +23,8 @@ export const language = createModel({
   reducers: {
     setIsPosting: (state: LanguageState, payload: boolean): LanguageState => ({ ...state, isPosting: payload }),
     updateLanguage: (state: LanguageState, payload: UpdateLanguagePayload): LanguageState  => {
-      console.log('tu rentre here?');
       const language = { ...state.language } as any;
       language[payload.property] = payload.value;
-      console.log(language);
       return {
         ...state, language
       };
@@ -33,15 +32,16 @@ export const language = createModel({
     resetLanguage: (state) => ({ ...state, language: LanguageFactory.createEmptyLanguage() })
   },
   effects: {
-    async postLanguage() {
+    async fetchLanguage():Promise<void> {
+      console.log('je suis ici');
       try {
         this.setIsPosting(true);
-
-        await console.log('yes');
-
-        (new Toastify()).info('Client added successfully.');
-      } catch (error) {
-        (new Toastify()).error(`Unable to added the client. ${ error.message }`);
+        const { data } = await apiService.get('/api/users/1');
+        console.log(data);
+      } catch  {
+        console.log('ne fonctionne pas ');
+      }finally {
+        this.setIsPosting(false);
       }
     }
   }

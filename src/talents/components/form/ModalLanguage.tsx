@@ -88,9 +88,10 @@ const  mapState = (state: RootState) => ({
 });
 
 const  mapDispatch = ( dispatch: RootDispatch) => ({
-  postLanguage: dispatch.language.postLanguage,
+  // postLanguage: dispatch.language.postLanguage,
   resetLanguage: dispatch.language.resetLanguage,
-  updateLanguage: dispatch.language.updateLanguage
+  updateLanguage: dispatch.language.updateLanguage,
+
 });
 
 export default connect(mapState, mapDispatch)(ModalLanguage);
