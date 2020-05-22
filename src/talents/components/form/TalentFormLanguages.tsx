@@ -1,7 +1,20 @@
 import React from 'react';
+import { User } from '../../../app';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 
-export class TalentFormLanguages extends React.Component {
+interface Props {
+  talent: User,
+}
+
+interface State {
+  value: string
+}
+
+export class TalentFormLanguages extends React.Component<Props, State> {
+  handleChange(value : any) {
+    this.setState({ value : value });
+    console.log(this.state.value, 'value of handlechange');
+  }
   render() {
     return (
       <div className="form-section">

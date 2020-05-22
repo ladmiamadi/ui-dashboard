@@ -11,16 +11,16 @@ export interface User {
   createdDate: Date,
   updatedDate: Date,
   userProfiles: UserProfile[],
-  userAddress: UserAddress,
+  userAddress: UserAddress | null,
   userAbsences: UserAbsence[],
   userInterviews: UserInterview[],
   userContracts: UserContract[],
   userLanguages : UserLanguage[],
   userExperiences: UserExperience[],
   userTrainings: UserTraining[],
-  userRole: UserRole,
+  userRole: UserRole | null,
   userSkills: UserSkill[],
-  userJob: UserJob,
+  userJob: UserJob | null,
 }
 
 export interface UserAddress {
@@ -62,7 +62,7 @@ export interface UserProfile {
   expectedSalary: number,
   status: string,
   environment: string
-  picture_path: string,
+  picture: MediaObject,
 }
 
 export interface UserAbsence {
@@ -165,9 +165,13 @@ export interface Job {
   LongDescriptionInDutch: string,
   position: string,
   link: string,
-  picturePath: string,
+  picture: MediaObject,
   isOpen: boolean,
   createdDate: Date,
   updatedDate: Date,
   userJobs: UserJob[],
+}
+
+export interface MediaObject {
+  filePath: string,
 }
