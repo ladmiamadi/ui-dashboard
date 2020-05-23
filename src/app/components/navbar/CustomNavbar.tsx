@@ -46,7 +46,7 @@ export class CustomNavbar extends React.Component<Props, State> {
         <div className="nav nav-bar">
           <div className="container container-nav">
             <div className='link-dashboard'>
-              <a href="/"><img className='logo-hdm' src={ logoHDM } alt="logo Hommes de métier" /><span className='logo-title'>ADMIN DASHBOARD</span></a>
+              <a href="/"><img className='logo-hdm' src={ logoHDM } alt="logo HDM Network" /><span className='logo-title'>ADMIN DASHBOARD</span></a>
             </div>
             <button id='toggle' className={ toggleClassName } onClick={ this.showOrHide }>
               <div className="nav-icon">
