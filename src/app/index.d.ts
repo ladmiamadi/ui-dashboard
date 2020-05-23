@@ -1,6 +1,8 @@
 export interface Module {
-  name: string;
-  description: string;
+  name: string,
+  description: string,
+  linkText: string,
+  link: string,
 }
 
 export interface User {

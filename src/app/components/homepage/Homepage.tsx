@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { RootState } from '../../state/store';
 import { connect } from 'react-redux';
 import { Module } from '../../index.d';
@@ -21,6 +22,7 @@ export class Homepage extends React.Component<Props> {
                     <div className="card-body">
                       <h5 className="card-title">{ module.name }</h5>
                       <p className="card-text">{ module.description }</p>
+                      <Link to={module.link}>{ module.linkText }</Link>
                     </div>
                   </div>
                 </div>) }

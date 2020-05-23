@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { RootState } from '../../state/store';
 import './styles/CustomNavbar.css';
 import logoHDM from '../../assets/LogoHDM.png';
@@ -46,7 +47,7 @@ export class CustomNavbar extends React.Component<Props, State> {
         <div className="nav nav-bar">
           <div className="container container-nav">
             <div className='link-dashboard'>
-              <a href="/"><img className='logo-hdm' src={ logoHDM } alt="logo HDM Network" /><span className='logo-title'>ADMIN DASHBOARD</span></a>
+              <Link to="/"><img className='logo-hdm' src={ logoHDM } alt="logo HDM Network" /><span className='logo-title'>ADMIN DASHBOARD</span></Link>
             </div>
             <button id='toggle' className={ toggleClassName } onClick={ this.showOrHide }>
               <div className="nav-icon">
@@ -55,7 +56,7 @@ export class CustomNavbar extends React.Component<Props, State> {
             </button>
             <div className="menu">
               { this.props.modules.map((module, index) =>
-                <a key={ index } href="/">{ (module.name.toUpperCase()) }</a>) }
+                <Link key={module.name} to={module.link}>{ module.linkText }</Link>) }
               <button
                 className="logo-out">
                 {/*  onClick={ this.props.logout }*/}           {/*  Waiting the authentication component*/}

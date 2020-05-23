@@ -2,7 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { RootDispatch, RootState } from '../state/store';
 
-export class AppContainer extends React.Component {
+interface Props {
+  fetchModules: () => Promise<void>,
+}
+
+export class AppContainer extends React.Component<Props> {
+  async componentDidMount() {
+    await this.props.fetchModules();
+  }
+
   render() {
     return this.props.children;
   }
@@ -10,6 +18,8 @@ export class AppContainer extends React.Component {
 
 const mapState = (state: RootState) => ({});
 
-const mapDispatch = (dispatch: RootDispatch) => ({});
+const mapDispatch = (dispatch: RootDispatch) => ({
+  fetchModules: dispatch.modules.fetchModules,
+});
 
 export default connect(mapState, mapDispatch)(AppContainer);
