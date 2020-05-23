@@ -1,11 +1,12 @@
 import React from 'react';
-import './styles/App.css';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
-import AppContainer from './AppContainer';
 import { Provider } from 'react-redux';
 import { store } from '../state/store';
+import AppContainer from './AppContainer';
+import TalentFormPage from '../../talents/components/form/TalentFormPage';
 import Homepage from './homepage/Homepage';
 import CustomNavbar from './navbar/CustomNavbar';
+import './styles/App.css';
 
 export class App extends React.Component {
   render() {
@@ -15,6 +16,7 @@ export class App extends React.Component {
           <AppContainer>
             <CustomNavbar />
             <Route path="/" exact component={ Homepage } />
+            <Route path="/talent" exact component={ TalentFormPage } />
           </AppContainer>
         </Provider>
       </Router>
