@@ -3,22 +3,22 @@ import { User } from '../../../app';
 import { apiService } from '../../../app/http/service';
 import { createModel } from '@rematch/core';
 
-type TalentsState = {
+interface State {
   list: User[]
 }
 
 export const talents = createModel ({
   state: {
     list: []
-  } as TalentsState,
+  } as State,
   reducers: {
-    updateTalents: (state: TalentsState, payload: User[]): TalentsState => ({ ...state, list: payload })
+    updateList: (state: State, payload: User[]): State => ({ ...state, list: payload })
   },
   effects: {
     async fetchTalents() {
       try {
         const { data } = await apiService.get('/api/users');
-        this.updateTalents(data);
+        this.updateList(data);
       } catch (error) {
         (new Toastify()).error(`Something went wrong. ${ error.message }`);
       }

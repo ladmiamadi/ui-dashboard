@@ -1,43 +1,36 @@
-.talents-list-page-title {
+#talents-list h3 {
   text-align: center;
   margin-top: 1rem;
   margin-bottom: 1rem;
   font-weight: 700;
-  font-size: 1.7rem;
-  font-family: "Roboto", "sans-serif";
+  font-size: 3rem;
 }
 
-.table-talents {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  padding-top: 10px;
+#talents-list .search-bar div#input * {
+  font-size: 2rem;
 }
 
-.table td, .table th {
-  padding: .25rem;
-   border: none;
+#talents-list .col-2.element {
+  text-align: center;
+  font-size: 1.5rem;
+  background: #f1f1f1;
+  border-radius: 1rem;
+  margin: 1rem;
+  padding: 1rem;
+  box-shadow: 0 0 10px -6px rgba(0,0,0,0.75);
+  cursor: pointer;
 }
 
-.search-bar {
+#talents-list .col-2.element:hover {
+  box-shadow: 0 0 10px -4px rgba(0,0,0,0.75);
+}
+
+#talents-list .search-bar {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
 }
 
-.id-card {
-  display: flex;
-  flex-direction: column;
-  width: 80px;
-  border: 1px solid black;
-  align-items: center;
-  margin: 10px;
-}
-
-.profilePicture {
-  width: 50%;
-  height: 50%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.profile-picture {
+  max-width: 100%;
 }

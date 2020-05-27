@@ -4,17 +4,17 @@ import { createEmptyUser } from '../../helpers/user';
 import { User } from '../../index';
 import { Toastify } from '../../../helpers/Toastify';
 
-type UserState = {
+interface State {
   user: User,
-};
+}
 
 export const user = createModel({
   state: {
     user: createEmptyUser(),
-  },
+  } as State,
   reducers: {
-    updateUser: (state: UserState, user: User): UserState => ({ ...state, user: user }),
-    resetUser: (state: UserState): UserState => ({ ...state, user: createEmptyUser() }),
+    updateUser: (state: State, user: User): State => ({ ...state, user: user }),
+    resetUser: (state: State): State => ({ ...state, user: createEmptyUser() }),
   },
   effects: {
     async fetchUser() {

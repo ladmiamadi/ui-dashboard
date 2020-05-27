@@ -1,27 +1,31 @@
-import './styles/TalentsList.css';
 import React from 'react';
-import { User } from '../../app';
+import { UserProfile } from '../../app';
+import { env } from '../../helpers/environment';
 
 interface Props {
-  talent: User,
+  profile: UserProfile,
 }
 
-export class TalentsListElement extends React.Component <Props> {
+export class TalentsListElement extends React.Component<Props> {
   render() {
-    let path = 'http://hdmnetwork.com/media/';
+    const { profile } = this.props;
+
     return (
-      <tr className="id-card">
-        { this.props.talent.userProfiles?.filter((profile) => profile.environment === 'live').map((profile) =>
-          <>
-            <td><img
-              className={ 'profilePicture' }
-              alt='picture'
-              src={ profile.picture ? path + profile.picture.filePath : '' }/></td>
-            <td>{ profile.lastName }</td>
-            <td>{ profile.firstName }</td>
-          </>
-        ) }
-      </tr>
+      <>
+        {
+          profile.picture
+          && (
+            <img
+              className="profile-picture"
+              alt={profile.firstName}
+              src={`${env('MEDIA_URL')}/${profile.picture.filePath}`}
+            />
+          )
+        }
+        <br />
+        { profile.lastName }<br />
+        { profile.firstName }
+      </>
     );
   }
 }
