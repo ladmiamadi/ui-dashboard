@@ -1,6 +1,6 @@
+import './styles/TalentsList.css';
 import React from 'react';
 import { User } from '../../app';
-import './styles/TalentsList.css';
 
 interface Props {
   talent: User,
@@ -11,7 +11,7 @@ export class TalentsListElement extends React.Component <Props> {
     let path = 'http://hdmnetwork.com/media/';
     return (
       <tr className="id-card">
-        { this.props.talent.userProfiles.filter((profile) => profile.environment === 'live').map((profile) =>
+        { this.props.talent.userProfiles?.filter((profile) => profile.environment === 'live').map((profile) =>
           <>
             <td><img
               className={ 'profilePicture' }

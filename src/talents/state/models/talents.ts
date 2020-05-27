@@ -1,5 +1,5 @@
-import { User } from '../../../app';
 import { Toastify } from '../../../helpers/Toastify';
+import { User } from '../../../app';
 import { apiService } from '../../../app/http/service';
 import { createModel } from '@rematch/core';
 

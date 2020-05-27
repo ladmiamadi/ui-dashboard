@@ -7,7 +7,7 @@ interface Props {
   options: string[],
   label: string,
   keyName: string,
-  className: string
+  className?: string
   updateModel?: ( value:string, property:string ) => void;
 }
 
@@ -24,7 +24,7 @@ export class SelectFormField extends React.Component<Props> {
         <Label className='form-label' for={ this.props.keyName }>{ this.props.label }</Label>
         <Input
           onChange= { event => this.updateModelOnChange(event.target.value, this.props.keyName) }
-          className={ this.props.className }
+          className='form-input'
           type='select'
           id={ this.props.keyName }
           defaultValue='Aucun'

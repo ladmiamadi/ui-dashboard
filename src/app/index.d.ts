@@ -1,26 +1,27 @@
 export interface Module {
-  name: string;
-  description: string;
-  linkText: HubspotOwnerType;
+  name: string,
+  description: string,
+  linkText: string,
+  link: string,
 }
 
 export interface User {
-  id: number,
+  id: number | null,
   username: string,
   password: string,
-  createdDate: Date,
-  updatedDate: Date,
-  userProfiles: UserProfile[],
-  userAddress: UserAddress,
-  userAbsences: UserAbsence[],
-  userInterviews: UserInterview[],
-  userContracts: UserContract[],
-  userLanguages : UserLanguage[],
-  userExperiences: UserExperience[],
-  userTrainings: UserTraining[],
-  userRole: UserRole,
-  userSkills: UserSkill[],
-  userJob: UserJob,
+  createdDate?: Date,
+  updatedDate?: Date,
+  userProfiles?: UserProfile[],
+  userAddress?: UserAddress,
+  userAbsences?: UserAbsence[],
+  userInterviews?: UserInterview[],
+  userContracts?: UserContract[],
+  userLanguages?: UserLanguage[],
+  userExperiences?: UserExperience[],
+  userTrainings?: UserTraining[],
+  userRole?: UserRole,
+  userSkills?: UserSkill[],
+  userJob?: UserJob,
 }
 
 export interface UserAddress {

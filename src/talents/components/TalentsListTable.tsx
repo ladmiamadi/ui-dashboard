@@ -1,8 +1,8 @@
+import './styles/TalentsList.css';
 import React from 'react';
 import { Table } from 'reactstrap';
-import { User } from '../../app';
 import { TalentsListElement } from './TalentsListElement';
-import './styles/TalentsList.css';
+import { User } from '../../app';
 
 interface Props {
   talents: User[]
