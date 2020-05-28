@@ -22,8 +22,9 @@ interface Props {
 
 export class TalentFormPage extends React.Component<Props> {
   async componentDidMount() {
-    await this.props.fetchUserById(81);
+    await this.props.fetchUserById(1);
   }
+
   render() {
     return (
       <div className="talent-form-page">

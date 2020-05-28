@@ -30,16 +30,19 @@ export class TalentFormFormation extends React.Component<Props, State> {
           className="large"
           type='text'
           handleChange ={this.handleChange}
+          value={ this.props.talent.userTrainings.map((elem) => elem.institution) }
         />
         <DateFormField
           keyName="formation-start"
           label="Début formation: "
           className="medium"
+          value={ this.props.talent.userExperiences.map((elem) => elem.startDate.toString()) }
         />
         <DateFormField
           keyName="formation-end"
           label="Fin: "
           className="medium"
+          value={ this.props.talent.userExperiences.map((elem) => elem.endDate.toString()) }
         />
         <FieldForm
           keyName="formation-diploma"
@@ -47,6 +50,7 @@ export class TalentFormFormation extends React.Component<Props, State> {
           className="large"
           type='text'
           handleChange ={this.handleChange}
+          value={ this.props.talent.userTrainings.map((elem) => elem.degreeObtained) }
         />
       </div>
     );

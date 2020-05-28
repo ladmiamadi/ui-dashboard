@@ -1,10 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { User } from '../../../app';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
+import { RootDispatch } from '../../../app/state/store';
 
 interface Props {
   talent: User,
+  modifyUser: (event: any) => void,
 }
 
 interface State {
@@ -12,10 +15,15 @@ interface State {
 }
 
 export class TalentFormHead extends React.Component <Props, State> {
-  handleChange(value : any) {
-    this.setState({ value : value });
-    console.log(this.state.value, 'value of handlechange');
+  handleChange(value : any, property : string) {
+    const payload = {
+      property : property,
+      value : value
+    };
+    console.log(payload, 'payload');
+    this.props.modifyUser(payload);
   }
+
   render() {
     return (
       <div className="form-head">
@@ -26,17 +34,15 @@ export class TalentFormHead extends React.Component <Props, State> {
             keyName="lastname"
             label="Nom: "
             type='text'
-            handleChange ={this.handleChange}
-            value={ this.props.talent.userProfiles.filter((profile) =>
-              profile.environment === 'live').map((profile) => profile.lastName) }
+            handleChange ={ (event) => this.handleChange(event, 'lastname') }
+            value={ this.props.talent.userProfiles.map((elem) => elem.lastName)}
           />
           <FieldForm
             keyName="firstname"
             label="Prénom: "
             type='text'
-            handleChange ={this.handleChange}
-            value={ this.props.talent.userProfiles.filter((profile) =>
-              profile.environment === 'live').map((profile) => profile.firstName) }
+            handleChange ={ (event) => this.handleChange(event, 'firstname') }
+            value={ this.props.talent.userProfiles.map((elem) => elem.firstName)}
           />
           <SelectFormField
             keyName="function"
@@ -47,22 +53,21 @@ export class TalentFormHead extends React.Component <Props, State> {
             keyName="email"
             label="Mail: "
             type='text'
-            handleChange ={this.handleChange}
+            handleChange ={ (event) => this.handleChange(event, 'email') }
             value={ this.props.talent.username }
           />
           <FieldForm
             keyName="phone"
             label="Téléphone: "
             type='text'
-            handleChange ={this.handleChange}
-            value={ this.props.talent.userProfiles.filter((profile) =>
-              profile.environment === 'live').map((profile) => profile.phone) }
+            handleChange ={ (event) => this.handleChange(event, 'phone') }
+            value={ this.props.talent.userProfiles.map((elem) => elem.phone)}
           />
           <FieldForm
             keyName="place"
             label="Localisation: "
             type='text'
-            handleChange ={this.handleChange}
+            handleChange ={ (event) => this.handleChange(event, 'place') }
             value={ this.props.talent.userAddress?.city }
           />
         </div>
@@ -75,4 +80,8 @@ export class TalentFormHead extends React.Component <Props, State> {
   }
 }
 
-export default TalentFormHead;
+const mapDispatch = (dispatch: RootDispatch) => ({
+  modifyUser: dispatch.user.modifyUser,
+});
+
+export default connect(()=>({}), mapDispatch)(TalentFormHead);

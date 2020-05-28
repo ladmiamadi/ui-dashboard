@@ -24,6 +24,7 @@ export class TalentFormInstitution extends React.Component<Props, State> {
           className="large"
           type='text'
           handleChange ={this.handleChange}
+          value={ this.props.talent.userProfiles.map((elem) => elem.institution) }
         />
         <FieldForm
           keyName="institution-phone"
@@ -31,6 +32,7 @@ export class TalentFormInstitution extends React.Component<Props, State> {
           className="medium"
           type='text'
           handleChange ={this.handleChange}
+          value={ this.props.talent.userProfiles.map((elem) => elem.phoneInstitution) }
 
         />
         <FieldForm
@@ -39,6 +41,7 @@ export class TalentFormInstitution extends React.Component<Props, State> {
           className="medium"
           type='text'
           handleChange ={this.handleChange}
+          value={ this.props.talent.userProfiles.map((elem) =>elem.mailInstitution) }
         />
         <FieldForm
           keyName="institution-contact"
@@ -46,6 +49,7 @@ export class TalentFormInstitution extends React.Component<Props, State> {
           className="large"
           type='text'
           handleChange ={this.handleChange}
+          value={ this.props.talent.userProfiles.map((elem) =>elem.personContactInstitution) }
         />
       </div>
     );

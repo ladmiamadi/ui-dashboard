@@ -30,10 +30,12 @@ export class TalentFormInternship extends React.Component<Props, State> {
         <DateFormField
           keyName="internship-start"
           label="Début: "
+          value={ this.props.talent.userExperiences.map((elem) => elem.startDate.toString()) }
         />
         <DateFormField
           keyName="internship-end"
           label="Fin: "
+          value={ this.props.talent.userExperiences.map((elem) => elem.startDate.toString()) }
         />
         <CheckboxFormField
           keyName="internship-days"

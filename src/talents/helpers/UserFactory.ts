@@ -1,7 +1,6 @@
 import { User } from '../../app';
 
 export class UserFactory {
-
   public createDTOUser(user : User) {
     return {
       id: user.id,

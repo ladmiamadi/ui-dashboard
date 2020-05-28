@@ -17,6 +17,8 @@ export class TalentFormExperience extends React.Component<Props, State> {
     console.log(this.state.value, 'value of handlechange');
   }
   render() {
+    let date = this.props.talent.userExperiences.map((elem) => elem.startDate);
+    console.log( date, 'hebentoi');
     return (
       <div className="form-section">
         <div className="section-add">
@@ -29,16 +31,19 @@ export class TalentFormExperience extends React.Component<Props, State> {
           className="large"
           type='text'
           handleChange ={this.handleChange}
+          value={ this.props.talent.userExperiences.map((elem) => elem.company) }
         />
         <DateFormField
           keyName="experience-start"
           label="Début activité: "
           className="medium"
+          value={ this.props.talent.userExperiences.map((elem) => elem.startDate.toString()) }
         />
         <DateFormField
           keyName="experience-end"
           label="Fin: "
           className="medium"
+          value={ this.props.talent.userExperiences.map((elem) => elem.endDate.toString()) }
         />
         <FieldForm
           keyName="experience-position"
@@ -46,6 +51,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
           className="large"
           type='text'
           handleChange ={this.handleChange}
+          value={ this.props.talent.userExperiences.map((elem) => elem.position) }
         />
         <FieldForm
           keyName="experience-works"
@@ -54,6 +60,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
           rows={ 5 }
           type='textarea'
           handleChange ={this.handleChange}
+          value={ this.props.talent.userExperiences.map((elem) => elem.task) }
         />
       </div>
     );

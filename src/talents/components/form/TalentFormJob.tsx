@@ -1,9 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { User } from '../../../app';
 import { FieldForm }  from '../../../app/components/utils/FieldForm';
+import { RootDispatch } from '../../../app/state/store';
+import { TalentUserProfilesFilter } from '../../helpers/talentFilter';
 
 interface Props {
   talent: User,
+  modifyUser: (event: any) => void,
 }
 
 interface State {
@@ -11,10 +15,15 @@ interface State {
 }
 
 export class TalentFormJob extends React.Component<Props, State> {
-  handleChange(value : any) {
-    this.setState({ value : value });
-    console.log(this.state.value, 'value of handlechange');
+  handleChange(value : any, property : string) {
+    const payload = {
+      property : property,
+      value : value
+    };
+
+    this.props.modifyUser(payload);
   }
+
   render() {
     return (
       <div className="form-section">
@@ -23,16 +32,16 @@ export class TalentFormJob extends React.Component<Props, State> {
           label="Métier souhaité: "
           className="large"
           type='text'
-          handleChange ={this.handleChange}
-          value={ this.props.talent.userProfiles.filter((profile) =>
-            profile.environment === 'live').map((profile) => profile.desiredJob) }
+          handleChange ={ (event) => this.handleChange(event, 'job-desired') }
+          value={ this.props.talent.userProfiles.map((elem) => elem.desiredJob) }
         />
         <FieldForm
           keyName="job-mobility"
           label="Mobilité: "
           className="large"
           type='text'
-          handleChange ={this.handleChange}
+          handleChange ={ (event) => this.handleChange(event, 'job-mobility') }
+          value={ this.props.talent.userProfiles.map((elem) => elem.mobility) }
         />
         <FieldForm
           keyName="job-description"
@@ -40,25 +49,33 @@ export class TalentFormJob extends React.Component<Props, State> {
           className="large"
           rows={ 5 }
           type='textarea'
-          handleChange ={this.handleChange}
+          handleChange ={ (event) => this.handleChange(event, 'job-description') }
+          value={ this.props.talent.userProfiles.map((elem) => elem.descriptionInFrench) }
         />
         <FieldForm
           keyName="job-actual-pay"
           label="Salaire actuel: "
           className="medium"
           type='text'
-          handleChange ={this.handleChange}
+          handleChange ={ (event) => this.handleChange(event, 'job-actual-pay') }
+          value={ this.props.talent.userProfiles.map((elem) => elem.actualSalary) }
         />
         <FieldForm
           keyName="job-desired-pay"
           label="Salaire souhaité: "
           className="medium"
           type='text'
-          handleChange ={this.handleChange}
+          handleChange ={ (event) => this.handleChange(event, 'job-desired-pay') }
+          value={ this.props.talent.userProfiles.map((elem) => elem.expectedSalary) }
         />
       </div>
     );
   }
 }
 
-export default TalentFormJob;
+const mapDispatch = (dispatch: RootDispatch) => ({
+  modifyUser: dispatch.user.modifyUser,
+});
+
+export default connect(() => {}, mapDispatch)(TalentFormJob);
+

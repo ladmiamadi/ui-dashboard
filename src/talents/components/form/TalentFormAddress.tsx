@@ -12,17 +12,13 @@ interface State {
 }
 
 export class TalentFormAddress extends React.Component <Props, State>{
-  constructor(props: Props) {
-    super(props);
-  }
-
   handleChange(value : any) {
     this.setState({ value : value });
     console.log(this.state.value, 'value of handlechange');
   }
 
   componentDidMount() {
-    console.log(this.props.talent.userProfiles.find((profile) => profile.environment === 'live'));
+    console.log(this.props.talent.userProfiles.find((profile) => profile.environment === 'live'), 'éezezzeze');
   }
 
   render() {
@@ -75,8 +71,7 @@ export class TalentFormAddress extends React.Component <Props, State>{
           label='Date de naissance: '
           type='text'
           handleChange ={this.handleChange}
-          value={ this.props.talent.userProfiles.filter((profile) =>
-            profile.environment === 'live').map((profile) => profile.birthDate.toString()) }
+          value={ this.props.talent.userProfiles.map((elem) => elem.birthDate) }
         />
         <SelectFormField
           keyName='search'

@@ -8,7 +8,8 @@ interface Props {
   options?: string[],
   label: string,
   keyName: string,
-  className?: string
+  className?: string,
+  value: any
 }
 
 export class DateFormField extends React.Component<Props> {
@@ -22,7 +23,7 @@ export class DateFormField extends React.Component<Props> {
             className='form-input'
             type='select'
             id={ this.props.keyName }
-            defaultValue='Jour'
+            defaultValue={ this.props.value }
           >
             <IncrementalNumberOptionsList numberOfOptions={31} />
           </Input>
