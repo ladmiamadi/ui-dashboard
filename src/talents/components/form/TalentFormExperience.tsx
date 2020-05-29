@@ -7,11 +7,7 @@ interface Props {
   talent: User,
 }
 
-interface State {
-  value: string
-}
-
-export class TalentFormExperience extends React.Component<Props, State> {
+export class TalentFormExperience extends React.Component<Props> {
   handleChange() {
 
   }
@@ -28,7 +24,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
           label="Entreprise: "
           className="large"
           type='text'
-          handleChange ={this.handleChange}
+          handleChange ={ this.handleChange }
           value={ this.props.talent.userExperiences.map((elem) => elem.company) }
         />
         <DateFormField
@@ -48,7 +44,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
           label="Poste: "
           className="large"
           type='text'
-          handleChange ={this.handleChange}
+          handleChange ={ this.handleChange }
           value={ this.props.talent.userExperiences.map((elem) => elem.position) }
         />
         <FieldForm
@@ -57,7 +53,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
           className="large"
           rows={ 5 }
           type='textarea'
-          handleChange ={this.handleChange}
+          handleChange ={ this.handleChange }
           value={ this.props.talent.userExperiences.map((elem) => elem.task) }
         />
       </div>

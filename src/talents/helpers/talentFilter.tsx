@@ -1,4 +1,4 @@
-import { UserExperience, UserProfile } from '../../app/index';
+import { UserProfile } from '../../app/index';
 
 export class TalentUserProfilesFilter {
   public static funcFilter(profile: UserProfile[]) {
@@ -6,14 +6,3 @@ export class TalentUserProfilesFilter {
   }
 }
 
-export class TalentUserExperiencesFilter {
-  public static funcFilter(profile: UserExperience[]) {
-    return profile.filter((profile) => profile);
-  }
-}
-
-/*export class TalentUserExperiencesFilter {
-  public static funcFilter(profile: UserExperience[]) {
-    return profile.filter((profile) => profile.company);
-  }
-}*/

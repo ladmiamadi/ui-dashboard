@@ -9,14 +9,11 @@ interface Props {
   talent: User,
 }
 
-interface State {
-  value: string
-}
+export class TalentFormInternship extends React.Component<Props> {
+  handleChange() {
 
-export class TalentFormInternship extends React.Component<Props, State> {
-  handleChange(value : any) {
-    this.setState({ value : value });
   }
+
   render() {
     return (
       <div className="form-section">
@@ -47,7 +44,7 @@ export class TalentFormInternship extends React.Component<Props, State> {
           label="Horaire: "
           className="large"
           type='text'
-          handleChange ={this.handleChange}
+          handleChange ={ this.handleChange }
         />
       </div>
     );

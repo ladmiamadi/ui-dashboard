@@ -9,11 +9,7 @@ interface Props {
   modifyUser: (event: any) => void,
 }
 
-interface State {
-  value: string
-}
-
-export class TalentFormJob extends React.Component<Props, State> {
+export class TalentFormJob extends React.Component<Props> {
   handleChange(value : any, property : string) {
     const payload = {
       property : property,

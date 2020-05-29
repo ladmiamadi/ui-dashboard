@@ -6,7 +6,6 @@ interface Props {
 }
 
 export class TalentFormSkills extends React.Component<Props> {
-
   render() {
     return (
       <div className="form-section">

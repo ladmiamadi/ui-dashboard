@@ -7,11 +7,7 @@ interface Props {
   talent: User,
 }
 
-interface State {
-  value: string
-}
-
-export class TalentFormAddress extends React.Component <Props, State>{
+export class TalentFormAddress extends React.Component <Props>{
   handleChange() {
 
   }

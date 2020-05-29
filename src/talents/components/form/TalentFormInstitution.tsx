@@ -6,13 +6,8 @@ interface Props {
   talent: User,
 }
 
-interface State {
-  value: string
-}
-
-export class TalentFormInstitution extends React.Component<Props, State> {
-  handleChange(value : any) {
-    this.setState({ value : value });
+export class TalentFormInstitution extends React.Component<Props> {
+  handleChange() {
 
   }
   render() {
@@ -23,7 +18,7 @@ export class TalentFormInstitution extends React.Component<Props, State> {
           label="École: "
           className="large"
           type='text'
-          handleChange ={this.handleChange}
+          handleChange ={ this.handleChange }
           value={ this.props.talent.userProfiles.map((elem) => elem.institution) }
         />
         <FieldForm

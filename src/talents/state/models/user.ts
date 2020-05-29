@@ -32,8 +32,8 @@ export const user = createModel ({
     async fetchUserById(id: number) {
       try {
         const { data } = await apiService.get(`/api/users/${id}`);
-        console.log(data, 'data du fetch dans user.ts');
         this.updateUser(data);
+
       } catch (error) {
         (new Toastify()).error(`Failed to fetch the user. ${ error.message }`);
 

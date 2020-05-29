@@ -6,14 +6,7 @@ interface Props {
   talent: User,
 }
 
-interface State {
-  value: string
-}
-
-export class TalentFormLanguages extends React.Component<Props, State> {
-  handleChange() {
-
-  }
+export class TalentFormLanguages extends React.Component<Props> {
   render() {
     return (
       <div className="form-section">

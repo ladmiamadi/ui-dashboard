@@ -7,11 +7,7 @@ interface Props {
   talent: User,
 }
 
-interface State {
-  value: string
-}
-
-export class TalentFormFormation extends React.Component<Props, State> {
+export class TalentFormFormation extends React.Component<Props> {
   handleChange() {
 
   }
@@ -28,7 +24,7 @@ export class TalentFormFormation extends React.Component<Props, State> {
           label="École: "
           className="large"
           type='text'
-          handleChange ={this.handleChange}
+          handleChange ={ this.handleChange }
           value={ this.props.talent.userTrainings.map((elem) => elem.institution) }
         />
         <DateFormField
@@ -48,7 +44,7 @@ export class TalentFormFormation extends React.Component<Props, State> {
           label="Diplôme obtenu: "
           className="large"
           type='text'
-          handleChange ={this.handleChange}
+          handleChange ={ this.handleChange }
           value={ this.props.talent.userTrainings.map((elem) => elem.degreeObtained) }
         />
       </div>
