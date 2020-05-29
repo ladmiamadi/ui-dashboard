@@ -31,14 +31,14 @@ export class TalentFormHead extends React.Component <Props> {
             label="Nom: "
             type='text'
             handleChange ={ (event) => this.handleChange(event, 'lastname') }
-            value={ this.props.talent.userProfiles.map((elem) => elem.lastName)}
+            value={ this.props.talent.userProfiles.map((elem) => elem.lastName) }
           />
           <FieldForm
             keyName="firstname"
             label="Prénom: "
             type='text'
             handleChange ={ (event) => this.handleChange(event, 'firstname') }
-            value={ this.props.talent.userProfiles.map((elem) => elem.firstName)}
+            value={ this.props.talent.userProfiles.map((elem) => elem.firstName) }
           />
           <SelectFormField
             keyName="function"
@@ -57,7 +57,7 @@ export class TalentFormHead extends React.Component <Props> {
             label="Téléphone: "
             type='text'
             handleChange ={ (event) => this.handleChange(event, 'phone') }
-            value={ this.props.talent.userProfiles.map((elem) => elem.phone)}
+            value={ this.props.talent.userProfiles.map((elem) => elem.phone) }
           />
           <FieldForm
             keyName="place"

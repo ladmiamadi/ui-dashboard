@@ -9,7 +9,7 @@ interface Props {
 
 export class TalentFormFormation extends React.Component<Props> {
   handleChange() {
-
+    // laissée au cas ou il faut pouvoir modifier les inputs
   }
 
   render() {

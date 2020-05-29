@@ -13,7 +13,7 @@ export class TalentFormJob extends React.Component<Props> {
   handleChange(value : any, property : string) {
     const payload = {
       property : property,
-      value : value
+      value : value,
     };
 
     this.props.modifyUser(payload);

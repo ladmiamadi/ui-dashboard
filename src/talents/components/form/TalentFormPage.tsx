@@ -17,7 +17,7 @@ import { RootDispatch, RootState } from '../../../app/state/store';
 interface Props {
   user: User,
   fetchUserById : (id: number) => Promise<void>,
-  isFetching: boolean
+  isFetching: boolean,
 }
 
 export class TalentFormPage extends React.Component<Props> {

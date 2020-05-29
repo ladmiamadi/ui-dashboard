@@ -9,7 +9,7 @@ interface Props {
 
 export class TalentFormAddress extends React.Component <Props>{
   handleChange() {
-
+    // laissée au cas ou il faut pouvoir modifier les inputs
   }
 
   render() {
@@ -27,21 +27,21 @@ export class TalentFormAddress extends React.Component <Props>{
           keyName='number'
           label='Num: '
           type='text'
-          handleChange ={this.handleChange}
+          handleChange ={ this.handleChange }
           value={ this.props.talent.userAddress?.number }
         />
         <FieldForm
           keyName='postal-box'
           label='BP: '
           type='text'
-          handleChange ={this.handleChange}
+          handleChange ={ this.handleChange }
           value={ this.props.talent.userAddress?.box }
         />
         <FieldForm
           keyName='postal-code'
           label='Code Postal: '
           type='text'
-          handleChange ={this.handleChange}
+          handleChange ={ this.handleChange }
           value={ this.props.talent.userAddress?.zipCode.toString() }
         />
         <FieldForm
@@ -49,7 +49,7 @@ export class TalentFormAddress extends React.Component <Props>{
           label='Ville: '
           className='medium'
           type='text'
-          handleChange ={this.handleChange}
+          handleChange ={ this.handleChange }
           value={ this.props.talent.userAddress?.city }
         />
         <SelectFormField
@@ -61,7 +61,7 @@ export class TalentFormAddress extends React.Component <Props>{
           keyName='DOB'
           label='Date de naissance: '
           type='text'
-          handleChange ={this.handleChange}
+          handleChange ={ this.handleChange }
           value={ this.props.talent.userProfiles.map((elem) => elem.birthDate) }
         />
         <SelectFormField

@@ -9,7 +9,7 @@ interface Props {
   className?: string,
   type: InputType,
   value?: any,
-  handleChange(value : any): void
+  handleChange(value : any): void,
 }
 
 interface State {
@@ -24,7 +24,6 @@ export class FieldForm extends React.Component<Props, State> {
   }
 
   render() {
-    console.log(this.state, 'render');
     return (
       <FormGroup className={ this.props.className }>
         <Label className='form-label' for={ this.props.keyName }>{ this.props.label }</Label>
@@ -34,7 +33,7 @@ export class FieldForm extends React.Component<Props, State> {
           id={ this.props.keyName }
           rows={ this.props.rows }
           onChange={ (event : any) => this.handleChange(event) }
-          value={this.props.value}
+          value={ this.props.value }
         />
       </FormGroup>
     );

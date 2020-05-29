@@ -8,7 +8,7 @@ interface Props {
 
 export class TalentFormInstitution extends React.Component<Props> {
   handleChange() {
-
+    // laissée au cas ou il faut pouvoir modifier les inputs
   }
   render() {
     return (
@@ -26,7 +26,7 @@ export class TalentFormInstitution extends React.Component<Props> {
           label="Téléphone École: "
           className="medium"
           type='text'
-          handleChange ={this.handleChange}
+          handleChange ={ this.handleChange }
           value={ this.props.talent.userProfiles.map((elem) => elem.phoneInstitution) }
 
         />
@@ -35,7 +35,7 @@ export class TalentFormInstitution extends React.Component<Props> {
           label="Mail École: "
           className="medium"
           type='text'
-          handleChange ={this.handleChange}
+          handleChange ={ this.handleChange }
           value={ this.props.talent.userProfiles.map((elem) =>elem.mailInstitution) }
         />
         <FieldForm
@@ -43,7 +43,7 @@ export class TalentFormInstitution extends React.Component<Props> {
           label="Personne de contact: "
           className="large"
           type='text'
-          handleChange ={this.handleChange}
+          handleChange ={ this.handleChange }
           value={ this.props.talent.userProfiles.map((elem) =>elem.personContactInstitution) }
         />
       </div>
