@@ -11,9 +11,8 @@ interface State {
 }
 
 export class TalentFormLanguages extends React.Component<Props, State> {
-  handleChange(value : any) {
-    this.setState({ value : value });
-    console.log(this.state.value, 'value of handlechange');
+  handleChange() {
+
   }
   render() {
     return (

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { User } from '../../../app';
 import { FieldForm }  from '../../../app/components/utils/FieldForm';
 import { RootDispatch } from '../../../app/state/store';
-import { TalentUserProfilesFilter } from '../../helpers/talentFilter';
 
 interface Props {
   talent: User,

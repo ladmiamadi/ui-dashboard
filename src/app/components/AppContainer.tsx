@@ -1,15 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { RootDispatch, RootState } from '../state/store';
 
-export class AppContainer extends React.Component {
+interface Props {
+  children: JSX.Element
+}
+
+export class AppContainer extends React.Component<Props> {
   render() {
     return this.props.children;
   }
 }
 
-const mapState = (state: RootState) => ({});
-
-const mapDispatch = (dispatch: RootDispatch) => ({});
-
-export default connect(mapState, mapDispatch)(AppContainer);
+export default connect(() => ({}), () =>({}))(AppContainer);

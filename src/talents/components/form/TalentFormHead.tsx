@@ -20,7 +20,7 @@ export class TalentFormHead extends React.Component <Props, State> {
       property : property,
       value : value
     };
-    console.log(payload, 'payload');
+
     this.props.modifyUser(payload);
   }
 

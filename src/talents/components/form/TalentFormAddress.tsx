@@ -12,13 +12,8 @@ interface State {
 }
 
 export class TalentFormAddress extends React.Component <Props, State>{
-  handleChange(value : any) {
-    this.setState({ value : value });
-    console.log(this.state.value, 'value of handlechange');
-  }
+  handleChange() {
 
-  componentDidMount() {
-    console.log(this.props.talent.userProfiles.find((profile) => profile.environment === 'live'), 'éezezzeze');
   }
 
   render() {

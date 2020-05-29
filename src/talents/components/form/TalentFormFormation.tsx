@@ -12,9 +12,8 @@ interface State {
 }
 
 export class TalentFormFormation extends React.Component<Props, State> {
-  handleChange(value : any) {
-    this.setState({ value : value });
-    console.log(this.state.value, 'value of handlechange');
+  handleChange() {
+
   }
 
   render() {

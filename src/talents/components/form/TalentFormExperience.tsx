@@ -12,13 +12,11 @@ interface State {
 }
 
 export class TalentFormExperience extends React.Component<Props, State> {
-  handleChange(value : any) {
-    this.setState({ value : value });
-    console.log(this.state.value, 'value of handlechange');
+  handleChange() {
+
   }
+
   render() {
-    let date = this.props.talent.userExperiences.map((elem) => elem.startDate);
-    console.log( date, 'hebentoi');
     return (
       <div className="form-section">
         <div className="section-add">
