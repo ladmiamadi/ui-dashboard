@@ -1,11 +1,6 @@
 import React from 'react';
-import { User } from '../../../app';
 
-interface Props {
-  talent: User,
-}
-
-export class TalentFormSkills extends React.Component<Props> {
+export class TalentFormSkills extends React.Component{
   render() {
     return (
       <div className="form-section">

@@ -1,17 +1,37 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { User } from '../../../app';
 import { DateFormField } from '../../../app/components/utils/DateFormField';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormField';
+import { RootDispatch, RootState } from '../../../app/state/store';
 
 interface Props {
   talent: User,
+  modifyUser: (event: any) => void,
 }
 
-export class TalentFormInternship extends React.Component<Props> {
-  handleChange() {
+interface State {
+  talent: User,
+}
 
+export class TalentFormInternship extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      talent: this.props.talent,
+    };
+  }
+
+  handleChange(property : string, event: any) {
+    const payload = {
+      property : property,
+      value : event,
+    };
+
+    this.props.modifyUser(payload);
   }
 
   render() {
@@ -26,12 +46,12 @@ export class TalentFormInternship extends React.Component<Props> {
         <DateFormField
           keyName="internship-start"
           label="Début: "
-          value={ this.props.talent.userExperiences.map((elem) => elem.startDate.toString()) }
+          value={ this.state.talent.userExperiences.map((elem) => elem.startDate) }
         />
         <DateFormField
           keyName="internship-end"
           label="Fin: "
-          value={ this.props.talent.userExperiences.map((elem) => elem.startDate.toString()) }
+          value={ this.state.talent.userExperiences.map((elem) => elem.endDate) }
         />
         <CheckboxFormField
           keyName="internship-days"
@@ -44,11 +64,20 @@ export class TalentFormInternship extends React.Component<Props> {
           label="Horaire: "
           className="large"
           type='text'
-          handleChange ={ this.handleChange }
+          handleChange ={ (event) => this.handleChange('internship-hours', event) }
+          /*   value={ this.state.talent.userProfiles.map((elem) => elem.) }*/
         />
       </div>
     );
   }
 }
 
-export default TalentFormInternship;
+const mapState = (state: RootState) => ({
+  talent: state.user.user
+});
+
+const mapDispatch = (dispatch: RootDispatch) => ({
+  modifyUser: dispatch.user.modifyUser,
+});
+
+export default connect(mapState, mapDispatch)(TalentFormInternship);

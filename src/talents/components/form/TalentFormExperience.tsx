@@ -1,15 +1,35 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { User } from '../../../app';
 import { DateFormField } from '../../../app/components/utils/DateFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
+import { RootDispatch, RootState } from '../../../app/state/store';
 
 interface Props {
   talent: User,
+  modifyUser: (event: any) => void,
 }
 
-export class TalentFormExperience extends React.Component<Props> {
-  handleChange() {
-    // laissée au cas ou il faut pouvoir modifier les inputs
+interface State {
+  talent: User,
+}
+
+export class TalentFormExperience extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      talent: this.props.talent,
+    };
+  }
+
+  handleChange(property : string, event: any) {
+    const payload = {
+      property : property,
+      value : event,
+    };
+
+    this.props.modifyUser(payload);
   }
 
   render() {
@@ -19,46 +39,57 @@ export class TalentFormExperience extends React.Component<Props> {
           <h6>Expérience: </h6>
           <button className="form-add-button">Ajouter une expérience</button>
         </div>
-        <FieldForm
-          keyName="experience-company"
-          label="Entreprise: "
-          className="large"
-          type='text'
-          handleChange ={ this.handleChange }
-          value={ this.props.talent.userExperiences.map((elem) => elem.company) }
-        />
-        <DateFormField
-          keyName="experience-start"
-          label="Début activité: "
-          className="medium"
-          value={ this.props.talent.userExperiences.map((elem) => elem.startDate.toString()) }
-        />
-        <DateFormField
-          keyName="experience-end"
-          label="Fin: "
-          className="medium"
-          value={ this.props.talent.userExperiences.map((elem) => elem.endDate.toString()) }
-        />
-        <FieldForm
-          keyName="experience-position"
-          label="Poste: "
-          className="large"
-          type='text'
-          handleChange ={ this.handleChange }
-          value={ this.props.talent.userExperiences.map((elem) => elem.position) }
-        />
-        <FieldForm
-          keyName="experience-works"
-          label="Tâches effectuées: "
-          className="large"
-          rows={ 5 }
-          type='textarea'
-          handleChange ={ this.handleChange }
-          value={ this.props.talent.userExperiences.map((elem) => elem.task) }
-        />
+        {
+          this.state.talent.userExperiences.map((elem) => (
+            <>
+              <FieldForm
+                keyName="experience-company"
+                label="Entreprise: "
+                className="large"
+                type='text'
+                handleChange ={ (event: MouseEvent) => this.handleChange('experience-company', event) }
+                value={ elem.company }
+              />
+              <DateFormField
+                keyName="experience-start"
+                label="Début activité: "
+                className="medium"
+                value={  elem.startDate }/>
+              <DateFormField
+                keyName="experience-end"
+                label="Fin: "
+                className="medium"
+                value={ elem.endDate }/>
+              <FieldForm
+                keyName="experience-position"
+                label="Poste: "
+                className="large"
+                type='text'
+                handleChange ={ (event: MouseEvent) => this.handleChange('experience-position', event) }
+                value={ elem.position }/>
+              <FieldForm
+                keyName="experience-works"
+                label="Tâches effectuées: "
+                className="large"
+                rows={ 5 }
+                type='textarea'
+                handleChange ={ (event: MouseEvent) => this.handleChange('experience-works', event) }
+                value={ elem.task }/>
+            </>
+          ))
+        }
+
       </div>
     );
   }
 }
 
-export default TalentFormExperience;
+const mapState = (state: RootState) => ({
+  talent: state.user.user
+});
+
+const mapDispatch = (dispatch: RootDispatch) => ({
+  modifyUser: dispatch.user.modifyUser,
+});
+
+export default connect(mapState, mapDispatch)(TalentFormExperience);

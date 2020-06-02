@@ -6,9 +6,12 @@ import { UserFactory } from '../../helpers/UserFactory';
 
 type TalentState = {
   user: User,
+  isFetching: boolean
 }
 
 export interface UpdateUserPayload {
+  index?: number,
+  category: string,
   property: string,
   value: number | string,
 }
@@ -16,12 +19,19 @@ export interface UpdateUserPayload {
 export const user = createModel ({
   state: {
     user: UserFactory.createEmptyUser(),
+    isFetching: false,
   } as TalentState,
   reducers: {
     updateUser: (state:TalentState, payload: User): TalentState => ({ ...state, user: payload }),
-    modifyUser: (state:TalentState, payload: UpdateUserPayload) : TalentState => {
-      const user = { ...state.user } as any;
-      user[payload.property] = payload.value;
+    setIsFetching: (state:TalentState, payload: boolean): TalentState => ({ ...state, isFetching: payload }),
+    modifyUser: (state:TalentState, payload: UpdateUserPayload): TalentState => {
+      const user = { ...state.user }  as any;
+
+      if(payload.index) {
+        user[payload.category][payload.index][payload.property] = payload.value;
+      } else {
+        user[payload.category][payload.property] = payload.value;
+      }
 
       return {
         ...state, user
@@ -31,12 +41,16 @@ export const user = createModel ({
   effects: {
     async fetchUserById(id: number) {
       try {
+        this.setIsFetching(true);
+
         const { data } = await apiService.get(`/api/users/${id}`);
         this.updateUser(data);
 
       } catch (error) {
         (new Toastify()).error(`Failed to fetch the user. ${ error.message }`);
 
+      } finally {
+        this.setIsFetching(false);
       }
     }
   }

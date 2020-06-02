@@ -1,26 +1,46 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { User } from '../../../app';
+import { User, UserProfile } from '../../../app';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
-import { RootDispatch } from '../../../app/state/store';
+import { RootDispatch, RootState } from '../../../app/state/store';
+import { TalentUserProfilesFilter } from '../../helpers/talentFilter';
+import { UpdateUserPayload } from '../../state/models/user';
 
 interface Props {
   talent: User,
-  modifyUser: (event: any) => void,
+  modifyUser: (payload: UpdateUserPayload) => void,
 }
 
-export class TalentFormHead extends React.Component <Props> {
-  handleChange(value : any, property : string) {
-    const payload = {
-      property : property,
-      value : value
-    };
+interface State {
+  talent: User,
+  userProfile: UserProfile,
+}
 
+export class TalentFormHead extends React.Component <Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      talent: props.talent,
+      userProfile: TalentUserProfilesFilter.filterByEnvironment(props.talent.userProfiles, 'working'),
+    };
+  }
+
+  handleChange(category: string, property : string, event: any) {
+    const payload = {
+      category: category,
+      property : property,
+      value : event,
+    };
+    console.log(payload, 'handleChange payload');
     this.props.modifyUser(payload);
   }
 
   render() {
+    console.log(this.state.userProfile, 'userprofile');
+    console.log(this.state.talent, 'talent');
+
     return (
       <div className="form-head">
         <h1 className="talent-title">Gestion des talents: Nom Prénom</h1>
@@ -30,15 +50,15 @@ export class TalentFormHead extends React.Component <Props> {
             keyName="lastname"
             label="Nom: "
             type='text'
-            handleChange ={ (event) => this.handleChange(event, 'lastname') }
-            value={ this.props.talent.userProfiles.map((elem) => elem.lastName) }
+            handleChange ={ (event) => this.handleChange('userProfiles', 'lastName', event) }
+            value={ this.state.userProfile }
           />
           <FieldForm
             keyName="firstname"
             label="Prénom: "
             type='text'
-            handleChange ={ (event) => this.handleChange(event, 'firstname') }
-            value={ this.props.talent.userProfiles.map((elem) => elem.firstName) }
+            handleChange ={ (event) => this.handleChange('userProfiles', 'firstName', event ) }
+            value={ this.state.talent.userProfiles.map((elem) => elem.firstName) }
           />
           <SelectFormField
             keyName="function"
@@ -49,22 +69,22 @@ export class TalentFormHead extends React.Component <Props> {
             keyName="email"
             label="Mail: "
             type='text'
-            handleChange ={ (event) => this.handleChange(event, 'email') }
-            value={ this.props.talent.username }
+            handleChange ={ (event) => this.handleChange('userProfiles', 'email', event) }
+            value={ this.state.talent.username }
           />
           <FieldForm
             keyName="phone"
             label="Téléphone: "
             type='text'
-            handleChange ={ (event) => this.handleChange(event, 'phone') }
-            value={ this.props.talent.userProfiles.map((elem) => elem.phone) }
+            handleChange ={ (event) => this.handleChange('userProfiles', 'phone', event) }
+            value={ this.state.talent.userProfiles.map((elem) => elem.phone) }
           />
           <FieldForm
             keyName="place"
             label="Localisation: "
             type='text'
-            handleChange ={ (event) => this.handleChange(event, 'place') }
-            value={ this.props.talent.userAddress?.city }
+            handleChange ={ (event) => this.handleChange('userProfiles', 'place', event,) }
+            value={ this.state.talent.userProfiles.map((elem) => elem)}
           />
         </div>
         <div className="connexion-box">
@@ -76,8 +96,12 @@ export class TalentFormHead extends React.Component <Props> {
   }
 }
 
+const mapState = (state: RootState) => ({
+  talent: state.user.user
+});
+
 const mapDispatch = (dispatch: RootDispatch) => ({
   modifyUser: dispatch.user.modifyUser,
 });
 
-export default connect(()=>({}), mapDispatch)(TalentFormHead);
+export default connect(mapState, mapDispatch)(TalentFormHead);

@@ -11,7 +11,7 @@ export interface User {
   createdDate: Date,
   updatedDate: Date,
   userProfiles: UserProfile[],
-  userAddress: UserAddress | null,
+  userAddress?: UserAddress | null,
   userAbsences: UserAbsence[],
   userInterviews: UserInterview[],
   userContracts: UserContract[],

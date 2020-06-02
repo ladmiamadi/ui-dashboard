@@ -21,7 +21,7 @@ export class SelectFormField extends React.Component<Props> {
   render() {
     return (
       <FormGroup className={ this.props.className }>
-        <Label className='form-label' for={ this.props.keyName }>{ this.props.label }</Label>
+        <Label className='form-label' htmlFor={ this.props.keyName }>{ this.props.label }</Label>
         <Input
           onChange= { event => this.updateModelOnChange(event.target.value, this.props.keyName) }
           className='form-input'
