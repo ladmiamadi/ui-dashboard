@@ -1,26 +1,27 @@
 export interface Module {
-  name: string;
-  description: string;
-  linkText: HubspotOwnerType;
+  name: string,
+  description: string,
+  linkText: string,
+  link: string,
 }
 
 export interface User {
-  id: number,
+  id: number | null,
   username: string,
   password: string,
-  createdDate: Date,
-  updatedDate: Date,
-  userProfiles: UserProfile[],
-  userAddress?: UserAddress | null,
-  userAbsences: UserAbsence[],
-  userInterviews: UserInterview[],
-  userContracts: UserContract[],
-  userLanguages : UserLanguage[],
-  userExperiences: UserExperience[],
-  userTrainings: UserTraining[],
-  userRole: UserRole | null,
-  userSkills: UserSkill[],
-  userJob: UserJob | null,
+  createdDate?: Date,
+  updatedDate?: Date,
+  userProfiles?: UserProfile[],
+  userAddress?: UserAddress,
+  userAbsences?: UserAbsence[],
+  userInterviews?: UserInterview[],
+  userContracts?: UserContract[],
+  userLanguages?: UserLanguage[],
+  userExperiences?: UserExperience[],
+  userTrainings?: UserTraining[],
+  userRole?: UserRole,
+  userSkills?: UserSkill[],
+  userJob?: UserJob,
 }
 
 export interface UserAddress {
@@ -62,7 +63,7 @@ export interface UserProfile {
   expectedSalary: number,
   status: string,
   environment: string
-  picture: MediaObject,
+  picture_path: string,
 }
 
 export interface UserAbsence {
@@ -165,13 +166,9 @@ export interface Job {
   LongDescriptionInDutch: string,
   position: string,
   link: string,
-  picture: MediaObject,
+  picturePath: string,
   isOpen: boolean,
   createdDate: Date,
   updatedDate: Date,
   userJobs: UserJob[],
-}
-
-export interface MediaObject {
-  filePath: string,
 }
