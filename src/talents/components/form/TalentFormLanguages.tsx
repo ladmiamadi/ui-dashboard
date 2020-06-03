@@ -1,19 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { User } from '../../../app';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
-import { RootDispatch, RootState } from '../../../app/state/store';
 
-interface Props {
-  talent: User,
-  modifyUser: (event: any) => void,
-}
-
-interface State {
-  talent: User,
-}
-
-export class TalentFormLanguages extends React.Component<Props> {
+export default class TalentFormLanguages extends React.Component {
   render() {
     return (
       <div className="form-section">
@@ -38,12 +26,3 @@ export class TalentFormLanguages extends React.Component<Props> {
   }
 }
 
-const mapState = (state: RootState) => ({
-  talent: state.user.user
-});
-
-const mapDispatch = (dispatch: RootDispatch) => ({
-  modifyUser: dispatch.user.modifyUser,
-});
-
-export default connect(mapState, mapDispatch)(TalentFormLanguages);

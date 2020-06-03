@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { User } from '../../../app';
+import { User, UserProfile } from '../../../app';
 import { FieldForm }  from '../../../app/components/utils/FieldForm';
 import { RootDispatch, RootState } from '../../../app/state/store';
+import { TalentUserProfilesFilter } from '../../helpers/talentFilter';
 
 interface Props {
   talent: User,
@@ -11,6 +12,7 @@ interface Props {
 
 interface State {
   talent: User,
+  userProfile: UserProfile,
 }
 
 export class TalentFormJob extends React.Component<Props, State> {
@@ -18,12 +20,14 @@ export class TalentFormJob extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      talent: this.props.talent,
+      talent: props.talent,
+      userProfile: TalentUserProfilesFilter.filterByEnvironment(props.talent.userProfiles, 'working'),
     };
   }
 
-  handleChange(property : string, event: MouseEvent) {
+  handleChange(category: string, property : string, event: any) {
     const payload = {
+      category: category,
       property : property,
       value : event,
     };
@@ -39,16 +43,16 @@ export class TalentFormJob extends React.Component<Props, State> {
           label="Métier souhaité: "
           className="large"
           type='text'
-          handleChange ={ (event) => this.handleChange('job-desired', event) }
-          value={ this.state.talent.userProfiles.map((elem) => elem.desiredJob) }
+          handleChange ={ (event) => this.handleChange('userProfiles','job-desired', event) }
+          value={ this.state.userProfile.desiredJob }
         />
         <FieldForm
           keyName="job-mobility"
           label="Mobilité: "
           className="large"
           type='text'
-          handleChange ={ (event) => this.handleChange('job-mobility', event) }
-          value={ this.state.talent.userProfiles.map((elem) => elem.mobility) }
+          handleChange ={ (event) => this.handleChange('userProfiles','job-mobility', event) }
+          value={ this.state.userProfile.mobility }
         />
         <FieldForm
           keyName="job-description"
@@ -56,24 +60,24 @@ export class TalentFormJob extends React.Component<Props, State> {
           className="large"
           rows={ 5 }
           type='textarea'
-          handleChange ={ (event) => this.handleChange('job-description', event) }
-          value={ this.state.talent.userProfiles.map((elem) => elem.descriptionInFrench) }
+          handleChange ={ (event) => this.handleChange('userProfiles','job-description', event) }
+          value={ this.state.userProfile.descriptionInFrench }
         />
         <FieldForm
           keyName="job-actual-pay"
           label="Salaire actuel: "
           className="medium"
           type='text'
-          handleChange ={ (event) => this.handleChange('job-actual-pay', event) }
-          value={ this.state.talent.userProfiles.map((elem) => elem.actualSalary) }
+          handleChange ={ (event) => this.handleChange('userProfiles','job-actual-pay', event) }
+          value={ this.state.userProfile.actualSalary }
         />
         <FieldForm
           keyName="job-desired-pay"
           label="Salaire souhaité: "
           className="medium"
           type='text'
-          handleChange ={ (event) => this.handleChange('job-desired-pay', event) }
-          value={ this.state.talent.userProfiles.map((elem) => elem.expectedSalary) }
+          handleChange ={ (event) => this.handleChange('userProfiles','job-desired-pay', event) }
+          value={ this.state.userProfile.expectedSalary }
         />
       </div>
     );

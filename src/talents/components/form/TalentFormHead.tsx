@@ -33,14 +33,11 @@ export class TalentFormHead extends React.Component <Props, State> {
       property : property,
       value : event,
     };
-    console.log(payload, 'handleChange payload');
+
     this.props.modifyUser(payload);
   }
 
   render() {
-    console.log(this.state.userProfile, 'userprofile');
-    console.log(this.state.talent, 'talent');
-
     return (
       <div className="form-head">
         <h1 className="talent-title">Gestion des talents: Nom Prénom</h1>
@@ -51,14 +48,14 @@ export class TalentFormHead extends React.Component <Props, State> {
             label="Nom: "
             type='text'
             handleChange ={ (event) => this.handleChange('userProfiles', 'lastName', event) }
-            value={ this.state.userProfile }
+            value={ this.state.userProfile.lastName }
           />
           <FieldForm
             keyName="firstname"
             label="Prénom: "
             type='text'
             handleChange ={ (event) => this.handleChange('userProfiles', 'firstName', event ) }
-            value={ this.state.talent.userProfiles.map((elem) => elem.firstName) }
+            value={ this.state.userProfile.firstName }
           />
           <SelectFormField
             keyName="function"
@@ -77,14 +74,14 @@ export class TalentFormHead extends React.Component <Props, State> {
             label="Téléphone: "
             type='text'
             handleChange ={ (event) => this.handleChange('userProfiles', 'phone', event) }
-            value={ this.state.talent.userProfiles.map((elem) => elem.phone) }
+            value={ this.state.userProfile.phone }
           />
           <FieldForm
             keyName="place"
             label="Localisation: "
             type='text'
             handleChange ={ (event) => this.handleChange('userProfiles', 'place', event,) }
-            value={ this.state.talent.userProfiles.map((elem) => elem)}
+            value={ this.state.userProfile }
           />
         </div>
         <div className="connexion-box">

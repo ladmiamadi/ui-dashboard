@@ -23,8 +23,9 @@ export class TalentFormFormation extends React.Component<Props, State> {
     };
   }
 
-  handleChange(property : string, event: any) {
+  handleChange(category: string, property : string, event: any) {
     const payload = {
+      category: category,
       property : property,
       value : event,
     };
@@ -40,14 +41,14 @@ export class TalentFormFormation extends React.Component<Props, State> {
           <button className="form-add-button">Ajouter une formation</button>
         </div>
         {
-          this.state.talent.userTrainings.map((elem) => (
-            <>
+          this.state.talent.userTrainings.map((elem, index) => (
+            <div key={ index }>
               <FieldForm
                 keyName="formation-school"
                 label="École: "
                 className="large"
                 type='text'
-                handleChange ={ (event) => this.handleChange('formation-school', event) }
+                handleChange ={ (event) => this.handleChange('userTraining','formation-school', event) }
                 value={ elem.institution }
               />
               <DateFormField
@@ -67,10 +68,10 @@ export class TalentFormFormation extends React.Component<Props, State> {
                 label="Diplôme obtenu: "
                 className="large"
                 type='text'
-                handleChange ={ (event) => this.handleChange('formation-diploma', event) }
+                handleChange ={ (event) => this.handleChange('userTraining','formation-diploma', event) }
                 value={  elem.degreeObtained }
               />
-            </>
+            </div>
           ))
         }
       </div>

@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { User } from '../../../app';
+import { User, UserProfile } from '../../../app';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { RootDispatch, RootState } from '../../../app/state/store';
+import { TalentUserProfilesFilter } from '../../helpers/talentFilter';
 
 interface Props {
   talent: User,
@@ -11,6 +12,7 @@ interface Props {
 
 interface State {
   talent: User,
+  userProfile: UserProfile,
 }
 
 export class TalentFormInstitution extends React.Component<Props, State> {
@@ -18,12 +20,14 @@ export class TalentFormInstitution extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      talent: this.props.talent,
+      talent: props.talent,
+      userProfile: TalentUserProfilesFilter.filterByEnvironment(props.talent.userProfiles, 'working'),
     };
   }
 
-  handleChange(property : string, event: any) {
+  handleChange(category: string, property : string, event: any) {
     const payload = {
+      category: category,
       property : property,
       value : event,
     };
@@ -39,32 +43,32 @@ export class TalentFormInstitution extends React.Component<Props, State> {
           label="École: "
           className="large"
           type='text'
-          handleChange ={ (event) => this.handleChange('institution', event) }
-          value={ this.state.talent.userProfiles.map((elem) => elem.institution) }
+          handleChange ={ (event) => this.handleChange('userProfiles','institution', event) }
+          value={ this.state.userProfile.institution }
         />
         <FieldForm
           keyName="institution-phone"
           label="Téléphone École: "
           className="medium"
           type='text'
-          handleChange ={ (event) => this.handleChange('institution-phone', event) }
-          value={ this.state.talent.userProfiles.map((elem) => elem.phoneInstitution) }
+          handleChange ={ (event) => this.handleChange('userProfiles','institution-phone', event) }
+          value={ this.state.userProfile.phoneInstitution }
         />
         <FieldForm
           keyName="institution-email"
           label="Mail École: "
           className="medium"
           type='text'
-          handleChange ={ (event) => this.handleChange('institution-email', event) }
-          value={ this.state.talent.userProfiles.map((elem) => elem.mailInstitution) }
+          handleChange ={ (event) => this.handleChange('userProfiles','institution-email', event) }
+          value={ this.state.userProfile.mailInstitution }
         />
         <FieldForm
           keyName="institution-contact"
           label="Personne de contact: "
           className="large"
           type='text'
-          handleChange ={ (event) => this.handleChange('institution-contact', event) }
-          value={ this.state.talent.userProfiles.map((elem) => elem.personContactInstitution) }
+          handleChange ={ (event) => this.handleChange('userProfiles','institution-contact', event) }
+          value={ this.state.userProfile.personContactInstitution }
         />
       </div>
     );
