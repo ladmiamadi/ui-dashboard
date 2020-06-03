@@ -6,7 +6,7 @@ import './styles/CustomNavbar.css';
 import logoHDM from '../../assets/LogoHDM.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { Module, User } from '../../index.d';
+import { Module, User } from '../../index';
 
 interface Props {
   user: User,
@@ -47,7 +47,10 @@ export class CustomNavbar extends React.Component<Props, State> {
         <div className="nav nav-bar">
           <div className="container container-nav">
             <div className='link-dashboard'>
-              <Link to="/"><img className='logo-hdm' src={ logoHDM } alt="logo HDM Network" /><span className='logo-title'>ADMIN DASHBOARD</span></Link>
+              <Link to="/">
+                <img className='logo-hdm' src={ logoHDM } alt="logo HDM Network" />
+                <span className='logo-title'>ADMIN DASHBOARD</span>
+              </Link>
             </div>
             <button id='toggle' className={ toggleClassName } onClick={ this.showOrHide }>
               <div className="nav-icon">
@@ -55,7 +58,7 @@ export class CustomNavbar extends React.Component<Props, State> {
               </div>
             </button>
             <div className="menu">
-              { this.props.modules.map((module, index) =>
+              { this.props.modules.map((module) =>
                 <Link key={module.name} to={module.link}>{ module.linkText }</Link>) }
               <button
                 className="logo-out">
