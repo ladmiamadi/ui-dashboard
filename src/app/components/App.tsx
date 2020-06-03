@@ -12,11 +12,11 @@ export class App extends React.Component {
   render() {
     return (
       <Router>
-        <Provider store={ store } >
+        <Provider store={store} >
           <AppContainer>
             <CustomNavbar />
-            <Route path="/" exact component={ Homepage } />
-            <Route path="/talent" exact component={ TalentFormPage } />
+            <Route path="/" exact component={Homepage} />
+            <Route path="/talent" exact component={TalentFormPage} />
           </AppContainer>
         </Provider>
       </Router>

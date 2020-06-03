@@ -10,43 +10,43 @@ export class TalentFormAddress extends React.Component {
           keyName="street"
           label="Rue: "
           className="medium"
-          type='text'
+          type="text"
         />
         <FieldForm
           keyName="number"
           label="Num: "
-          type='text'
+          type="text"
         />
         <FieldForm
           keyName="postal-box"
           label="BP: "
-          type='text'
+          type="text"
         />
         <FieldForm
           keyName="postal-code"
           label="Code Postal: "
-          type='text'
+          type="text"
         />
         <FieldForm
           keyName="city"
           label="Ville: "
           className="medium"
-          type='text'
+          type="text"
         />
         <SelectFormField
           keyName="country"
           label="Pays: "
-          options={ ['aaa', 'bbb'] }
+          options={['aaa', 'bbb']}
         />
         <FieldForm
           keyName="DOB"
           label="Date de naissance: "
-          type='text'
+          type="text"
         />
         <SelectFormField
           keyName="search"
           label="Actuellement en recherche: "
-          options={ ['Oui', 'Non'] }
+          options={['Oui', 'Non']}
         />
       </div>
     );

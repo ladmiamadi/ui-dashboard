@@ -9,32 +9,32 @@ export class TalentFormJob extends React.Component {
           keyName="job-desired"
           label="Métier souhaité: "
           className="large"
-          type='text'
+          type="text"
         />
         <FieldForm
           keyName="job-mobility"
           label="Mobilité: "
           className="large"
-          type='text'
+          type="text"
         />
         <FieldForm
           keyName="job-description"
           label="Description: "
           className="large"
-          rows={ 5 }
-          type='textarea'
+          rows={5}
+          type="textarea"
         />
         <FieldForm
           keyName="job-actual-pay"
           label="Salaire actuel: "
           className="medium"
-          type='text'
+          type="text"
         />
         <FieldForm
           keyName="job-desired-pay"
           label="Salaire souhaité: "
           className="medium"
-          type='text'
+          type="text"
         />
       </div>
     );
