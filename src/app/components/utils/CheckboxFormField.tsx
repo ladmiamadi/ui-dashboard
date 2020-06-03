@@ -12,16 +12,16 @@ interface Props {
 export class CheckboxFormField extends React.Component<Props> {
   render() {
     return (
-      <FormGroup className={ this.props.className }>
-        <Label className='form-label' for={ this.props.keyName }>{ this.props.label }</Label>
+      <FormGroup className={this.props.className}>
+        <Label className='form-label' for={this.props.keyName}>{ this.props.label }</Label>
         <div className='checkboxes'>
           {  this.props.checkboxes.map((elem: string) =>
-            <div key={ elem }>
+            <div key={elem}>
               <Input
                 className='form-input'
                 type='checkbox'
               />{ elem }
-            </div>
+            </div>,
           )
           }
         </div>

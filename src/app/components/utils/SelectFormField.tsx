@@ -21,17 +21,17 @@ export class SelectFormField extends React.Component<Props> {
 
   render() {
     return (
-      <FormGroup className={ this.props.className }>
-        <Label className='form-label' for={ this.props.keyName }>{ this.props.label }</Label>
+      <FormGroup className={this.props.className}>
+        <Label className='form-label' for={this.props.keyName}>{ this.props.label }</Label>
         <Input
-          onChange= { event => this.updateModelOnChange(this.props.keyName, event.target.value) }
+          onChange= {event => this.updateModelOnChange(this.props.keyName, event.target.value)}
           className='form-input'
           type='select'
-          id={ this.props.keyName }
+          id={this.props.keyName}
           defaultValue='Aucun'
         >
           <option disabled>Aucun</option>
-          <OptionList options={ this.props.options } />
+          <OptionList options={this.props.options} />
         </Input>
       </FormGroup>
     );

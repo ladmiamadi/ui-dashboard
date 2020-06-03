@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Row } from 'reactstrap';
-import { RootDispatch, RootState, } from '../../../app/state/store';
+import { RootDispatch, RootState } from '../../../app/state/store';
 //import { UserLanguage } from '../../../app/index';
 import { Language } from './state/index';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
@@ -30,7 +30,7 @@ export class ModalLanguage extends React.Component<Props,State> {
         'Japanese','Javanese','Korean','Latin','Latvian','Lithuanian','Macedonian','Malay','Malayalam','Maltese',
         'Maori','Marathi','Mongolian','Nepali','Norwegian','Persian','Polish','Portuguese','Punjabi','Quechua',
         'Romanian','Russian','Samoan','Serbian','Slovak','Slovenian','Spanish','Swahili','Swedish ','Tamil','Tatar',
-        'Telugu','Thai','Tibetan','Tonga','Turkish','Ukrainian','Urdu','Uzbek','Vietnamese','Welsh','Xhosa'
+        'Telugu','Thai','Tibetan','Tonga','Turkish','Ukrainian','Urdu','Uzbek','Vietnamese','Welsh','Xhosa',
       ],
     };
   }
@@ -43,7 +43,7 @@ export class ModalLanguage extends React.Component<Props,State> {
   updateLanguageTest = (property:string, value:string) => {
     const payload = {
       property: property,
-      value: value
+      value: value,
     };
     console.log('ici payload',payload);
 
@@ -58,8 +58,8 @@ export class ModalLanguage extends React.Component<Props,State> {
           <SelectFormField
             keyName="language"
             label="Ajouter une nouvelle langue"
-            options={ this.state.optionLanguage }
-            updateModel={ this.updateLanguageTest }
+            options={this.state.optionLanguage}
+            updateModel={this.updateLanguageTest}
           />
         </Row>
         { this.props.language.language !== '' &&
@@ -67,8 +67,8 @@ export class ModalLanguage extends React.Component<Props,State> {
             <SelectFormField
               label="niveau"
               keyName='level'
-              options={ this.props.optionsLevelLanguage }
-              updateModel={ this.updateLanguageTest }
+              options={this.props.optionsLevelLanguage}
+              updateModel={this.updateLanguageTest}
             />
           </Row>
         }
@@ -84,7 +84,7 @@ export class ModalLanguage extends React.Component<Props,State> {
 }
 
 const  mapState = (state: RootState) => ({
-  language: state.language.language
+  language: state.language.language,
 });
 
 const  mapDispatch = ( dispatch: RootDispatch) => ({

@@ -36,7 +36,7 @@ export class TalentFormExperience extends React.Component {
           keyName="experience-works"
           label="Tâches effectuées: "
           className="large"
-          rows={ 5 }
+          rows={5}
           type='textarea'
         />
       </div>

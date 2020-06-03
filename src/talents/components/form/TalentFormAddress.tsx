@@ -36,7 +36,7 @@ export class TalentFormAddress extends React.Component {
         <SelectFormField
           keyName="country"
           label="Pays: "
-          options={ ['aaa', 'bbb'] }
+          options={['aaa', 'bbb']}
         />
         <FieldForm
           keyName="DOB"
@@ -46,7 +46,7 @@ export class TalentFormAddress extends React.Component {
         <SelectFormField
           keyName="search"
           label="Actuellement en recherche: "
-          options={ ['Oui', 'Non'] }
+          options={['Oui', 'Non']}
         />
       </div>
     );
