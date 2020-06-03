@@ -1,36 +1,32 @@
 import { AxiosRequestConfig } from 'axios';
 import axios from 'axios';
-import { env } from '../../helpers/environment';
 
 let tokenInterceptor: number = -1;
 
 export const apiService = axios.create({
-	baseURL: 'http://hdmnetwork.com'
+  baseURL: 'http://hdmnetwork.com/',
 });
-// export const apiService = axios.create({
-//   baseURL: env('API_URL'),
-// });
 
 export const addTokenToRequestInterceptor = (token: string) => {
-	tokenInterceptor = apiService.interceptors.request.use((config: AxiosRequestConfig) => {
-		config.headers.Authorization = `Bearer ${token}`;
+  tokenInterceptor = apiService.interceptors.request.use((config: AxiosRequestConfig) => {
+    config.headers.Authorization = `Bearer ${token}`;
 
-		return config;
-	});
+    return config;
+  });
 };
 
 apiService.interceptors.response.use((response) => {
-	if (tokenInterceptor === -1 && response.data.token) {
-		addTokenToRequestInterceptor(response.data.token);
-	}
+  if (tokenInterceptor === -1 && response.data.token) {
+    addTokenToRequestInterceptor(response.data.token);
+  }
 
-	return response;
+  return response;
 });
 
 export const clearTokenFromAxios = () => {
-	return new Promise((resolve) => {
-		apiService.interceptors.request.eject(tokenInterceptor);
-		tokenInterceptor = -1;
-		resolve();
-	});
+  return new Promise((resolve) => {
+    apiService.interceptors.request.eject(tokenInterceptor);
+    tokenInterceptor = -1;
+    resolve();
+  });
 };

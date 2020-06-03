@@ -15,13 +15,13 @@ export class DateFormField extends React.Component<Props> {
   render() {
     const date = new Date();
     return (
-      <FormGroup className={ this.props.className }>
-        <Label className='form-label' for={ this.props.keyName }>{ this.props.label }</Label>
+      <FormGroup className={this.props.className}>
+        <Label className='form-label' for={this.props.keyName}>{ this.props.label }</Label>
         <div className='date'>
           <Input
             className='form-input'
             type='select'
-            id={ this.props.keyName }
+            id={this.props.keyName}
             defaultValue='Jour'
           >
             <IncrementalNumberOptionsList numberOfOptions={31} />
@@ -29,7 +29,7 @@ export class DateFormField extends React.Component<Props> {
           <Input
             className='form-input'
             type='select'
-            id={ this.props.keyName }
+            id={this.props.keyName}
             defaultValue='Mois'
           >
             <IncrementalNumberOptionsList numberOfOptions={12} />
@@ -37,10 +37,10 @@ export class DateFormField extends React.Component<Props> {
           <Input
             className='form-input'
             type='select'
-            id={ this.props.keyName }
+            id={this.props.keyName}
             defaultValue='Année'
           >
-            <YearOptionList toYear={ date.getFullYear() } fromYear={ (date.getFullYear() - 100) } />
+            <YearOptionList toYear={date.getFullYear()} fromYear={(date.getFullYear() - 100)} />
           </Input>
         </div>
       </FormGroup>

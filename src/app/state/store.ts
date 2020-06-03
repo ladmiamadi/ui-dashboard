@@ -4,13 +4,13 @@ import * as modules from './models/modules';
 import * as user from './models/user';
 
 const models = {
-	...auth,
-	...modules,
-	...user
+  ...auth,
+  ...modules,
+  ...user,
 };
 
 export const store = init({
-	models
+  models,
 });
 
 export type RootState = RematchRootState<typeof models>;

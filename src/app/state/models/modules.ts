@@ -4,7 +4,7 @@ import { Module } from '../../index';
 import { Toastify } from '../../../helpers/Toastify';
 
 type ModulesState = {
-  list: Module[],
+	list: Module[];
 };
 
 export const modules = createModel({
@@ -12,7 +12,7 @@ export const modules = createModel({
     list: [],
   } as ModulesState,
   reducers: {
-    updateModulesList: (state: ModulesState, payload: Module[]): ModulesState => ({ list: payload })
+    updateModulesList: (state: ModulesState, payload: Module[]): ModulesState => ({ list: payload }),
   },
   effects: {
     async fetchModules() {
@@ -20,7 +20,7 @@ export const modules = createModel({
         const { data } = await apiService.get('/api/modules');
         this.updateModulesList(data);
       } catch (error) {
-        (new Toastify()).error(`Module doesn't exist. ${ error.message }`);
+        new Toastify().error(`Module doesn't exist. ${error.message}`);
       }
     },
   },

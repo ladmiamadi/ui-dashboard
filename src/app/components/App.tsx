@@ -11,24 +11,24 @@ import CustomNavbar from './navbar/CustomNavbar';
 import './styles/App.css';
 
 export class App extends React.Component {
-	render() {
-		return (
-			<Router>
-				<Provider store={store}>
-					<AppContainer>
-						<AuthenticationGuard
-							form={<AuthenticationForm />}
-							localToken={localStorage.getItem('hdm:admin:auth-token')}
-						>
-							<CustomNavbar />
-							<Route path="/" exact component={Homepage} />
-							<Route path="/talent" exact component={TalentFormPage} />
-						</AuthenticationGuard>
-					</AppContainer>
-				</Provider>
-			</Router>
-		);
-	}
+  render() {
+    return (
+      <Router>
+        <Provider store={store}>
+          <AppContainer>
+            <AuthenticationGuard
+              form={<AuthenticationForm />}
+              localToken={localStorage.getItem('hdm:admin:auth-token')}
+            >
+              <CustomNavbar />
+              <Route path="/" exact component={Homepage} />
+              <Route path="/talent" exact component={TalentFormPage} />
+            </AuthenticationGuard>
+          </AppContainer>
+        </Provider>
+      </Router>
+    );
+  }
 }
 
 export default App;

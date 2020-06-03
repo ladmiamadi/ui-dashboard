@@ -15,6 +15,6 @@ export class YearOptionList extends React.Component<Props> {
   }
 
   render() {
-    return <OptionList options={ this.createArrayOfYears() } />;
+    return <OptionList options={this.createArrayOfYears()} />;
   }
 }
