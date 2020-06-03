@@ -41,6 +41,7 @@
             "error",
             "always"
         ],
+        "jsx-quotes": ["error", "prefer-double"],
         "react/no-unescaped-entities": 0,
         "react/jsx-curly-spacing": ["error", { "when": "never", "attributes": true, "children": false }],
         "space-infix-ops": "warn",

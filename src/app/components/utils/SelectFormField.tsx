@@ -8,8 +8,9 @@ interface Props {
   options: string[],
   label: string,
   keyName: keyof Language | string,
-  className?: string
-  updateModel?: ( property:string, value:string ) => void;
+  className?: string,
+  updateModel?: ( property:string, value:string ) => void,
+  defaultValue?: string,
 }
 
 export class SelectFormField extends React.Component<Props> {
@@ -22,13 +23,13 @@ export class SelectFormField extends React.Component<Props> {
   render() {
     return (
       <FormGroup className={this.props.className}>
-        <Label className='form-label' for={this.props.keyName}>{ this.props.label }</Label>
+        <Label className="form-label" for={this.props.keyName}>{ this.props.label }</Label>
         <Input
           onChange= {event => this.updateModelOnChange(this.props.keyName, event.target.value)}
-          className='form-input'
-          type='select'
+          className="form-input"
+          type="select"
           id={this.props.keyName}
-          defaultValue='Aucun'
+          defaultValue={this.props.defaultValue || 'Aucun'}
         >
           <option disabled>Aucun</option>
           <OptionList options={this.props.options} />

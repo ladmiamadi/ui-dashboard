@@ -1,5 +1,6 @@
 import { RematchRootState, init } from '@rematch/core';
-import * as language  from '../../talents/components/form/state/models/userLanguage';
+import * as language  from '../../talents/components/form/state/models/languages/addLanguage';
+import * as languages from '../../talents/components/form/state/models/languages/userLanguages';
 import * as modules from './models/modules';
 import * as user from './models/user';
 
@@ -7,6 +8,7 @@ const models = {
   ...modules,
   ...user,
   ...language,
+  ...languages,
 };
 
 export const store = init({

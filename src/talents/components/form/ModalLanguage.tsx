@@ -5,39 +5,21 @@ import { RootDispatch, RootState } from '../../../app/state/store';
 //import { UserLanguage } from '../../../app/index';
 import { Language } from './state/index';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
-import { UpdateLanguagePayload } from './state/models/userLanguage';
+import { UpdateLanguagePayload } from './state/models/languages/addLanguage';
 
 interface Props {
   optionsLevelLanguage: string[],
   language: Language,
   resetLanguage: () => void,
-  updateLanguage: (payload:UpdateLanguagePayload)=> void
-}
-
-interface State {
+  updateLanguage: (payload:UpdateLanguagePayload) => void,
   optionLanguage: string[],
+  isPosting: boolean,
+  postLanguage: (userLanguage: Language) => Promise<void>,
 }
 
-export class ModalLanguage extends React.Component<Props,State> {
-  constructor(props:Props) {
-    super(props);
-    
-    this.state = {
-      optionLanguage: [
-        'Afrikaans','Albanian','Arabic','Armenian','Basque','Bengali','Bulgarian','Catalan','Cambodian',
-        'Chinese (Mandarin)','Croatian','Czech','Danish','Dutch','English','Estonian','Fiji','Finnish','French',
-        'Georgian','German','Greek','Gujarati','Hebrew','Hindi','Hungarian','Icelandic','Indonesian','Irish','Italian',
-        'Japanese','Javanese','Korean','Latin','Latvian','Lithuanian','Macedonian','Malay','Malayalam','Maltese',
-        'Maori','Marathi','Mongolian','Nepali','Norwegian','Persian','Polish','Portuguese','Punjabi','Quechua',
-        'Romanian','Russian','Samoan','Serbian','Slovak','Slovenian','Spanish','Swahili','Swedish ','Tamil','Tatar',
-        'Telugu','Thai','Tibetan','Tonga','Turkish','Ukrainian','Urdu','Uzbek','Vietnamese','Welsh','Xhosa',
-      ],
-    };
-  }
-
+export class ModalLanguage extends React.Component<Props> {
   componentDidMount(): void {
     this.props.resetLanguage();
-    console.log(this.props.language);
   }
 
   updateLanguageTest = (property:string, value:string) => {
@@ -45,10 +27,12 @@ export class ModalLanguage extends React.Component<Props,State> {
       property: property,
       value: value,
     };
-    console.log('ici payload',payload);
 
     this.props.updateLanguage(payload);
+  }
 
+  postLanguageAndLeaveModal() {
+    this.props.postLanguage(this.props.language);
   }
 
   render() {
@@ -57,16 +41,16 @@ export class ModalLanguage extends React.Component<Props,State> {
         <Row>
           <SelectFormField
             keyName="language"
-            label="Ajouter une nouvelle langue"
-            options={this.state.optionLanguage}
+            label="Ajouter une nouvelle langue : "
+            options={this.props.optionLanguage}
             updateModel={this.updateLanguageTest}
           />
         </Row>
         { this.props.language.language !== '' &&
           <Row className=" d-flex">
             <SelectFormField
-              label="niveau"
-              keyName='level'
+              label="Niveau : "
+              keyName="level"
               options={this.props.optionsLevelLanguage}
               updateModel={this.updateLanguageTest}
             />
@@ -75,7 +59,11 @@ export class ModalLanguage extends React.Component<Props,State> {
         {
           this.props.language.level !== '' &&
             <Row>
-              <Button className="form-add-button modal-button" color='default'> Ajouter une langue </Button>
+              <Button
+                className="form-add-button modal-button"
+                color="default"
+                onClick={this.postLanguageAndLeaveModal}
+                disabled={this.props.isPosting}> Ajouter une langue </Button>
             </Row>
         }
       </>
@@ -84,13 +72,14 @@ export class ModalLanguage extends React.Component<Props,State> {
 }
 
 const  mapState = (state: RootState) => ({
-  language: state.language.language,
+  language: state.addLanguage.language,
+  isPosting: state.addLanguage.isPosting,
 });
 
 const  mapDispatch = ( dispatch: RootDispatch) => ({
-  // postLanguage: dispatch.language.postLanguage,
-  resetLanguage: dispatch.language.resetLanguage,
-  updateLanguage: dispatch.language.updateLanguage,
+  postLanguage: dispatch.addLanguage.postLanguage,
+  resetLanguage: dispatch.addLanguage.resetLanguage,
+  updateLanguage: dispatch.addLanguage.updateLanguage,
 
 });
 

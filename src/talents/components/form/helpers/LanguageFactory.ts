@@ -5,8 +5,7 @@ export class LanguageFactory {
   public static createEmptyLanguage(): Language {
     return {
       language:'',
-      level: ''
+      level: '',
     };
   }
-
 }
