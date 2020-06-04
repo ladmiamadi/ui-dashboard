@@ -66,6 +66,10 @@ html {
     width: 100%;
 }
 
+.form-elements {
+    width: 100%;
+}
+
 .form-label {
     font-size: 2rem;
     margin-right: 10px;

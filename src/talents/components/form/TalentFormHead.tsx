@@ -27,8 +27,9 @@ export class TalentFormHead extends React.Component <Props, State> {
     };
   }
 
-  handleChange(category: string, property : string, event: any) {
+  handleChange(index: string | undefined, category: string, property : string, event: any) {
     const payload = {
+      index: index,
       category: category,
       property : property,
       value : event,
@@ -47,14 +48,14 @@ export class TalentFormHead extends React.Component <Props, State> {
             keyName="lastname"
             label="Nom: "
             type='text'
-            handleChange ={ (event) => this.handleChange('userProfiles', 'lastName', event) }
+            handleChange ={ (event) => this.handleChange('0', 'userProfiles', 'lastName', event) }
             value={ this.state.userProfile.lastName }
           />
           <FieldForm
             keyName="firstname"
             label="Prénom: "
             type='text'
-            handleChange ={ (event) => this.handleChange('userProfiles', 'firstName', event ) }
+            handleChange ={ (event) => this.handleChange('0', 'userProfiles', 'firstName', event ) }
             value={ this.state.userProfile.firstName }
           />
           <SelectFormField
@@ -66,22 +67,23 @@ export class TalentFormHead extends React.Component <Props, State> {
             keyName="email"
             label="Mail: "
             type='text'
-            handleChange ={ (event) => this.handleChange('userProfiles', 'email', event) }
+            handleChange ={ (event) => this.handleChange( undefined,'userProfiles', 'username', event) }
             value={ this.state.talent.username }
           />
           <FieldForm
             keyName="phone"
             label="Téléphone: "
             type='text'
-            handleChange ={ (event) => this.handleChange('userProfiles', 'phone', event) }
+            handleChange ={ (event) => this.handleChange('0', 'userProfiles', 'phone', event) }
             value={ this.state.userProfile.phone }
           />
           <FieldForm
             keyName="place"
             label="Localisation: "
             type='text'
-            handleChange ={ (event) => this.handleChange('userProfiles', 'place', event,) }
-            value={ this.state.userProfile }
+            handleChange ={ (event) => this.handleChange('0', 'userProfiles', 'place', event,) }
+            value={ this.state.userProfile
+            }
           />
         </div>
         <div className="connexion-box">

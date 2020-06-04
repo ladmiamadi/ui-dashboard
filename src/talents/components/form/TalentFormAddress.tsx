@@ -85,7 +85,7 @@ export class TalentFormAddress extends React.Component <Props, State>{
           keyName='DOB'
           label='Date de naissance: '
           type='text'
-          handleChange ={ (event: MouseEvent) => this.handleChange('userAddress', 'DOB', event) }
+          handleChange ={ (event: MouseEvent) => this.handleChange('userAddress', 'birthDate', event) }
           value={ this.state.userProfile.birthDate }
         />
         <SelectFormField

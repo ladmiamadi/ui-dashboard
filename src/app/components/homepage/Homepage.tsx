@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { RootState } from '../../state/store';
 import { connect } from 'react-redux';
 import { Module } from '../../index.d';
+import { Link } from 'react-router-dom';
+import { RootState } from '../../state/store';
 import './styles/Homepage.css';
 
 interface Props {

@@ -23,8 +23,9 @@ export class TalentFormFormation extends React.Component<Props, State> {
     };
   }
 
-  handleChange(category: string, property : string, event: any) {
+  handleChange(index: number, category: string, property : string, event: any) {
     const payload = {
+      index: index,
       category: category,
       property : property,
       value : event,
@@ -42,13 +43,15 @@ export class TalentFormFormation extends React.Component<Props, State> {
         </div>
         {
           this.state.talent.userTrainings.map((elem, index) => (
-            <div key={ index }>
+            <div className='form-elements' key={ index }>
               <FieldForm
                 keyName="formation-school"
                 label="École: "
                 className="large"
                 type='text'
-                handleChange ={ (event) => this.handleChange('userTraining','formation-school', event) }
+                handleChange ={ (event) =>
+                  this.handleChange(0, 'userTrainings', 'institution', event)
+                }
                 value={ elem.institution }
               />
               <DateFormField
@@ -68,7 +71,9 @@ export class TalentFormFormation extends React.Component<Props, State> {
                 label="Diplôme obtenu: "
                 className="large"
                 type='text'
-                handleChange ={ (event) => this.handleChange('userTraining','formation-diploma', event) }
+                handleChange ={ (event) =>
+                  this.handleChange(0, 'userTrainings', 'degreeObtained', event)
+                }
                 value={  elem.degreeObtained }
               />
             </div>

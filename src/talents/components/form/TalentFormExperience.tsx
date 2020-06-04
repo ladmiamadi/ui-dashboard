@@ -23,8 +23,9 @@ export class TalentFormExperience extends React.Component<Props, State> {
     };
   }
 
-  handleChange(category: string, property : string, event: any) {
+  handleChange(index: number,category: string, property : string, event: any) {
     const payload = {
+      index: index,
       category: category,
       property : property,
       value : event,
@@ -42,13 +43,15 @@ export class TalentFormExperience extends React.Component<Props, State> {
         </div>
         {
           this.state.talent.userExperiences.map((elem, index) => (
-            <div key={ index }>
+            <div className="form-elements" key={ index }>
               <FieldForm
                 keyName="experience-company"
                 label="Entreprise: "
                 className="large"
                 type='text'
-                handleChange={ (event: MouseEvent) => this.handleChange('userExperience', 'experience-company',event) }
+                handleChange={ (event: MouseEvent) =>
+                  this.handleChange(0,'userExperiences', 'company',event)
+                }
                 value={ elem.company }
               />
               <DateFormField
@@ -66,7 +69,9 @@ export class TalentFormExperience extends React.Component<Props, State> {
                 label="Poste: "
                 className="large"
                 type='text'
-                handleChange={ (event: MouseEvent) => this.handleChange('userExperience', 'experience-position',event) }
+                handleChange={ (event: MouseEvent) =>
+                  this.handleChange(0, 'userExperiences', 'position', event)
+                }
                 value={ elem.position }/>
               <FieldForm
                 keyName="experience-works"
@@ -74,12 +79,13 @@ export class TalentFormExperience extends React.Component<Props, State> {
                 className="large"
                 rows={ 5 }
                 type='textarea'
-                handleChange={ (event: MouseEvent) => this.handleChange('userExperience', 'experience-works',event) }
+                handleChange={ (event: MouseEvent) =>
+                  this.handleChange(0, 'userExperiences', 'task', event)
+                }
                 value={ elem.task }/>
             </div>
           ))
         }
-
       </div>
     );
   }

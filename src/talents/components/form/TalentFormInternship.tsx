@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { User } from '../../../app';
+import { User, UserProfile } from '../../../app';
 import { DateFormField } from '../../../app/components/utils/DateFormField';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormField';
 import { RootDispatch, RootState } from '../../../app/state/store';
+import { TalentUserProfilesFilter } from '../../helpers/talentFilter';
 
 interface Props {
   talent: User,
@@ -14,6 +15,7 @@ interface Props {
 
 interface State {
   talent: User,
+  userProfile: UserProfile,
 }
 
 export class TalentFormInternship extends React.Component<Props, State> {
@@ -22,11 +24,13 @@ export class TalentFormInternship extends React.Component<Props, State> {
 
     this.state = {
       talent: this.props.talent,
+      userProfile: TalentUserProfilesFilter.filterByEnvironment(props.talent.userProfiles, 'working'),
     };
   }
 
-  handleChange(category: string, property : string, event: any) {
+  handleChange(index: number, category: string, property : string, event: any) {
     const payload = {
+      index: index,
       category: category,
       property : property,
       value : event,
@@ -40,7 +44,7 @@ export class TalentFormInternship extends React.Component<Props, State> {
       <div className="form-section">
         {
           this.state.talent.userExperiences.map((elem, index) => (
-            <div key={ index }>
+            <div className='form-elements' key={ index }>
               <SelectFormField
                 keyName="internship-status"
                 label="Statut du stage: "
@@ -63,13 +67,14 @@ export class TalentFormInternship extends React.Component<Props, State> {
                 className="large days"
                 checkboxes={ ['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche'] }
               />
+
               <FieldForm
                 keyName="internship-hours"
                 label="Horaire: "
                 className="large"
                 type='text'
-                handleChange ={ (event) => this.handleChange('userProfiles','internship-hours', event) }
-                /*      value={ this.state.talent }*/
+                handleChange ={ (event) => this.handleChange(0, 'userProfiles','internship-hours', event) }
+                value={ this.state.userProfile }
               />
             </div>
           ))
@@ -80,7 +85,7 @@ export class TalentFormInternship extends React.Component<Props, State> {
 }
 
 const mapState = (state: RootState) => ({
-  talent: state.user.user
+  talent: state.user.user,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({

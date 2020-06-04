@@ -25,8 +25,9 @@ export class TalentFormInstitution extends React.Component<Props, State> {
     };
   }
 
-  handleChange(category: string, property : string, event: any) {
+  handleChange(index: number, category: string, property : string, event: any) {
     const payload = {
+      index: index,
       category: category,
       property : property,
       value : event,
@@ -43,7 +44,7 @@ export class TalentFormInstitution extends React.Component<Props, State> {
           label="École: "
           className="large"
           type='text'
-          handleChange ={ (event) => this.handleChange('userProfiles','institution', event) }
+          handleChange ={ (event) => this.handleChange(0, 'userProfiles','institution', event) }
           value={ this.state.userProfile.institution }
         />
         <FieldForm
@@ -51,7 +52,7 @@ export class TalentFormInstitution extends React.Component<Props, State> {
           label="Téléphone École: "
           className="medium"
           type='text'
-          handleChange ={ (event) => this.handleChange('userProfiles','institution-phone', event) }
+          handleChange ={ (event) => this.handleChange(0, 'userProfiles','phoneInstitution', event) }
           value={ this.state.userProfile.phoneInstitution }
         />
         <FieldForm
@@ -59,7 +60,7 @@ export class TalentFormInstitution extends React.Component<Props, State> {
           label="Mail École: "
           className="medium"
           type='text'
-          handleChange ={ (event) => this.handleChange('userProfiles','institution-email', event) }
+          handleChange ={ (event) => this.handleChange(0, 'userProfiles','mailInstitution', event) }
           value={ this.state.userProfile.mailInstitution }
         />
         <FieldForm
@@ -67,7 +68,7 @@ export class TalentFormInstitution extends React.Component<Props, State> {
           label="Personne de contact: "
           className="large"
           type='text'
-          handleChange ={ (event) => this.handleChange('userProfiles','institution-contact', event) }
+          handleChange ={ (event) => this.handleChange(0, 'userProfiles','personContactInstitution', event) }
           value={ this.state.userProfile.personContactInstitution }
         />
       </div>
