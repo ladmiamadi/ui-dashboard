@@ -1,5 +1,4 @@
 import React from 'react';
-// import './styles/Loader.css';
 import { Container, Row } from 'reactstrap';
 
 export class Loader extends React.Component {

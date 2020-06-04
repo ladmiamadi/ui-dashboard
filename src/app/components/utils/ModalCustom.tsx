@@ -16,9 +16,9 @@ export class ModalCustom extends React.Component<Props> {
   render() {
     return (
       <div>
-        <Modal isOpen={this.props.isModalShown} toggle={this.props.toggleModal} className='modal-action'>
+        <Modal isOpen={this.props.isModalShown} toggle={this.props.toggleModal} className="modal-action">
           <ModalHeader toggle={this.props.toggleModal}>
-            <h5 className='header-modal'>{ this.props.titleModal }</h5>
+            <h5 className="header-modal">{ this.props.titleModal }</h5>
           </ModalHeader>
           <ModalBody className="modal-content">
             { this.props.children }

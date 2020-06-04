@@ -4,7 +4,7 @@ import { Module } from '../../index';
 import { Toastify } from '../../../helpers/Toastify';
 
 type ModulesState = {
-	list: Module[];
+	list: Module[],
 };
 
 export const modules = createModel({

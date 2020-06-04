@@ -4,14 +4,14 @@ import { RootState } from '../../app/state/store';
 import { Loader } from '../../app/components/utils/Loader'; // eslint-disable-line
 
 interface OwnProps {
-	form: JSX.Element;
-	localToken: string | null;
+  form: JSX.Element,
+	localToken: string | null,
 }
 
 interface Props extends OwnProps {
-	token: string | null;
-	isVerifiedToken: boolean;
-	verifyToken: (token: string) => Promise<void>;
+	token: string | null,
+	isVerifiedToken: boolean,
+	verifyToken: (token: string) => Promise<void>,
 }
 
 export class AuthenticationGuard extends React.Component<Props> {

@@ -1,10 +1,11 @@
 import { AxiosRequestConfig } from 'axios';
 import axios from 'axios';
+import { env } from '../../helpers/environment';
 
 let tokenInterceptor: number = -1;
 
 export const apiService = axios.create({
-  baseURL: 'http://hdmnetwork.com/',
+  baseURL: env('API_URL'),
 });
 
 export const addTokenToRequestInterceptor = (token: string) => {

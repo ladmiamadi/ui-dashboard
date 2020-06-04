@@ -9,25 +9,25 @@ export class TalentFormInstitution extends React.Component {
           keyName="institution"
           label="École: "
           className="large"
-          type='text'
+          type="text"
         />
         <FieldForm
           keyName="institution-phone"
           label="Téléphone École: "
           className="medium"
-          type='text'
+          type="text"
         />
         <FieldForm
           keyName="institution-email"
           label="Mail École: "
           className="medium"
-          type='text'
+          type="text"
         />
         <FieldForm
           keyName="institution-contact"
           label="Personne de contact: "
           className="large"
-          type='text'
+          type="text"
         />
       </div>
     );

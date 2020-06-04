@@ -4,13 +4,13 @@ import React from 'react';
 import './styles/AuthenticationForm.css';
 
 interface Props {
-  login: (dto: { username: string; email: string; password: string }) => Promise<void>;
+  login: (dto: { username: string; email: string; password: string }) => Promise<void>,
 }
 
 interface State {
-  username: string;
-  email: string;
-  password: string;
+  username: string,
+  email: string,
+  password: string,
 }
 
 export class AuthenticationForm extends React.Component<Props, State> {
@@ -26,7 +26,6 @@ export class AuthenticationForm extends React.Component<Props, State> {
 
   handleClick = async () => {
     await this.props.login({
-      // username: this.state.email,
       username: this.state.username,
       email: this.state.email,
       password: this.state.password,

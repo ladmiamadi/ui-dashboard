@@ -9,15 +9,14 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { Module, User } from '../../index.d';
 
 interface Props {
-  user: User;
-  modules: Module[]; // Waiting the authentication component
-  /* isVerifiedToken: boolean,*/ updateUser: () => Promise<void>;
-  updateModulesList: () => Promise<void>;
-  /* logout: () => Promise<void>,*/ // Waiting the authentication component
+  user: User,
+  modules: Module[],
+  updateUser: () => Promise<void>,
+  updateModulesList: () => Promise<void>,
 }
 
 interface State {
-  isMenuOpened: boolean;
+  isMenuOpened: boolean,
 }
 
 export class CustomNavbar extends React.Component<Props, State> {
@@ -37,7 +36,7 @@ export class CustomNavbar extends React.Component<Props, State> {
       <div className="component-nav">
         <div className="info-user">
           <div className="container">
-            <div className="user-box">({this.props.user.username})</div>
+            <div className="user-box">{ this.props.user.username }</div>
           </div>
         </div>
         <div className="nav nav-bar">
@@ -54,13 +53,10 @@ export class CustomNavbar extends React.Component<Props, State> {
               </div>
             </button>
             <div className="menu">
-              {this.props.modules.map((module) => (
-                <Link key={module.name} to={module.link}>
-                  {module.linkText}
-                </Link>
-              ))}
-              <button className="logo-out">
-                {/*  onClick={ this.props.logout }*/} {/*  Waiting the authentication component*/}
+              { this.props.modules.map((module) =>
+                <Link key={module.name} to={module.link}>{ module.linkText }</Link>) }
+              <button
+                className="logo-out">
                 <FontAwesomeIcon className="icon-logout" icon={faSignOutAlt} />
               </button>
             </div>
@@ -74,13 +70,11 @@ export class CustomNavbar extends React.Component<Props, State> {
 const mapState = (state: RootState) => ({
   user: state.user.user,
   modules: state.modules.list,
-  /* isVerifiedToken: state.auth.isVerifiedToken*/ // waiting authentication component
 });
 
 const mapDispatch = (dispatch: any) => ({
   updateUser: dispatch.user.updateUser,
   updateModulesList: dispatch.modules.updateModulesList,
-  /*logout: dispatch.auth.logout*/ // waiting authentication component
 });
 
 export default connect(mapState, mapDispatch)(CustomNavbar);

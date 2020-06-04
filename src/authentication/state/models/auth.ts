@@ -3,14 +3,14 @@ import { addTokenToRequestInterceptor, apiService, clearTokenFromAxios } from '.
 import { Toastify } from '../../../helpers/Toastify';
 
 export interface UserAuthenticationDto {
-	email: string;
-	username: string;
-	password: string;
+	email: string,
+	username: string,
+	password: string,
 }
 
 type AuthState = {
-	token: string | null;
-	isVerifiedToken: boolean;
+	token: string | null,
+	isVerifiedToken: boolean,
 };
 
 export const auth = createModel({
