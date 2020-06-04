@@ -1,10 +1,11 @@
 import { createModel } from '@rematch/core';
 import { apiService } from '../../../../../../app/http/service';
-import { Language } from '../../index';
+import { UserLanguage } from '../../../../../../app/index';
 import { LanguagesFactory } from '../../../helpers/LanguagesFactory';
+import { Toastify } from '../../../../../../helpers/Toastify';
 
 export interface State {
-    languages: Language[],
+    languages: UserLanguage[],
 }
 
 export const userLanguages = createModel({
@@ -12,11 +13,11 @@ export const userLanguages = createModel({
     languages: [],
   } as State,
   reducers: {
-    initUserLanguage: (state: State, languages: Language[]): State => ({ ...state, languages }),
-    addUserLanguage: (state: State, language: Language): State => {
-      const languages = { ...state.languages } as Language[];
-
-      languages.push(language);
+    initUserLanguage: (state: State, languages: UserLanguage[]): State => ({ ...state, languages }),
+    addUserLanguage: (state: State, language: UserLanguage): State => {
+      const languages = state.languages
+        .map(language => ({ ...language }))
+        .concat(language);
 
       return {
         ...state, languages,
@@ -24,12 +25,13 @@ export const userLanguages = createModel({
     },
   },
   effects: {
-    async fetchLanguages():Promise<void> {
+    async fetchLanguages() {
       try {
         const { data } = await apiService.get('/api/users/1');
 
         this.initUserLanguage(LanguagesFactory.createLanguageFromUserData(data));
       } catch(error) {
+        (new Toastify()).info(`Unable to fetch user languages. ${error.message}`);
       }
     },
   },

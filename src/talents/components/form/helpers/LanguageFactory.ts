@@ -1,10 +1,9 @@
-//import { UserLanguage } from '../../../../app/index';
-import { Language } from '../state/index';
+import { UserLanguage } from '../../../../app/index';
 
 export class LanguageFactory {
-  public static createEmptyLanguage(): Language {
+  public static createEmptyLanguage(): UserLanguage {
     return {
-      language:'',
+      language: '',
       level: '',
     };
   }

@@ -2,19 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Row } from 'reactstrap';
 import { RootDispatch, RootState } from '../../../app/state/store';
-//import { UserLanguage } from '../../../app/index';
-import { Language } from './state/index';
+import { UserLanguage } from '../../../app/index';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { UpdateLanguagePayload } from './state/models/languages/addLanguage';
 
 interface Props {
   optionsLevelLanguage: string[],
-  language: Language,
+  language: UserLanguage,
   resetLanguage: () => void,
   updateLanguage: (payload:UpdateLanguagePayload) => void,
   optionLanguage: string[],
   isPosting: boolean,
-  postLanguage: (userLanguage: Language) => Promise<void>,
+  postLanguage: (userLanguage: UserLanguage) => void,
 }
 
 export class ModalLanguage extends React.Component<Props> {
@@ -31,7 +30,7 @@ export class ModalLanguage extends React.Component<Props> {
     this.props.updateLanguage(payload);
   }
 
-  postLanguageAndLeaveModal() {
+  postLanguageAndLeaveModal = async() => {
     this.props.postLanguage(this.props.language);
   }
 
@@ -47,7 +46,7 @@ export class ModalLanguage extends React.Component<Props> {
           />
         </Row>
         { this.props.language.language !== '' &&
-          <Row className=" d-flex">
+          <Row className="d-flex">
             <SelectFormField
               label="Niveau : "
               keyName="level"
@@ -71,12 +70,12 @@ export class ModalLanguage extends React.Component<Props> {
   }
 }
 
-const  mapState = (state: RootState) => ({
+const mapState = (state: RootState) => ({
   language: state.addLanguage.language,
   isPosting: state.addLanguage.isPosting,
 });
 
-const  mapDispatch = ( dispatch: RootDispatch) => ({
+const mapDispatch = (dispatch: RootDispatch) => ({
   postLanguage: dispatch.addLanguage.postLanguage,
   resetLanguage: dispatch.addLanguage.resetLanguage,
   updateLanguage: dispatch.addLanguage.updateLanguage,

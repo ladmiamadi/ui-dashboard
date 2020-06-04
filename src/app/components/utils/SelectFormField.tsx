@@ -1,13 +1,13 @@
 import { FormGroup, Label } from 'reactstrap';
 import Input from 'reactstrap/lib/Input';
-import { Language } from '../../../talents/components/form/state';
+import { UserLanguage } from '../../../app/index';
 import { OptionList } from './OptionList';
 import React from 'react';
 
 interface Props {
   options: string[],
   label: string,
-  keyName: keyof Language | string,
+  keyName: keyof UserLanguage | string,
   className?: string,
   updateModel?: ( property:string, value:string ) => void,
   defaultValue?: string,

@@ -1,12 +1,12 @@
 import { createModel } from '@rematch/core';
 import { LanguageFactory } from '../../../helpers/LanguageFactory';
 import { Toastify } from '../../../../../../helpers/Toastify';
-import { Language } from '../../index';
+import { UserLanguage } from '../../../../../../app/index';
 import { apiService } from '../../../../../../app/http/service';
 
 export type LanguageState = {
-  language: Language,
-  isPosting: boolean
+  language: UserLanguage,
+  isPosting: boolean,
 }
 
 export interface UpdateLanguagePayload {
@@ -29,13 +29,16 @@ export const addLanguage = createModel({
       };
     },
     resetLanguage: (state) => ({ ...state, language: LanguageFactory.createEmptyLanguage() }),
-    initUserLanguage: (state: LanguageState, language: Language): LanguageState => ({ ...state, language }),
   },
   effects: (dispatch: any) => ({
-    async postLanguage(userLanguage : Language): Promise<void> {
+    async postLanguage(userLanguage : UserLanguage) {
       try {
         this.setIsPosting(true);
-        await apiService.post('/api/users/1');
+        await apiService.post('/api/user_languages', {
+          user: '/api/users/1',
+          language: userLanguage.language,
+          level: userLanguage.level,
+        });
 
         dispatch.userLanguages.addUserLanguage(userLanguage);
         this.resetLanguage();
