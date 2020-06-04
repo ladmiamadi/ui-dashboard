@@ -5,7 +5,7 @@ import { RootDispatch, RootState } from '../../../app/state/store';
 import ModalLanguage from './ModalLanguage';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
 import { UserLanguage } from '../../../app';
-import { UserLanguagesSkillsDisplay } from './UserLanguagesSkillsDisplay';
+import { UserLanguagesDisplay } from './UserLanguagesDisplay';
 
 interface Props {
   fetchLanguages: () => Promise<void>,
@@ -61,7 +61,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
           <h6>Langues: </h6>
           <Button onClick={this.toggleModal} className="form-add-button" color="default">Ajouter une langue</Button>
         </div>
-        <UserLanguagesSkillsDisplay
+        <UserLanguagesDisplay
           userLanguages={this.props.userLanguages}
           options={this.state.optionsLevelLanguage}
         />

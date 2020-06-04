@@ -7,7 +7,7 @@ interface Props {
   options: string[]
 }
 
-export class UserLanguagesSkillsDisplay extends React.Component<Props> {
+export class UserLanguagesDisplay extends React.Component<Props> {
   render() {
     return (
       <>

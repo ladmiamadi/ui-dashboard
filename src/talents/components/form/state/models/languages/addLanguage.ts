@@ -1,7 +1,5 @@
 import { createModel } from '@rematch/core';
-//import { apiService } from '../../../../../app/http/service';
 import { LanguageFactory } from '../../../helpers/LanguageFactory';
-//import { UserLanguage }  from '../../../../../app/index';
 import { Toastify } from '../../../../../../helpers/Toastify';
 import { Language } from '../../index';
 import { apiService } from '../../../../../../app/http/service';
