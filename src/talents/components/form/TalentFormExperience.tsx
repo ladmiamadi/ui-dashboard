@@ -14,7 +14,7 @@ export class TalentFormExperience extends React.Component {
           keyName="experience-company"
           label="Entreprise: "
           className="large"
-          type='text'
+          type="text"
         />
         <DateFormField
           keyName="experience-start"
@@ -30,14 +30,14 @@ export class TalentFormExperience extends React.Component {
           keyName="experience-position"
           label="Poste: "
           className="large"
-          type='text'
+          type="text"
         />
         <FieldForm
           keyName="experience-works"
           label="Tâches effectuées: "
           className="large"
           rows={5}
-          type='textarea'
+          type="textarea"
         />
       </div>
     );

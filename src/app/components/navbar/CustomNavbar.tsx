@@ -11,10 +11,8 @@ import { Module, User } from '../../index.d';
 interface Props {
   user: User,
   modules: Module[],
- /* isVerifiedToken: boolean,*/        // Waiting the authentication component
   updateUser: () => Promise<void>,
   updateModulesList: () => Promise<void>,
- /* logout: () => Promise<void>,*/      // Waiting the authentication component
 }
 
 interface State {
@@ -36,8 +34,8 @@ export class CustomNavbar extends React.Component<Props, State> {
     const toggleClassName = this.state.isMenuOpened ? 'active' : '';
 
     return (
-      <div className='component-nav'>
-        <div className='info-user'>
+      <div className="component-nav">
+        <div className="info-user">
           <div className="container">
             <div className="user-box">
               ({ this.props.user.username })
@@ -46,13 +44,13 @@ export class CustomNavbar extends React.Component<Props, State> {
         </div>
         <div className="nav nav-bar">
           <div className="container container-nav">
-            <div className='link-dashboard'>
+            <div className="link-dashboard">
               <Link to="/">
-                <img className='logo-hdm' src={logoHDM} alt="logo HDM Network" />
-                <span className='logo-title'>ADMIN DASHBOARD</span>
+                <img className="logo-hdm" src={logoHDM} alt="logo HDM Network" />
+                <span className="logo-title">ADMIN DASHBOARD</span>
               </Link>
             </div>
-            <button id='toggle' className={toggleClassName} onClick={this.showOrHide}>
+            <button id="toggle" className={toggleClassName} onClick={this.showOrHide}>
               <div className="nav-icon">
                 <div />
               </div>
@@ -62,7 +60,6 @@ export class CustomNavbar extends React.Component<Props, State> {
                 <Link key={module.name} to={module.link}>{ module.linkText }</Link>) }
               <button
                 className="logo-out">
-                {/*  onClick={ this.props.logout }*/}           {/*  Waiting the authentication component*/}
                 <FontAwesomeIcon className="icon-logout" icon={faSignOutAlt} />
               </button>
             </div>
@@ -76,13 +73,11 @@ export class CustomNavbar extends React.Component<Props, State> {
 const mapState = (state: RootState) => ({
   user: state.user.user,
   modules: state.modules.list,
-  /* isVerifiedToken: state.auth.isVerifiedToken*/    // waiting authentication component
 });
 
 const mapDispatch = (dispatch: any) => ({
   updateUser: dispatch.user.updateUser,
   updateModulesList: dispatch.modules.updateModulesList,
-  /*logout: dispatch.auth.logout*/                          // waiting authentication component
 });
 
 export default connect(mapState, mapDispatch)(CustomNavbar);

@@ -32,7 +32,7 @@ export class TalentFormInternship extends React.Component {
           keyName="internship-hours"
           label="Horaire: "
           className="large"
-          type='text'
+          type="text"
         />
       </div>
     );

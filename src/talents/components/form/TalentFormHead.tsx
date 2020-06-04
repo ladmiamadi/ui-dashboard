@@ -12,12 +12,12 @@ export class TalentFormHead extends React.Component {
           <FieldForm
             keyName="lastname"
             label="Nom: "
-            type='text'
+            type="text"
           />
           <FieldForm
             keyName="firstname"
             label="Prénom: "
-            type='text'
+            type="text"
           />
           <SelectFormField
             keyName="function"
@@ -27,17 +27,17 @@ export class TalentFormHead extends React.Component {
           <FieldForm
             keyName="email"
             label="Mail: "
-            type='text'
+            type="text"
           />
           <FieldForm
             keyName="phone"
             label="Téléphone: "
-            type='text'
+            type="text"
           />
           <FieldForm
             keyName="place"
             label="Localisation: "
-            type='text'
+            type="text"
           />
         </div>
         <div className="connexion-box">
