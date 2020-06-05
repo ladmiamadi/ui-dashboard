@@ -61,7 +61,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
 
   render() {
     return (
-      <div className="form-section">
+      <div className="form-section almost-large">
         <div className="section-add">
           <h6>Langues: </h6>
           <Button onClick={this.toggleModal} className="form-add-button" color="default">Ajouter une langue</Button>

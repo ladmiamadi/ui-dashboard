@@ -13,7 +13,7 @@ export class UserLanguagesDisplay extends React.Component<Props> {
   render() {
     return (
       <>
-        <Row form>
+        <Row form className="row-almost-large">
           {
             this.props.userLanguages.map(({ language, level }, index) =>
               (
