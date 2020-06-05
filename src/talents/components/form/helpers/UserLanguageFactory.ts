@@ -1,10 +1,10 @@
 import { UserLanguage } from '../../../../app/index';
 
-export class LanguageFactory {
+export class UserLanguageFactory {
   public static createEmptyLanguage(): UserLanguage {
     return {
-      language: '',
-      level: '',
+      language: 'Aucun',
+      level: 'Aucun',
     };
   }
 }

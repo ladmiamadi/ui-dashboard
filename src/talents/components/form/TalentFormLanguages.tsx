@@ -10,6 +10,7 @@ import { UserLanguagesDisplay } from './UserLanguagesDisplay';
 interface Props {
   fetchLanguages: () => Promise<void>,
   userLanguages: UserLanguage[],
+  updateUserLanguages: (language: UserLanguage) => void,
 }
 
 interface State {
@@ -54,6 +55,10 @@ export class TalentFormLanguages extends React.Component<Props, State> {
 
   toggleModal = () => this.setState({ isModalShown: !this.state.isModalShown });
 
+  updateUserLanguages = (property: string, value: string) => {
+    this.props.updateUserLanguages({ language: property, level: value });
+  }
+
   render() {
     return (
       <div className="form-section">
@@ -64,6 +69,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
         <UserLanguagesDisplay
           userLanguages={this.props.userLanguages}
           options={this.state.optionsLevelLanguage}
+          updateUserLanguages={this.updateUserLanguages}
         />
         <ModalCustom
           isModalShown={this.state.isModalShown}
@@ -86,6 +92,7 @@ const mapState = (state: RootState) => ({
 
 const mapDispatch = (dispatch: RootDispatch) => ({
   fetchLanguages: dispatch.userLanguages.fetchLanguages,
+  updateUserLanguages: dispatch.userLanguages.updateUserLanguages,
 });
 
 export default connect(mapState, mapDispatch)(TalentFormLanguages);

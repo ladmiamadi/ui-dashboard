@@ -5,36 +5,30 @@ import { RootDispatch, RootState } from '../../../app/state/store';
 import { UserLanguage } from '../../../app/index';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { UpdateLanguagePayload } from './state/models/languages/addLanguage';
+import { UserLanguageFactory } from './helpers/UserLanguageFactory';
 
 interface Props {
   optionsLevelLanguage: string[],
   language: UserLanguage,
   resetLanguage: () => void,
-  updateLanguage: (payload:UpdateLanguagePayload) => void,
+  updateLanguage: (payload: UpdateLanguagePayload) => void,
   optionLanguage: string[],
   isPosting: boolean,
   postLanguage: (userLanguage: UserLanguage) => void,
 }
 
 export class ModalLanguage extends React.Component<Props> {
-  componentDidMount(): void {
-    this.props.resetLanguage();
+  updateLanguageTest = (property: string, value: string) => {
+    this.props.updateLanguage({ property, value });
   }
 
-  updateLanguageTest = (property:string, value:string) => {
-    const payload = {
-      property: property,
-      value: value,
-    };
-
-    this.props.updateLanguage(payload);
-  }
-
-  postLanguageAndLeaveModal = async() => {
+  postLanguage = async() => {
     this.props.postLanguage(this.props.language);
   }
 
   render() {
+    const newLanguage = UserLanguageFactory.createEmptyLanguage();
+
     return (
       <>
         <Row>
@@ -42,26 +36,28 @@ export class ModalLanguage extends React.Component<Props> {
             keyName="language"
             label="Ajouter une nouvelle langue : "
             options={this.props.optionLanguage}
-            updateModel={this.updateLanguageTest}
+            handleOnChange={this.updateLanguageTest}
+            value={this.props.language.language}
           />
         </Row>
-        { this.props.language.language !== '' &&
+        { this.props.language.language !== newLanguage.language &&
           <Row className="d-flex">
             <SelectFormField
               label="Niveau : "
               keyName="level"
               options={this.props.optionsLevelLanguage}
-              updateModel={this.updateLanguageTest}
+              handleOnChange={this.updateLanguageTest}
+              value={this.props.language.level}
             />
           </Row>
         }
         {
-          this.props.language.level !== '' &&
+          this.props.language.level !== newLanguage.level &&
             <Row>
               <Button
                 className="form-add-button modal-button"
                 color="default"
-                onClick={this.postLanguageAndLeaveModal}
+                onClick={this.postLanguage}
                 disabled={this.props.isPosting}> Ajouter une langue </Button>
             </Row>
         }

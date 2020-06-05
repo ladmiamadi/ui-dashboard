@@ -4,8 +4,9 @@ import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { Col, Row } from 'reactstrap';
 
 interface Props {
-  userLanguages: UserLanguage[]
-  options: string[]
+  userLanguages: UserLanguage[],
+  options: string[],
+  updateUserLanguages: (property: string, value: string) => void,
 }
 
 export class UserLanguagesDisplay extends React.Component<Props> {
@@ -19,14 +20,14 @@ export class UserLanguagesDisplay extends React.Component<Props> {
                 <Col key={index} md={6}>
                   <SelectFormField
                     key={index}
-                    keyName={'language-' + language}
+                    keyName={language}
                     label={language}
                     className="large almost-large"
                     options={this.props.options}
-                    defaultValue={level}
+                    value={level}
+                    handleOnChange={this.props.updateUserLanguages}
                   />
                 </Col>
-
               ),
             )
           }
