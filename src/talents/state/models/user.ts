@@ -10,7 +10,7 @@ type TalentState = {
 }
 
 export interface UpdateUserPayload {
-  index?: string | undefined,
+  index: number,
   category: string,
   property: string,
   value: number | string,
@@ -27,10 +27,12 @@ export const user = createModel ({
     modifyUser: (state:TalentState, payload: UpdateUserPayload): TalentState => {
       const user = { ...state.user }  as any;
 
-      if(!(payload.index === undefined)) {
+      if(payload.index !== -1) {
         user[payload.category][payload.index][payload.property] = payload.value;
-      } else {
+      } else if(payload.property) {
         user[payload.category][payload.property] = payload.value;
+      } else {
+        user[payload.category] = payload.value;
       }
       console.log(user);
       return {

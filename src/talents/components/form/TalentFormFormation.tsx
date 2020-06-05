@@ -23,9 +23,9 @@ export class TalentFormFormation extends React.Component<Props, State> {
     };
   }
 
-  handleChange(index: number, category: string, property : string, event: any) {
+  handleChange(category: string, property : string, event: any) {
     const payload = {
-      index: index,
+      index: 0,
       category: category,
       property : property,
       value : event,
@@ -48,33 +48,26 @@ export class TalentFormFormation extends React.Component<Props, State> {
                 keyName="formation-school"
                 label="École: "
                 className="large"
-                type='text'
-                handleChange ={ (event) =>
-                  this.handleChange(0, 'userTrainings', 'institution', event)
-                }
-                value={ elem.institution }
-              />
+                type="text"
+                handleChange={(event) => this.handleChange('userTrainings', 'institution', event)}
+                value={elem.institution} />
               <DateFormField
                 keyName="formation-start"
                 label="Début formation: "
                 className="medium"
-                value={ elem.startDate }
-              />
+                value={elem.startDate} />
               <DateFormField
                 keyName="formation-end"
                 label="Fin: "
                 className="medium"
-                value={ elem.endDate }
-              />
+                value={elem.endDate} />
               <FieldForm
                 keyName="formation-diploma"
                 label="Diplôme obtenu: "
                 className="large"
-                type='text'
-                handleChange ={ (event) =>
-                  this.handleChange(0, 'userTrainings', 'degreeObtained', event)
-                }
-                value={  elem.degreeObtained }
+                type="text"
+                handleChange ={(event) => this.handleChange('userTrainings', 'degreeObtained', event)}
+                value={elem.degreeObtained}
               />
             </div>
           ))

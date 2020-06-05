@@ -28,9 +28,9 @@ export class TalentFormInternship extends React.Component<Props, State> {
     };
   }
 
-  handleChange(index: number, category: string, property : string, event: any) {
+  handleChange( category: string, property : string, event: any) {
     const payload = {
-      index: index,
+      index: 0,
       category: category,
       property : property,
       value : event,
@@ -44,38 +44,32 @@ export class TalentFormInternship extends React.Component<Props, State> {
       <div className="form-section">
         {
           this.state.talent.userExperiences.map((elem, index) => (
-            <div className='form-elements' key={ index }>
+            <div className='form-elements' key={index}>
               <SelectFormField
                 keyName="internship-status"
                 label="Statut du stage: "
-                options={ ['aaa', 'bbb'] }
-                className="large"
-              />
+                options={['aaa', 'bbb']}
+                className="large" />
               <DateFormField
                 keyName="internship-start"
                 label="Début: "
-                value={ elem.startDate }
-              />
+                value={elem.startDate} />
               <DateFormField
                 keyName="internship-end"
                 label="Fin: "
-                value={ elem.endDate }
-              />
+                value={elem.endDate} />
               <CheckboxFormField
                 keyName="internship-days"
                 label="Jour(s) d'activité: "
                 className="large days"
-                checkboxes={ ['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche'] }
-              />
-
+                checkboxes={['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche']} />
               <FieldForm
                 keyName="internship-hours"
                 label="Horaire: "
                 className="large"
                 type='text'
-                handleChange ={ (event) => this.handleChange(0, 'userProfiles','internship-hours', event) }
-                value={ this.state.userProfile }
-              />
+                handleChange={(event) => this.handleChange('userProfiles','internship-hours', event)}
+                value={this.state.userProfile} />
             </div>
           ))
         }

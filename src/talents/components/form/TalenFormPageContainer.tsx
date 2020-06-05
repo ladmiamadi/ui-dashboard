@@ -26,7 +26,7 @@ export class TalenFormPageContainer extends React.Component<Props> {
 
   handleSubmit = (event: any) => {
     event.preventDefault();
-    console.log(event);
+    /*   console.log(event);*/
   }
 
   render() {
@@ -35,9 +35,9 @@ export class TalenFormPageContainer extends React.Component<Props> {
     }
 
     return (
-      <div className="talent-form-page" >
+      <div className="talent-form-page">
         <Container>
-          <form className="talent-form" onSubmit={ this.handleSubmit }>
+          <form className="talent-form" onSubmit={this.handleSubmit}>
             <TalentFormHead />
             <TalentFormAddress />
             <TalentFormInstitution  />
@@ -47,7 +47,7 @@ export class TalenFormPageContainer extends React.Component<Props> {
             <TalentFormLanguages />
             <TalentFormFormation />
             <TalentFormExperience />
-            <button type='submit' className="form-button">Sauvegarder les changements</button>
+            <button type="submit" className="form-button">Sauvegarder les changements</button>
           </form>
         </Container>
       </div> );

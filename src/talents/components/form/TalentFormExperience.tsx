@@ -23,9 +23,9 @@ export class TalentFormExperience extends React.Component<Props, State> {
     };
   }
 
-  handleChange(index: number,category: string, property : string, event: any) {
+  handleChange(category: string, property : string, event: any) {
     const payload = {
-      index: index,
+      index: 0,
       category: category,
       property : property,
       value : event,
@@ -43,46 +43,42 @@ export class TalentFormExperience extends React.Component<Props, State> {
         </div>
         {
           this.state.talent.userExperiences.map((elem, index) => (
-            <div className="form-elements" key={ index }>
+            <div className="form-elements" key={index}>
               <FieldForm
                 keyName="experience-company"
                 label="Entreprise: "
                 className="large"
-                type='text'
-                handleChange={ (event: MouseEvent) =>
-                  this.handleChange(0,'userExperiences', 'company',event)
-                }
-                value={ elem.company }
-              />
+                type="text"
+                handleChange={(event: MouseEvent) =>
+                  this.handleChange('userExperiences', 'company', event)}
+                value={elem.company} />
               <DateFormField
                 keyName="experience-start"
                 label="Début activité: "
                 className="medium"
-                value={  elem.startDate }/>
+                value={elem.startDate} />
               <DateFormField
                 keyName="experience-end"
                 label="Fin: "
                 className="medium"
-                value={ elem.endDate }/>
+                value={elem.endDate} />
               <FieldForm
                 keyName="experience-position"
                 label="Poste: "
                 className="large"
                 type='text'
-                handleChange={ (event: MouseEvent) =>
-                  this.handleChange(0, 'userExperiences', 'position', event)
-                }
-                value={ elem.position }/>
+                handleChange={(event: MouseEvent) =>
+                  this.handleChange('userExperiences', 'position', event)}
+                value={elem.position} />
               <FieldForm
                 keyName="experience-works"
                 label="Tâches effectuées: "
                 className="large"
-                rows={ 5 }
+                rows={5}
                 type='textarea'
-                handleChange={ (event: MouseEvent) =>
-                  this.handleChange(0, 'userExperiences', 'task', event)
-                }
-                value={ elem.task }/>
+                handleChange={(event: MouseEvent) =>
+                  this.handleChange('userExperiences', 'task', event)}
+                value={elem.task} />
             </div>
           ))
         }

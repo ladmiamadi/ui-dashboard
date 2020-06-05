@@ -28,6 +28,7 @@ export class TalentFormAddress extends React.Component <Props, State>{
 
   handleChange(category: string, property : string, event: any) {
     const payload = {
+      index: -1,
       category: category,
       property : property,
       value : event,
@@ -40,58 +41,58 @@ export class TalentFormAddress extends React.Component <Props, State>{
     return (
       <div className="form-section">
         <FieldForm
-          keyName='street'
-          label='Rue: '
-          className='medium'
-          type='text'
-          handleChange ={ (event: MouseEvent) => this.handleChange('userAddress', 'street', event) }
-          value={ this.state.talent.userAddress?.street }
+          keyName="street"
+          label="Rue: "
+          className="medium"
+          type="text"
+          handleChange={(event: MouseEvent) => this.handleChange('userAddress', 'street', event)}
+          value={this.state.talent.userAddress?.street}
         />
         <FieldForm
-          keyName='number'
-          label='Num: '
-          type='text'
-          handleChange ={ (event: MouseEvent) => this.handleChange('userAddress', 'number', event) }
-          value={ this.state.talent.userAddress?.number }
+          keyName="number"
+          label="Num: "
+          type="text"
+          handleChange={(event: MouseEvent) => this.handleChange('userAddress', 'number', event)}
+          value={this.state.talent.userAddress?.number}
         />
         <FieldForm
-          keyName='postal-box'
-          label='BP: '
-          type='text'
-          handleChange ={ (event: MouseEvent) => this.handleChange('userAddress', 'box', event) }
-          value={ this.state.talent.userAddress?.box }
+          keyName="postal-box"
+          label="BP: "
+          type="text"
+          handleChange={(event: MouseEvent) => this.handleChange('userAddress', 'box', event)}
+          value={this.state.talent.userAddress?.box}
         />
         <FieldForm
-          keyName='postal-code'
-          label='Code Postal: '
-          type='text'
-          handleChange ={ (event: MouseEvent) => this.handleChange('userAddress', 'zip-code', event) }
-          value={ this.state.talent.userAddress?.zipCode }
+          keyName="postal-code"
+          label="Code Postal: "
+          type="text"
+          handleChange={(event: MouseEvent) => this.handleChange('userAddress', 'zip-code', event)}
+          value={this.state.talent.userAddress?.zipCode}
         />
         <FieldForm
-          keyName='city'
-          label='Ville: '
-          className='medium'
-          type='text'
-          handleChange ={ (event: MouseEvent) => this.handleChange('userAddress', 'city', event) }
-          value={ this.state.talent.userAddress?.city }
+          keyName="city"
+          label="Ville: "
+          className="medium"
+          type="text"
+          handleChange={(event: MouseEvent) => this.handleChange('userAddress', 'city', event)}
+          value={this.state.talent.userAddress?.city}
         />
         <SelectFormField
-          keyName='country'
-          label='Pays: '
-          options={ ['aaa', 'bbb'] }
+          keyName="country"
+          label="Pays: "
+          options={['aaa', 'bbb']}
         />
         <FieldForm
-          keyName='DOB'
-          label='Date de naissance: '
-          type='text'
-          handleChange ={ (event: MouseEvent) => this.handleChange('userAddress', 'birthDate', event) }
-          value={ this.state.userProfile.birthDate }
+          keyName="DOB"
+          label="Date de naissance: "
+          type="text"
+          handleChange={(event: MouseEvent) => this.handleChange('userAddress', 'birthDate', event)}
+          value={this.state.userProfile.birthDate}
         />
         <SelectFormField
-          keyName='search'
-          label='Actuellement en recherche: '
-          options={ ['Oui', 'Non'] }
+          keyName="search"
+          label="Actuellement en recherche: "
+          options={['Oui', 'Non']}
         />
       </div>
     );

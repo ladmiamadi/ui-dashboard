@@ -25,9 +25,9 @@ export class TalentFormJob extends React.Component<Props, State> {
     };
   }
 
-  handleChange(index: number, category: string, property : string, event: any) {
+  handleChange(category: string, property : string, event: any) {
     const payload = {
-      index: index,
+      index: 0,
       category: category,
       property : property,
       value : event,
@@ -43,42 +43,42 @@ export class TalentFormJob extends React.Component<Props, State> {
           keyName="job-desired"
           label="Métier souhaité: "
           className="large"
-          type='text'
-          handleChange ={ (event) => this.handleChange(0, 'userProfiles','desiredJob', event) }
-          value={ this.state.userProfile.desiredJob }
+          type="text"
+          handleChange ={(event) => this.handleChange('userProfiles','desiredJob', event)}
+          value={this.state.userProfile.desiredJob}
         />
         <FieldForm
           keyName="job-mobility"
           label="Mobilité: "
           className="large"
-          type='text'
-          handleChange ={ (event) => this.handleChange(0, 'userProfiles','mobility', event) }
-          value={ this.state.userProfile.mobility }
+          type="text"
+          handleChange ={(event) => this.handleChange('userProfiles','mobility', event)}
+          value={this.state.userProfile.mobility}
         />
         <FieldForm
           keyName="job-description"
           label="Description: "
           className="large"
-          rows={ 5 }
-          type='textarea'
-          handleChange ={ (event) => this.handleChange(0, 'userProfiles','descriptionInFrench', event) }
-          value={ this.state.userProfile.descriptionInFrench }
+          rows={5}
+          type="textarea"
+          handleChange ={(event) => this.handleChange('userProfiles','descriptionInFrench', event)}
+          value={this.state.userProfile.descriptionInFrench}
         />
         <FieldForm
           keyName="job-actual-pay"
           label="Salaire actuel: "
           className="medium"
-          type='text'
-          handleChange ={ (event) => this.handleChange(0, 'userProfiles','actualSalary', event) }
-          value={ this.state.userProfile.actualSalary }
+          type="text"
+          handleChange ={(event) => this.handleChange('userProfiles','actualSalary', event)}
+          value={this.state.userProfile.actualSalary}
         />
         <FieldForm
           keyName="job-desired-pay"
           label="Salaire souhaité: "
           className="medium"
-          type='text'
-          handleChange ={ (event) => this.handleChange(0, 'userProfiles','expectedSalary', event) }
-          value={ this.state.userProfile.expectedSalary }
+          type="text"
+          handleChange ={(event) => this.handleChange('userProfiles','expectedSalary', event)}
+          value={this.state.userProfile.expectedSalary}
         />
       </div>
     );
