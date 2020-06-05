@@ -83,6 +83,10 @@ html {
     width: 100%;
 }
 
+.form-group.almost-large {
+    width: 95%
+}
+
 .form-group.medium {
     width: 45%;
 }
