@@ -29,12 +29,14 @@ export const user = createModel ({
 
       if(payload.index !== -1) {
         user[payload.category][payload.index][payload.property] = payload.value;
+
       } else if(payload.property) {
         user[payload.category][payload.property] = payload.value;
+
       } else {
         user[payload.category] = payload.value;
       }
-      console.log(user);
+
       return {
         ...state, user,
       };

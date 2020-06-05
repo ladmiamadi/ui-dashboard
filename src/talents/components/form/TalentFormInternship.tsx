@@ -30,7 +30,7 @@ export class TalentFormInternship extends React.Component<Props, State> {
 
   handleChange( category: string, property : string, event: any) {
     const payload = {
-      index: 0,
+      index: -1,
       category: category,
       property : property,
       value : event,
@@ -68,8 +68,8 @@ export class TalentFormInternship extends React.Component<Props, State> {
                 label="Horaire: "
                 className="large"
                 type='text'
-                handleChange={(event) => this.handleChange('userProfiles','internship-hours', event)}
-                value={this.state.userProfile} />
+                handleChange={(event) => this.handleChange('userJob','workingHours', event)}
+                value={this.state.talent.userJob?.workingHours} />
             </div>
           ))
         }
