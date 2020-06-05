@@ -76,8 +76,8 @@ export class TalentFormHead extends React.Component <Props, State> {
             keyName="place"
             label="Localisation: "
             type="text"
-            handleChange ={(event) => this.handleChange(event, 0, 'userProfiles', 'place')}
-            value={this.state.userProfile} />
+            handleChange ={(event) => this.handleChange(event, -1, 'userAddress', 'country')}
+            value={this.state.talent.userAddress?.country} />
         </div>
         <div className="connexion-box">
           <p>Envoyez un email pour configurer la connexion</p>
