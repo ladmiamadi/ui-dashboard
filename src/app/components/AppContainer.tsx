@@ -1,6 +1,6 @@
 import React from 'react';
-import { RootDispatch } from '../state/store';
 import { connect } from 'react-redux';
+import { RootDispatch } from '../state/store';
 
 interface Props {
   fetchModules: () => Promise<void>,
@@ -16,8 +16,10 @@ export class AppContainer extends React.Component<Props> {
   }
 }
 
+const mapState = () => ({});
+
 const mapDispatch = (dispatch: RootDispatch) => ({
   fetchModules: dispatch.modules.fetchModules,
 });
 
-export default connect(null, mapDispatch)(AppContainer);
+export default connect(mapState, mapDispatch)(AppContainer);

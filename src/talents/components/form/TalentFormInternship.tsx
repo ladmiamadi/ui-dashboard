@@ -11,7 +11,7 @@ export class TalentFormInternship extends React.Component {
         <SelectFormField
           keyName="internship-status"
           label="Statut du stage: "
-          options={ ['aaa', 'bbb'] }
+          options={['aaa', 'bbb']}
           className="large"
         />
         <DateFormField
@@ -26,13 +26,13 @@ export class TalentFormInternship extends React.Component {
           keyName="internship-days"
           label="Jour(s) d'activité: "
           className="large days"
-          checkboxes={ ['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche'] }
+          checkboxes={['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche']}
         />
         <FieldForm
           keyName="internship-hours"
           label="Horaire: "
           className="large"
-          type='text'
+          type="text"
         />
       </div>
     );

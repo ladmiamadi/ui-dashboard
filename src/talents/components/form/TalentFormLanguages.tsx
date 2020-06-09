@@ -12,13 +12,13 @@ export class TalentFormLanguages extends React.Component {
         <SelectFormField
           keyName="language-french"
           label="Français: "
-          options={ ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] }
+          options={['A1', 'A2', 'B1', 'B2', 'C1', 'C2']}
           className="medium"
         />
         <SelectFormField
           keyName="language-english"
           label="Anglais: "
-          options={ ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] }
+          options={['A1', 'A2', 'B1', 'B2', 'C1', 'C2']}
           className="medium"
         />
       </div>

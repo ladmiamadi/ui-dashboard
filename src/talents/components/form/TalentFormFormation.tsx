@@ -14,7 +14,7 @@ export class TalentFormFormation extends React.Component {
           keyName="formation-school"
           label="École: "
           className="large"
-          type='text'
+          type="text"
         />
         <DateFormField
           keyName="formation-start"
@@ -30,7 +30,7 @@ export class TalentFormFormation extends React.Component {
           keyName="formation-diploma"
           label="Diplôme obtenu: "
           className="large"
-          type='text'
+          type="text"
         />
       </div>
     );
