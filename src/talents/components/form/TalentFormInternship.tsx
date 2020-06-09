@@ -42,16 +42,16 @@ export class TalentFormInternship extends React.Component {
           handleOnChange={() => {}}
         />
         <CheckboxFormField
+          checkboxes={checkboxes}
+          className="large days"
           keyName="internship-days"
           label="Jour(s) d'activité: "
-          className="large days"
-          checkboxes={checkboxes}
           handleOnChange={() => {}}
         />
         <FieldForm
+          className="large"
           keyName="internship-hours"
           label="Horaire: "
-          className="large"
           type="text"
           value=""
           handleOnChange={() => {}}

@@ -36,9 +36,9 @@ export class TalentFormExperience extends React.Component {
 
         />
         <FieldForm
+          className="large"
           keyName="experience-position"
           label="Poste: "
-          className="large"
           type="text"
           value=""
           handleOnChange={() => {}}
