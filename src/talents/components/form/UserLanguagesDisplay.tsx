@@ -5,7 +5,7 @@ import { Col, Row } from 'reactstrap';
 
 interface Props {
   userLanguages: UserLanguage[],
-  options: string[],
+  selectFormFieldOptions: string[],
   updateUserLanguages: (property: string, value: string) => void,
 }
 
@@ -23,7 +23,7 @@ export class UserLanguagesDisplay extends React.Component<Props> {
                     keyName={language}
                     label={language}
                     className="large almost-large"
-                    options={this.props.options}
+                    options={this.props.selectFormFieldOptions}
                     value={level}
                     handleOnChange={this.props.updateUserLanguages}
                   />

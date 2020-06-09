@@ -1,11 +1,12 @@
+import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
-import React from 'react';
 import { RootDispatch, RootState } from '../../../app/state/store';
 import ModalLanguage from './ModalLanguage';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
 import { UserLanguage } from '../../../app';
 import { UserLanguagesDisplay } from './UserLanguagesDisplay';
+import { LANGUAGES, LANGUAGES_LEVEL } from '../../index.d';
 
 interface Props {
   fetchLanguages: () => Promise<void>,
@@ -25,16 +26,8 @@ export class TalentFormLanguages extends React.Component<Props, State> {
 
     this.state = {
       isModalShown: false,
-      optionsLevelLanguage: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'Langue Maternelle'],
-      optionLanguage: [
-        'Afrikaans','Albanian','Arabic','Armenian','Basque','Bengali','Bulgarian','Catalan','Cambodian',
-        'Chinese (Mandarin)','Croatian','Czech','Danish','Dutch','English','Estonian','Fiji','Finnish','French',
-        'Georgian','German','Greek','Gujarati','Hebrew','Hindi','Hungarian','Icelandic','Indonesian','Irish','Italian',
-        'Japanese','Javanese','Korean','Latin','Latvian','Lithuanian','Macedonian','Malay','Malayalam','Maltese',
-        'Maori','Marathi','Mongolian','Nepali','Norwegian','Persian','Polish','Portuguese','Punjabi','Quechua',
-        'Romanian','Russian','Samoan','Serbian','Slovak','Slovenian','Spanish','Swahili','Swedish ','Tamil','Tatar',
-        'Telugu','Thai','Tibetan','Tonga','Turkish','Ukrainian','Urdu','Uzbek','Vietnamese','Welsh','Xhosa',
-      ],
+      optionsLevelLanguage: LANGUAGES_LEVEL,
+      optionLanguage: LANGUAGES,
     };
   }
 
@@ -43,8 +36,8 @@ export class TalentFormLanguages extends React.Component<Props, State> {
       const userLanguages = this.props.userLanguages.map(({ language }) => (language));
 
       this.setState({
-        optionLanguage: this.state.optionLanguage.filter((language) =>
-          userLanguages.indexOf(language) === -1),
+        optionLanguage: this.state.optionLanguage
+          .filter((language) => userLanguages.indexOf(language) === -1),
       });
     }
   }
@@ -68,7 +61,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
         </div>
         <UserLanguagesDisplay
           userLanguages={this.props.userLanguages}
-          options={this.state.optionsLevelLanguage}
+          selectFormFieldOptions={this.state.optionsLevelLanguage}
           updateUserLanguages={this.updateUserLanguages}
         />
         <ModalCustom
