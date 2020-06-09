@@ -8,8 +8,8 @@ import '../styles/modal-custom.css';
 
 interface Props {
   isModalShown: boolean,
-  titleModal: string
   toggleModal: () => void,
+  titleModal: string
 }
 
 export class ModalCustom extends React.Component<Props> {
@@ -17,10 +17,10 @@ export class ModalCustom extends React.Component<Props> {
     return (
       <div>
         <Modal isOpen={this.props.isModalShown} toggle={this.props.toggleModal} className="modal-action">
-          <ModalHeader toggle={this.props.toggleModal}>
-            <h5 className="header-modal">{ this.props.titleModal }</h5>
+          <ModalHeader toggle={this.props.toggleModal} tag="div">
+            <h6 className="header-modal">{ this.props.titleModal }</h6>
           </ModalHeader>
-          <ModalBody className="modal-content">
+          <ModalBody className="modal-body-content">
             { this.props.children }
           </ModalBody>
         </Modal>
