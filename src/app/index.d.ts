@@ -172,3 +172,19 @@ export interface Job {
   updatedDate: Date,
   userJobs: UserJob[],
 }
+
+export interface YearSegment {
+  yearStart: number,
+  yearEnd: number,
+}
+
+export interface UtilsDate {
+  day: number,
+  month: number,
+  year: number,
+}
+
+export interface Checkbox {
+  label: string,
+  checked: boolean
+}

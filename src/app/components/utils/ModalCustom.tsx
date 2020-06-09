@@ -8,8 +8,8 @@ import '../styles/modal-custom.css';
 
 interface Props {
   isModalShown: boolean,
-  toggleModal: () => void,
   titleModal: string
+  toggleModal: () => void,
 }
 
 export class ModalCustom extends React.Component<Props> {

@@ -11,33 +11,46 @@ export class TalentFormExperience extends React.Component {
           <button className="form-add-button">Ajouter une expérience</button>
         </div>
         <FieldForm
+          className="large"
           keyName="experience-company"
           label="Entreprise: "
-          className="large"
           type="text"
+          value=""
+          handleOnChange={() => {}}
         />
         <DateFormField
+          className="medium"
           keyName="experience-start"
           label="Début activité: "
-          className="medium"
+          values={{ day: 1, month: 1, year: 2000 }}
+          yearSegment={{ yearStart: 2000, yearEnd: 2100 }}
+          handleOnChange={() => {}}
         />
         <DateFormField
+          className="medium"
           keyName="experience-end"
           label="Fin: "
-          className="medium"
+          values={{ day: 1, month: 1, year: 2000 }}
+          yearSegment={{ yearStart: 2000, yearEnd: 2100 }}
+          handleOnChange={() => {}}
+
         />
         <FieldForm
           keyName="experience-position"
           label="Poste: "
           className="large"
           type="text"
+          value=""
+          handleOnChange={() => {}}
         />
         <FieldForm
+          className="large"
           keyName="experience-works"
           label="Tâches effectuées: "
-          className="large"
           rows={5}
           type="textarea"
+          value=""
+          handleOnChange={() => {}}
         />
       </div>
     );

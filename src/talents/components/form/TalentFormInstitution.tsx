@@ -6,28 +6,36 @@ export class TalentFormInstitution extends React.Component {
     return (
       <div className="form-section">
         <FieldForm
+          className="large"
           keyName="institution"
           label="École: "
-          className="large"
           type="text"
+          value=""
+          handleOnChange={() => {}}
         />
         <FieldForm
+          className="medium"
           keyName="institution-phone"
           label="Téléphone École: "
-          className="medium"
           type="text"
+          value=""
+          handleOnChange={() => {}}
         />
         <FieldForm
+          className="medium"
           keyName="institution-email"
           label="Mail École: "
-          className="medium"
           type="text"
+          value=""
+          handleOnChange={() => {}}
         />
         <FieldForm
+          className="large"
           keyName="institution-contact"
           label="Personne de contact: "
-          className="large"
           type="text"
+          value=""
+          handleOnChange={() => {}}
         />
       </div>
     );

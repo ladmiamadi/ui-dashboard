@@ -1,12 +1,14 @@
-import { FormGroup, Label } from 'reactstrap';
-import Input from 'reactstrap/lib/Input';
 import React from 'react';
+import { FormGroup, Label, Input } from 'reactstrap';
+import { Checkbox } from '../../index';
 
 interface Props {
-  label: string,
-  keyName: string,
+  checkboxes: Checkbox[],
   className?: string,
-  checkboxes: string[]
+  keyName: string,
+  label: string,
+  value?: string,
+  handleOnChange: (property: string, value: boolean) => void,
 }
 
 export class CheckboxFormField extends React.Component<Props> {
@@ -15,15 +17,25 @@ export class CheckboxFormField extends React.Component<Props> {
       <FormGroup className={this.props.className}>
         <Label className="form-label" for={this.props.keyName}>{ this.props.label }</Label>
         <div className="checkboxes">
-          {  this.props.checkboxes.map((elem: string) =>
-            <div key={elem}>
-              <Input
-                className="form-input"
-                type="checkbox"
-              />{ elem }
+          {  this.props.checkboxes.map(({ label, checked }) =>
+            <div key={label}>
+              {checked ?
+                <Input
+                  onChange={(event) => this.props.handleOnChange(label, event.target.checked)}
+                  className="form-input"
+                  type="checkbox"
+                  checked
+                />
+                :
+                <Input
+                  onChange={(event) => this.props.handleOnChange(label, event.target.checked)}
+                  className="form-input"
+                  type="checkbox"
+                />
+              }
+              {label}
             </div>,
-          )
-          }
+          )}
         </div>
       </FormGroup>
     );

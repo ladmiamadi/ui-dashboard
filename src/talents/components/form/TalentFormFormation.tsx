@@ -11,26 +11,36 @@ export class TalentFormFormation extends React.Component {
           <button className="form-add-button">Ajouter une formation</button>
         </div>
         <FieldForm
+          className="large"
           keyName="formation-school"
           label="École: "
-          className="large"
           type="text"
+          value=""
+          handleOnChange={() => {}}
         />
         <DateFormField
+          className="medium"
           keyName="formation-start"
           label="Début formation: "
-          className="medium"
+          values={{ day: 1, month: 1, year: 2000 }}
+          yearSegment={{ yearStart: 2000, yearEnd: 2100 }}
+          handleOnChange={() => {}}
         />
         <DateFormField
+          className="medium"
           keyName="formation-end"
           label="Fin: "
-          className="medium"
+          values={{ day: 1, month: 1, year: 2000 }}
+          yearSegment={{ yearStart: 2000, yearEnd: 2100 }}
+          handleOnChange={() => {}}
         />
         <FieldForm
+          className="large"
           keyName="formation-diploma"
           label="Diplôme obtenu: "
-          className="large"
           type="text"
+          value=""
+          handleOnChange={() => {}}
         />
       </div>
     );

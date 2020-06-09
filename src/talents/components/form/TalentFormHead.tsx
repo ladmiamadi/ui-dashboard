@@ -13,31 +13,43 @@ export class TalentFormHead extends React.Component {
             keyName="lastname"
             label="Nom: "
             type="text"
+            value=""
+            handleOnChange={() => {}}
           />
           <FieldForm
             keyName="firstname"
             label="Prénom: "
             type="text"
+            value=""
+            handleOnChange={() => {}}
           />
           <SelectFormField
             keyName="function"
             label="Fonction: "
             options={['aaa', 'bbb']}
+            value="Aucun"
+            handleOnChange={() => {}}
           />
           <FieldForm
             keyName="email"
             label="Mail: "
             type="text"
+            value=""
+            handleOnChange={() => {}}
           />
           <FieldForm
             keyName="phone"
             label="Téléphone: "
             type="text"
+            value=""
+            handleOnChange={() => {}}
           />
           <FieldForm
             keyName="place"
             label="Localisation: "
             type="text"
+            value=""
+            handleOnChange={() => {}}
           />
         </div>
         <div className="connexion-box">

@@ -10,16 +10,20 @@ export class TalentFormLanguages extends React.Component {
           <button className="form-add-button">Ajouter une langue</button>
         </div>
         <SelectFormField
+          className="medium"
           keyName="language-french"
           label="Français: "
           options={['A1', 'A2', 'B1', 'B2', 'C1', 'C2']}
-          className="medium"
+          value="Aucun"
+          handleOnChange={() => {}}
         />
         <SelectFormField
+          className="medium"
           keyName="language-english"
           label="Anglais: "
           options={['A1', 'A2', 'B1', 'B2', 'C1', 'C2']}
-          className="medium"
+          value="Aucun"
+          handleOnChange={() => {}}
         />
       </div>
     );

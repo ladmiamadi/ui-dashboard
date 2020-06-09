@@ -10,12 +10,16 @@ export class TalentFormJob extends React.Component {
           label="Métier souhaité: "
           className="large"
           type="text"
+          value=""
+          handleOnChange={() => {}}
         />
         <FieldForm
           keyName="job-mobility"
           label="Mobilité: "
           className="large"
           type="text"
+          value=""
+          handleOnChange={() => {}}
         />
         <FieldForm
           keyName="job-description"
@@ -23,18 +27,24 @@ export class TalentFormJob extends React.Component {
           className="large"
           rows={5}
           type="textarea"
+          value=""
+          handleOnChange={() => {}}
         />
         <FieldForm
           keyName="job-actual-pay"
           label="Salaire actuel: "
           className="medium"
           type="text"
+          value=""
+          handleOnChange={() => {}}
         />
         <FieldForm
           keyName="job-desired-pay"
           label="Salaire souhaité: "
           className="medium"
           type="text"
+          value=""
+          handleOnChange={() => {}}
         />
       </div>
     );
