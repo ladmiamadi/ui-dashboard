@@ -1,12 +1,16 @@
-import { RematchRootState, init } from '@rematch/core';
+import * as modules from './models/modules';
 import * as talents from '../../talents/state/models/talents';
+import * as user from './models/user';
+import { RematchRootState, init } from '@rematch/core';
 
 const models = {
-  ...talents
+  ...talents,
+  ...modules,
+  ...user,
 };
 
 export const store = init({
-  models,
+  models
 });
 
 export type RootState = RematchRootState<typeof models>

@@ -1,12 +1,13 @@
 import React from 'react';
-import { RootDispatch, RootState } from './../../app/state/store';
+import { RootDispatch, RootState } from '../../app/state/store';
+import { Loader } from '../../app/components/utils/Loader';
+import { TalentsDashBoard } from './TalentsDashBoard';
+import { User } from '../../app';
 import { connect } from 'react-redux';
-import { Talent } from '..';
-import TalentsList from './TalentsList';
-import { Loader } from '../../app/utils/Loader';
 
 interface Props {
-  talents: Talent[],
+  talents: User[],
+  isFetching: boolean,
   fetchTalents: () => Promise<void>,
 }
 
@@ -16,16 +17,17 @@ export class TalentsListContainer extends React.Component <Props> {
   }
 
   render() {
-    if(!this.props.talents.length) {
+    if (this.props.isFetching) {
       return <Loader />;
     }
     
-    return <TalentsList />;
+    return <TalentsDashBoard />;
   }
 }
 
 const mapState = (state: RootState) => ({
   talents: state.talents.list,
+  isFetching: state.talents.isFetching,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({

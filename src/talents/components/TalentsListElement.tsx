@@ -4,6 +4,8 @@ import { TalentModal } from './modal/TalentModal';
 import { CustomModal } from '../../app/components/modal/CustomModal';
 import history from '../../app/components/history';
 import  './styles/TalentsList.css';
+import { UserProfile } from '../../app';
+import { env } from '../../helpers/environment';
 
 interface Props {
   talent: Talent,
@@ -21,7 +23,7 @@ export class TalentsListElement extends React.Component <Props, State> {
       isModalShown: false
     };
   }
-  
+
   toggleModal = () => {
     if(this.props.talent.status === "Demande de modification en cours") {
       this.setState({
@@ -31,8 +33,24 @@ export class TalentsListElement extends React.Component <Props, State> {
       history.push('/test');
     }
   }
+
   render() {
     return (
+      <>
+        {
+          profile.picture
+          && (
+            <img
+              className="profile-picture"
+              alt={profile.firstName}
+              src={`${env('MEDIA_URL')}/${profile.picture.filePath}`}
+            />
+          )
+        }
+        <br />
+        { profile.lastName }<br />
+        { profile.firstName }
+      </>
       <>
         <tr className="id-card" onClick={ this.toggleModal }>
           <td><img src={ this.props.talent.picture_path }/></td>

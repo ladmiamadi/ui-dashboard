@@ -1,28 +1,33 @@
-import { Talent } from '../../index';
 import { Toastify } from '../../../helpers/Toastify';
+import { User } from '../../../app';
 import { apiService } from '../../../app/http/service';
 import { createModel } from '@rematch/core';
 
-type TalentsState = {
-  list: Talent[]
+interface State {
+  list: User[],
+  isFetching: boolean,
 }
 
 export const talents = createModel ({
   state: {
-    list: []
-  } as TalentsState,
+    list: [],
+    isFetching: false,
+  } as State,
   reducers: {
-    updateTalents: (state: TalentsState, payload: Talent[]): TalentsState => ({ ...state, list: payload })
+    updateList: (state: State, list: User[]): State => ({ ...state, list }),
+    setIsFetching: (state: State, isFetching: boolean): State => ({ ...state, isFetching }),
   },
   effects: {
     async fetchTalents() {
       try {
-        const { data } = await apiService.get('/talents');
-        console.log(data);
-        this.updateTalents(data);
+        this.setIsFetching(true);
+        const { data } = await apiService.get('/api/users');
+        this.updateList(data);
       } catch (error) {
         (new Toastify()).error(`Something went wrong. ${ error.message }`);
+      } finally {
+        this.setIsFetching(false);
       }
-    }
-  }
+    },
+  },
 });

@@ -1,47 +1,31 @@
-import React from 'react';
-import { Talent } from '..';
-import { Container } from 'reactstrap';
-import { SearchBar } from '../../app/utils/SearchBar';
-import { RootState } from './../../app/state/store';
-import { connect } from 'react-redux';
-import { TalentsListTable } from './TalentsListTable';
 import './styles/TalentsList.css';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Col, Container, Row } from 'reactstrap';
+import { User } from '../../app';
+import { RootState } from '../../app/state/store';
+import { TalentsListElement } from './TalentsListElement';
 
 interface Props {
-  talents: Talent[],
+  talents: User[],
 }
 
-interface State {
-  name: string,
-}
-
-export class TalentsList extends React.Component <Props, State> {
-  constructor (props: Props) {
-    super (props);
-
-    this.state = {
-      name: '',
-    };
-  }
-
-  handleSearch = (filterType: 'name', value: string) => {
-    if (filterType === 'name') {
-      this.setState({ ...this.state, name: value });
-    }
-  }
-
+export class TalentsList extends React.Component <Props> {
   render() {
     return (
-      <Container className='container-talents-list-table'>
-        <div className="search-bar">
-          <SearchBar
-            handleSearch={ this.handleSearch }
-            name="name"
-            iconName="search"
-            placeholder="Rechercher un talent..."
-          />
-        </div>
-        <TalentsListTable talents={ this.props.talents } />
+      <Container className="mt-5">
+        <Row>
+          {
+            this.props.talents.map((talent, index) => (
+              <Col key={index} className="element" xs={2}>
+                {
+                  talent.userProfiles?.filter((profile) => profile.environment === 'live')
+                    .map((profile) => <TalentsListElement key={profile.id} profile={profile} />)
+                }
+              </Col>
+            ))
+          }
+        </Row>
       </Container>
     );
   }
