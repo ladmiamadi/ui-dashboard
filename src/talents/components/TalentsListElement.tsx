@@ -1,14 +1,14 @@
 import React from 'react';
-import { Talent } from '..';
 import { TalentModal } from './modal/TalentModal';
 import { CustomModal } from '../../app/components/modal/CustomModal';
 import history from '../../app/components/history';
 import  './styles/TalentsList.css';
-import { UserProfile } from '../../app';
+import { User, UserProfile } from '../../app';
 import { env } from '../../helpers/environment';
 
 interface Props {
-  talent: Talent,
+  profile: UserProfile,
+  talent: User
 }
 
 interface State {
@@ -20,14 +20,14 @@ export class TalentsListElement extends React.Component <Props, State> {
     super(props);
 
     this.state = {
-      isModalShown: false
+      isModalShown: false,
     };
   }
 
   toggleModal = () => {
-    if(this.props.talent.status === "Demande de modification en cours") {
+    if(this.props.profile.status === 'ON_VALIDATION') {
       this.setState({
-        isModalShown: !this.state.isModalShown
+        isModalShown: !this.state.isModalShown,
       });
     } else {
       history.push('/test');
@@ -35,35 +35,34 @@ export class TalentsListElement extends React.Component <Props, State> {
   }
 
   render() {
+    const { profile } = this.props;
     return (
       <>
         {
-          profile.picture
-          && (
-            <img
-              className="profile-picture"
-              alt={profile.firstName}
-              src={`${env('MEDIA_URL')}/${profile.picture.filePath}`}
-            />
-          )
+          //profile.picture
+          //&&
+
+          <tr className="id-card" onClick={this.toggleModal}>
+            <td>
+              <img
+                className="profile-picture"
+                alt={profile.firstName}
+                src={`${env('MEDIA_URL')}/${profile.picture.filePath}`}
+              />
+            </td>
+            )
+            }
+            <td>{profile.lastName}</td>
+            <td>{profile.firstName}</td>
+          </tr>
+
         }
-        <br />
-        { profile.lastName }<br />
-        { profile.firstName }
-      </>
-      <>
-        <tr className="id-card" onClick={ this.toggleModal }>
-          <td><img src={ this.props.talent.picture_path }/></td>
-          <td>{ this.props.talent.firstname }</td>
-          <td>{ this.props.talent.lastname }</td>
-        </tr>
         <CustomModal
-          isModalShown={ this.state.isModalShown }
-          toggleModal={ this.toggleModal }
-          modalTitle={ this.props.talent.firstname + ' ' + this.props.talent.lastname }>
-          <TalentModal talent={ this.props.talent }/>
+          isModalShown={this.state.isModalShown}
+          toggleModal={this.toggleModal}
+          modalTitle={this.props.profile.firstName + ' ' + this.props.profile.lastName}>
+          <TalentModal talent={this.props.talent}/>
         </CustomModal>
       </>
-    );
-  }
+    );}
 }

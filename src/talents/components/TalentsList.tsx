@@ -20,7 +20,7 @@ export class TalentsList extends React.Component <Props> {
               <Col key={index} className="element" xs={2}>
                 {
                   talent.userProfiles?.filter((profile) => profile.environment === 'live')
-                    .map((profile) => <TalentsListElement key={profile.id} profile={profile} />)
+                    .map((profile) => <TalentsListElement key={profile.id} profile={profile} talent={talent} />)
                 }
               </Col>
             ))

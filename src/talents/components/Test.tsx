@@ -6,6 +6,6 @@ interface Props {
 
 export class Test extends React.Component <Props>{
   render(){
-    return("Vous avez été correctement redirigé sur la page de l'user "+ this.props.userId +" !");
+    return('Vous avez été correctement redirigé sur la page de l\'user ' + this.props.userId + ' !');
   }
 }
