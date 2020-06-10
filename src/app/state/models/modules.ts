@@ -12,7 +12,7 @@ export const modules = createModel({
     list: [],
   } as State,
   reducers: {
-    updateList: (state: State, payload: Module[]): State => ({ list: payload })
+    updateList: (state: State, payload: Module[]): State => ({ list: payload }),
   },
   effects: {
     async fetchModules() {

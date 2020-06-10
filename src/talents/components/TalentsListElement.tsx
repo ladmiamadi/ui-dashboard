@@ -38,25 +38,19 @@ export class TalentsListElement extends React.Component <Props, State> {
     const { profile } = this.props;
     return (
       <>
-        {
-          //profile.picture
-          //&&
-
-          <tr className="id-card" onClick={this.toggleModal}>
-            <td>
-              <img
-                className="profile-picture"
-                alt={profile.firstName}
-                src={`${env('MEDIA_URL')}/${profile.picture.filePath}`}
-              />
-            </td>
-            )
-            }
-            <td>{profile.lastName}</td>
-            <td>{profile.firstName}</td>
-          </tr>
-
-        }
+{/*          profile.picture
+          &&*/}
+        <tr className="id-card" onClick={this.toggleModal}>
+          <td>
+            <img
+              className="profile-picture"
+              alt={profile.firstName}
+              src={`${env('MEDIA_URL')}/${profile.picture.filePath}`}
+            />
+          </td>
+          <td>{profile.lastName}</td>
+          <td>{profile.firstName}</td>
+        </tr>
         <CustomModal
           isModalShown={this.state.isModalShown}
           toggleModal={this.toggleModal}

@@ -1,19 +1,19 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { User } from '../../../app';
 import history  from '../../../app/components/history';
-import { Talent } from '../..';
 
 interface Props {
-  talent: Talent,
+  talent: User,
 }
 
 export class TalentModal extends React.Component <Props> {
 
   redirect = () => {
     history.push({
-    pathname: '/test',
-    state: {userId : this.props.talent.id}});
+      pathname: '/test',
+      state: { userId : this.props.talent.id } });
   }
   
   render() {
@@ -23,7 +23,7 @@ export class TalentModal extends React.Component <Props> {
           Une demande de modification est en cours pour ce talent,
            veuillez faire le neccessaire avant de consulter la fiche.
           <br></br>
-          <Button onClick ={ this.redirect }>Ok</Button>
+          <Button onClick ={this.redirect}>Ok</Button>
         </>
       </Router>
     );
