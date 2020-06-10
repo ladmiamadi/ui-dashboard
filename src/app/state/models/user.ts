@@ -13,13 +13,14 @@ export const user = createModel({
     user: createEmptyUser(),
   } as State,
   reducers: {
-    updateUser: (state: State, user: User): State => ({ ...state, user: user }),
+    updateUser: (state: State, user: User): State => ({ ...state, user }),
     resetUser: (state: State): State => ({ ...state, user: createEmptyUser() }),
   },
   effects: {
     async fetchUser() {
       try {
         const { data } = await apiService.get('/me');
+
         this.updateUser(data);
       } catch (error) {
         (new Toastify()).error(`User doesn't exist. ${ error.message }`);

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { RootState } from '../../state/store';
 import { connect } from 'react-redux';
-import { Module } from '../../index.d';
+import { Module } from '../../index';
 import './styles/Homepage.css';
 
 interface Props {
@@ -34,6 +34,6 @@ export class Homepage extends React.Component<Props> {
   }
 }
 
-const mapState = (state: RootState) => ({ modules: state.modules.list });
+const mapState = (state: RootState) => ({ modules: state.modules.modules });
 
 export default connect(mapState)(Homepage);

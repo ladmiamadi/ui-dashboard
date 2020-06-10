@@ -11,18 +11,14 @@ export class TalentsListElement extends React.Component<Props> {
     const { profile } = this.props;
     return (
       <>
-        {
-          profile.picture
-          && (
-            <img
-              className="profile-picture"
-              alt={profile.firstName}
-              src={`${env('MEDIA_URL')}/${profile.picture.filePath}`}
-            />
-          )
-        }
+        <img
+          className="profile-picture"
+          alt={profile.firstName}
+          src={`${env('MEDIA_URL')}/${profile.picture.filePath}`}
+        />
         <br />
-        { profile.lastName }<br />
+        { profile.lastName }
+        <br />
         { profile.firstName }
       </>
     );
