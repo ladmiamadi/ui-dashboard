@@ -16,12 +16,12 @@ export const modules = createModel({
   },
   effects: {
     async fetchModules() {
-      try {
-        const { data } = await apiService.get('/api/modules');
-        this.updateModulesList(data);
-      } catch (error) {
-        (new Toastify()).error(`Module doesn't exist. ${ error.message }`);
-      }
+      // try {
+      //   const { data } = await apiService.get('/api/modules');
+      //   this.updateModulesList(data);
+      // } catch (error) {
+      //   (new Toastify()).error(`Module doesn't exist. ${ error.message }`);
+      // }
     },
   },
 });

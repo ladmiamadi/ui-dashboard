@@ -4,6 +4,7 @@ import { RootState } from '../../state/store';
 import { connect } from 'react-redux';
 import { Module } from '../../index.d';
 import './styles/Homepage.css';
+import ModalRegisterUser from '../registerUser/ModalRegisterUser';
 
 interface Props {
   modules: Module[],
@@ -27,6 +28,7 @@ export class Homepage extends React.Component<Props> {
                   </div>
                 </div>) }
             </div>
+            <ModalRegisterUser />
           </div>
         </article>
       </div>
@@ -36,4 +38,4 @@ export class Homepage extends React.Component<Props> {
 
 const mapState = (state: RootState) => ({ modules: state.modules.list });
 
-export default connect(mapState)(Homepage);
+export default connect(mapState, () => ({}))(Homepage);

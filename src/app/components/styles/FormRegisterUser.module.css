@@ -1,0 +1,10 @@
+.RowFormRegisterUser{
+  padding: 5px 0px;
+}
+
+.containerSpinner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
