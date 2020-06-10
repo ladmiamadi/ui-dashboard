@@ -7,7 +7,6 @@ interface Props {
   className?: string,
   keyName: string,
   label: string,
-  value?: string,
   handleOnChange: (property: string, value: boolean) => void,
 }
 

@@ -186,5 +186,5 @@ export interface UtilsDate {
 
 export interface Checkbox {
   label: string,
-  checked: boolean
+  checked: boolean,
 }

@@ -8,9 +8,9 @@ import { Checkbox } from '../../../app/';
 export class TalentFormInternship extends React.Component {
   render() {
     const checkboxes: Checkbox[] = [
-      { label: 'lundi', checked: true },
+      { label: 'lundi', checked: false },
       { label: 'mardi', checked: false } ,
-      { label: 'mercredi', checked: true },
+      { label: 'mercredi', checked: false },
       { label: 'jeudi', checked: false },
       { label: 'vendredi', checked: false },
       { label: 'samedi', checked: false },
