@@ -1,36 +1,35 @@
 import React, { Component } from 'react';
+import FormRegisterUser from '../form/FormRegisterUser';
 import { Button, Modal, ModalHeader, ModalFooter, ModalBody, Spinner } from 'reactstrap';
-import FormRegisterUser from './FormRegisterUser';
 import { connect } from 'react-redux';
-import { RootState, RootDispatch } from '../../state/store';
-import { UserSignUp, IsFormValid } from '../../state/models/userSignUp';
-import { User } from '../..';
-import classes from '../styles/FormRegisterUser.module.css';
-import { createDtoUserSignUp } from '../../helpers/userSignUpFactory';
+import { createDtoUserSignUp } from '../../../helpers/userSignUpFactory';
+import { RootState, RootDispatch } from '../../../state/store';
+import { UserSignUp, IsFormValid } from '../../../state/models/userSignUp';
+import { User } from '../../..';
+import classes from '../../styles/FormRegisterUser.module.css';
 
 interface Props {
-  userSignUp: UserSignUp,
-  listUserUsername: string[],
   isFormValid: IsFormValid,
   isRequesting: boolean,
-  updateUserSignUp: (userSignUp: UserSignUp) => void,
+  listUserUsername: string[],
+  userSignUp: UserSignUp,
   fetchUserInDb: () => void,
-  setIsFormValid: (isFormValid: IsFormValid) => void,
   postUserInDb: (userSentInDb: User) => Promise<void>,
+  updateUserSignUp: (userSignUp: UserSignUp) => void,
+  setIsFormValid: (isFormValid: IsFormValid) => void,
 }
 interface State {
-  isModalVisible: boolean,
   isAllFormValid: boolean,
+  isModalVisible: boolean,
 }
 
 class ModalRegisterUser extends Component<Props, State> {
   state = {
-    isModalVisible: true,
     isAllFormValid: false,
+    isModalVisible: false,
   }
 
-  async componentDidMount() {
-    console.log('Je vais fetcher');
+  componentDidMount() {
     this.props.fetchUserInDb();
   }
 
@@ -93,7 +92,6 @@ class ModalRegisterUser extends Component<Props, State> {
 
   postUserInDb = async () => {
     const userSentInDb = createDtoUserSignUp(this.props.userSignUp);
-
     this.props.postUserInDb(userSentInDb);
   }
 
@@ -103,20 +101,20 @@ class ModalRegisterUser extends Component<Props, State> {
 
     const contentModalBody = this.props.isRequesting ? 
       (<div className={classes.containerSpinner}>
-        <Spinner color="success" type="grow" style={{ margin: 'auto' }}/> 
+        <Spinner color="success" type="grow" /> 
       </div>)
       : 
       (<FormRegisterUser
-        userSignUp={this.props.userSignUp} 
         isFormValid={this.props.isFormValid}
+        listUserUsername={this.props.listUserUsername}
+        userSignUp={this.props.userSignUp} 
         updateUserSignUp={this.updateUserSignUp}
         setIsFormValid={this.setIsFormValid}
-        listUserUsername={this.props.listUserUsername}
       />);
 
     return (
       <div>
-        <Button  onClick={this.toggleModal} color="primary">Ajouter un User</Button>
+        <Button onClick={this.toggleModal} color="primary">Ajouter un stagiaire</Button>
         <Modal isOpen={this.state.isModalVisible}>
           <ModalHeader>Ajout d'un stagiaire.</ModalHeader>
           <ModalBody>
@@ -133,17 +131,17 @@ class ModalRegisterUser extends Component<Props, State> {
 }
 
 const mapState = (state: RootState) => ({ 
-  userSignUp: state.userSignUp.userSignUp,
-  listUserUsername: state.userSignUp.listUserUsername,
   isFormValid: state.userSignUp.isFormValid,
   isRequesting: state.userSignUp.isRequesting,
+  listUserUsername: state.userSignUp.listUserUsername,
+  userSignUp: state.userSignUp.userSignUp,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({
-  updateUserSignUp: dispatch.userSignUp.updateUserSignUp,
   fetchUserInDb: dispatch.userSignUp.fetchUserInDb,
-  setIsFormValid: dispatch.userSignUp.setIsFormValid,
   postUserInDb: dispatch.userSignUp.postUserInDb,
+  updateUserSignUp: dispatch.userSignUp.updateUserSignUp,
+  setIsFormValid: dispatch.userSignUp.setIsFormValid,
 });
 
 export default connect(mapState, mapDispatch)(ModalRegisterUser);

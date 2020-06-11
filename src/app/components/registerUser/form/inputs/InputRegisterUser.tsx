@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Col, Input, Label } from 'reactstrap';
-import { PropsForInput, StateForInput } from './index';
-import { Toastify } from '../../../helpers/Toastify';
+import { PropsForInput } from '../../index';
+import { Toastify } from '../../../../../helpers/Toastify';
 
-export default class InputRegisterUser extends Component<PropsForInput, StateForInput> {
-  updateUserSignUp = (value: string) => {
-    const payload: string = value;
-    this.props.updateUserSignUp(this.props.id, payload);
+export default class InputRegisterUser extends Component<PropsForInput> {
+  checkInputInvalidity = () => {
+    const invalid = (this.props.isInputValid === false && this.props.isInputValid !== undefined);
+    return invalid;
   }
 
-  checkInputValidity = () => {
+  setIsFormValid = () => {
     let isInputValid;
     const checkRegExp = new RegExp(this.props.regEx);
     isInputValid = checkRegExp.test(this.props.idValue);
@@ -19,25 +19,31 @@ export default class InputRegisterUser extends Component<PropsForInput, StateFor
           (new Toastify()).error(this.props.idValue + ' already exists in the database');
           isInputValid = false;
         }
+        return username;
       });
     }
     this.props.setIsFormValid(this.props.id, isInputValid);
   }
+  
+  updateUserSignUp = (value: string) => {
+    const payload: string = value;
+    this.props.updateUserSignUp(this.props.id, payload);
+  }
 
   render() {
     const { id, idValue, type, label } = this.props;
-    const invalid = !this.props.isInputValid && this.props.isInputValid !== undefined;
+    const invalid = this.checkInputInvalidity();
     return (
       <Col>
         <Label>{ label }</Label>
         <Input
           id={id}
-          value={idValue}
+          invalid={invalid}
           type={type}
           valid={this.props.isInputValid}
-          invalid={invalid}
+          value={idValue}
+          onBlur={this.setIsFormValid}
           onChange={(e) => this.updateUserSignUp(e.target.value)}
-          onBlur={this.checkInputValidity}
         />
       </Col>
     );

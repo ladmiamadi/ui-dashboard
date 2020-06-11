@@ -49,13 +49,11 @@ export const userSignUp = createModel({
   effects: {
     async fetchUserInDb() {
       this.setIsRequesting(true);
-      let listUserUsername: string[] = [];
+
       try {
         await apiService.get('/api/users')
           .then(rep => {
-            rep.data.map((user: User) => {
-              listUserUsername.push(user.username);
-            });
+            const listUserUsername = rep.data.map((user: User) => user.username);
             this.updateListUserUsername(listUserUsername);
           });
       } catch (error) {
@@ -66,6 +64,7 @@ export const userSignUp = createModel({
     },
     async postUserInDb(userSentInDb: User) {
       this.setIsRequesting(true);
+      
       try {
         await apiService.post('/api/users', userSentInDb)
           .then((rep) => (new Toastify()).info('Success adding ' + rep.data.username + ' in the database.'));

@@ -4,7 +4,7 @@ import { RootState } from '../../state/store';
 import { connect } from 'react-redux';
 import { Module } from '../../index.d';
 import './styles/Homepage.css';
-import ModalRegisterUser from '../registerUser/ModalRegisterUser';
+import ModalRegisterUser from '../registerUser/modal/ModalRegisterUser';
 
 interface Props {
   modules: Module[],

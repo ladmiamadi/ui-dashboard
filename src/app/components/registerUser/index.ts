@@ -11,7 +11,3 @@ export interface PropsForInput {
   updateUserSignUp: (id: string, value: string) => void,
   setIsFormValid: (id: string, payload: boolean) => void,
 }
-
-export interface StateForInput {
-
-}

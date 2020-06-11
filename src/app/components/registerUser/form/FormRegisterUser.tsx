@@ -1,45 +1,42 @@
 import React, { Component } from 'react';
+import InputDateRegisterUser from './inputs/InputDateRegisterUser';
+import InputRegisterUser from './inputs/InputRegisterUser';
+import InputSelectRegisterUser from './inputs/InputSelectRegisterUser';
+import { arrayOptionsPosition } from '..';
 import { Row } from 'reactstrap';
-import InputRegisterUser from './InputRegisterUser';
-import { arrayOptionsPosition } from './';
-import classes from '../styles/FormRegisterUser.module.css';
-import { UserSignUp, IsFormValid } from '../../state/models/userSignUp';
-import InputSelectRegisterUser from './InputSelectRegisterUser';
-import InputDateRegisterUser from './InputDateRegisterUser';
+import { UserSignUp, IsFormValid } from '../../../state/models/userSignUp';
+import classes from '../../styles/FormRegisterUser.module.css';
 
 interface Props {
-  userSignUp: UserSignUp,
-  listUserUsername: string[],
   isFormValid: IsFormValid,
+  listUserUsername: string[],
+  userSignUp: UserSignUp,
   updateUserSignUp: (id: string, payload: string) => void,
   setIsFormValid: (id: string, payload: boolean) => void,
 }
-interface State {
-  
-}
 
-export default class FormRegisterUser extends Component<Props, State> {
+export default class FormRegisterUser extends Component<Props> {
   render() {
     return (
       <>
         <Row className={classes.RowFormRegisterUser}>
           <InputRegisterUser
             id="firstName"
+            isInputValid={this.props.isFormValid.firstName}
             idValue={this.props.userSignUp.firstName}
-            type="text"
             label="Prénom"
             regEx="."
-            isInputValid={this.props.isFormValid.firstName}
+            type="text"
             updateUserSignUp={this.props.updateUserSignUp}
             setIsFormValid={this.props.setIsFormValid}
           />
           <InputRegisterUser
             id="lastName"
+            isInputValid={this.props.isFormValid.lastName}
             idValue={this.props.userSignUp.lastName}
-            type="text"
             label="Nom"
             regEx="."
-            isInputValid={this.props.isFormValid.lastName}
+            type="text"
             updateUserSignUp={this.props.updateUserSignUp}
             setIsFormValid={this.props.setIsFormValid}
           />
@@ -47,21 +44,21 @@ export default class FormRegisterUser extends Component<Props, State> {
         <Row className={classes.RowFormRegisterUser}>
           <InputRegisterUser
             id="country"
+            isInputValid={this.props.isFormValid.country}
             idValue={this.props.userSignUp.country}
-            type="text"
             label="Pays"
             regEx="."
-            isInputValid={this.props.isFormValid.country}
+            type="text"
             updateUserSignUp={this.props.updateUserSignUp}
             setIsFormValid={this.props.setIsFormValid}
           />
           <InputRegisterUser
             id="phone"
+            isInputValid={this.props.isFormValid.phone}
             idValue={this.props.userSignUp.phone}
-            type="text"
             label="Téléphone"
             regEx="^[0-9]*$"
-            isInputValid={this.props.isFormValid.phone}
+            type="text"
             updateUserSignUp={this.props.updateUserSignUp}
             setIsFormValid={this.props.setIsFormValid}
           />
@@ -69,22 +66,22 @@ export default class FormRegisterUser extends Component<Props, State> {
         <Row className={classes.RowFormRegisterUser}>
           <InputSelectRegisterUser 
             id="desiredJob"
+            isInputValid={this.props.isFormValid.desiredJob}
             idValue={this.props.userSignUp.desiredJob}
-            type="select"
             label="Fonction"
             options={arrayOptionsPosition}
             regEx="."
-            isInputValid={this.props.isFormValid.desiredJob}
+            type="select"
             updateUserSignUp={this.props.updateUserSignUp}
             setIsFormValid={this.props.setIsFormValid}          
           />
           <InputDateRegisterUser
             id="birthDate"
+            isInputValid={this.props.isFormValid.birthDate}
             idValue={this.props.userSignUp.birthDate}
-            type="date"
             label="Date de naissance"
             regEx="^\d{4}-\d{2}-\d{2}$"
-            isInputValid={this.props.isFormValid.birthDate}
+            type="date"
             updateUserSignUp={this.props.updateUserSignUp}
             setIsFormValid={this.props.setIsFormValid}
           />
@@ -92,13 +89,13 @@ export default class FormRegisterUser extends Component<Props, State> {
         <Row className={classes.RowFormRegisterUser}>
           <InputRegisterUser
             id="mailInstitution"
+            isInputValid={this.props.isFormValid.mailInstitution}
             idValue={this.props.userSignUp.mailInstitution}
-            type="email"
             label="Email"
+            listUserUsername={this.props.listUserUsername}
             // eslint-disable-next-line max-len
             regEx="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
-            isInputValid={this.props.isFormValid.mailInstitution}
-            listUserUsername={this.props.listUserUsername}
+            type="email"
             updateUserSignUp={this.props.updateUserSignUp}
             setIsFormValid={this.props.setIsFormValid}
           />

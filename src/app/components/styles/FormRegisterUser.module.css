@@ -1,8 +1,8 @@
-.RowFormRegisterUser{
+.RowFormRegisterUser {
   padding: 5px 0px;
 }
 
-.containerSpinner{
+.containerSpinner {
   display: flex;
   justify-content: center;
   align-items: center;
