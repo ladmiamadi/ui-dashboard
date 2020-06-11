@@ -34,10 +34,20 @@ export class TalentsListElement extends React.Component <Props, State> {
     }
   }
 
+export class TalentsListElement extends React.Component<Props> {
   render() {
     const { profile } = this.props;
     return (
       <>
+        <img
+          className="profile-picture"
+          alt={profile.firstName}
+          src={`${env('MEDIA_URL')}/${profile.picture.filePath}`}
+        />
+        <br />
+        { profile.lastName }
+        <br />
+        { profile.firstName }
 {/*          profile.picture
           &&*/}
         <tr className="id-card" onClick={this.toggleModal}>

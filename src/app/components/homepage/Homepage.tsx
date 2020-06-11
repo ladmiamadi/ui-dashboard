@@ -34,6 +34,6 @@ export class Homepage extends React.Component<Props> {
   }
 }
 
-const mapState = (state: RootState) => ({ modules: state.modules.list });
+const mapState = (state: RootState) => ({ modules: state.modules.modules });
 
 export default connect(mapState)(Homepage);

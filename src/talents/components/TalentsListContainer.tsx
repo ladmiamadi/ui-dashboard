@@ -26,7 +26,7 @@ export class TalentsListContainer extends React.Component <Props> {
 }
 
 const mapState = (state: RootState) => ({
-  talents: state.talents.list,
+  talents: state.talents.talents,
   isFetching: state.talents.isFetching,
 });
 

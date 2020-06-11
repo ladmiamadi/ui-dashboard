@@ -1,10 +1,10 @@
-import './styles/TalentsList.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Col, Container, Row } from 'reactstrap';
 import { User } from '../../app';
 import { RootState } from '../../app/state/store';
 import { TalentsListElement } from './TalentsListElement';
+import './styles/TalentsList.css';
 
 interface Props {
   talents: User[],
@@ -32,7 +32,7 @@ export class TalentsList extends React.Component <Props> {
 }
 
 const mapState = (state: RootState) => ({
-  talents: state.talents.list,
+  talents: state.talents.talents,
 });
 
 export default connect(mapState)(TalentsList);

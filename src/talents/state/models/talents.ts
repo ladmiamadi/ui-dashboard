@@ -4,17 +4,17 @@ import { apiService } from '../../../app/http/service';
 import { createModel } from '@rematch/core';
 
 interface State {
-  list: User[],
+  talents: User[],
   isFetching: boolean,
 }
 
 export const talents = createModel ({
   state: {
-    list: [],
+    talents: [],
     isFetching: false,
   } as State,
   reducers: {
-    updateList: (state: State, list: User[]): State => ({ ...state, list }),
+    updateList: (state: State, talents: User[]): State => ({ ...state, talents }),
     setIsFetching: (state: State, isFetching: boolean): State => ({ ...state, isFetching }),
   },
   effects: {
@@ -22,9 +22,10 @@ export const talents = createModel ({
       try {
         this.setIsFetching(true);
         const { data } = await apiService.get('/api/users');
+
         this.updateList(data);
       } catch (error) {
-        (new Toastify()).error(`Something went wrong. ${ error.message }`);
+        (new Toastify()).error(`Unable to fetch talents. ${ error.message }`);
       } finally {
         this.setIsFetching(false);
       }
