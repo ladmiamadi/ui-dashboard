@@ -11,10 +11,8 @@ import './styles/CustomNavbar.css';
 interface Props {
   user: User,
   modules: Module[],
- /* isVerifiedToken: boolean,*/        // Waiting the authentication component
   updateUser: () => Promise<void>,
   updateModulesList: () => Promise<void>,
- /* logout: () => Promise<void>,*/      // Waiting the authentication component
 }
 
 interface State {
@@ -26,7 +24,7 @@ export class CustomNavbar extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      isMenuOpened: false
+      isMenuOpened: false,
     };
   }
 
@@ -52,7 +50,7 @@ export class CustomNavbar extends React.Component<Props, State> {
                 <span className="logo-title">ADMIN DASHBOARD</span>
               </Link>
             </div>
-            <button id="toggle" className={ toggleClassName } onClick={ this.showOrHide }>
+            <button id="toggle" className={toggleClassName} onClick={this.showOrHide}>
               <div className="nav-icon">
                 <div />
               </div>
@@ -63,7 +61,7 @@ export class CustomNavbar extends React.Component<Props, State> {
               <button
                 className="logo-out">
                 {/*  onClick={ this.props.logout }*/}           {/*  Waiting the authentication component*/}
-                <FontAwesomeIcon className="icon-logout" icon={ faSignOutAlt } />
+                <FontAwesomeIcon className="icon-logout" icon={faSignOutAlt} />
               </button>
             </div>
           </div>
@@ -75,14 +73,12 @@ export class CustomNavbar extends React.Component<Props, State> {
 
 const mapState = (state: RootState) => ({
   user: state.user.user,
-  modules: state.modules.list
-  /* isVerifiedToken: state.auth.isVerifiedToken*/    // waiting authentication component
+  modules: state.modules.list,
 });
 
 const mapDispatch = (dispatch: any) => ({
   updateUser: dispatch.user.updateUser,
-  updateModulesList: dispatch.modules.updateModulesList
-  /*logout: dispatch.auth.logout*/                          // waiting authentication component
+  updateModulesList: dispatch.modules.updateModulesList,
 });
 
 export default connect(mapState, mapDispatch)(CustomNavbar);

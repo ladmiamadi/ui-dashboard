@@ -33,15 +33,15 @@ export class FieldForm extends React.Component<Props, State> {
 
   render() {
     return (
-      <FormGroup className={ this.props.className }>
-        <Label className='form-label' htmlFor={ this.props.keyName }>{ this.props.label }</Label>
+      <FormGroup className={this.props.className}>
+        <Label className="form-label" htmlFor={this.props.keyName}>{ this.props.label }</Label>
         <Input
-          className='form-input'
-          type={ this.props.type }
-          id={ this.props.keyName }
-          rows={ this.props.rows }
-          onChange={ (event) => this.handleChange(event.target.value) }
-          defaultValue={ this.state.value }
+          className="form-input"
+          type={this.props.type}
+          id={this.props.keyName}
+          rows={this.props.rows}
+          onChange={(event) => this.handleChange(event.target.value)}
+          defaultValue={this.state.value}
         />
       </FormGroup>
     );

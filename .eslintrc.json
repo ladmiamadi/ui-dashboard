@@ -41,16 +41,9 @@
             "error",
             "always"
         ],
-        "sort-imports": [
-            "warn",
-            {
-                "ignoreCase": false,
-                "ignoreDeclarationSort": false,
-                "ignoreMemberSort": false,
-                "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
-            }
-        ],
+        "jsx-quotes": ["error", "prefer-double"],
         "react/no-unescaped-entities": 0,
+        "react/jsx-curly-spacing": ["error", { "when": "never", "attributes": true, "children": false }],
         "space-infix-ops": "warn",
         "object-curly-spacing": [2, "always"],
         "max-len": ["error", { "code": 120 }],
@@ -60,6 +53,13 @@
             "vars": "all",
             "args": "after-used",
             "ignoreRestSiblings": false
+        }],
+        "comma-dangle": ["error", {
+            "arrays": "always-multiline",
+            "objects": "always-multiline",
+            "imports": "always-multiline",
+            "exports": "always-multiline",
+            "functions": "always-multiline"
         }]
     }
 }

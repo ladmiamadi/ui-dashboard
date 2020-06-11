@@ -16,6 +16,8 @@ export class AppContainer extends React.Component<Props> {
   }
 }
 
+const mapState = () => ({});
+
 const mapDispatch = (dispatch: RootDispatch) => ({
   fetchModules: dispatch.modules.fetchModules,
 });
