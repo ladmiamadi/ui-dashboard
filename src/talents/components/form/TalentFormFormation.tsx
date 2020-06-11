@@ -43,7 +43,7 @@ export class TalentFormFormation extends React.Component<Props, State> {
         </div>
         {
           this.state.talent.userTrainings.map((elem, index) => (
-            <div className='form-elements' key={ index }>
+            <div className='form-elements' key={index}>
               <FieldForm
                 keyName="formation-school"
                 label="École: "
@@ -67,8 +67,7 @@ export class TalentFormFormation extends React.Component<Props, State> {
                 className="large"
                 type="text"
                 handleChange ={(event) => this.handleChange('userTrainings', 'degreeObtained', event)}
-                value={elem.degreeObtained}
-              />
+                value={elem.degreeObtained} />
             </div>
           ))
         }

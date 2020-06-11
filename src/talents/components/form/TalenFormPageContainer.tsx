@@ -40,7 +40,7 @@ export class TalenFormPageContainer extends React.Component<Props> {
           <form className="talent-form" onSubmit={this.handleSubmit}>
             <TalentFormHead />
             <TalentFormAddress />
-            <TalentFormInstitution  />
+            <TalentFormInstitution />
             <TalentFormInternship />
             <TalentFormJob />
             <TalentFormSkills />

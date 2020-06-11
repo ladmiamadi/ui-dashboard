@@ -64,19 +64,19 @@ export class TalentFormHead extends React.Component <Props, State> {
             keyName="email"
             label="Mail: "
             type="text"
-            handleChange ={(event) => this.handleChange(event, -1, 'username', '')}
+            handleChange={(event) => this.handleChange(event, -1, 'username', '')}
             value={this.state.talent.username} />
           <FieldForm
             keyName="phone"
             label="Téléphone: "
             type="text"
-            handleChange ={(event) => this.handleChange(event, 0, 'userProfiles', 'phone')}
+            handleChange={(event) => this.handleChange(event, 0, 'userProfiles', 'phone')}
             value={this.state.userProfile.phone} />
           <FieldForm
             keyName="place"
             label="Localisation: "
             type="text"
-            handleChange ={(event) => this.handleChange(event, -1, 'userAddress', 'country')}
+            handleChange={(event) => this.handleChange(event, -1, 'userAddress', 'country')}
             value={this.state.talent.userAddress?.country} />
         </div>
         <div className="connexion-box">

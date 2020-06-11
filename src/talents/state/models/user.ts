@@ -36,7 +36,7 @@ export const user = createModel ({
       } else {
         user[payload.category] = payload.value;
       }
-
+      console.log(user);
       return {
         ...state, user,
       };

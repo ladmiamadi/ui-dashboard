@@ -36,8 +36,8 @@ export class CustomNavbar extends React.Component<Props, State> {
     const toggleClassName = this.state.isMenuOpened ? 'active' : '';
 
     return (
-      <div className='component-nav'>
-        <div className='info-user'>
+      <div className="component-nav">
+        <div className="info-user">
           <div className="container">
             <div className="user-box">
               ({ this.props.user.username })
@@ -46,13 +46,13 @@ export class CustomNavbar extends React.Component<Props, State> {
         </div>
         <div className="nav nav-bar">
           <div className="container container-nav">
-            <div className='link-dashboard'>
+            <div className="link-dashboard">
               <Link to="/">
-                <img className='logo-hdm' src={ logoHDM } alt="logo HDM Network" />
-                <span className='logo-title'>ADMIN DASHBOARD</span>
+                <img className="logo-hdm" src={logoHDM} alt="logo HDM Network" />
+                <span className="logo-title">ADMIN DASHBOARD</span>
               </Link>
             </div>
-            <button id='toggle' className={ toggleClassName } onClick={ this.showOrHide }>
+            <button id="toggle" className={ toggleClassName } onClick={ this.showOrHide }>
               <div className="nav-icon">
                 <div />
               </div>

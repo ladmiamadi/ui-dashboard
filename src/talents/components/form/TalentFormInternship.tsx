@@ -68,7 +68,7 @@ export class TalentFormInternship extends React.Component<Props, State> {
                 label="Horaire: "
                 className="large"
                 type='text'
-                handleChange={(event) => this.handleChange('userJob','workingHours', event)}
+                handleChange={(event) => this.handleChange('userJob', 'workingHours', event)}
                 value={this.state.talent.userJob?.workingHours} />
             </div>
           ))

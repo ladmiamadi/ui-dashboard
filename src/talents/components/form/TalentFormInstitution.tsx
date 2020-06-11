@@ -44,28 +44,28 @@ export class TalentFormInstitution extends React.Component<Props, State> {
           label="École: "
           className="large"
           type="text"
-          handleChange ={(event) => this.handleChange('userProfiles','institution', event)}
+          handleChange={(event) => this.handleChange('userProfiles', 'institution', event)}
           value={this.state.userProfile.institution} />
         <FieldForm
           keyName="institution-phone"
           label="Téléphone École: "
           className="medium"
           type="text"
-          handleChange ={(event) => this.handleChange('userProfiles','phoneInstitution', event)}
+          handleChange={(event) => this.handleChange('userProfiles', 'phoneInstitution', event)}
           value={this.state.userProfile.phoneInstitution} />
         <FieldForm
           keyName="institution-email"
           label="Mail École: "
           className="medium"
           type="text"
-          handleChange ={(event) => this.handleChange('userProfiles','mailInstitution', event)}
+          handleChange={(event) => this.handleChange('userProfiles', 'mailInstitution', event)}
           value={this.state.userProfile.mailInstitution} />
         <FieldForm
           keyName="institution-contact"
           label="Personne de contact: "
           className="large"
           type="text"
-          handleChange ={(event) => this.handleChange('userProfiles','personContactInstitution', event)}
+          handleChange={(event) => this.handleChange('userProfiles', 'personContactInstitution', event)}
           value={this.state.userProfile.personContactInstitution} />
       </div>
     );

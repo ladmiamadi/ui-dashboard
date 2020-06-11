@@ -46,54 +46,46 @@ export class TalentFormAddress extends React.Component <Props, State>{
           className="medium"
           type="text"
           handleChange={(event: MouseEvent) => this.handleChange('userAddress', 'street', event)}
-          value={this.state.talent.userAddress?.street}
-        />
+          value={this.state.talent.userAddress?.street} />
         <FieldForm
           keyName="number"
           label="Num: "
           type="text"
           handleChange={(event: MouseEvent) => this.handleChange('userAddress', 'number', event)}
-          value={this.state.talent.userAddress?.number}
-        />
+          value={this.state.talent.userAddress?.number} />
         <FieldForm
           keyName="postal-box"
           label="BP: "
           type="text"
           handleChange={(event: MouseEvent) => this.handleChange('userAddress', 'box', event)}
-          value={this.state.talent.userAddress?.box}
-        />
+          value={this.state.talent.userAddress?.box} />
         <FieldForm
           keyName="postal-code"
           label="Code Postal: "
           type="text"
           handleChange={(event: MouseEvent) => this.handleChange('userAddress', 'zip-code', event)}
-          value={this.state.talent.userAddress?.zipCode}
-        />
+          value={this.state.talent.userAddress?.zipCode} />
         <FieldForm
           keyName="city"
           label="Ville: "
           className="medium"
           type="text"
           handleChange={(event: MouseEvent) => this.handleChange('userAddress', 'city', event)}
-          value={this.state.talent.userAddress?.city}
-        />
+          value={this.state.talent.userAddress?.city} />
         <SelectFormField
           keyName="country"
           label="Pays: "
-          options={['aaa', 'bbb']}
-        />
+          options={['aaa', 'bbb']} />
         <FieldForm
           keyName="DOB"
           label="Date de naissance: "
           type="text"
           handleChange={(event: MouseEvent) => this.handleChange('userAddress', 'birthDate', event)}
-          value={this.state.userProfile.birthDate}
-        />
+          value={this.state.userProfile.birthDate} />
         <SelectFormField
           keyName="search"
           label="Actuellement en recherche: "
-          options={['Oui', 'Non']}
-        />
+          options={['Oui', 'Non']} />
       </div>
     );
   }
