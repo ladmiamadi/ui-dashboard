@@ -16,7 +16,7 @@ interface State {
 }
 
 export class TalentsListElement extends React.Component <Props, State> {
-  constructor(props : Props) {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -25,7 +25,8 @@ export class TalentsListElement extends React.Component <Props, State> {
   }
 
   toggleModal = () => {
-    if(this.props.profile.status === 'ON_VALIDATION') {
+    if (this.props.talent.userProfiles?.filter((profile) => profile.environment === 'working')
+      && this.props.talent.userProfiles?.filter((profile)=> profile.status === 'ON_VALIDATION')) {
       this.setState({
         isModalShown: !this.state.isModalShown,
       });
@@ -33,24 +34,31 @@ export class TalentsListElement extends React.Component <Props, State> {
       history.push('/test');
     }
   }
-
-export class TalentsListElement extends React.Component<Props> {
-  render() {
+  render()
+  {
     const { profile } = this.props;
     return (
-      <>
-        <img
+      <div className="id-card" onClick={this.toggleModal}>
+        {this.props.profile.picture ?
+          <img
+            className="profile-picture"
+            alt={profile.firstName}
+            src={`${env('MEDIA_URL')}/${profile.picture.filePath}`}
+          /> 
+          : <div>images not found</div>
+        }
+        {/*        <img
           className="profile-picture"
           alt={profile.firstName}
           src={`${env('MEDIA_URL')}/${profile.picture.filePath}`}
-        />
+        />*/}
         <br />
-        { profile.lastName }
+        {profile.lastName}
         <br />
-        { profile.firstName }
-{/*          profile.picture
+        {profile.firstName}
+        {/*          profile.picture
           &&*/}
-        <tr className="id-card" onClick={this.toggleModal}>
+        {/*<tr className="id-card" onClick={this.toggleModal}>
           <td>
             <img
               className="profile-picture"
@@ -60,13 +68,15 @@ export class TalentsListElement extends React.Component<Props> {
           </td>
           <td>{profile.lastName}</td>
           <td>{profile.firstName}</td>
-        </tr>
+        </tr>*/}
         <CustomModal
           isModalShown={this.state.isModalShown}
           toggleModal={this.toggleModal}
           modalTitle={this.props.profile.firstName + ' ' + this.props.profile.lastName}>
           <TalentModal talent={this.props.talent}/>
         </CustomModal>
-      </>
-    );}
+      </div>
+    );
+  }
 }
+
