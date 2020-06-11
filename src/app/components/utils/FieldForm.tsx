@@ -21,13 +21,13 @@ export class FieldForm extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      value: this.props.value
+      value: this.props.value,
     };
   }
 
-  handleChange(event : any, ) {
+  handleChange(event : any ) {
     if(this.props.handleChange) {
-      this.props.handleChange( event);
+      this.props.handleChange(event);
     }
   }
 

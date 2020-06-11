@@ -27,8 +27,8 @@ export class TalentFormFormation extends React.Component<Props, State> {
     const payload = {
       index: 0,
       category: category,
-      property : property,
-      value : event,
+      property: property,
+      value: event,
     };
 
     this.props.modifyUser(payload);
@@ -66,7 +66,7 @@ export class TalentFormFormation extends React.Component<Props, State> {
                 label="Diplôme obtenu: "
                 className="large"
                 type="text"
-                handleChange ={(event) => this.handleChange('userTrainings', 'degreeObtained', event)}
+                handleChange={(event) => this.handleChange('userTrainings', 'degreeObtained', event)}
                 value={elem.degreeObtained} />
             </div>
           ))

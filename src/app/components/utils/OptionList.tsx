@@ -1,7 +1,7 @@
 import React  from 'react';
 
 interface Props {
-  options: string[];
+  options: string[],
 }
 
 export class OptionList extends React.Component <Props> {

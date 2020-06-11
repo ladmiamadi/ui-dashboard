@@ -7,8 +7,8 @@ interface Props {
   options: string[],
   label: string,
   keyName: string,
-  className?: string
-  updateModel?: ( value:string, property:string ) => void;
+  className?: string,
+  updateModel?: (value:string, property:string) => void,
 }
 
 export class SelectFormField extends React.Component<Props> {

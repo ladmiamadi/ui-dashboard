@@ -6,7 +6,7 @@ import { UserFactory } from '../../helpers/UserFactory';
 
 type TalentState = {
   user: User,
-  isFetching: boolean
+  isFetching: boolean,
 }
 
 export interface UpdateUserPayload {
@@ -40,7 +40,7 @@ export const user = createModel ({
       return {
         ...state, user,
       };
-    }
+    },
   },
   effects: {
     async fetchUserById(id: number) {
@@ -56,6 +56,6 @@ export const user = createModel ({
       } finally {
         this.setIsFetching(false);
       }
-    }
-  }
+    },
+  },
 });

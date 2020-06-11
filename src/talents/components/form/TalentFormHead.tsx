@@ -31,8 +31,8 @@ export class TalentFormHead extends React.Component <Props, State> {
     const payload = {
       index: index,
       category: category,
-      property : property,
-      value : event,
+      property: property,
+      value: event,
     };
 
     this.props.modifyUser(payload);

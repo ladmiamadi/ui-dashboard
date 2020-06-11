@@ -19,7 +19,7 @@ interface Props {
   isfetching: boolean,
 }
 
-export class TalenFormPageContainer extends React.Component<Props> {
+export class TalentFormPageContainer extends React.Component<Props> {
   async componentDidMount() {
     await this.props.fetchUserById(1);
   }
@@ -50,7 +50,8 @@ export class TalenFormPageContainer extends React.Component<Props> {
             <button type="submit" className="form-button">Sauvegarder les changements</button>
           </form>
         </Container>
-      </div> );
+      </div>
+    );
   }
 }
 
@@ -63,4 +64,4 @@ const mapDispatch = (dispatch: RootDispatch) => ({
   fetchUserById: dispatch.user.fetchUserById,
 });
 
-export default connect(mapState, mapDispatch)(TalenFormPageContainer);
+export default connect(mapState, mapDispatch)(TalentFormPageContainer);

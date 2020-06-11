@@ -9,7 +9,7 @@ interface Props {
   label: string,
   keyName: string,
   className?: string,
-  value: any
+  value: any,
 }
 
 export class DateFormField extends React.Component<Props> {
@@ -17,7 +17,7 @@ export class DateFormField extends React.Component<Props> {
     const date = new Date();
     return (
       <FormGroup className={this.props.className}>
-        <Label className="form-label" for={this.props.keyName}>{ this.props.label }</Label>
+        <Label className="form-label" htmlFor={this.props.keyName}>{ this.props.label }</Label>
         <div className="date">
           <Input
             className="form-input"

@@ -30,8 +30,8 @@ export class TalentFormAddress extends React.Component <Props, State>{
     const payload = {
       index: -1,
       category: category,
-      property : property,
-      value : event,
+      property: property,
+      value: event,
     };
 
     this.props.modifyUser(payload);
