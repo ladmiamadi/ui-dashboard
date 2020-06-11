@@ -20,10 +20,11 @@ export const addLanguage = createModel({
     isPosting: false,
   } as LanguageState,
   reducers: {
-    setIsPosting: (state: LanguageState, payload: boolean): LanguageState => ({ ...state, isPosting: payload }),
+    setIsPosting: (state: LanguageState, isPosting): LanguageState => ({ ...state, isPosting }),
     updateLanguage: (state: LanguageState, payload: UpdateLanguagePayload): LanguageState  => {
       const language = { ...state.language } as any;
       language[payload.property] = payload.value;
+
       return {
         ...state, language,
       };
@@ -32,8 +33,9 @@ export const addLanguage = createModel({
   },
   effects: (dispatch: any) => ({
     async postLanguage(userLanguage : UserLanguage) {
+      this.setIsPosting(true);
+
       try {
-        this.setIsPosting(true);
         await apiService.post('/api/user_languages', {
           user: '/api/users/1',
           language: userLanguage.language,

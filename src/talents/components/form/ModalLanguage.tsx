@@ -8,12 +8,13 @@ import { UpdateLanguagePayload } from './state/models/languages/addLanguage';
 import { UserLanguageFactory } from './helpers/UserLanguageFactory';
 
 interface Props {
-  optionsLevelLanguage: string[],
   language: UserLanguage,
+  optionLanguage: string[],
+  optionsLevelLanguage: string[],
+  isPosting: boolean,
+  isFetching: boolean,
   resetLanguage: () => void,
   updateLanguage: (payload: UpdateLanguagePayload) => void,
-  optionLanguage: string[],
-  isPosting: boolean,
   postLanguage: (userLanguage: UserLanguage) => void,
 }
 
@@ -59,7 +60,10 @@ export class ModalLanguage extends React.Component<Props> {
                 className="form-add-button modal-button"
                 color="default"
                 onClick={this.postLanguage}
-                disabled={this.props.isPosting}> Ajouter une langue </Button>
+                disabled={this.props.isPosting || this.props.isFetching}
+              >
+                Ajouter une langue
+              </Button>
             </Row>
         }
       </>
@@ -70,6 +74,7 @@ export class ModalLanguage extends React.Component<Props> {
 const mapState = (state: RootState) => ({
   language: state.addLanguage.language,
   isPosting: state.addLanguage.isPosting,
+  isFetching: state.userLanguages.isFetching,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({

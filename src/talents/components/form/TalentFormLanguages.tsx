@@ -9,9 +9,10 @@ import { UserLanguagesDisplay } from './UserLanguagesDisplay';
 import { LANGUAGES, LANGUAGES_LEVEL } from '../../index.d';
 
 interface Props {
-  fetchLanguages: () => Promise<void>,
   userLanguages: UserLanguage[],
+  fetchLanguages: () => Promise<void>,
   updateUserLanguages: (language: UserLanguage) => void,
+  resetLanguage: () => void,
 }
 
 interface State {
@@ -46,7 +47,13 @@ export class TalentFormLanguages extends React.Component<Props, State> {
     await this.props.fetchLanguages();
   }
 
-  toggleModal = () => this.setState({ isModalShown: !this.state.isModalShown });
+  toggleModalAndResetModalOnQuit = () => {
+    this.setState({ isModalShown: !this.state.isModalShown });
+
+    if (!this.state.isModalShown) {
+      this.props.resetLanguage();
+    }
+  }
 
   updateUserLanguages = (property: string, value: string) => {
     this.props.updateUserLanguages({ language: property, level: value });
@@ -57,7 +64,12 @@ export class TalentFormLanguages extends React.Component<Props, State> {
       <div className="form-section almost-large">
         <div className="section-add">
           <h6>Langues: </h6>
-          <Button onClick={this.toggleModal} className="form-add-button" color="default">Ajouter une langue</Button>
+          <Button
+            onClick={this.toggleModalAndResetModalOnQuit}
+            className="form-add-button"
+            color="default">
+            Ajouter une langue
+          </Button>
         </div>
         <UserLanguagesDisplay
           userLanguages={this.props.userLanguages}
@@ -66,7 +78,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
         />
         <ModalCustom
           isModalShown={this.state.isModalShown}
-          toggleModal={this.toggleModal}
+          toggleModal={this.toggleModalAndResetModalOnQuit}
           titleModal="Ajouter une langue"
         >
           <ModalLanguage
@@ -86,6 +98,7 @@ const mapState = (state: RootState) => ({
 const mapDispatch = (dispatch: RootDispatch) => ({
   fetchLanguages: dispatch.userLanguages.fetchLanguages,
   updateUserLanguages: dispatch.userLanguages.updateUserLanguages,
+  resetLanguage: dispatch.addLanguage.resetLanguage,
 });
 
 export default connect(mapState, mapDispatch)(TalentFormLanguages);

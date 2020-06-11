@@ -6,6 +6,7 @@ import { Toastify } from '../../../../../../helpers/Toastify';
 
 export interface State {
   languages: UserLanguage[],
+  isFetching: boolean,
 }
 
 export const userLanguages = createModel({
@@ -14,6 +15,7 @@ export const userLanguages = createModel({
     isFetching: false,
   } as State,
   reducers: {
+    setIsFetching: (state: State, isFetching: boolean): State => ({ ...state, isFetching }),
     initUserLanguages: (state: State, languages: UserLanguage[]): State => ({ ...state, languages }),
     addUserLanguages: (state: State, language: UserLanguage): State => {
       const languages = state.languages
@@ -40,12 +42,16 @@ export const userLanguages = createModel({
   },
   effects: {
     async fetchLanguages() {
+      this.setIsFetching(true);
+
       try {
         const { data } = await apiService.get('/api/users/1');
 
         this.initUserLanguages(UserLanguagesFactory.createLanguageFromUserData(data));
       } catch (error) {
         (new Toastify()).info(`Unable to fetch user languages. ${ error.message }`);
+      } finally {
+        this.setIsFetching(false);
       }
     },
   },
