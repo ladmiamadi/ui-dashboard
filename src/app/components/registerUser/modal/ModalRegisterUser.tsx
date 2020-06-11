@@ -15,8 +15,8 @@ interface Props {
   userSignUp: UserSignUp,
   fetchUserInDb: () => void,
   postUserInDb: (userSentInDb: User) => Promise<void>,
-  updateUserSignUp: (userSignUp: UserSignUp) => void,
   setIsFormValid: (isFormValid: IsFormValid) => void,
+  updateUserSignUp: (userSignUp: UserSignUp) => void,
 }
 interface State {
   isAllFormValid: boolean,
@@ -31,6 +31,46 @@ class ModalRegisterUser extends Component<Props, State> {
 
   componentDidMount() {
     this.props.fetchUserInDb();
+  }
+
+  isPostAvailable = () => {
+    if(this.props.isRequesting){
+      return false;
+    } 
+    let isAllFormValid = true;
+
+    const isFormValidCheck = {
+      ...this.props.isFormValid,
+    } as any;
+
+    for(let key in isFormValidCheck){
+      isAllFormValid = isAllFormValid && isFormValidCheck[key];
+    }
+
+    if(isAllFormValid === undefined){
+      isAllFormValid = false;
+    }
+
+    return isAllFormValid;
+  }
+
+  postUserInDb = async () => {
+    const userSentInDb = createDtoUserSignUp(this.props.userSignUp);
+    this.props.postUserInDb(userSentInDb);
+  }
+
+  setIsFormValid = (id: string, payload: boolean) => {
+    const oldIsFormValid = {
+      ...this.props.isFormValid,
+    } as any;
+
+    oldIsFormValid[id] = payload;
+
+    const newIsFormValid = {
+      ...oldIsFormValid,
+    };
+
+    this.props.setIsFormValid(newIsFormValid);
   }
 
   toggleModal = () => {
@@ -53,46 +93,6 @@ class ModalRegisterUser extends Component<Props, State> {
     };
 
     this.props.updateUserSignUp(newUserSignUp);
-  }
-  
-  setIsFormValid = (id: string, payload: boolean) => {
-    const oldIsFormValid = {
-      ...this.props.isFormValid,
-    } as any;
-
-    oldIsFormValid[id] = payload;
-
-    const newIsFormValid = {
-      ...oldIsFormValid,
-    };
-
-    this.props.setIsFormValid(newIsFormValid);
-  }
-
-  isPostAvailable = () => {
-    if(this.props.isRequesting){
-      return false;
-    } 
-    let isAllFormValid = true;
-
-    const isFormValidCheck = {
-      ...this.props.isFormValid,
-    } as any;
-
-    for(let key in isFormValidCheck){
-      isAllFormValid = isAllFormValid && isFormValidCheck[key];
-    }
-
-    if(!isAllFormValid || isAllFormValid === undefined){
-      isAllFormValid = false;
-    }
-
-    return isAllFormValid;
-  }
-
-  postUserInDb = async () => {
-    const userSentInDb = createDtoUserSignUp(this.props.userSignUp);
-    this.props.postUserInDb(userSentInDb);
   }
 
   render() {
@@ -140,8 +140,8 @@ const mapState = (state: RootState) => ({
 const mapDispatch = (dispatch: RootDispatch) => ({
   fetchUserInDb: dispatch.userSignUp.fetchUserInDb,
   postUserInDb: dispatch.userSignUp.postUserInDb,
-  updateUserSignUp: dispatch.userSignUp.updateUserSignUp,
   setIsFormValid: dispatch.userSignUp.setIsFormValid,
+  updateUserSignUp: dispatch.userSignUp.updateUserSignUp,
 });
 
 export default connect(mapState, mapDispatch)(ModalRegisterUser);

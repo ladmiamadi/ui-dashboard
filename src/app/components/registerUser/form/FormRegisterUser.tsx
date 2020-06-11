@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import InputDateRegisterUser from './inputs/InputDateRegisterUser';
 import InputRegisterUser from './inputs/InputRegisterUser';
 import InputSelectRegisterUser from './inputs/InputSelectRegisterUser';
 import { arrayOptionsPosition } from '..';
@@ -75,7 +74,7 @@ export default class FormRegisterUser extends Component<Props> {
             updateUserSignUp={this.props.updateUserSignUp}
             setIsFormValid={this.props.setIsFormValid}          
           />
-          <InputDateRegisterUser
+          <InputRegisterUser
             id="birthDate"
             isInputValid={this.props.isFormValid.birthDate}
             idValue={this.props.userSignUp.birthDate}

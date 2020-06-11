@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { checkInputInvalidity, checkRegEx } from '../helpers/inputCheck';
 import { Col, Input, Label } from 'reactstrap';
 import { PropsForInput } from '../../index';
 
@@ -7,25 +8,15 @@ interface PropsForInputSelect extends PropsForInput {
 }
 
 export default class InputSelectRegisterUser extends Component<PropsForInputSelect> {
-  checkInputInvalidity = () => {
-    const invalid = (this.props.isInputValid === false && this.props.isInputValid !== undefined);
-    return invalid;
-  }
-
   setIsFormValid = () => {
-    const checkRegExp = new RegExp(this.props.regEx);
-    const isInputValid = checkRegExp.test(this.props.idValue);
-    this.props.setIsFormValid(this.props.id, isInputValid);
-  }
-  
-  updateUserSignUp = (value: string) => {
-    const payload: string = value;
-    this.props.updateUserSignUp(this.props.id, payload);
+    const { id, idValue, regEx } = this.props;
+    const isInputValid = checkRegEx(idValue, regEx);
+    this.props.setIsFormValid(id, isInputValid);
   }
 
   render() {
-    const { id, idValue, type, label, options } = this.props;
-    const invalid = this.checkInputInvalidity();
+    const { id, idValue, isInputValid, label, type, options, updateUserSignUp } = this.props;
+    const invalid = checkInputInvalidity(isInputValid);
     return (
       <Col>
         <Label>{ label }</Label>
@@ -34,9 +25,9 @@ export default class InputSelectRegisterUser extends Component<PropsForInputSele
           invalid={invalid}
           type={type}
           value={idValue}
-          valid={this.props.isInputValid}
+          valid={isInputValid}
           onBlur={this.setIsFormValid}
-          onChange={(e) => this.updateUserSignUp(e.target.value)}
+          onChange={(e) => updateUserSignUp(id, e.target.value)}
         >
           <option value="none" key="none" hidden>Choisissez une option</option>
           { options.map(optionName => <option key={optionName} value={optionName}>{optionName}</option>) }

@@ -4,23 +4,23 @@ import { UserSignUp } from '../state/models/userSignUp';
 import { createEmptyUser } from './userFactory';
 
 export const createEmptyUserSignUp = (): UserSignUp => ({
+  birthDate: '2000-01-01',
+  country: '',
+  desiredJob: '',
   firstName: '',
   lastName: '',
-  country: '',
-  phone: '',
-  desiredJob: '',
-  birthDate: '2000-01-01',
   mailInstitution: '',  
+  phone: '',
 });
 
 export const createEmptyIsFormValid = (): IsFormValid => ({  
+  birthDate: undefined,
+  country: undefined,
+  desiredJob: undefined,
   firstName: undefined,
   lastName: undefined,
-  country: undefined,
-  phone: undefined,
-  desiredJob: undefined,
-  birthDate: undefined,
   mailInstitution: undefined,
+  phone: undefined,
 });
 
 export const createDtoUserSignUp = (userSignUp: UserSignUp): User => {
@@ -31,23 +31,23 @@ export const createDtoUserSignUp = (userSignUp: UserSignUp): User => {
   };
 
   const { 
+    birthDate, 
+    country, 
+    desiredJob, 
     firstName, 
     lastName, 
-    country, 
-    phone, 
-    desiredJob, 
-    birthDate, 
     mailInstitution, 
+    phone, 
   } = userSignUp;
 
   userSentInDb.username = mailInstitution;
   userSentInDb.userAddress.country = country;
+  userSentInDb.userProfiles[0].birthDate = new Date(birthDate);
+  userSentInDb.userProfiles[0].desiredJob = desiredJob;
   userSentInDb.userProfiles[0].firstName = firstName;
   userSentInDb.userProfiles[0].lastName = lastName;
-  userSentInDb.userProfiles[0].phone = phone;
   userSentInDb.userProfiles[0].mailInstitution = mailInstitution;
-  userSentInDb.userProfiles[0].desiredJob = desiredJob;
-  userSentInDb.userProfiles[0].birthDate = new Date(birthDate);
+  userSentInDb.userProfiles[0].phone = phone;
 
   return userSentInDb;
 };

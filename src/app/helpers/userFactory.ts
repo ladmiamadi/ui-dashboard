@@ -6,20 +6,20 @@ export const createEmptyUser = (): User => {
   } as UserAddress;
 
   const userProfile = {
+    birthDate: new Date(),
+    desiredJob: '',
     environment: 'live',
     firstName: '',
     lastName: '',
-    phone: '',
     mailInstitution: '',
-    birthDate: new Date(),
-    desiredJob: '',
+    phone: '',
   } as UserProfile;
 
   const user = {
-    username: '',
-    password: 'sosecure',
-    isActive: true,
     createdDate: new Date(),
+    isActive: true,
+    password: 'sosecure',
+    username: '',
     userAddress: userAddress,
     userProfiles: [userProfile],
   } as unknown as User;

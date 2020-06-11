@@ -5,46 +5,46 @@ import { Toastify } from '../../../helpers/Toastify';
 import { User } from '../..';
 
 export interface UserSignUp {
+  birthDate: string,
+  country: string,
+  desiredJob: string,
   firstName: string,
   lastName: string,
-  country: string,
-  phone: string,
-  desiredJob: string,
-  birthDate: string,
   mailInstitution: string,  
-}
-
-export interface IsFormValid {
-  firstName: boolean | undefined,
-  lastName: boolean | undefined,
-  country: boolean | undefined,
-  phone: boolean | undefined,
-  desiredJob: boolean | undefined,
-  birthDate: boolean | undefined,
-  mailInstitution: boolean | undefined,
+  phone: string,
 }
 
 export type UserSignUpState = {
-  userSignUp: UserSignUp,
   isFormValid: IsFormValid,
   isRequesting: boolean,
   listUserUsername: string[],
+  userSignUp: UserSignUp,
+}
+
+export interface IsFormValid {
+  birthDate: boolean | undefined,
+  country: boolean | undefined,
+  desiredJob: boolean | undefined,
+  firstName: boolean | undefined,
+  lastName: boolean | undefined,
+  mailInstitution: boolean | undefined,
+  phone: boolean | undefined,
 }
 
 export const userSignUp = createModel({
   state: {
-    userSignUp: createEmptyUserSignUp(),
     isFormValid: createEmptyIsFormValid(),
     isRequesting: false,
     listUserUsername: [],
+    userSignUp: createEmptyUserSignUp(),
   } as UserSignUpState,
   reducers: {
-    updateUserSignUp: (state: UserSignUpState, userSignUp: UserSignUp): UserSignUpState => ({ ...state, userSignUp }),
-    updateListUserUsername: (state: UserSignUpState, listUserUsername: string[]) => ({ ...state, listUserUsername }),
     // eslint-disable-next-line max-len
     resetUserSignUp: (state: UserSignUpState): UserSignUpState => ({ ...state, userSignUp: createEmptyUserSignUp(), isFormValid: createEmptyIsFormValid() }),
     setIsFormValid: (state: UserSignUpState, isFormValid: IsFormValid): UserSignUpState => ({ ...state, isFormValid }),
     setIsRequesting: (state: UserSignUpState, isRequesting: boolean): UserSignUpState => ({ ...state, isRequesting }),
+    updateUserSignUp: (state: UserSignUpState, userSignUp: UserSignUp): UserSignUpState => ({ ...state, userSignUp }),
+    updateListUserUsername: (state: UserSignUpState, listUserUsername: string[]) => ({ ...state, listUserUsername }),
   },
   effects: {
     async fetchUserInDb() {
@@ -64,7 +64,7 @@ export const userSignUp = createModel({
     },
     async postUserInDb(userSentInDb: User) {
       this.setIsRequesting(true);
-      
+
       try {
         await apiService.post('/api/users', userSentInDb)
           .then((rep) => (new Toastify()).info('Success adding ' + rep.data.username + ' in the database.'));
