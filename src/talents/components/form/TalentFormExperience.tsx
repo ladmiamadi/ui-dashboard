@@ -66,7 +66,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
                 keyName="experience-position"
                 label="Poste: "
                 className="large"
-                type='text'
+                type="text"
                 handleChange={(event: MouseEvent) => this.handleChange('userExperiences', 'position', event)}
                 value={elem.position} />
               <FieldForm
@@ -74,7 +74,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
                 label="Tâches effectuées: "
                 className="large"
                 rows={5}
-                type='textarea'
+                type="textarea"
                 handleChange={(event: MouseEvent) => this.handleChange('userExperiences', 'task', event)}
                 value={elem.task} />
             </div>

@@ -25,5 +25,3 @@ export default class TalentFormLanguages extends React.Component {
     );
   }
 }
-
-export default TalentFormLanguages;

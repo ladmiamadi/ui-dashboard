@@ -22,4 +22,4 @@ const mapDispatch = (dispatch: RootDispatch) => ({
   fetchModules: dispatch.modules.fetchModules,
 });
 
-export default connect(() => ({}), mapDispatch)(AppContainer);
+export default connect(mapState, mapDispatch)(AppContainer);

@@ -73,7 +73,7 @@ export class TalentFormInstitution extends React.Component<Props, State> {
 }
 
 const mapState = (state: RootState) => ({
-  talent: state.user.user
+  talent: state.user.user,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({

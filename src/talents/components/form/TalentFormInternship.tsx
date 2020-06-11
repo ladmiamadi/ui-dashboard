@@ -44,7 +44,7 @@ export class TalentFormInternship extends React.Component<Props, State> {
       <div className="form-section">
         {
           this.state.talent.userExperiences.map((elem, index) => (
-            <div className='form-elements' key={index}>
+            <div className="form-elements" key={index}>
               <SelectFormField
                 keyName="internship-status"
                 label="Statut du stage: "
@@ -67,7 +67,7 @@ export class TalentFormInternship extends React.Component<Props, State> {
                 keyName="internship-hours"
                 label="Horaire: "
                 className="large"
-                type='text'
+                type="text"
                 handleChange={(event) => this.handleChange('userJob', 'workingHours', event)}
                 value={this.state.talent.userJob?.workingHours} />
             </div>

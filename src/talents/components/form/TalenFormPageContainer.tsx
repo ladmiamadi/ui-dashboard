@@ -10,7 +10,7 @@ import TalentFormInternship from './TalentFormInternship';
 import TalentFormExperience from './TalentFormExperience';
 import TalentFormFormation from './TalentFormFormation';
 import TalentFormJob from './TalentFormJob';
-import TalentFormLanguages from './TalentFormLanguages';
+import TalentFormLanguages  from './TalentFormLanguages';
 import TalentFormSkills from './TalentFormSkills';
 
 interface Props {
