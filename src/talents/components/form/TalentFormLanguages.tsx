@@ -9,6 +9,7 @@ import { UserLanguagesDisplay } from './UserLanguagesDisplay';
 import { LANGUAGES, LANGUAGES_LEVEL } from '../../index.d';
 
 interface Props {
+  isFetching: boolean,
   userLanguages: UserLanguage[],
   fetchLanguages: () => Promise<void>,
   updateUserLanguages: (language: UserLanguage) => void,
@@ -67,7 +68,9 @@ export class TalentFormLanguages extends React.Component<Props, State> {
           <Button
             onClick={this.toggleModalAndResetModalOnQuit}
             className="form-add-button"
-            color="default">
+            color="default"
+            disabled={this.props.isFetching}
+          >
             Ajouter une langue
           </Button>
         </div>
@@ -93,6 +96,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
 
 const mapState = (state: RootState) => ({
   userLanguages: state.userLanguages.languages,
+  isFetching: state.userLanguages.isFetching,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({

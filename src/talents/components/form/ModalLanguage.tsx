@@ -12,7 +12,6 @@ interface Props {
   optionLanguage: string[],
   optionsLevelLanguage: string[],
   isPosting: boolean,
-  isFetching: boolean,
   resetLanguage: () => void,
   updateLanguage: (payload: UpdateLanguagePayload) => void,
   postLanguage: (userLanguage: UserLanguage) => void,
@@ -60,7 +59,7 @@ export class ModalLanguage extends React.Component<Props> {
                 className="form-add-button modal-button"
                 color="default"
                 onClick={this.postLanguage}
-                disabled={this.props.isPosting || this.props.isFetching}
+                disabled={this.props.isPosting}
               >
                 Ajouter une langue
               </Button>
@@ -74,7 +73,6 @@ export class ModalLanguage extends React.Component<Props> {
 const mapState = (state: RootState) => ({
   language: state.addLanguage.language,
   isPosting: state.addLanguage.isPosting,
-  isFetching: state.userLanguages.isFetching,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({
