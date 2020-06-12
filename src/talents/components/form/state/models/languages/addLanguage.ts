@@ -4,7 +4,7 @@ import { Toastify } from '../../../../../../helpers/Toastify';
 import { UserLanguage } from '../../../../../../app/index';
 import { apiService } from '../../../../../../app/http/service';
 
-export type LanguageState = {
+export interface LanguageState {
   language: UserLanguage,
   isPosting: boolean,
 }
