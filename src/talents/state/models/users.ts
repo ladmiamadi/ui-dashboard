@@ -4,17 +4,17 @@ import { apiService } from '../../../app/http/service';
 import { createModel } from '@rematch/core';
 
 interface State {
-  talents: User[],
+  users: User[],
   isFetching: boolean,
 }
 
-export const talents = createModel({
+export const users = createModel({
   state: {
-    talents: [],
+    users: [],
     isFetching: false,
   } as State,
   reducers: {
-    updateList: (state: State, talents: User[]): State => ({ ...state, talents }),
+    updateList: (state: State, talents: User[]): State => ({ ...state, users: talents }),
     setIsFetching: (state: State, isFetching: boolean): State => ({ ...state, isFetching }),
   },
   effects: {

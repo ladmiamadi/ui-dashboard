@@ -7,7 +7,7 @@ interface Props {
   icon?: IconDefinition,
   placeholder?: string,
   onSearch: (search: string) => any,
-  value?: string,
+  value: string,
 }
 
 export class SearchBar extends React.Component<Props> {

@@ -26,12 +26,12 @@ export class TalentsListContainer extends React.Component<Props> {
 }
 
 const mapState = (state: RootState) => ({
-  talents: state.talents.talents,
-  isFetching: state.talents.isFetching,
+  users: state.users.users,
+  isFetching: state.users.isFetching,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({
-  fetchTalents: dispatch.talents.fetchTalents,
+  fetchTalents: dispatch.users.fetchTalents,
 });
 
 export default connect(mapState, mapDispatch)(TalentsListContainer);

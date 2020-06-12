@@ -7,7 +7,7 @@ import { TalentsListElement } from './TalentsListElement';
 import './styles/TalentsList.css';
 
 interface Props {
-  talents: User[],
+  users: User[],
 }
 
 export class TalentsList extends React.Component<Props> {
@@ -16,7 +16,7 @@ export class TalentsList extends React.Component<Props> {
       <Container className="mt-5">
         <Row>
           {
-            this.props.talents.map((talent, index) => (
+            this.props.users.map((talent, index) => (
               <Col key={index} className="element" xs={2}>
                 {
                   talent.userProfiles?.filter((profile) => profile.environment === 'live')
@@ -32,7 +32,7 @@ export class TalentsList extends React.Component<Props> {
 }
 
 const mapState = (state: RootState) => ({
-  talents: state.talents.talents,
+  users: state.users.users,
 });
 
 export default connect(mapState)(TalentsList);
