@@ -35,7 +35,7 @@ class ModalRegisterUser extends Component<Props, State> {
   }
 
   isPostAvailable = (): InputState => {
-    if(this.props.isRequesting){
+    if (this.props.isRequesting) {
       return InputState.FALSE;
     } 
 
