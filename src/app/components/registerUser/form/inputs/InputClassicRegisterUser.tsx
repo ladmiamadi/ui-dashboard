@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import { Col, Input, Label } from 'reactstrap';
 import { InputState } from '../../index.d';
 import { PropsForInput } from './InputRegisterUsers';
+import { isUsernameAlreadyExists } from '../helpers/formRegisterHelpers';
 
-export default class InputSelectRegisterUser extends Component<PropsForInput> {
+export default class InputClassicRegisterUser extends Component<PropsForInput> {
   setIsFormValid = () => {
-    const { id, idValue, regEx } = this.props;
+    let isInputValid = new RegExp(this.props.regEx).test(this.props.idValue);
 
-    const isInputValid = new RegExp(regEx).test(idValue);
-
-    this.props.setIsFormValid(id, isInputValid);
+    if (this.props.id === 'mailInstitution') {
+      isInputValid = isUsernameAlreadyExists(this.props.idValue, this.props.listOfAllUsernameOfUsers);
+    }
+    
+    this.props.setIsFormValid(this.props.id, isInputValid);
   }
 
   render() {
-    const { id, idValue, isInputValid, label, type, options, updateUserSignUp } = this.props;
+    const { id, idValue, isInputValid, label, type, updateUserSignUp } = this.props;
 
     return (
       <Col>
@@ -26,12 +29,7 @@ export default class InputSelectRegisterUser extends Component<PropsForInput> {
           value={idValue}
           onBlur={this.setIsFormValid}
           onChange={(e) => updateUserSignUp(id, e.target.value)}
-        >
-          <option value="none" key="none" hidden>Choisissez une option</option>
-
-          { options && options.map(optionName => <option key={optionName} value={optionName}>{ optionName }</option>) }
-          
-        </Input>
+        />
       </Col>
     );
   }

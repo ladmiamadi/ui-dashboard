@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import FormRegisterUser from '../form/FormRegisterUser';
 import { Button, Modal, ModalHeader, ModalFooter, ModalBody, Spinner } from 'reactstrap';
 import { connect } from 'react-redux';
 import { createDtoUserSignUp } from '../../../helpers/userSignUpFactory';
+import { formValidator } from '../../../helpers/formValidator';
+import { InputState } from '../index.d';
 import { RootState, RootDispatch } from '../../../state/store';
 import { UserSignUp, IsFormValid } from '../../../state/models/userSignUp';
 import { User } from '../../..';
+import FormRegisterUser from '../form/FormRegisterUser';
 import classes from '../../styles/FormRegisterUser.module.css';
-import { formValidator } from '../../../helpers/formValidator';
-import { InputState } from '../index.d';
 
 interface Props {
   isFormValid: IsFormValid,
   isRequesting: boolean,
-  listUserUsername: string[],
+  listOfAllUsernameOfUsers: string[],
   userSignUp: UserSignUp,
   fetchUserInDb: () => void,
   postUserInDb: (userSentInDb: User) => Promise<void>,
@@ -72,7 +72,7 @@ class ModalRegisterUser extends Component<Props, State> {
       : 
       (<FormRegisterUser
         isFormValid={this.props.isFormValid}
-        listUserUsername={this.props.listUserUsername}
+        listOfAllUsernameOfUsers={this.props.listOfAllUsernameOfUsers}
         userSignUp={this.props.userSignUp} 
         updateUserSignUp={this.updateUserSignUp}
         setIsFormValid={this.setIsFormValid}
@@ -108,7 +108,7 @@ class ModalRegisterUser extends Component<Props, State> {
 const mapState = (state: RootState) => ({ 
   isFormValid: state.userSignUp.isFormValid,
   isRequesting: state.userSignUp.isRequesting,
-  listUserUsername: state.userSignUp.listOfAllUsernameOfUsers,
+  listOfAllUsernameOfUsers: state.userSignUp.listOfAllUsernameOfUsers,
   userSignUp: state.userSignUp.userSignUp,
 });
 
