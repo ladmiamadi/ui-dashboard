@@ -7,6 +7,8 @@ import { RootState, RootDispatch } from '../../../state/store';
 import { UserSignUp, IsFormValid } from '../../../state/models/userSignUp';
 import { User } from '../../..';
 import classes from '../../styles/FormRegisterUser.module.css';
+import { formValidator } from '../../../helpers/formValidator';
+import { InputState } from '../index.d';
 
 interface Props {
   isFormValid: IsFormValid,
@@ -15,17 +17,16 @@ interface Props {
   userSignUp: UserSignUp,
   fetchUserInDb: () => void,
   postUserInDb: (userSentInDb: User) => Promise<void>,
-  setIsFormValid: (isFormValid: IsFormValid) => void,
-  updateUserSignUp: (userSignUp: UserSignUp) => void,
+  setIsFormValid: (id: string, payload: boolean) => void,
+  updateUserSignUp: (id: string, payload: string) => void,
 }
+
 interface State {
-  isAllFormValid: boolean,
   isModalVisible: boolean,
 }
 
 class ModalRegisterUser extends Component<Props, State> {
   state = {
-    isAllFormValid: false,
     isModalVisible: false,
   }
 
@@ -33,71 +34,36 @@ class ModalRegisterUser extends Component<Props, State> {
     this.props.fetchUserInDb();
   }
 
-  isPostAvailable = () => {
+  isPostAvailable = (): InputState => {
     if(this.props.isRequesting){
-      return false;
+      return InputState.FALSE;
     } 
-    let isAllFormValid = true;
 
-    const isFormValidCheck = {
-      ...this.props.isFormValid,
-    } as any;
-
-    for(let key in isFormValidCheck){
-      isAllFormValid = isAllFormValid && isFormValidCheck[key];
-    }
-
-    if(isAllFormValid === undefined){
-      isAllFormValid = false;
-    }
-
-    return isAllFormValid;
+    return formValidator(this.props.isFormValid);
   }
 
   postUserInDb = async () => {
     const userSentInDb = createDtoUserSignUp(this.props.userSignUp);
+
     this.props.postUserInDb(userSentInDb);
   }
 
   setIsFormValid = (id: string, payload: boolean) => {
-    const oldIsFormValid = {
-      ...this.props.isFormValid,
-    } as any;
-
-    oldIsFormValid[id] = payload;
-
-    const newIsFormValid = {
-      ...oldIsFormValid,
-    };
-
-    this.props.setIsFormValid(newIsFormValid);
+    this.props.setIsFormValid(id, payload);
   }
 
   toggleModal = () => {
-    this.setState((prevState) =>  {
-      return {
-        isModalVisible: !prevState.isModalVisible, 
-      };
-    });
+    this.setState((prevState) =>  ({ isModalVisible: !prevState.isModalVisible }));
   }
 
   updateUserSignUp = (id: string, payload: string) => {
-    const oldUserSignUp = {
-      ...this.props.userSignUp,
-    } as any;
-
-    oldUserSignUp[id] = payload;
-
-    const newUserSignUp = {
-      ...oldUserSignUp,
-    };
-
-    this.props.updateUserSignUp(newUserSignUp);
+    this.props.updateUserSignUp(id, payload);
   }
 
   render() {
-    const isPostAvailable = this.isPostAvailable();
-    const colorButtonAdd = isPostAvailable ? 'success' : 'secondary';
+    const isPostAvailable: InputState = this.isPostAvailable();
+    
+    const colorButtonAdd = isPostAvailable === InputState.TRUE ? 'success' : 'secondary';
 
     const contentModalBody = this.props.isRequesting ? 
       (<div className={classes.containerSpinner}>
@@ -121,8 +87,17 @@ class ModalRegisterUser extends Component<Props, State> {
             {contentModalBody}
           </ModalBody>
           <ModalFooter>
-            <Button color={colorButtonAdd} disabled={!isPostAvailable} onClick={this.postUserInDb}>Ajouter</Button>
-            <Button color="danger" onClick={this.toggleModal}>Retour</Button>
+            <Button 
+              color={colorButtonAdd} 
+              disabled={!isPostAvailable} 
+              onClick={this.postUserInDb}>
+                Ajouter
+            </Button>
+            <Button 
+              color="danger" 
+              onClick={this.toggleModal}>
+                Retour
+            </Button>
           </ModalFooter>
         </Modal>
       </div>
@@ -133,7 +108,7 @@ class ModalRegisterUser extends Component<Props, State> {
 const mapState = (state: RootState) => ({ 
   isFormValid: state.userSignUp.isFormValid,
   isRequesting: state.userSignUp.isRequesting,
-  listUserUsername: state.userSignUp.listUserUsername,
+  listUserUsername: state.userSignUp.listOfAllUsernameOfUsers,
   userSignUp: state.userSignUp.userSignUp,
 });
 

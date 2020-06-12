@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { RootState } from '../../state/store';
 import { connect } from 'react-redux';
 import { Module } from '../../index.d';
-import './styles/Homepage.css';
 import ModalRegisterUser from '../registerUser/modal/ModalRegisterUser';
+import './styles/Homepage.css';
 
 interface Props {
   modules: Module[],

@@ -2,6 +2,7 @@ import { User } from './../index.d';
 import { IsFormValid } from './../state/models/userSignUp';
 import { UserSignUp } from '../state/models/userSignUp';
 import { createEmptyUser } from './userFactory';
+import { InputState } from '../components/registerUser/index.d';
 
 export const createEmptyUserSignUp = (): UserSignUp => ({
   birthDate: '2000-01-01',
@@ -14,13 +15,13 @@ export const createEmptyUserSignUp = (): UserSignUp => ({
 });
 
 export const createEmptyIsFormValid = (): IsFormValid => ({  
-  birthDate: undefined,
-  country: undefined,
-  desiredJob: undefined,
-  firstName: undefined,
-  lastName: undefined,
-  mailInstitution: undefined,
-  phone: undefined,
+  birthDate: InputState.UNDEFINED,
+  country: InputState.UNDEFINED,
+  desiredJob: InputState.UNDEFINED,
+  firstName: InputState.UNDEFINED,
+  lastName: InputState.UNDEFINED,
+  mailInstitution: InputState.UNDEFINED,
+  phone: InputState.UNDEFINED,
 });
 
 export const createDtoUserSignUp = (userSignUp: UserSignUp): User => {

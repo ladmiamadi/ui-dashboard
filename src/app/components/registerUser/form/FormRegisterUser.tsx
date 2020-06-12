@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import InputRegisterUser from './inputs/InputRegisterUser';
 import InputSelectRegisterUser from './inputs/InputSelectRegisterUser';
-import { arrayOptionsPosition } from '..';
+import { arrayOptionsPosition } from '../index.d';
 import { Row } from 'reactstrap';
 import { UserSignUp, IsFormValid } from '../../../state/models/userSignUp';
 import classes from '../../styles/FormRegisterUser.module.css';
@@ -92,7 +92,6 @@ export default class FormRegisterUser extends Component<Props> {
             idValue={this.props.userSignUp.mailInstitution}
             label="Email"
             listUserUsername={this.props.listUserUsername}
-            // eslint-disable-next-line max-len
             regEx="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
             type="email"
             updateUserSignUp={this.props.updateUserSignUp}
