@@ -8,7 +8,7 @@ interface State {
   searchTerm: string,
 }
 
-export class TalentsDashBoard extends React.Component <any, State> {
+export class TalentsDashBoard extends React.Component<any, State> {
   constructor(props: any) {
     super(props);
 
@@ -23,7 +23,6 @@ export class TalentsDashBoard extends React.Component <any, State> {
         <div className="search-bar">
           <SearchBar
             onSearch={(value) => this.setState({ searchTerm: value })}
-            name="talent-search"
             placeholder="Rechercher un talent..."
           />
         </div>

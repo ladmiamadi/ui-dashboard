@@ -11,7 +11,7 @@ interface Props {
   fetchTalents: () => Promise<void>,
 }
 
-export class TalentsListContainer extends React.Component <Props> {
+export class TalentsListContainer extends React.Component<Props> {
   async componentDidMount() {
     await this.props.fetchTalents();
   }

@@ -9,6 +9,7 @@ interface Props {
 export class TalentsListElement extends React.Component<Props> {
   render() {
     const { profile } = this.props;
+
     return (
       <>
         <img

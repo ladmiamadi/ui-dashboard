@@ -10,7 +10,7 @@ interface Props {
   talents: User[],
 }
 
-export class TalentsList extends React.Component <Props> {
+export class TalentsList extends React.Component<Props> {
   render() {
     return (
       <Container className="mt-5">

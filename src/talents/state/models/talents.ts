@@ -8,7 +8,7 @@ interface State {
   isFetching: boolean,
 }
 
-export const talents = createModel ({
+export const talents = createModel({
   state: {
     talents: [],
     isFetching: false,
@@ -19,12 +19,13 @@ export const talents = createModel ({
   },
   effects: {
     async fetchTalents() {
+      this.setIsFetching(true);
+
       try {
-        this.setIsFetching(true);
         const { data } = await apiService.get('/api/users');
 
         this.updateList(data);
-      } catch (error) {
+      } catch(error) {
         (new Toastify()).error(`Unable to fetch talents. ${ error.message }`);
       } finally {
         this.setIsFetching(false);
