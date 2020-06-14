@@ -4,12 +4,14 @@ import { SearchBar } from '../../app/components/utils/SearchBar';
 import TalentsList from './TalentsList';
 import './styles/TalentsList.css';
 
+interface Props {}
+
 interface State {
   searchTerm: string,
 }
 
-export class TalentsDashBoard extends React.Component <any, State> {
-  constructor(props: any) {
+export class TalentsDashBoard extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -23,8 +25,8 @@ export class TalentsDashBoard extends React.Component <any, State> {
         <div className="search-bar">
           <SearchBar
             onSearch={(value) => this.setState({ searchTerm: value })}
-            name="talent-search"
             placeholder="Rechercher un talent..."
+            value=""
           />
         </div>
         <TalentsList />

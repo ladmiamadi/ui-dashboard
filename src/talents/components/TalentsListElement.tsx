@@ -37,6 +37,7 @@ export class TalentsListElement extends React.Component <Props, State> {
   render()
   {
     const { profile } = this.props;
+
     return (
       <div className="id-card" onClick={this.toggleModal}>
         {this.props.profile.picture ?

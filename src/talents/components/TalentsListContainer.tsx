@@ -11,7 +11,7 @@ interface Props {
   fetchTalents: () => Promise<void>,
 }
 
-export class TalentsListContainer extends React.Component <Props> {
+export class TalentsListContainer extends React.Component<Props> {
   async componentDidMount() {
     await this.props.fetchTalents();
   }
@@ -26,12 +26,12 @@ export class TalentsListContainer extends React.Component <Props> {
 }
 
 const mapState = (state: RootState) => ({
-  talents: state.talents.talents,
-  isFetching: state.talents.isFetching,
+  users: state.users.users,
+  isFetching: state.users.isFetching,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({
-  fetchTalents: dispatch.talents.fetchTalents,
+  fetchTalents: dispatch.users.fetchTalents,
 });
 
 export default connect(mapState, mapDispatch)(TalentsListContainer);

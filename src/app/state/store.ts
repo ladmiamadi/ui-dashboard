@@ -1,10 +1,10 @@
 import * as modules from './models/modules';
-import * as talents from '../../talents/state/models/talents';
+import * as users from '../../talents/state/models/users';
 import * as user from './models/user';
 import { RematchRootState, init } from '@rematch/core';
 
 const models = {
-  ...talents,
+  ...users,
   ...modules,
   ...user,
 };
