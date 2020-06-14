@@ -6,7 +6,7 @@ import { User } from '../../app';
 import { connect } from 'react-redux';
 
 interface Props {
-  talents: User[],
+  users: User[],
   isFetching: boolean,
   fetchTalents: () => Promise<void>,
 }

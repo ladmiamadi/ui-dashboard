@@ -24,9 +24,14 @@ export class TalentsListElement extends React.Component <Props, State> {
     };
   }
 
+  isUserHaveProfileWorking = () => {
+    let userProfileWorking = this.props.talent.userProfiles?.filter((profile) =>
+      profile.environment === 'working' && profile.status === 'ON_VALIDATION');
+    return userProfileWorking?.length;
+  }
+
   toggleModal = () => {
-    if (this.props.talent.userProfiles?.filter((profile) => profile.environment === 'working')
-      && this.props.talent.userProfiles?.filter((profile)=> profile.status === 'ON_VALIDATION')) {
+    if (this.isUserHaveProfileWorking()) {
       this.setState({
         isModalShown: !this.state.isModalShown,
       });
