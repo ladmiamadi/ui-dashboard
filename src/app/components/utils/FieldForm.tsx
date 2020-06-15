@@ -9,11 +9,11 @@ interface Props {
   className?: string,
   type: InputType,
   value?: any,
-  handleChange( event: MouseEvent): void,
+  handleChange(value: string): void,
 }
 
 interface State {
-  value?: any,
+  value?: string,
 }
 
 export class FieldForm extends React.Component<Props, State> {
@@ -25,9 +25,9 @@ export class FieldForm extends React.Component<Props, State> {
     };
   }
 
-  handleChange(event : any ) {
-    if(this.props.handleChange) {
-      this.props.handleChange(event);
+  handleChange(value: string ) {
+    if (this.props.handleChange) {
+      this.props.handleChange(value);
     }
   }
 

@@ -16,28 +16,23 @@ import TalentFormSkills from './TalentFormSkills';
 interface Props {
   talent: User,
   fetchUserById: (id: number) => Promise<void>,
-  isfetching: boolean,
+  isFetching: boolean,
 }
 
 export class TalentFormPageContainer extends React.Component<Props> {
   async componentDidMount() {
-    await this.props.fetchUserById(1);
-  }
-
-  handleSubmit = (event: any) => {
-    event.preventDefault();
-    /*   console.log(event);*/
+    await this.props.fetchUserById(2);
   }
 
   render() {
-    if(this.props.isfetching) {
+    if (this.props.isFetching) {
       return <div><p>En attente du Loader</p></div>;
     }
 
     return (
       <div className="talent-form-page">
         <Container>
-          <form className="talent-form" onSubmit={this.handleSubmit}>
+          <form className="talent-form">
             <TalentFormHead />
             <TalentFormAddress />
             <TalentFormInstitution />
@@ -57,7 +52,7 @@ export class TalentFormPageContainer extends React.Component<Props> {
 
 const mapState = (state: RootState) => ({
   talent: state.user.user,
-  isfetching: state.user.isFetching,
+  isFetching: state.user.isFetching,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({

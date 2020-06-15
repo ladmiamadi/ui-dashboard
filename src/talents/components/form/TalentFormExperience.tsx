@@ -4,10 +4,11 @@ import { User } from '../../../app';
 import { DateFormField } from '../../../app/components/utils/DateFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { RootDispatch, RootState } from '../../../app/state/store';
+import { UpdateUserPayload } from '../../state/models/user';
 
 interface Props {
   talent: User,
-  modifyUser: (event: any) => void,
+  modifyUser: (value: UpdateUserPayload) => void,
 }
 
 interface State {
@@ -19,11 +20,11 @@ export class TalentFormExperience extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      talent: this.props.talent,
+      talent: props.talent,
     };
   }
 
-  handleChange(category: string, property : string, event: any) {
+  handleChange(category: string, property : string, event: string) {
     const payload = {
       index: 0,
       category: category,
@@ -49,7 +50,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
                 label="Entreprise: "
                 className="large"
                 type="text"
-                handleChange={(event: MouseEvent) =>
+                handleChange={(event: string) =>
                   this.handleChange('userExperiences', 'company', event)}
                 value={elem.company} />
               <DateFormField
@@ -67,7 +68,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
                 label="Poste: "
                 className="large"
                 type="text"
-                handleChange={(event: MouseEvent) => this.handleChange('userExperiences', 'position', event)}
+                handleChange={(event: string) => this.handleChange('userExperiences', 'position', event)}
                 value={elem.position} />
               <FieldForm
                 keyName="experience-works"
@@ -75,7 +76,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
                 className="large"
                 rows={5}
                 type="textarea"
-                handleChange={(event: MouseEvent) => this.handleChange('userExperiences', 'task', event)}
+                handleChange={(event: string) => this.handleChange('userExperiences', 'task', event)}
                 value={elem.task} />
             </div>
           ))

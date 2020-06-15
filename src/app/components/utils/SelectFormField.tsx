@@ -8,11 +8,11 @@ interface Props {
   label: string,
   keyName: string,
   className?: string,
-  updateModel?: (value:string, property:string) => void,
+  updateModel?: (value: string, property: string) => void,
 }
 
 export class SelectFormField extends React.Component<Props> {
-  updateModelOnChange = (value:string , property:string) =>{
+  updateModelOnChange = (value: string , property: string) =>{
     if (this.props.updateModel){
       this.props.updateModel(value, property);
     }

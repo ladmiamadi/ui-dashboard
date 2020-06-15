@@ -41,7 +41,7 @@ export class UserFactory {
       userSkills: [],
       userJob: null,
     };
-    //dtoUser.userRole = this.createEmptyUserRole(dtoUser);
+
     return dtoUser;
   }
 

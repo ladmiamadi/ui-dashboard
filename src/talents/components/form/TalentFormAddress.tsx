@@ -5,10 +5,11 @@ import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { RootDispatch, RootState } from '../../../app/state/store';
 import { TalentUserProfilesFilter } from '../../helpers/talentFilter';
+import { UpdateUserPayload } from '../../state/models/user';
 
 interface Props {
   talent: User,
-  modifyUser: (event: any) => void,
+  modifyUser: (value: UpdateUserPayload) => void,
 }
 
 interface State {
@@ -16,17 +17,17 @@ interface State {
   userProfile: UserProfile,
 }
 
-export class TalentFormAddress extends React.Component <Props, State>{
+export class TalentFormAddress extends React.Component<Props, State>{
   constructor(props: Props) {
     super(props);
 
     this.state = {
-      talent: this.props.talent,
+      talent: props.talent,
       userProfile: TalentUserProfilesFilter.filterByEnvironment(props.talent.userProfiles, 'working'),
     };
   }
 
-  handleChange(category: string, property : string, event: any) {
+  handleChange(category: string, property: string, event: string) {
     const payload = {
       index: -1,
       category: category,
@@ -45,32 +46,32 @@ export class TalentFormAddress extends React.Component <Props, State>{
           label="Rue: "
           className="medium"
           type="text"
-          handleChange={(event: MouseEvent) => this.handleChange('userAddress', 'street', event)}
+          handleChange={(event: string) => this.handleChange('userAddress', 'street', event)}
           value={this.state.talent.userAddress?.street} />
         <FieldForm
           keyName="number"
           label="Num: "
           type="text"
-          handleChange={(event: MouseEvent) => this.handleChange('userAddress', 'number', event)}
+          handleChange={(event: string) => this.handleChange('userAddress', 'number', event)}
           value={this.state.talent.userAddress?.number} />
         <FieldForm
           keyName="postal-box"
           label="BP: "
           type="text"
-          handleChange={(event: MouseEvent) => this.handleChange('userAddress', 'box', event)}
+          handleChange={(event: string) => this.handleChange('userAddress', 'box', event)}
           value={this.state.talent.userAddress?.box} />
         <FieldForm
           keyName="postal-code"
           label="Code Postal: "
           type="text"
-          handleChange={(event: MouseEvent) => this.handleChange('userAddress', 'zip-code', event)}
+          handleChange={(event: string) => this.handleChange('userAddress', 'zip-code', event)}
           value={this.state.talent.userAddress?.zipCode} />
         <FieldForm
           keyName="city"
           label="Ville: "
           className="medium"
           type="text"
-          handleChange={(event: MouseEvent) => this.handleChange('userAddress', 'city', event)}
+          handleChange={(event: string) => this.handleChange('userAddress', 'city', event)}
           value={this.state.talent.userAddress?.city} />
         <SelectFormField
           keyName="country"
@@ -80,7 +81,7 @@ export class TalentFormAddress extends React.Component <Props, State>{
           keyName="DOB"
           label="Date de naissance: "
           type="text"
-          handleChange={(event: MouseEvent) => this.handleChange('userAddress', 'birthDate', event)}
+          handleChange={(event: string) => this.handleChange('userAddress', 'birthDate', event)}
           value={this.state.userProfile.birthDate} />
         <SelectFormField
           keyName="search"

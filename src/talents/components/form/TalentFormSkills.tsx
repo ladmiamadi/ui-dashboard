@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class TalentFormSkills extends React.Component{
+export class TalentFormSkills extends React.Component {
   render() {
     return (
       <div className="form-section">

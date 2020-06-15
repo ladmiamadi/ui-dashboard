@@ -7,10 +7,11 @@ import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormField';
 import { RootDispatch, RootState } from '../../../app/state/store';
 import { TalentUserProfilesFilter } from '../../helpers/talentFilter';
+import { UpdateUserPayload } from '../../state/models/user';
 
 interface Props {
   talent: User,
-  modifyUser: (event: any) => void,
+  modifyUser: (value: UpdateUserPayload) => void,
 }
 
 interface State {
@@ -23,12 +24,12 @@ export class TalentFormInternship extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      talent: this.props.talent,
+      talent: props.talent,
       userProfile: TalentUserProfilesFilter.filterByEnvironment(props.talent.userProfiles, 'working'),
     };
   }
 
-  handleChange( category: string, property : string, event: any) {
+  handleChange( category: string, property : string, event: string) {
     const payload = {
       index: -1,
       category: category,

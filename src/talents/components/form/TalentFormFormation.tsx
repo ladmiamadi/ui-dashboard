@@ -4,10 +4,11 @@ import { User } from '../../../app';
 import { DateFormField } from '../../../app/components/utils/DateFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { RootDispatch, RootState } from '../../../app/state/store';
+import { UpdateUserPayload } from '../../state/models/user';
 
 interface Props {
   talent: User,
-  modifyUser: (event: any) => void,
+  modifyUser: (value: UpdateUserPayload) => void,
 }
 
 interface State {
@@ -19,7 +20,7 @@ export class TalentFormFormation extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      talent: this.props.talent,
+      talent: props.talent,
     };
   }
 

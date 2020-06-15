@@ -4,7 +4,7 @@ import { apiService } from '../../../app/http/service';
 import { Toastify } from '../../../helpers/Toastify';
 import { UserFactory } from '../../helpers/UserFactory';
 
-type TalentState = {
+export interface UserState {
   user: User,
   isFetching: boolean,
 }
@@ -20,11 +20,11 @@ export const user = createModel ({
   state: {
     user: UserFactory.createEmptyUser(),
     isFetching: false,
-  } as TalentState,
+  } as UserState,
   reducers: {
-    updateUser: (state:TalentState, payload: User): TalentState => ({ ...state, user: payload }),
-    setIsFetching: (state:TalentState, payload: boolean): TalentState => ({ ...state, isFetching: payload }),
-    modifyUser: (state:TalentState, payload: UpdateUserPayload): TalentState => {
+    updateUser: (state: UserState,  user): UserState => ({ ...state, user }),
+    setIsFetching: (state: UserState, payload: boolean): UserState => ({ ...state, isFetching: payload }),
+    modifyUser: (state: UserState, payload: UpdateUserPayload): UserState => {
       const user = { ...state.user }  as any;
 
       if(payload.index !== -1) {
@@ -36,7 +36,7 @@ export const user = createModel ({
       } else {
         user[payload.category] = payload.value;
       }
-      console.log(user);
+
       return {
         ...state, user,
       };

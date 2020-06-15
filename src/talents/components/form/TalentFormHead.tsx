@@ -17,7 +17,7 @@ interface State {
   userProfile: UserProfile,
 }
 
-export class TalentFormHead extends React.Component <Props, State> {
+export class TalentFormHead extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -27,7 +27,7 @@ export class TalentFormHead extends React.Component <Props, State> {
     };
   }
 
-  handleChange( event: any, index: number, category: string, property: string) {
+  handleChange( event: string, index: number, category: string, property: string) {
     const payload = {
       index: index,
       category: category,
