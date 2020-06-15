@@ -1,11 +1,17 @@
 import React from 'react';
+import { User } from '../../app';
+import { RouteComponentProps } from 'react-router-dom';
+import { user } from '../../app/state/models/user';
+import { users } from '../state/models/users';
 
-interface Props {
-  userId: number,
+interface Props extends RouteComponentProps {
+  user: User;
 }
 
-export class Test extends React.Component <Props>{
+export class Test extends React.Component<Props>{
   render(){
-    return('Vous avez été correctement redirigé sur la page de l\'user ' + this.props.userId + ' !');
+    console.log('test', this.props.location.state);
+    return(
+      <div>Vous avez été correctement redirigé sur la page de l'user + {} </div>);
   }
 }
