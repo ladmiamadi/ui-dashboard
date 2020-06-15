@@ -19,7 +19,7 @@ export const modules = createModel({
       try {
         const { data } = await apiService.get('/api/modules');
         this.updateModulesList(data);
-        console.log(data, 'data fetchmodules');
+
       } catch (error) {
         (new Toastify()).error(`Module doesn't exist. ${ error.message }`);
       }
