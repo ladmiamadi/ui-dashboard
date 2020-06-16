@@ -5,13 +5,13 @@ import { RootState } from '../../app/state/store';
 
 interface OwnProps {
   form: JSX.Element,
-	localToken: string | null,
+  localToken: string | null,
 }
 
 interface Props extends OwnProps {
-	token: string | null,
-	isVerifiedToken: boolean,
-	verifyToken: (token: string) => Promise<void>,
+  token: string | null,
+  isVerifiedToken: boolean,
+  verifyToken: (token: string) => Promise<void>,
 }
 
 export class AuthenticationGuard extends React.Component<Props> {
