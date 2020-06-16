@@ -1,5 +1,6 @@
 import { InputState } from './../components/registerUser/index.d';
 import { IsFormValid } from './../state/models/userSignUp';
+
 export const formValidator = (isFormValid: IsFormValid): InputState => {
   let isAllFormValid: InputState = InputState.TRUE;
 
@@ -7,11 +8,11 @@ export const formValidator = (isFormValid: IsFormValid): InputState => {
     ...isFormValid,
   } as any;
 
-  for(let key in copyOfIsFormValid){
+  for (let key in copyOfIsFormValid) {
     isAllFormValid = isAllFormValid && copyOfIsFormValid[key];
   }
 
-  if(isAllFormValid === InputState.UNDEFINED){
+  if (isAllFormValid === InputState.UNDEFINED) {
     isAllFormValid = InputState.FALSE;
   }
 

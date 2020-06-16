@@ -22,7 +22,7 @@ export const createEmptyUser = (): User => {
     username: '',
     userAddress: userAddress,
     userProfiles: [userProfile],
-  } as unknown as User;
+  } as User;
 
   return user;
 };

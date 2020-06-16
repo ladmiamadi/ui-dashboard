@@ -42,7 +42,7 @@ class ModalRegisterUser extends Component<Props, State> {
     return formValidator(this.props.isFormValid);
   }
 
-  postUserInDb = async () => {
+  postUserInDb = () => {
     const userSentInDb = createDtoUserSignUp(this.props.userSignUp);
 
     this.props.postUserInDb(userSentInDb);

@@ -1,9 +1,19 @@
+import { ARRAY_OPTIONS_POSITIONS } from './../../index.d';
 import { InputType } from 'reactstrap/lib/Input';
 import { InputState } from '../..';
 import { Toastify } from '../../../../../helpers/Toastify';
 import { UserSignUp, IsFormValid } from '../../../../state/models/userSignUp';
 
-export const arrayOptionsPosition: string[] = ['Dev', 'SEO', 'Commercial', 'RH', 'Graphiste'];
+export interface ObjectPropsOfInput {
+  id: string,
+  idValue: string,
+  isInputValid: InputState,
+  options?: string[],
+  label: string,
+  listOfAllUsernameOfUsers?: string[],
+  type: InputType,
+  regEx: string,
+}
 
 export const isUsernameAlreadyExists = (idValue: string, listOfAllUsernameOfUsers?: string[]): boolean => {
   let isUsernameUnique = true;
@@ -14,22 +24,12 @@ export const isUsernameAlreadyExists = (idValue: string, listOfAllUsernameOfUser
 
       isUsernameUnique = false;
     }
+
     return username;
   });
 
   return isUsernameUnique;
 };
-
-export interface ObjectPropsOfInput{
-  id: string,
-  idValue: string,
-  isInputValid: InputState,
-  options?: string[],
-  label: string,
-  listOfAllUsernameOfUsers?: string[],
-  type: InputType,
-  regEx: string,
-}
 
 export const doubleArrayObjectOfPropsInput = (
   isFormValid: IsFormValid,
@@ -80,7 +80,7 @@ export const doubleArrayObjectOfPropsInput = (
         isInputValid: isFormValid.desiredJob,
         idValue: userSignUp.desiredJob,
         label: 'Fonction',
-        options: arrayOptionsPosition,
+        options: ARRAY_OPTIONS_POSITIONS,
         regEx: '.',
         type: 'select',
       },

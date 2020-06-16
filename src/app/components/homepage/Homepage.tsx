@@ -38,4 +38,4 @@ export class Homepage extends React.Component<Props> {
 
 const mapState = (state: RootState) => ({ modules: state.modules.list });
 
-export default connect(mapState, () => ({}))(Homepage);
+export default connect(mapState)(Homepage);
