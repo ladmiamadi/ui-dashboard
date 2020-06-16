@@ -1,29 +1,32 @@
-import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-import { connect } from 'react-redux';
 import React from 'react';
-import './styles/AuthenticationForm.css';
+import { Button, Container, Form, Row } from 'reactstrap';
+import { connect } from 'react-redux';
+import { doubleArrayOfFormPropsConstructor } from '../formHelpers/fromHelpers';
+import AuthenticationInput from './AuthenticationInput';
+import classes from './styles/AuthenticationForm.module.css';
 
 interface Props {
   login: (dto: { username: string; email: string; password: string }) => Promise<void>,
 }
 
 interface State {
-  username: string,
   email: string,
   password: string,
+  username: string,
 }
 
 export class AuthenticationForm extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-
+    
     this.state = {
-      username: 'Quentin',
       email: '',
       password: '',
+      username: '',
     };
+    
   }
-
+  
   handleClick = async () => {
     await this.props.login({
       username: this.state.username,
@@ -39,59 +42,30 @@ export class AuthenticationForm extends React.Component<Props, State> {
   };
 
   render() {
+    const doubleArrayOfFormProps = doubleArrayOfFormPropsConstructor();
+
     return (
-      <div className="login">
-        <Container>
-          <h1>Connexion à l'espace admin</h1>
-          <Form>
-            <FormGroup>
-              <Label for="Select">
-                <span>* </span>Select your username
-              </Label>
-              <Input
-                type="select"
-                defaultValue={this.state.username}
-                onChange={(event) => this.handleOnChange('username', event.target.value)}
-                name="username"
-                id="username"
-              >
-                <option>Quentin</option>
-                <option>David</option>
-                <option>Antonio</option>
-                <option>Guest</option>
-              </Input>
-            </FormGroup>
-            <FormGroup>
-              <Label for="Email">
-                <span>* </span>Email
-              </Label>
-              <Input
-                type="email"
-                onChange={(event) => this.handleOnChange('email', event.target.value)}
-                name="email"
-                id="email"
-                placeholder="Type your email..."
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="Password">
-                <span>* </span>Password
-              </Label>
-              <Input
-                type="password"
-                onChange={(event) => this.handleOnChange('password', event.target.value)}
-                value={this.state.password}
-                name="password"
-                id="password"
-                placeholder="Enter your password..."
-              />
-            </FormGroup>
-            <Button className="Submit" onClick={this.handleClick}>
+      <Container className={classes.ContainerAuthenticationForm}>
+        <h1>Connexion à l'espace admin</h1>
+        <Form>
+          {
+            doubleArrayOfFormProps.map((array, index) => (
+              <Row key={index}>
+                {array.map((props, index) => (
+                  <AuthenticationInput
+                    {...props}
+                    key={index}
+                    handleOnChange={this.handleOnChange}
+                  />
+                ))}
+              </Row>
+            ))
+          }
+          <Button color="success" size="lg" block onClick={this.handleClick}>
               Connexion
-            </Button>
-          </Form>
-        </Container>
-      </div>
+          </Button>
+        </Form>
+      </Container>
     );
   }
 }

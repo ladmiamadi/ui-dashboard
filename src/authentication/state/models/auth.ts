@@ -8,10 +8,10 @@ export interface UserAuthenticationDto {
 	password: string,
 }
 
-type AuthState = {
+interface AuthState {
 	token: string | null,
 	isVerifiedToken: boolean,
-};
+}
 
 export const auth = createModel({
   state: {
@@ -27,10 +27,13 @@ export const auth = createModel({
     async verifyToken(token: string) {
       try {
         addTokenToRequestInterceptor(token);
+
         await apiService.post('api/token/verify', {});
+
         this.updateToken(token);
       } catch (error) {
         await clearTokenFromAxios();
+        
         new Toastify().error(
           'You are no longer logged in the application. You will be redirected in 5 seconds.',
         );
@@ -42,11 +45,13 @@ export const auth = createModel({
     async login(dto: UserAuthenticationDto) {
       try {
         const { data } = await apiService.post('/api/login_check', dto);
+
         if (!data.token) {
           throw new Error('there is no token in the response');
         }
 
         this.updateToken(data.token);
+        
         localStorage.setItem('hdm:admin:auth-token', data.token);
       } catch (error) {
         new Toastify().error(`Failed to login. ${error.message}`);

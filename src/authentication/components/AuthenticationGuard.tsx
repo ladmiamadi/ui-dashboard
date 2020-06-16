@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { RootState } from '../../app/state/store';
 import { Loader } from '../../app/components/utils/Loader'; // eslint-disable-line
+import { RootState } from '../../app/state/store';
 
 interface OwnProps {
   form: JSX.Element,
