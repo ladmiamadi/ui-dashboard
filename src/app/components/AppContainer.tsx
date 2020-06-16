@@ -4,7 +4,7 @@ import { RootDispatch } from '../state/store';
 
 interface Props {
   children: React.ReactNode,
-	fetchModules: () => Promise<void>,
+  fetchModules: () => Promise<void>,
 }
 
 export class AppContainer extends React.Component<Props> {

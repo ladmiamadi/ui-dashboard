@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Container, Form, Row } from 'reactstrap';
 import { connect } from 'react-redux';
-import { doubleArrayOfFormPropsConstructor } from '../formHelpers/fromHelpers';
+import { doubleArrayOfFormPropsConstructor } from '../formHelpers/formHelpers';
 import AuthenticationInput from './AuthenticationInput';
 import classes from './styles/AuthenticationForm.module.css';
 
