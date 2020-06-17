@@ -6,11 +6,11 @@ import { UserLanguage } from '../../../app/index';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { UpdateLanguagePayload } from './state/models/languages/addLanguage';
 import { UserLanguageFactory } from './helpers/UserLanguageFactory';
+import { LANGUAGES_LEVEL } from '../../index.d';
 
 interface Props {
   language: UserLanguage,
-  optionLanguage: string[],
-  optionsLevelLanguage: string[],
+  languages: string[],
   isPosting: boolean,
   resetLanguage: () => void,
   updateLanguage: (payload: UpdateLanguagePayload) => void,
@@ -22,10 +22,6 @@ export class ModalLanguage extends React.Component<Props> {
     this.props.updateLanguage({ property, value });
   }
 
-  postLanguage = async() => {
-    this.props.postLanguage(this.props.language);
-  }
-
   render() {
     const newLanguage = UserLanguageFactory.createEmptyLanguage();
 
@@ -35,7 +31,7 @@ export class ModalLanguage extends React.Component<Props> {
           <SelectFormField
             keyName="language"
             label="Ajouter une nouvelle langue : "
-            options={this.props.optionLanguage}
+            options={this.props.languages}
             handleOnChange={this.updateLanguageTest}
             value={this.props.language.language}
           />
@@ -46,24 +42,26 @@ export class ModalLanguage extends React.Component<Props> {
             <SelectFormField
               label="Niveau : "
               keyName="level"
-              options={this.props.optionsLevelLanguage}
+              options={LANGUAGES_LEVEL}
               handleOnChange={this.updateLanguageTest}
               value={this.props.language.level}
             />
           </Row>
         }
         {
-          this.props.language.level !== newLanguage.level &&
+          this.props.language.level !== newLanguage.level
+          && (
             <Row>
               <Button
                 className="form-add-button modal-button"
                 color="default"
-                onClick={this.postLanguage}
+                onClick={() => this.props.postLanguage(this.props.language)}
                 disabled={this.props.isPosting}
               >
                 Ajouter une langue
               </Button>
             </Row>
+          )
         }
       </>
     );
@@ -79,7 +77,6 @@ const mapDispatch = (dispatch: RootDispatch) => ({
   postLanguage: dispatch.addLanguage.postLanguage,
   resetLanguage: dispatch.addLanguage.resetLanguage,
   updateLanguage: dispatch.addLanguage.updateLanguage,
-
 });
 
 export default connect(mapState, mapDispatch)(ModalLanguage);

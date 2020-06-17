@@ -6,20 +6,19 @@ import ModalLanguage from './ModalLanguage';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
 import { UserLanguage } from '../../../app';
 import { UserLanguagesDisplay } from './UserLanguagesDisplay';
-import { LANGUAGES, LANGUAGES_LEVEL } from '../../index.d';
+import { LANGUAGES } from '../../index.d';
 
 interface Props {
   isFetching: boolean,
   userLanguages: UserLanguage[],
   fetchLanguages: () => Promise<void>,
-  updateUserLanguages: (language: UserLanguage) => void,
+  updateUserLanguage: (language: UserLanguage) => void,
   resetLanguage: () => void,
 }
 
 interface State {
   isModalShown: boolean,
-  optionsLevelLanguage: string[],
-  optionLanguage: string[],
+  unselectedLanguages: string[],
 }
 
 export class TalentFormLanguages extends React.Component<Props, State> {
@@ -28,8 +27,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
 
     this.state = {
       isModalShown: false,
-      optionsLevelLanguage: LANGUAGES_LEVEL,
-      optionLanguage: LANGUAGES,
+      unselectedLanguages: LANGUAGES,
     };
   }
 
@@ -38,13 +36,13 @@ export class TalentFormLanguages extends React.Component<Props, State> {
       const userLanguages = this.props.userLanguages.map(({ language }) => (language));
 
       this.setState({
-        optionLanguage: this.state.optionLanguage
-          .filter((language) => userLanguages.indexOf(language) === -1),
+        unselectedLanguages: this.state.unselectedLanguages
+          .filter((language) => userLanguages.includes(language)),
       });
     }
   }
 
-  componentDidMount = async() => {
+  componentDidMount = async () => {
     await this.props.fetchLanguages();
   }
 
@@ -56,8 +54,8 @@ export class TalentFormLanguages extends React.Component<Props, State> {
     }
   }
 
-  updateUserLanguages = (property: string, value: string) => {
-    this.props.updateUserLanguages({ language: property, level: value });
+  updateUserLanguage = (property: string, value: string) => {
+    this.props.updateUserLanguage({ language: property, level: value });
   }
 
   render() {
@@ -76,8 +74,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
         </div>
         <UserLanguagesDisplay
           userLanguages={this.props.userLanguages}
-          selectFormFieldOptions={this.state.optionsLevelLanguage}
-          updateUserLanguages={this.updateUserLanguages}
+          updateUserLanguage={this.updateUserLanguage}
         />
         <ModalCustom
           isModalShown={this.state.isModalShown}
@@ -85,8 +82,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
           titleModal="Ajouter une langue"
         >
           <ModalLanguage
-            optionsLevelLanguage={this.state.optionsLevelLanguage}
-            optionLanguage={this.state.optionLanguage}
+            languages={this.state.unselectedLanguages}
           />
         </ModalCustom>
       </div>
@@ -101,7 +97,7 @@ const mapState = (state: RootState) => ({
 
 const mapDispatch = (dispatch: RootDispatch) => ({
   fetchLanguages: dispatch.userLanguages.fetchLanguages,
-  updateUserLanguages: dispatch.userLanguages.updateUserLanguages,
+  updateUserLanguage: dispatch.userLanguages.updateUserLanguage,
   resetLanguage: dispatch.addLanguage.resetLanguage,
 });
 

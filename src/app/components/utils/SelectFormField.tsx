@@ -8,8 +8,8 @@ interface Props {
   label: string,
   keyName: string,
   className?: string,
-  handleOnChange: (property: string, value: string) => void,
   value: string,
+  handleOnChange: (property: string, value: string) => void,
 }
 
 export class SelectFormField extends React.Component<Props> {

@@ -26,7 +26,7 @@ export const userLanguages = createModel({
         ...state, languages,
       };
     },
-    updateUserLanguages: (state: State, newLanguage: UserLanguage): State => {
+    updateUserLanguage: (state: State, newLanguage: UserLanguage): State => {
       const languages = state.languages
         .map(language => ({ ...language }));
       const indexLanguage = languages
