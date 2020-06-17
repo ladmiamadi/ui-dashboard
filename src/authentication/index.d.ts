@@ -1,12 +1,8 @@
 import { InputType } from 'reactstrap/lib/Input';
 
 export interface PropsForInputWithoutFunc {
-  type: InputType,
+  id: string,
   label: string,
-  id: 'username' | 'email' | 'password',
-  defaultValue?: string,
-  placeholder?: string,
-  options?: string[],
+  placeholder: string,
+  type: InputType,
 }
-
-export const ARRAY_OF_ADMIN_USERNAMES = ['Quentin', 'David', 'Antonio', 'Guest'];

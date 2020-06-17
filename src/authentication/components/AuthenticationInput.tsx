@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
 import { PropsForInputWithoutFunc } from '../index.d';
-import AuthenticationInputClassic from './AuthenticationInputClassic';
-import AuthenticationInputSelect from './AuthenticationInputSelect';
+import { Input, Label, Col } from 'reactstrap';
+import classes from './styles/AuthenticationForm.module.css';
 
 export interface PropsForInput extends PropsForInputWithoutFunc {
-  handleOnChange: (field: 'username' | 'email' | 'password', value: string) => void,
+  handleOnChange: (id: string, idValue: string) => void,
 }
 
 export default class AuthenticationInput extends Component<PropsForInput> {
   render() {
-    if (this.props.options) {
-      return (
-        <AuthenticationInputSelect
-          {...this.props}
+    return (
+      <Col className={classes.ColAuthenticationInput}>
+        <Label>{ this.props.label }</Label>
+        <Input
+          type={this.props.type}
+          placeholder={this.props.placeholder}
+          onChange={(event) => this.props.handleOnChange(this.props.id, event.target.value)}
         />
-      );
-    } else {
-      return (
-        <AuthenticationInputClassic
-          {...this.props}
-        />
-      );
-    }
+      </Col>
+    );
   }
 }

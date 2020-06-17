@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { RootState } from '../../state/store';
+import { RootState, RootDispatch } from '../../state/store';
 import './styles/CustomNavbar.css';
 import logoHDM from '../../assets/LogoHDM.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,8 +11,7 @@ import { Module, User } from '../../index.d';
 interface Props {
   user: User,
   modules: Module[],
-  updateUser: () => Promise<void>,
-  updateModulesList: () => Promise<void>,
+  logout: () => Promise<void>,
 }
 
 interface State {
@@ -56,7 +55,9 @@ export class CustomNavbar extends React.Component<Props, State> {
               { this.props.modules.map((module) =>
                 <Link key={module.name} to={module.link}>{ module.linkText }</Link>) }
               <button
-                className="logo-out">
+                className="logo-out"
+                onClick={this.props.logout}
+              >
                 <FontAwesomeIcon className="icon-logout" icon={faSignOutAlt} />
               </button>
             </div>
@@ -72,9 +73,8 @@ const mapState = (state: RootState) => ({
   modules: state.modules.list,
 });
 
-const mapDispatch = (dispatch: any) => ({
-  updateUser: dispatch.user.updateUser,
-  updateModulesList: dispatch.modules.updateModulesList,
+const mapDispatch = (dispatch: RootDispatch) => ({
+  logout: dispatch.auth.logout,
 });
 
 export default connect(mapState, mapDispatch)(CustomNavbar);

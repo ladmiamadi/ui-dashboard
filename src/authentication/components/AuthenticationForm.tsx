@@ -1,16 +1,16 @@
 import React from 'react';
 import { Button, Container, Form, Row } from 'reactstrap';
 import { connect } from 'react-redux';
-import { doubleArrayOfFormPropsConstructor } from '../formHelpers/formHelpers';
+import { arrayOfFormPropsConstructor } from '../formHelpers/formHelpers';
 import AuthenticationInput from './AuthenticationInput';
+import { UserAuthenticationDto } from '../state/models/auth';
 import classes from './styles/AuthenticationForm.module.css';
 
 interface Props {
-  login: (dto: { username: string; email: string; password: string }) => Promise<void>,
+  login: (dto: UserAuthenticationDto) => Promise<void>,
 }
 
 interface State {
-  email: string,
   password: string,
   username: string,
 }
@@ -20,7 +20,6 @@ export class AuthenticationForm extends React.Component<Props, State> {
     super(props);
     
     this.state = {
-      email: '',
       password: '',
       username: '',
     };
@@ -29,38 +28,33 @@ export class AuthenticationForm extends React.Component<Props, State> {
   
   handleClick = async () => {
     await this.props.login({
-      username: this.state.username,
-      email: this.state.email,
       password: this.state.password,
+      username: this.state.username,
     });
   };
 
-  handleOnChange = (field: 'username' | 'email' | 'password', value: string) => {
-    const state: State = { ...this.state };
-    state[field] = value;
+  handleOnChange = (id: string, idValue: string) => {
+    const state = { ...this.state } as any;
+    state[id] = idValue;
     this.setState(state);
   };
 
   render() {
-    const doubleArrayOfFormProps = doubleArrayOfFormPropsConstructor();
+    const arrayOfFormProps = arrayOfFormPropsConstructor();
 
     return (
       <Container className={classes.ContainerAuthenticationForm}>
         <h1>Connexion à l'espace admin</h1>
         <Form>
-          {
-            doubleArrayOfFormProps.map((array, index) => (
-              <Row key={index}>
-                {array.map((props, index) => (
-                  <AuthenticationInput
-                    {...props}
-                    key={index}
-                    handleOnChange={this.handleOnChange}
-                  />
-                ))}
-              </Row>
-            ))
-          }
+          <Row>
+            {arrayOfFormProps.map((props, index) => (
+              <AuthenticationInput
+                {...props}
+                key={index}
+                handleOnChange={this.handleOnChange}
+              />
+            ))}
+          </Row>
           <Button color="success" size="lg" block onClick={this.handleClick}>
               Connexion
           </Button>

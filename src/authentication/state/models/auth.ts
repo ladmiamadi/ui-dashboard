@@ -3,7 +3,6 @@ import { addTokenToRequestInterceptor, apiService, clearTokenFromAxios } from '.
 import { Toastify } from '../../../helpers/Toastify';
 
 export interface UserAuthenticationDto {
-  email: string,
   username: string,
   password: string,
 }

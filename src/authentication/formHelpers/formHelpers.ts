@@ -1,28 +1,20 @@
-import { PropsForInputWithoutFunc, ARRAY_OF_ADMIN_USERNAMES } from '../index.d';
+import { PropsForInputWithoutFunc } from '../index.d';
 
-export const doubleArrayOfFormPropsConstructor = (): PropsForInputWithoutFunc[][] => {
-  return ([
+export const arrayOfFormPropsConstructor = (): PropsForInputWithoutFunc[] => {
+  return (
     [
       {
-        type: 'select',
-        label: 'Select your username',
         id: 'username',
-        options: ARRAY_OF_ADMIN_USERNAMES,
-      },
-      {
-        type: 'email',
         label: 'Email',
-        id: 'email',
-        placeholder: 'Type your email...',
+        placeholder: 'admin@hdm.be',
+        type: 'email',
       },
-    ],
-    [
       {
-        type: 'password',
-        label: 'Password',
         id: 'password',
-        placeholder: 'Enter your password...',
+        label: 'Password',
+        placeholder: '********',
+        type: 'password',
       },
-    ],
-  ]);
+    ]
+  );
 };
