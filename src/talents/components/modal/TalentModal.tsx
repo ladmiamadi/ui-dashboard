@@ -1,22 +1,30 @@
 import React from 'react';
 import { Button } from 'reactstrap';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect } from 'react-router-dom';
 import { User } from '../../../app';
-import history  from '../../../app/components/history';
 
 interface Props {
   talent: User,
 }
 
-export class TalentModal extends React.Component <Props> {
+interface State {
+  redirect: string,
+}
+export class TalentModal extends React.Component <Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = { redirect: '' };
+  }
 
   redirect = () => {
-    history.push({
-      pathname: '/test',
-      state: { userId : this.props.talent.id } });
+    this.setState({ redirect: '/editprofile' });
   }
   
   render() {
+    if (this.state.redirect !== ''){
+      return <Redirect
+        to={{ pathname: this.state.redirect }} />;
+    }
     return(
       <Router>
         <>

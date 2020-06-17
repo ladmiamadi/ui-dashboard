@@ -6,7 +6,7 @@ import { createEmptyUser } from '../../../app/helpers/user';
 
 interface State {
   users: User[],
-  user: User
+  user: User,
   isFetching: boolean,
 }
 
@@ -16,21 +16,13 @@ export const users = createModel({
     user: createEmptyUser(),
     isFetching: false,
   } as State,
+
   reducers: {
     updateList: (state: State, talents: User[]): State => ({ ...state, users: talents }),
     setIsFetching: (state: State, isFetching: boolean): State => ({ ...state, isFetching }),
-/*    filterUser: (state:State, payload: number): { userIndex: any; isFetching: boolean; user: User; users: User[] } => {
-      const list = [...state.users];
-      console.log(list);
-      const userIndex = list.findIndex((user:User) => payload === user.id);
-      //list[userIndex]=payload;
-      console.log('model users' + userIndex);
-      return {
-        ...state, list[userIndex],
-      }
-      ;
-    },*/
+    updateUser: (state: State, user: User): State => ({ ...state, user: user }),
   },
+
   effects: {
     async fetchTalents() {
       this.setIsFetching(true);

@@ -17,14 +17,14 @@ interface State {
 export class TalentsList extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
+
     this.state = { isModalOpen: false };
-    //this.setState({ isModalOpen: false });
   }
 
-  nameToChange(bool: boolean){
-    console.log(bool);
-    this.setState({ isModalOpen: bool });
+  toggleModal = () => {
+    this.setState({ isModalOpen: !this.state.isModalOpen });
   }
+
   render() {
     return (
       <Container className={this.state.isModalOpen ? 'hide-card' : 'mt-5'}>
@@ -39,7 +39,7 @@ export class TalentsList extends React.Component<Props, State> {
                         key={profile.id}
                         profile={profile}
                         talent={talent}
-                        isModalOpen={(bool) => this.nameToChange(bool)}
+                        toggleModal={this.toggleModal}
                       />)
                 }
               </Col>
