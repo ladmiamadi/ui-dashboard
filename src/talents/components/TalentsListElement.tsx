@@ -7,6 +7,7 @@ import  './styles/TalentsList.css';
 import { User, UserProfile } from '../../app';
 import { env } from '../../helpers/environment';
 import { Redirect } from 'react-router-dom';
+import { UserProfileHelpers } from '../../app/helpers/UserProfileHelpers';
 
 interface Props {
   profile: UserProfile,
@@ -32,22 +33,19 @@ export class TalentsListElement extends React.Component <Props, State> {
 
   toggleModal = () => {
     this.props.updateUser(this.props.talent);
-    let userProfileWorking = this.props.talent.userProfiles?.filter((profile) =>
-      profile.environment === 'working' && profile.status === 'ON_VALIDATION');
 
-    if (userProfileWorking?.length) {
+    if (UserProfileHelpers.isUserHaveWorkingOnValidationProfile(this.props.talent)) {
+      console.log('toggleModal');
       this.setState({
         isModalShown: !this.state.isModalShown,
       });
       this.props.toggleModal();
-    }
+    } else
     // we need to redirect to the talentForm when we will merge with the form
-    this.setState({ redirect: '/test' });
+      this.setState({ redirect: '/' });
   }
 
   render() {
-    const { profile } = this.props;
-
     if (this.state.redirect !== ''){
       return <Redirect to={{ pathname: this.state.redirect }} />;
     }
@@ -56,13 +54,13 @@ export class TalentsListElement extends React.Component <Props, State> {
       <div className="id-card" onClick={this.toggleModal}>
         <img
           className="profile-picture"
-          alt={profile.firstName}
-          src={`${env('MEDIA_URL')}/${profile.picture.filePath}`}
+          alt={this.props.profile.firstName}
+          src={`${env('MEDIA_URL')}/${this.props.profile.picture.filePath}`}
         /> 
         <br />
-        {profile.lastName}
+        {this.props.profile.firstName}
         <br />
-        {profile.firstName}
+        {this.props.profile.firstName}
         <CustomModal
           isModalShown={this.state.isModalShown}
           toggleModal={this.toggleModal}

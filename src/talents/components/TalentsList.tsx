@@ -5,6 +5,7 @@ import { User } from '../../app';
 import { RootState } from '../../app/state/store';
 import TalentsListElement from './TalentsListElement';
 import './styles/TalentsList.css';
+import { UserProfileHelpers } from '../../app/helpers/UserProfileHelpers';
 
 interface Props {
   users: User[],
@@ -33,14 +34,13 @@ export class TalentsList extends React.Component<Props, State> {
             this.props.users.map((talent, index) => (
               <Col key={index} className="element" xs={2}>
                 {
-                  talent.userProfiles?.filter((profile) => profile.environment === 'live')
-                    .map((profile) =>
-                      <TalentsListElement
-                        key={profile.id}
-                        profile={profile}
-                        talent={talent}
-                        toggleModal={this.toggleModal}
-                      />)
+                  UserProfileHelpers.findUserProfileLive(talent)?.map((profile) =>
+                    <TalentsListElement
+                      key={profile.id}
+                      profile={profile}
+                      talent={talent}
+                      toggleModal={this.toggleModal}
+                    />)
                 }
               </Col>
             ))
