@@ -1,5 +1,5 @@
-import { PropsForInputWithoutFunc } from '../index.d';
 import { AuthenticationState } from '../components/AuthenticationForm';
+import { PropsForInputWithoutFunc } from '../index.d';
 
 export const arrayOfFormPropsConstructor = (state: AuthenticationState): PropsForInputWithoutFunc[] => {
   return (
