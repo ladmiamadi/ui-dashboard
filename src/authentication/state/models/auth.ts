@@ -1,5 +1,5 @@
-import { createModel } from '@rematch/core';
 import { addTokenToRequestInterceptor, apiService, clearTokenFromAxios } from '../../../app/http/service';
+import { createModel } from '@rematch/core';
 import { Toastify } from '../../../helpers/Toastify';
 
 export interface UserAuthenticationDto {
