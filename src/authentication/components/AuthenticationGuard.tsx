@@ -1,23 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Loader } from '../../app/components/utils/Loader'; // eslint-disable-line
-import { RootState } from '../../app/state/store';
+import { RootState, RootDispatch } from '../../app/state/store';
 
 interface OwnProps {
-  form: JSX.Element,
+  form: React.ReactNode,
   localToken: string | null,
 }
 
 interface Props extends OwnProps {
-  token: string | null,
   isVerifiedToken: boolean,
+  token: string | null,
   verifyToken: (token: string) => Promise<void>,
 }
 
 export class AuthenticationGuard extends React.Component<Props> {
-  async componentDidMount() {
+  componentDidMount() {
     if (this.props.localToken && !this.props.isVerifiedToken) {
-      await this.props.verifyToken(this.props.localToken);
+      this.props.verifyToken(this.props.localToken);
     }
   }
 
@@ -35,12 +35,12 @@ export class AuthenticationGuard extends React.Component<Props> {
 }
 
 const mapState = (state: RootState, propsFromParent: any | OwnProps) => ({
-  token: state.auth.token,
-  isVerifiedToken: state.auth.isVerifiedToken,
   form: propsFromParent.form,
+  isVerifiedToken: state.auth.isVerifiedToken,
   localToken: propsFromParent.localToken || null,
+  token: state.auth.token,
 });
 
-const mapDispatch = (dispatch: any) => ({ verifyToken: dispatch.auth.verifyToken });
+const mapDispatch = (dispatch: RootDispatch) => ({ verifyToken: dispatch.auth.verifyToken });
 
 export default connect(mapState, mapDispatch)(AuthenticationGuard);

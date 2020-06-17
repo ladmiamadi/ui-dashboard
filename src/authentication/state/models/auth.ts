@@ -8,19 +8,22 @@ export interface UserAuthenticationDto {
 }
 
 interface AuthState {
-  token: string | null,
+  isRequesting: boolean
   isVerifiedToken: boolean,
+  token: string | null,
 }
 
 export const auth = createModel({
   state: {
-    token: null,
+    isRequesting: false,
     isVerifiedToken: false,
+    token: null,
   },
   reducers: {
-    updateToken: (state: AuthState, payload: string): AuthState => ({ ...state, token: payload }),
-    setIsVerifiedToken: (state: AuthState, payload: boolean): AuthState => ({ ...state, isVerifiedToken: payload }),
     clearToken: (state: AuthState): AuthState => ({ ...state, token: null }),
+    setIsVerifiedToken: (state: AuthState, payload: boolean): AuthState => ({ ...state, isVerifiedToken: payload }),
+    setIsRequesting: (state: AuthState, isRequesting: boolean): AuthState => ({ ...state, isRequesting }),
+    updateToken: (state: AuthState, token: string): AuthState => ({ ...state, token }),
   },
   effects: {
     async verifyToken(token: string) {
@@ -42,6 +45,7 @@ export const auth = createModel({
     },
 
     async login(dto: UserAuthenticationDto) {
+      this.setIsRequesting(true);
       try {
         const { data } = await apiService.post('/api/login_check', dto);
 
@@ -54,6 +58,8 @@ export const auth = createModel({
         localStorage.setItem('hdm:admin:auth-token', data.token);
       } catch (error) {
         new Toastify().error(`Failed to login. ${error.message}`);
+      } finally {
+        this.setIsRequesting(false);
       }
     },
 

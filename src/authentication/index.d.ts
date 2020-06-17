@@ -5,4 +5,5 @@ export interface PropsForInputWithoutFunc {
   label: string,
   placeholder: string,
   type: InputType,
+  value: string,
 }
