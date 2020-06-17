@@ -9,14 +9,13 @@ interface Props {
   isFormValid: IsFormValid,
   listOfAllUsernameOfUsers: string[],
   userSignUp: UserSignUp,
-  updateUserSignUp: (id: string, payload: string) => void,
-  setIsFormValid: (id: string, payload: boolean) => void,
+  updateUserSignUp: (id: string, idValue: string) => void,
+  setIsFormValid: (id: string, isInputValid: boolean) => void,
 }
 
 export default class FormRegisterUser extends Component<Props> {
   render() {
     const { listOfAllUsernameOfUsers, userSignUp, isFormValid } = this.props;
-
     const doubleArrayOfAllInputs = doubleArrayObjectOfPropsInput(isFormValid, listOfAllUsernameOfUsers, userSignUp);
 
     return (

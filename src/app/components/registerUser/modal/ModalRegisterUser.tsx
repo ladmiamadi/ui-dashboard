@@ -17,8 +17,8 @@ interface Props {
   userSignUp: UserSignUp,
   fetchUserInDb: () => void,
   postUserInDb: (userSentInDb: User) => Promise<void>,
-  setIsFormValid: (id: string, payload: boolean) => void,
-  updateUserSignUp: (id: string, payload: string) => void,
+  setIsFormValid: (id: string, isInputValid: boolean) => void,
+  updateUserSignUp: (id: string, idValue: string) => void,
 }
 
 interface State {
@@ -48,34 +48,24 @@ class ModalRegisterUser extends Component<Props, State> {
     this.props.postUserInDb(userSentInDb);
   }
 
-  setIsFormValid = (id: string, payload: boolean) => {
-    this.props.setIsFormValid(id, payload);
-  }
-
   toggleModal = () => {
     this.setState((prevState) =>  ({ isModalVisible: !prevState.isModalVisible }));
   }
 
-  updateUserSignUp = (id: string, payload: string) => {
-    this.props.updateUserSignUp(id, payload);
-  }
-
   render() {
     const isPostAvailable: InputState = this.isPostAvailable();
-    
     const colorButtonAdd = isPostAvailable === InputState.TRUE ? 'success' : 'secondary';
-
     const contentModalBody = this.props.isRequesting ? 
+
       (<div className={classes.containerSpinner}>
         <Spinner color="success" type="grow" /> 
-      </div>)
-      : 
+      </div>) : 
       (<FormRegisterUser
         isFormValid={this.props.isFormValid}
         listOfAllUsernameOfUsers={this.props.listOfAllUsernameOfUsers}
         userSignUp={this.props.userSignUp} 
-        updateUserSignUp={this.updateUserSignUp}
-        setIsFormValid={this.setIsFormValid}
+        updateUserSignUp={this.props.updateUserSignUp}
+        setIsFormValid={this.props.setIsFormValid}
       />);
 
     return (

@@ -4,8 +4,8 @@ import InputSelectRegisterUser from './InputSelectRegisterUser';
 import { ObjectPropsOfInput } from '../helpers/formRegisterHelpers';
 
 export interface PropsForInput extends ObjectPropsOfInput {
-  updateUserSignUp: (id: string, value: string) => void,
-  setIsFormValid: (id: string, payload: boolean) => void,
+  updateUserSignUp: (id: string, idValue: string) => void,
+  setIsFormValid: (id: string, isInputValid: boolean) => void,
 }
 
 export default class InputRegisterUsers extends Component<PropsForInput> {

@@ -6,7 +6,6 @@ import { PropsForInput } from './InputRegisterUsers';
 export default class InputSelectRegisterUser extends Component<PropsForInput> {
   setIsFormValid = () => {
     const { id, idValue, regEx } = this.props;
-
     const isInputValid = new RegExp(regEx).test(idValue);
 
     this.props.setIsFormValid(id, isInputValid);
@@ -29,7 +28,9 @@ export default class InputSelectRegisterUser extends Component<PropsForInput> {
         >
           <option value="none" key="none" hidden>Choisissez une option</option>
 
-          { options && options.map(optionName => <option key={optionName} value={optionName}>{ optionName }</option>) }
+          { options && options.map(optionName => 
+            <option key={optionName} value={optionName}>{ optionName }</option>,
+          )}
           
         </Input>
       </Col>

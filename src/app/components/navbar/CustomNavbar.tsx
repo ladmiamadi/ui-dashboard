@@ -10,7 +10,6 @@ import { Module } from '../../index.d';
 
 interface Props {
   modules: Module[],
-  updateModulesList: () => Promise<void>,
 }
 
 interface State {
@@ -70,8 +69,4 @@ const mapState = (state: RootState) => ({
   modules: state.modules.list,
 });
 
-const mapDispatch = (dispatch: any) => ({
-  updateModulesList: dispatch.modules.updateModulesList,
-});
-
-export default connect(mapState, mapDispatch)(CustomNavbar);
+export default connect(mapState)(CustomNavbar);

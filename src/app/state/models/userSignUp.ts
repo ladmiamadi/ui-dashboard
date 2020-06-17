@@ -1,7 +1,7 @@
-import { InputState } from './../../components/registerUser/index.d';
 import { apiService } from '../../http/service';
 import { createModel } from '@rematch/core';
 import { createEmptyUserSignUp, createEmptyIsFormValid } from '../../helpers/userSignUpFactory';
+import { InputState } from './../../components/registerUser/index.d';
 import { Toastify } from '../../../helpers/Toastify';
 import { User } from '../..';
 
@@ -44,12 +44,12 @@ export const userSignUp = createModel({
       ...state, userSignUp: createEmptyUserSignUp(), 
       isFormValid: createEmptyIsFormValid(), 
     }),
-    setIsFormValid: (state: UserSignUpState, id: string, payload: boolean): UserSignUpState => { 
+    setIsFormValid: (state: UserSignUpState, id: string, isInputValid: boolean): UserSignUpState => { 
       const oldIsFormValid = {
         ...state.isFormValid,
       } as any;
   
-      oldIsFormValid[id] = payload;
+      oldIsFormValid[id] = isInputValid;
   
       const newIsFormValid = {
         ...oldIsFormValid,
@@ -64,12 +64,12 @@ export const userSignUp = createModel({
       ...state, 
       isRequesting, 
     }),
-    updateUserSignUp: (state: UserSignUpState, id: string, payload: string): UserSignUpState => { 
+    updateUserSignUp: (state: UserSignUpState, id: string, idValue: string): UserSignUpState => { 
       const oldUserSignUp = {
         ...state.userSignUp,
       } as any;
   
-      oldUserSignUp[id] = payload;
+      oldUserSignUp[id] = idValue;
   
       const newUserSignUp = {
         ...oldUserSignUp,
@@ -93,6 +93,7 @@ export const userSignUp = createModel({
         await apiService.get('/api/users')
           .then(rep => {
             const listOfAllUsernameOfUsers = rep.data.map((user: User) => user.username);
+
             this.updateListOfAllUsernameOfUsers(listOfAllUsernameOfUsers);
           });
       } catch(error) {
@@ -107,6 +108,7 @@ export const userSignUp = createModel({
       try {
         await apiService.post('/api/users', userSentInDb)
           .then((rep) => (new Toastify()).info('Success adding ' + rep.data.username + ' in the database.'));
+
         this.resetUserSignUp();
       } catch(error) {
         (new Toastify()).error(`Unable to post the user in the database. ${ error.message }`);
