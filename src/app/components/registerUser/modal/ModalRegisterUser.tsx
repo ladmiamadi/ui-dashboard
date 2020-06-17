@@ -15,8 +15,9 @@ interface Props {
   isRequesting: boolean,
   listOfAllUsernameOfUsers: string[],
   userSignUp: UserSignUp,
-  fetchUserInDb: () => void,
+  fetchUserInDb: () => Promise<void>,
   postUserInDb: (userSentInDb: User) => Promise<void>,
+  resetUserSignUp: () => void,
   setIsFormValid: (id: string, isInputValid: boolean) => void,
   updateUserSignUp: (id: string, idValue: string) => void,
 }
@@ -71,7 +72,7 @@ class ModalRegisterUser extends Component<Props, State> {
     return (
       <div>
         <Button onClick={this.toggleModal} color="primary">Ajouter un stagiaire</Button>
-        <Modal isOpen={this.state.isModalVisible}>
+        <Modal isOpen={this.state.isModalVisible} toggle={this.toggleModal}>
           <ModalHeader>Ajout d'un stagiaire.</ModalHeader>
           <ModalBody>
             {contentModalBody}
@@ -82,6 +83,11 @@ class ModalRegisterUser extends Component<Props, State> {
               disabled={!isPostAvailable} 
               onClick={this.postUserInDb}>
                 Ajouter
+            </Button>
+            <Button 
+              color="warning"
+              onClick={this.props.resetUserSignUp}>
+                Tout effacer
             </Button>
             <Button 
               color="danger" 
@@ -105,6 +111,7 @@ const mapState = (state: RootState) => ({
 const mapDispatch = (dispatch: RootDispatch) => ({
   fetchUserInDb: dispatch.userSignUp.fetchUserInDb,
   postUserInDb: dispatch.userSignUp.postUserInDb,
+  resetUserSignUp: dispatch.userSignUp.resetUserSignUp,
   setIsFormValid: dispatch.userSignUp.setIsFormValid,
   updateUserSignUp: dispatch.userSignUp.updateUserSignUp,
 });
