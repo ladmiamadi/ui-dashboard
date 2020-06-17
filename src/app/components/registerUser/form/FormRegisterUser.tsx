@@ -7,7 +7,7 @@ import classes from '../../styles/FormRegisterUser.module.css';
 
 interface Props {
   isFormValid: IsFormValid,
-  listOfAllUsernameOfUsers: string[],
+  usernameCollection: string[],
   userSignUp: UserSignUp,
   updateUserSignUp: (id: string, idValue: string) => void,
   setIsFormValid: (id: string, isInputValid: boolean) => void,
@@ -15,8 +15,8 @@ interface Props {
 
 export default class FormRegisterUser extends Component<Props> {
   render() {
-    const { listOfAllUsernameOfUsers, userSignUp, isFormValid } = this.props;
-    const doubleArrayOfAllInputs = doubleArrayObjectOfPropsInput(isFormValid, listOfAllUsernameOfUsers, userSignUp);
+    const { usernameCollection, userSignUp, isFormValid } = this.props;
+    const doubleArrayOfAllInputs = doubleArrayObjectOfPropsInput(isFormValid, usernameCollection, userSignUp);
 
     return (
       <>

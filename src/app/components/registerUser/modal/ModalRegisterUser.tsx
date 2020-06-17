@@ -13,7 +13,7 @@ import classes from '../../styles/FormRegisterUser.module.css';
 interface Props {
   isFormValid: IsFormValid,
   isRequesting: boolean,
-  listOfAllUsernameOfUsers: string[],
+  usernameCollection: string[],
   userSignUp: UserSignUp,
   fetchUserInDb: () => Promise<void>,
   postUserInDb: (userSentInDb: User) => Promise<void>,
@@ -63,7 +63,7 @@ class ModalRegisterUser extends Component<Props, State> {
       </div>) : 
       (<FormRegisterUser
         isFormValid={this.props.isFormValid}
-        listOfAllUsernameOfUsers={this.props.listOfAllUsernameOfUsers}
+        usernameCollection={this.props.usernameCollection}
         userSignUp={this.props.userSignUp} 
         updateUserSignUp={this.props.updateUserSignUp}
         setIsFormValid={this.props.setIsFormValid}
@@ -104,7 +104,7 @@ class ModalRegisterUser extends Component<Props, State> {
 const mapState = (state: RootState) => ({ 
   isFormValid: state.userSignUp.isFormValid,
   isRequesting: state.userSignUp.isRequesting,
-  listOfAllUsernameOfUsers: state.userSignUp.listOfAllUsernameOfUsers,
+  usernameCollection: state.userSignUp.usernameCollection,
   userSignUp: state.userSignUp.userSignUp,
 });
 

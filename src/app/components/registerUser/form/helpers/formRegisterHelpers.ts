@@ -10,15 +10,15 @@ export interface ObjectPropsOfInput {
   isInputValid: InputState,
   options?: string[],
   label: string,
-  listOfAllUsernameOfUsers?: string[],
+  usernameCollection?: string[],
   type: InputType,
   regEx: string,
 }
 
-export const isUsernameAlreadyExists = (idValue: string, listOfAllUsernameOfUsers?: string[]): boolean => {
+export const isUsernameAlreadyExists = (idValue: string, usernameCollection?: string[]): boolean => {
   let isUsernameUnique = true;
 
-  listOfAllUsernameOfUsers && listOfAllUsernameOfUsers.map(username => {
+  usernameCollection && usernameCollection.map(username => {
     if (username === idValue) {
       (new Toastify()).error(idValue + ' already exists in the database');
 
@@ -33,7 +33,7 @@ export const isUsernameAlreadyExists = (idValue: string, listOfAllUsernameOfUser
 
 export const doubleArrayObjectOfPropsInput = (
   isFormValid: IsFormValid,
-  listOfAllUsernameOfUsers: string[],
+  usernameCollection: string[],
   userSignUp: UserSignUp, 
 ): ObjectPropsOfInput[][] => {
 
@@ -99,7 +99,7 @@ export const doubleArrayObjectOfPropsInput = (
         isInputValid: isFormValid.mailInstitution,
         idValue: userSignUp.mailInstitution,
         label: 'Email',
-        listOfAllUsernameOfUsers: listOfAllUsernameOfUsers,
+        usernameCollection: usernameCollection,
         regEx: '^[a-zA-Z0-9.!#$%&"*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$',
         type: 'email',
       },

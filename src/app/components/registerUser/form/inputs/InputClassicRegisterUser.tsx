@@ -9,7 +9,7 @@ export default class InputClassicRegisterUser extends Component<PropsForInput> {
     let isInputValid = new RegExp(this.props.regEx).test(this.props.idValue);
 
     if (this.props.id === 'mailInstitution') {
-      isInputValid = isUsernameAlreadyExists(this.props.idValue, this.props.listOfAllUsernameOfUsers);
+      isInputValid = isUsernameAlreadyExists(this.props.idValue, this.props.usernameCollection);
     }
     
     this.props.setIsFormValid(this.props.id, isInputValid);

@@ -18,7 +18,7 @@ export interface UserSignUp {
 export type UserSignUpState = {
   isFormValid: IsFormValid,
   isRequesting: boolean,
-  listOfAllUsernameOfUsers: string[],
+  usernameCollection: string[],
   userSignUp: UserSignUp,
 }
 
@@ -36,7 +36,7 @@ export const userSignUp = createModel({
   state: {
     isFormValid: createEmptyIsFormValid(),
     isRequesting: false,
-    listOfAllUsernameOfUsers: [],
+    usernameCollection: [],
     userSignUp: createEmptyUserSignUp(),
   } as UserSignUpState,
   reducers: {
@@ -45,15 +45,11 @@ export const userSignUp = createModel({
       isFormValid: createEmptyIsFormValid(), 
     }),
     setIsFormValid: (state: UserSignUpState, id: string, isInputValid: boolean): UserSignUpState => { 
-      const oldIsFormValid = {
+      const newIsFormValid = {
         ...state.isFormValid,
       } as any;
   
-      oldIsFormValid[id] = isInputValid;
-  
-      const newIsFormValid = {
-        ...oldIsFormValid,
-      } as IsFormValid;
+      newIsFormValid[id] = isInputValid;
 
       return ({
         ...state, 
@@ -65,24 +61,20 @@ export const userSignUp = createModel({
       isRequesting, 
     }),
     updateUserSignUp: (state: UserSignUpState, id: string, idValue: string): UserSignUpState => { 
-      const oldUserSignUp = {
+      const newUserSignUp = {
         ...state.userSignUp,
       } as any;
   
-      oldUserSignUp[id] = idValue;
-  
-      const newUserSignUp = {
-        ...oldUserSignUp,
-      } as UserSignUp;
+      newUserSignUp[id] = idValue;
 
       return ({
         ...state, 
         userSignUp: newUserSignUp, 
       });
     },
-    updateListOfAllUsernameOfUsers: (state: UserSignUpState, listOfAllUsernameOfUsers: string[]) => ({ 
+    updateUsernameCollection: (state: UserSignUpState, usernameCollection: string[]) => ({ 
       ...state, 
-      listOfAllUsernameOfUsers, 
+      usernameCollection, 
     }),
   },
   effects: {
@@ -92,9 +84,9 @@ export const userSignUp = createModel({
       try {
         await apiService.get('/api/users')
           .then(rep => {
-            const listOfAllUsernameOfUsers = rep.data.map((user: User) => user.username);
+            const usernameCollection = rep.data.map((user: User) => user.username);
 
-            this.updateListOfAllUsernameOfUsers(listOfAllUsernameOfUsers);
+            this.updateUsernameCollection(usernameCollection);
           });
       } catch(error) {
         (new Toastify()).error(`Unable to get the user from the database. ${ error.message }`);
