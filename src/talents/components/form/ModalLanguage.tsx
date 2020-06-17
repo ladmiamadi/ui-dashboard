@@ -4,9 +4,9 @@ import { Button, Row } from 'reactstrap';
 import { RootDispatch, RootState } from '../../../app/state/store';
 import { UserLanguage } from '../../../app/index';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
-import { UpdateLanguagePayload } from './state/models/languages/addLanguage';
-import { UserLanguageFactory } from './helpers/UserLanguageFactory';
-import { LANGUAGES_LEVEL } from '../../index.d';
+import { UpdateLanguagePayload } from '../../state/models/languages/add-language';
+import { UserLanguageFactory } from '../../helpers/UserLanguageFactory';
+import { LANGUAGES_LEVEL } from '../../constants/language';
 
 interface Props {
   language: UserLanguage,

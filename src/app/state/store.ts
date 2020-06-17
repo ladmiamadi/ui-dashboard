@@ -1,6 +1,6 @@
 import { RematchRootState, init } from '@rematch/core';
-import * as language  from '../../talents/components/form/state/models/languages/addLanguage';
-import * as languages from '../../talents/components/form/state/models/languages/userLanguages';
+import * as language  from '../../talents/state/models/languages/add-language';
+import * as languages from '../../talents/state/models/languages/user-languages';
 import * as modules from './models/modules';
 import * as user from './models/user';
 

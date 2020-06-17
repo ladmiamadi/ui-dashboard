@@ -6,7 +6,7 @@ import ModalLanguage from './ModalLanguage';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
 import { UserLanguage } from '../../../app';
 import { UserLanguagesDisplay } from './UserLanguagesDisplay';
-import { LANGUAGES } from '../../index.d';
+import { LANGUAGES } from '../../constants/language';
 
 interface Props {
   isFetching: boolean,
@@ -37,7 +37,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
 
       this.setState({
         unselectedLanguages: this.state.unselectedLanguages
-          .filter((language) => userLanguages.includes(language)),
+          .filter((language) => !userLanguages.includes(language)),
       });
     }
   }

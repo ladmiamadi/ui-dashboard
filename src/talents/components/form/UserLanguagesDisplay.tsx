@@ -2,7 +2,7 @@ import React from 'react';
 import { UserLanguage } from '../../../app';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { Col, Row } from 'reactstrap';
-import { LANGUAGES_LEVEL } from '../../index.d';
+import { LANGUAGES_LEVEL } from '../../constants/language';
 
 interface Props {
   userLanguages: UserLanguage[],

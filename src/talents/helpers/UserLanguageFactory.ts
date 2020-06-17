@@ -1,4 +1,4 @@
-import { UserLanguage } from '../../../../app/index';
+import { UserLanguage } from '../../app';
 
 export class UserLanguageFactory {
   public static createEmptyLanguage(): UserLanguage {
