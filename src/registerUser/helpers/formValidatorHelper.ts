@@ -1,5 +1,5 @@
 import { InputState } from '../index.d';
-import { IsFormValid } from '../../app/state/models/userSignUp';
+import { IsFormValid } from '../state/models/userSignUp';
 
 export const formValidator = (isFormValid: IsFormValid): InputState => {
   const copyOfIsFormValid = {

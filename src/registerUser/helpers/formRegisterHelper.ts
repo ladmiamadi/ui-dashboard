@@ -1,7 +1,7 @@
 import { ARRAY_OPTIONS_POSITIONS } from '../consts';
 import { ObjectPropsOfInput } from '../index.d';
 import { Toastify } from '../../helpers/Toastify';
-import { UserSignUp, IsFormValid } from '../../app/state/models/userSignUp';
+import { UserSignUp, IsFormValid } from '../state/models/userSignUp';
 
 export const isUsernameAlreadyExists = (idValue: string, usernameCollection?: string[]): boolean => {
   let isUsernameUnique = true;

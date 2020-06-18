@@ -1,9 +1,9 @@
-import { apiService } from '../../http/service';
+import { apiService } from '../../../app/http/service';
 import { createModel } from '@rematch/core';
-import { createEmptyUserSignUp, createEmptyIsFormValid } from '../../../registerUser/helpers/userSignUpFactoryHelper';
-import { InputState } from '../../../registerUser';
+import { createEmptyUserSignUp, createEmptyIsFormValid } from '../../helpers/userSignUpFactoryHelper';
+import { InputState } from '../..';
 import { Toastify } from '../../../helpers/Toastify';
-import { User } from '../../index.d';
+import { User } from '../../../app/index.d';
 
 export interface UserSignUp {
   birthDate: string,

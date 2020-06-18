@@ -5,7 +5,7 @@ import { createDtoUserSignUp } from '../../helpers/userSignUpFactoryHelper';
 import { formValidator } from '../../helpers/formValidatorHelper';
 import { InputState } from '../../index.d';
 import { RootState, RootDispatch } from '../../../app/state/store';
-import { UserSignUp, IsFormValid } from '../../../app/state/models/userSignUp';
+import { UserSignUp, IsFormValid } from '../../state/models/userSignUp';
 import { User } from '../../../app/index.d';
 import FormRegisterUser from '../form/FormRegisterUser';
 import classes from '../../styles/FormRegisterUser.module.css';
