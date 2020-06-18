@@ -7,12 +7,12 @@ import { RootDispatch, RootState } from '../../../app/state/store';
 import { UpdateUserPayload } from '../../state/models/user';
 
 interface Props {
-  talent: User,
+  user: User,
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
 interface State {
-  talent: User,
+  user: User,
 }
 
 export class TalentFormFormation extends React.Component<Props, State> {
@@ -20,16 +20,16 @@ export class TalentFormFormation extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      talent: props.talent,
+      user: props.user,
     };
   }
 
-  handleChange(category: string, property : string, event: any) {
+  handleChange(category: string, property: string, value: string) {
     const payload = {
       index: 0,
       category: category,
       property: property,
-      value: event,
+      value: value,
     };
 
     this.props.modifyUser(payload);
@@ -43,14 +43,14 @@ export class TalentFormFormation extends React.Component<Props, State> {
           <button className="form-add-button">Ajouter une formation</button>
         </div>
         {
-          this.state.talent.userTrainings.map((elem, index) => (
+          this.state.user.userTrainings.map((elem, index) => (
             <div className="form-elements" key={index}>
               <FieldForm
                 keyName="formation-school"
                 label="École: "
                 className="large"
                 type="text"
-                handleChange={(event) => this.handleChange('userTrainings', 'institution', event)}
+                handleChange={(value) => this.handleChange('userTrainings', 'institution', value)}
                 value={elem.institution} />
               <DateFormField
                 keyName="formation-start"
@@ -67,7 +67,7 @@ export class TalentFormFormation extends React.Component<Props, State> {
                 label="Diplôme obtenu: "
                 className="large"
                 type="text"
-                handleChange={(event) => this.handleChange('userTrainings', 'degreeObtained', event)}
+                handleChange={(value) => this.handleChange('userTrainings', 'degreeObtained', value)}
                 value={elem.degreeObtained} />
             </div>
           ))
@@ -78,7 +78,7 @@ export class TalentFormFormation extends React.Component<Props, State> {
 }
 
 const mapState = (state: RootState) => ({
-  talent: state.user.user,
+  user: state.user.user,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({

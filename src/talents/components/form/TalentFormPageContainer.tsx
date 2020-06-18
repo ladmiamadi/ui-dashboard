@@ -14,7 +14,7 @@ import TalentFormLanguages  from './TalentFormLanguages';
 import TalentFormSkills from './TalentFormSkills';
 
 interface Props {
-  talent: User,
+  user: User,
   fetchUserById: (id: number) => Promise<void>,
   isFetching: boolean,
 }
@@ -26,7 +26,7 @@ export class TalentFormPageContainer extends React.Component<Props> {
 
   render() {
     if (this.props.isFetching) {
-      return <div><p>En attente du Loader</p></div>;
+      return <span>En attente du Loader</span>;
     }
 
     return (
@@ -51,7 +51,7 @@ export class TalentFormPageContainer extends React.Component<Props> {
 }
 
 const mapState = (state: RootState) => ({
-  talent: state.user.user,
+  user: state.user.user,
   isFetching: state.user.isFetching,
 });
 

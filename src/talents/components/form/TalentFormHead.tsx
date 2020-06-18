@@ -8,12 +8,12 @@ import { TalentUserProfilesFilter } from '../../helpers/talentFilter';
 import { UpdateUserPayload } from '../../state/models/user';
 
 interface Props {
-  talent: User,
+  user: User,
   modifyUser: (payload: UpdateUserPayload) => void,
 }
 
 interface State {
-  talent: User,
+  user: User,
   userProfile: UserProfile,
 }
 
@@ -22,17 +22,17 @@ export class TalentFormHead extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      talent: props.talent,
-      userProfile: TalentUserProfilesFilter.filterByEnvironment(props.talent.userProfiles, 'working'),
+      user: props.user,
+      userProfile: TalentUserProfilesFilter.filterByEnvironment(props.user.userProfiles, 'working'),
     };
   }
 
-  handleChange( event: string, index: number, category: string, property: string) {
+  handleChange( value: string, index: number, category: string, property: string) {
     const payload = {
       index: index,
       category: category,
       property: property,
-      value: event,
+      value: value,
     };
 
     this.props.modifyUser(payload);
@@ -48,13 +48,13 @@ export class TalentFormHead extends React.Component<Props, State> {
             keyName="lastname"
             label="Nom: "
             type="text"
-            handleChange={(event) => this.handleChange(event, 0, 'userProfiles', 'lastName')}
+            handleChange={(value) => this.handleChange(value, 0, 'userProfiles', 'lastName')}
             value={this.state.userProfile.lastName} />
           <FieldForm
             keyName="firstname"
             label="Prénom: "
             type="text"
-            handleChange={(event) => this.handleChange(event, 0, 'userProfiles', 'firstName')}
+            handleChange={(value) => this.handleChange(value, 0, 'userProfiles', 'firstName')}
             value={this.state.userProfile.firstName} />
           <SelectFormField
             keyName="function"
@@ -64,20 +64,20 @@ export class TalentFormHead extends React.Component<Props, State> {
             keyName="email"
             label="Mail: "
             type="text"
-            handleChange={(event) => this.handleChange(event, -1, 'username', '')}
-            value={this.state.talent.username} />
+            handleChange={(value) => this.handleChange(value, -1, 'username', '')}
+            value={this.state.user.username} />
           <FieldForm
             keyName="phone"
             label="Téléphone: "
             type="text"
-            handleChange={(event) => this.handleChange(event, 0, 'userProfiles', 'phone')}
+            handleChange={(value) => this.handleChange(value, 0, 'userProfiles', 'phone')}
             value={this.state.userProfile.phone} />
           <FieldForm
             keyName="place"
             label="Localisation: "
             type="text"
-            handleChange={(event) => this.handleChange(event, -1, 'userAddress', 'country')}
-            value={this.state.talent.userAddress?.country} />
+            handleChange={(value) => this.handleChange(value, -1, 'userAddress', 'country')}
+            value={this.state.user.userAddress?.country} />
         </div>
         <div className="connexion-box">
           <p>Envoyez un email pour configurer la connexion</p>
@@ -89,7 +89,7 @@ export class TalentFormHead extends React.Component<Props, State> {
 }
 
 const mapState = (state: RootState) => ({
-  talent: state.user.user,
+  user: state.user.user,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({

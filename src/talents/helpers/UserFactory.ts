@@ -75,7 +75,6 @@ export class UserFactory {
 
   public createEmptyUserJob() {
     return{
-      //user: User,
       job: this.createEmptyJob,
       startDate: new Date(),
       endDate: new Date(),

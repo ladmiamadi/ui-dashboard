@@ -22,8 +22,8 @@ export const user = createModel ({
     isFetching: false,
   } as UserState,
   reducers: {
-    updateUser: (state: UserState,  user): UserState => ({ ...state, user }),
-    setIsFetching: (state: UserState, payload: boolean): UserState => ({ ...state, isFetching: payload }),
+    updateUser: (state: UserState, user: User): UserState => ({ ...state, user }),
+    setIsFetching: (state: UserState, isFetching: boolean): UserState => ({ ...state, isFetching }),
     modifyUser: (state: UserState, payload: UpdateUserPayload): UserState => {
       const user = { ...state.user }  as any;
 

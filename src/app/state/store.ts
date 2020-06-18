@@ -10,7 +10,7 @@ const models = {
 };
 
 export const store = init({
-  models
+  models,
 });
 
 export type RootState = RematchRootState<typeof models>

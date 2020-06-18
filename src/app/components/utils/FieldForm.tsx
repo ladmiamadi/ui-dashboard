@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import { FormGroup, Label } from 'reactstrap';
 import Input, { InputType } from 'reactstrap/lib/Input';
 
@@ -9,7 +9,7 @@ interface Props {
   className?: string,
   type: InputType,
   value?: any,
-  handleChange(value: string): void,
+  handleChange: (value: string) => void,
 }
 
 interface State {
@@ -25,7 +25,7 @@ export class FieldForm extends React.Component<Props, State> {
     };
   }
 
-  handleChange(value: string ) {
+  handleChange(value: string) {
     if (this.props.handleChange) {
       this.props.handleChange(value);
     }
@@ -40,7 +40,7 @@ export class FieldForm extends React.Component<Props, State> {
           type={this.props.type}
           id={this.props.keyName}
           rows={this.props.rows}
-          onChange={(event) => this.handleChange(event.target.value)}
+          onChange={(event: FormEvent<HTMLInputElement>) => this.handleChange(event.currentTarget.value)}
           defaultValue={this.state.value}
         />
       </FormGroup>

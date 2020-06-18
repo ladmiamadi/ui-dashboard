@@ -1,4 +1,4 @@
-import { UserProfile } from '../../app/index';
+import { UserProfile } from '../../app';
 
 export class TalentUserProfilesFilter {
   public static filterByEnvironment(profile: UserProfile[], environment: 'live' | 'working') {

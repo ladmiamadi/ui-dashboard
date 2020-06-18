@@ -7,12 +7,12 @@ import { TalentUserProfilesFilter } from '../../helpers/talentFilter';
 import { UpdateUserPayload } from '../../state/models/user';
 
 interface Props {
-  talent: User,
+  user: User,
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
 interface State {
-  talent: User,
+  user: User,
   userProfile: UserProfile,
 }
 
@@ -21,17 +21,17 @@ export class TalentFormJob extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      talent: props.talent,
-      userProfile: TalentUserProfilesFilter.filterByEnvironment(props.talent.userProfiles, 'working'),
+      user: props.user,
+      userProfile: TalentUserProfilesFilter.filterByEnvironment(props.user.userProfiles, 'working'),
     };
   }
 
-  handleChange(category: string, property : string, event: string) {
+  handleChange(category: string, property : string, value: string) {
     const payload = {
       index: 0,
       category: category,
       property: property,
-      value: event,
+      value: value,
     };
 
     this.props.modifyUser(payload);
@@ -45,14 +45,14 @@ export class TalentFormJob extends React.Component<Props, State> {
           label="Métier souhaité: "
           className="large"
           type="text"
-          handleChange={(event) => this.handleChange('userProfiles','desiredJob', event)}
+          handleChange={(value) => this.handleChange('userProfiles','desiredJob', value)}
           value={this.state.userProfile.desiredJob} />
         <FieldForm
           keyName="job-mobility"
           label="Mobilité: "
           className="large"
           type="text"
-          handleChange={(event) => this.handleChange('userProfiles','mobility', event)}
+          handleChange={(value) => this.handleChange('userProfiles','mobility', value)}
           value={this.state.userProfile.mobility} />
         <FieldForm
           keyName="job-description"
@@ -60,21 +60,21 @@ export class TalentFormJob extends React.Component<Props, State> {
           className="large"
           rows={5}
           type="textarea"
-          handleChange={(event) => this.handleChange('userProfiles','descriptionInFrench', event)}
+          handleChange={(value) => this.handleChange('userProfiles','descriptionInFrench', value)}
           value={this.state.userProfile.descriptionInFrench} />
         <FieldForm
           keyName="job-actual-pay"
           label="Salaire actuel: "
           className="medium"
           type="text"
-          handleChange={(event) => this.handleChange('userProfiles', 'actualSalary', event)}
+          handleChange={(value) => this.handleChange('userProfiles', 'actualSalary', value)}
           value={this.state.userProfile.actualSalary} />
         <FieldForm
           keyName="job-desired-pay"
           label="Salaire souhaité: "
           className="medium"
           type="text"
-          handleChange={(event) => this.handleChange('userProfiles', 'expectedSalary', event)}
+          handleChange={(value) => this.handleChange('userProfiles', 'expectedSalary', value)}
           value={this.state.userProfile.expectedSalary} />
       </div>
     );
@@ -82,7 +82,7 @@ export class TalentFormJob extends React.Component<Props, State> {
 }
 
 const mapState = (state: RootState) => ({
-  talent: state.user.user,
+  user: state.user.user,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({

@@ -7,12 +7,12 @@ import { RootDispatch, RootState } from '../../../app/state/store';
 import { UpdateUserPayload } from '../../state/models/user';
 
 interface Props {
-  talent: User,
+  user: User,
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
 interface State {
-  talent: User,
+  user: User,
 }
 
 export class TalentFormExperience extends React.Component<Props, State> {
@@ -20,16 +20,16 @@ export class TalentFormExperience extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      talent: props.talent,
+      user: props.user,
     };
   }
 
-  handleChange(category: string, property : string, event: string) {
+  handleChange(category: string, property : string, value: string) {
     const payload = {
       index: 0,
       category: category,
       property: property,
-      value: event,
+      value: value,
     };
 
     this.props.modifyUser(payload);
@@ -43,15 +43,15 @@ export class TalentFormExperience extends React.Component<Props, State> {
           <button className="form-add-button">Ajouter une expérience</button>
         </div>
         {
-          this.state.talent.userExperiences.map((elem, index) => (
+          this.state.user.userExperiences.map((elem, index) => (
             <div className="form-elements" key={index}>
               <FieldForm
                 keyName="experience-company"
                 label="Entreprise: "
                 className="large"
                 type="text"
-                handleChange={(event: string) =>
-                  this.handleChange('userExperiences', 'company', event)}
+                handleChange={(value: string) =>
+                  this.handleChange('userExperiences', 'company', value)}
                 value={elem.company} />
               <DateFormField
                 keyName="experience-start"
@@ -68,7 +68,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
                 label="Poste: "
                 className="large"
                 type="text"
-                handleChange={(event: string) => this.handleChange('userExperiences', 'position', event)}
+                handleChange={(value: string) => this.handleChange('userExperiences', 'position', value)}
                 value={elem.position} />
               <FieldForm
                 keyName="experience-works"
@@ -76,7 +76,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
                 className="large"
                 rows={5}
                 type="textarea"
-                handleChange={(event: string) => this.handleChange('userExperiences', 'task', event)}
+                handleChange={(value: string) => this.handleChange('userExperiences', 'task', value)}
                 value={elem.task} />
             </div>
           ))
@@ -87,7 +87,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
 }
 
 const mapState = (state: RootState) => ({
-  talent: state.user.user,
+  user: state.user.user,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({

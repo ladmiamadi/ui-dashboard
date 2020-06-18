@@ -10,12 +10,12 @@ import { TalentUserProfilesFilter } from '../../helpers/talentFilter';
 import { UpdateUserPayload } from '../../state/models/user';
 
 interface Props {
-  talent: User,
+  user: User,
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
 interface State {
-  talent: User,
+  user: User,
   userProfile: UserProfile,
 }
 
@@ -24,17 +24,17 @@ export class TalentFormInternship extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      talent: props.talent,
-      userProfile: TalentUserProfilesFilter.filterByEnvironment(props.talent.userProfiles, 'working'),
+      user: props.user,
+      userProfile: TalentUserProfilesFilter.filterByEnvironment(props.user.userProfiles, 'working'),
     };
   }
 
-  handleChange( category: string, property : string, event: string) {
+  handleChange( category: string, property : string, value: string) {
     const payload = {
       index: -1,
       category: category,
       property: property,
-      value: event,
+      value: value,
     };
 
     this.props.modifyUser(payload);
@@ -44,7 +44,7 @@ export class TalentFormInternship extends React.Component<Props, State> {
     return (
       <div className="form-section">
         {
-          this.state.talent.userExperiences.map((elem, index) => (
+          this.state.user.userExperiences.map((elem, index) => (
             <div className="form-elements" key={index}>
               <SelectFormField
                 keyName="internship-status"
@@ -69,8 +69,8 @@ export class TalentFormInternship extends React.Component<Props, State> {
                 label="Horaire: "
                 className="large"
                 type="text"
-                handleChange={(event) => this.handleChange('userJob', 'workingHours', event)}
-                value={this.state.talent.userJob?.workingHours} />
+                handleChange={(value) => this.handleChange('userJob', 'workingHours', value)}
+                value={this.state.user.userJob?.workingHours} />
             </div>
           ))
         }
@@ -80,7 +80,7 @@ export class TalentFormInternship extends React.Component<Props, State> {
 }
 
 const mapState = (state: RootState) => ({
-  talent: state.user.user,
+  user: state.user.user,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({
