@@ -29,33 +29,6 @@ export class AuthenticationForm extends React.Component<Props, AuthenticationSta
     };
     
   }
-
-  isNotNull = (idValue: string): boolean => {
-    if(idValue.length === 0){
-      return false;
-    }
-  
-    return true;
-  }
-
-  checkFormValidity = (newState: any): boolean => {
-    const stateToCheck = {
-      password: newState.password,
-      username: newState.username,
-    };
-    let isFormValid: boolean = true;
-
-    Object.entries(stateToCheck)
-      .map((item) => {
-        const idValue = item[1];
-
-        isFormValid = isFormValid && this.isNotNull(idValue);
-
-        return item;
-      });
-
-    return isFormValid;
-  }
   
   handleClick = () => {
     this.props.login({
@@ -69,7 +42,7 @@ export class AuthenticationForm extends React.Component<Props, AuthenticationSta
 
     newState[id] = idValue;
 
-    const isFormValid: boolean = this.checkFormValidity(newState);
+    const isFormValid: boolean = newState.password !== '' && newState.username !== '';
     
     newState.isFormValid = isFormValid;
 

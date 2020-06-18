@@ -57,7 +57,11 @@ export const auth = createModel({
         
         localStorage.setItem('hdm:admin:auth-token', data.token);
       } catch (error) {
-        new Toastify().error(`Failed to login. ${error.message}`);
+        if (error.message === 'Request failed with status code 401') {
+          new Toastify().error(dto.username + ' isn\'t an account.');
+        } else {
+          new Toastify().error(`Failed to login. ${error.message}`);
+        }
       } finally {
         this.setIsRequesting(false);
       }

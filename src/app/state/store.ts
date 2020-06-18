@@ -24,9 +24,9 @@ declare module 'react-redux' {
       mapDispatchToProps: (dispatch: RootDispatch) => TDispatchProps,
     ): InferableComponentEnhancerWithProps<TDispatchProps, TOwnProps>;
 
-		<TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = {}>(
-			mapStateToProps: MapStateToPropsParam<TStateProps, TOwnProps, State>,
-			mapDispatchToProps: (dispatch: RootDispatch) => TDispatchProps,
-		): InferableComponentEnhancerWithProps<TStateProps & TDispatchProps, TOwnProps>;
-	}
+    <TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = {}>(
+      mapStateToProps: MapStateToPropsParam<TStateProps, TOwnProps, State>,
+      mapDispatchToProps: (dispatch: RootDispatch) => TDispatchProps,
+    ): InferableComponentEnhancerWithProps<TStateProps & TDispatchProps, TOwnProps>;
+  }
 }

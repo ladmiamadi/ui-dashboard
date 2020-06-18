@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Loader } from '../../app/components/utils/Loader'; // eslint-disable-line
 import { RootState, RootDispatch } from '../../app/state/store';
+import { Spinner } from 'reactstrap';
 
 interface OwnProps {
+  children: React.ReactNode,
   form: React.ReactNode,
   localToken: string | null,
 }
@@ -27,17 +28,15 @@ export class AuthenticationGuard extends React.Component<Props> {
     }
 
     if (this.props.localToken && !this.props.isVerifiedToken) {
-      return <Loader />;
+      return <Spinner />;
     }
 
     return this.props.form;
   }
 }
 
-const mapState = (state: RootState, propsFromParent: any | OwnProps) => ({
-  form: propsFromParent.form,
+const mapState = (state: RootState) => ({
   isVerifiedToken: state.auth.isVerifiedToken,
-  localToken: propsFromParent.localToken || null,
   token: state.auth.token,
 });
 

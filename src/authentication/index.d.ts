@@ -1,6 +1,6 @@
 import { InputType } from 'reactstrap/lib/Input';
 
-export interface PropsForInputWithoutFunc {
+export interface AuthAttributes {
   id: string,
   label: string,
   placeholder: string,
