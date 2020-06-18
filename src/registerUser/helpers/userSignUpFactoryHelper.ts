@@ -1,8 +1,8 @@
-import { User } from './../index.d';
-import { createEmptyUser } from './userFactory';
-import { IsFormValid } from './../state/models/userSignUp';
-import { InputState } from '../components/registerUser/index.d';
-import { UserSignUp } from '../state/models/userSignUp';
+import { User } from '../../app/index.d';
+import { createEmptyUser } from './userFactoryHelper';
+import { IsFormValid } from '../../app/state/models/userSignUp';
+import { InputState } from '../index.d';
+import { UserSignUp } from '../../app/state/models/userSignUp';
 
 export const createEmptyUserSignUp = (): UserSignUp => ({
   birthDate: '2000-01-01',

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Col, Input, Label } from 'reactstrap';
-import { InputState } from '../../index.d';
+import { InputState } from '../../../index.d';
 import { PropsForInput } from './InputRegisterUsers';
-import { isUsernameAlreadyExists } from '../helpers/formRegisterHelpers';
+import { isUsernameAlreadyExists } from '../../../helpers/formRegisterHelper';
 
 export default class InputClassicRegisterUser extends Component<PropsForInput> {
   setIsFormValid = () => {

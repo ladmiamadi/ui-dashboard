@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import InputClassicRegisterUser from './InputClassicRegisterUser';
 import InputSelectRegisterUser from './InputSelectRegisterUser';
-import { ObjectPropsOfInput } from '../helpers/formRegisterHelpers';
+import { ObjectPropsOfInput } from '../../../index.d';
 
 export interface PropsForInput extends ObjectPropsOfInput {
   updateUserSignUp: (id: string, idValue: string) => void,

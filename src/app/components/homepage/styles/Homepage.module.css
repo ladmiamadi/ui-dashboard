@@ -1,4 +1,4 @@
-.card-body {
+.CardBody {
     flex: 1 1 auto;
     padding: 1.25rem;
     font-size: 1.8rem;
@@ -6,13 +6,13 @@
     color: #888;
 }
 
-.card-title {
+.CardTitle {
     font-size: 2rem;
     font-weight: 700;
     font-family: 'Heebo', sans-serif
 }
 
-.container {
+.Container {
     padding-right: 15px;
     padding-left: 15px;
 }

@@ -1,19 +1,7 @@
-import { ARRAY_OPTIONS_POSITIONS } from './../../index.d';
-import { InputType } from 'reactstrap/lib/Input';
-import { InputState } from '../..';
-import { Toastify } from '../../../../../helpers/Toastify';
-import { UserSignUp, IsFormValid } from '../../../../state/models/userSignUp';
-
-export interface ObjectPropsOfInput {
-  id: string,
-  idValue: string,
-  isInputValid: InputState,
-  options?: string[],
-  label: string,
-  usernameCollection?: string[],
-  type: InputType,
-  regEx: string,
-}
+import { ARRAY_OPTIONS_POSITIONS } from '../consts';
+import { ObjectPropsOfInput } from '../index.d';
+import { Toastify } from '../../helpers/Toastify';
+import { UserSignUp, IsFormValid } from '../../app/state/models/userSignUp';
 
 export const isUsernameAlreadyExists = (idValue: string, usernameCollection?: string[]): boolean => {
   let isUsernameUnique = true;

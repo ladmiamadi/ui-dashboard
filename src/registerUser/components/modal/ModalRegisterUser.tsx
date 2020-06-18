@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalFooter, ModalBody, Spinner } from 'reactstrap';
 import { connect } from 'react-redux';
-import { createDtoUserSignUp } from '../../../helpers/userSignUpFactory';
-import { formValidator } from '../../../helpers/formValidator';
-import { InputState } from '../index.d';
-import { RootState, RootDispatch } from '../../../state/store';
-import { UserSignUp, IsFormValid } from '../../../state/models/userSignUp';
-import { User } from '../../..';
+import { createDtoUserSignUp } from '../../helpers/userSignUpFactoryHelper';
+import { formValidator } from '../../helpers/formValidatorHelper';
+import { InputState } from '../../index.d';
+import { RootState, RootDispatch } from '../../../app/state/store';
+import { UserSignUp, IsFormValid } from '../../../app/state/models/userSignUp';
+import { User } from '../../../app/index.d';
 import FormRegisterUser from '../form/FormRegisterUser';
 import classes from '../../styles/FormRegisterUser.module.css';
 
@@ -70,7 +70,7 @@ class ModalRegisterUser extends Component<Props, State> {
       />);
 
     return (
-      <div>
+      <>
         <Button onClick={this.toggleModal} color="primary">Ajouter un stagiaire</Button>
         <Modal isOpen={this.state.isModalVisible} toggle={this.toggleModal}>
           <ModalHeader>Ajout d'un stagiaire.</ModalHeader>
@@ -84,7 +84,7 @@ class ModalRegisterUser extends Component<Props, State> {
               onClick={this.postUserInDb}>
                 Ajouter
             </Button>
-            <Button 
+            <Button
               color="warning"
               onClick={this.props.resetUserSignUp}>
                 Tout effacer
@@ -96,7 +96,7 @@ class ModalRegisterUser extends Component<Props, State> {
             </Button>
           </ModalFooter>
         </Modal>
-      </div>
+      </>
     );
   }
 }

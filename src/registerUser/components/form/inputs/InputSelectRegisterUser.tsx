@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Input, Label } from 'reactstrap';
-import { InputState } from '../../index.d';
+import { InputState } from '../../../index.d';
 import { PropsForInput } from './InputRegisterUsers';
 
 export default class InputSelectRegisterUser extends Component<PropsForInput> {

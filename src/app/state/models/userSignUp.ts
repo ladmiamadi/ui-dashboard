@@ -1,9 +1,9 @@
 import { apiService } from '../../http/service';
 import { createModel } from '@rematch/core';
-import { createEmptyUserSignUp, createEmptyIsFormValid } from '../../helpers/userSignUpFactory';
-import { InputState } from './../../components/registerUser/index.d';
+import { createEmptyUserSignUp, createEmptyIsFormValid } from '../../../registerUser/helpers/userSignUpFactoryHelper';
+import { InputState } from '../../../registerUser';
 import { Toastify } from '../../../helpers/Toastify';
-import { User } from '../..';
+import { User } from '../../index.d';
 
 export interface UserSignUp {
   birthDate: string,
@@ -41,8 +41,9 @@ export const userSignUp = createModel({
   } as UserSignUpState,
   reducers: {
     resetUserSignUp: (state: UserSignUpState): UserSignUpState => ({ 
-      ...state, userSignUp: createEmptyUserSignUp(), 
+      ...state, 
       isFormValid: createEmptyIsFormValid(), 
+      userSignUp: createEmptyUserSignUp(), 
     }),
     setIsFormValid: (state: UserSignUpState, id: string, isInputValid: boolean): UserSignUpState => { 
       const newIsFormValid = {

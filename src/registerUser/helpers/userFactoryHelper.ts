@@ -1,4 +1,4 @@
-import { User, UserAddress, UserProfile } from './../index.d';
+import { User, UserAddress, UserProfile } from '../../app/index.d';
 
 export const createEmptyUser = (): User => {
   const userAddress = {
