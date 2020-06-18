@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { RootDispatch, RootState } from '../../app/state/store';
 import { TalentModal } from './modal/TalentModal';
 import { CustomModal } from '../../app/components/modal/CustomModal';
-import  './styles/TalentsList.css';
 import { User, UserProfile } from '../../app';
 import { env } from '../../helpers/environment';
 import { Redirect } from 'react-router-dom';
 import { UserProfileHelpers } from '../../app/helpers/UserProfileHelpers';
+import  './styles/TalentsList.css';
 
 interface Props {
   profile: UserProfile,
@@ -35,7 +35,6 @@ export class TalentsListElement extends React.Component <Props, State> {
     this.props.updateUser(this.props.talent);
 
     if (UserProfileHelpers.isUserHaveWorkingOnValidationProfile(this.props.talent)) {
-      console.log('toggleModal');
       this.setState({
         isModalShown: !this.state.isModalShown,
       });

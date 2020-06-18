@@ -10,9 +10,11 @@ interface Props {
 interface State {
   redirect: string,
 }
+
 export class TalentModal extends React.Component <Props, State> {
   constructor(props: Props) {
     super(props);
+
     this.state = { redirect: '' };
   }
 
@@ -21,7 +23,7 @@ export class TalentModal extends React.Component <Props, State> {
   }
   
   render() {
-    if (this.state.redirect !== ''){
+    if (this.state.redirect !== '') {
       return <Redirect
         to={{ pathname: this.state.redirect }} />;
     }
@@ -29,9 +31,9 @@ export class TalentModal extends React.Component <Props, State> {
       <Router>
         <>
           Une demande de modification est en cours pour ce talent,
-           veuillez faire le neccessaire avant de consulter la fiche.
+           veuillez faire le néccessaire avant de consulter la fiche.
           <br></br>
-          <Button onClick ={this.redirect}>Ok</Button>
+          <Button onClick={this.redirect}>Ok</Button>
         </>
       </Router>
     );

@@ -18,7 +18,7 @@ export const users = createModel({
   } as State,
 
   reducers: {
-    updateList: (state: State, talents: User[]): State => ({ ...state, users: talents }),
+    updateList: (state: State, users: User[]): State => ({ ...state, users: users }),
     setIsFetching: (state: State, isFetching: boolean): State => ({ ...state, isFetching }),
     updateUser: (state: State, user: User): State => ({ ...state, user: user }),
   },

@@ -8,8 +8,8 @@ interface Props {
 }
 
 export class ProfileEditValidation extends React.Component<Props> {
-
   render(){
+    
     return(
       <div>Vous avez été correctement redirigé sur la page de validation l'user {this.props.user.username} </div>);
   }
