@@ -37,7 +37,7 @@ export const auth = createModel({
         await clearTokenFromAxios();
         
         new Toastify().error(
-          'You are no longer logged in the application. You will be redirected in 5 seconds.',
+          'You are no longer logged in the application.',
         );
       } finally {
         this.setIsVerifiedToken(true);
