@@ -21,7 +21,7 @@ export const auth = createModel({
   },
   reducers: {
     clearToken: (state: AuthState): AuthState => ({ ...state, token: null }),
-    setIsVerifiedToken: (state: AuthState, payload: boolean): AuthState => ({ ...state, isVerifiedToken: payload }),
+    setIsVerifiedToken: (state: AuthState, isVerifiedToken: boolean): AuthState => ({ ...state, isVerifiedToken }),
     setIsRequesting: (state: AuthState, isRequesting: boolean): AuthState => ({ ...state, isRequesting }),
     updateToken: (state: AuthState, token: string): AuthState => ({ ...state, token }),
   },

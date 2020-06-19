@@ -55,7 +55,7 @@ export class AuthenticationForm extends React.Component<Props, AuthenticationSta
     const formContent = this.props.isRequesting ?
 
       <div className={classes.ContainerSpinner}>
-        <Spinner color="primary" type="grow"/> 
+        <Spinner color="primary" type="grow" /> 
       </div> :
       <Col>
         {arrayOfFormProps.map((props, index) => (
