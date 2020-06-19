@@ -30,6 +30,7 @@ export class CustomNavbar extends React.Component<Props, State> {
 
   render() {
     const toggleClassName = this.state.isMenuOpened ? 'active' : '';
+    
     return (
       <div className="component-nav">
         <div className="info-user">

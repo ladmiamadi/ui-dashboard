@@ -8,7 +8,7 @@ export interface UserAuthenticationDto {
 }
 
 interface AuthState {
-  isRequesting: boolean
+  isRequesting: boolean,
   isVerifiedToken: boolean,
   token: string | null,
 }
