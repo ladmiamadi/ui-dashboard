@@ -2,14 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { RootState, RootDispatch } from '../../state/store';
-import './styles/CustomNavbar.css';
 import logoHDM from '../../assets/LogoHDM.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { Module, User } from '../../index.d';
+import { Module } from '../../index.d';
+import './styles/CustomNavbar.css';
 
 interface Props {
-  user: User,
   modules: Module[],
   logout: () => Promise<void>,
 }
@@ -35,7 +34,6 @@ export class CustomNavbar extends React.Component<Props, State> {
       <div className="component-nav">
         <div className="info-user">
           <div className="container">
-            <div className="user-box">{ this.props.user.username }</div>
           </div>
         </div>
         <div className="nav nav-bar">
@@ -69,7 +67,6 @@ export class CustomNavbar extends React.Component<Props, State> {
 }
 
 const mapState = (state: RootState) => ({
-  user: state.user.user,
   modules: state.modules.list,
 });
 
