@@ -27,6 +27,7 @@ export class TalentModal extends React.Component <Props, State> {
       return <Redirect
         to={{ pathname: this.state.redirect }} />;
     }
+
     return(
       <Router>
         <>

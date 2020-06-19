@@ -11,7 +11,7 @@ export class UserProfileHelpers extends React.Component {
   }
 
   public static isUserHaveWorkingOnValidationProfile(user: User) {
-    return !!user.userProfiles?.filter((profile) =>
+    return user.userProfiles?.filter((profile) =>
       profile.environment === 'working' && profile.status === 'ON_VALIDATION').length;
   }
 }

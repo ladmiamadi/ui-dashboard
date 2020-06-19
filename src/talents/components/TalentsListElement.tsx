@@ -13,7 +13,7 @@ interface Props {
   profile: UserProfile,
   talent: User,
   toggleModal: () => void,
-  updateUser: (user: User) => void,
+  updateUserSelected: (userSelected: User) => void,
 }
 
 interface State {
@@ -32,12 +32,13 @@ export class TalentsListElement extends React.Component <Props, State> {
   }
 
   toggleModal = () => {
-    this.props.updateUser(this.props.talent);
+    this.props.updateUserSelected(this.props.talent);
 
     if (UserProfileHelpers.isUserHaveWorkingOnValidationProfile(this.props.talent)) {
       this.setState({
         isModalShown: !this.state.isModalShown,
       });
+
       this.props.toggleModal();
     } else
     // we need to redirect to the talentForm when we will merge with the form
@@ -72,11 +73,11 @@ export class TalentsListElement extends React.Component <Props, State> {
 }
 
 const mapState = (state: RootState) => ({
-  user: state.users.user,
+  userSelected: state.users.userSelected,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({
-  updateUser: dispatch.users.updateUser,
+  updateUserSelected: dispatch.users.updateUserSelected,
 });
 
 export default connect(mapState, mapDispatch)(TalentsListElement);

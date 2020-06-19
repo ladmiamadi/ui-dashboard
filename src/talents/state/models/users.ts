@@ -6,21 +6,21 @@ import { createEmptyUser } from '../../../app/helpers/user';
 
 interface State {
   users: User[],
-  user: User,
+  userSelected: User,
   isFetching: boolean,
 }
 
 export const users = createModel({
   state: {
     users: [],
-    user: createEmptyUser(),
+    userSelected: createEmptyUser(),
     isFetching: false,
   } as State,
 
   reducers: {
     updateList: (state: State, users: User[]): State => ({ ...state, users: users }),
     setIsFetching: (state: State, isFetching: boolean): State => ({ ...state, isFetching }),
-    updateUser: (state: State, user: User): State => ({ ...state, user: user }),
+    updateUserSelected: (state: State, user: User): State => ({ ...state, userSelected: user }),
   },
 
   effects: {
