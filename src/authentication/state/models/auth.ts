@@ -62,6 +62,7 @@ export const auth = createModel({
         } else {
           new Toastify().error(`Failed to login. ${error.message}`);
         }
+        
       } finally {
         this.setIsRequesting(false);
       }
