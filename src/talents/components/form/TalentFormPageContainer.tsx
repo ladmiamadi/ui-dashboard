@@ -20,8 +20,8 @@ interface Props {
 }
 
 export class TalentFormPageContainer extends React.Component<Props> {
-  async componentDidMount() {
-    await this.props.fetchUserById(2);
+  componentDidMount() {
+    this.props.fetchUserById(1);
   }
 
   render() {

@@ -27,7 +27,7 @@ export class TalentFormHead extends React.Component<Props, State> {
     };
   }
 
-  handleChange( value: string, index: number, category: string, property: string) {
+  handleChange(value: string, index: number, category: string, property: string) {
     const payload = {
       index: index,
       category: category,

@@ -4,6 +4,8 @@ import { User } from '../../../app';
 import { DateFormField } from '../../../app/components/utils/DateFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { RootDispatch, RootState } from '../../../app/state/store';
+import DateSlicer from '../../helpers/DateSlicer';
+import { FormatDate } from '../../index.d';
 import { UpdateUserPayload } from '../../state/models/user';
 
 interface Props {
@@ -56,12 +58,16 @@ export class TalentFormFormation extends React.Component<Props, State> {
                 keyName="formation-start"
                 label="Début formation: "
                 className="medium"
-                value={elem.startDate} />
+                day={DateSlicer.formatDate(elem.startDate.toString(), FormatDate.DAY)}
+                month={DateSlicer.formatDate(elem.startDate.toString(), FormatDate.MONTH)}
+                year={DateSlicer.formatDate(elem.startDate.toString(), FormatDate.YEAR)} />
               <DateFormField
                 keyName="formation-end"
                 label="Fin: "
                 className="medium"
-                value={elem.endDate} />
+                day={DateSlicer.formatDate(elem.endDate.toString(), FormatDate.DAY)}
+                month={DateSlicer.formatDate(elem.endDate.toString(), FormatDate.MONTH)}
+                year={DateSlicer.formatDate(elem.endDate.toString(), FormatDate.YEAR)} />
               <FieldForm
                 keyName="formation-diploma"
                 label="Diplôme obtenu: "

@@ -4,6 +4,8 @@ import { User } from '../../../app';
 import { DateFormField } from '../../../app/components/utils/DateFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { RootDispatch, RootState } from '../../../app/state/store';
+import DateSlicer from '../../helpers/DateSlicer';
+import { FormatDate } from '../../index.d';
 import { UpdateUserPayload } from '../../state/models/user';
 
 interface Props {
@@ -24,7 +26,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
     };
   }
 
-  handleChange(category: string, property : string, value: string) {
+  handleChange(category: string, property: string, value: string) {
     const payload = {
       index: 0,
       category: category,
@@ -52,17 +54,23 @@ export class TalentFormExperience extends React.Component<Props, State> {
                 type="text"
                 handleChange={(value: string) =>
                   this.handleChange('userExperiences', 'company', value)}
-                value={elem.company} />
+                value={elem.company}
+              />
               <DateFormField
                 keyName="experience-start"
                 label="Début activité: "
                 className="medium"
-                value={elem.startDate} />
+                day={DateSlicer.formatDate(elem.startDate.toString(), FormatDate.DAY)}
+                month={DateSlicer.formatDate(elem.startDate.toString(), FormatDate.MONTH)}
+                year={DateSlicer.formatDate(elem.startDate.toString(), FormatDate.YEAR)}
+              />
               <DateFormField
                 keyName="experience-end"
                 label="Fin: "
                 className="medium"
-                value={elem.endDate} />
+                day={DateSlicer.formatDate(elem.endDate.toString(), FormatDate.DAY)}
+                month={DateSlicer.formatDate(elem.endDate.toString(), FormatDate.MONTH)}
+                year={DateSlicer.formatDate(elem.endDate.toString(), FormatDate.YEAR)} />
               <FieldForm
                 keyName="experience-position"
                 label="Poste: "

@@ -18,6 +18,7 @@ export const modules = createModel({
     async fetchModules() {
       try {
         const { data } = await apiService.get('/api/modules');
+
         this.updateModulesList(data);
 
       } catch (error) {

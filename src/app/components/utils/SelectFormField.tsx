@@ -12,8 +12,8 @@ interface Props {
 }
 
 export class SelectFormField extends React.Component<Props> {
-  updateModelOnChange = (value: string , property: string) =>{
-    if (this.props.updateModel){
+  updateModelOnChange = (value: string , property: string) => {
+    if (this.props.updateModel) {
       this.props.updateModel(value, property);
     }
   }

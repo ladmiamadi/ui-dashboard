@@ -6,7 +6,9 @@ import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormField';
 import { RootDispatch, RootState } from '../../../app/state/store';
+import DateSlicer from '../../helpers/DateSlicer';
 import { TalentUserProfilesFilter } from '../../helpers/talentFilter';
+import { FormatDate } from '../../index.d';
 import { UpdateUserPayload } from '../../state/models/user';
 
 interface Props {
@@ -29,7 +31,7 @@ export class TalentFormInternship extends React.Component<Props, State> {
     };
   }
 
-  handleChange( category: string, property : string, value: string) {
+  handleChange(category: string, property : string, value: string) {
     const payload = {
       index: -1,
       category: category,
@@ -54,11 +56,15 @@ export class TalentFormInternship extends React.Component<Props, State> {
               <DateFormField
                 keyName="internship-start"
                 label="Début: "
-                value={elem.startDate} />
+                day={DateSlicer.formatDate(elem.startDate.toString(), FormatDate.DAY)}
+                month={DateSlicer.formatDate(elem.startDate.toString(), FormatDate.MONTH)}
+                year={DateSlicer.formatDate(elem.startDate.toString(), FormatDate.YEAR)} />
               <DateFormField
                 keyName="internship-end"
                 label="Fin: "
-                value={elem.endDate} />
+                day={DateSlicer.formatDate(elem.endDate.toString(), FormatDate.DAY)}
+                month={DateSlicer.formatDate(elem.endDate.toString(), FormatDate.MONTH)}
+                year={DateSlicer.formatDate(elem.endDate.toString(), FormatDate.YEAR)} />
               <CheckboxFormField
                 keyName="internship-days"
                 label="Jour(s) d'activité: "
