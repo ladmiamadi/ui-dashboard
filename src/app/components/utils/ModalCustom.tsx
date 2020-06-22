@@ -4,12 +4,12 @@ import {
   ModalBody,
   ModalHeader,
 } from 'reactstrap';
-import '../styles/modal-custom.css';
 
 interface Props {
   isModalShown: boolean,
   toggleModal: () => void,
-  titleModal: string
+  titleModal: string,
+  className?: string,
 }
 
 export class ModalCustom extends React.Component<Props> {
@@ -17,8 +17,8 @@ export class ModalCustom extends React.Component<Props> {
     return (
       <div>
         <Modal isOpen={this.props.isModalShown} toggle={this.props.toggleModal} className="modal-action">
-          <ModalHeader toggle={this.props.toggleModal}>
-            <h5 className="header-modal">{ this.props.titleModal }</h5>
+          <ModalHeader className={this.props.className} toggle={this.props.toggleModal}>
+            { this.props.titleModal }
           </ModalHeader>
           <ModalBody className="modal-content">
             { this.props.children }

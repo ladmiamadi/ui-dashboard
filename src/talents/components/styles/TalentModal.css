@@ -1,0 +1,13 @@
+.talent-title .modal-title {
+    font-size: 2.2rem;
+}
+
+.talent-modal-content {
+    font-size: 2rem;
+}
+
+.button-talent-modal {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}

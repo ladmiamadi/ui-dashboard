@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { ModalCustom } from '../../app/components/utils/ModalCustom';
 import { RootDispatch, RootState } from '../../app/state/store';
 import { TalentModal } from './modal/TalentModal';
-import { CustomModal } from '../../app/components/modal/CustomModal';
 import { User, UserProfile } from '../../app';
 import { env } from '../../helpers/environment';
 import { Redirect } from 'react-router-dom';
 import { UserProfileHelpers } from '../../app/helpers/UserProfileHelpers';
-import  './styles/TalentsList.css';
+import './styles/TalentsList.css';
+import './styles/TalentModal.css';
 
 interface Props {
   profile: UserProfile,
@@ -63,12 +64,13 @@ export class TalentsListElement extends React.Component <Props, State> {
         <p className="profile-info">
           {this.props.profile.firstName}
         </p>
-        <CustomModal
+        <ModalCustom
           isModalShown={this.state.isModalShown}
           toggleModal={this.toggleModal}
-          modalTitle={this.props.profile.firstName + ' ' + this.props.profile.lastName}>
+          titleModal={this.props.profile.firstName + ' ' + this.props.profile.lastName}
+          className="talent-title">
           <TalentModal talent={this.props.talent}/>
-        </CustomModal>
+        </ModalCustom>
       </div>
     );
   }

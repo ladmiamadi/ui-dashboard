@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import { BrowserRouter as Router, Redirect } from 'react-router-dom';
 import { User } from '../../../app';
-import '../styles/TalentsList.css';
+import '../styles/TalentModal.css';
 
 interface Props {
   talent: User,
