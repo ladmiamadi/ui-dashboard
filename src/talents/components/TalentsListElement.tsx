@@ -56,11 +56,13 @@ export class TalentsListElement extends React.Component <Props, State> {
           className="profile-picture"
           alt={this.props.profile.firstName}
           src={`${env('MEDIA_URL')}/${this.props.profile.picture.filePath}`}
-        /> 
-        <br />
-        {this.props.profile.firstName}
-        <br />
-        {this.props.profile.firstName}
+        />
+        <p className="profile-info">
+          {this.props.profile.firstName}
+        </p>
+        <p className="profile-info">
+          {this.props.profile.firstName}
+        </p>
         <CustomModal
           isModalShown={this.state.isModalShown}
           toggleModal={this.toggleModal}

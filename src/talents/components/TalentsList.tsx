@@ -28,11 +28,11 @@ export class TalentsList extends React.Component<Props, State> {
 
   render() {
     return (
-      <Container className={this.state.isModalOpen ? 'hide-card' : 'mt-5'}>
-        <Row>
+      <Container className={this.state.isModalOpen ? 'hide-card' : 'talent-card'}>
+        <Row className="talent-row">
           {
             this.props.users.map((talent, index) => (
-              <Col key={index} className="element" xs={2}>
+              <Col key={index} className="element" xs={5} sm={3} xl={2}>
                 {
                   UserProfileHelpers.findUserProfileLive(talent)?.map((profile) =>
                     <TalentsListElement

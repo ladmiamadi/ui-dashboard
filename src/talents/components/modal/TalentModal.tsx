@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import { BrowserRouter as Router, Redirect } from 'react-router-dom';
 import { User } from '../../../app';
+import '../styles/TalentsList.css';
 
 interface Props {
   talent: User,
@@ -31,10 +32,12 @@ export class TalentModal extends React.Component <Props, State> {
     return(
       <Router>
         <>
-          Une demande de modification est en cours pour ce talent,
-           veuillez faire le néccessaire avant de consulter la fiche.
-          <br></br>
-          <Button onClick={this.redirect}>Ok</Button>
+          <div className="talent-modal-content">
+            Une demande de modification est en cours pour ce talent,
+            veuillez faire le néccessaire avant de consulter la fiche.
+          </div>
+          <br/>
+          <Button className="button-talent-modal" onClick={this.redirect}>Ok</Button>
         </>
       </Router>
     );

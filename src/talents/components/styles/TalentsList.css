@@ -10,7 +10,7 @@
   font-size: 2rem;
 }
 
-#talents-list .col-2.element {
+#talents-list .element {
   text-align: center;
   font-size: 1.5rem;
   background: #f1f1f1;
@@ -21,7 +21,7 @@
   cursor: pointer;
 }
 
-#talents-list .col-2.element:hover {
+#talents-list .element:hover {
   box-shadow: 0 0 10px -4px rgba(0,0,0,0.75);
 }
 
@@ -37,4 +37,22 @@
 
 .hide-card {
   display: none;
+}
+
+.id-card {
+  word-wrap: break-word;
+}
+
+.talent-card {
+  margin-top: 2rem;
+}
+
+.talent-modal-content {
+  font-size: 2rem;
+}
+
+.button-talent-modal {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
