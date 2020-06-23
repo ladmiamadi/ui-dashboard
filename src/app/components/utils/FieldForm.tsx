@@ -13,7 +13,7 @@ interface Props {
 }
 
 interface State {
-  value?: string,
+  value?: any,
 }
 
 export class FieldForm extends React.Component<Props, State> {

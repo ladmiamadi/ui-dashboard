@@ -1,7 +1,7 @@
 import { User } from '../../app';
 
 export class UserFactory {
-  public createDTOUser(user : User) {
+  public createDTOUser = (user: User) => {
     return {
       id: user.id,
       username: user.username,
@@ -22,7 +22,7 @@ export class UserFactory {
     };
   }
 
-  static createEmptyUser() {
+  static createEmptyUser = () => {
     const dtoUser : User = {
       id: 0,
       username: '',
@@ -45,7 +45,7 @@ export class UserFactory {
     return dtoUser;
   }
 
-  public createEmptyUserAddress() {
+  public createEmptyUserAddress = () => {
     return {
       id: 0,
       street: '',
@@ -58,14 +58,14 @@ export class UserFactory {
     };
   }
 
-  public createEmptyUserRole(dtoUser : User) {
+  public createEmptyUserRole = (dtoUser: User) => {
     return {
       user: dtoUser,
       role: this.createEmptyRole(),
     };
   }
 
-  public createEmptyRole() {
+  public createEmptyRole = () => {
     return {
       id: 0,
       name: '',
@@ -73,7 +73,7 @@ export class UserFactory {
     };
   }
 
-  public createEmptyUserJob() {
+  public createEmptyUserJob = () => {
     return{
       job: this.createEmptyJob,
       startDate: new Date(),
@@ -90,7 +90,7 @@ export class UserFactory {
     };
   }
 
-  public createEmptyJob() {
+  public createEmptyJob = () => {
     return {
       id: 0,
       titleInFrench: '',
@@ -112,7 +112,7 @@ export class UserFactory {
     };
   }
 
-  public createEmptyMediaObject() {
+  public createEmptyMediaObject = () => {
     return {
       filePath: '',
     };
