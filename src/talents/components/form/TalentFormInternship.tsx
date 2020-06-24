@@ -43,43 +43,47 @@ export class TalentFormInternship extends React.Component<Props, State> {
   }
 
   render() {
+    let startDate = new Date();
+    let endDate = new Date();
+
+    if (this.props.user.userJob) {
+      startDate = this.props.user.userJob.startDate;
+      endDate = this.props.user.userJob.endDate;
+    }
+
     return (
       <div className="form-section">
-        {
-          this.state.user.userExperiences.map((elem, index) => (
-            <div className="form-elements" key={index}>
-              <SelectFormField
-                keyName="internship-status"
-                label="Statut du stage: "
-                options={['aaa', 'bbb']}
-                className="large" />
-              <DateFormField
-                keyName="internship-start"
-                label="Début: "
-                day={DateSlicer.formatDate(elem.startDate.toString(), FormatDate.DAY)}
-                month={DateSlicer.formatDate(elem.startDate.toString(), FormatDate.MONTH)}
-                year={DateSlicer.formatDate(elem.startDate.toString(), FormatDate.YEAR)} />
-              <DateFormField
-                keyName="internship-end"
-                label="Fin: "
-                day={DateSlicer.formatDate(elem.endDate.toString(), FormatDate.DAY)}
-                month={DateSlicer.formatDate(elem.endDate.toString(), FormatDate.MONTH)}
-                year={DateSlicer.formatDate(elem.endDate.toString(), FormatDate.YEAR)} />
-              <CheckboxFormField
-                keyName="internship-days"
-                label="Jour(s) d'activité: "
-                className="large days"
-                checkboxes={['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche']} />
-              <FieldForm
-                keyName="internship-hours"
-                label="Horaire: "
-                className="large"
-                type="text"
-                handleChange={(value) => this.handleChange('userJob', 'workingHours', value)}
-                value={this.state.user.userJob?.workingHours} />
-            </div>
-          ))
-        }
+        <div className="form-elements">
+          <SelectFormField
+            keyName="internship-status"
+            label="Statut du stage: "
+            options={['aaa', 'bbb']}
+            className="large" />
+          <DateFormField
+            keyName="internship-start"
+            label="Début: "
+            day={DateSlicer.formatDate(startDate.toString(), FormatDate.DAY)}
+            month={DateSlicer.formatDate(startDate.toString(), FormatDate.MONTH)}
+            year={DateSlicer.formatDate(startDate.toString(), FormatDate.YEAR)} />
+          <DateFormField
+            keyName="internship-end"
+            label="Fin: "
+            day={DateSlicer.formatDate(endDate.toString(), FormatDate.DAY)}
+            month={DateSlicer.formatDate(endDate.toString(), FormatDate.MONTH)}
+            year={DateSlicer.formatDate(endDate.toString(), FormatDate.YEAR)} />
+          <CheckboxFormField
+            keyName="internship-days"
+            label="Jour(s) d'activité: "
+            className="large days"
+            checkboxes={['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche']} />
+          <FieldForm
+            keyName="internship-hours"
+            label="Horaire: "
+            className="large"
+            type="text"
+            handleChange={(value) => this.handleChange('userJob', 'workingHours', value)}
+            value={this.state.user.userJob?.workingHours} />
+        </div>
       </div>
     );
   }

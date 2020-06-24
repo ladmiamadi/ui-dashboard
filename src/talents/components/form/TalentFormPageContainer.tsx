@@ -21,7 +21,7 @@ interface Props {
 
 export class TalentFormPageContainer extends React.Component<Props> {
   componentDidMount() {
-    this.props.fetchUserById(1);
+    this.props.fetchUserById(6);
   }
 
   render() {
