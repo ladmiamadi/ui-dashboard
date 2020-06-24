@@ -48,7 +48,8 @@ export const user = createModel ({
         this.setIsFetching(true);
 
         const { data } = await apiService.get(`/api/users/${id}`);
-
+        console.log(data);
+        
         this.updateUser(data);
 
       } catch (error) {

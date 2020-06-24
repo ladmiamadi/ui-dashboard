@@ -26,7 +26,6 @@ export interface User {
 
 export interface UserAddress {
   id: number,
-  user: User,
   street: string,
   number: string,
   box: string
@@ -38,7 +37,6 @@ export interface UserAddress {
 
 export interface UserProfile {
   id: number,
-  user: User,
   lastName: string,
   firstName: string,
   phone: string,
@@ -68,20 +66,17 @@ export interface UserProfile {
 
 export interface UserAbsence {
   id: number,
-  user: User,
   isAuthorized: boolean,
   isSick: boolean,
 }
 
 export interface UserInterview {
   id: number,
-  user: User,
   date: Date,
 }
 
 export interface UserContract {
   id: number,
-  user: User,
   status: string,
   type: string,
   createdDate: Date,
@@ -90,14 +85,12 @@ export interface UserContract {
 
 export interface UserLanguage {
   id: number,
-  user: User,
   language: string,
   level: string,
 }
 
 export interface UserExperience {
   id: number,
-  user: User,
   company: string,
   startDate: Date,
   endDate: Date,
@@ -107,7 +100,6 @@ export interface UserExperience {
 
 export interface UserTraining {
   id: number,
-  user: User,
   institution: string,
   startDate: Date,
   endDate: Date,
@@ -115,18 +107,15 @@ export interface UserTraining {
 }
 
 export interface UserRole {
-  user: User,
   role: Role,
 }
 
 export interface UserSkill {
-  user: User,
   skill: Skill,
   rating: number,
 }
 
 export interface UserJob {
-  user: User,
   job: Job,
   startDate: Date,
   endDate: Date,
@@ -144,13 +133,11 @@ export interface UserJob {
 export interface Role {
   id: number,
   name: string,
-  userRoles: UserRole[],
 }
 
 export interface Skill {
   id: number,
   name: string,
-  userSkills: UserSkill[],
 }
 
 export interface Job {
@@ -170,5 +157,4 @@ export interface Job {
   isOpen: boolean,
   createdDate: Date,
   updatedDate: Date,
-  userJobs: UserJob[],
 }
