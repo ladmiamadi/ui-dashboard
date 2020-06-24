@@ -45,7 +45,7 @@ export class TalentFormFormation extends React.Component<Props, State> {
           <button className="form-add-button">Ajouter une formation</button>
         </div>
         {
-          this.state.user.userTrainings.map((elem, index) => (
+          this.state.user.userTrainings?.map((elem, index) => (
             <div className="form-elements" key={index}>
               <FieldForm
                 keyName="formation-school"

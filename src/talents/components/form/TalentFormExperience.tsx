@@ -45,7 +45,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
           <button className="form-add-button">Ajouter une expérience</button>
         </div>
         {
-          this.state.user.userExperiences.map((elem, index) => (
+          this.state.user.userExperiences?.map((elem, index) => (
             <div className="form-elements" key={index}>
               <FieldForm
                 keyName="experience-company"

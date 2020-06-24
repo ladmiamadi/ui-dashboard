@@ -13,7 +13,7 @@ interface Props {
 
 interface State {
   user: User,
-  userProfile: UserProfile,
+  userProfile?: UserProfile,
 }
 
 export class TalentFormJob extends React.Component<Props, State> {
@@ -46,14 +46,14 @@ export class TalentFormJob extends React.Component<Props, State> {
           className="large"
           type="text"
           handleChange={(value) => this.handleChange('userProfiles','desiredJob', value)}
-          value={this.state.userProfile.desiredJob} />
+          value={this.state.userProfile?.desiredJob} />
         <FieldForm
           keyName="job-mobility"
           label="Mobilité: "
           className="large"
           type="text"
           handleChange={(value) => this.handleChange('userProfiles','mobility', value)}
-          value={this.state.userProfile.mobility} />
+          value={this.state.userProfile?.mobility} />
         <FieldForm
           keyName="job-description"
           label="Description: "
@@ -61,21 +61,21 @@ export class TalentFormJob extends React.Component<Props, State> {
           rows={5}
           type="textarea"
           handleChange={(value) => this.handleChange('userProfiles','descriptionInFrench', value)}
-          value={this.state.userProfile.descriptionInFrench} />
+          value={this.state.userProfile?.descriptionInFrench} />
         <FieldForm
           keyName="job-actual-pay"
           label="Salaire actuel: "
           className="medium"
           type="text"
           handleChange={(value) => this.handleChange('userProfiles', 'actualSalary', value)}
-          value={this.state.userProfile.actualSalary} />
+          value={this.state.userProfile?.actualSalary} />
         <FieldForm
           keyName="job-desired-pay"
           label="Salaire souhaité: "
           className="medium"
           type="text"
           handleChange={(value) => this.handleChange('userProfiles', 'expectedSalary', value)}
-          value={this.state.userProfile.expectedSalary} />
+          value={this.state.userProfile?.expectedSalary} />
       </div>
     );
   }

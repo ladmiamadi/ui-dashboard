@@ -13,7 +13,7 @@ interface Props {
 
 interface State {
   user: User,
-  userProfile: UserProfile,
+  userProfile?: UserProfile,
 }
 
 export class TalentFormInstitution extends React.Component<Props, State> {
@@ -46,28 +46,28 @@ export class TalentFormInstitution extends React.Component<Props, State> {
           className="large"
           type="text"
           handleChange={(value) => this.handleChange('userProfiles', 'institution', value)}
-          value={this.state.userProfile.institution} />
+          value={this.state.userProfile?.institution} />
         <FieldForm
           keyName="institution-phone"
           label="Téléphone École: "
           className="medium"
           type="text"
           handleChange={(value) => this.handleChange('userProfiles', 'phoneInstitution', value)}
-          value={this.state.userProfile.phoneInstitution} />
+          value={this.state.userProfile?.phoneInstitution} />
         <FieldForm
           keyName="institution-email"
           label="Mail École: "
           className="medium"
           type="text"
           handleChange={(value) => this.handleChange('userProfiles', 'mailInstitution', value)}
-          value={this.state.userProfile.mailInstitution} />
+          value={this.state.userProfile?.mailInstitution} />
         <FieldForm
           keyName="institution-contact"
           label="Personne de contact: "
           className="large"
           type="text"
           handleChange={(value) => this.handleChange('userProfiles', 'personContactInstitution', value)}
-          value={this.state.userProfile.personContactInstitution} />
+          value={this.state.userProfile?.personContactInstitution} />
       </div>
     );
   }

@@ -14,7 +14,7 @@ interface Props {
 
 interface State {
   user: User,
-  userProfile: UserProfile,
+  userProfile?: UserProfile,
 }
 
 export class TalentFormHead extends React.Component<Props, State> {
@@ -49,13 +49,13 @@ export class TalentFormHead extends React.Component<Props, State> {
             label="Nom: "
             type="text"
             handleChange={(value) => this.handleChange(value, 0, 'userProfiles', 'lastName')}
-            value={this.state.userProfile.lastName} />
+            value={this.state.userProfile?.lastName} />
           <FieldForm
             keyName="firstname"
             label="Prénom: "
             type="text"
             handleChange={(value) => this.handleChange(value, 0, 'userProfiles', 'firstName')}
-            value={this.state.userProfile.firstName} />
+            value={this.state.userProfile?.firstName} />
           <SelectFormField
             keyName="function"
             label="Fonction: "
@@ -71,7 +71,7 @@ export class TalentFormHead extends React.Component<Props, State> {
             label="Téléphone: "
             type="text"
             handleChange={(value) => this.handleChange(value, 0, 'userProfiles', 'phone')}
-            value={this.state.userProfile.phone} />
+            value={this.state.userProfile?.phone} />
           <FieldForm
             keyName="place"
             label="Localisation: "

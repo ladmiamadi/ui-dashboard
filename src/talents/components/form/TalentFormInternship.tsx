@@ -18,7 +18,7 @@ interface Props {
 
 interface State {
   user: User,
-  userProfile: UserProfile,
+  userProfile?: UserProfile,
 }
 
 export class TalentFormInternship extends React.Component<Props, State> {

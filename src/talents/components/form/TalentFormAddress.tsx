@@ -14,7 +14,7 @@ interface Props {
 
 interface State {
   user: User,
-  userProfile: UserProfile,
+  userProfile?: UserProfile,
 }
 
 export class TalentFormAddress extends React.Component<Props, State> {
@@ -82,7 +82,7 @@ export class TalentFormAddress extends React.Component<Props, State> {
           label="Date de naissance: "
           type="text"
           handleChange={(value: string) => this.handleChange('userAddress', 'birthDate', value)}
-          value={this.state.userProfile.birthDate} />
+          value={this.state.userProfile?.birthDate} />
         <SelectFormField
           keyName="search"
           label="Actuellement en recherche: "
