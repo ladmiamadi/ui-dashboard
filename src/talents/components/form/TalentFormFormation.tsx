@@ -13,15 +13,8 @@ interface Props {
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-interface Payload {
-  index: number,
-  category: string,
-  property: string,
-  value: string,
-}
-
 export class TalentFormFormation extends React.Component<Props> {
-  handleChange(payload: Payload) {
+  handleChange(payload: UpdateUserPayload) {
     this.props.modifyUser(payload);
   }
 
@@ -40,7 +33,7 @@ export class TalentFormFormation extends React.Component<Props> {
                 label="École: "
                 className="large"
                 type="text"
-                handleChange={(value) => this.handleChange({
+                handleChange={(value) => this.props.modifyUser({
                   category: 'userTrainings',
                   property: 'institution',
                   value: value,
@@ -66,7 +59,7 @@ export class TalentFormFormation extends React.Component<Props> {
                 label="Diplôme obtenu: "
                 className="large"
                 type="text"
-                handleChange={(value) => this.handleChange({
+                handleChange={(value) => this.props.modifyUser({
                   category: 'userTrainings',
                   property: 'degreeObtained',
                   value: value,

@@ -11,15 +11,8 @@ interface Props {
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-interface Payload {
-  index: number,
-  category: string,
-  property: string,
-  value: string,
-}
-
 export class TalentFormJob extends React.Component<Props> {
-  handleChange(payload: Payload) {
+  handleChange(payload: UpdateUserPayload) {
     this.props.modifyUser(payload);
   }
 
@@ -37,7 +30,7 @@ export class TalentFormJob extends React.Component<Props> {
           label="Métier souhaité: "
           className="large"
           type="text"
-          handleChange={(value) => this.handleChange({
+          handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'desiredJob',
             value: value,
@@ -49,7 +42,7 @@ export class TalentFormJob extends React.Component<Props> {
           label="Mobilité: "
           className="large"
           type="text"
-          handleChange={(value) => this.handleChange({
+          handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'mobility',
             value: value,
@@ -62,7 +55,7 @@ export class TalentFormJob extends React.Component<Props> {
           className="large"
           rows={5}
           type="textarea"
-          handleChange={(value) => this.handleChange({
+          handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'descriptionInFrench',
             value: value,
@@ -74,7 +67,7 @@ export class TalentFormJob extends React.Component<Props> {
           label="Salaire actuel: "
           className="medium"
           type="text"
-          handleChange={(value) => this.handleChange({
+          handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'actualSalary',
             value: value,
@@ -86,7 +79,7 @@ export class TalentFormJob extends React.Component<Props> {
           label="Salaire souhaité: "
           className="medium"
           type="text"
-          handleChange={(value) => this.handleChange({
+          handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'expectedSalary',
             value: value,

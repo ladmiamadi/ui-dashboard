@@ -13,15 +13,8 @@ interface Props {
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-interface Payload {
-  index: number,
-  category: string,
-  property: string,
-  value: string,
-}
-
 export class TalentFormExperience extends React.Component<Props> {
-  handleChange(payload: Payload) {
+  handleChange(payload: UpdateUserPayload) {
     this.props.modifyUser(payload);
   }
 
@@ -69,7 +62,7 @@ export class TalentFormExperience extends React.Component<Props> {
                 label="Poste: "
                 className="large"
                 type="text"
-                handleChange={(value: string) => this.handleChange({
+                handleChange={(value: string) => this.props.modifyUser({
                   category: 'userExperiences',
                   property: 'position',
                   value: value,
@@ -82,7 +75,7 @@ export class TalentFormExperience extends React.Component<Props> {
                 className="large"
                 rows={5}
                 type="textarea"
-                handleChange={(value: string) => this.handleChange({
+                handleChange={(value: string) => this.props.modifyUser({
                   category: 'userExperiences',
                   property: 'task',
                   value: value,

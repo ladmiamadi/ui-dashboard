@@ -12,15 +12,8 @@ interface Props {
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-interface Payload {
-  index: number,
-  category: string,
-  property: string,
-  value: string,
-}
-
 export class TalentFormAddress extends React.Component<Props> {
-  handleChange(payload: Payload) {
+  handleChange(payload: UpdateUserPayload) {
     this.props.modifyUser(payload);
   }
 
@@ -38,7 +31,7 @@ export class TalentFormAddress extends React.Component<Props> {
           label="Rue: "
           className="medium"
           type="text"
-          handleChange={(value: string) => this.handleChange({
+          handleChange={(value: string) => this.props.modifyUser({
             category: 'userAddress', 
             property: 'street', 
             value: value,
@@ -49,7 +42,7 @@ export class TalentFormAddress extends React.Component<Props> {
           keyName="number"
           label="Num: "
           type="text"
-          handleChange={(value: string) => this.handleChange({
+          handleChange={(value: string) => this.props.modifyUser({
             category: 'userAddress', 
             property: 'number', 
             value: value,
@@ -60,7 +53,7 @@ export class TalentFormAddress extends React.Component<Props> {
           keyName="postal-box"
           label="BP: "
           type="text"
-          handleChange={(value: string) => this.handleChange({
+          handleChange={(value: string) => this.props.modifyUser({
             category: 'userAddress',
             property: 'box',
             value: value,
@@ -71,7 +64,7 @@ export class TalentFormAddress extends React.Component<Props> {
           keyName="postal-code"
           label="Code Postal: "
           type="text"
-          handleChange={(value: string) => this.handleChange({
+          handleChange={(value: string) => this.props.modifyUser({
             category: 'userAddress', 
             property: 'zip-code',
             value: value,
@@ -83,7 +76,7 @@ export class TalentFormAddress extends React.Component<Props> {
           label="Ville: "
           className="medium"
           type="text"
-          handleChange={(value: string) => this.handleChange({
+          handleChange={(value: string) => this.props.modifyUser({
             category: 'userAddress',
             property: 'city',
             value: value,
@@ -98,7 +91,7 @@ export class TalentFormAddress extends React.Component<Props> {
           keyName="DOB"
           label="Date de naissance: "
           type="text"
-          handleChange={(value: string) => this.handleChange({
+          handleChange={(value: string) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'birthDate',
             value: value,

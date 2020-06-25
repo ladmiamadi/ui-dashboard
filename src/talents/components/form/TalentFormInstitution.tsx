@@ -11,15 +11,8 @@ interface Props {
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-interface Payload {
-  index: number,
-  category: string,
-  property: string,
-  value: string,
-}
-
 export class TalentFormInstitution extends React.Component<Props> {
-  handleChange(payload: Payload) {
+  handleChange(payload: UpdateUserPayload) {
     this.props.modifyUser(payload);
   }
 
@@ -29,7 +22,7 @@ export class TalentFormInstitution extends React.Component<Props> {
       this.props.user.userProfiles, 
       'working',
     );
-    
+
     return (
       <div className="form-section">
         <FieldForm
@@ -37,7 +30,7 @@ export class TalentFormInstitution extends React.Component<Props> {
           label="École: "
           className="large"
           type="text"
-          handleChange={(value) => this.handleChange({
+          handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'institution',
             value: value,
@@ -49,7 +42,7 @@ export class TalentFormInstitution extends React.Component<Props> {
           label="Téléphone École: "
           className="medium"
           type="text"
-          handleChange={(value) => this.handleChange({
+          handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'phoneInstitution',
             value: value,
@@ -61,7 +54,7 @@ export class TalentFormInstitution extends React.Component<Props> {
           label="Mail École: "
           className="medium"
           type="text"
-          handleChange={(value) => this.handleChange({
+          handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'mailInstitution',
             value: value,
@@ -73,7 +66,7 @@ export class TalentFormInstitution extends React.Component<Props> {
           label="Personne de contact: "
           className="large"
           type="text"
-          handleChange={(value) => this.handleChange({
+          handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'personContactInstitution',
             value: value,

@@ -15,15 +15,8 @@ interface Props {
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-interface Payload {
-  index: number,
-  category: string,
-  property: string,
-  value: string,
-}
-
 export class TalentFormInternship extends React.Component<Props> {
-  handleChange(payload: Payload) {
+  handleChange(payload: UpdateUserPayload) {
     this.props.modifyUser(payload);
   }
 
@@ -66,7 +59,7 @@ export class TalentFormInternship extends React.Component<Props> {
             label="Horaire: "
             className="large"
             type="text"
-            handleChange={(value) => this.handleChange({
+            handleChange={(value) => this.props.modifyUser({
               category: 'userJob',
               property: 'workingHours',
               value: value,

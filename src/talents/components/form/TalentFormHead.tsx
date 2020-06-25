@@ -12,15 +12,8 @@ interface Props {
   modifyUser: (payload: UpdateUserPayload) => void,
 }
 
-interface Payload {
-  index: number,
-  category: string,
-  property: string,
-  value: string,
-}
-
 export class TalentFormHead extends React.Component<Props> {
-  handleChange(payload: Payload) {
+  handleChange(payload: UpdateUserPayload) {
     this.props.modifyUser(payload);
   }
 
@@ -39,7 +32,7 @@ export class TalentFormHead extends React.Component<Props> {
             keyName="lastname"
             label="Nom: "
             type="text"
-            handleChange={(value) => this.handleChange({
+            handleChange={(value) => this.props.modifyUser({
               value: value,
               index: indexWorking,
               category: 'userProfiles',
@@ -50,7 +43,7 @@ export class TalentFormHead extends React.Component<Props> {
             keyName="firstname"
             label="Prénom: "
             type="text"
-            handleChange={(value) => this.handleChange({
+            handleChange={(value) => this.props.modifyUser({
               value: value,
               index: indexWorking,
               category: 'userProfiles',
@@ -65,7 +58,7 @@ export class TalentFormHead extends React.Component<Props> {
             keyName="email"
             label="Mail: "
             type="text"
-            handleChange={(value) => this.handleChange({
+            handleChange={(value) => this.props.modifyUser({
               value: value,
               index: -1,
               category: 'username',
@@ -76,7 +69,7 @@ export class TalentFormHead extends React.Component<Props> {
             keyName="phone"
             label="Téléphone: "
             type="text"
-            handleChange={(value) => this.handleChange({
+            handleChange={(value) => this.props.modifyUser({
               value: value,
               index: indexWorking,
               category: 'userProfiles',
@@ -87,7 +80,7 @@ export class TalentFormHead extends React.Component<Props> {
             keyName="place"
             label="Localisation: "
             type="text"
-            handleChange={(value) => this.handleChange({
+            handleChange={(value) => this.props.modifyUser({
               value: value,
               index: indexWorking,
               category: 'userProfiles',

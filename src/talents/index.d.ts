@@ -3,3 +3,10 @@ export enum FormatDate {
   MONTH,
   DAY,
 }
+
+export interface Payload {
+  index: number,
+  category: string,
+  property: string,
+  value: string,
+}
