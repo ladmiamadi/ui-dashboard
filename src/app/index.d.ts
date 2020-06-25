@@ -61,7 +61,11 @@ export interface UserProfile {
   expectedSalary: number,
   status: string,
   environment: string
-  picture_path: string,
+  picture: MediaObject,
+}
+
+export interface MediaObject {
+  filePath: string,
 }
 
 export interface UserAbsence {

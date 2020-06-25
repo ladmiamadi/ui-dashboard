@@ -36,7 +36,7 @@ export const user = createModel ({
       } else {
         user[payload.category] = payload.value;
       }
-      console.log(user);
+  
       return {
         ...state, user,
       };
@@ -48,9 +48,9 @@ export const user = createModel ({
         this.setIsFetching(true);
 
         const { data } = await apiService.get(`/api/users/${id}`);
-        
-        this.updateUser(data);
 
+        this.updateUser(data);
+        
       } catch (error) {
         (new Toastify()).error(`Failed to fetch the user. ${ error.message }`);
 

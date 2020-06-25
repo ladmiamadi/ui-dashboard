@@ -25,16 +25,6 @@ export class UserFactory {
       id: 0,
       username: '',
       password: '',
-      createdDate: new Date(),
-      updatedDate: new Date(),
-      userProfiles: [],
-      userAbsences: [],
-      userInterviews: [],
-      userContracts: [],
-      userLanguages: [],
-      userExperiences: [],
-      userTrainings: [],
-      userSkills: [],
     };
 
     return dtoUser;

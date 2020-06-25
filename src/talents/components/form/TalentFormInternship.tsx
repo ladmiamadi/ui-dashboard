@@ -16,10 +16,6 @@ interface Props {
 }
 
 export class TalentFormInternship extends React.Component<Props> {
-  handleChange(payload: UpdateUserPayload) {
-    this.props.modifyUser(payload);
-  }
-
   render() {
     let startDate = new Date();
     let endDate = new Date();

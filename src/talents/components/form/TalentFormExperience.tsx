@@ -14,10 +14,6 @@ interface Props {
 }
 
 export class TalentFormExperience extends React.Component<Props> {
-  handleChange(payload: UpdateUserPayload) {
-    this.props.modifyUser(payload);
-  }
-
   render() {
     return (
       <div className="form-section">
@@ -33,13 +29,12 @@ export class TalentFormExperience extends React.Component<Props> {
                 label="Entreprise: "
                 className="large"
                 type="text"
-                handleChange={(value: string) =>
-                  this.handleChange({
-                    category: 'userExperiences',
-                    property: 'company',
-                    value: value,
-                    index: index,
-                  })}
+                handleChange={(value: string) => this.props.modifyUser({
+                  category: 'userExperiences',
+                  property: 'company',
+                  value: value,
+                  index: index,
+                })}
                 value={elem.company}
               />
               <DateFormField

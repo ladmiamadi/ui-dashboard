@@ -14,10 +14,6 @@ interface Props {
 }
 
 export class TalentFormFormation extends React.Component<Props> {
-  handleChange(payload: UpdateUserPayload) {
-    this.props.modifyUser(payload);
-  }
-
   render() {
     return (
       <div className="form-section">

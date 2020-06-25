@@ -6,6 +6,7 @@ import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { RootDispatch, RootState } from '../../../app/state/store';
 import { UpdateUserPayload } from '../../state/models/user';
 import ProfileCollection from '../../helpers/ProfileCollection';
+import { env } from '../../../helpers/environment';
 
 interface Props {
   user: User,
@@ -13,20 +14,20 @@ interface Props {
 }
 
 export class TalentFormHead extends React.Component<Props> {
-  handleChange(payload: UpdateUserPayload) {
-    this.props.modifyUser(payload);
-  }
-
   render() {
     const indexWorking: number = ProfileCollection.findWorkingIndex(this.props.user.userProfiles);
     const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
       this.props.user.userProfiles, 'working',
     );
-
+    
     return (
       <div className="form-head">
         <h1 className="talent-title">Gestion des talents: Nom Prénom</h1>
-        <img src="https://place-hold.it/300x300" alt="pic"/>
+        <img
+          className="profile-picture"
+          alt={userProfileWorking?.firstName}
+          src={`${env('MEDIA_URL')}/${userProfileWorking?.picture.filePath}`}
+        />
         <div className="head-block">
           <FieldForm
             keyName="lastname"
@@ -47,7 +48,7 @@ export class TalentFormHead extends React.Component<Props> {
               value: value,
               index: indexWorking,
               category: 'userProfiles',
-              property: 'firstname',
+              property: 'firstName',
             })}            
             value={userProfileWorking?.firstName} />
           <SelectFormField

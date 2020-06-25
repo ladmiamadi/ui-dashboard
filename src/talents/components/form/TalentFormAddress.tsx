@@ -13,10 +13,6 @@ interface Props {
 }
 
 export class TalentFormAddress extends React.Component<Props> {
-  handleChange(payload: UpdateUserPayload) {
-    this.props.modifyUser(payload);
-  }
-
   render() {
     const indexWorking: number = ProfileCollection.findWorkingIndex(this.props.user.userProfiles);
     const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
