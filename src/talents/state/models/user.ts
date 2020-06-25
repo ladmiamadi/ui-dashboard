@@ -25,7 +25,7 @@ export const user = createModel ({
     updateUser: (state: UserState, user: User): UserState => ({ ...state, user }),
     setIsFetching: (state: UserState, isFetching: boolean): UserState => ({ ...state, isFetching }),
     modifyUser: (state: UserState, payload: UpdateUserPayload): UserState => {
-      const user = { ...state.user }  as any;
+      const user = { ...state.user } as any;
 
       if (payload.index !== -1) {
         user[payload.category][payload.index][payload.property] = payload.value;
@@ -36,7 +36,7 @@ export const user = createModel ({
       } else {
         user[payload.category] = payload.value;
       }
-
+      
       return {
         ...state, user,
       };
@@ -48,7 +48,6 @@ export const user = createModel ({
         this.setIsFetching(true);
 
         const { data } = await apiService.get(`/api/users/${id}`);
-        console.log(data);
         
         this.updateUser(data);
 

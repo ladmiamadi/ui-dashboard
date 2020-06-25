@@ -3,41 +3,33 @@ import { connect } from 'react-redux';
 import { User, UserProfile } from '../../../app';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { RootDispatch, RootState } from '../../../app/state/store';
-import { TalentUserProfilesFilter } from '../../helpers/talentFilter';
 import { UpdateUserPayload } from '../../state/models/user';
+import ProfileCollection from '../../helpers/ProfileCollection';
 
 interface Props {
   user: User,
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-interface State {
-  user: User,
-  userProfile?: UserProfile,
+interface Payload {
+  index: number,
+  category: string,
+  property: string,
+  value: string,
 }
 
-export class TalentFormInstitution extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      user: props.user,
-      userProfile: TalentUserProfilesFilter.filterByEnvironment(props.user.userProfiles, 'working'),
-    };
-  }
-
-  handleChange(category: string, property : string, value: string) {
-    const payload = {
-      index: 0,
-      category: category,
-      property: property,
-      value: value,
-    };
-
+export class TalentFormInstitution extends React.Component<Props> {
+  handleChange(payload: Payload) {
     this.props.modifyUser(payload);
   }
 
   render() {
+    const indexWorking: number = ProfileCollection.findWorkingIndex(this.props.user.userProfiles);
+    const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
+      this.props.user.userProfiles, 
+      'working',
+    );
+    
     return (
       <div className="form-section">
         <FieldForm
@@ -45,29 +37,49 @@ export class TalentFormInstitution extends React.Component<Props, State> {
           label="École: "
           className="large"
           type="text"
-          handleChange={(value) => this.handleChange('userProfiles', 'institution', value)}
-          value={this.state.userProfile?.institution} />
+          handleChange={(value) => this.handleChange({
+            category: 'userProfiles',
+            property: 'institution',
+            value: value,
+            index: indexWorking,
+          })}
+          value={userProfileWorking?.institution} />
         <FieldForm
           keyName="institution-phone"
           label="Téléphone École: "
           className="medium"
           type="text"
-          handleChange={(value) => this.handleChange('userProfiles', 'phoneInstitution', value)}
-          value={this.state.userProfile?.phoneInstitution} />
+          handleChange={(value) => this.handleChange({
+            category: 'userProfiles',
+            property: 'phoneInstitution',
+            value: value,
+            index: indexWorking,
+          })}
+          value={userProfileWorking?.phoneInstitution} />
         <FieldForm
           keyName="institution-email"
           label="Mail École: "
           className="medium"
           type="text"
-          handleChange={(value) => this.handleChange('userProfiles', 'mailInstitution', value)}
-          value={this.state.userProfile?.mailInstitution} />
+          handleChange={(value) => this.handleChange({
+            category: 'userProfiles',
+            property: 'mailInstitution',
+            value: value,
+            index: indexWorking,
+          })}          
+          value={userProfileWorking?.mailInstitution} />
         <FieldForm
           keyName="institution-contact"
           label="Personne de contact: "
           className="large"
           type="text"
-          handleChange={(value) => this.handleChange('userProfiles', 'personContactInstitution', value)}
-          value={this.state.userProfile?.personContactInstitution} />
+          handleChange={(value) => this.handleChange({
+            category: 'userProfiles',
+            property: 'personContactInstitution',
+            value: value,
+            index: indexWorking,
+          })}          
+          value={userProfileWorking?.personContactInstitution} />
       </div>
     );
   }

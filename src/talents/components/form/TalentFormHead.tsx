@@ -4,41 +4,32 @@ import { User, UserProfile } from '../../../app';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { RootDispatch, RootState } from '../../../app/state/store';
-import { TalentUserProfilesFilter } from '../../helpers/talentFilter';
 import { UpdateUserPayload } from '../../state/models/user';
+import ProfileCollection from '../../helpers/ProfileCollection';
 
 interface Props {
   user: User,
   modifyUser: (payload: UpdateUserPayload) => void,
 }
 
-interface State {
-  user: User,
-  userProfile?: UserProfile,
+interface Payload {
+  index: number,
+  category: string,
+  property: string,
+  value: string,
 }
 
-export class TalentFormHead extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      user: props.user,
-      userProfile: TalentUserProfilesFilter.filterByEnvironment(props.user.userProfiles, 'working'),
-    };
-  }
-
-  handleChange(value: string, index: number, category: string, property: string) {
-    const payload = {
-      index: index,
-      category: category,
-      property: property,
-      value: value,
-    };
-
+export class TalentFormHead extends React.Component<Props> {
+  handleChange(payload: Payload) {
     this.props.modifyUser(payload);
   }
 
   render() {
+    const indexWorking: number = ProfileCollection.findWorkingIndex(this.props.user.userProfiles);
+    const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
+      this.props.user.userProfiles, 'working',
+    );
+
     return (
       <div className="form-head">
         <h1 className="talent-title">Gestion des talents: Nom Prénom</h1>
@@ -48,14 +39,24 @@ export class TalentFormHead extends React.Component<Props, State> {
             keyName="lastname"
             label="Nom: "
             type="text"
-            handleChange={(value) => this.handleChange(value, 0, 'userProfiles', 'lastName')}
-            value={this.state.userProfile?.lastName} />
+            handleChange={(value) => this.handleChange({
+              value: value,
+              index: indexWorking,
+              category: 'userProfiles',
+              property: 'lastName',
+            })}
+            value={userProfileWorking?.lastName} />
           <FieldForm
             keyName="firstname"
             label="Prénom: "
             type="text"
-            handleChange={(value) => this.handleChange(value, 0, 'userProfiles', 'firstName')}
-            value={this.state.userProfile?.firstName} />
+            handleChange={(value) => this.handleChange({
+              value: value,
+              index: indexWorking,
+              category: 'userProfiles',
+              property: 'firstname',
+            })}            
+            value={userProfileWorking?.firstName} />
           <SelectFormField
             keyName="function"
             label="Fonction: "
@@ -64,20 +65,35 @@ export class TalentFormHead extends React.Component<Props, State> {
             keyName="email"
             label="Mail: "
             type="text"
-            handleChange={(value) => this.handleChange(value, -1, 'username', '')}
-            value={this.state.user.username} />
+            handleChange={(value) => this.handleChange({
+              value: value,
+              index: -1,
+              category: 'username',
+              property: '',
+            })}            
+            value={this.props.user.username} />
           <FieldForm
             keyName="phone"
             label="Téléphone: "
             type="text"
-            handleChange={(value) => this.handleChange(value, 0, 'userProfiles', 'phone')}
-            value={this.state.userProfile?.phone} />
+            handleChange={(value) => this.handleChange({
+              value: value,
+              index: indexWorking,
+              category: 'userProfiles',
+              property: 'phone',
+            })}            
+            value={userProfileWorking?.phone} />
           <FieldForm
             keyName="place"
             label="Localisation: "
             type="text"
-            handleChange={(value) => this.handleChange(value, -1, 'userAddress', 'country')}
-            value={this.state.user.userAddress?.country} />
+            handleChange={(value) => this.handleChange({
+              value: value,
+              index: indexWorking,
+              category: 'userProfiles',
+              property: 'country',
+            })}            
+            value={this.props.user.userAddress?.country} />
         </div>
         <div className="connexion-box">
           <p>Envoyez un email pour configurer la connexion</p>

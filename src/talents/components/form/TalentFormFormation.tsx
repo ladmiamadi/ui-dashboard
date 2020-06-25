@@ -13,27 +13,15 @@ interface Props {
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-interface State {
-  user: User,
+interface Payload {
+  index: number,
+  category: string,
+  property: string,
+  value: string,
 }
 
-export class TalentFormFormation extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      user: props.user,
-    };
-  }
-
-  handleChange(category: string, property: string, value: string) {
-    const payload = {
-      index: 0,
-      category: category,
-      property: property,
-      value: value,
-    };
-
+export class TalentFormFormation extends React.Component<Props> {
+  handleChange(payload: Payload) {
     this.props.modifyUser(payload);
   }
 
@@ -45,14 +33,19 @@ export class TalentFormFormation extends React.Component<Props, State> {
           <button className="form-add-button">Ajouter une formation</button>
         </div>
         {
-          this.state.user.userTrainings?.map((elem, index) => (
+          this.props.user.userTrainings?.map((elem, index) => (
             <div className="form-elements" key={index}>
               <FieldForm
                 keyName="formation-school"
                 label="École: "
                 className="large"
                 type="text"
-                handleChange={(value) => this.handleChange('userTrainings', 'institution', value)}
+                handleChange={(value) => this.handleChange({
+                  category: 'userTrainings',
+                  property: 'institution',
+                  value: value,
+                  index: index,
+                })}
                 value={elem.institution} />
               <DateFormField
                 keyName="formation-start"
@@ -73,7 +66,12 @@ export class TalentFormFormation extends React.Component<Props, State> {
                 label="Diplôme obtenu: "
                 className="large"
                 type="text"
-                handleChange={(value) => this.handleChange('userTrainings', 'degreeObtained', value)}
+                handleChange={(value) => this.handleChange({
+                  category: 'userTrainings',
+                  property: 'degreeObtained',
+                  value: value,
+                  index: index,
+                })}
                 value={elem.degreeObtained} />
             </div>
           ))

@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { User, UserProfile } from '../../../app';
+import { User } from '../../../app';
 import { DateFormField } from '../../../app/components/utils/DateFormField';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormField';
 import { RootDispatch, RootState } from '../../../app/state/store';
 import DateSlicer from '../../helpers/DateSlicer';
-import { TalentUserProfilesFilter } from '../../helpers/talentFilter';
 import { FormatDate } from '../../index.d';
 import { UpdateUserPayload } from '../../state/models/user';
 
@@ -16,29 +15,15 @@ interface Props {
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-interface State {
-  user: User,
-  userProfile?: UserProfile,
+interface Payload {
+  index: number,
+  category: string,
+  property: string,
+  value: string,
 }
 
-export class TalentFormInternship extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      user: props.user,
-      userProfile: TalentUserProfilesFilter.filterByEnvironment(props.user.userProfiles, 'working'),
-    };
-  }
-
-  handleChange(category: string, property : string, value: string) {
-    const payload = {
-      index: -1,
-      category: category,
-      property: property,
-      value: value,
-    };
-
+export class TalentFormInternship extends React.Component<Props> {
+  handleChange(payload: Payload) {
     this.props.modifyUser(payload);
   }
 
@@ -81,8 +66,13 @@ export class TalentFormInternship extends React.Component<Props, State> {
             label="Horaire: "
             className="large"
             type="text"
-            handleChange={(value) => this.handleChange('userJob', 'workingHours', value)}
-            value={this.state.user.userJob?.workingHours} />
+            handleChange={(value) => this.handleChange({
+              category: 'userJob',
+              property: 'workingHours',
+              value: value,
+              index: -1,
+            })}
+            value={this.props.user.userJob?.workingHours} />
         </div>
       </div>
     );

@@ -4,41 +4,33 @@ import { User, UserProfile } from '../../../app';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { RootDispatch, RootState } from '../../../app/state/store';
-import { TalentUserProfilesFilter } from '../../helpers/talentFilter';
 import { UpdateUserPayload } from '../../state/models/user';
+import ProfileCollection from '../../helpers/ProfileCollection';
 
 interface Props {
   user: User,
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-interface State {
-  user: User,
-  userProfile?: UserProfile,
+interface Payload {
+  index: number,
+  category: string,
+  property: string,
+  value: string,
 }
 
-export class TalentFormAddress extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      user: props.user,
-      userProfile: TalentUserProfilesFilter.filterByEnvironment(props.user.userProfiles, 'working'),
-    };
-  }
-
-  handleChange(category: string, property: string, value: string) {
-    const payload = {
-      index: -1,
-      category: category,
-      property: property,
-      value: value,
-    };
-
+export class TalentFormAddress extends React.Component<Props> {
+  handleChange(payload: Payload) {
     this.props.modifyUser(payload);
   }
 
   render() {
+    const indexWorking: number = ProfileCollection.findWorkingIndex(this.props.user.userProfiles);
+    const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
+      this.props.user.userProfiles, 
+      'working',
+    );
+
     return (
       <div className="form-section">
         <FieldForm
@@ -46,33 +38,58 @@ export class TalentFormAddress extends React.Component<Props, State> {
           label="Rue: "
           className="medium"
           type="text"
-          handleChange={(value: string) => this.handleChange('userAddress', 'street', value)}
-          value={this.state.user.userAddress?.street} />
+          handleChange={(value: string) => this.handleChange({
+            category: 'userAddress', 
+            property: 'street', 
+            value: value,
+            index: -1, 
+          })}
+          value={this.props.user.userAddress?.street} />
         <FieldForm
           keyName="number"
           label="Num: "
           type="text"
-          handleChange={(value: string) => this.handleChange('userAddress', 'number', value)}
-          value={this.state.user.userAddress?.number} />
+          handleChange={(value: string) => this.handleChange({
+            category: 'userAddress', 
+            property: 'number', 
+            value: value,
+            index: -1,
+          })}
+          value={this.props.user.userAddress?.number} />
         <FieldForm
           keyName="postal-box"
           label="BP: "
           type="text"
-          handleChange={(value: string) => this.handleChange('userAddress', 'box', value)}
-          value={this.state.user.userAddress?.box} />
+          handleChange={(value: string) => this.handleChange({
+            category: 'userAddress',
+            property: 'box',
+            value: value,
+            index: -1,
+          })}
+          value={this.props.user.userAddress?.box} />
         <FieldForm
           keyName="postal-code"
           label="Code Postal: "
           type="text"
-          handleChange={(value: string) => this.handleChange('userAddress', 'zip-code', value)}
-          value={this.state.user.userAddress?.zipCode} />
+          handleChange={(value: string) => this.handleChange({
+            category: 'userAddress', 
+            property: 'zip-code',
+            value: value,
+            index: -1,
+          })}
+          value={this.props.user.userAddress?.zipCode} />
         <FieldForm
           keyName="city"
           label="Ville: "
           className="medium"
           type="text"
-          handleChange={(value: string) => this.handleChange('userAddress', 'city', value)}
-          value={this.state.user.userAddress?.city} />
+          handleChange={(value: string) => this.handleChange({
+            category: 'userAddress',
+            property: 'city',
+            value: value,
+            index: -1,
+          })}
+          value={this.props.user.userAddress?.city} />
         <SelectFormField
           keyName="country"
           label="Pays: "
@@ -81,8 +98,13 @@ export class TalentFormAddress extends React.Component<Props, State> {
           keyName="DOB"
           label="Date de naissance: "
           type="text"
-          handleChange={(value: string) => this.handleChange('userAddress', 'birthDate', value)}
-          value={this.state.userProfile?.birthDate} />
+          handleChange={(value: string) => this.handleChange({
+            category: 'userProfiles',
+            property: 'birthDate',
+            value: value,
+            index: indexWorking,
+          })}
+          value={userProfileWorking?.birthDate} />
         <SelectFormField
           keyName="search"
           label="Actuellement en recherche: "
