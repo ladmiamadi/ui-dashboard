@@ -19,7 +19,7 @@ export class App extends React.Component {
             <CustomNavbar />
             <Route path="/" exact component={Homepage} />
             <Route path="/talent" exact component={TalentFormPage} />
-            <Route path="/intern/add" exact component={ModalRegisterUser} />
+            <Route path="/intern" exact component={ModalRegisterUser} />
           </AppContainer>
         </Provider>
       </Router>

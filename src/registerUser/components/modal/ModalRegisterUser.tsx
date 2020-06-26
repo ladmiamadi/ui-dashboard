@@ -3,7 +3,7 @@ import { Button, Modal, ModalHeader, ModalFooter, ModalBody, Spinner } from 'rea
 import { connect } from 'react-redux';
 import { createDtoUserSignUp } from '../../helpers/userSignUpFactoryHelper';
 import { formValidator } from '../../helpers/formValidatorHelper';
-import { InputState, UserSignUpPayload, FormValidPayload } from '../../index.d';
+import { InputState, UserSignUpPayload, FormValidPayload, LoggedUserStatus } from '../../index.d';
 import { RootState, RootDispatch } from '../../../app/state/store';
 import { UserSignUp, IsFormValid } from '../../state/models/userSignUp';
 import { User } from '../../../app/index.d';
@@ -86,10 +86,14 @@ export class ModalRegisterUser extends Component<Props, State> {
         updateUserSignUp={this.updateUserSignUp}
         setIsFormValid={this.setIsFormValid}
       />);
-
+    const loggedUser = LoggedUserStatus.ADMIN;
+    
     return (
       <>
-        <Button onClick={this.toggleModal} color="primary" className={classes.AddNewIntern}>Ajouter un stagiaire</Button>
+        {
+          (loggedUser === LoggedUserStatus.ADMIN || loggedUser === LoggedUserStatus.HR)  && 
+          <Button onClick={this.toggleModal} color="primary" className={classes.AddNewIntern}>Ajouter un stagiaire</Button>
+        }
         <Modal isOpen={this.state.isModalVisible} toggle={this.toggleModal}>
           <ModalHeader>Ajout d'un stagiaire.</ModalHeader>
           <ModalBody>

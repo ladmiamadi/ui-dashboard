@@ -26,3 +26,9 @@ export interface FormValidPayload {
   property: string,
   isInputValid: boolean,
 }
+
+export enum LoggedUserStatus {
+  ADMIN,
+  HR,
+  GUEST,
+}
