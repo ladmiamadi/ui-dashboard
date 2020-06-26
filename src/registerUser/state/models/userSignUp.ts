@@ -51,7 +51,6 @@ export const userSignUp = createModel({
       } as any;
   
       newIsFormValid[payload.property] = payload.isInputValid;
-      console.log(newIsFormValid);
 
       return ({
         ...state, 
@@ -68,7 +67,6 @@ export const userSignUp = createModel({
       } as any;
   
       newUserSignUp[payload.property] = payload.value;
-      console.log(newUserSignUp);
 
       return ({
         ...state, 
