@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { RootState } from '../../state/store';
 import { connect } from 'react-redux';
 import { Module } from '../../index.d';
-import ModalRegisterUser from '../../../registerUser/components/modal/ModalRegisterUser';
 import classes from './styles/Homepage.module.css';
 
 interface Props {
@@ -28,7 +27,6 @@ export class Homepage extends React.Component<Props> {
                   </div>
                 </div>) }
             </div>
-            <ModalRegisterUser />
           </div>
         </article>
       </div>

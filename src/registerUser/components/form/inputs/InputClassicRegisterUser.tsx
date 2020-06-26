@@ -6,7 +6,7 @@ import { isUsernameAlreadyExists } from '../../../helpers/formRegisterHelper';
 
 export default class InputClassicRegisterUser extends Component<PropsForInput> {
   setIsFormValid = () => {
-    let isInputValid = new RegExp(this.props.regEx).test(this.props.idValue);
+    let isInputValid = (new RegExp(this.props.regEx)).test(this.props.idValue);
 
     if (this.props.id === 'mailInstitution') {
       isInputValid = isUsernameAlreadyExists(this.props.idValue, this.props.usernameCollection);

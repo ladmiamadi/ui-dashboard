@@ -1,7 +1,7 @@
 import { apiService } from '../../../app/http/service';
 import { createModel } from '@rematch/core';
 import { createEmptyUserSignUp, createEmptyIsFormValid } from '../../helpers/userSignUpFactoryHelper';
-import { InputState } from '../..';
+import { InputState, UserSignUpPayload, FormValidPayload } from '../..';
 import { Toastify } from '../../../helpers/Toastify';
 import { User } from '../../../app/index.d';
 
@@ -45,12 +45,13 @@ export const userSignUp = createModel({
       isFormValid: createEmptyIsFormValid(), 
       userSignUp: createEmptyUserSignUp(), 
     }),
-    setIsFormValid: (state: UserSignUpState, id: string, isInputValid: boolean): UserSignUpState => { 
+    setIsFormValid: (state: UserSignUpState, payload: FormValidPayload): UserSignUpState => { 
       const newIsFormValid = {
         ...state.isFormValid,
       } as any;
   
-      newIsFormValid[id] = isInputValid;
+      newIsFormValid[payload.property] = payload.isInputValid;
+      console.log(newIsFormValid);
 
       return ({
         ...state, 
@@ -61,12 +62,13 @@ export const userSignUp = createModel({
       ...state, 
       isRequesting, 
     }),
-    updateUserSignUp: (state: UserSignUpState, id: string, idValue: string): UserSignUpState => { 
+    updateUserSignUp: (state: UserSignUpState, payload: UserSignUpPayload): UserSignUpState => { 
       const newUserSignUp = {
         ...state.userSignUp,
       } as any;
   
-      newUserSignUp[id] = idValue;
+      newUserSignUp[payload.property] = payload.value;
+      console.log(newUserSignUp);
 
       return ({
         ...state, 
@@ -83,12 +85,10 @@ export const userSignUp = createModel({
       this.setIsRequesting(true);
 
       try {
-        await apiService.get('/api/users')
-          .then(rep => {
-            const usernameCollection = rep.data.map((user: User) => user.username);
+        const { data } = await apiService.get('/api/users');
+        const usernameCollection = data.map((user: User) => user.username)
 
-            this.updateUsernameCollection(usernameCollection);
-          });
+        this.updateUsernameCollection(usernameCollection);
       } catch(error) {
         (new Toastify()).error(`Unable to get the user from the database. ${ error.message }`);
       } finally {
@@ -99,8 +99,9 @@ export const userSignUp = createModel({
       this.setIsRequesting(true);
 
       try {
-        await apiService.post('/api/users', userSentInDb)
-          .then((rep) => (new Toastify()).info('Success adding ' + rep.data.username + ' in the database.'));
+        const { data } = await apiService.post('/api/users', userSentInDb);
+
+        (new Toastify()).info('Success adding ' + data.username + ' in the database.');
 
         this.resetUserSignUp();
       } catch(error) {

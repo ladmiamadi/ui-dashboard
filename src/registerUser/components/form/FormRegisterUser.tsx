@@ -3,7 +3,7 @@ import { Row } from 'reactstrap';
 import { UserSignUp, IsFormValid } from '../../state/models/userSignUp';
 import { doubleArrayObjectOfPropsInput } from '../../helpers/formRegisterHelper';
 import InputRegisterUsers from './inputs/InputRegisterUsers';
-import classes from '../../styles/FormRegisterUser.module.css';
+import classes from '../styles/FormRegisterUser.module.css';
 
 interface Props {
   isFormValid: IsFormValid,

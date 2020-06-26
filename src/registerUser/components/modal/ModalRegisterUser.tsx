@@ -3,12 +3,12 @@ import { Button, Modal, ModalHeader, ModalFooter, ModalBody, Spinner } from 'rea
 import { connect } from 'react-redux';
 import { createDtoUserSignUp } from '../../helpers/userSignUpFactoryHelper';
 import { formValidator } from '../../helpers/formValidatorHelper';
-import { InputState } from '../../index.d';
+import { InputState, UserSignUpPayload, FormValidPayload } from '../../index.d';
 import { RootState, RootDispatch } from '../../../app/state/store';
 import { UserSignUp, IsFormValid } from '../../state/models/userSignUp';
 import { User } from '../../../app/index.d';
 import FormRegisterUser from '../form/FormRegisterUser';
-import classes from '../../styles/FormRegisterUser.module.css';
+import classes from '../styles/FormRegisterUser.module.css';
 
 interface Props {
   isFormValid: IsFormValid,
@@ -18,15 +18,15 @@ interface Props {
   fetchUserInDb: () => Promise<void>,
   postUserInDb: (userSentInDb: User) => Promise<void>,
   resetUserSignUp: () => void,
-  setIsFormValid: (id: string, isInputValid: boolean) => void,
-  updateUserSignUp: (id: string, idValue: string) => void,
+  setIsFormValid: (payload: FormValidPayload) => void,
+  updateUserSignUp: (payload: UserSignUpPayload) => void,
 }
 
 interface State {
   isModalVisible: boolean,
 }
 
-class ModalRegisterUser extends Component<Props, State> {
+export class ModalRegisterUser extends Component<Props, State> {
   state = {
     isModalVisible: false,
   }
@@ -49,6 +49,24 @@ class ModalRegisterUser extends Component<Props, State> {
     this.props.postUserInDb(userSentInDb);
   }
 
+  updateUserSignUp = (property: string, value: string) => {
+    const payload: UserSignUpPayload = {
+      property,
+      value,
+    }
+
+    this.props.updateUserSignUp(payload);
+  }
+
+  setIsFormValid = (property: string, isInputValid: boolean) => {
+    const payload: FormValidPayload = {
+      property,
+      isInputValid,
+    }
+
+    this.props.setIsFormValid(payload);
+  }
+
   toggleModal = () => {
     this.setState((prevState) =>  ({ isModalVisible: !prevState.isModalVisible }));
   }
@@ -65,13 +83,13 @@ class ModalRegisterUser extends Component<Props, State> {
         isFormValid={this.props.isFormValid}
         usernameCollection={this.props.usernameCollection}
         userSignUp={this.props.userSignUp} 
-        updateUserSignUp={this.props.updateUserSignUp}
-        setIsFormValid={this.props.setIsFormValid}
+        updateUserSignUp={this.updateUserSignUp}
+        setIsFormValid={this.setIsFormValid}
       />);
 
     return (
       <>
-        <Button onClick={this.toggleModal} color="primary">Ajouter un stagiaire</Button>
+        <Button onClick={this.toggleModal} color="primary" className={classes.AddNewIntern}>Ajouter un stagiaire</Button>
         <Modal isOpen={this.state.isModalVisible} toggle={this.toggleModal}>
           <ModalHeader>Ajout d'un stagiaire.</ModalHeader>
           <ModalBody>

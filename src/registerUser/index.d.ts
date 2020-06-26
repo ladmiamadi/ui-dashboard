@@ -17,3 +17,12 @@ export interface ObjectPropsOfInput {
   regEx: string,
 }
 
+export interface UserSignUpPayload {
+  property: string,
+  value: string,
+}
+
+export interface FormValidPayload {
+  property: string,
+  isInputValid: boolean,
+}
