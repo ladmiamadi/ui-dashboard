@@ -12,8 +12,8 @@ export interface User {
   createdDate: Date,
   id?: number | null,
   updatedDate?: Date,
-  userProfiles: UserProfile[],
-  userAddress: UserAddress,
+  userProfiles?: UserProfile[],
+  userAddress?: UserAddress,
   userAbsences?: UserAbsence[],
   userInterviews?: UserInterview[],
   userContracts?: UserContract[],
@@ -42,7 +42,7 @@ export interface UserProfile {
   firstName: string,
   lastName: string,
   phone: string,
-  mailInstitution: string,
+  mailInstitution?: string,
   birthDate: Date,
   desiredJob: string,
   id?: number,
@@ -167,9 +167,12 @@ export interface Job {
   LongDescriptionInDutch: string,
   position: string,
   link: string,
-  picturePath: string,
+  picture: MediaObject,
   isOpen: boolean,
   createdDate: Date,
   updatedDate: Date,
-  userJobs: UserJob[],
+}
+
+export interface MediaObject {
+  filePath: string
 }

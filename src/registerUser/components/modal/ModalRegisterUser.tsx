@@ -6,15 +6,18 @@ import { formValidator } from '../../helpers/formValidatorHelper';
 import { InputState, UserSignUpPayload, FormValidPayload, LoggedUserStatus } from '../../index.d';
 import { RootState, RootDispatch } from '../../../app/state/store';
 import { UserSignUp, IsFormValid } from '../../state/models/userSignUp';
-import { User } from '../../../app/index.d';
+import { User, Job } from '../../../app/index.d';
 import FormRegisterUser from '../form/FormRegisterUser';
 import classes from '../styles/FormRegisterUser.module.css';
 
 interface Props {
   isFormValid: IsFormValid,
+  isJobsFetching: boolean,
   isRequesting: boolean,
+  jobCollection: Job[],
   usernameCollection: string[],
   userSignUp: UserSignUp,
+  fetchJobsInDb: () => Promise<void>,
   fetchUserInDb: () => Promise<void>,
   postUserInDb: (userSentInDb: User) => Promise<void>,
   resetUserSignUp: () => void,
@@ -33,6 +36,7 @@ export class ModalRegisterUser extends Component<Props, State> {
 
   componentDidMount() {
     this.props.fetchUserInDb();
+    this.props.fetchJobsInDb();
   }
 
   isPostAvailable = (): InputState => {
@@ -74,13 +78,14 @@ export class ModalRegisterUser extends Component<Props, State> {
   render() {
     const isPostAvailable: InputState = this.isPostAvailable();
     const colorButtonAdd = isPostAvailable === InputState.TRUE ? 'success' : 'secondary';
-    const contentModalBody = this.props.isRequesting ? 
+    const contentModalBody = this.props.isRequesting || this.props.isJobsFetching ? 
 
       (<div className={classes.containerSpinner}>
         <Spinner color="success" type="grow" /> 
       </div>) : 
       (<FormRegisterUser
         isFormValid={this.props.isFormValid}
+        jobCollection={this.props.jobCollection}
         usernameCollection={this.props.usernameCollection}
         userSignUp={this.props.userSignUp} 
         updateUserSignUp={this.updateUserSignUp}
@@ -125,12 +130,15 @@ export class ModalRegisterUser extends Component<Props, State> {
 
 const mapState = (state: RootState) => ({ 
   isFormValid: state.userSignUp.isFormValid,
+  isJobsFetching: state.userSignUp.isJobsFetching,
   isRequesting: state.userSignUp.isRequesting,
+  jobCollection: state.userSignUp.jobCollection,
   usernameCollection: state.userSignUp.usernameCollection,
   userSignUp: state.userSignUp.userSignUp,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({
+  fetchJobsInDb: dispatch.userSignUp.fetchJobsInDb,
   fetchUserInDb: dispatch.userSignUp.fetchUserInDb,
   postUserInDb: dispatch.userSignUp.postUserInDb,
   resetUserSignUp: dispatch.userSignUp.resetUserSignUp,

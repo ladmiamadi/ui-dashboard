@@ -1,7 +1,7 @@
-import { ARRAY_OPTIONS_POSITIONS } from '../consts';
 import { ObjectPropsOfInput } from '../index.d';
 import { Toastify } from '../../helpers/Toastify';
 import { UserSignUp, IsFormValid } from '../state/models/userSignUp';
+import { Job } from '../../app';
 
 export const isUsernameAlreadyExists = (idValue: string, usernameCollection?: string[]): boolean => {
   let isUsernameUnique = true;
@@ -22,8 +22,10 @@ export const isUsernameAlreadyExists = (idValue: string, usernameCollection?: st
 export const doubleArrayObjectOfPropsInput = (
   isFormValid: IsFormValid,
   usernameCollection: string[],
-  userSignUp: UserSignUp, 
+  userSignUp: UserSignUp,
+  jobCollection: Job[],
 ): ObjectPropsOfInput[][] => {
+  const jobPosition = jobCollection.map((job: Job) => job.position);
 
   return ([
     [
@@ -58,7 +60,7 @@ export const doubleArrayObjectOfPropsInput = (
         isInputValid: isFormValid.phone,
         idValue: userSignUp.phone,
         label: 'Téléphone',
-        regEx: '^[0-9]*$',
+        regEx: '^[+]?[0-9]+$',
         type: 'text',
       },
     ],
@@ -68,7 +70,7 @@ export const doubleArrayObjectOfPropsInput = (
         isInputValid: isFormValid.desiredJob,
         idValue: userSignUp.desiredJob,
         label: 'Fonction',
-        options: ARRAY_OPTIONS_POSITIONS,
+        options: jobPosition,
         regEx: '.',
         type: 'select',
       },
@@ -83,9 +85,9 @@ export const doubleArrayObjectOfPropsInput = (
     ],
     [
       {
-        id: 'mailInstitution',
-        isInputValid: isFormValid.mailInstitution,
-        idValue: userSignUp.mailInstitution,
+        id: 'username',
+        isInputValid: isFormValid.username,
+        idValue: userSignUp.username,
         label: 'Email',
         usernameCollection: usernameCollection,
         regEx: '^[a-zA-Z0-9.!#$%&"*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$',

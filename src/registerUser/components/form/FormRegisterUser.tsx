@@ -4,9 +4,11 @@ import { UserSignUp, IsFormValid } from '../../state/models/userSignUp';
 import { doubleArrayObjectOfPropsInput } from '../../helpers/formRegisterHelper';
 import InputRegisterUsers from './inputs/InputRegisterUsers';
 import classes from '../styles/FormRegisterUser.module.css';
+import { Job } from '../../../app';
 
 interface Props {
   isFormValid: IsFormValid,
+  jobCollection: Job[],
   usernameCollection: string[],
   userSignUp: UserSignUp,
   updateUserSignUp: (id: string, idValue: string) => void,
@@ -15,8 +17,8 @@ interface Props {
 
 export default class FormRegisterUser extends Component<Props> {
   render() {
-    const { usernameCollection, userSignUp, isFormValid } = this.props;
-    const doubleArrayOfAllInputs = doubleArrayObjectOfPropsInput(isFormValid, usernameCollection, userSignUp);
+    const { usernameCollection, userSignUp, isFormValid, jobCollection } = this.props;
+    const doubleArrayOfAllInputs = doubleArrayObjectOfPropsInput(isFormValid, usernameCollection, userSignUp, jobCollection);
 
     return (
       <>

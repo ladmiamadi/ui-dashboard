@@ -3,7 +3,7 @@ import { createModel } from '@rematch/core';
 import { createEmptyUserSignUp, createEmptyIsFormValid } from '../../helpers/userSignUpFactoryHelper';
 import { InputState, UserSignUpPayload, FormValidPayload } from '../..';
 import { Toastify } from '../../../helpers/Toastify';
-import { User } from '../../../app/index.d';
+import { User, Job } from '../../../app/index.d';
 
 export interface UserSignUp {
   birthDate: string,
@@ -11,13 +11,15 @@ export interface UserSignUp {
   desiredJob: string,
   firstName: string,
   lastName: string,
-  mailInstitution: string,  
+  username: string,  
   phone: string,
 }
 
 export type UserSignUpState = {
   isFormValid: IsFormValid,
+  isJobsFetching: boolean,
   isRequesting: boolean,
+  jobCollection: Job[],
   usernameCollection: string[],
   userSignUp: UserSignUp,
 }
@@ -28,14 +30,16 @@ export interface IsFormValid {
   desiredJob: InputState,
   firstName: InputState,
   lastName: InputState,
-  mailInstitution: InputState,
+  username: InputState,
   phone: InputState,
 }
 
 export const userSignUp = createModel({
   state: {
     isFormValid: createEmptyIsFormValid(),
+    isJobsFetching: false,
     isRequesting: false,
+    jobCollection: [],
     usernameCollection: [],
     userSignUp: createEmptyUserSignUp(),
   } as UserSignUpState,
@@ -57,6 +61,10 @@ export const userSignUp = createModel({
         isFormValid: newIsFormValid,
       });
     },
+    setIsJobsFetching: (state: UserSignUpState, isJobsFetching: boolean): UserSignUpState => ({
+      ...state, 
+      isJobsFetching, 
+    }),
     setIsRequesting: (state: UserSignUpState, isRequesting: boolean): UserSignUpState => ({
       ...state, 
       isRequesting, 
@@ -76,6 +84,10 @@ export const userSignUp = createModel({
     updateUsernameCollection: (state: UserSignUpState, usernameCollection: string[]) => ({ 
       ...state, 
       usernameCollection, 
+    }),
+    updateJobCollection: (state: UserSignUpState, jobCollection: Job[]) => ({ 
+      ...state, 
+      jobCollection, 
     }),
   },
   effects: {
@@ -108,5 +120,18 @@ export const userSignUp = createModel({
         this.setIsRequesting(false);
       }
     },
+    async fetchJobsInDb() {
+      this.setIsJobsFetching(true);
+
+      try {
+        const { data } = await apiService.get('/api/jobs');
+
+        this.updateJobCollection(data);
+      } catch(error) {
+        (new Toastify()).error(`Unable to get the jobs from the database. ${ error.message }`);
+      } finally {
+        this.setIsJobsFetching(false);
+      }
+    }
   },
 });

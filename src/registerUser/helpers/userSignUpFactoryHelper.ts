@@ -1,5 +1,5 @@
 import { User } from '../../app/index.d';
-import { createEmptyUser } from './userFactoryHelper';
+import { createUserIntern } from './userFactoryHelper';
 import { IsFormValid } from '../state/models/userSignUp';
 import { InputState } from '../index.d';
 import { UserSignUp } from '../state/models/userSignUp';
@@ -10,7 +10,7 @@ export const createEmptyUserSignUp = (): UserSignUp => ({
   desiredJob: '',
   firstName: '',
   lastName: '',
-  mailInstitution: '',  
+  username: '',  
   phone: '',
 });
 
@@ -20,33 +20,8 @@ export const createEmptyIsFormValid = (): IsFormValid => ({
   desiredJob: InputState.UNDEFINED,
   firstName: InputState.UNDEFINED,
   lastName: InputState.UNDEFINED,
-  mailInstitution: InputState.UNDEFINED,
+  username: InputState.UNDEFINED,
   phone: InputState.UNDEFINED,
 });
 
-export const createDtoUserSignUp = (userSignUp: UserSignUp): User => {
-  const emptyUser = createEmptyUser() as User;
-  const userSentInDb = {
-    ...emptyUser,
-  };
-  const { 
-    birthDate, 
-    country, 
-    desiredJob, 
-    firstName, 
-    lastName, 
-    mailInstitution, 
-    phone, 
-  } = userSignUp;
-
-  userSentInDb.username = mailInstitution;
-  userSentInDb.userAddress.country = country;
-  userSentInDb.userProfiles[0].birthDate = new Date(birthDate);
-  userSentInDb.userProfiles[0].desiredJob = desiredJob;
-  userSentInDb.userProfiles[0].firstName = firstName;
-  userSentInDb.userProfiles[0].lastName = lastName;
-  userSentInDb.userProfiles[0].mailInstitution = mailInstitution;
-  userSentInDb.userProfiles[0].phone = phone;
-
-  return userSentInDb;
-};
+export const createDtoUserSignUp = (userSignUp: UserSignUp): User => createUserIntern(userSignUp);
