@@ -66,9 +66,9 @@ export const doubleArrayObjectOfPropsInput = (
     ],
     [
       {
-        id: 'desiredJob',
-        isInputValid: isFormValid.desiredJob,
-        idValue: userSignUp.desiredJob,
+        id: 'jobPosition',
+        isInputValid: isFormValid.jobPosition,
+        idValue: userSignUp.jobPosition,
         label: 'Fonction',
         options: jobPosition,
         regEx: '.',

@@ -8,7 +8,7 @@ import { User, Job } from '../../../app/index.d';
 export interface UserSignUp {
   birthDate: string,
   country: string,
-  desiredJob: string,
+  jobPosition: string,
   firstName: string,
   lastName: string,
   username: string,  
@@ -27,7 +27,7 @@ export type UserSignUpState = {
 export interface IsFormValid {
   birthDate: InputState,
   country: InputState,
-  desiredJob: InputState,
+  jobPosition: InputState,
   firstName: InputState,
   lastName: InputState,
   username: InputState,

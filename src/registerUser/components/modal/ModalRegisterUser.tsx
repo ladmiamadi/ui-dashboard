@@ -48,7 +48,7 @@ export class ModalRegisterUser extends Component<Props, State> {
   }
 
   postUserInDb = () => {
-    const userSentInDb = createDtoUserSignUp(this.props.userSignUp);
+    const userSentInDb = createDtoUserSignUp(this.props.userSignUp, this.props.jobCollection);
 
     this.props.postUserInDb(userSentInDb);
   }
