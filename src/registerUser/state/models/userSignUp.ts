@@ -1,7 +1,7 @@
 import { apiService } from '../../../app/http/service';
 import { createModel } from '@rematch/core';
 import { createEmptyUserSignUp, createEmptyIsFormValid } from '../../helpers/userSignUpFactoryHelper';
-import { UserSignUpPayload, FormValidPayload, UserSignUp, IsFormValid } from '../..';
+import { UserSignUpPayload, FormValidPayload, UserSignUp, IsFormValid, UserRegister } from '../..';
 import { Toastify } from '../../../helpers/Toastify';
 import { User, Job } from '../../../app/index.d';
 
@@ -50,11 +50,11 @@ export const userSignUp = createModel({
       isRequesting, 
     }),
     updateUserSignUp: (state: UserSignUpState, payload: UserSignUpPayload): UserSignUpState => { 
-      const newUserSignUp = {
+      const newUserSignUp: UserSignUp = {
         ...state.userSignUp,
-      } as any;
+      };
   
-      newUserSignUp[payload.property] = payload.value;
+      newUserSignUp[payload.property as keyof UserSignUp] = payload.value;
 
       return ({
         ...state, 
