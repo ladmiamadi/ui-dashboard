@@ -6,6 +6,35 @@ export enum InputState {
   UNDEFINED = undefined,
 }
 
+export enum LoggedUserStatus {
+  ADMIN,
+  HR,
+  GUEST,
+}
+
+export interface UserRegister<T> {
+  birthDate: T,
+  country: T,
+  jobPosition: T,
+  firstName: T,
+  lastName: T,
+  username: T,  
+  phone: T,
+}
+
+export type UserSignUp = UserRegister<string>;
+
+export type IsFormValid = UserRegister<InputState>;
+
+export type FormRegister = UserRegister<Field>;
+
+interface Field {
+  id: string,
+  label: string,
+  regEx: string,
+  type: InputType,
+}
+
 export interface ObjectPropsOfInput {
   id: string,
   idValue: string,
@@ -25,10 +54,4 @@ export interface UserSignUpPayload {
 export interface FormValidPayload {
   property: string,
   isInputValid: boolean,
-}
-
-export enum LoggedUserStatus {
-  ADMIN,
-  HR,
-  GUEST,
 }

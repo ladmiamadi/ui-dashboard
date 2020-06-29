@@ -1,5 +1,5 @@
 import { InputState } from '../index.d';
-import { IsFormValid } from '../state/models/userSignUp';
+import { IsFormValid } from '..';
 
 export const formValidator = (isFormValid: IsFormValid): InputState => {
   const copyOfIsFormValid = {
@@ -9,10 +9,6 @@ export const formValidator = (isFormValid: IsFormValid): InputState => {
 
   for (let key in copyOfIsFormValid) {
     isAllFormValid = isAllFormValid && copyOfIsFormValid[key];
-  }
-
-  if (isAllFormValid === InputState.UNDEFINED) {
-    isAllFormValid = InputState.FALSE;
   }
 
   return isAllFormValid;

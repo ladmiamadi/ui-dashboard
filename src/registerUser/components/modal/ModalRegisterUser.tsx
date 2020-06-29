@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalFooter, ModalBody, Spinner } from 'reactstrap';
 import { connect } from 'react-redux';
-import { createDtoUserSignUp } from '../../helpers/userSignUpFactoryHelper';
 import { formValidator } from '../../helpers/formValidatorHelper';
 import { InputState, UserSignUpPayload, FormValidPayload, LoggedUserStatus } from '../../index.d';
 import { RootState, RootDispatch } from '../../../app/state/store';
-import { UserSignUp, IsFormValid } from '../../state/models/userSignUp';
+import { UserSignUp, IsFormValid } from '../..';
 import { User, Job } from '../../../app/index.d';
 import FormRegisterUser from '../form/FormRegisterUser';
 import classes from '../styles/FormRegisterUser.module.css';
+import { createDtoUserIntern } from '../../helpers/userFactoryHelper';
 
 interface Props {
   isFormValid: IsFormValid,
@@ -40,15 +40,11 @@ export class ModalRegisterUser extends Component<Props, State> {
   }
 
   isPostAvailable = (): InputState => {
-    if (this.props.isRequesting) {
-      return InputState.FALSE;
-    } 
-
-    return formValidator(this.props.isFormValid);
+    return this.props.isRequesting ? InputState.FALSE : formValidator(this.props.isFormValid);
   }
 
   postUserInDb = () => {
-    const userSentInDb = createDtoUserSignUp(this.props.userSignUp, this.props.jobCollection);
+    const userSentInDb = createDtoUserIntern(this.props.userSignUp, this.props.jobCollection);
 
     this.props.postUserInDb(userSentInDb);
   }
@@ -57,7 +53,7 @@ export class ModalRegisterUser extends Component<Props, State> {
     const payload: UserSignUpPayload = {
       property,
       value,
-    }
+    };
 
     this.props.updateUserSignUp(payload);
   }
@@ -79,30 +75,39 @@ export class ModalRegisterUser extends Component<Props, State> {
     const isPostAvailable: InputState = this.isPostAvailable();
     const colorButtonAdd = isPostAvailable === InputState.TRUE ? 'success' : 'secondary';
     const contentModalBody = this.props.isRequesting || this.props.isJobsFetching ? 
-
-      (<div className={classes.containerSpinner}>
-        <Spinner color="success" type="grow" /> 
-      </div>) : 
-      (<FormRegisterUser
-        isFormValid={this.props.isFormValid}
-        jobCollection={this.props.jobCollection}
-        usernameCollection={this.props.usernameCollection}
-        userSignUp={this.props.userSignUp} 
-        updateUserSignUp={this.updateUserSignUp}
-        setIsFormValid={this.setIsFormValid}
-      />);
+      (
+        <div className={classes.containerSpinner}>
+          <Spinner color="success" type="grow" /> 
+        </div>
+      ) : 
+      (
+        <FormRegisterUser
+          isFormValid={this.props.isFormValid}
+          jobCollection={this.props.jobCollection}
+          usernameCollection={this.props.usernameCollection}
+          userSignUp={this.props.userSignUp} 
+          updateUserSignUp={this.updateUserSignUp}
+          setIsFormValid={this.setIsFormValid}
+        />
+      );
     const loggedUser = LoggedUserStatus.ADMIN;
     
     return (
       <>
         {
           (loggedUser === LoggedUserStatus.ADMIN || loggedUser === LoggedUserStatus.HR)  && 
-          <Button onClick={this.toggleModal} color="primary" className={classes.AddNewIntern}>Ajouter un stagiaire</Button>
+          <Button
+            onClick={this.toggleModal}
+            color="primary"
+            className={classes.AddNewIntern}
+          >
+            Ajouter un stagiaire
+          </Button>
         }
         <Modal isOpen={this.state.isModalVisible} toggle={this.toggleModal}>
-          <ModalHeader>Ajout d'un stagiaire.</ModalHeader>
+          <ModalHeader>Ajout d'un nouveau stagiaire.</ModalHeader>
           <ModalBody>
-            {contentModalBody}
+            { contentModalBody }
           </ModalBody>
           <ModalFooter>
             <Button 

@@ -1,37 +1,17 @@
 import { apiService } from '../../../app/http/service';
 import { createModel } from '@rematch/core';
 import { createEmptyUserSignUp, createEmptyIsFormValid } from '../../helpers/userSignUpFactoryHelper';
-import { InputState, UserSignUpPayload, FormValidPayload } from '../..';
+import { UserSignUpPayload, FormValidPayload, UserSignUp, IsFormValid } from '../..';
 import { Toastify } from '../../../helpers/Toastify';
 import { User, Job } from '../../../app/index.d';
 
-export interface UserSignUp {
-  birthDate: string,
-  country: string,
-  jobPosition: string,
-  firstName: string,
-  lastName: string,
-  username: string,  
-  phone: string,
-}
-
-export type UserSignUpState = {
+export interface UserSignUpState {
   isFormValid: IsFormValid,
   isJobsFetching: boolean,
   isRequesting: boolean,
   jobCollection: Job[],
   usernameCollection: string[],
   userSignUp: UserSignUp,
-}
-
-export interface IsFormValid {
-  birthDate: InputState,
-  country: InputState,
-  jobPosition: InputState,
-  firstName: InputState,
-  lastName: InputState,
-  username: InputState,
-  phone: InputState,
 }
 
 export const userSignUp = createModel({
@@ -96,7 +76,7 @@ export const userSignUp = createModel({
 
       try {
         const { data } = await apiService.get('/api/users');
-        const usernameCollection = data.map((user: User) => user.username)
+        const usernameCollection = data.map((user: User) => user.username);
 
         this.updateUsernameCollection(usernameCollection);
       } catch(error) {

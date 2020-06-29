@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { Row } from 'reactstrap';
-import { UserSignUp, IsFormValid } from '../../state/models/userSignUp';
+import { UserSignUp, IsFormValid } from '../..';
 import { doubleArrayObjectOfPropsInput } from '../../helpers/formRegisterHelper';
 import InputRegisterUsers from './inputs/InputRegisterUsers';
-import classes from '../styles/FormRegisterUser.module.css';
 import { Job } from '../../../app';
+import classes from '../styles/FormRegisterUser.module.css';
 
 interface Props {
   isFormValid: IsFormValid,
   jobCollection: Job[],
   usernameCollection: string[],
   userSignUp: UserSignUp,
-  updateUserSignUp: (id: string, idValue: string) => void,
-  setIsFormValid: (id: string, isInputValid: boolean) => void,
+  updateUserSignUp: (property: string, Value: string) => void,
+  setIsFormValid: (property: string, isInputValid: boolean) => void,
 }
 
 export default class FormRegisterUser extends Component<Props> {

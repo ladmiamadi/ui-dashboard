@@ -24,7 +24,7 @@ export default class InputSelectRegisterUser extends Component<PropsForInput> {
           valid={isInputValid === InputState.TRUE}
           value={idValue}
           onBlur={this.setIsFormValid}
-          onChange={(e) => updateUserSignUp(id, e.target.value)}
+          onChange={(event) => updateUserSignUp(id, event.target.value)}
         >
           <option value="none" key="none" hidden>Choisissez une option</option>
 

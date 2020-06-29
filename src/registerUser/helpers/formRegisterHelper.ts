@@ -1,7 +1,8 @@
-import { ObjectPropsOfInput } from '../index.d';
+import { ObjectPropsOfInput, InputState, FormRegister } from '../index.d';
 import { Toastify } from '../../helpers/Toastify';
-import { UserSignUp, IsFormValid } from '../state/models/userSignUp';
+import { UserSignUp, IsFormValid } from '..';
 import { Job } from '../../app';
+import { FORM_REGISTER } from '../constant/FormRegister';
 
 export const isUsernameAlreadyExists = (idValue: string, usernameCollection?: string[]): boolean => {
   let isUsernameUnique = true;
@@ -19,6 +20,12 @@ export const isUsernameAlreadyExists = (idValue: string, usernameCollection?: st
   return isUsernameUnique;
 };
 
+const createField = (isInputValid: InputState, idValue: string, property: keyof FormRegister): ObjectPropsOfInput => ({
+  ...FORM_REGISTER[property],
+  isInputValid,
+  idValue,
+});
+
 export const doubleArrayObjectOfPropsInput = (
   isFormValid: IsFormValid,
   usernameCollection: string[],
@@ -29,69 +36,24 @@ export const doubleArrayObjectOfPropsInput = (
 
   return ([
     [
-      {
-        id: 'firstName',
-        isInputValid: isFormValid.firstName,
-        idValue: userSignUp.firstName,
-        label: 'Prénom',
-        regEx: '.',
-        type: 'text',
-      },
-      {
-        id: 'lastName',
-        isInputValid: isFormValid.lastName,
-        idValue: userSignUp.lastName,
-        label: 'Nom',
-        regEx: '.',
-        type: 'text',
-      },
+      createField(isFormValid.firstName, userSignUp.firstName, 'firstName'),
+      createField(isFormValid.lastName, userSignUp.lastName, 'lastName'),
+    ],
+    [
+      createField(isFormValid.country, userSignUp.country, 'country'),
+      createField(isFormValid.phone, userSignUp.phone, 'phone'),
     ],
     [
       {
-        id: 'country',
-        isInputValid: isFormValid.country,
-        idValue: userSignUp.country,
-        label: 'Pays',
-        regEx: '.',
-        type: 'text',
-      },
-      {
-        id: 'phone',
-        isInputValid: isFormValid.phone,
-        idValue: userSignUp.phone,
-        label: 'Téléphone',
-        regEx: '^[+]?[0-9]+$',
-        type: 'text',
-      },
-    ],
-    [
-      {
-        id: 'jobPosition',
-        isInputValid: isFormValid.jobPosition,
-        idValue: userSignUp.jobPosition,
-        label: 'Fonction',
+        ...createField(isFormValid.jobPosition, userSignUp.jobPosition, 'jobPosition'),
         options: jobPosition,
-        regEx: '.',
-        type: 'select',
       },
-      {
-        id: 'birthDate',
-        isInputValid: isFormValid.birthDate,
-        idValue: userSignUp.birthDate,
-        label: 'Date de naissance',
-        regEx: '.',
-        type: 'date',
-      },
+      createField(isFormValid.birthDate, userSignUp.birthDate, 'birthDate'),
     ],
     [
       {
-        id: 'username',
-        isInputValid: isFormValid.username,
-        idValue: userSignUp.username,
-        label: 'Email',
+        ...createField(isFormValid.username, userSignUp.username, 'username'),
         usernameCollection: usernameCollection,
-        regEx: '^[a-zA-Z0-9.!#$%&"*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$',
-        type: 'email',
       },
     ],
   ]);
