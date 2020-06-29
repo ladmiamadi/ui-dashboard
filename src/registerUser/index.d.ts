@@ -36,14 +36,7 @@ interface Field {
 }
 
 export interface ObjectPropsOfInput {
-  id: string,
-  idValue: string,
-  isInputValid: InputState,
-  options?: string[],
-  label: string,
-  usernameCollection?: string[],
-  type: InputType,
-  regEx: string,
+  
 }
 
 export interface UserSignUpPayload {
@@ -54,4 +47,17 @@ export interface UserSignUpPayload {
 export interface FormValidPayload {
   property: string,
   isInputValid: boolean,
+}
+
+export interface PropsForInput{
+  id: string,
+  idValue: string,
+  isInputValid: InputState,
+  options?: string[],
+  label: string,
+  usernameCollection?: string[],
+  type: InputType,
+  regEx: string,
+  updateUserSignUp: (property: string, idValue: string) => void,
+  setIsFormValid: (property: string, isInputValid: boolean) => void,
 }

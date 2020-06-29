@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Col, Input, Label } from 'reactstrap';
 import { InputState } from '../../../index.d';
-import { PropsForInput } from './InputRegisterUsers';
+import { PropsForInput } from '../../..';
 import { isUsernameAlreadyExists } from '../../../helpers/formRegisterHelper';
 
 export default class InputClassicRegisterUser extends Component<PropsForInput> {
   setIsFormValid = () => {
+    //refactor
     let isInputValid = (new RegExp(this.props.regEx)).test(this.props.idValue);
 
     if (this.props.id === 'username' && isInputValid) {

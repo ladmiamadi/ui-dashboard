@@ -2,13 +2,13 @@ import { InputState } from '../index.d';
 import { IsFormValid } from '..';
 
 export const formValidator = (isFormValid: IsFormValid): InputState => {
-  const copyOfIsFormValid = {
+  const copyOfIsFormValid: IsFormValid = {
     ...isFormValid,
-  } as any;
+  };
   let isAllFormValid: InputState = InputState.TRUE;
 
   for (let key in copyOfIsFormValid) {
-    isAllFormValid = isAllFormValid && copyOfIsFormValid[key];
+    isAllFormValid = isAllFormValid && copyOfIsFormValid[key as keyof IsFormValid];
   }
 
   return isAllFormValid;

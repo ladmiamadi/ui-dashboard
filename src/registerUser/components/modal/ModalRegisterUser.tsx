@@ -6,9 +6,10 @@ import { InputState, UserSignUpPayload, FormValidPayload, LoggedUserStatus } fro
 import { RootState, RootDispatch } from '../../../app/state/store';
 import { UserSignUp, IsFormValid } from '../..';
 import { User, Job } from '../../../app/index.d';
-import FormRegisterUser from '../form/FormRegisterUser';
-import classes from '../styles/FormRegisterUser.module.css';
+import { FormRegisterUser } from '../form/FormRegisterUser';
 import { createDtoUserIntern } from '../../helpers/userFactoryHelper';
+import classes from '../styles/FormRegisterUser.module.css';
+
 
 interface Props {
   isFormValid: IsFormValid,

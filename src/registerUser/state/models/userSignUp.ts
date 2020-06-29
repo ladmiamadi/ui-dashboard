@@ -1,7 +1,7 @@
 import { apiService } from '../../../app/http/service';
 import { createModel } from '@rematch/core';
 import { createEmptyUserSignUp, createEmptyIsFormValid } from '../../helpers/userSignUpFactoryHelper';
-import { UserSignUpPayload, FormValidPayload, UserSignUp, IsFormValid, UserRegister } from '../..';
+import { UserSignUpPayload, FormValidPayload, UserSignUp, IsFormValid } from '../..';
 import { Toastify } from '../../../helpers/Toastify';
 import { User, Job } from '../../../app/index.d';
 
