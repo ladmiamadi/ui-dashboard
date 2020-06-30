@@ -35,10 +35,6 @@ interface Field {
   type: InputType,
 }
 
-export interface ObjectPropsOfInput {
-  
-}
-
 export interface UserSignUpPayload {
   property: keyof UserRegister<T>,
   value: string,

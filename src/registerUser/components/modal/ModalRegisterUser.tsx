@@ -1,31 +1,15 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalFooter, ModalBody, Spinner } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
 import { connect } from 'react-redux';
-import { formValidator } from '../../helpers/formValidatorHelper';
-import { InputState, UserSignUpPayload, FormValidPayload, LoggedUserStatus, UserRegister } from '../../index.d';
+import { LoggedUserStatus } from '../../index.d';
 import { RootState, RootDispatch } from '../../../app/state/store';
-import { UserSignUp, IsFormValid } from '../..';
-import { User, Job } from '../../../app/index.d';
-import FormRegisterUser from '../form/FormRegisterUser';
-import { createDtoUserIntern } from '../../helpers/userFactoryHelper';
-import { isUsernameAlreadyExists } from '../../helpers/formRegisterHelper';
+import ContentModalBody from './ContentModalBody';
+import ContentModalFooter from './ContentModalFooter';
 import classes from '../styles/FormRegisterUser.module.css';
 
-
-
 interface Props {
-  isFormValid: IsFormValid,
-  isJobsFetching: boolean,
-  isRequesting: boolean,
-  jobCollection: Job[],
-  usernameCollection: string[],
-  userSignUp: UserSignUp,
   fetchJobsInDb: () => Promise<void>,
   fetchUserInDb: () => Promise<void>,
-  postUserInDb: (userSentInDb: User) => Promise<void>,
-  resetUserSignUp: () => void,
-  setIsFormValid: (payload: FormValidPayload) => void,
-  updateUserSignUp: (payload: UserSignUpPayload) => void,
 }
 
 interface State {
@@ -42,65 +26,11 @@ export class ModalRegisterUser extends Component<Props, State> {
     this.props.fetchJobsInDb();
   }
 
-  isPostAvailable = (): InputState => {
-    return this.props.isRequesting ? InputState.FALSE : formValidator(this.props.isFormValid);
-  }
-
-  postUserInDb = () => {
-    const userSentInDb = createDtoUserIntern(this.props.userSignUp, this.props.jobCollection);
-
-    this.props.postUserInDb(userSentInDb);
-  }
-
-  updateUserSignUp = <T, >(property: keyof UserRegister<T>, value: string) => {
-    const payload: UserSignUpPayload = {
-      property,
-      value,
-    };
-
-    this.props.updateUserSignUp(payload);
-  }
-
-  setIsFormValid = <T, >(property: keyof UserRegister<T>, regEx: string) => {
-    let a = (new RegExp(regEx)).test(this.props.userSignUp[property]);
-
-    if (property === 'username' && a) {
-      a = isUsernameAlreadyExists(this.props.userSignUp[property], this.props.usernameCollection);
-    }
-
-    const isInputValid = a ? InputState.TRUE : InputState.FALSE
-
-    const payload: FormValidPayload = {
-      property,
-      isInputValid,
-    }
-
-    this.props.setIsFormValid(payload);
-  }
-
   toggleModal = () => {
     this.setState((prevState) =>  ({ isModalVisible: !prevState.isModalVisible }));
   }
 
   render() {
-    const isPostAvailable: InputState = this.isPostAvailable();
-    const colorButtonAdd = isPostAvailable === InputState.TRUE ? 'success' : 'secondary';
-    const contentModalBody = this.props.isRequesting || this.props.isJobsFetching ? 
-      (
-        <div className={classes.containerSpinner}>
-          <Spinner color="success" type="grow" /> 
-        </div>
-      ) : 
-      (
-        <FormRegisterUser
-          isFormValid={this.props.isFormValid}
-          jobCollection={this.props.jobCollection}
-          usernameCollection={this.props.usernameCollection}
-          userSignUp={this.props.userSignUp} 
-          updateUserSignUp={this.updateUserSignUp}
-          setIsFormValid={this.setIsFormValid}
-        />
-      );
     const loggedUser = LoggedUserStatus.ADMIN;
     
     return (
@@ -118,25 +48,10 @@ export class ModalRegisterUser extends Component<Props, State> {
         <Modal isOpen={this.state.isModalVisible} toggle={this.toggleModal}>
           <ModalHeader>Ajout d'un nouveau stagiaire.</ModalHeader>
           <ModalBody>
-            { contentModalBody }
+            <ContentModalBody />
           </ModalBody>
           <ModalFooter>
-            <Button 
-              color={colorButtonAdd} 
-              disabled={!isPostAvailable} 
-              onClick={this.postUserInDb}>
-                Ajouter
-            </Button>
-            <Button
-              color="warning"
-              onClick={this.props.resetUserSignUp}>
-                Tout effacer
-            </Button>
-            <Button 
-              color="danger" 
-              onClick={this.toggleModal}>
-                Retour
-            </Button>
+            <ContentModalFooter toggleModal={this.toggleModal}/>
           </ModalFooter>
         </Modal>
       </>
@@ -144,22 +59,11 @@ export class ModalRegisterUser extends Component<Props, State> {
   }
 }
 
-const mapState = (state: RootState) => ({ 
-  isFormValid: state.userSignUp.isFormValid,
-  isJobsFetching: state.userSignUp.isJobsFetching,
-  isRequesting: state.userSignUp.isRequesting,
-  jobCollection: state.userSignUp.jobCollection,
-  usernameCollection: state.userSignUp.usernameCollection,
-  userSignUp: state.userSignUp.userSignUp,
-});
+const mapState = (state: RootState) => ({});
 
 const mapDispatch = (dispatch: RootDispatch) => ({
   fetchJobsInDb: dispatch.userSignUp.fetchJobsInDb,
   fetchUserInDb: dispatch.userSignUp.fetchUserInDb,
-  postUserInDb: dispatch.userSignUp.postUserInDb,
-  resetUserSignUp: dispatch.userSignUp.resetUserSignUp,
-  setIsFormValid: dispatch.userSignUp.setIsFormValid,
-  updateUserSignUp: dispatch.userSignUp.updateUserSignUp,
 });
 
 export default connect(mapState, mapDispatch)(ModalRegisterUser);
