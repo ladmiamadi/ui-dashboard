@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row } from 'reactstrap';
-import { UserSignUp, IsFormValid } from '../..';
+import { UserSignUp, IsFormValid, UserRegister } from '../..';
 import { doubleArrayPropsInput } from '../../helpers/formRegisterHelper';
 import InputRegisterUsers from './inputs/InputRegisterUsers';
 import { Job } from '../../../app';
@@ -11,11 +11,11 @@ export interface Props {
   jobCollection: Job[],
   usernameCollection: string[],
   userSignUp: UserSignUp,
-  updateUserSignUp: (property: string, Value: string) => void,
-  setIsFormValid: (property: string, isInputValid: boolean) => void,
+  updateUserSignUp: <T>(property: keyof UserRegister<T>, Value: string) => void,
+  setIsFormValid: <T>(property: keyof UserRegister<T>, regEx: string) => void,
 }
 
-export class FormRegisterUser extends Component<Props> {
+export default class FormRegisterUser extends Component<Props> {
   render() {
     const doubleArrayOfAllInputs = doubleArrayPropsInput(this.props);
 

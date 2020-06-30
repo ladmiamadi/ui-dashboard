@@ -6,9 +6,10 @@ export const formValidator = (isFormValid: IsFormValid): InputState => {
     ...isFormValid,
   };
   let isAllFormValid: InputState = InputState.TRUE;
+  let key: keyof IsFormValid;
 
-  for (let key in copyOfIsFormValid) {
-    isAllFormValid = isAllFormValid && copyOfIsFormValid[key as keyof IsFormValid];
+  for (key in copyOfIsFormValid) {
+    isAllFormValid = isAllFormValid && copyOfIsFormValid[key];
   }
 
   return isAllFormValid;

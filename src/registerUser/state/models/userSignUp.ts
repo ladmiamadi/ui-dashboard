@@ -30,9 +30,9 @@ export const userSignUp = createModel({
       userSignUp: createEmptyUserSignUp(), 
     }),
     setIsFormValid: (state: UserSignUpState, payload: FormValidPayload): UserSignUpState => { 
-      const newIsFormValid = {
+      const newIsFormValid: IsFormValid = {
         ...state.isFormValid,
-      } as any;
+      };
   
       newIsFormValid[payload.property] = payload.isInputValid;
 
@@ -54,7 +54,7 @@ export const userSignUp = createModel({
         ...state.userSignUp,
       };
   
-      newUserSignUp[payload.property as keyof UserSignUp] = payload.value;
+      newUserSignUp[payload.property] = payload.value;
 
       return ({
         ...state, 

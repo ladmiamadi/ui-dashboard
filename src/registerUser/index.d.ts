@@ -29,7 +29,7 @@ export type IsFormValid = UserRegister<InputState>;
 export type FormRegister = UserRegister<Field>;
 
 interface Field {
-  id: string,
+  id: keyof UserRegister<T>,
   label: string,
   regEx: string,
   type: InputType,
@@ -40,17 +40,17 @@ export interface ObjectPropsOfInput {
 }
 
 export interface UserSignUpPayload {
-  property: string,
+  property: keyof UserRegister<T>,
   value: string,
 }
 
 export interface FormValidPayload {
-  property: string,
-  isInputValid: boolean,
+  property: keyof UserRegister<T>,
+  isInputValid: InputState,
 }
 
 export interface PropsForInput{
-  id: string,
+  id: keyof UserRegister<T>,
   idValue: string,
   isInputValid: InputState,
   options?: string[],
@@ -58,6 +58,6 @@ export interface PropsForInput{
   usernameCollection?: string[],
   type: InputType,
   regEx: string,
-  updateUserSignUp: (property: string, idValue: string) => void,
-  setIsFormValid: (property: string, isInputValid: boolean) => void,
+  updateUserSignUp: (property: keyof UserRegister<T>, idValue: string) => void,
+  setIsFormValid: (property: keyof UserRegister<T>, regEx: string) => void,
 }

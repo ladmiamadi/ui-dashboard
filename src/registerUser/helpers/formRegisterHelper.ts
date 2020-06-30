@@ -1,9 +1,8 @@
-import { FormRegister, IsFormValid, UserSignUp } from '../index.d';
 import { Toastify } from '../../helpers/Toastify';
 import { Job } from '../../app';
 import { FORM_REGISTER } from '../constant/FormRegister';
 import { Props as FormRegisterProps } from '../components/form/FormRegisterUser';
-import { PropsForInput } from '..';
+import { PropsForInput, UserRegister } from '..';
 
 export const isUsernameAlreadyExists = (idValue: string, usernameCollection?: string[]): boolean => {
   const isUsernameUnique = !usernameCollection?.includes(idValue);
@@ -15,10 +14,10 @@ export const isUsernameAlreadyExists = (idValue: string, usernameCollection?: st
   return isUsernameUnique;
 };
 
-const createField = (props: FormRegisterProps, property: string): PropsForInput => ({
-  ...FORM_REGISTER[property as keyof FormRegister],
-  isInputValid: props.isFormValid[property as keyof IsFormValid],
-  idValue: props.userSignUp[property as keyof UserSignUp],
+const createField = <T>(props: FormRegisterProps, property: keyof UserRegister<T>): PropsForInput => ({
+  ...FORM_REGISTER[property],
+  isInputValid: props.isFormValid[property],
+  idValue: props.userSignUp[property],
   updateUserSignUp: props.updateUserSignUp,
   setIsFormValid: props.setIsFormValid,
 });

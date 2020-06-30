@@ -4,15 +4,8 @@ import { InputState } from '../../../index.d';
 import { PropsForInput } from '../../..';
 
 export default class InputSelectRegisterUser extends Component<PropsForInput> {
-  setIsFormValid = () => {
-    const { id, idValue, regEx } = this.props;
-    const isInputValid = new RegExp(regEx).test(idValue);
-
-    this.props.setIsFormValid(id, isInputValid);
-  }
-
   render() {
-    const { id, idValue, isInputValid, label, type, options, updateUserSignUp } = this.props;
+    const { id, idValue, isInputValid, label, regEx, type, options, updateUserSignUp, setIsFormValid } = this.props;
 
     return (
       <Col>
@@ -23,7 +16,7 @@ export default class InputSelectRegisterUser extends Component<PropsForInput> {
           type={type}
           valid={isInputValid === InputState.TRUE}
           value={idValue}
-          onBlur={this.setIsFormValid}
+          onBlur={() => setIsFormValid(id, regEx)}
           onChange={(event) => updateUserSignUp(id, event.target.value)}
         >
           <option value="none" key="none" hidden>Choisissez une option</option>

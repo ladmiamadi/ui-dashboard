@@ -2,22 +2,10 @@ import React, { Component } from 'react';
 import { Col, Input, Label } from 'reactstrap';
 import { InputState } from '../../../index.d';
 import { PropsForInput } from '../../..';
-import { isUsernameAlreadyExists } from '../../../helpers/formRegisterHelper';
 
 export default class InputClassicRegisterUser extends Component<PropsForInput> {
-  setIsFormValid = () => {
-    //refactor
-    let isInputValid = (new RegExp(this.props.regEx)).test(this.props.idValue);
-
-    if (this.props.id === 'username' && isInputValid) {
-      isInputValid = isUsernameAlreadyExists(this.props.idValue, this.props.usernameCollection);
-    }
-    
-    this.props.setIsFormValid(this.props.id, isInputValid);
-  }
-
   render() {
-    const { id, idValue, isInputValid, label, type, updateUserSignUp } = this.props;
+    const { id, idValue, isInputValid, label, regEx, type, updateUserSignUp, setIsFormValid } = this.props;
 
     return (
       <Col>
@@ -28,7 +16,7 @@ export default class InputClassicRegisterUser extends Component<PropsForInput> {
           type={type}
           valid={isInputValid === InputState.TRUE}
           value={idValue}
-          onBlur={this.setIsFormValid}
+          onBlur={() => setIsFormValid(id, regEx)}
           onChange={(event) => updateUserSignUp(id, event.target.value)}
         />
       </Col>

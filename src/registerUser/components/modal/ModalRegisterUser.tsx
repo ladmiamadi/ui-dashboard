@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalFooter, ModalBody, Spinner } from 'reactstrap';
 import { connect } from 'react-redux';
 import { formValidator } from '../../helpers/formValidatorHelper';
-import { InputState, UserSignUpPayload, FormValidPayload, LoggedUserStatus } from '../../index.d';
+import { InputState, UserSignUpPayload, FormValidPayload, LoggedUserStatus, UserRegister } from '../../index.d';
 import { RootState, RootDispatch } from '../../../app/state/store';
 import { UserSignUp, IsFormValid } from '../..';
 import { User, Job } from '../../../app/index.d';
-import { FormRegisterUser } from '../form/FormRegisterUser';
+import FormRegisterUser from '../form/FormRegisterUser';
 import { createDtoUserIntern } from '../../helpers/userFactoryHelper';
+import { isUsernameAlreadyExists } from '../../helpers/formRegisterHelper';
 import classes from '../styles/FormRegisterUser.module.css';
+
 
 
 interface Props {
@@ -50,7 +52,7 @@ export class ModalRegisterUser extends Component<Props, State> {
     this.props.postUserInDb(userSentInDb);
   }
 
-  updateUserSignUp = (property: string, value: string) => {
+  updateUserSignUp = <T, >(property: keyof UserRegister<T>, value: string) => {
     const payload: UserSignUpPayload = {
       property,
       value,
@@ -59,7 +61,15 @@ export class ModalRegisterUser extends Component<Props, State> {
     this.props.updateUserSignUp(payload);
   }
 
-  setIsFormValid = (property: string, isInputValid: boolean) => {
+  setIsFormValid = <T, >(property: keyof UserRegister<T>, regEx: string) => {
+    let a = (new RegExp(regEx)).test(this.props.userSignUp[property]);
+
+    if (property === 'username' && a) {
+      a = isUsernameAlreadyExists(this.props.userSignUp[property], this.props.usernameCollection);
+    }
+
+    const isInputValid = a ? InputState.TRUE : InputState.FALSE
+
     const payload: FormValidPayload = {
       property,
       isInputValid,
