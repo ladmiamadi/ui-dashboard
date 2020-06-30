@@ -26,7 +26,7 @@ export interface User {
 }
 
 export interface UserAddress {
-  country : string
+  country: string,
   id?: number,
   user?: User,
   street?: string,
