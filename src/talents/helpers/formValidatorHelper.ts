@@ -1,5 +1,4 @@
-import { InputState } from '../index.d';
-import { IsFormValid } from '..';
+import { InputState, IsFormValid } from '../index.d';
 
 export const formValidator = (isFormValid: IsFormValid): InputState => {
   const copyOfIsFormValid: IsFormValid = {

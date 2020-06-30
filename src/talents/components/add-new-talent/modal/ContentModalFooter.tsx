@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import { InputState, IsFormValid, UserSignUp } from '../../index.d';
-import { formValidator } from '../../helpers/formValidatorHelper';
-import { createDtoUserIntern } from '../../helpers/userFactoryHelper';
-import { Job, User } from '../../../app';
-import { RootState, RootDispatch } from '../../../app/state/store';
+import { InputState, IsFormValid, UserSignUp } from '../../../index.d';
+import { formValidator } from '../../../helpers/formValidatorHelper';
+import { createDtoUserIntern } from '../../../helpers/userFactoryHelper';
+import { Job, User } from '../../../../app';
+import { RootState, RootDispatch } from '../../../../app/state/store';
 
 interface Props {
   isFormValid: IsFormValid,

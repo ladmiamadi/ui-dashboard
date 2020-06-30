@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
 import { connect } from 'react-redux';
-import { LoggedUserStatus } from '../../index.d';
-import { RootState, RootDispatch } from '../../../app/state/store';
+import { LoggedUserStatus } from '../../../index.d';
+import { RootState, RootDispatch } from '../../../../app/state/store';
 import ContentModalBody from './ContentModalBody';
 import ContentModalFooter from './ContentModalFooter';
 import classes from '../styles/FormRegisterUser.module.css';

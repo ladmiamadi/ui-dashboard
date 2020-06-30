@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Spinner } from 'reactstrap';
-import { UserSignUp, UserRegister, FormValidPayload, UserSignUpPayload, InputState, IsFormValid } from '../../index.d';
-import { isUsernameAlreadyExists } from '../../helpers/formRegisterHelper';
-import { RootState, RootDispatch } from '../../../app/state/store';
+import { UserSignUp, UserRegister, FormValidPayload, UserSignUpPayload, InputState, IsFormValid } from '../../../index.d';
+import { isUsernameAlreadyExists } from '../../../helpers/formRegisterHelper';
+import { RootState, RootDispatch } from '../../../../app/state/store';
 import FormRegisterUser from '../form/FormRegisterUser';
-import { Job } from '../../../app';
+import { Job } from '../../../../app';
 import classes from '../styles/FormRegisterUser.module.css';
 
 interface Props {

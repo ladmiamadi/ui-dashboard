@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Row } from 'reactstrap';
-import { UserSignUp, IsFormValid, UserRegister } from '../..';
-import { doubleArrayPropsInput } from '../../helpers/formRegisterHelper';
+import { UserSignUp, IsFormValid, UserRegister } from '../../..';
+import { doubleArrayPropsInput } from '../../../helpers/formRegisterHelper';
 import InputRegisterUsers from './inputs/InputRegisterUsers';
-import { Job } from '../../../app';
+import { Job } from '../../../../app';
 import classes from '../styles/FormRegisterUser.module.css';
 
 export interface Props {

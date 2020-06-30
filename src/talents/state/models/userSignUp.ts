@@ -3,7 +3,7 @@ import { createModel } from '@rematch/core';
 import { createEmptyUserSignUp, createEmptyIsFormValid } from '../../helpers/userSignUpFactoryHelper';
 import { UserSignUpPayload, FormValidPayload, UserSignUp, IsFormValid } from '../..';
 import { Toastify } from '../../../helpers/Toastify';
-import { User, Job } from '../../../app/index.d';
+import { User, Job } from '../../../app';
 
 export interface UserSignUpState {
   isFormValid: IsFormValid,

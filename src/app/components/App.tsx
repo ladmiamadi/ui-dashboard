@@ -6,7 +6,7 @@ import AppContainer from './AppContainer';
 import TalentFormPage from '../../talents/components/form/TalentFormPage';
 import Homepage from './homepage/Homepage';
 import CustomNavbar from './navbar/CustomNavbar';
-import ModalRegisterUser from '../../registerUser/components/modal/ModalRegisterUser';
+import ModalRegisterUser from '../../talents/components/add-new-talent/modal/ModalRegisterUser';
 import './styles/App.css';
 
 

@@ -1,6 +1,6 @@
 import { RematchRootState, init } from '@rematch/core';
 import * as modules from './models/modules';
-import * as userSignUp from '../../registerUser/state/models/userSignUp';
+import * as userSignUp from '../../talents/state/models/userSignUp';
 
 const models = {
   ...modules,

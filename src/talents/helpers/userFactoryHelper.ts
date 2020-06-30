@@ -1,4 +1,4 @@
-import { User, UserAddress, UserProfile, UserJob, Job } from '../../app/index.d';
+import { User, UserAddress, UserProfile, UserJob, Job } from '../../app';
 import { UserSignUp } from '..';
 
 export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]): User => {
