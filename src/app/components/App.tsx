@@ -9,7 +9,6 @@ import CustomNavbar from './navbar/CustomNavbar';
 import ModalRegisterUser from '../../talents/components/add-new-talent/modal/ModalRegisterUser';
 import './styles/App.css';
 
-
 export class App extends React.Component {
   render() {
     return (

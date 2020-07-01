@@ -1,7 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Spinner } from 'reactstrap';
-import { UserSignUp, UserRegister, FormValidPayload, UserSignUpPayload, InputState, IsFormValid } from '../../../index.d';
+import {
+  UserSignUp,
+  UserRegister,
+  FormValidPayload,
+  UserSignUpPayload,
+  InputState,
+  IsFormValid } from '../../../index.d';
 import { isUsernameAlreadyExists } from '../../../helpers/formRegisterHelper';
 import { RootState, RootDispatch } from '../../../../app/state/store';
 import FormRegisterUser from '../form/FormRegisterUser';
@@ -36,11 +42,11 @@ export class ContentModalBody extends React.Component<Props> {
       checkValue = isUsernameAlreadyExists(this.props.userSignUp[property], this.props.usernameCollection);
     }
 
-    const isInputValid = checkValue ? InputState.TRUE : InputState.FALSE
+    const isInputValid = checkValue ? InputState.TRUE : InputState.FALSE;
     const payload: FormValidPayload = {
       property,
       isInputValid,
-    }
+    };
 
     this.props.setIsFormValid(payload);
   }
@@ -49,22 +55,22 @@ export class ContentModalBody extends React.Component<Props> {
     return (
       <>
         {
-          this.props.isRequesting || this.props.isJobsFetching ? 
-          (
-            <div className={classes.containerSpinner}>
-              <Spinner color="success" type="grow" /> 
-            </div>
-          ) : 
-          (
-            <FormRegisterUser
-              isFormValid={this.props.isFormValid}
-              jobCollection={this.props.jobCollection}
-              usernameCollection={this.props.usernameCollection}
-              userSignUp={this.props.userSignUp} 
-              updateUserSignUp={this.updateUserSignUp}
-              setIsFormValid={this.setIsFormValid}
-            />
-          )
+          this.props.isRequesting || this.props.isJobsFetching ?
+            (
+              <div className={classes.containerSpinner}>
+                <Spinner color="success" type="grow" />
+              </div>
+            ) :
+            (
+              <FormRegisterUser
+                isFormValid={this.props.isFormValid}
+                jobCollection={this.props.jobCollection}
+                usernameCollection={this.props.usernameCollection}
+                userSignUp={this.props.userSignUp}
+                updateUserSignUp={this.updateUserSignUp}
+                setIsFormValid={this.setIsFormValid}
+              />
+            )
         }
       </>
     );
@@ -83,6 +89,6 @@ const mapState = (state: RootState) => ({
 const mapDispatch = (dispatch: RootDispatch) => ({
   setIsFormValid: dispatch.userSignUp.setIsFormValid,
   updateUserSignUp: dispatch.userSignUp.updateUserSignUp,
-})
+});
 
 export default connect(mapState, mapDispatch)(ContentModalBody);

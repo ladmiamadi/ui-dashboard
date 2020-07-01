@@ -1,5 +1,5 @@
-import { User, UserAddress, UserProfile, UserJob, Job } from '../../app';
 import { UserSignUp } from '..';
+import { Job, User, UserAddress, UserJob, UserProfile } from '../../app';
 
 export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]): User => {
   const userAddress: UserAddress = {
@@ -12,6 +12,16 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     firstName: userSignUp.firstName,
     lastName: userSignUp.lastName,
     phone: userSignUp.phone,
+    status: 'VALIDATED',
+  };
+
+  const userProfileWorking: UserProfile = {
+    birthDate: new Date(userSignUp.birthDate),
+    environment: 'working',
+    firstName: userSignUp.firstName,
+    lastName: userSignUp.lastName,
+    phone: userSignUp.phone,
+    status: 'VALIDATED',
   };
 
   const job: Job = jobCollection.filter((job: Job) => job.position === userSignUp.jobPosition)[0];
@@ -19,15 +29,13 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     job: job,
   };
 
-  const user: User = {
+  return {
     createdDate: new Date(),
     isActive: true,
     password: 'sosecure',
     username: userSignUp.username,
     userAddress: userAddress,
-    userProfiles: [userProfile],
+    userProfiles: [userProfile, userProfileWorking],
     userJob: userJob,
   };
-
-  return user;
 };
