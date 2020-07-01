@@ -74,7 +74,7 @@ export class CustomNavbar extends React.Component<Props, State> {
 
 const mapState = (state: RootState) => ({
   user: state.user.user,
-  modules: state.modules.list,
+  modules: state.modules.modules,
 });
 
 const mapDispatch = (dispatch: any) => ({

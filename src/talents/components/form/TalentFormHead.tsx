@@ -4,7 +4,7 @@ import { User, UserProfile } from '../../../app';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { RootDispatch, RootState } from '../../../app/state/store';
-import { UpdateUserPayload } from '../../state/models/user';
+import { UpdateUserPayload } from '../../state/models/userSelected';
 import ProfileCollection from '../../helpers/ProfileCollection';
 import { env } from '../../../helpers/environment';
 
@@ -26,7 +26,7 @@ export class TalentFormHead extends React.Component<Props> {
         <img
           className="profile-picture"
           alt={userProfileWorking?.firstName}
-          src={`${env('MEDIA_URL')}/${userProfileWorking?.picture.filePath}`}
+          src={`${env('MEDIA_URL')}/${userProfileWorking?.picture?.filePath}`}
         />
         <div className="head-block">
           <FieldForm
@@ -83,8 +83,8 @@ export class TalentFormHead extends React.Component<Props> {
             type="text"
             handleChange={(value) => this.props.modifyUser({
               value: value,
-              index: indexWorking,
-              category: 'userProfiles',
+              index: -1,
+              category: 'userAddress',
               property: 'country',
             })}            
             value={this.props.user.userAddress?.country} />
@@ -99,11 +99,11 @@ export class TalentFormHead extends React.Component<Props> {
 }
 
 const mapState = (state: RootState) => ({
-  user: state.user.user,
+  user: state.userSelected.userSelected,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({
-  modifyUser: dispatch.user.modifyUser,
+  modifyUser: dispatch.userSelected.modifyUser,
 });
 
 export default connect(mapState, mapDispatch)(TalentFormHead);

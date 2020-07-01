@@ -43,7 +43,7 @@ export class TalentsListElement extends React.Component <Props, State> {
       this.props.toggleModal();
     } else
     // we need to redirect to the talentForm when we will merge with the form
-      this.setState({ redirect: '/' });
+      this.setState({ redirect: '/talent' });
   }
 
   render() {
@@ -77,11 +77,11 @@ export class TalentsListElement extends React.Component <Props, State> {
 }
 
 const mapState = (state: RootState) => ({
-  userSelected: state.users.userSelected,
+  userSelected: state.userSelected.userSelected,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({
-  updateUserSelected: dispatch.users.updateUserSelected,
+  updateUserSelected: dispatch.userSelected.updateUserSelected,
 });
 
 export default connect(mapState, mapDispatch)(TalentsListElement);

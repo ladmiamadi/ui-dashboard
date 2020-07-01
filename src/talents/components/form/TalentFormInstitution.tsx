@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { User, UserProfile } from '../../../app';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { RootDispatch, RootState } from '../../../app/state/store';
-import { UpdateUserPayload } from '../../state/models/user';
+import { UpdateUserPayload } from '../../state/models/userSelected';
 import ProfileCollection from '../../helpers/ProfileCollection';
 
 interface Props {
@@ -75,11 +75,11 @@ export class TalentFormInstitution extends React.Component<Props> {
 }
 
 const mapState = (state: RootState) => ({
-  user: state.user.user,
+  user: state.userSelected.userSelected,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({
-  modifyUser: dispatch.user.modifyUser,
+  modifyUser: dispatch.userSelected.modifyUser,
 });
 
 export default connect(mapState, mapDispatch)(TalentFormInstitution);

@@ -8,7 +8,7 @@ import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormFie
 import { RootDispatch, RootState } from '../../../app/state/store';
 import DateSlicer from '../../helpers/DateSlicer';
 import { FormatDate } from '../../index.d';
-import { UpdateUserPayload } from '../../state/models/user';
+import { UpdateUserPayload } from '../../state/models/userSelected';
 
 interface Props {
   user: User,
@@ -69,11 +69,11 @@ export class TalentFormInternship extends React.Component<Props> {
 }
 
 const mapState = (state: RootState) => ({
-  user: state.user.user,
+  user: state.userSelected.userSelected,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({
-  modifyUser: dispatch.user.modifyUser,
+  modifyUser: dispatch.userSelected.modifyUser,
 });
 
 export default connect(mapState, mapDispatch)(TalentFormInternship);
