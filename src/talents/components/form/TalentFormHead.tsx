@@ -19,6 +19,9 @@ export class TalentFormHead extends React.Component<Props> {
     const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
       this.props.user.userProfiles, 'working',
     );
+    const filePath = userProfileWorking ?
+    `${env('MEDIA_URL')}${userProfileWorking?.picture.filePath}` :
+    '';
     
     return (
       <div className="form-head">
@@ -26,7 +29,7 @@ export class TalentFormHead extends React.Component<Props> {
         <img
           className="profile-picture"
           alt={userProfileWorking?.firstName}
-          src={`${env('MEDIA_URL')}/${userProfileWorking?.picture.filePath}`}
+          src={filePath}
         />
         <div className="head-block">
           <FieldForm
@@ -83,8 +86,8 @@ export class TalentFormHead extends React.Component<Props> {
             type="text"
             handleChange={(value) => this.props.modifyUser({
               value: value,
-              index: indexWorking,
-              category: 'userProfiles',
+              index: -1,
+              category: 'userAddress',
               property: 'country',
             })}            
             value={this.props.user.userAddress?.country} />
