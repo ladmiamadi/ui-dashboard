@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
 import { connect } from 'react-redux';
 import { LoggedUserStatus } from '../../../index.d';
-import { RootState, RootDispatch } from '../../../../app/state/store';
+import { RootDispatch } from '../../../../app/state/store';
 import ContentModalBody from './ContentModalBody';
 import ContentModalFooter from './ContentModalFooter';
 import classes from '../styles/FormRegisterUser.module.css';
@@ -59,7 +59,7 @@ export class ModalRegisterUser extends Component<Props, State> {
   }
 }
 
-const mapState = (state: RootState) => ({});
+const mapState = () => ({});
 
 const mapDispatch = (dispatch: RootDispatch) => ({
   fetchJobsInDb: dispatch.userSignUp.fetchJobsInDb,
