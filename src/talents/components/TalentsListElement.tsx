@@ -10,7 +10,7 @@ import './styles/TalentsList.css';
 import './styles/TalentModal.css';
 import history from '../../app/helpers/history';
 
-interface PropsTest {
+interface Props{
   profile: UserProfile,
   talent: User,
   toggleModal: () => void,
@@ -22,9 +22,9 @@ interface State {
   redirect: string,
 }
 
-export class TalentsListElement extends React.Component <PropsTest, State> {
-  constructor(propsTest: PropsTest) {
-    super(propsTest);
+export class TalentsListElement extends React.Component <Props, State> {
+  constructor(props: Props) {
+    super(props);
 
     this.state = {
       isModalShown: false,
