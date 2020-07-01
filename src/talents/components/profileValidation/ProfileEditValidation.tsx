@@ -16,7 +16,7 @@ export class ProfileEditValidation extends React.Component<Props> {
 }
 
 const mapState = (state: RootState) => ({
-  user: state.users.userSelected,
+  user: state.userSelected.userSelected,
 });
 
 export default connect(mapState)(ProfileEditValidation);

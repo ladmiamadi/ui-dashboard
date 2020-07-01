@@ -5,12 +5,12 @@ import { RootDispatch, RootState } from '../../app/state/store';
 import { TalentModal } from './modal/TalentModal';
 import { User, UserProfile } from '../../app';
 import { env } from '../../helpers/environment';
-import { Redirect } from 'react-router-dom';
 import { UserProfileHelpers } from '../../app/helpers/UserProfileHelpers';
 import './styles/TalentsList.css';
 import './styles/TalentModal.css';
+import history from '../../app/helpers/history';
 
-interface Props {
+interface PropsTest {
   profile: UserProfile,
   talent: User,
   toggleModal: () => void,
@@ -22,9 +22,9 @@ interface State {
   redirect: string,
 }
 
-export class TalentsListElement extends React.Component <Props, State> {
-  constructor(props: Props) {
-    super(props);
+export class TalentsListElement extends React.Component <PropsTest, State> {
+  constructor(propsTest: PropsTest) {
+    super(propsTest);
 
     this.state = {
       isModalShown: false,
@@ -34,7 +34,7 @@ export class TalentsListElement extends React.Component <Props, State> {
 
   toggleModal = () => {
     this.props.updateUserSelected(this.props.talent);
-
+    //let history = useHistory();
     if (UserProfileHelpers.isUserHaveWorkingOnValidationProfile(this.props.talent)) {
       this.setState({
         isModalShown: !this.state.isModalShown,
@@ -42,15 +42,10 @@ export class TalentsListElement extends React.Component <Props, State> {
 
       this.props.toggleModal();
     } else
-    // we need to redirect to the talentForm when we will merge with the form
-      this.setState({ redirect: '/talent' });
+      history.push('/talent');
   }
 
   render() {
-    if (this.state.redirect !== ''){
-      return <Redirect to={{ pathname: this.state.redirect }} />;
-    }
-
     return (
       <div className="id-card" onClick={this.toggleModal}>
         <img
