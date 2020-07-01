@@ -24,6 +24,15 @@ export const userSignUp = createModel({
     userSignUp: createEmptyUserSignUp(),
   } as UserSignUpState,
   reducers: {
+    concatUsername: (state: UserSignUpState, payload: string) => {
+      const updatedUsernameCollection: string[] = [ ...state.usernameCollection ]
+        .concat(payload);
+
+      return ({
+        ...state,
+        usernameCollection: updatedUsernameCollection,
+      });
+    },
     resetUserSignUp: (state: UserSignUpState): UserSignUpState => ({ 
       ...state, 
       isFormValid: createEmptyIsFormValid(), 
@@ -90,6 +99,8 @@ export const userSignUp = createModel({
 
       try {
         const { data } = await apiService.post('/api/users', userSentInDb);
+
+        this.concatUsername(data.username); 
 
         (new Toastify()).info('Success adding ' + data.username + ' in the database.');
 
