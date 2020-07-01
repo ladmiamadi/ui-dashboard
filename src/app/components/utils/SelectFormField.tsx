@@ -7,13 +7,13 @@ interface Props {
   options: string[],
   label: string,
   keyName: string,
-  className?: string
-  updateModel?: ( value:string, property:string ) => void;
+  className?: string,
+  updateModel?: (value: string, property: string) => void,
 }
 
 export class SelectFormField extends React.Component<Props> {
-  updateModelOnChange = (value:string , property:string) =>{
-    if (this.props.updateModel){
+  updateModelOnChange = (value: string , property: string) => {
+    if (this.props.updateModel) {
       this.props.updateModel(value, property);
     }
   }
@@ -21,7 +21,7 @@ export class SelectFormField extends React.Component<Props> {
   render() {
     return (
       <FormGroup className={this.props.className}>
-        <Label className="form-label" for={this.props.keyName}>{ this.props.label }</Label>
+        <Label className="form-label" htmlFor={this.props.keyName}>{ this.props.label }</Label>
         <Input
           onChange= {event => this.updateModelOnChange(event.target.value, this.props.keyName)}
           className="form-input"

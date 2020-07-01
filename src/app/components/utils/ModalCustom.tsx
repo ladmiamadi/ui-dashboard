@@ -4,6 +4,7 @@ import {
   ModalBody,
   ModalHeader,
 } from 'reactstrap';
+import '../styles/modal-custom.css';
 
 interface Props {
   isModalShown: boolean,

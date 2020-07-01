@@ -1,7 +1,7 @@
 import React from 'react';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 
-export class TalentFormLanguages extends React.Component {
+export default class TalentFormLanguages extends React.Component {
   render() {
     return (
       <div className="form-section">
@@ -25,5 +25,3 @@ export class TalentFormLanguages extends React.Component {
     );
   }
 }
-
-export default TalentFormLanguages;

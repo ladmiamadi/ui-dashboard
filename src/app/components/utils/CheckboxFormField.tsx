@@ -6,7 +6,7 @@ interface Props {
   label: string,
   keyName: string,
   className?: string,
-  checkboxes: string[]
+  checkboxes: string[],
 }
 
 export class CheckboxFormField extends React.Component<Props> {

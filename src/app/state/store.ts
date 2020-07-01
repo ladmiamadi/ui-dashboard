@@ -1,7 +1,8 @@
+import { RematchRootState, init } from '@rematch/core';
 import * as modules from './models/modules';
 import * as users from '../../talents/state/models/users';
 import * as user from './models/user';
-import { RematchRootState, init } from '@rematch/core';
+import * as talent from '../../talents/state/models/user';
 
 const models = {
   ...users,

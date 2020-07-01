@@ -7,6 +7,7 @@ import logoHDM from '../../assets/LogoHDM.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { Module, User } from '../../index';
+import './styles/CustomNavbar.css';
 
 interface Props {
   user: User,
@@ -73,7 +74,7 @@ export class CustomNavbar extends React.Component<Props, State> {
 
 const mapState = (state: RootState) => ({
   user: state.user.user,
-  modules: state.modules.modules,
+  modules: state.modules.list,
 });
 
 const mapDispatch = (dispatch: any) => ({
