@@ -40,7 +40,7 @@ export const FORM_REGISTER: FormRegister = {
   username: {
     id: 'username',
     label: 'Email',
-    regEx: '^[a-zA-Z0-9.!#$%&"*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$',
+    regEx: '^[a-z0-9._-]+@[a-z0-9._-]{2,}[.][a-z]{2,4}$',
     type: 'email',
   },
 };
