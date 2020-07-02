@@ -42,7 +42,7 @@ export const userSelected = createModel ({
       const copyUserSelected: User = { ...state.userSelected };
 
       copyUserSelected.userLanguages = updatedLanguages;
-      console.log('userSelected addUserLanguage' , copyUserSelected);
+
       return { ...state, userSelected: copyUserSelected };
     },
   },

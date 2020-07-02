@@ -25,7 +25,7 @@ export class ModalLanguage extends React.Component<Props> {
 
   render() {
     const newLanguage = UserLanguageFactory.createEmptyLanguage();
-    console.log(this.props.userSelected);
+
     return (
       <>
         <Row>
