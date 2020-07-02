@@ -23,12 +23,12 @@ export class SelectFormField extends React.Component<Props> {
   render() {
     return (
       <FormGroup className={this.props.className}>
-        <Label className="form-label" htmlFor={this.props.keyName}>{ this.props.label }</Label>
+        <Label className="form-label" htmlFor={this.props.label}>{ this.props.label }</Label>
         <Input
           onChange={event => this.props.handleChange(this.props.keyName, event.target.value)}
           className="form-input"
           type="select"
-          id={this.props.keyName}
+          id={this.props.label}
           value={this.props.value}
         >
           <option disabled>Aucun</option>

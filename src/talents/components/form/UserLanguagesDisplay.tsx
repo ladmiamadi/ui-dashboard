@@ -11,7 +11,6 @@ interface Props {
 
 export class UserLanguagesDisplay extends React.Component<Props> {
   render() {
-    console.log(this.props.userLanguages);
     return (
       <>
         <Row form className="row-almost-large">
