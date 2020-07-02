@@ -6,11 +6,12 @@ import { LANGUAGES_LEVEL } from '../../constants/language';
 
 interface Props {
   userLanguages: UserLanguage[],
-  updateUserLanguage: (property: string, value: string) => void,
+  updateUserLanguage: (property: string, value: string, index: number) => void,
 }
 
 export class UserLanguagesDisplay extends React.Component<Props> {
   render() {
+    console.log(this.props.userLanguages);
     return (
       <>
         <Row form className="row-almost-large">
@@ -20,12 +21,12 @@ export class UserLanguagesDisplay extends React.Component<Props> {
                 <Col key={index} md={6}>
                   <SelectFormField
                     key={index}
-                    keyName={language}
+                    keyName="level"
                     label={language}
                     className="large almost-large"
                     options={LANGUAGES_LEVEL}
                     value={level}
-                    handleOnChange={this.props.updateUserLanguage}
+                    handleChange={(property, value) => this.props.updateUserLanguage(property, value, index)}
                   />
                 </Col>
               ),

@@ -83,7 +83,7 @@ export class TalentFormAddress extends React.Component<Props> {
           keyName="country"
           label="Pays: "
           options={['aaa', 'bbb']}
-          handleOnChange={() => ({})}
+          handleChange={() => ({})}
           value="Aucun"
         />
         <FieldForm
@@ -101,7 +101,7 @@ export class TalentFormAddress extends React.Component<Props> {
           keyName="search"
           label="Actuellement en recherche: "
           options={['Oui', 'Non']}
-          handleOnChange={() => ({})}
+          handleChange={() => ({})}
           value="Aucun"
         />
       </div>

@@ -3,16 +3,16 @@ import { createModel } from '@rematch/core';
 import { Module } from '../../index';
 import { Toastify } from '../../../helpers/Toastify';
 
-interface State {
+interface ModulesState {
   modules: Module[],
 }
 
 export const modules = createModel({
   state: {
     modules: [],
-  } as State,
+  } as ModulesState,
   reducers: {
-    updateModulesList: (state: ModulesState, payload: Module[]): ModulesState => ({ list: payload }),
+    updateModulesList: (state: ModulesState, payload: Module[]): ModulesState => ({ modules: payload }),
   },
   effects: {
     async fetchModules() {

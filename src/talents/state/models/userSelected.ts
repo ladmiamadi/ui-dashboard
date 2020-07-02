@@ -1,5 +1,5 @@
 import { createModel } from '@rematch/core';
-import { User } from '../../../app';
+import { User, UserLanguage } from '../../../app';
 import { createEmptyUser } from '../../../app/helpers/user';
 
 export interface UserState {
@@ -35,6 +35,15 @@ export const userSelected = createModel ({
       return {
         ...state, userSelected,
       };
+    },
+    addUserLanguage: (state: UserState, userLanguage: UserLanguage): UserState => {
+      const updatedLanguages = state.userSelected.userLanguages.map(language => ({ ...language }))
+        .concat(userLanguage);
+      const copyUserSelected: User = { ...state.userSelected };
+
+      copyUserSelected.userLanguages = updatedLanguages;
+      console.log('userSelected addUserLanguage' , copyUserSelected);
+      return { ...state, userSelected: copyUserSelected };
     },
   },
 });

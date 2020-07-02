@@ -9,7 +9,7 @@ interface Props {
   keyName: string,
   className?: string,
   value: string,
-  handleOnChange: (property: string, value: string) => void,
+  handleChange: (property: string, value: string) => void,
   updateModel?: (value: string, property: string) => void,
 }
 
@@ -25,12 +25,11 @@ export class SelectFormField extends React.Component<Props> {
       <FormGroup className={this.props.className}>
         <Label className="form-label" htmlFor={this.props.keyName}>{ this.props.label }</Label>
         <Input
-          onChange={event => this.props.handleOnChange(this.props.keyName, event.target.value)}
+          onChange={event => this.props.handleChange(this.props.keyName, event.target.value)}
           className="form-input"
           type="select"
           id={this.props.keyName}
           value={this.props.value}
-          {//defaultValue="Aucun"}
         >
           <option disabled>Aucun</option>
           <OptionList options={this.props.options} />

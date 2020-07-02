@@ -32,7 +32,9 @@ export class TalentFormInternship extends React.Component<Props> {
             keyName="internship-status"
             label="Statut du stage: "
             options={['aaa', 'bbb']}
-            className="large" />
+            className="large"
+            handleChange={() => ({})}
+            value="" />
           <DateFormField
             keyName="internship-start"
             label="Début: "

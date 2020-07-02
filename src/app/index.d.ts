@@ -16,7 +16,7 @@ export interface User {
   userAbsences?: UserAbsence[],
   userInterviews?: UserInterview[],
   userContracts?: UserContract[],
-  userLanguages?: UserLanguage[],
+  userLanguages: UserLanguage[],
   userExperiences?: UserExperience[],
   userTrainings?: UserTraining[],
   userRole?: UserRole,
@@ -88,7 +88,7 @@ export interface UserContract {
 }
 
 export interface UserLanguage {
-  id: number,
+  id?: number,
   language: string,
   level: string,
 }
