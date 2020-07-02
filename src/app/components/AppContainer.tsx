@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { RootDispatch, RootState } from '../state/store';
 
 interface Props {
+  children: React.ReactNode,
   fetchModules: () => Promise<void>,
 }
 

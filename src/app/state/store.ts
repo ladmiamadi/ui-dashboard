@@ -1,11 +1,13 @@
 import { RematchRootState, init } from '@rematch/core';
 import * as language  from '../../talents/state/models/languages/add-language';
+import * as auth from '../../authentication/state/models/auth';
 import * as modules from './models/modules';
 import * as users from '../../talents/state/models/users';
 import * as user from './models/user';
 import * as userSelected from '../../talents/state/models/userSelected';
 
 const models = {
+  ...auth,
   ...users,
   ...modules,
   ...user,
@@ -17,7 +19,7 @@ export const store = init({
   models,
 });
 
-export type RootState = RematchRootState<typeof models>
+export type RootState = RematchRootState<typeof models>;
 export type RootDispatch = typeof store.dispatch;
 
 declare module 'react-redux' {
