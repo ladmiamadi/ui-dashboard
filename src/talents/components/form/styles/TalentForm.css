@@ -79,8 +79,20 @@
   box-sizing: border-box;
 }
 
+.form-row.row-almost-large {
+    width: 100%;
+}
+
 .form-group.large {
   width: 100%;
+}
+
+.form-section.almost-large {
+    justify-content: flex-start;
+}
+
+.form-group.almost-large {
+    width: 95%;
 }
 
 .form-group.medium {
@@ -147,6 +159,12 @@
 .form-button {
   width: 60%;
   margin: 20px auto;
+}
+
+.form-add-button {
+    background: #F0F0F0;
+    border: 0.1rem solid black;
+    padding: 0.5rem ;
 }
 
 @media (max-width: 768px) {

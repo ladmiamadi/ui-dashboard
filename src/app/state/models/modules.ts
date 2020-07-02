@@ -12,14 +12,13 @@ export const modules = createModel({
     modules: [],
   } as State,
   reducers: {
-    updateList: (state: State, modules: Module[]): State => ({ modules }),
+    updateModulesList: (state: ModulesState, payload: Module[]): ModulesState => ({ list: payload }),
   },
   effects: {
     async fetchModules() {
       try {
         const { data } = await apiService.get('/api/modules');
-
-        this.updateList(data);
+        this.updateModulesList(data);
       } catch (error) {
         (new Toastify()).error(`Module doesn't exist. ${ error.message }`);
       }

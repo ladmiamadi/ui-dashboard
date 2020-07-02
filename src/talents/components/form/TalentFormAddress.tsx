@@ -16,7 +16,7 @@ export class TalentFormAddress extends React.Component<Props> {
   render() {
     const indexWorking: number = ProfileCollection.findWorkingIndex(this.props.user.userProfiles);
     const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
-      this.props.user.userProfiles, 
+      this.props.user.userProfiles,
       'working',
     );
 
@@ -28,10 +28,10 @@ export class TalentFormAddress extends React.Component<Props> {
           className="medium"
           type="text"
           handleChange={(value: string) => this.props.modifyUser({
-            category: 'userAddress', 
-            property: 'street', 
+            category: 'userAddress',
+            property: 'street',
             value: value,
-            index: -1, 
+            index: -1,
           })}
           value={this.props.user.userAddress?.street} />
         <FieldForm
@@ -39,8 +39,8 @@ export class TalentFormAddress extends React.Component<Props> {
           label="Num: "
           type="text"
           handleChange={(value: string) => this.props.modifyUser({
-            category: 'userAddress', 
-            property: 'number', 
+            category: 'userAddress',
+            property: 'number',
             value: value,
             index: -1,
           })}
@@ -61,7 +61,7 @@ export class TalentFormAddress extends React.Component<Props> {
           label="Code Postal: "
           type="text"
           handleChange={(value: string) => this.props.modifyUser({
-            category: 'userAddress', 
+            category: 'userAddress',
             property: 'zip-code',
             value: value,
             index: -1,
@@ -82,7 +82,10 @@ export class TalentFormAddress extends React.Component<Props> {
         <SelectFormField
           keyName="country"
           label="Pays: "
-          options={['aaa', 'bbb']} />
+          options={['aaa', 'bbb']}
+          handleOnChange={() => ({})}
+          value="Aucun"
+        />
         <FieldForm
           keyName="DOB"
           label="Date de naissance: "
@@ -97,7 +100,10 @@ export class TalentFormAddress extends React.Component<Props> {
         <SelectFormField
           keyName="search"
           label="Actuellement en recherche: "
-          options={['Oui', 'Non']} />
+          options={['Oui', 'Non']}
+          handleOnChange={() => ({})}
+          value="Aucun"
+        />
       </div>
     );
   }

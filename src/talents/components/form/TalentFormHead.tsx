@@ -19,7 +19,7 @@ export class TalentFormHead extends React.Component<Props> {
     const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
       this.props.user.userProfiles, 'working',
     );
-    
+
     return (
       <div className="form-head">
         <h1 className="talent-title">Gestion des talents: Nom Prénom</h1>
@@ -49,12 +49,15 @@ export class TalentFormHead extends React.Component<Props> {
               index: indexWorking,
               category: 'userProfiles',
               property: 'firstName',
-            })}            
+            })}
             value={userProfileWorking?.firstName} />
           <SelectFormField
             keyName="function"
             label="Fonction: "
-            options={['aaa', 'bbb']} />
+            options={['aaa', 'bbb']}
+            handleOnChange={() => ({})}
+            value="Aucun"
+          />
           <FieldForm
             keyName="email"
             label="Mail: "
@@ -64,7 +67,7 @@ export class TalentFormHead extends React.Component<Props> {
               index: -1,
               category: 'username',
               property: '',
-            })}            
+            })}
             value={this.props.user.username} />
           <FieldForm
             keyName="phone"
@@ -75,7 +78,7 @@ export class TalentFormHead extends React.Component<Props> {
               index: indexWorking,
               category: 'userProfiles',
               property: 'phone',
-            })}            
+            })}
             value={userProfileWorking?.phone} />
           <FieldForm
             keyName="place"
@@ -86,7 +89,7 @@ export class TalentFormHead extends React.Component<Props> {
               index: -1,
               category: 'userAddress',
               property: 'country',
-            })}            
+            })}
             value={this.props.user.userAddress?.country} />
         </div>
         <div className="connexion-box">
