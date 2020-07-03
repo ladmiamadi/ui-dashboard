@@ -9,13 +9,13 @@ import { UserLanguageFactory } from '../../helpers/UserLanguageFactory';
 import { LANGUAGES_LEVEL } from '../../constants/language';
 
 interface Props {
+  userSelected: User,
   language: UserLanguage,
   languages: string[],
   isPosting: boolean,
   resetLanguage: () => void,
   updateLanguage: (payload: UpdateLanguagePayload) => void,
   postLanguage: (userLanguage: UserLanguage, user: User) => void,
-  userSelected: User,
 }
 
 export class ModalLanguage extends React.Component<Props> {

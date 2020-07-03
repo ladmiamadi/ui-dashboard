@@ -10,7 +10,6 @@ import { Provider } from 'react-redux';
 import TalentFormPage from '../../talents/components/form/TalentFormPage';
 import { TalentsListPage } from '../../talents/components/TalentsListPage';
 import { store } from '../state/store';
-import ModalRegisterUser from '../../talents/components/add-new-talent/modal/ModalRegisterUser';
 import RegisterUser from '../../talents/components/add-new-talent/modal/RegisterUser';
 import './styles/App.css';
 import history from '../helpers/history';

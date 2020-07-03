@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { User, UserProfile } from '../../app';
 import { env } from '../../helpers/environment';
 import './styles/TalentsList.css';

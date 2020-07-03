@@ -1,6 +1,7 @@
 import { createModel } from '@rematch/core';
 import { User, UserLanguage } from '../../../app';
 import { createEmptyUser } from '../../../app/helpers/user';
+import _ from 'lodash';
 
 export interface UserState {
   userSelected: User,
@@ -20,7 +21,7 @@ export const userSelected = createModel ({
   reducers: {
     updateUserSelected: (state: UserState, userSelected: User): UserState => ({ ...state, userSelected: userSelected }),
     modifyUser: (state: UserState, payload: UpdateUserPayload): UserState => {
-      const userSelected = { ...state.userSelected } as any;
+      const userSelected = _.cloneDeep(state.userSelected) as any;
 
       if (payload.index !== -1) {
         userSelected[payload.category][payload.index][payload.property] = payload.value;

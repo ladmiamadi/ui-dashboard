@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Col, Container, Row } from 'reactstrap';
+import _ from 'lodash';
 import { User } from '../../app';
 import { ModalCustom } from '../../app/components/utils/ModalCustom';
 import history from '../../app/helpers/history';
 import { RootDispatch, RootState } from '../../app/state/store';
 import { TalentModal } from './modal/TalentModal';
 import TalentsListElement from './TalentsListElement';
-import './styles/TalentsList.css';
 import { UserProfileHelpers } from '../../app/helpers/UserProfileHelpers';
+import './styles/TalentsList.css';
 
 interface Props {
   users: User[],
@@ -27,7 +28,7 @@ export class TalentsList extends React.Component<Props, State> {
   }
 
   toggleModal = (talent: User) => {
-    this.props.updateUserSelected(talent);
+    this.props.updateUserSelected(_.cloneDeep(talent));
 
     if (UserProfileHelpers.isUserHaveWorkingOnValidationProfile(talent)) {
       this.setState({
@@ -45,11 +46,9 @@ export class TalentsList extends React.Component<Props, State> {
             this.props.users.map((talent, index) => (
               <Col key={index} className="element" xs={5} sm={3} xl={2} onClick={() => this.toggleModal(talent)}>
                 {
-                  UserProfileHelpers.findUserProfileLive(talent)?.map((profile) =>
-                    
-                    <>
+                  UserProfileHelpers.findUserProfileLive(talent)?.map((profile) => (
+                    <React.Fragment key={profile.id}>
                       <TalentsListElement
-                        key={profile.id + 'talentList'}
                         profile={profile}
                         talent={talent}
                       />
@@ -57,15 +56,14 @@ export class TalentsList extends React.Component<Props, State> {
                         isModalShown={this.state.isModalOpen}
                         toggleModal={() => this.toggleModal(talent)}
                         titleModal={profile.firstName + ' ' + profile.lastName}
-                        className="talent-title"
-                        key={profile.id + 'modalCustom'}>
+                        className="talent-title">
                         <TalentModal talent={talent}/>
                       </ModalCustom>
-                    </>
+                    </React.Fragment>
+                  )
                     )
                 }
               </Col>
-              
             ))
           }
         </Row>
