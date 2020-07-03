@@ -5,6 +5,7 @@ import * as modules from './models/modules';
 import * as user from './models/user';
 import * as users from '../../talents/state/models/users';
 import * as userSelected from '../../talents/state/models/userSelected';
+import * as userSignUp from '../../talents/state/models/userSignUp';
 
 const models = {
   ...auth,
@@ -13,6 +14,7 @@ const models = {
   ...modules,
   ...userSelected,
   ...language,
+  ...userSignUp,
 };
 
 export const store = init({

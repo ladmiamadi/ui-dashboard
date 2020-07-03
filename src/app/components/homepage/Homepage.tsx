@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { RootDispatch, RootState } from '../../state/store';
 import { connect } from 'react-redux';
-import { Module } from '../../index';
+import { Module } from '../../index.d';
 import './styles/Homepage.css';
 
 interface Props {

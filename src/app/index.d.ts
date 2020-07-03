@@ -6,10 +6,11 @@ export interface Module {
 }
 
 export interface User {
-  id: number | null,
+  id?: number | null,
   username: string,
   password: string,
-  createdDate?: Date,
+  isActive: boolean,
+  createdDate: Date,
   updatedDate?: Date,
   userProfiles?: UserProfile[],
   userAddress?: UserAddress,
@@ -121,17 +122,17 @@ export interface UserSkill {
 
 export interface UserJob {
   job: Job,
-  startDate: Date,
-  endDate: Date,
-  isWorkingOnMonday: boolean,
-  isWorkingOnTuesday: boolean,
-  isWorkingOnWednesday: boolean,
-  isWorkingOnThursday: boolean,
-  isWorkingOnFriday: boolean,
-  isWorkingOnSaturday: boolean,
-  isWorkingOnSunday: boolean,
-  status: string,
-  workingHours: string,
+  startDate?: Date,
+  endDate?: Date,
+  isWorkingOnMonday?: boolean,
+  isWorkingOnTuesday?: boolean,
+  isWorkingOnWednesday?: boolean,
+  isWorkingOnThursday?: boolean,
+  isWorkingOnFriday?: boolean,
+  isWorkingOnSaturday?: boolean,
+  isWorkingOnSunday?: boolean,
+  status?: string,
+  workingHours?: string,
 }
 
 export interface Role {
