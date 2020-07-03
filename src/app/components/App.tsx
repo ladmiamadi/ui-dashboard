@@ -6,7 +6,7 @@ import AppContainer from './AppContainer';
 import TalentFormPage from '../../talents/components/form/TalentFormPage';
 import Homepage from './homepage/Homepage';
 import CustomNavbar from './navbar/CustomNavbar';
-import ModalRegisterUser from '../../talents/components/add-new-talent/modal/ModalRegisterUser';
+import RegisterUser from '../../talents/components/add-new-talent/modal/RegisterUser';
 import './styles/App.css';
 
 export class App extends React.Component {
@@ -18,7 +18,7 @@ export class App extends React.Component {
             <CustomNavbar />
             <Route path="/" exact component={Homepage} />
             <Route path="/talent" exact component={TalentFormPage} />
-            <Route path="/intern" exact component={ModalRegisterUser} />
+            <Route path="/intern" exact component={RegisterUser} />
           </AppContainer>
         </Provider>
       </Router>

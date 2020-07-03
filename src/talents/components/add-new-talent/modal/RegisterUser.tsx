@@ -3,8 +3,8 @@ import { Button, Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
 import { connect } from 'react-redux';
 import { LoggedUserStatus } from '../../../index.d';
 import { RootDispatch } from '../../../../app/state/store';
-import ContentModalBody from './ContentModalBody';
-import ContentModalFooter from './ContentModalFooter';
+import ContentModalBody from './ContentBody';
+import ContentModalFooter from './ContentFooter';
 import classes from '../styles/FormRegisterUser.module.css';
 
 interface Props {
@@ -51,7 +51,7 @@ export class ModalRegisterUser extends Component<Props, State> {
             <ContentModalBody />
           </ModalBody>
           <ModalFooter>
-            <ContentModalFooter toggleModal={this.toggleModal}/>
+            <ContentModalFooter toggleModal={this.toggleModal} />
           </ModalFooter>
         </Modal>
       </>
