@@ -1,9 +1,10 @@
 import { User } from '../index.d';
 
 export const createEmptyUser = (): User => ({
-  id: null,
+  id: -1,
   username: '',
   password: '',
+  isActive: true,
   createdDate: new Date(),
   updatedDate: new Date(),
   userProfiles: [],

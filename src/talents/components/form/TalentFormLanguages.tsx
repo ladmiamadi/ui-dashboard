@@ -46,6 +46,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
   }
 
   render() {
+    const userLanguages = this.props.userSelected.userLanguages || [];
     return (
       <div className="form-section almost-large">
         <div className="section-add">
@@ -59,7 +60,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
           </Button>
         </div>
         <UserLanguagesDisplay
-          userLanguages={this.props.userSelected.userLanguages}
+          userLanguages={userLanguages}
           updateUserLanguage={this.updateUserLanguage}
         />
         <ModalCustom
@@ -69,7 +70,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
         >
           <ModalLanguage
             userSelected={this.props.userSelected}
-            languages={UserLanguageHelper.filterLanguageList(this.props.userSelected.userLanguages)}
+            languages={UserLanguageHelper.filterLanguageList(userLanguages)}
           />
         </ModalCustom>
       </div>

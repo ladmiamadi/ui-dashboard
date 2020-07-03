@@ -6,7 +6,7 @@ export interface Module {
 }
 
 export interface User {
-  id?: number | null,
+  id?: number,
   username: string,
   password: string,
   isActive: boolean,
@@ -17,7 +17,7 @@ export interface User {
   userAbsences?: UserAbsence[],
   userInterviews?: UserInterview[],
   userContracts?: UserContract[],
-  userLanguages: UserLanguage[],
+  userLanguages?: UserLanguage[],
   userExperiences?: UserExperience[],
   userTrainings?: UserTraining[],
   userRole?: UserRole,
@@ -26,43 +26,43 @@ export interface User {
 }
 
 export interface UserAddress {
-  id: number,
-  street: string,
-  number: string,
-  box: string
-  zipCode: number,
-  city: string,
-  country : string
-  status: string,
+  id?: number,
+  street?: string,
+  number?: string,
+  box?: string
+  zipCode?: number,
+  city?: string,
+  country: string
+  status?: string,
 }
 
 export interface UserProfile {
-  id: number,
+  id?: number,
   lastName: string,
   firstName: string,
   phone: string,
-  requestInFrench: string,
-  requestInEnglish: string,
-  requestInDutch: string,
-  motivationInFrench : string,
-  motivationInEnglish : string,
-  motivationInDutch : string,
-  mobility: string,
+  requestInFrench?: string,
+  requestInEnglish?: string,
+  requestInDutch?: string,
+  motivationInFrench?: string,
+  motivationInEnglish?: string,
+  motivationInDutch?: string,
+  mobility?: string,
   birthDate: Date,
-  institution: string,
-  descriptionInFrench: string,
-  descriptionInEnglish: string,
-  descriptionInDutch: string,
-  isActuallyLookingForJob: boolean,
-  phoneInstitution: string,
-  mailInstitution: string,
-  personContactInstitution: string,
-  desiredJob: string,
-  actualSalary: number,
-  expectedSalary: number,
+  institution?: string,
+  descriptionInFrench?: string,
+  descriptionInEnglish?: string,
+  descriptionInDutch?: string,
+  isActuallyLookingForJob?: boolean,
+  phoneInstitution?: string,
+  mailInstitution?: string,
+  personContactInstitution?: string,
+  desiredJob?: string,
+  actualSalary?: number,
+  expectedSalary?: number,
   status: string,
   environment: string
-  picture: MediaObject,
+  picture?: MediaObject,
 }
 
 export interface MediaObject {

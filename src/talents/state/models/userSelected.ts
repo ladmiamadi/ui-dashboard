@@ -37,7 +37,7 @@ export const userSelected = createModel ({
       };
     },
     addUserLanguage: (state: UserState, userLanguage: UserLanguage): UserState => {
-      const updatedLanguages = state.userSelected.userLanguages.map(language => ({ ...language }))
+      const updatedLanguages = state.userSelected.userLanguages?.map(language => ({ ...language }))
         .concat(userLanguage);
       const copyUserSelected: User = { ...state.userSelected };
 

@@ -1,5 +1,11 @@
 import { InputType } from 'reactstrap/lib/Input';
 
+export enum FormatDate {
+  YEAR,
+  MONTH,
+  DAY,
+}
+
 export enum InputState {
   TRUE = true,
   FALSE = false,
@@ -45,7 +51,7 @@ export interface FormValidPayload {
   isInputValid: InputState,
 }
 
-export interface PropsForInput{
+export interface PropsForInput {
   id: keyof UserRegister<T>,
   idValue: string,
   isInputValid: InputState,
@@ -56,9 +62,5 @@ export interface PropsForInput{
   regEx: string,
   updateUserSignUp: (property: keyof UserRegister<T>, idValue: string) => void,
   setIsFormValid: (property: keyof UserRegister<T>, regEx: string) => void,
-
-export enum FormatDate {
-  YEAR,
-  MONTH,
-  DAY,
 }
+

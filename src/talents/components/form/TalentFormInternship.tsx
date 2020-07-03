@@ -20,7 +20,7 @@ export class TalentFormInternship extends React.Component<Props> {
     let startDate = new Date();
     let endDate = new Date();
 
-    if (this.props.user.userJob) {
+    if (this.props.user.userJob && this.props.user.userJob.startDate && this.props.user.userJob.endDate) {
       startDate = this.props.user.userJob.startDate;
       endDate = this.props.user.userJob.endDate;
     }
