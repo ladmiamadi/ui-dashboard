@@ -11,6 +11,7 @@ import TalentFormPage from '../../talents/components/form/TalentFormPage';
 import { TalentsListPage } from '../../talents/components/TalentsListPage';
 import { store } from '../state/store';
 import ModalRegisterUser from '../../talents/components/add-new-talent/modal/ModalRegisterUser';
+import RegisterUser from '../../talents/components/add-new-talent/modal/RegisterUser';
 import './styles/App.css';
 import history from '../helpers/history';
 
@@ -29,7 +30,7 @@ export class App extends React.Component {
               <Route path="/talent" exact component={TalentFormPage} />
               <Route path="/talents" exact component= {TalentsListPage} />
               <Route path="/editprofile" exact component={ProfileEditValidation} />
-              <Route path="/intern" exact component={ModalRegisterUser} />
+              <Route path="/intern" exact component={RegisterUser} />
             </AuthenticationGuard>
           </AppContainer>
         </Provider>

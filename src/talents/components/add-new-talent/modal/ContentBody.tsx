@@ -78,7 +78,7 @@ export class ContentModalBody extends React.Component<Props> {
 }
 
 const mapState = (state: RootState) => ({
-  isFormValid:state.userSignUp.isFormValid,
+  isFormValid: state.userSignUp.isFormValid,
   isJobsFetching: state.userSignUp.isJobsFetching,
   isRequesting: state.userSignUp.isRequesting,
   jobCollection: state.userSignUp.jobCollection,
