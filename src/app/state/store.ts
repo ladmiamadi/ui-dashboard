@@ -2,15 +2,15 @@ import { RematchRootState, init } from '@rematch/core';
 import * as language  from '../../talents/state/models/languages/add-language';
 import * as auth from '../../authentication/state/models/auth';
 import * as modules from './models/modules';
-import * as users from '../../talents/state/models/users';
 import * as user from './models/user';
+import * as users from '../../talents/state/models/users';
 import * as userSelected from '../../talents/state/models/userSelected';
 
 const models = {
   ...auth,
+  ...user,
   ...users,
   ...modules,
-  ...user,
   ...userSelected,
   ...language,
 };

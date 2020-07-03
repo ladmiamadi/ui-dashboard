@@ -1,15 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { RootState } from '../../state/store';
+import { RootDispatch, RootState } from '../../state/store';
 import { connect } from 'react-redux';
 import { Module } from '../../index';
 import './styles/Homepage.css';
 
 interface Props {
   modules: Module[],
+  fetchModules: () => Promise<void>,
 }
 
 export class Homepage extends React.Component<Props> {
+  async componentDidMount() {
+    await this.props.fetchModules();
+  }
+
   render() {
     return (
       <div>
@@ -36,4 +41,8 @@ export class Homepage extends React.Component<Props> {
 
 const mapState = (state: RootState) => ({ modules: state.modules.modules });
 
-export default connect(mapState)(Homepage);
+const mapDispatch = (dispatch: RootDispatch) => ({
+  fetchModules: dispatch.modules.fetchModules,
+});
+
+export default connect(mapState, mapDispatch)(Homepage);

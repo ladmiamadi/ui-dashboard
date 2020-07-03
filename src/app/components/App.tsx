@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Router } from 'react-router-dom';
 import ProfileEditValidation from '../../talents/components/profileValidation/ProfileEditValidation';
 import AppContainer from './AppContainer';
-import TalentFormPage from '../../talents/components/form/TalentFormPage';
 import AuthenticationForm from '../../authentication/components/AuthenticationForm';
 import AuthenticationGuard from '../../authentication/components/AuthenticationGuard';
 import CustomNavbar from './navbar/CustomNavbar';
@@ -20,11 +19,6 @@ export class App extends React.Component {
       <Router history={history}>
         <Provider store={store}>
           <AppContainer>
-            <CustomNavbar />
-            <Route path="/" exact component={Homepage} />
-            <Route path="/talent" exact component={TalentFormPage} />
-            <Route path="/talents" exact component= {TalentsListPage} />
-            <Route path="/editprofile" exact component={ProfileEditValidation} />
             <AuthenticationGuard
               form={<AuthenticationForm />}
               localToken={localStorage.getItem('hdm:admin:auth-token')}
@@ -32,6 +26,8 @@ export class App extends React.Component {
               <CustomNavbar />
               <Route path="/" exact component={Homepage} />
               <Route path="/talent" exact component={TalentFormPage} />
+              <Route path="/talents" exact component= {TalentsListPage} />
+              <Route path="/editprofile" exact component={ProfileEditValidation} />
             </AuthenticationGuard>
           </AppContainer>
         </Provider>
