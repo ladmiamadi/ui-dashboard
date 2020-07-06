@@ -4,7 +4,7 @@ import { Button } from 'reactstrap';
 import { RootDispatch } from '../../../app/state/store';
 import { UserLanguageHelper } from '../../helpers/userLanguageHelper';
 import { UpdateUserPayload } from '../../state/models/userSelected';
-import ModalLanguage from './ModalLanguage';
+import ModalLanguage from '../modal/ModalLanguage';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
 import { User } from '../../../app';
 import { UserLanguagesDisplay } from './UserLanguagesDisplay';
