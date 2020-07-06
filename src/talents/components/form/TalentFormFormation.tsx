@@ -1,23 +1,47 @@
 import React from 'react';
+import { Button } from 'reactstrap';
 import { User } from '../../../app';
 import { DateFormField } from '../../../app/components/utils/DateFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import DateSlicer from '../../helpers/DateSlicer';
 import { FormatDate } from '../../index.d';
 import { UpdateUserPayload } from '../../state/models/userSelected';
+import ModalTraining from '../modal/ModalTraining';
+import { ModalCustom } from '../../../app/components/utils/ModalCustom';
 
 interface Props {
   user: User,
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-export default class TalentFormFormation extends React.Component<Props> {
+interface State {
+  isModalOpen: boolean,
+}
+
+export default class TalentFormFormation extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      isModalOpen: false,
+    }
+  }
+
+  toggleModalAndResetModalOnQuit = () => {
+    this.setState({ isModalOpen: !this.state.isModalOpen });
+  }
+
   render() {
     return (
       <div className="form-section">
         <div className="section-add">
           <h6>Formations: </h6>
-          <button className="form-add-button">Ajouter une formation</button>
+          <Button
+            className="form-add-button"
+            onClick={this.toggleModalAndResetModalOnQuit}
+          >
+            Ajouter une formation
+          </Button>
         </div>
         {
           this.props.user.userTrainings?.map((elem, index) => (
@@ -63,6 +87,13 @@ export default class TalentFormFormation extends React.Component<Props> {
             </div>
           ))
         }
+        <ModalCustom
+          isModalShown={this.state.isModalOpen}
+          toggleModal={this.toggleModalAndResetModalOnQuit}
+          titleModal="Ajouter une formation"
+        >
+          <ModalTraining />
+        </ModalCustom>
       </div>
     );
   }

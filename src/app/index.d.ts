@@ -104,7 +104,7 @@ export interface UserExperience {
 }
 
 export interface UserTraining {
-  id: number,
+  id?: number,
   institution: string,
   startDate: Date,
   endDate: Date,
