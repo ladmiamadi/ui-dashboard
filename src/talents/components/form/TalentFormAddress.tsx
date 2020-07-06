@@ -1,9 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { User, UserProfile } from '../../../app';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
-import { RootDispatch, RootState } from '../../../app/state/store';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import ProfileCollection from '../../helpers/ProfileCollection';
 
@@ -12,7 +10,7 @@ interface Props {
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-export class TalentFormAddress extends React.Component<Props> {
+export default class TalentFormAddress extends React.Component<Props> {
   render() {
     const indexWorking: number = ProfileCollection.findWorkingIndex(this.props.user.userProfiles);
     const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
@@ -108,13 +106,3 @@ export class TalentFormAddress extends React.Component<Props> {
     );
   }
 }
-
-const mapState = (state: RootState) => ({
-  user: state.userSelected.userSelected,
-});
-
-const mapDispatch = (dispatch: RootDispatch) => ({
-  modifyUser: dispatch.userSelected.modifyUser,
-});
-
-export default connect(mapState, mapDispatch)(TalentFormAddress);

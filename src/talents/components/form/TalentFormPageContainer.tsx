@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Container } from 'reactstrap';
 import { User } from '../../../app';
-import { RootState } from '../../../app/state/store';
+import { RootState, RootDispatch } from '../../../app/state/store';
 import TalentFormHead from './TalentFormHead';
 import TalentFormAddress from './TalentFormAddress';
 import TalentFormInstitution  from './TalentFormInstitution';
@@ -12,27 +12,28 @@ import TalentFormFormation from './TalentFormFormation';
 import TalentFormJob from './TalentFormJob';
 import TalentFormLanguages from './TalentFormLanguages';
 import TalentFormSkills from './TalentFormSkills';
+import { UpdateUserPayload } from '../../state/models/userSelected';
 
 interface Props {
   user: User,
+  modifyUser: (payload: UpdateUserPayload) => void,
 }
 
 export class TalentFormPageContainer extends React.Component<Props> {
-
   render() {
     return (
       <div className="talent-form-page">
         <Container>
           <form className="talent-form">
-            <TalentFormHead />
-            <TalentFormAddress />
-            <TalentFormInstitution />
-            <TalentFormInternship />
-            <TalentFormJob />
+            <TalentFormHead {...this.props} />
+            <TalentFormAddress {...this.props} />
+            <TalentFormInstitution {...this.props} />
+            <TalentFormInternship {...this.props} />
+            <TalentFormJob {...this.props} />
             <TalentFormSkills />
-            <TalentFormLanguages />
-            <TalentFormFormation />
-            <TalentFormExperience />
+            <TalentFormLanguages {...this.props} />
+            <TalentFormFormation {...this.props} />
+            <TalentFormExperience {...this.props} />
             <button type="submit" className="form-button">Sauvegarder les changements</button>
           </form>
         </Container>
@@ -45,6 +46,8 @@ const mapState = (state: RootState) => ({
   user: state.userSelected.userSelected,
 });
 
-const mapDispatch = () => ({});
+const mapDispatch = (dispatch: RootDispatch) => ({
+  modifyUser: dispatch.userSelected.modifyUser,
+});
 
 export default connect(mapState, mapDispatch)(TalentFormPageContainer);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
-import { RootDispatch, RootState } from '../../../app/state/store';
+import { RootDispatch } from '../../../app/state/store';
 import { UserLanguageHelper } from '../../helpers/userLanguageHelper';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import ModalLanguage from './ModalLanguage';
@@ -10,7 +10,7 @@ import { User } from '../../../app';
 import { UserLanguagesDisplay } from './UserLanguagesDisplay';
 
 interface Props {
-  userSelected: User,
+  user: User,
   modifyUser: (value: UpdateUserPayload) => void,
   resetLanguage: () => void,
 }
@@ -46,7 +46,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
   }
 
   render() {
-    const userLanguages = this.props.userSelected.userLanguages || [];
+    const userLanguages = this.props.user.userLanguages || [];
     return (
       <div className="form-section almost-large">
         <div className="section-add">
@@ -69,7 +69,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
           titleModal="Ajouter une langue"
         >
           <ModalLanguage
-            userSelected={this.props.userSelected}
+            userSelected={this.props.user}
             languages={UserLanguageHelper.filterLanguageList(userLanguages)}
           />
         </ModalCustom>
@@ -78,13 +78,10 @@ export class TalentFormLanguages extends React.Component<Props, State> {
   }
 }
 
-const mapState = (state: RootState) => ({
-  userSelected: state.userSelected.userSelected,
-});
+const mapState = () => ({});
 
 const mapDispatch = (dispatch: RootDispatch) => ({
   resetLanguage: dispatch.addLanguage.resetLanguage,
-  modifyUser: dispatch.userSelected.modifyUser,
 });
 
 export default connect(mapState, mapDispatch)(TalentFormLanguages);

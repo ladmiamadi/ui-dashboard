@@ -1,9 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { User } from '../../../app';
 import { DateFormField } from '../../../app/components/utils/DateFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
-import { RootDispatch, RootState } from '../../../app/state/store';
 import DateSlicer from '../../helpers/DateSlicer';
 import { FormatDate } from '../../index.d';
 import { UpdateUserPayload } from '../../state/models/userSelected';
@@ -13,7 +11,7 @@ interface Props {
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-export class TalentFormExperience extends React.Component<Props> {
+export default class TalentFormExperience extends React.Component<Props> {
   render() {
     return (
       <div className="form-section">
@@ -84,13 +82,3 @@ export class TalentFormExperience extends React.Component<Props> {
     );
   }
 }
-
-const mapState = (state: RootState) => ({
-  user: state.userSelected.userSelected,
-});
-
-const mapDispatch = (dispatch: RootDispatch) => ({
-  modifyUser: dispatch.userSelected.modifyUser,
-});
-
-export default connect(mapState, mapDispatch)(TalentFormExperience);
