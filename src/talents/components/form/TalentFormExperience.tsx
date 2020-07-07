@@ -1,23 +1,50 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { User } from '../../../app';
 import { DateFormField } from '../../../app/components/utils/DateFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
+import { ModalCustom } from '../../../app/components/utils/ModalCustom';
+import { RootDispatch } from '../../../app/state/store';
 import DateSlicer from '../../helpers/DateSlicer';
 import { FormatDate } from '../../index.d';
 import { UpdateUserPayload } from '../../state/models/userSelected';
+import ModalExperience from '../modal/ModalExperience';
 
 interface Props {
   user: User,
   modifyUser: (value: UpdateUserPayload) => void,
+  resetExperience: () => void,
 }
 
-export default class TalentFormExperience extends React.Component<Props> {
+interface State {
+  isModalShown: boolean,
+}
+
+export class TalentFormExperience extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      isModalShown: false,
+    };
+  }
+  toggleModalAndResetModalOnQuit = () => {
+    console.log(this.state.isModalShown);
+    this.setState({ isModalShown: !this.state.isModalShown });
+    console.log(this.state.isModalShown);
+
+    if (!this.state.isModalShown) {
+      this.props.resetExperience();
+    }
+  }
   render() {
     return (
       <div className="form-section">
         <div className="section-add">
           <h6>Expérience: </h6>
-          <button className="form-add-button">Ajouter une expérience</button>
+          <button onClick={this.toggleModalAndResetModalOnQuit}
+            className="form-add-button"
+            color="default">Ajouter une expérience</button>
         </div>
         {
           this.props.user.userExperiences?.map((elem, index) => (
@@ -78,7 +105,24 @@ export default class TalentFormExperience extends React.Component<Props> {
             </div>
           ))
         }
+        <ModalCustom
+          isModalShown={this.state.isModalShown}
+          toggleModal={this.toggleModalAndResetModalOnQuit}
+          titleModal="Ajouter une expérience"
+        >
+          <ModalExperience
+            userSelected={this.props.user}
+          />
+        </ModalCustom>
       </div>
     );
   }
 }
+
+const mapState = () => ({});
+
+const mapDispatch = (dispatch: RootDispatch) => ({
+  resetExperience: dispatch.addExperience.resetExperience,
+});
+
+export default connect(mapState, mapDispatch)(TalentFormExperience);

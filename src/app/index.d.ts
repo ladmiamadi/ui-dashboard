@@ -95,7 +95,7 @@ export interface UserLanguage {
 }
 
 export interface UserExperience {
-  id: number,
+  id?: number,
   company: string,
   startDate: Date,
   endDate: Date,
