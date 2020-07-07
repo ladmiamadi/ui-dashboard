@@ -19,7 +19,7 @@ interface Props {
 }
 
 export class ModalLanguage extends React.Component<Props> {
-  updateLanguageTest = (property: string, value: string) => {
+  updateLanguage = (property: string, value: string) => {
     this.props.updateLanguage({ property, value });
   }
 
@@ -33,7 +33,7 @@ export class ModalLanguage extends React.Component<Props> {
             keyName="language"
             label="Ajouter une nouvelle langue : "
             options={this.props.languages}
-            handleChange={this.updateLanguageTest}
+            handleChange={this.updateLanguage}
             value={this.props.language.language}
           />
         </Row>
@@ -44,7 +44,7 @@ export class ModalLanguage extends React.Component<Props> {
               label="Niveau : "
               keyName="level"
               options={LANGUAGES_LEVEL}
-              handleChange={this.updateLanguageTest}
+              handleChange={this.updateLanguage}
               value={this.props.language.level}
             />
           </Row>
