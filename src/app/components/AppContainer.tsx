@@ -5,7 +5,6 @@ interface Props {
 }
 
 export default class AppContainer extends React.Component<Props> {
-
   render() {
     return this.props.children;
   }

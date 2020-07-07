@@ -32,12 +32,12 @@ export const addLanguage = createModel({
     resetLanguage: (state: LanguageState) => ({ ...state, language: UserLanguageFactory.createEmptyLanguage() }),
   },
   effects: (dispatch: any) => ({
-    async postLanguage(userLanguage : UserLanguage, user) {
+    async postLanguage(userLanguage : UserLanguage, state) {
       try {
         this.setIsPosting(true);
 
         await apiService.post('/api/user_languages', {
-          user: `api/users/${user.userSelected.userSelected.id}`,
+          user: `api/users/${state.userSelected.userSelected.id}`,
           language: userLanguage.language,
           level: userLanguage.level,
         });

@@ -15,7 +15,7 @@ interface Props {
   isPosting: boolean,
   resetLanguage: () => void,
   updateLanguage: (payload: UpdateLanguagePayload) => void,
-  postLanguage: (userLanguage: UserLanguage, user: User) => void,
+  postLanguage: (userLanguage: UserLanguage) => void,
 }
 
 export class ModalLanguage extends React.Component<Props> {
@@ -56,7 +56,7 @@ export class ModalLanguage extends React.Component<Props> {
               <Button
                 className="form-add-button modal-button"
                 color="default"
-                onClick={() => this.props.postLanguage(this.props.language, { ...this.props.userSelected })}
+                onClick={() => this.props.postLanguage(this.props.language)}
                 disabled={this.props.isPosting}
               >
                 Ajouter une langue
