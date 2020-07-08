@@ -1,75 +1,121 @@
 import React from 'react';
-import { FieldForm } from '../../../app/components/utils/FieldForm';
-import { UserTraining } from '../../../app';
-import { UserTrainingFactory } from '../../helpers/UserTrainingFactory';
-import { Button } from 'reactstrap';
-import { RootDispatch } from '../../../app/state/store';
 import { connect } from 'react-redux';
-import DatePickerField from '../../../app/components/utils/DatePickerField';
+import { Button } from 'reactstrap';
+import { UserTraining, Training } from '../../../app';
+import { UserTrainingFactory } from '../../helpers/UserTrainingFactory';
+import { RootDispatch } from '../../../app/state/store';
+import InputFormField from '../../../app/components/utils/InputFormField';
+import lodash from 'lodash';
 
 interface Props {
   addUserTraining: (payload: UserTraining) => void,
 }
 
 interface State {
+  isFormValid: IsFormValid,
   training: UserTraining,
 }
+
+export type IsFormValid = Training<boolean, number>;
 
 export class ModalTraining extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
     this.state = {
+      isFormValid: UserTrainingFactory.createEmptyFormValid(),
       training: UserTrainingFactory.createEmptyUserTraining(),
     };
   }
 
-  handleChange = (property: keyof UserTraining, value: string) => {
+  updateIsFormValid = (property: keyof IsFormValid, value: string) => {
+    const copyOfIsFormValid = { ...this.state.isFormValid };
+
+    if (property !== 'id') {
+      copyOfIsFormValid[property] = Boolean(value);
+    }
+    console.log(copyOfIsFormValid);
+
+    this.setState((prevState) => ({ ...prevState, isFormValid: copyOfIsFormValid }))
+  }
+
+  updateTraining = (property: keyof UserTraining, value: string) => {
     const copyOfUserTrainingState = { ...this.state.training };
 
-    if (property !== 'id' && property !== 'startDate' && property !== 'endDate') {
+    if (property !== 'id') {
       copyOfUserTrainingState[property] = value;
-
-    } else if (property !== 'id') {
-      copyOfUserTrainingState[property] = new Date(value);
     }
 
-    console.log(copyOfUserTrainingState);
+    this.setState((prevState) => ({ ...prevState, training: copyOfUserTrainingState }))
+  }
 
-    this.setState({ training: copyOfUserTrainingState })
+  activeButton = (): boolean => {
+    let key: keyof IsFormValid;
+    let isButtonActived = true;
+
+    for (key in this.state.isFormValid) {
+      if (key !== 'id') {
+        isButtonActived = isButtonActived && this.state.isFormValid[key]
+      }
+    }
+    
+    return isButtonActived;
+  }
+
+  resetState = () => {
+    this.setState({
+      isFormValid: UserTrainingFactory.createEmptyFormValid(),
+      training: UserTrainingFactory.createEmptyUserTraining(),
+    })
+  }
+
+  handleChange = <T, U>(property: keyof Training<T, U>, value: string) => {
+    this.updateIsFormValid(property, value);
+
+    this.updateTraining(property, value);
   }
 
   handleClick = () => {
-    this.props.addUserTraining(this.state.training);
+    this.props.addUserTraining(lodash.cloneDeep(this.state.training));
+
+    this.resetState();
   }
 
   render() {
     return (
       <>
-        <FieldForm
-          keyName="formation-school"
+        <InputFormField
+          id="formation-school"
           label="École: "
           type="text"
-          handleChange={((value: string) => this.handleChange('institution', value))}
           value={this.state.training.institution}
+          handleChange={((value: string) => this.handleChange('institution', value))}
         />
-        <DatePickerField
-          id="Training-start"
+        <InputFormField
+          id="formation-start"
           label="Début formation: "
+          type="date"
+          value={this.state.training.startDate}
           handleChange={(value: string) => this.handleChange('startDate', value)}
         />
-        <DatePickerField
-          id="Training-end"
+        <InputFormField
+          id="formation-end"
           label="Fin formation: "
+          type="date"
+          value={this.state.training.endDate}
           handleChange={(value: string) => this.handleChange('endDate', value)}
         />
-        <FieldForm
-          keyName="formation-diploma"
+        <InputFormField
+          id="formation-diploma"
           label="Diplôme obtenu: "
           type="text"
+          value={this.state.training.degreeObtained}
           handleChange={(value: string) => this.handleChange('degreeObtained', value)}
         />
-        <Button onClick={this.handleClick}>
+        <Button
+          onClick={this.handleClick}
+          disabled={!this.activeButton()}
+        >
           Ajouter une formation
         </Button>
       </>

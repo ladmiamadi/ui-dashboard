@@ -49,9 +49,9 @@ export const userSelected = createModel ({
     addUserTraining: (state: UserState, payload: UserTraining): UserState => {
       const userSelected = _.cloneDeep(state.userSelected) as User;
 
-      const userTraining = userSelected.userTrainings?.concat(payload);
-        // userSelected.userTrainings.concat(payload) :
-        // [payload];
+      const userTraining = userSelected.userTrainings ?
+        userSelected.userTrainings.concat(payload) :
+        [payload];
 
       userSelected.userTrainings = userTraining;
 

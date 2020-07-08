@@ -6,5 +6,7 @@ export default class DateSlicer {
 
     return formatDate.map((elem: string) => `${ + elem }`)[selectTime];
   }
+
+  public static getYearMonthDay = (date: string): string => date.split('T')[0];
 }
 
