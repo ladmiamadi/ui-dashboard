@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { User } from '../../../app';
+import { Button } from 'reactstrap';
+import { User, UserExperience } from '../../../app';
 import { DateFormField } from '../../../app/components/utils/DateFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
@@ -9,6 +10,7 @@ import DateSlicer from '../../helpers/DateSlicer';
 import { FormatDate } from '../../index.d';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import ModalExperience from '../modal/ModalExperience';
+import { UserExperienceFactory } from '../../helpers/UserExperienceFactory';
 
 interface Props {
   user: User,
@@ -18,7 +20,17 @@ interface Props {
 
 interface State {
   isModalShown: boolean,
+  experience?: UserExperience;
 }
+
+/*function createNewUserExperience(user: User) {
+  console.log(user.userExperiences?.length);
+  //
+  user.userExperiences?.push(UserExperienceFactory.createEmptyExperience());
+  const nbExperience = user.userExperiences ? user.userExperiences.length : 1;
+  console.log(user.userExperiences);
+  return user.userExperiences?.length ? user.userExperiences[nbExperience - 1] : UserExperienceFactory.createEmptyExperience();
+}*/
 
 export class TalentFormExperience extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -28,23 +40,42 @@ export class TalentFormExperience extends React.Component<Props, State> {
       isModalShown: false,
     };
   }
-  toggleModalAndResetModalOnQuit = () => {
-    console.log(this.state.isModalShown);
-    this.setState({ isModalShown: !this.state.isModalShown });
-    console.log(this.state.isModalShown);
 
+  createNewUserExperience(user: User) {
+    console.log(user.userExperiences?.length);
+    //
+    user.userExperiences?.push(UserExperienceFactory.createEmptyExperience());
+    const nbExperience = user.userExperiences ? user.userExperiences.length : 1;
+    console.log(user.userExperiences);
+    return user.userExperiences?.length ? user.userExperiences[nbExperience - 1] : UserExperienceFactory.createEmptyExperience();
+  }
+
+  toggleModalAndResetModalOnQuit = () => {
+    /*const newExperience = */
     if (!this.state.isModalShown) {
-      this.props.resetExperience();
+      //get the new userExperience created with the modal
+      const exp = this.createNewUserExperience(this.props.user);
+      this.setState({ experience: exp });
+      console.log(this.props.user);
     }
+/*    this.setState({
+      experience: newExperience,
+    });*/
+    this.setState({ isModalShown: !this.state.isModalShown });
+
+    /*    if (!this.state.isModalShown) {
+      this.props.resetExperience();
+    }*/
   }
   render() {
+    //const newExperience = createNewUserExperience(this.props.user);
     return (
       <div className="form-section">
         <div className="section-add">
           <h6>Expérience: </h6>
-          <button onClick={this.toggleModalAndResetModalOnQuit}
+          <Button onClick={this.toggleModalAndResetModalOnQuit}
             className="form-add-button"
-            color="default">Ajouter une expérience</button>
+            color="default">Ajouter une expérience</Button>
         </div>
         {
           this.props.user.userExperiences?.map((elem, index) => (
@@ -112,6 +143,8 @@ export class TalentFormExperience extends React.Component<Props, State> {
         >
           <ModalExperience
             userSelected={this.props.user}
+            modifyUser={this.props.modifyUser}
+            experience={this.state.experience}
           />
         </ModalCustom>
       </div>

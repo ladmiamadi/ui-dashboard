@@ -15,14 +15,15 @@ export const addExperience = createModel({
     experience: UserExperienceFactory.createEmptyExperience(),
   } as ExperienceState,
   reducers: {
-    updateExperience: (state: ExperienceState, payload: UpdateExperiencePayload): ExperienceState  => {
-      const experience = { ...state.experience } as any;
-      experience[payload.value] = payload.value;
+    updateExperience: (state: ExperienceState, experience: UserExperience): ExperienceState  => ({
+      /*      const experience = { ...state.experience } as any;
+      userExperience = payload.value;*/
+      ...state, experience,
 
-      return {
+      /*      return {
         ...state, experience,
-      };
-    },
+      };*/
+    }),
     resetExperience: (state: ExperienceState) =>
       ({ ...state, experience: UserExperienceFactory.createEmptyExperience() }),
   },
