@@ -28,13 +28,12 @@ export class ModalTraining extends React.Component<Props, State> {
     };
   }
 
-  updateIsFormValid = (property: keyof IsFormValid, value: string) => {
+  updateIsFormValid = (property: keyof IsFormValid, value: string, regexp : RegExp) => {
     const copyOfIsFormValid = { ...this.state.isFormValid };
 
     if (property !== 'id') {
-      copyOfIsFormValid[property] = Boolean(value);
+      copyOfIsFormValid[property] = regexp.test(value);
     }
-    console.log(copyOfIsFormValid);
 
     this.setState((prevState) => ({ ...prevState, isFormValid: copyOfIsFormValid }))
   }
@@ -69,10 +68,11 @@ export class ModalTraining extends React.Component<Props, State> {
     })
   }
 
-  handleChange = <T, U>(property: keyof Training<T, U>, value: string) => {
-    this.updateIsFormValid(property, value);
+  handleChange = <T, U>(property: keyof Training<T, U>, value: string, regexp: RegExp) => {
+    this.updateIsFormValid(property, value, regexp);
 
     this.updateTraining(property, value);
+
   }
 
   handleClick = () => {
@@ -82,6 +82,8 @@ export class ModalTraining extends React.Component<Props, State> {
   }
 
   render() {
+    const yearMonthDayRegex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/i;
+
     return (
       <>
         <InputFormField
@@ -89,28 +91,28 @@ export class ModalTraining extends React.Component<Props, State> {
           label="École: "
           type="text"
           value={this.state.training.institution}
-          handleChange={((value: string) => this.handleChange('institution', value))}
+          handleChange={((value: string) => this.handleChange('institution', value, /./))}
         />
         <InputFormField
           id="formation-start"
           label="Début formation: "
           type="date"
           value={this.state.training.startDate}
-          handleChange={(value: string) => this.handleChange('startDate', value)}
+          handleChange={(value: string) => this.handleChange('startDate', value, yearMonthDayRegex)}
         />
         <InputFormField
           id="formation-end"
           label="Fin formation: "
           type="date"
           value={this.state.training.endDate}
-          handleChange={(value: string) => this.handleChange('endDate', value)}
+          handleChange={(value: string) => this.handleChange('endDate', value, yearMonthDayRegex)}
         />
         <InputFormField
           id="formation-diploma"
           label="Diplôme obtenu: "
           type="text"
           value={this.state.training.degreeObtained}
-          handleChange={(value: string) => this.handleChange('degreeObtained', value)}
+          handleChange={(value: string) => this.handleChange('degreeObtained', value, /./)}
         />
         <Button
           onClick={this.handleClick}
