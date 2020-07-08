@@ -103,14 +103,6 @@ export interface UserExperience {
   task: string,
 }
 
-// export interface UserTraining {
-//   id?: number,
-//   institution: string,
-//   startDate: string,
-//   endDate: string,
-//   degreeObtained: string,
-// }
-
 export interface Training<T, U> {
   id?: U,
   institution: T,
