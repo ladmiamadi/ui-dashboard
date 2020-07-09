@@ -86,63 +86,65 @@ export class ModalTraining extends React.Component<Props, State> {
     const yearMonthDayRegex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/i;
 
     return (
-      <Container>
-        <Row >
-          <Col md={6}>
-            <InputFormField
-              id="formation-school"
-              label="École: "
-              type="text"
-              className="form-label"
-              inputClassName={classes.InputModalTraining}
-              value={this.state.training.institution}
-              handleChange={((value: string) => this.handleChange('institution', value, /./))}
-            />
-          </Col>
-          <Col md={6}>
-            <InputFormField
-              id="formation-diploma"
-              label="Diplôme obtenu: "
-              type="text"
-              className="form-label"
-              inputClassName={classes.InputModalTraining}
-              value={this.state.training.degreeObtained}
-              handleChange={(value: string) => this.handleChange('degreeObtained', value, /./)}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col md={6}>
-            <InputFormField
-              id="formation-end"
-              label="Fin formation: "
-              type="date"
-              className="form-label"
-              inputClassName={classes.InputModalTraining}
-              value={this.state.training.endDate}
-              handleChange={(value: string) => this.handleChange('endDate', value, yearMonthDayRegex)}
-            />
-          </Col>
-          <Col md={6}>
-            <InputFormField
-              id="formation-start"
-              label="Début formation: "
-              type="date"
-              className="form-label"
-              inputClassName={classes.InputModalTraining}
-              value={this.state.training.startDate}
-              handleChange={(value: string) => this.handleChange('startDate', value, yearMonthDayRegex)}
-            />
-          </Col>
-        </Row>
+      <>
+        <Container>
+          <Row >
+            <Col md={6}>
+              <InputFormField
+                id="training-school"
+                label="École: "
+                type="text"
+                className="form-label"
+                inputClassName={classes.InputModalTraining}
+                value={this.state.training.institution}
+                handleChange={((value: string) => this.handleChange('institution', value, /./))}
+              />
+            </Col>
+            <Col md={6}>
+              <InputFormField
+                id="training-diploma"
+                label="Diplôme obtenu: "
+                type="text"
+                className="form-label"
+                inputClassName={classes.InputModalTraining}
+                value={this.state.training.degreeObtained}
+                handleChange={(value: string) => this.handleChange('degreeObtained', value, /./)}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <InputFormField
+                id="training-end"
+                label="Fin formation: "
+                type="date"
+                className="form-label"
+                inputClassName={classes.InputModalTraining}
+                value={this.state.training.endDate}
+                handleChange={(value: string) => this.handleChange('endDate', value, yearMonthDayRegex)}
+              />
+            </Col>
+            <Col md={6}>
+              <InputFormField
+                id="training-start"
+                label="Début formation: "
+                type="date"
+                className="form-label"
+                inputClassName={classes.InputModalTraining}
+                value={this.state.training.startDate}
+                handleChange={(value: string) => this.handleChange('startDate', value, yearMonthDayRegex)}
+              />
+            </Col>
+          </Row>
+        </Container >
         <Button
           onClick={this.handleClick}
           disabled={!this.activeButton()}
-          className={classes.ButtonModalFormation}
+          className={classes.ButtonModalTraining}
         >
           Ajouter une formation
         </Button>
-      </Container >
+      </>
     );
   }
 }

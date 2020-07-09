@@ -4,7 +4,7 @@ import {
   ModalBody,
   ModalHeader,
 } from 'reactstrap';
-import '../../../talents/components/form/styles/modal-custom.css';
+import './styles/modal-custom.css';
 
 interface Props {
   isModalShown: boolean,

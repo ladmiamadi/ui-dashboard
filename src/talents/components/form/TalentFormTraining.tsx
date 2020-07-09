@@ -17,7 +17,7 @@ interface State {
   isModalOpen: boolean,
 }
 
-export default class TalentFormFormation extends React.Component<Props, State> {
+export default class TalentFormTraining extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -26,7 +26,7 @@ export default class TalentFormFormation extends React.Component<Props, State> {
     }
   }
 
-  toggleModalAndResetModalOnQuit = () => {
+  toggleModal = () => {
     this.setState({ isModalOpen: !this.state.isModalOpen });
   }
 
@@ -38,7 +38,7 @@ export default class TalentFormFormation extends React.Component<Props, State> {
           <Button
             className="form-add-button"
             color="default"
-            onClick={this.toggleModalAndResetModalOnQuit}
+            onClick={this.toggleModal}
           >
             Ajouter une formation
           </Button>
@@ -49,7 +49,7 @@ export default class TalentFormFormation extends React.Component<Props, State> {
               <Row >
                 <Col md={6}>
                   <InputFormField
-                    id={"formation-school" + index}
+                    id={"training-school" + index}
                     label="École: "
                     type="text"
                     className="form-label"
@@ -64,7 +64,7 @@ export default class TalentFormFormation extends React.Component<Props, State> {
                 </Col>
                 <Col md={6}>
                   <InputFormField
-                    id={"formation-diploma" + index}
+                    id={"training-diploma" + index}
                     label="Diplôme obtenu: "
                     type="text"
                     className="form-label"
@@ -81,7 +81,7 @@ export default class TalentFormFormation extends React.Component<Props, State> {
               <Row>
                 <Col md={6}>
                   <InputFormField
-                    id={"formation-start" + index}
+                    id={"training-start" + index}
                     label="Début formation: "
                     type="date"
                     value={DateSlicer.getYearMonthDay(elem.startDate)}
@@ -97,7 +97,7 @@ export default class TalentFormFormation extends React.Component<Props, State> {
                 </Col>
                 <Col md={6}>
                   <InputFormField
-                    id={"formation-end" + index}
+                    id={"training-end" + index}
                     label="Fin formation: "
                     type="date"
                     value={DateSlicer.getYearMonthDay(elem.endDate)}
@@ -118,7 +118,7 @@ export default class TalentFormFormation extends React.Component<Props, State> {
         }
         <ModalCustom
           isModalShown={this.state.isModalOpen}
-          toggleModal={this.toggleModalAndResetModalOnQuit}
+          toggleModal={this.toggleModal}
           titleModal="Ajouter une formation"
         >
           <ModalTraining />

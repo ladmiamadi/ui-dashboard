@@ -8,7 +8,7 @@ import TalentFormAddress from './TalentFormAddress';
 import TalentFormInstitution  from './TalentFormInstitution';
 import TalentFormInternship from './TalentFormInternship';
 import TalentFormExperience from './TalentFormExperience';
-import TalentFormFormation from './TalentFormFormation';
+import TalentFormTraining from './TalentFormTraining';
 import TalentFormJob from './TalentFormJob';
 import TalentFormLanguages from './TalentFormLanguages';
 import TalentFormSkills from './TalentFormSkills';
@@ -32,7 +32,7 @@ export class TalentFormPageContainer extends React.Component<Props> {
             <TalentFormJob {...this.props} />
             <TalentFormSkills />
             <TalentFormLanguages {...this.props} />
-            <TalentFormFormation {...this.props} />
+            <TalentFormTraining {...this.props} />
             <TalentFormExperience {...this.props} />
             <button type="submit" className="form-button">Sauvegarder les changements</button>
           </form>

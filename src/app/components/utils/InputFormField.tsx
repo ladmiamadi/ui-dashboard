@@ -1,5 +1,5 @@
 import React, { FormEvent } from 'react';
-import { Label, Input, FormGroup } from 'reactstrap';
+import { Label, Input } from 'reactstrap';
 import { InputType } from 'reactstrap/lib/Input';
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
 export default class InputFormField extends React.Component<Props> {
   render() {
     return ( 
-      <FormGroup>
+      <>
         <Label className={this.props.className} htmlFor={this.props.id}>{ this.props.label }</Label>
         <Input
           id={this.props.id}
@@ -24,7 +24,7 @@ export default class InputFormField extends React.Component<Props> {
           className={this.props.inputClassName}
           onChange={(event: FormEvent<HTMLInputElement>) => this.props.handleChange(event.currentTarget.value)}
         />
-      </FormGroup>
+      </>
     );
   }
 }
