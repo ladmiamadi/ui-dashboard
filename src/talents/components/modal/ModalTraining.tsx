@@ -4,7 +4,7 @@ import { Button, Container, Col, Row } from 'reactstrap';
 import { UserTraining, Training } from '../../../app';
 import { UserTrainingFactory } from '../../helpers/UserTrainingFactory';
 import { RootDispatch } from '../../../app/state/store';
-import InputFormField from '../../../app/components/utils/InputFormField';
+import InputFormField, { ClassName } from '../../../app/components/utils/InputFormField';
 import lodash from 'lodash';
 import classes from '../styles/ModalTraining.module.css';
 
@@ -84,6 +84,10 @@ export class ModalTraining extends React.Component<Props, State> {
 
   render() {
     const yearMonthDayRegex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/i;
+    const className: ClassName = {
+      label: 'form-label',
+      input: classes.InputModalTraining,
+    };
 
     return (
       <>
@@ -94,8 +98,7 @@ export class ModalTraining extends React.Component<Props, State> {
                 id="training-school"
                 label="École: "
                 type="text"
-                className="form-label"
-                inputClassName={classes.InputModalTraining}
+                className={className}
                 value={this.state.training.institution}
                 handleChange={((value: string) => this.handleChange('institution', value, /./))}
               />
@@ -105,8 +108,7 @@ export class ModalTraining extends React.Component<Props, State> {
                 id="training-diploma"
                 label="Diplôme obtenu: "
                 type="text"
-                className="form-label"
-                inputClassName={classes.InputModalTraining}
+                className={className}
                 value={this.state.training.degreeObtained}
                 handleChange={(value: string) => this.handleChange('degreeObtained', value, /./)}
               />
@@ -118,8 +120,7 @@ export class ModalTraining extends React.Component<Props, State> {
                 id="training-end"
                 label="Fin formation: "
                 type="date"
-                className="form-label"
-                inputClassName={classes.InputModalTraining}
+                className={className}
                 value={this.state.training.endDate}
                 handleChange={(value: string) => this.handleChange('endDate', value, yearMonthDayRegex)}
               />
@@ -129,8 +130,7 @@ export class ModalTraining extends React.Component<Props, State> {
                 id="training-start"
                 label="Début formation: "
                 type="date"
-                className="form-label"
-                inputClassName={classes.InputModalTraining}
+                className={className}
                 value={this.state.training.startDate}
                 handleChange={(value: string) => this.handleChange('startDate', value, yearMonthDayRegex)}
               />

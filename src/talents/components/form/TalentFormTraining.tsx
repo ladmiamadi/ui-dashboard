@@ -5,7 +5,7 @@ import DateSlicer from '../../helpers/DateSlicer';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import ModalTraining from '../modal/ModalTraining';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
-import InputFormField from '../../../app/components/utils/InputFormField';
+import InputFormField, { ClassName } from '../../../app/components/utils/InputFormField';
 import classes from '../styles/ModalTraining.module.css';
 
 interface Props {
@@ -31,6 +31,11 @@ export default class TalentFormTraining extends React.Component<Props, State> {
   }
 
   render() {
+    const className: ClassName = {
+      label: 'form-label',
+      input: classes.InputModalTraining,
+    };
+
     return (
       <div className="form-section">
         <div className="section-add">
@@ -52,8 +57,7 @@ export default class TalentFormTraining extends React.Component<Props, State> {
                     id={"training-school" + index}
                     label="École: "
                     type="text"
-                    className="form-label"
-                    inputClassName={classes.InputModalTraining}
+                    className={className}
                     handleChange={(value) => this.props.modifyUser({
                       category: 'userTrainings',
                       property: 'institution',
@@ -67,8 +71,7 @@ export default class TalentFormTraining extends React.Component<Props, State> {
                     id={"training-diploma" + index}
                     label="Diplôme obtenu: "
                     type="text"
-                    className="form-label"
-                    inputClassName={classes.InputModalTraining}
+                    className={className}
                     handleChange={(value) => this.props.modifyUser({
                       category: 'userTrainings',
                       property: 'degreeObtained',
@@ -85,8 +88,7 @@ export default class TalentFormTraining extends React.Component<Props, State> {
                     label="Début formation: "
                     type="date"
                     value={DateSlicer.getYearMonthDay(elem.startDate)}
-                    className="form-label"
-                    inputClassName={classes.InputModalTraining}
+                    className={className}
                     handleChange={(value: string) => this.props.modifyUser({
                       category: 'userTrainings',
                       property: 'startDate',
@@ -101,8 +103,7 @@ export default class TalentFormTraining extends React.Component<Props, State> {
                     label="Fin formation: "
                     type="date"
                     value={DateSlicer.getYearMonthDay(elem.endDate)}
-                    className="form-label"
-                    inputClassName={classes.InputModalTraining}
+                    className={className}
                     handleChange={(value: string) => this.props.modifyUser({
                       category: 'userTrainings',
                       property: 'endDate',
