@@ -1,0 +1,11 @@
+.ButtonModalFormation {
+    max-width: 25rem;
+    align-self: center;
+    font-size: 1.3rem;
+}
+
+.InputModalTraining {
+    font-size: 1.3rem;
+    align-self: center;
+    overflow: hidden;
+}

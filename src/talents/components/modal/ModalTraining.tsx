@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'reactstrap';
+import { Button, Container, Col, Row } from 'reactstrap';
 import { UserTraining, Training } from '../../../app';
 import { UserTrainingFactory } from '../../helpers/UserTrainingFactory';
 import { RootDispatch } from '../../../app/state/store';
 import InputFormField from '../../../app/components/utils/InputFormField';
 import lodash from 'lodash';
+import classes from '../styles/ModalTraining.module.css';
 
 interface Props {
   addUserTraining: (payload: UserTraining) => void,
@@ -28,7 +29,7 @@ export class ModalTraining extends React.Component<Props, State> {
     };
   }
 
-  updateIsFormValid = (property: keyof IsFormValid, value: string, regexp : RegExp) => {
+  updateIsFormValid = (property: keyof IsFormValid, value: string, regexp: RegExp) => {
     const copyOfIsFormValid = { ...this.state.isFormValid };
 
     if (property !== 'id') {
@@ -57,7 +58,7 @@ export class ModalTraining extends React.Component<Props, State> {
         isButtonActived = isButtonActived && this.state.isFormValid[key]
       }
     }
-    
+
     return isButtonActived;
   }
 
@@ -85,42 +86,63 @@ export class ModalTraining extends React.Component<Props, State> {
     const yearMonthDayRegex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/i;
 
     return (
-      <>
-        <InputFormField
-          id="formation-school"
-          label="École: "
-          type="text"
-          value={this.state.training.institution}
-          handleChange={((value: string) => this.handleChange('institution', value, /./))}
-        />
-        <InputFormField
-          id="formation-start"
-          label="Début formation: "
-          type="date"
-          value={this.state.training.startDate}
-          handleChange={(value: string) => this.handleChange('startDate', value, yearMonthDayRegex)}
-        />
-        <InputFormField
-          id="formation-end"
-          label="Fin formation: "
-          type="date"
-          value={this.state.training.endDate}
-          handleChange={(value: string) => this.handleChange('endDate', value, yearMonthDayRegex)}
-        />
-        <InputFormField
-          id="formation-diploma"
-          label="Diplôme obtenu: "
-          type="text"
-          value={this.state.training.degreeObtained}
-          handleChange={(value: string) => this.handleChange('degreeObtained', value, /./)}
-        />
+      <Container>
+        <Row >
+          <Col md={6}>
+            <InputFormField
+              id="formation-school"
+              label="École: "
+              type="text"
+              className="form-label"
+              inputClassName={classes.InputModalTraining}
+              value={this.state.training.institution}
+              handleChange={((value: string) => this.handleChange('institution', value, /./))}
+            />
+          </Col>
+          <Col md={6}>
+            <InputFormField
+              id="formation-diploma"
+              label="Diplôme obtenu: "
+              type="text"
+              className="form-label"
+              inputClassName={classes.InputModalTraining}
+              value={this.state.training.degreeObtained}
+              handleChange={(value: string) => this.handleChange('degreeObtained', value, /./)}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={6}>
+            <InputFormField
+              id="formation-end"
+              label="Fin formation: "
+              type="date"
+              className="form-label"
+              inputClassName={classes.InputModalTraining}
+              value={this.state.training.endDate}
+              handleChange={(value: string) => this.handleChange('endDate', value, yearMonthDayRegex)}
+            />
+          </Col>
+          <Col md={6}>
+            <InputFormField
+              id="formation-start"
+              label="Début formation: "
+              type="date"
+              className="form-label"
+              inputClassName={classes.InputModalTraining}
+              value={this.state.training.startDate}
+              handleChange={(value: string) => this.handleChange('startDate', value, yearMonthDayRegex)}
+            />
+          </Col>
+        </Row>
         <Button
           onClick={this.handleClick}
           disabled={!this.activeButton()}
+          className={classes.ButtonModalFormation}
         >
           Ajouter une formation
         </Button>
-      </>
+      </Container >
     );
   }
 }

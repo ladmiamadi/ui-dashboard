@@ -1,12 +1,12 @@
 import React from 'react';
-import { Button } from 'reactstrap';
+import { Button, Col, Row, Container } from 'reactstrap';
 import { User } from '../../../app';
-import { FieldForm } from '../../../app/components/utils/FieldForm';
 import DateSlicer from '../../helpers/DateSlicer';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import ModalTraining from '../modal/ModalTraining';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
 import InputFormField from '../../../app/components/utils/InputFormField';
+import classes from '../styles/ModalTraining.module.css';
 
 interface Props {
   user: User,
@@ -37,6 +37,7 @@ export default class TalentFormFormation extends React.Component<Props, State> {
           <h6>Formations: </h6>
           <Button
             className="form-add-button"
+            color="default"
             onClick={this.toggleModalAndResetModalOnQuit}
           >
             Ajouter une formation
@@ -44,70 +45,75 @@ export default class TalentFormFormation extends React.Component<Props, State> {
         </div>
         {
           this.props.user.userTrainings?.map((elem, index) => (
-            <div className="form-elements" key={index}>
-              <FieldForm
-                keyName={"formation-school" + index}
-                label="École: "
-                className="large"
-                type="text"
-                handleChange={(value) => this.props.modifyUser({
-                  category: 'userTrainings',
-                  property: 'institution',
-                  value: value,
-                  index: index,
-                })}
-                value={elem.institution} />
-              {/* <DateFormField
-                keyName="formation-start"
-                label="Début formation: "
-                className="medium"
-                day={DateSlicer.formatDate(elem.startDate.toString(), FormatDate.DAY)}
-                month={DateSlicer.formatDate(elem.startDate.toString(), FormatDate.MONTH)}
-                year={DateSlicer.formatDate(elem.startDate.toString(), FormatDate.YEAR)} />
-              <DateFormField
-                keyName="formation-end"
-                label="Fin: "
-                className="medium"
-                day={DateSlicer.formatDate(elem.endDate.toString(), FormatDate.DAY)}
-                month={DateSlicer.formatDate(elem.endDate.toString(), FormatDate.MONTH)}
-                year={DateSlicer.formatDate(elem.endDate.toString(), FormatDate.YEAR)} /> */}
-              <InputFormField
-                id={"formation-start" + index}
-                label="Début formation: "
-                type="date"
-                value={DateSlicer.getYearMonthDay(elem.startDate)}
-                handleChange={(value: string) => this.props.modifyUser({
-                  category: 'userTrainings',
-                  property: 'startDate',
-                  value: value,
-                  index: index,
-                })}
-              />
-              <InputFormField
-                id={"formation-end" + index}
-                label="Fin formation: "
-                type="date"
-                value={DateSlicer.getYearMonthDay(elem.endDate)}
-                handleChange={(value: string) => this.props.modifyUser({
-                  category: 'userTrainings',
-                  property: 'endDate',
-                  value: value,
-                  index: index,
-                })}
-              />
-              <FieldForm
-                keyName={"formation-diploma" + index}
-                label="Diplôme obtenu: "
-                className="large"
-                type="text"
-                handleChange={(value) => this.props.modifyUser({
-                  category: 'userTrainings',
-                  property: 'degreeObtained',
-                  value: value,
-                  index: index,
-                })}
-                value={elem.degreeObtained} />
-            </div>
+            <Container key={index} className="form-elements">
+              <Row >
+                <Col md={6}>
+                  <InputFormField
+                    id={"formation-school" + index}
+                    label="École: "
+                    type="text"
+                    className="form-label"
+                    inputClassName={classes.InputModalTraining}
+                    handleChange={(value) => this.props.modifyUser({
+                      category: 'userTrainings',
+                      property: 'institution',
+                      value: value,
+                      index: index,
+                    })}
+                    value={elem.institution} />
+                </Col>
+                <Col md={6}>
+                  <InputFormField
+                    id={"formation-diploma" + index}
+                    label="Diplôme obtenu: "
+                    type="text"
+                    className="form-label"
+                    inputClassName={classes.InputModalTraining}
+                    handleChange={(value) => this.props.modifyUser({
+                      category: 'userTrainings',
+                      property: 'degreeObtained',
+                      value: value,
+                      index: index,
+                    })}
+                    value={elem.degreeObtained} />
+                </Col>
+              </Row>
+              <Row>
+                <Col md={6}>
+                  <InputFormField
+                    id={"formation-start" + index}
+                    label="Début formation: "
+                    type="date"
+                    value={DateSlicer.getYearMonthDay(elem.startDate)}
+                    className="form-label"
+                    inputClassName={classes.InputModalTraining}
+                    handleChange={(value: string) => this.props.modifyUser({
+                      category: 'userTrainings',
+                      property: 'startDate',
+                      value: value,
+                      index: index,
+                    })}
+                  />
+                </Col>
+                <Col md={6}>
+                  <InputFormField
+                    id={"formation-end" + index}
+                    label="Fin formation: "
+                    type="date"
+                    value={DateSlicer.getYearMonthDay(elem.endDate)}
+                    className="form-label"
+                    inputClassName={classes.InputModalTraining}
+                    handleChange={(value: string) => this.props.modifyUser({
+                      category: 'userTrainings',
+                      property: 'endDate',
+                      value: value,
+                      index: index,
+                    })}
+                  />
+                </Col>
+
+              </Row>
+            </Container>
           ))
         }
         <ModalCustom
@@ -117,7 +123,7 @@ export default class TalentFormFormation extends React.Component<Props, State> {
         >
           <ModalTraining />
         </ModalCustom>
-      </div>
+      </div >
     );
   }
 }
