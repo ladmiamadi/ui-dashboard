@@ -3,7 +3,6 @@ import { Button } from 'reactstrap';
 import { User } from '../../../app';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import ModalTraining from '../modal/ModalTraining';
-import { ModalCustom } from '../../../app/components/utils/ModalCustom';
 import TrainingForm from './TrainingForm';
 
 interface Props {
@@ -77,13 +76,10 @@ export default class TalentFormTraining extends React.Component<Props, State> {
             />
           ))
         }
-        <ModalCustom
-          isModalShown={this.state.isModalOpen}
+        <ModalTraining
+          isModalOpen={this.state.isModalOpen}
           toggleModal={this.toggleModal}
-          titleModal="Ajouter une formation"
-        >
-          <ModalTraining />
-        </ModalCustom>
+        />
       </div >
     );
   }

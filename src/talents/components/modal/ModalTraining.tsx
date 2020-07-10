@@ -4,12 +4,15 @@ import { Button } from 'reactstrap';
 import { UserTraining, Training } from '../../../app';
 import { UserTrainingFactory } from '../../helpers/UserTrainingFactory';
 import { RootDispatch } from '../../../app/state/store';
-import lodash from 'lodash';
-import classes from '../styles/ModalTraining.module.css';
 import TrainingForm from '../form/TrainingForm';
+import { ModalCustom } from '../../../app/components/utils/ModalCustom';
+import classes from './styles/ModalTraining.module.css';
+
 
 interface Props {
+  isModalOpen: boolean,
   addUserTraining: (payload: UserTraining) => void,
+  toggleModal: () => void,
 }
 
 interface State {
@@ -73,11 +76,10 @@ export class ModalTraining extends React.Component<Props, State> {
     this.updateIsFormValid(property, value, regexp);
 
     this.updateTraining(property, value);
-
   }
 
   handleClick = () => {
-    this.props.addUserTraining(lodash.cloneDeep(this.state.training));
+    this.props.addUserTraining({ ...this.state.training });
 
     this.resetState();
   }
@@ -86,7 +88,11 @@ export class ModalTraining extends React.Component<Props, State> {
     const yearMonthDayRegex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/i;
 
     return (
-      <>
+      <ModalCustom
+        isModalShown={this.props.isModalOpen}
+        toggleModal={this.props.toggleModal}
+        titleModal="Ajouter une formation"
+      >
         <TrainingForm
           training={{ ...this.state.training }}
           handleChange={{
@@ -103,7 +109,7 @@ export class ModalTraining extends React.Component<Props, State> {
         >
           Ajouter une formation
         </Button>
-      </>
+      </ModalCustom>
     );
   }
 }

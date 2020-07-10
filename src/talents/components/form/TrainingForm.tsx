@@ -2,8 +2,8 @@ import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import InputFormField, { ClassName } from '../../../app/components/utils/InputFormField';
 import { UserTraining } from '../../../app';
-import classes from '../styles/ModalTraining.module.css';
 import DateSlicer from '../../helpers/DateSlicer';
+import classes from '../modal/styles/ModalTraining.module.css';
 
 interface Props {
   className?: string
