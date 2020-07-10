@@ -34,40 +34,16 @@ export const auth = createModel({
 
         this.updateToken(token);
       } catch (error) {
+        setTimeout(() => new Toastify().error('You are no longer logged in the application.'));
+        //new Toastify().error('You are no longer logged in the application.');
         await clearTokenFromAxios();
-        
-        new Toastify().error(
-          'You are no longer logged in the application.',
-        );
+        this.clearToken();
+        //setTimeout(localStorage.clear, 5000);
+        localStorage.clear();
       } finally {
         this.setIsVerifiedToken(true);
       }
     },
-
-    async login(dto: UserAuthenticationDto) {
-      this.setIsRequesting(true);
-      try {
-        const { data } = await apiService.post('/api/login_check', dto);
-
-        if (!data.token) {
-          throw new Error('there is no token in the response');
-        }
-
-        this.updateToken(data.token);
-        
-        localStorage.setItem('hdm:admin:auth-token', data.token);
-      } catch (error) {
-        if (error.message === 'Request failed with status code 401') {
-          new Toastify().error(dto.username + ' isn\'t an account.');
-        } else {
-          new Toastify().error(`Failed to login. ${error.message}`);
-        }
-        
-      } finally {
-        this.setIsRequesting(false);
-      }
-    },
-
     async logout() {
       await clearTokenFromAxios();
       this.clearToken();
