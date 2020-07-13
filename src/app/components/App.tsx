@@ -15,9 +15,7 @@ export class App extends React.Component {
       <Router>
         <Provider store={store}>
           <AppContainer>
-            <AuthenticationGuard
-              localToken={localStorage.getItem('hdm-network:admin:auth-token')}
-            >
+            <AuthenticationGuard localToken={localStorage.getItem('hdm-network:admin:auth-token')}>
               <CustomNavbar />
               <Route path="/" exact component={Homepage} />
               <Route path="/talent" exact component={TalentFormPage} />

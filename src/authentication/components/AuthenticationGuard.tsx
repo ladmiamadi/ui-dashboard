@@ -20,13 +20,8 @@ export class AuthenticationGuard extends React.Component<Props> {
       await this.props.verifyToken(this.props.localToken ? this.props.localToken : '');
     } catch (error) {
       toast.error(<div>You are no longer logged in the application. You will be redirected in 5 seconds.
-        <a href="https://www.hdmnetwork.com"> Click here to go back.</a> </div>);
-      setTimeout(() => {
-        /*you should comment next line to put the token while we don't have the authentication form
-        (we don't have time in 5 seconds) and you can uncomment after to test the redirection when
-        the token is incorrect or you can put more time for the timeout */
-        document.location.href = 'https://www.hdmnetwork.com';
-      }, 5000);
+        <a href="https://www.hdmnetwork.com"> Click here to go back.</a></div>);
+      setTimeout(() =>  document.location.href = 'https://www.hdmnetwork.com', 5000);
     }
   }
 
