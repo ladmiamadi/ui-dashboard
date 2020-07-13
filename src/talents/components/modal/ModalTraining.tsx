@@ -39,7 +39,7 @@ export class ModalTraining extends React.Component<Props, State> {
       copyOfIsFormValid[property] = regexp.test(value);
     }
 
-    this.setState((prevState) => ({ ...prevState, isFormValid: copyOfIsFormValid }))
+    this.setState((prevState) => ({ ...prevState, isFormValid: copyOfIsFormValid }));
   }
 
   updateTraining = (property: keyof UserTraining, value: string) => {
@@ -49,7 +49,7 @@ export class ModalTraining extends React.Component<Props, State> {
       copyOfUserTrainingState[property] = value;
     }
 
-    this.setState((prevState) => ({ ...prevState, training: copyOfUserTrainingState }))
+    this.setState((prevState) => ({ ...prevState, training: copyOfUserTrainingState }));
   }
 
   activeButton = (): boolean => {
@@ -58,7 +58,7 @@ export class ModalTraining extends React.Component<Props, State> {
 
     for (key in this.state.isFormValid) {
       if (key !== 'id') {
-        isButtonActived = isButtonActived && this.state.isFormValid[key]
+        isButtonActived = isButtonActived && this.state.isFormValid[key];
       }
     }
 

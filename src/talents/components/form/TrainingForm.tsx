@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'reactstrap';
 import InputFormField, { ClassName } from '../../../app/components/utils/InputFormField';
 import { UserTraining } from '../../../app';
 import DateSlicer from '../../helpers/DateSlicer';
-import classes from '../modal/styles/ModalTraining.module.css';
+import classes from './styles/TrainingForm.module.css';
 
 interface Props {
   className?: string
@@ -22,8 +22,8 @@ interface HandleChange {
 export default class TrainingForm extends React.Component<Props> {
   render() {
     const className: ClassName = {
-      label: 'form-label',
-      input: classes.InputModalTraining,
+      label: classes.LabelTrainingForm,
+      input: classes.InputTrainingForm,
     };
 
     return (

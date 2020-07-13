@@ -1,0 +1,54 @@
+.TalentTrainingSection {
+  border: 0.3rem solid #151515;
+  padding: 1rem;
+  box-sizing: border-box;
+  margin-top: 2rem;
+}
+
+.TrainingSectionHead {
+  display: flex;
+  width: 100%;
+  padding: 1rem 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.TrainingSectionHead > h6 {
+  font-size: 2rem;
+}
+
+.AddTrainingButton {
+  background: #F0F0F0;
+  border: 0.1rem solid black;
+  padding: 0.5rem ;
+  font-size: 2rem;
+}
+
+
+.TrainingForm {
+  width: 100%;
+  border-top: solid 0.1rem #151515;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .TalentTrainingSection {
+    padding: 0.8rem;
+  }
+
+  .TrainingSectionHead > h6 {
+    font-size: 1.5rem;
+  }
+
+  .AddTrainingButton {
+    padding: 0.4rem;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 340px) {
+  .TrainingSectionHead {
+    display: block;
+    text-align: center;
+  }
+}

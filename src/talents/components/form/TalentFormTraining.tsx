@@ -4,6 +4,7 @@ import { User } from '../../../app';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import ModalTraining from '../modal/ModalTraining';
 import TrainingForm from './TrainingForm';
+import classes from './styles/TalentFormTraining.module.css';
 
 interface Props {
   user: User,
@@ -29,11 +30,11 @@ export default class TalentFormTraining extends React.Component<Props, State> {
 
   render() {
     return (
-      <div className="form-section">
-        <div className="section-add">
+      <div className={classes.TalentTrainingSection}>
+        <div className={classes.TrainingSectionHead}>
           <h6>Formations: </h6>
           <Button
-            className="form-add-button"
+            className={classes.AddTrainingButton}
             color="default"
             onClick={this.toggleModal}
           >
@@ -44,7 +45,7 @@ export default class TalentFormTraining extends React.Component<Props, State> {
           this.props.user.userTrainings?.map((elem, index) => (
             <TrainingForm
               key={index}
-              className="form-elements"
+              className={classes.TrainingForm}
               idComplement={index}
               training={elem}
               handleChange={{
