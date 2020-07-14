@@ -1,0 +1,16 @@
+.TalentFormContainer {
+  display: flex;
+  flex-flow: column;
+  font-size: 2rem;
+}
+
+.TalentFormButton {
+  padding: 8px 15px;
+  margin: 20px auto;
+}
+
+@media (max-width: 768px) {
+  .TalentFormContainer {
+    font-size: 1.5rem;
+  }
+}

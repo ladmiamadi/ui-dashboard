@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Container } from 'reactstrap';
+import { Container, Form } from 'reactstrap';
 import { User } from '../../../app';
 import { RootState, RootDispatch } from '../../../app/state/store';
 import TalentFormHead from './TalentFormHead';
@@ -13,6 +13,7 @@ import TalentFormJob from './TalentFormJob';
 import TalentFormLanguages from './TalentFormLanguages';
 import TalentFormSkills from './TalentFormSkills';
 import { UpdateUserPayload } from '../../state/models/userSelected';
+import classes from './styles/TalentFormPageContainer.module.css';
 
 interface Props {
   user: User,
@@ -22,22 +23,25 @@ interface Props {
 export class TalentFormPageContainer extends React.Component<Props> {
   render() {
     return (
-      <div className="talent-form-page">
-        <Container>
-          <form className="talent-form">
-            <TalentFormHead {...this.props} />
-            <TalentFormAddress {...this.props} />
-            <TalentFormInstitution {...this.props} />
-            <TalentFormInternship {...this.props} />
-            <TalentFormJob {...this.props} />
-            <TalentFormSkills />
-            <TalentFormLanguages {...this.props} />
-            <TalentFormTraining {...this.props} />
-            <TalentFormExperience {...this.props} />
-            <button type="submit" className="form-button">Sauvegarder les changements</button>
-          </form>
-        </Container>
-      </div>
+      <Container>
+        <Form className={classes.TalentFormContainer}>
+          <TalentFormHead {...this.props} />
+          <TalentFormAddress {...this.props} />
+          <TalentFormInstitution {...this.props} />
+          <TalentFormInternship {...this.props} />
+          <TalentFormJob {...this.props} />
+          <TalentFormSkills />
+          <TalentFormLanguages {...this.props} />
+          <TalentFormTraining {...this.props} />
+          <TalentFormExperience {...this.props} />
+          <button
+            type="submit"
+            className={classes.TalentFormButton}
+          >
+            Sauvegarder les changements
+          </button>
+        </Form>
+      </Container>
     );
   }
 }

@@ -3,6 +3,7 @@ import { User, UserProfile } from '../../../app';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import ProfileCollection from '../../helpers/ProfileCollection';
+import classes from './styles/TalentFormInstitution.module.css';
 
 interface Props {
   user: User,
@@ -18,11 +19,11 @@ export default class TalentFormInstitution extends React.Component<Props> {
     );
 
     return (
-      <div className="form-section">
+      <div className={classes['institution-section']}>
         <FieldForm
           keyName="institution"
           label="École: "
-          className="large"
+          className={classes['institution-field']}
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
@@ -34,7 +35,7 @@ export default class TalentFormInstitution extends React.Component<Props> {
         <FieldForm
           keyName="institution-phone"
           label="Téléphone École: "
-          className="medium"
+          className={classes['institution-field']}
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
@@ -46,7 +47,7 @@ export default class TalentFormInstitution extends React.Component<Props> {
         <FieldForm
           keyName="institution-email"
           label="Mail École: "
-          className="medium"
+          className={classes['institution-field']}
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
@@ -58,7 +59,7 @@ export default class TalentFormInstitution extends React.Component<Props> {
         <FieldForm
           keyName="institution-contact"
           label="Personne de contact: "
-          className="large"
+          className={classes['institution-field']}
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',

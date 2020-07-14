@@ -26,7 +26,7 @@
   flex-direction: column;
 }
 
-.connexion-box {
+.connection-box {
   border: 1px solid #151515;
   width: 30%;
   padding: 20px;
@@ -180,7 +180,7 @@
       margin-bottom: 20px;
   }
 
-  .form-head img, .connexion-box {
+  .form-head img, .connection-box {
       width: 20%;
       min-width: 150px;
       margin-bottom: 20px;
@@ -223,7 +223,7 @@
 }
 
 @media (max-width: 425px) {
-  .form-head img, .connexion-box {
+  .form-head img, .connection-box {
       width: 100%;
   }
 

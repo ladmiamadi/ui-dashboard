@@ -92,7 +92,7 @@ export default class TalentFormHead extends React.Component<Props> {
             })}
             value={this.props.user.userAddress?.country} />
         </div>
-        <div className="connexion-box">
+        <div className="connection-box">
           <p>Envoyez un email pour configurer la connexion</p>
           <button>Envoyer</button>
         </div>
