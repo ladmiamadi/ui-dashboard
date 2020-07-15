@@ -3,6 +3,7 @@ import { User, UserProfile } from '../../../app';
 import { FieldForm }  from '../../../app/components/utils/FieldForm';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import ProfileCollection from '../../helpers/ProfileCollection';
+import classes from './styles/TalentFormJob.module.css';
 
 interface Props {
   user: User,
@@ -18,11 +19,11 @@ export default class TalentFormJob extends React.Component<Props> {
     );
 
     return (
-      <div className="form-section">
+      <div className={classes['job-section']}>
         <FieldForm
           keyName="job-desired"
           label="Métier souhaité: "
-          className="large"
+          className={classes['job-field']}
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
@@ -34,7 +35,7 @@ export default class TalentFormJob extends React.Component<Props> {
         <FieldForm
           keyName="job-mobility"
           label="Mobilité: "
-          className="large"
+          className={classes['job-field']}
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
@@ -44,22 +45,9 @@ export default class TalentFormJob extends React.Component<Props> {
           })}          
           value={userProfileWorking?.mobility} />
         <FieldForm
-          keyName="job-description"
-          label="Description: "
-          className="large"
-          rows={5}
-          type="textarea"
-          handleChange={(value) => this.props.modifyUser({
-            category: 'userProfiles',
-            property: 'descriptionInFrench',
-            value: value,
-            index: indexWorking,
-          })}          
-          value={userProfileWorking?.descriptionInFrench} />
-        <FieldForm
           keyName="job-actual-pay"
           label="Salaire actuel: "
-          className="medium"
+          className={classes['job-field']}
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
@@ -71,7 +59,7 @@ export default class TalentFormJob extends React.Component<Props> {
         <FieldForm
           keyName="job-desired-pay"
           label="Salaire souhaité: "
-          className="medium"
+          className={classes['job-field']}
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
@@ -80,6 +68,19 @@ export default class TalentFormJob extends React.Component<Props> {
             index: indexWorking,
           })}          
           value={userProfileWorking?.expectedSalary} />
+        <FieldForm
+          keyName="job-description"
+          label="Description: "
+          className={classes['job-description']}
+          rows={5}
+          type="textarea"
+          handleChange={(value) => this.props.modifyUser({
+            category: 'userProfiles',
+            property: 'descriptionInFrench',
+            value: value,
+            index: indexWorking,
+          })}          
+          value={userProfileWorking?.descriptionInFrench} />
       </div>
     );
   }

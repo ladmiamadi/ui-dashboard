@@ -1,0 +1,54 @@
+.job-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border: 3px solid #151515;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-top: 20px; 
+}
+
+.job-field {
+  width: 47.5%;
+}
+
+.job-field:global.form-group {
+  display: block;
+}
+
+.job-field:global.form-group .form-input {
+  width: 100%;
+  font-size: 1.5rem;
+}
+
+.job-description {
+  width: 100%;
+}
+
+.job-description:global.form-group .form-input {
+  width: 100%;
+}
+
+.job-description:global.form-group {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .job-field:global.form-group {
+    width: 47.5%;
+  }
+
+  .job-field:global.form-group .form-input {
+    font-size: 1.3rem;
+  }
+
+  .job-description:global.form-group .form-input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .job-field:global.form-group {
+    width: 100%;
+  }
+}

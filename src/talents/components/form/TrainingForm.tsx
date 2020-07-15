@@ -22,8 +22,8 @@ interface HandleChange {
 export default class TrainingForm extends React.Component<Props> {
   render() {
     const className: ClassName = {
-      label: classes.LabelTrainingForm,
-      input: classes.InputTrainingForm,
+      label: classes['label-training-form'],
+      input: classes['input-training-form'],
     };
 
     return (

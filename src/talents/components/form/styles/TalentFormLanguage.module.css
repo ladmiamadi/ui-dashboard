@@ -1,0 +1,53 @@
+.language-section {
+  border: 3px solid #151515;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-top: 20px; 
+}
+
+.language-section-head {
+  display: flex;
+  padding: 10px 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.language-section-head h6 {
+  font-size: 2rem;
+}
+
+.add-language-button {
+  background: #F0F0F0;
+  border: 1px solid black;
+  padding: 5px ;
+  font-size:  2rem;
+}
+
+.form-language {
+  margin: 0;
+  width: 100%;
+}
+
+.form-language:not(:empty) {
+  border-top: solid 1px #151515;
+  padding-top: 15px;
+}
+
+.form-language div:global.form-group {
+  display: block;
+}
+
+.form-language div:global.form-group .form-input {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .language-section-head > h6 {
+    font-size: 1.5rem;
+  }
+
+  .add-language-button {
+    padding: 4px;
+    font-size: 1.5rem;
+  }
+}

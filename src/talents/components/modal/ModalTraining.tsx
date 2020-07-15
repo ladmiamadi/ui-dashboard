@@ -105,7 +105,7 @@ export class ModalTraining extends React.Component<Props, State> {
         <Button
           onClick={this.handleClick}
           disabled={!this.activeButton()}
-          className={classes.ButtonModalTraining}
+          className={classes['button-modal-training']}
         >
           Ajouter une formation
         </Button>

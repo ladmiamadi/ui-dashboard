@@ -16,16 +16,14 @@ interface Props {
 export class ModalCustom extends React.Component<Props> {
   render() {
     return (
-      <div>
-        <Modal isOpen={this.props.isModalShown} toggle={this.props.toggleModal} className="modal-action">
-          <ModalHeader className={this.props.className} toggle={this.props.toggleModal}>
-            { this.props.titleModal }
-          </ModalHeader>
-          <ModalBody className="modal-content">
-            { this.props.children }
-          </ModalBody>
-        </Modal>
-      </div>
+      <Modal isOpen={this.props.isModalShown} toggle={this.props.toggleModal} className="modal-action">
+        <ModalHeader className={this.props.className} toggle={this.props.toggleModal}>
+          { this.props.titleModal }
+        </ModalHeader>
+        <ModalBody className="modal-content">
+          { this.props.children }
+        </ModalBody>
+      </Modal>
     );
   }
 }

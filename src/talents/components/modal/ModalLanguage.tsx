@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Row } from 'reactstrap';
+import { Button, Row, Container } from 'reactstrap';
 import { RootDispatch, RootState } from '../../../app/state/store';
 import { User, UserLanguage } from '../../../app/index';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
@@ -27,7 +27,7 @@ export class ModalLanguage extends React.Component<Props> {
     const newLanguage = UserLanguageFactory.createEmptyLanguage();
 
     return (
-      <>
+      <Container>
         <Row>
           <SelectFormField
             keyName="language"
@@ -64,7 +64,7 @@ export class ModalLanguage extends React.Component<Props> {
             </Row>
           )
         }
-      </>
+      </Container>
     );
   }
 }

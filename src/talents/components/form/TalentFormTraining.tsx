@@ -30,11 +30,11 @@ export default class TalentFormTraining extends React.Component<Props, State> {
 
   render() {
     return (
-      <div className={classes.TalentTrainingSection}>
-        <div className={classes.TrainingSectionHead}>
+      <div className={classes['talent-training-section']}>
+        <div className={classes['training-section-head']}>
           <h6>Formations: </h6>
           <Button
-            className={classes.AddTrainingButton}
+            className={classes['add-training-button']}
             color="default"
             onClick={this.toggleModal}
           >
@@ -45,7 +45,7 @@ export default class TalentFormTraining extends React.Component<Props, State> {
           this.props.user.userTrainings?.map((elem, index) => (
             <TrainingForm
               key={index}
-              className={classes.TrainingForm}
+              className={classes['training-form']}
               idComplement={index}
               training={elem}
               handleChange={{
