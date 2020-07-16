@@ -17,12 +17,10 @@ interface Props {
 export class ModalExperience extends React.Component<Props> {
 
   updateExperience = (property: string, value: string | Date) => {
-    console.log('updateExperience : ' + this.props.experience);
     this.props.updateExperience({ property, value });
   }
 
   handleClick = () => {
-    console.log(this.props.experience);
     this.props.addUserExperience({ ...this.props.experience });
   }
   isFormValid = () => {
@@ -34,7 +32,7 @@ export class ModalExperience extends React.Component<Props> {
     return (
       <>
         <FieldForm
-          keyName="experience-position"
+          keyName="experience-modal-company"
           label="company : "
           type="text"
           handleChange={(value: string) => this.props.updateExperience({
@@ -43,6 +41,27 @@ export class ModalExperience extends React.Component<Props> {
           })}
           value={this.props.experience.company}
         />
+        <FieldForm
+          keyName="experience-modal-position"
+          label="Poste: "
+          className="large"
+          type="text"
+          handleChange={(value: string) => this.props.updateExperience({
+            property: 'position',
+            value: value,
+          })}
+          value={this.props.experience.position} />
+        <FieldForm
+          keyName="experience-modal-works"
+          label="Tâches effectuées: "
+          className="large"
+          rows={5}
+          type="textarea"
+          handleChange={(value: string) => this.props.updateExperience({
+            property: 'task',
+            value: value,
+          })}
+          value={this.props.experience.task} />
         <label> Date de début: </label>
         <ReactDatePicker
           value={this.props.experience.startDate}
@@ -59,27 +78,6 @@ export class ModalExperience extends React.Component<Props> {
             value: value,
           })}
         />
-        <FieldForm
-          keyName="experience-position"
-          label="Poste: "
-          className="large"
-          type="text"
-          handleChange={(value: string) => this.props.updateExperience({
-            property: 'position',
-            value: value,
-          })}
-          value={this.props.experience.position} />
-        <FieldForm
-          keyName="experience-works"
-          label="Tâches effectuées: "
-          className="large"
-          rows={5}
-          type="textarea"
-          handleChange={(value: string) => this.props.updateExperience({
-            property: 'task',
-            value: value,
-          })}
-          value={this.props.experience.task} />
         <Button
           disabled={!this.isFormValid()}
           className="form-add-button modal-button"

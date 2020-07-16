@@ -26,9 +26,9 @@ export const users = createModel({
 
       try {
         const { data } = await apiService.get('/api/users');
-        console.log(data);
+
         UserBuilder.transformDateFormat(data);
-        console.log(data);
+
         this.updateList(data);
       } catch(error) {
         (new Toastify()).error(`Unable to fetch talents. ${ error.message }`);
