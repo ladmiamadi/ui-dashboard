@@ -2,6 +2,7 @@ import { Toastify } from '../../../helpers/Toastify';
 import { User } from '../../../app';
 import { apiService } from '../../../app/http/service';
 import { createModel } from '@rematch/core';
+import { UserBuilder } from '../../../app/helpers/userBuilder';
 
 interface State {
   users: User[],
@@ -25,7 +26,9 @@ export const users = createModel({
 
       try {
         const { data } = await apiService.get('/api/users');
-
+        console.log(data);
+        UserBuilder.transformDateFormat(data);
+        console.log(data);
         this.updateList(data);
       } catch(error) {
         (new Toastify()).error(`Unable to fetch talents. ${ error.message }`);

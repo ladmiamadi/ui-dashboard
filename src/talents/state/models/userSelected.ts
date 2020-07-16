@@ -1,5 +1,5 @@
 import { createModel } from '@rematch/core';
-import { User, UserLanguage } from '../../../app';
+import { User, UserExperience, UserLanguage } from '../../../app';
 import { createEmptyUser } from '../../../app/helpers/user';
 import _ from 'lodash';
 
@@ -11,7 +11,7 @@ export interface UpdateUserPayload {
   index: number,
   category: string,
   property: string,
-  value: number | string,
+  value: number | string | Date | Date[],
 }
 
 export const userSelected = createModel ({
@@ -45,6 +45,17 @@ export const userSelected = createModel ({
       copyUserSelected.userLanguages = updatedLanguages;
 
       return { ...state, userSelected: copyUserSelected };
+    },
+    addUserExperience: (state: UserState, payload: UserExperience): UserState => {
+      const userSelected = _.cloneDeep(state.userSelected) as User;
+
+      const userExperience = userSelected.userExperiences ?
+        userSelected.userExperiences.concat(payload) :
+        [payload];
+
+      userSelected.userExperiences = userExperience;
+
+      return { ...state, userSelected };
     },
   },
 });

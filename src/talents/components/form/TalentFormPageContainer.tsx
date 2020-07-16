@@ -21,6 +21,12 @@ interface Props {
 
 export class TalentFormPageContainer extends React.Component<Props> {
   render() {
+    if (this.props.user.userExperiences) {
+      //console.log(this.props.user.userExperiences[0].startDate + typeof this.props.user.userExperiences[0].startDate);
+      console.log('typof created date : ' + typeof this.props.user.createdDate + this.props.user.createdDate);
+      const testDate = new Date;
+      console.log('typeOf new date : ' + typeof testDate + testDate);
+    }
     return (
       <div className="talent-form-page">
         <Container>

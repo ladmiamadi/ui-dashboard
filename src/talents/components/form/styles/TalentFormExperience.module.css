@@ -1,0 +1,56 @@
+.talent-experience-section {
+    border: 0.3rem solid #151515;
+    padding: 1rem;
+    box-sizing: border-box;
+    margin-top: 2rem;
+}
+
+.experience-section-head {
+    display: flex;
+    width: 100%;
+    padding: 1rem 0;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.experience-section-head > h6 {
+    font-size: 2rem;
+}
+
+.add-experience-button {
+    background: #F0F0F0;
+    border: 0.1rem solid black;
+    padding: 0.5rem ;
+    font-size: 2rem;
+}
+
+.experience-form {
+    width: 100%;
+    border-top: solid 0.1rem #151515;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .talent-experience-section {
+        padding: 0.8rem;
+    }
+
+    .experience-section-head > h6 {
+        font-size: 1.5rem;
+    }
+
+    .add-experience-button {
+        padding: 0.4rem;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 340px) {
+    .experience-section-head {
+        display: block;
+        text-align: center;
+    }
+}
+
+
+

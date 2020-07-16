@@ -5,6 +5,7 @@ import { FieldForm } from '../../../app/components/utils/FieldForm';
 import DateSlicer from '../../helpers/DateSlicer';
 import { FormatDate } from '../../index.d';
 import { UpdateUserPayload } from '../../state/models/userSelected';
+import DatePicker from 'react-date-picker';
 
 interface Props {
   user: User,
@@ -13,6 +14,7 @@ interface Props {
 
 export default class TalentFormFormation extends React.Component<Props> {
   render() {
+    console.log(this.props.user);
     return (
       <div className="form-section">
         <div className="section-add">
@@ -34,6 +36,16 @@ export default class TalentFormFormation extends React.Component<Props> {
                   index: index,
                 })}
                 value={elem.institution} />
+              <DatePicker
+                //selected={elem.startDate}
+                value={elem.startDate}
+                onChange={(value) => this.props.modifyUser({
+                  category: 'userTrainings',
+                  property: 'startDate',
+                  value: value,
+                  index: index,
+                })}
+              />
               <DateFormField
                 keyName="formation-start"
                 label="Début formation: "

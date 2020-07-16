@@ -2,14 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Row } from 'reactstrap';
 import { RootDispatch, RootState } from '../../../app/state/store';
-import { User, UserLanguage } from '../../../app/index';
+import { UserLanguage } from '../../../app/index';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { UpdateLanguagePayload } from '../../state/models/languages/add-language';
 import { UserLanguageFactory } from '../../helpers/UserLanguageFactory';
 import { LANGUAGES_LEVEL } from '../../constants/language';
 
 interface Props {
-  userSelected: User,
   language: UserLanguage,
   languages: string[],
   isPosting: boolean,
