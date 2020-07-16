@@ -1,5 +1,6 @@
 import { UserTraining } from '../../app';
 import { IsFormValid } from '../components/modal/ModalTraining';
+import { InputState } from '../index.d';
 
 export class UserTrainingFactory {
   public static createEmptyUserTraining = (): UserTraining => ({
@@ -10,9 +11,9 @@ export class UserTrainingFactory {
   })
 
   public static createEmptyFormValid = (): IsFormValid => ({
-    institution: false,
-    startDate: false,
-    endDate: false,
-    degreeObtained: false,
+    institution: InputState.UNDEFINED,
+    startDate: InputState.UNDEFINED,
+    endDate: InputState.UNDEFINED,
+    degreeObtained: InputState.UNDEFINED,
   })
 }

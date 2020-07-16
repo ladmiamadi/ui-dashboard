@@ -13,26 +13,24 @@ interface Props {
 export class UserLanguagesDisplay extends React.Component<Props> {
   render() {
     return (
-      <>
-        <Row form className={classes['form-language']}>
-          {
-            this.props.userLanguages.map(({ language, level }, index) =>
-              (
-                <Col key={index} md={4} sm={6}>
-                  <SelectFormField
-                    key={index}
-                    keyName="level"
-                    label={language}
-                    options={LANGUAGES_LEVEL}
-                    value={level}
-                    handleChange={(property, value) => this.props.updateUserLanguage(property, value, index)}
-                  />
-                </Col>
-              ),
-            )
-          }
-        </Row>
-      </>
+      <Row form className={classes['form-language']}>
+        {
+          this.props.userLanguages.map(({ language, level }, index) =>
+            (
+              <Col key={index} md={4} sm={6}>
+                <SelectFormField
+                  key={index}
+                  keyName="level"
+                  label={language}
+                  options={LANGUAGES_LEVEL}
+                  value={level}
+                  handleChange={(property, value) => this.props.updateUserLanguage(property, value, index)}
+                />
+              </Col>
+            ),
+          )
+        }
+      </Row>
     );
   }
 }

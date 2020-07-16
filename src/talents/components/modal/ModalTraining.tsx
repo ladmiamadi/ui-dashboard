@@ -6,8 +6,8 @@ import { UserTrainingFactory } from '../../helpers/UserTrainingFactory';
 import { RootDispatch } from '../../../app/state/store';
 import TrainingForm from '../form/TrainingForm';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
+import { InputState } from '../../index.d';
 import classes from './styles/ModalTraining.module.css';
-
 
 interface Props {
   isModalOpen: boolean,
@@ -20,7 +20,7 @@ interface State {
   training: UserTraining,
 }
 
-export type IsFormValid = Training<boolean, number>;
+export type IsFormValid = Training<InputState, number>;
 
 export class ModalTraining extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -32,11 +32,17 @@ export class ModalTraining extends React.Component<Props, State> {
     };
   }
 
+  handleChange = <T, U>(property: keyof Training<T, U>, value: string, regexp: RegExp) => {
+    this.updateIsFormValid(property, value, regexp);
+
+    this.updateTraining(property, value);
+  }
+
   updateIsFormValid = (property: keyof IsFormValid, value: string, regexp: RegExp) => {
     const copyOfIsFormValid = { ...this.state.isFormValid };
 
     if (property !== 'id') {
-      copyOfIsFormValid[property] = regexp.test(value);
+      copyOfIsFormValid[property] = regexp.test(value) ? InputState.TRUE : InputState.FALSE;
     }
 
     this.setState((prevState) => ({ ...prevState, isFormValid: copyOfIsFormValid }));
@@ -58,11 +64,17 @@ export class ModalTraining extends React.Component<Props, State> {
 
     for (key in this.state.isFormValid) {
       if (key !== 'id') {
-        isButtonActived = isButtonActived && this.state.isFormValid[key];
+        isButtonActived = isButtonActived && (this.state.isFormValid[key] === InputState.TRUE);
       }
     }
 
     return isButtonActived;
+  }
+
+  handleClick = () => {
+    this.props.addUserTraining({ ...this.state.training });
+
+    this.resetState();
   }
 
   resetState = () => {
@@ -72,16 +84,10 @@ export class ModalTraining extends React.Component<Props, State> {
     })
   }
 
-  handleChange = <T, U>(property: keyof Training<T, U>, value: string, regexp: RegExp) => {
-    this.updateIsFormValid(property, value, regexp);
-
-    this.updateTraining(property, value);
-  }
-
-  handleClick = () => {
-    this.props.addUserTraining({ ...this.state.training });
-
+  toggleModal = () => {
     this.resetState();
+
+    this.props.toggleModal();
   }
 
   render() {
@@ -90,11 +96,17 @@ export class ModalTraining extends React.Component<Props, State> {
     return (
       <ModalCustom
         isModalShown={this.props.isModalOpen}
-        toggleModal={this.props.toggleModal}
+        toggleModal={this.toggleModal}
         titleModal="Ajouter une formation"
       >
         <TrainingForm
           training={{ ...this.state.training }}
+          isFieldInvalid={{
+            institution: this.state.isFormValid.institution === InputState.FALSE,
+            degreeObtained: this.state.isFormValid.degreeObtained === InputState.FALSE,
+            startDate: this.state.isFormValid.startDate === InputState.FALSE,
+            endDate: this.state.isFormValid.endDate === InputState.FALSE,
+          }}
           handleChange={{
             institution: (value: string) => this.handleChange('institution', value, /./),
             degreeObtained: (value: string) => this.handleChange('degreeObtained', value, /./),

@@ -8,8 +8,16 @@ import classes from './styles/TrainingForm.module.css';
 interface Props {
   className?: string
   idComplement?: number,
+  isFieldInvalid?: IsFieldValid,
   training: UserTraining,
   handleChange: HandleChange,
+}
+
+interface IsFieldValid {
+  institution: boolean,
+  degreeObtained: boolean,
+  startDate: boolean,
+  endDate: boolean,
 }
 
 interface HandleChange {
@@ -25,13 +33,14 @@ export default class TrainingForm extends React.Component<Props> {
       label: classes['label-training-form'],
       input: classes['input-training-form'],
     };
-
+;
     return (
       <Container className={this.props.className}>
         <Row>
           <Col md={6}>
             <InputFormField
               id={"training-school" + this.props.idComplement}
+              invalid={this.props.isFieldInvalid?.institution}
               label="École: "
               type="text"
               className={className}
@@ -42,6 +51,7 @@ export default class TrainingForm extends React.Component<Props> {
           <Col md={6}>
             <InputFormField
               id={"training-diploma" + this.props.idComplement}
+              invalid={this.props.isFieldInvalid?.degreeObtained}
               label="Diplôme obtenu: "
               type="text"
               className={className}
@@ -54,6 +64,7 @@ export default class TrainingForm extends React.Component<Props> {
           <Col md={6}>
             <InputFormField
               id={"training-start" + this.props.idComplement}
+              invalid={this.props.isFieldInvalid?.startDate}
               label="Début formation: "
               type="date"
               className={className}
@@ -64,6 +75,7 @@ export default class TrainingForm extends React.Component<Props> {
           <Col md={6}>
             <InputFormField
               id={"training-end" + this.props.idComplement}
+              invalid={this.props.isFieldInvalid?.endDate}
               label="Fin formation: "
               type="date"
               className={className}

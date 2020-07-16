@@ -48,11 +48,11 @@ export default class TalentFormJob extends React.Component<Props> {
           keyName="job-actual-pay"
           label="Salaire actuel: "
           className={classes['job-field']}
-          type="text"
+          type="number"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'actualSalary',
-            value: value,
+            value: +value,
             index: indexWorking,
           })}          
           value={userProfileWorking?.actualSalary} />
@@ -60,11 +60,11 @@ export default class TalentFormJob extends React.Component<Props> {
           keyName="job-desired-pay"
           label="Salaire souhaité: "
           className={classes['job-field']}
-          type="text"
+          type="number"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'expectedSalary',
-            value: value,
+            value: +value,
             index: indexWorking,
           })}          
           value={userProfileWorking?.expectedSalary} />
