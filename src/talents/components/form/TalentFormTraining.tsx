@@ -28,16 +28,6 @@ export default class TalentFormTraining extends React.Component<Props, State> {
     this.setState({ isModalOpen: !this.state.isModalOpen });
   }
 
-  handleDateChange = (data: UpdateUserPayload) => {
-    const yearMonthDayRegex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/i;
-
-    if (typeof data.value === 'string') {
-      console.log(yearMonthDayRegex.test(data.value));
-    }
-
-    this.props.modifyUser(data);
-  }
-
   render() {
     return (
       <div className={classes['talent-training-section']}>
@@ -71,7 +61,7 @@ export default class TalentFormTraining extends React.Component<Props, State> {
                   value: value,
                   index: index,
                 }),
-                startDate: (value: string) => this.handleDateChange({
+                startDate: (value: string) => this.props.modifyUser({
                   category: 'userTrainings',
                   property: 'startDate',
                   value: value,

@@ -1,5 +1,4 @@
-import { UserTraining } from '../../app';
-import { IsFormValid } from '../components/modal/ModalTraining';
+import { IsFormValid, UserTraining } from '../components/modal/ModalTraining';
 import { InputState } from '../index.d';
 
 export class UserTrainingFactory {

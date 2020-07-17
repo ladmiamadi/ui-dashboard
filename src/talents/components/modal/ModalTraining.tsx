@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
-import { UserTraining, Training } from '../../../app';
+import { Training } from '../../../app';
 import { UserTrainingFactory } from '../../helpers/UserTrainingFactory';
 import { RootDispatch } from '../../../app/state/store';
 import TrainingForm from '../form/TrainingForm';
@@ -20,7 +20,11 @@ interface State {
   training: UserTraining,
 }
 
-export type IsFormValid = Training<InputState, number>;
+type ExcludeIdKeyFromTraining<T, U> = Omit<Training<T, U>, 'id'>;
+
+export type IsFormValid = ExcludeIdKeyFromTraining<InputState, number>;
+export type UserTraining = ExcludeIdKeyFromTraining<string, number>;
+
 
 export class ModalTraining extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -32,40 +36,34 @@ export class ModalTraining extends React.Component<Props, State> {
     };
   }
 
-  handleChange = <T, U>(property: keyof Training<T, U>, value: string, regexp: RegExp) => {
+  handleChange = <T, U>(property: keyof ExcludeIdKeyFromTraining<T, U>, value: string, regexp: RegExp) => {
     this.updateIsFormValid(property, value, regexp);
 
     this.updateTraining(property, value);
   }
 
   updateIsFormValid = (property: keyof IsFormValid, value: string, regexp: RegExp) => {
-    const copyOfIsFormValid = { ...this.state.isFormValid };
+    const isFormValid = { ...this.state.isFormValid };
 
-    if (property !== 'id') {
-      copyOfIsFormValid[property] = regexp.test(value) ? InputState.TRUE : InputState.FALSE;
-    }
+    isFormValid[property] = regexp.test(value) ? InputState.TRUE : InputState.FALSE;
 
-    this.setState((prevState) => ({ ...prevState, isFormValid: copyOfIsFormValid }));
+    this.setState((prevState) => ({ ...prevState, isFormValid }));
   }
 
   updateTraining = (property: keyof UserTraining, value: string) => {
-    const copyOfUserTrainingState = { ...this.state.training };
+    const training = { ...this.state.training };
 
-    if (property !== 'id') {
-      copyOfUserTrainingState[property] = value;
-    }
+    training[property] = value;
 
-    this.setState((prevState) => ({ ...prevState, training: copyOfUserTrainingState }));
+    this.setState((prevState) => ({ ...prevState, training }));
   }
 
   activeButton = (): boolean => {
-    let key: keyof IsFormValid;
     let isButtonActived = true;
+    let key: keyof IsFormValid;
 
     for (key in this.state.isFormValid) {
-      if (key !== 'id') {
-        isButtonActived = isButtonActived && (this.state.isFormValid[key] === InputState.TRUE);
-      }
+      isButtonActived = isButtonActived && (this.state.isFormValid[key] === InputState.TRUE);
     }
 
     return isButtonActived;
@@ -91,10 +89,11 @@ export class ModalTraining extends React.Component<Props, State> {
   }
 
   render() {
-    const yearMonthDayRegex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/i;
+    const yearMonthDayRegex = /^(\d{1,4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/i;
 
     return (
       <ModalCustom
+        className={classes['title-modal-training']}
         isModalShown={this.props.isModalOpen}
         toggleModal={this.toggleModal}
         titleModal="Ajouter une formation"
