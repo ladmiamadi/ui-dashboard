@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 import { Training } from '../../../app';
-import { UserTrainingFactory } from '../../helpers/UserTrainingFactory';
+import { TrainingFactory } from '../../helpers/TrainingFactory';
 import { RootDispatch } from '../../../app/state/store';
 import TrainingForm from '../form/TrainingForm';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
@@ -20,10 +20,10 @@ interface State {
   training: UserTraining,
 }
 
-type ExcludeIdKeyFromTraining<T, U> = Omit<Training<T, U>, 'id'>;
+type ExcludeIdPropertyFromTraining<T, U> = Omit<Training<T, U>, 'id'>;
 
-export type IsFormValid = ExcludeIdKeyFromTraining<InputState, number>;
-export type UserTraining = ExcludeIdKeyFromTraining<string, number>;
+export type IsFormValid = ExcludeIdPropertyFromTraining<InputState, number>;
+export type UserTraining = ExcludeIdPropertyFromTraining<string, number>;
 
 
 export class ModalTraining extends React.Component<Props, State> {
@@ -31,12 +31,12 @@ export class ModalTraining extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      isFormValid: UserTrainingFactory.createEmptyFormValid(),
-      training: UserTrainingFactory.createEmptyUserTraining(),
+      isFormValid: TrainingFactory.createEmptyFormValid(),
+      training: TrainingFactory.createEmptyUserTraining(),
     };
   }
 
-  handleChange = <T, U>(property: keyof ExcludeIdKeyFromTraining<T, U>, value: string, regexp: RegExp) => {
+  handleChange = <T, U>(property: keyof ExcludeIdPropertyFromTraining<T, U>, value: string, regexp: RegExp) => {
     this.updateIsFormValid(property, value, regexp);
 
     this.updateTraining(property, value);
@@ -77,8 +77,8 @@ export class ModalTraining extends React.Component<Props, State> {
 
   resetState = () => {
     this.setState({
-      isFormValid: UserTrainingFactory.createEmptyFormValid(),
-      training: UserTrainingFactory.createEmptyUserTraining(),
+      isFormValid: TrainingFactory.createEmptyFormValid(),
+      training: TrainingFactory.createEmptyUserTraining(),
     })
   }
 

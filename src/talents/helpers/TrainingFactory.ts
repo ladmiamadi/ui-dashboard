@@ -1,7 +1,7 @@
 import { IsFormValid, UserTraining } from '../components/modal/ModalTraining';
-import { InputState } from '../index.d';
+import { InputState } from '..';
 
-export class UserTrainingFactory {
+export class TrainingFactory {
   public static createEmptyUserTraining = (): UserTraining => ({
     institution: '',
     startDate: '',
