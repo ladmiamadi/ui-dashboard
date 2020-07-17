@@ -30,6 +30,10 @@
     padding: 0 1.5rem 1.5rem 1.5rem;
 }
 
+.label-date-experience {
+    display: inline-block;
+}
+
 @media (max-width: 768px) {
     .talent-experience-section {
         padding: 0.8rem;

@@ -11,7 +11,7 @@ export interface UpdateUserPayload {
   index: number,
   category: string,
   property: string,
-  value: number | string | Date | Date[],
+  value: number | string | Date | null,
 }
 
 export const userSelected = createModel ({

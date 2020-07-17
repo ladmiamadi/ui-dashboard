@@ -1,8 +1,7 @@
-import { FormatDate } from './formatDate';
+import { FormatDate } from '../helpers/formatDate';
 
-export class UserBuilder {
+export class UsersDateFormatter {
   public static transformDateFormat(data: [any]) {
-    console.log(data);
     data.forEach( updatedData => {
       FormatDate.formatDate(updatedData);
       if (updatedData.userJob)

@@ -1,17 +1,19 @@
 import React from 'react';
-import DatePicker from 'react-date-picker';
-import ReactDatePicker from 'react-date-picker';
+import ReactDatePicker from 'react-datepicker';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { UserExperience } from '../../../app/index';
 import { RootDispatch, RootState } from '../../../app/state/store';
 import { UpdateExperiencePayload } from '../../state/models/experiences/addExperience';
+import 'react-datepicker/dist/react-datepicker.css';
 
 interface Props {
   addUserExperience: (payload: UserExperience) =>void,
   updateExperience: (payload: UpdateExperiencePayload) =>void,
   experience: UserExperience,
+  toggleModal: () => void;
+  resetExperience: () => void;
 }
 
 export class ModalExperience extends React.Component<Props> {
@@ -21,8 +23,17 @@ export class ModalExperience extends React.Component<Props> {
   }
 
   handleClick = () => {
-    this.props.addUserExperience({ ...this.props.experience });
+    if (!this.props.experience.endDate) {
+      if (window.confirm('there is no endDate are you sure you want to add this experience ?'))
+        this.props.addUserExperience({ ...this.props.experience });
+    }
+    else {
+      this.props.addUserExperience({ ...this.props.experience });
+    }
+    this.props.toggleModal();
+    this.props.resetExperience();
   }
+
   isFormValid = () => {
     return this.props.experience.company !== '' && this.props.experience.task !== ''
       && this.props.experience.position !== '' && this.props.experience.startDate !== null;
@@ -40,6 +51,22 @@ export class ModalExperience extends React.Component<Props> {
             value: value,
           })}
           value={this.props.experience.company}
+        />
+        <label> Date de début: </label>
+        <ReactDatePicker
+          selected={this.props.experience.startDate}
+          onChange={(value) => this.props.updateExperience({
+            property: 'startDate',
+            value: value,
+          })}
+        />
+        <label>date de fin: </label>
+        <ReactDatePicker
+          selected={this.props.experience.endDate}
+          onChange={(value) => this.props.updateExperience({
+            property: 'endDate',
+            value: value,
+          })}
         />
         <FieldForm
           keyName="experience-modal-position"
@@ -62,22 +89,6 @@ export class ModalExperience extends React.Component<Props> {
             value: value,
           })}
           value={this.props.experience.task} />
-        <label> Date de début: </label>
-        <ReactDatePicker
-          value={this.props.experience.startDate}
-          onChange={(value) => this.props.updateExperience({
-            property: 'startDate',
-            value: value,
-          })}
-        />
-        <label>date de fin: </label>
-        <DatePicker
-          value={this.props.experience.endDate}
-          onChange={(value) => this.props.updateExperience({
-            property: 'endDate',
-            value: value,
-          })}
-        />
         <Button
           disabled={!this.isFormValid()}
           className="form-add-button modal-button"
@@ -97,6 +108,7 @@ const mapState = (state: RootState) => ({
 
 const mapDispatch = (dispatch: RootDispatch) => ({
   updateExperience: dispatch.addExperience.updateExperience,
+  resetExperience: dispatch.addExperience.resetExperience,
   addUserExperience: dispatch.userSelected.addUserExperience,
 });
 

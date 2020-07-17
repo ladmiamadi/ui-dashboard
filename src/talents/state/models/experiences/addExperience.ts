@@ -9,7 +9,7 @@ export interface ExperienceState {
 
 export interface UpdateExperiencePayload {
   property: string,
-  value: string | Date | Date[],
+  value: string | Date | null,
 }
 
 export const addExperience = createModel({
@@ -19,7 +19,6 @@ export const addExperience = createModel({
   reducers: {
     updateExperience: (state: ExperienceState, payload: UpdateExperiencePayload): ExperienceState => {
       const experience = _.cloneDeep(state.experience) as any;
-      //if(payload.property)
       experience[payload.property] = payload.value;
       console.log('payload property : ' + payload.property + 'payload value : ' + payload.value);
       console.log(experience);
