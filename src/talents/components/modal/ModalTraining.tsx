@@ -8,6 +8,7 @@ import TrainingForm from '../form/TrainingForm';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
 import { InputState } from '../../index.d';
 import classes from './styles/ModalTraining.module.css';
+import { FormValidator } from '../../helpers/FormValidator';
 
 interface Props {
   isModalOpen: boolean,
@@ -58,17 +59,6 @@ export class ModalTraining extends React.Component<Props, State> {
     this.setState((prevState) => ({ ...prevState, training }));
   }
 
-  activeButton = (): boolean => {
-    let isButtonActived = true;
-    let key: keyof IsFormValid;
-
-    for (key in this.state.isFormValid) {
-      isButtonActived = isButtonActived && (this.state.isFormValid[key] === InputState.TRUE);
-    }
-
-    return isButtonActived;
-  }
-
   handleClick = () => {
     this.props.addUserTraining({ ...this.state.training });
 
@@ -115,7 +105,7 @@ export class ModalTraining extends React.Component<Props, State> {
         />
         <Button
           onClick={this.handleClick}
-          disabled={!this.activeButton()}
+          disabled={!FormValidator.isAllFieldValidated<IsFormValid>(this.state.isFormValid)}
           className={classes['button-modal-training']}
         >
           Ajouter une formation

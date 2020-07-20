@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 import { RootDispatch } from '../../../app/state/store';
-import { UserLanguageHelper } from '../../helpers/userLanguageHelper';
+import { UserLanguageUtils } from '../../helpers/UserLanguageUtils';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import ModalLanguage from '../modal/ModalLanguage';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
@@ -71,7 +71,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
         >
           <ModalLanguage
             userSelected={this.props.user}
-            languages={UserLanguageHelper.filterLanguageList(userLanguages)}
+            languages={UserLanguageUtils.filterLanguageList(userLanguages)}
           />
         </ModalCustom>
       </div>
