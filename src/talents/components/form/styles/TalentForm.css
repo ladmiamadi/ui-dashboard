@@ -144,7 +144,6 @@
   margin-bottom: 10px;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px ridge #151515;
 }
 
 .section-add > * {
@@ -237,4 +236,11 @@
       width: 50%;
       padding: 0 20px;
   }
+}
+
+@media (max-width: 350px) {
+    .section-add {
+        display: block;
+        text-align: center;
+    }
 }

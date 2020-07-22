@@ -12,7 +12,7 @@ interface Props {
 }
 
 export interface  ClassName {
-  label: string,
+  label?: string,
   input: string,
 }
 

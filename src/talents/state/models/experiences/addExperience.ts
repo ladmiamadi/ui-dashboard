@@ -20,8 +20,6 @@ export const addExperience = createModel({
     updateExperience: (state: ExperienceState, payload: UpdateExperiencePayload): ExperienceState => {
       const experience = _.cloneDeep(state.experience) as any;
       experience[payload.property] = payload.value;
-      console.log('payload property : ' + payload.property + 'payload value : ' + payload.value);
-      console.log(experience);
       return {
         ...state, experience,
       };

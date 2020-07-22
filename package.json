@@ -26,6 +26,7 @@
     "classnames": "^2.2.6",
     "lodash": "^4.17.15",
     "react": "^16.13.0",
+    "react-confirm-alert": "^2.6.1",
     "react-date-picker": "^8.0.1",
     "react-dom": "^16.13.0",
     "react-fontawesome": "^1.7.1",
