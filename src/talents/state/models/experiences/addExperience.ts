@@ -1,5 +1,5 @@
 import { createModel } from '@rematch/core';
-import _ from 'lodash';
+import lodash from 'lodash';
 import { UserExperience } from '../../../../app';
 import { UserExperienceFactory } from '../../../helpers/UserExperienceFactory';
 
@@ -18,7 +18,7 @@ export const addExperience = createModel({
   } as ExperienceState,
   reducers: {
     updateExperience: (state: ExperienceState, payload: UpdateExperiencePayload): ExperienceState => {
-      const experience = _.cloneDeep(state.experience) as any;
+      const experience = lodash.cloneDeep(state.experience) as any;
       experience[payload.property] = payload.value;
       return {
         ...state, experience,

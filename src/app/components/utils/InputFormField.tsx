@@ -11,7 +11,7 @@ interface Props {
   handleChange: (value: string) => void,
 }
 
-export interface  ClassName {
+export interface ClassName {
   label?: string,
   input: string,
 }

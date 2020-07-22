@@ -50,103 +50,104 @@ export class TalentFormExperience extends React.Component<Props, State> {
         </div>
         <div className="form-elements">
           {
-                this.props.user.userExperiences?.map((elem, index) => (
-                  <Row key={'row' + index} className={classes['experience-form']}>
-                    <Col sm={12} md={6}>
-                      <InputFormField
-                        id={'company-form' + index}
-                        label="Entreprise: "
-                        className={{ input: classes['experience-input'], label: classes['experience-label'] }}
-                        type="text"
-                        handleChange={(value: string) => this.props.modifyUser({
-                          category: 'userExperiences',
-                          property: 'company',
-                          value: value,
-                          index: index,
-                        })}
-                        value={elem.company}
-                      />
-                    </Col>
-                    <Col sm={12} md={6}>
-                      <InputFormField
-                        id={'experience-position' + index}
-                        label="Poste: "
-                        className={{ input: classes['experience-input'], label: classes['experience-label'] }}
-                        type="text"
-                        handleChange={(value: string) => this.props.modifyUser({
-                          category: 'userExperiences',
-                          property: 'position',
-                          value: value,
-                          index: index,
-                        })}
-                        value={elem.position} />
-                    </Col>
-                    <Col className={classes['experience-date-picker']} sm={12} md={6}>
-                      <label className={classes['label-date-experience']}>date de début: </label>
-                      <ReactDatePicker
-                        className={classes['experience-datepicker']}
-                        selected={elem.startDate}
-                        isClearable
-                        dateFormat="dd/MM/yyyy"
-                        showMonthDropdown
-                        showYearDropdown
-                        dropdownMode="select"
-                        locale={fr}
-                        onChange={(value) => this.props.modifyUser({
-                          category: 'userExperiences',
-                          property: 'startDate',
-                          value: value,
-                          index: index,
-                        })}
-                      />
-                    </Col>
-                    <Col className={classes['experience-date-picker']} sm={12} md={6}>
-                      <label className={classes['label-date-experience']}>date de fin: </label>
-                      <ReactDatePicker
-                        className={classes['experience-datepicker']}
-                        selected={elem.endDate}
-                        isClearable
-                        dateFormat="dd/MM/yyyy"
-                        showMonthDropdown
-                        showYearDropdown
-                        dropdownMode="select"
-                        fixedHeight={true}
-                        locale={fr}
-                        onChange={(value) => this.props.modifyUser({
-                          category: 'userExperiences',
-                          property: 'endDate',
-                          value: value,
-                          index: index,
-                        })}
-                      />
-                    </Col>
-                    <Col md={12}>
-                      <InputFormField
-                        id={'task' + index}
-                        label="Tâches effectuées: "
-                        className={{ input: classes['experience-textarea'], label: classes['experience-label'] }}
-                        type="textarea"
-                        handleChange={(value: string) => this.props.modifyUser({
-                          category: 'userExperiences',
-                          property: 'task',
-                          value: value,
-                          index: index,
-                        })}
-                        value={elem.task} />
-                    </Col>
-                  </Row>
-                ))}
+            this.props.user.userExperiences?.map((elem, index) => (
+              <Row key={'row' + index} className={classes['experience-form']}>
+                <Col sm={12} md={6}>
+                  <InputFormField
+                    id={'company-form' + index}
+                    label="Entreprise: "
+                    className={{ input: classes['experience-input'], label: classes['experience-label'] }}
+                    type="text"
+                    handleChange={(value: string) => this.props.modifyUser({
+                      category: 'userExperiences',
+                      property: 'company',
+                      value: value,
+                      index: index,
+                    })}
+                    value={elem.company}
+                  />
+                </Col>
+                <Col sm={12} md={6}>
+                  <InputFormField
+                    id={'experience-position' + index}
+                    label="Poste: "
+                    className={{ input: classes['experience-input'], label: classes['experience-label'] }}
+                    type="text"
+                    handleChange={(value: string) => this.props.modifyUser({
+                      category: 'userExperiences',
+                      property: 'position',
+                      value: value,
+                      index: index,
+                    })}
+                    value={elem.position}
+                  />
+                </Col>
+                <Col className={classes['experience-date-picker']} sm={12} md={6}>
+                  <label className={classes['label-date-experience']}>date de début: </label>
+                  <ReactDatePicker
+                    className={classes['experience-datepicker']}
+                    selected={elem.startDate}
+                    isClearable
+                    dateFormat="dd/MM/yyyy"
+                    showMonthDropdown
+                    showYearDropdown
+                    dropdownMode="select"
+                    locale={fr}
+                    onChange={(value) => this.props.modifyUser({
+                      category: 'userExperiences',
+                      property: 'startDate',
+                      value: value,
+                      index: index,
+                    })}
+                  />
+                </Col>
+                <Col className={classes['experience-date-picker']} sm={12} md={6}>
+                  <label className={classes['label-date-experience']}>date de fin: </label>
+                  <ReactDatePicker
+                    className={classes['experience-datepicker']}
+                    selected={elem.endDate}
+                    isClearable
+                    dateFormat="dd/MM/yyyy"
+                    showMonthDropdown
+                    showYearDropdown
+                    dropdownMode="select"
+                    fixedHeight={true}
+                    locale={fr}
+                    onChange={(value) => this.props.modifyUser({
+                      category: 'userExperiences',
+                      property: 'endDate',
+                      value: value,
+                      index: index,
+                    })}
+                  />
+                </Col>
+                <Col md={12}>
+                  <InputFormField
+                    id={'task' + index}
+                    label="Tâches effectuées: "
+                    className={{ input: classes['experience-textarea'], label: classes['experience-label'] }}
+                    type="textarea"
+                    handleChange={(value: string) => this.props.modifyUser({
+                      category: 'userExperiences',
+                      property: 'task',
+                      value: value,
+                      index: index,
+                    })}
+                    value={elem.task}
+                  />
+                </Col>
+              </Row>
+            ))}
         </div>
-        {        
-          <ModalCustom
-            isModalShown={this.state.isModalOpen}
+        <ModalCustom
+          isModalShown={this.state.isModalOpen}
+          toggleModal={this.toggleModal}
+          titleModal="Ajouter une expérience"
+          className={classes['experience-modal']}>
+          <ModalExperience
             toggleModal={this.toggleModal}
-            titleModal="Ajouter une expérience"
-            className={classes['experience-modal']}>
-            <ModalExperience
-              toggleModal={this.toggleModal}
-            />
-          </ModalCustom>}
+          />
+        </ModalCustom>
       </div>
     );
   }

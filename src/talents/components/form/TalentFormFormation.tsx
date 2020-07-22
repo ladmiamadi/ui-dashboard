@@ -36,7 +36,6 @@ export default class TalentFormFormation extends React.Component<Props> {
                 })}
                 value={elem.institution} />
               <ReactDatePicker
-                //selected={elem.startDate}
                 selected={elem.startDate}
                 onChange={(value) => this.props.modifyUser({
                   category: 'userTrainings',

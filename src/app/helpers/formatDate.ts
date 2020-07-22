@@ -14,9 +14,9 @@ export class FormatDate {
       data.birthDate = new Date(data.birthDate);
   }
 
-  public static updateDateFromList(data: [any]) {
-    data.forEach(Data => {
-      this.formatDate(Data);
+  public static updateDateFromList(dataCollection: [any]) {
+    dataCollection.forEach(data => {
+      this.formatDate(data);
     });
   }
 }

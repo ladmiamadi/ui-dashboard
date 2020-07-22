@@ -1,6 +1,6 @@
 import { RematchRootState, init } from '@rematch/core';
 import * as language  from '../../talents/state/models/languages/add-language';
-import * as experience  from '../../talents/state/models/experiences/addExperience';
+import * as experience from '../../talents/state/models/experiences/addExperience';
 import * as auth from '../../authentication/state/models/auth';
 import * as modules from './models/modules';
 import * as user from './models/user';

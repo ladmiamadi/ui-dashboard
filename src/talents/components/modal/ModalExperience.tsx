@@ -12,9 +12,9 @@ import classes from '../form/styles/TalentFormExperience.module.css';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 interface Props {
+  experience: UserExperience,
   addUserExperience: (payload: UserExperience) =>void,
   updateExperience: (payload: UpdateExperiencePayload) =>void,
-  experience: UserExperience,
   toggleModal: () => void;
 }
 
@@ -66,7 +66,6 @@ export class ModalExperience extends React.Component<Props> {
             property: 'company',
             value: value,
           })}
-
           value={this.props.experience.company}
         />
         <InputFormField
@@ -78,7 +77,8 @@ export class ModalExperience extends React.Component<Props> {
             property: 'position',
             value: value,
           })}
-          value={this.props.experience.position} />
+          value={this.props.experience.position}
+        />
         <div className={classes['experience-date-picker']}>
           <label className={classes['label-date-experience']}> Date de début: </label>
           <ReactDatePicker
@@ -122,7 +122,8 @@ export class ModalExperience extends React.Component<Props> {
             property: 'task',
             value: value,
           })}
-          value={this.props.experience.task} />
+          value={this.props.experience.task}
+        />
         <Button
           disabled={!this.isFormValid()}
           className="form-add-button modal-button"

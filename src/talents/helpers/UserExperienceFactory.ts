@@ -10,12 +10,4 @@ export class UserExperienceFactory {
       task: '',
     };
   }
-
-/*  public static createEmptyFormValid = (): IsFormValid => ({
-    company: false,
-    startDate: false,
-    endDate: false,
-    position: false,
-    task: false,
-  })*/
 }

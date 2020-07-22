@@ -1,19 +1,19 @@
 import { FormatDate } from '../helpers/formatDate';
 
 export class UsersDateFormatter {
-  public static transformDateFormat(data: [any]) {
-    data.forEach( updatedData => {
-      FormatDate.formatDate(updatedData);
-      if (updatedData.userJob)
-        FormatDate.formatDate(updatedData.userJob);
-      if (updatedData.userJob && updatedData.userJob.job)
-        FormatDate.formatDate(updatedData.userJob.job);
-      FormatDate.updateDateFromList(updatedData.userExperiences);
-      FormatDate.updateDateFromList(updatedData.userTrainings);
-      FormatDate.updateDateFromList(updatedData.userContracts);
-      FormatDate.updateDateFromList(updatedData.userAbsences);
-      FormatDate.updateDateFromList(updatedData.userInterviews);
-      FormatDate.updateDateFromList(updatedData.userProfiles);
+  public static transformDateFormat(dataCollection: [any]) {
+    dataCollection.forEach(data => {
+      FormatDate.formatDate(data);
+      if (data.userJob)
+        FormatDate.formatDate(data.userJob);
+      if (data.userJob && data.userJob.job)
+        FormatDate.formatDate(data.userJob.job);
+      FormatDate.updateDateFromList(data.userExperiences);
+      FormatDate.updateDateFromList(data.userTrainings);
+      FormatDate.updateDateFromList(data.userContracts);
+      FormatDate.updateDateFromList(data.userAbsences);
+      FormatDate.updateDateFromList(data.userInterviews);
+      FormatDate.updateDateFromList(data.userProfiles);
     });
   }
 }
