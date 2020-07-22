@@ -1,4 +1,4 @@
-import { FormatDate } from '../index';
+import { FormatDate } from '../index.d';
 
 export default class DateSlicer {
   public static formatDate = (value: string, selectTime: FormatDate) => {
