@@ -1,11 +1,10 @@
+import fr from 'date-fns/locale/fr';
 import React from 'react';
+import ReactDatePicker from 'react-datepicker';
 import { User } from '../../../app';
-import { DateFormField } from '../../../app/components/utils/DateFormField';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormField';
-import DateSlicer from '../../helpers/DateSlicer';
-import { FormatDate } from '../../index.d';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 
 interface Props {
@@ -15,14 +14,6 @@ interface Props {
 
 export default class TalentFormInternship extends React.Component<Props> {
   render() {
-    let startDate = new Date();
-    let endDate = new Date();
-
-    if (this.props.user.userJob && this.props.user.userJob.startDate && this.props.user.userJob.endDate) {
-      startDate = this.props.user.userJob.startDate;
-      endDate = this.props.user.userJob.endDate;
-    }
-
     return (
       <div className="form-section">
         <div className="form-elements">
@@ -32,19 +23,42 @@ export default class TalentFormInternship extends React.Component<Props> {
             options={['aaa', 'bbb']}
             className="large"
             handleChange={() => ({})}
-            value="" />
-          <DateFormField
-            keyName="internship-start"
-            label="Début: "
-            day={DateSlicer.formatDate(startDate.toString(), FormatDate.DAY)}
-            month={DateSlicer.formatDate(startDate.toString(), FormatDate.MONTH)}
-            year={DateSlicer.formatDate(startDate.toString(), FormatDate.YEAR)} />
-          <DateFormField
-            keyName="internship-end"
-            label="Fin: "
-            day={DateSlicer.formatDate(endDate.toString(), FormatDate.DAY)}
-            month={DateSlicer.formatDate(endDate.toString(), FormatDate.MONTH)}
-            year={DateSlicer.formatDate(endDate.toString(), FormatDate.YEAR)} />
+            value=""
+          />
+          <label className="label-internship">Début:  </label>
+          <ReactDatePicker
+            className="intern-datepicker"
+            selected={this.props.user.userJob?.startDate}
+            isClearable
+            dateFormat="dd/MM/yyyy"
+            showMonthDropdown
+            showYearDropdown
+            dropdownMode="select"
+            locale={fr}
+            onChange={(value) => this.props.modifyUser({
+              category: 'userJob',
+              property: 'startDate',
+              value: value,
+              index: -1,
+            })}
+          />
+          <label className="label-internship">Fin:  </label>
+          <ReactDatePicker
+            className="intern-datepicker"
+            selected={this.props.user.userJob?.endDate}
+            isClearable
+            dateFormat="dd/MM/yyyy"
+            showMonthDropdown
+            showYearDropdown
+            dropdownMode="select"
+            locale={fr}
+            onChange={(value) => this.props.modifyUser({
+              category: 'userJob',
+              property: 'endDate',
+              value: value,
+              index: -1,
+            })}
+          />
           <CheckboxFormField
             keyName="internship-days"
             label="Jour(s) d'activité: "

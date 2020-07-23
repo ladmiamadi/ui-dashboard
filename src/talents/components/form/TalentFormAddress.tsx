@@ -1,4 +1,6 @@
+import fr from 'date-fns/locale/fr';
 import React from 'react';
+import ReactDatePicker from 'react-datepicker';
 import { User, UserProfile } from '../../../app';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
@@ -84,17 +86,23 @@ export default class TalentFormAddress extends React.Component<Props> {
           handleChange={() => ({})}
           value="Aucun"
         />
-        <FieldForm
-          keyName="DOB"
-          label="Date de naissance: "
-          type="text"
-          handleChange={(value: string) => this.props.modifyUser({
+        <label className="label-birthdate">Date de naissance:  </label>
+        <ReactDatePicker
+          className="address-datepicker"
+          selected={userProfileWorking?.birthDate}
+          isClearable
+          dateFormat="dd/MM/yyyy"
+          showMonthDropdown
+          showYearDropdown
+          dropdownMode="select"
+          locale={fr}
+          onChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'birthDate',
             value: value,
             index: indexWorking,
           })}
-          value={userProfileWorking?.birthDate} />
+        />
         <SelectFormField
           keyName="search"
           label="Actuellement en recherche: "
