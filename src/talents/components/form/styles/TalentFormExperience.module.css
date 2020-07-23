@@ -31,44 +31,6 @@
     font-size: 2rem;
 }
 
-
-.experience-date-picker input {
-    width: 100%;
-    display: block;
-    font-size: 1.5rem;
-    padding: 3.75px 7.5px;
-}
-
-.experience-date-picker div:global.react-datepicker-wrapper {
-    width: 100%;
-    display: block;
-}
-
-.experience-date-picker div:global.react-datepicker {
-    font-size: 1.5rem;
-}
-
-.experience-date-picker div:global.react-datepicker__current-month {
-    font-size: 1.5rem;
-}
-
-.experience-date-picker div:global.react-datepicker__header {
-    padding-top: 6px;
-}
-
-.experience-date-picker div:global.react-datepicker__navigation {
-    top: 13px;
-}
-
-.experience-date-picker div:global.react-datepicker__day-name,
-.experience-date-picker div:global.react-datepicker__day {
-    margin: 0.5rem;
-}
-
-div:global.react-confirm-alert-overlay {
-    z-index: 9999;
-}
-
 .experience-modal h5 {
     font-size: 2rem;
     font-weight: bold;

@@ -70,7 +70,6 @@ export class TalentFormLanguages extends React.Component<Props, State> {
           titleModal="Ajouter une langue"
         >
           <ModalLanguage
-            userSelected={this.props.user}
             languages={UserLanguageUtils.filterLanguageList(userLanguages)}
           />
         </ModalCustom>

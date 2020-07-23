@@ -4,8 +4,8 @@ import { InputState } from '../index.d';
 export class TrainingFactory {
   public static createEmptyUserTraining = (): UserTraining => ({
     institution: '',
-    startDate: '',
-    endDate: '',
+    startDate: null,
+    endDate: null,
     degreeObtained: '',
   })
 

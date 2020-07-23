@@ -21,10 +21,10 @@ interface State {
   training: UserTraining,
 }
 
-type ExcludeIdPropertyFromTraining<T, U> = Omit<Training<T, U>, 'id'>;
+type ExcludeIdPropertyFromTraining<T, U, D=T> = Omit<Training<T, U, D>, 'id'>;
 
 export type IsFormValid = ExcludeIdPropertyFromTraining<InputState, number>;
-export type UserTraining = ExcludeIdPropertyFromTraining<string, number>;
+export type UserTraining = ExcludeIdPropertyFromTraining<string, number, Date | null>;
 
 export class ModalTraining extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -36,24 +36,26 @@ export class ModalTraining extends React.Component<Props, State> {
     };
   }
 
-  handleChange = <T, U>(property: keyof ExcludeIdPropertyFromTraining<T, U>, value: string, regexp: RegExp) => {
-    this.updateIsFormValid(property, value, regexp);
+  handleChange = <T, U>(property: keyof ExcludeIdPropertyFromTraining<T, U>, value: string | Date | null) => {
+    this.updateIsFormValid(property, value);
 
     this.updateTraining(property, value);
   }
 
-  updateIsFormValid = (property: keyof IsFormValid, value: string, regexp: RegExp) => {
+  updateIsFormValid = (property: keyof IsFormValid, value: string | Date | null) => {
     const isFormValid = { ...this.state.isFormValid };
 
-    isFormValid[property] = regexp.test(value) ? InputState.TRUE : InputState.FALSE;
+    isFormValid[property] = value ? InputState.TRUE : InputState.FALSE;
 
     this.setState((prevState) => ({ ...prevState, isFormValid }));
   }
 
-  updateTraining = (property: keyof UserTraining, value: string) => {
+  updateTraining = (property: keyof UserTraining, value: string | Date | null) => {
     const training = { ...this.state.training };
-
-    training[property] = value;
+    if (typeof value === 'string' && (property === 'institution' || property === 'degreeObtained' ))
+      training[property] = value;
+    else if ((property === 'startDate' || property === 'endDate') && (value === null || value instanceof Date))
+      training[property] = value;
 
     this.setState((prevState) => ({ ...prevState, training }));
   }
@@ -68,7 +70,7 @@ export class ModalTraining extends React.Component<Props, State> {
     this.setState({
       isFormValid: TrainingFactory.createEmptyFormValid(),
       training: TrainingFactory.createEmptyUserTraining(),
-    })
+    });
   }
 
   toggleModal = () => {
@@ -78,8 +80,6 @@ export class ModalTraining extends React.Component<Props, State> {
   }
 
   render() {
-    const yearMonthDayRegex = /^(\d{1,4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/i;
-
     return (
       <ModalCustom
         className={classes['title-modal-training']}
@@ -92,14 +92,12 @@ export class ModalTraining extends React.Component<Props, State> {
           isFieldInvalid={{
             institution: this.state.isFormValid.institution === InputState.FALSE,
             degreeObtained: this.state.isFormValid.degreeObtained === InputState.FALSE,
-            startDate: this.state.isFormValid.startDate === InputState.FALSE,
-            endDate: this.state.isFormValid.endDate === InputState.FALSE,
           }}
           handleChange={{
-            institution: (value: string) => this.handleChange('institution', value, /./),
-            degreeObtained: (value: string) => this.handleChange('degreeObtained', value, /./),
-            startDate: (value: string) => this.handleChange('startDate', value, yearMonthDayRegex),
-            endDate: (value: string) => this.handleChange('endDate', value, yearMonthDayRegex),
+            institution: (value: string) => this.handleChange('institution', value),
+            degreeObtained: (value: string) => this.handleChange('degreeObtained', value),
+            startDate: (value: Date | null) => this.handleChange('startDate', value),
+            endDate: (value: Date | null) => this.handleChange('endDate', value),
           }}
         />
         <Button
@@ -118,6 +116,6 @@ const mapState = () => ({});
 
 const mapDispatch = (dispatch: RootDispatch) => ({
   addUserTraining: dispatch.userSelected.addUserTraining,
-})
+});
 
 export default connect(mapState, mapDispatch)(ModalTraining);

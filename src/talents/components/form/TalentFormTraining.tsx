@@ -21,7 +21,7 @@ export default class TalentFormTraining extends React.Component<Props, State> {
 
     this.state = {
       isModalOpen: false,
-    }
+    };
   }
 
   toggleModal = () => {
@@ -61,13 +61,13 @@ export default class TalentFormTraining extends React.Component<Props, State> {
                   value: value,
                   index: index,
                 }),
-                startDate: (value: string) => this.props.modifyUser({
+                startDate: (value: Date | null) => this.props.modifyUser({
                   category: 'userTrainings',
                   property: 'startDate',
                   value: value,
                   index: index,
                 }),
-                endDate: (value: string) => this.props.modifyUser({
+                endDate: (value: Date | null) => this.props.modifyUser({
                   category: 'userTrainings',
                   property: 'endDate',
                   value: value,
