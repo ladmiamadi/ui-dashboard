@@ -1,4 +1,4 @@
-export class FormatDate {
+export class FormatDates {
   public static formatDate(data: any) {
     if (data.createdDate)
       data.createdDate = new Date(data.createdDate);

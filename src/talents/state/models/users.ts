@@ -2,7 +2,7 @@ import { Toastify } from '../../../helpers/Toastify';
 import { User } from '../../../app';
 import { apiService } from '../../../app/http/service';
 import { createModel } from '@rematch/core';
-import { UsersDateFormatter } from '../../../app/formatter/usersDateFormatter';
+import { UsersDatesFormatter } from '../../../app/formatter/usersDatesFormatter';
 
 interface State {
   users: User[],
@@ -27,7 +27,7 @@ export const users = createModel({
       try {
         const { data } = await apiService.get('/api/users');
 
-        UsersDateFormatter.transformDateFormat(data);
+        UsersDatesFormatter.transformDateFormat(data);
 
         this.updateList(data);
       } catch(error) {
