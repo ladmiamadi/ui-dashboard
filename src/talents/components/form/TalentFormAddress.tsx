@@ -57,11 +57,11 @@ export default class TalentFormAddress extends React.Component<Props> {
         <FieldForm
           keyName="postal-code"
           label="Code Postal: "
-          type="text"
+          type="number"
           handleChange={(value: string) => this.props.modifyUser({
             category: 'userAddress',
-            property: 'zip-code',
-            value: value,
+            property: 'zipCode',
+            value: +value,
             index: -1,
           })}
           value={this.props.user.userAddress?.zipCode} />

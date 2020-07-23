@@ -26,7 +26,7 @@
     flex-direction: column;
 }
 
-.connexion-box {
+.connection-box {
     border: 1px solid #151515;
     width: 30%;
     padding: 20px;
@@ -64,6 +64,8 @@
 
 .form-elements {
     width: 100%;
+    border-bottom: solid 0.1rem #151515;
+    padding: 1.5rem;
 }
 
 .form-label {
@@ -89,6 +91,12 @@
 
 .form-section.almost-large {
     justify-content: flex-start;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
 }
 
 .form-group.almost-large {
@@ -177,7 +185,7 @@
         margin-bottom: 20px;
     }
 
-    .form-head img, .connexion-box {
+    .form-head img, .connection-box {
         width: 20%;
         min-width: 150px;
         margin-bottom: 20px;
@@ -220,7 +228,7 @@
 }
 
 @media (max-width: 425px) {
-    .form-head img, .connexion-box {
+    .form-head img, .connection-box {
         width: 100%;
     }
 
@@ -243,4 +251,8 @@
         display: block;
         text-align: center;
     }
+}
+
+#formation-start, #formation-end {
+  overflow: hidden;
 }

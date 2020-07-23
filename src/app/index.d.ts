@@ -103,13 +103,15 @@ export interface UserExperience {
   task: string,
 }
 
-export interface UserTraining {
-  id: number,
-  institution: string,
-  startDate: Date,
-  endDate: Date,
-  degreeObtained: string,
+export interface Training<T, U> {
+  id?: U,
+  institution: T,
+  startDate: T,
+  endDate: T,
+  degreeObtained: T,
 }
+
+type UserTraining = Training<string, number>;
 
 export interface UserRole {
   role: Role,

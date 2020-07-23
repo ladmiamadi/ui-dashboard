@@ -2,12 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 import { RootDispatch } from '../../../app/state/store';
-import { UserLanguageHelper } from '../../helpers/userLanguageHelper';
+import { UserLanguageUtils } from '../../helpers/UserLanguageUtils';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import ModalLanguage from '../modal/ModalLanguage';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
 import { User } from '../../../app';
 import { UserLanguagesDisplay } from './UserLanguagesDisplay';
+import classes from './styles/TalentFormLanguage.module.css';
 
 interface Props {
   user: User,
@@ -48,12 +49,12 @@ export class TalentFormLanguages extends React.Component<Props, State> {
   render() {
     const userLanguages = this.props.user.userLanguages || [];
     return (
-      <div className="form-section almost-large">
-        <div className="section-add">
+      <div className={classes['language-section']}>
+        <div className={classes['language-section-head']}>
           <h6>Langues: </h6>
           <Button
             onClick={this.toggleModalAndResetModalOnQuit}
-            className="form-add-button"
+            className={classes['add-language-button']}
             color="default"
           >
             Ajouter une langue
@@ -69,7 +70,8 @@ export class TalentFormLanguages extends React.Component<Props, State> {
           titleModal="Ajouter une langue"
         >
           <ModalLanguage
-            languages={UserLanguageHelper.filterLanguageList(userLanguages)}
+            userSelected={this.props.user}
+            languages={UserLanguageUtils.filterLanguageList(userLanguages)}
           />
         </ModalCustom>
       </div>

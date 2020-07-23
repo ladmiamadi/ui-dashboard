@@ -1,5 +1,5 @@
 import { createModel } from '@rematch/core';
-import { User, UserExperience, UserLanguage } from '../../../app';
+import { User, UserLanguage, UserTraining, UserExperience } from '../../../app';
 import { createEmptyUser } from '../../../app/helpers/user';
 import _ from 'lodash';
 
@@ -54,6 +54,17 @@ export const userSelected = createModel ({
         [payload];
 
       userSelected.userExperiences = userExperience;
+
+      return { ...state, userSelected };
+    },
+    addUserTraining: (state: UserState, payload: UserTraining): UserState => {
+      const userSelected = _.cloneDeep(state.userSelected) as User;
+
+      const userTraining = userSelected.userTrainings ?
+        userSelected.userTrainings.concat(payload) :
+        [payload];
+
+      userSelected.userTrainings = userTraining;
 
       return { ...state, userSelected };
     },

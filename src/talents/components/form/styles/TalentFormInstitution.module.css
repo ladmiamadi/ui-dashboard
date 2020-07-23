@@ -1,0 +1,32 @@
+.institution-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border: 3px solid #151515;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-top: 20px; 
+}
+
+.institution-field {
+  width: 47.5%;
+}
+
+.institution-field:global.form-group {
+  display: block;
+}
+
+.institution-field:global.form-group .form-input {
+  width: 100%;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .institution-field:global.form-group {
+    width: 100%;
+  }
+
+  .institution-field:global.form-group .form-input {
+    font-size: 1.3rem;
+  }
+}
