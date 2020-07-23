@@ -1,0 +1,99 @@
+.experience-form {
+    width: 100%;
+    border-top: solid 0.1rem #151515;
+    box-sizing: border-box;
+    margin-right: 0;
+    margin-left: 0;
+    padding: 2rem 0;
+}
+
+.label-date-experience {
+    display: block;
+    font-size: 2rem;
+}
+
+.experience-textarea {
+    min-height: 15rem;
+    font-size: 1.5rem;
+}
+
+.experience-input {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.experience-date-picker {
+    margin-bottom: 2rem;
+}
+
+.experience-label {
+    font-size: 2rem;
+}
+
+
+.experience-date-picker input {
+    width: 100%;
+    display: block;
+    font-size: 1.5rem;
+    padding: 3.75px 7.5px;
+}
+
+.experience-date-picker div:global.react-datepicker-wrapper {
+    width: 100%;
+    display: block;
+}
+
+.experience-date-picker div:global.react-datepicker {
+    font-size: 1.5rem;
+}
+
+.experience-date-picker div:global.react-datepicker__current-month {
+    font-size: 1.5rem;
+}
+
+.experience-date-picker div:global.react-datepicker__header {
+    padding-top: 6px;
+}
+
+.experience-date-picker div:global.react-datepicker__navigation {
+    top: 13px;
+}
+
+.experience-date-picker div:global.react-datepicker__day-name,
+.experience-date-picker div:global.react-datepicker__day {
+    margin: 0.5rem;
+}
+
+div:global.react-confirm-alert-overlay {
+    z-index: 9999;
+}
+
+.experience-modal h5 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .label-date-experience {
+        font-size: 1.5rem;
+    }
+
+    .experience-textarea {
+        font-size: 1rem;
+    }
+
+    .experience-input {
+        font-size: 1rem;
+    }
+
+    .experience-label {
+        font-size: 1.5rem;
+    }
+    .experience-date-picker input {
+        font-size: 1rem;
+    }
+}
+
+
+

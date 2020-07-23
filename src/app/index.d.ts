@@ -95,10 +95,10 @@ export interface UserLanguage {
 }
 
 export interface UserExperience {
-  id: number,
+  id?: number,
   company: string,
-  startDate: Date,
-  endDate: Date,
+  startDate: Date | null,
+  endDate: Date | null,
   position: string,
   task: string,
 }
