@@ -7,8 +7,8 @@ import { RootDispatch } from '../../../app/state/store';
 import TrainingForm from '../form/TrainingForm';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
 import { InputState } from '../../index.d';
-import classes from './styles/ModalTraining.module.css';
 import { FormValidator } from '../../helpers/FormValidator';
+import classes from './styles/ModalTraining.module.css';
 
 interface Props {
   isModalOpen: boolean,
@@ -25,7 +25,6 @@ type ExcludeIdPropertyFromTraining<T, U> = Omit<Training<T, U>, 'id'>;
 
 export type IsFormValid = ExcludeIdPropertyFromTraining<InputState, number>;
 export type UserTraining = ExcludeIdPropertyFromTraining<string, number>;
-
 
 export class ModalTraining extends React.Component<Props, State> {
   constructor(props: Props) {
