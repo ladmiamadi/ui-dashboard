@@ -21,7 +21,7 @@ export class AuthenticationGuard extends React.Component<Props> {
     } catch (error) {
       toast.error(<div>You are no longer logged in the application. You will be redirected in 5 seconds.
         <a href="https://www.hdmnetwork.com"> Click here to go back.</a></div>);
-      //setTimeout(() =>  document.location.href = 'https://www.hdmnetwork.com', 5000);
+      setTimeout(() =>  document.location.href = 'https://www.hdmnetwork.com', 5000);
     }
   }
 

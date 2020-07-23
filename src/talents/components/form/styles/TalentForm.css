@@ -210,6 +210,33 @@
     z-index: 9999;
 }
 
+.label-birthdate {
+    display: block;
+}
+
+.address-datepicker {
+    display: block;
+}
+
+.address-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border: 3px solid #151515;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.address-field-form.form-group {
+    display: block;
+}
+
+.address-field-form.form-group .form-input {
+    width: 100%;
+    font-size: 1.5rem;
+}
+
 @media (max-width: 768px) {
     .form-label {
         font-size: 1.5rem;
