@@ -41,7 +41,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
     return (
       <div className="form-section">
         <div className="section-add">
-          <h6>Expérience: </h6>
+          <h6>Expériences: </h6>
           <Button
             className="form-add-button"
             color="default"
@@ -83,7 +83,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
                   />
                 </Col>
                 <Col className={classes['experience-date-picker']} sm={12} md={6}>
-                  <label className={classes['label-date-experience']}>date de début: </label>
+                  <label className={classes['label-date-experience']}>Date de début: </label>
                   <ReactDatePicker
                     className={classes['experience-datepicker']}
                     selected={elem.startDate}
@@ -102,7 +102,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
                   />
                 </Col>
                 <Col className={classes['experience-date-picker']} sm={12} md={6}>
-                  <label className={classes['label-date-experience']}>date de fin: </label>
+                  <label className={classes['label-date-experience']}>Date de fin: </label>
                   <ReactDatePicker
                     className={classes['experience-datepicker']}
                     selected={elem.endDate}

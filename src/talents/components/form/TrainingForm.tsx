@@ -61,7 +61,7 @@ export default class TrainingForm extends React.Component<Props> {
         </Row>
         <Row>
           <Col md={6}>
-            <label className={classes['label-training-form']}>début formation: </label>
+            <label className={classes['label-training-form']}>Début formation: </label>
             <ReactDatePicker
               className={classes['datepicker']}
               selected={this.props.training.startDate}
@@ -75,7 +75,7 @@ export default class TrainingForm extends React.Component<Props> {
             />
           </Col>
           <Col md={6}>
-            <label className={classes['label-training-form']}>fin formation: </label>
+            <label className={classes['label-training-form']}>Fin formation: </label>
             <ReactDatePicker
               className={classes['datepicker']}
               selected={this.props.training.endDate}
