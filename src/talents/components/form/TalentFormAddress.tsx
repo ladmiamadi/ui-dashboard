@@ -37,6 +37,8 @@ export class TalentFormAddress extends React.Component {
           keyName="country"
           label="Pays: "
           options={['aaa', 'bbb']}
+          handleOnChange={() => ({})}
+          value="Aucun"
         />
         <FieldForm
           keyName="DOB"
@@ -47,6 +49,8 @@ export class TalentFormAddress extends React.Component {
           keyName="search"
           label="Actuellement en recherche: "
           options={['Oui', 'Non']}
+          handleOnChange={() => ({})}
+          value="Aucun"
         />
       </div>
     );

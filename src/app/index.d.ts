@@ -89,8 +89,6 @@ export interface UserContract {
 }
 
 export interface UserLanguage {
-  id: number,
-  user: User,
   language: string,
   level: string,
 }
