@@ -7,27 +7,23 @@ interface Props {
   options: string[],
   label: string,
   keyName: string,
-  className?: string
-  updateModel?: ( value:string, property:string ) => void;
+  className?: string,
+  value: string,
+  handleOnChange: (property: string, value: string) => void,
 }
 
 export class SelectFormField extends React.Component<Props> {
-  updateModelOnChange = (value:string , property:string) =>{
-    if (this.props.updateModel){
-      this.props.updateModel(value, property);
-    }
-  }
 
   render() {
     return (
       <FormGroup className={this.props.className}>
         <Label className="form-label" for={this.props.keyName}>{ this.props.label }</Label>
         <Input
-          onChange= {event => this.updateModelOnChange(event.target.value, this.props.keyName)}
+          onChange={event => this.props.handleOnChange(this.props.keyName, event.target.value)}
           className="form-input"
           type="select"
           id={this.props.keyName}
-          defaultValue="Aucun"
+          value={this.props.value}
         >
           <option disabled>Aucun</option>
           <OptionList options={this.props.options} />

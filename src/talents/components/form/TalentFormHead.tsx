@@ -23,6 +23,8 @@ export class TalentFormHead extends React.Component {
             keyName="function"
             label="Fonction: "
             options={['aaa', 'bbb']}
+            handleOnChange={() => ({})}
+            value="Aucun"
           />
           <FieldForm
             keyName="email"
