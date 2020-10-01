@@ -157,7 +157,7 @@ export interface Job {
   LongDescriptionInDutch: string,
   position: string,
   link: string,
-  picturePath: string,
+  picture: MediaObject,
   isOpen: boolean,
   createdDate: Date,
   updatedDate: Date,

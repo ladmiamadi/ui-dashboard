@@ -1,10 +1,10 @@
 import React from 'react';
-import { Container } from 'reactstrap';
 import { RouteComponentProps } from 'react-router-dom';
-import TalentFormPageContainer from './TalentFormPageContainer';
+import { Container } from 'reactstrap';
 import './styles/TalentForm.css';
+import TalentFormPageContainer from './TalentFormPageContainer';
 
-export default class TalentFormPage extends React.Component<RouteComponentProps> {
+class TalentFormPage extends React.Component<RouteComponentProps> {
   render() {
     return (
       <Container className="talent-form-container">
@@ -13,3 +13,5 @@ export default class TalentFormPage extends React.Component<RouteComponentProps>
     );
   }
 }
+
+export default TalentFormPage;

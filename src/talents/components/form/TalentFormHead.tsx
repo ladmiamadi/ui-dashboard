@@ -57,7 +57,10 @@ export class TalentFormHead extends React.Component<Props> {
           <SelectFormField
             keyName="function"
             label="Fonction: "
-            options={['aaa', 'bbb']} />
+            options={['aaa', 'bbb']}
+            handleOnChange={() => ({})}
+            value="Aucun"
+          />
           <FieldForm
             keyName="email"
             label="Mail: "

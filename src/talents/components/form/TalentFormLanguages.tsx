@@ -1,27 +1,111 @@
 import React from 'react';
-import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import { connect } from 'react-redux';
+import { Button } from 'reactstrap';
+import { RootDispatch, RootState } from '../../../app/state/store';
+import ModalLanguage from './ModalLanguage';
+import { ModalCustom } from '../../../app/components/utils/ModalCustom';
+import { UserLanguage } from '../../../app';
+import { UserLanguagesDisplay } from './UserLanguagesDisplay';
+import { LANGUAGES } from '../../constants/language';
+import { userLanguages } from '../../state/models/languages/user-languages';
 
-export default class TalentFormLanguages extends React.Component {
+interface Props {
+  isFetching: boolean,
+  userLanguages: UserLanguage[],
+  fetchLanguages: () => Promise<void>,
+  updateUserLanguage: (language: UserLanguage) => void,
+  resetLanguage: () => void,
+}
+
+interface State {
+  isModalShown: boolean,
+  unselectedLanguages: string[],
+}
+
+export class TalentFormLanguages extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      isModalShown: false,
+      unselectedLanguages: LANGUAGES,
+    };
+  }
+
+  componentDidUpdate(prevProps: Readonly<Props>) {
+    if (this.props.userLanguages.length !== prevProps.userLanguages.length) {
+      const userLanguages = this.props.userLanguages.map(({ language }) => (language));
+
+      this.setState({
+        unselectedLanguages: this.state.unselectedLanguages
+          .filter((language) => !userLanguages.includes(language)),
+      });
+    }
+  }
+
+  componentDidMount = async () => {
+    await this.props.fetchLanguages();
+  }
+
+  toggleModalAndResetModalOnQuit = () => {
+    this.setState({ isModalShown: !this.state.isModalShown });
+
+    if (!this.state.isModalShown) {
+      this.props.resetLanguage();
+    }
+  }
+
+  updateUserLanguage = (property: string, value: string) => {
+    const languages = userLanguages.state.languages;
+    const langId = Number.parseInt(value);
+    const language = languages.find(l => l.id === langId);
+
+    if (!language) throw new Error(`Unknown language ID: ${langId}`);
+
+    this.props.updateUserLanguage(language);
+  }
+
   render() {
     return (
-      <div className="form-section">
+      <div className="form-section almost-large">
         <div className="section-add">
           <h6>Langues: </h6>
-          <button className="form-add-button">Ajouter une langue</button>
+          <Button
+            onClick={this.toggleModalAndResetModalOnQuit}
+            className="form-add-button"
+            color="default"
+            disabled={this.props.isFetching}
+          >
+            Ajouter une langue
+          </Button>
         </div>
-        <SelectFormField
-          keyName="language-french"
-          label="Français: "
-          options={['A1', 'A2', 'B1', 'B2', 'C1', 'C2']}
-          className="medium"
+        <UserLanguagesDisplay
+          userLanguages={this.props.userLanguages}
+          updateUserLanguage={this.updateUserLanguage}
         />
-        <SelectFormField
-          keyName="language-english"
-          label="Anglais: "
-          options={['A1', 'A2', 'B1', 'B2', 'C1', 'C2']}
-          className="medium"
-        />
+        <ModalCustom
+          isModalShown={this.state.isModalShown}
+          toggleModal={this.toggleModalAndResetModalOnQuit}
+          titleModal="Ajouter une langue"
+        >
+          <ModalLanguage
+            languages={this.state.unselectedLanguages}
+          />
+        </ModalCustom>
       </div>
     );
   }
 }
+
+const mapState = (state: RootState) => ({
+  userLanguages: state.userLanguages.languages,
+  isFetching: state.userLanguages.isFetching,
+});
+
+const mapDispatch = (dispatch: RootDispatch) => ({
+  fetchLanguages: dispatch.userLanguages.fetchLanguages,
+  updateUserLanguage: dispatch.userLanguages.updateUserLanguage,
+  resetLanguage: dispatch.addLanguage.resetLanguage,
+});
+
+export default connect(mapState, mapDispatch)(TalentFormLanguages);
