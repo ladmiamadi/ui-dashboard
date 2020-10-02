@@ -4,12 +4,12 @@ import {
   ModalBody,
   ModalHeader,
 } from 'reactstrap';
-import './styles/modal-custom.css';
+import '../../../talents/components/form/styles/modal-custom.css';
 
 interface Props {
   isModalShown: boolean,
-  titleModal: string
   toggleModal: () => void,
+  titleModal: string,
 }
 
 export class ModalCustom extends React.Component<Props> {

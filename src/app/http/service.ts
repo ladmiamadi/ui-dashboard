@@ -10,21 +10,19 @@ export const apiService = axios.create({
 
 export const addTokenToRequestInterceptor = (token: string) => {
   tokenInterceptor = apiService.interceptors.request.use((config: AxiosRequestConfig) => {
-    config.headers.Authorization = `Bearer ${ token }`;
+    config.headers.Authorization = `Bearer ${token}`;
 
     return config;
   });
 };
 
-apiService.interceptors.response.use(
-  (response) => {
-    if (tokenInterceptor === -1 && response.data.token) {
-      addTokenToRequestInterceptor(response.data.token);
-    }
+apiService.interceptors.response.use((response) => {
+  if (tokenInterceptor === -1 && response.data.token) {
+    addTokenToRequestInterceptor(response.data.token);
+  }
 
-    return response;
-  },
-);
+  return response;
+});
 
 export const clearTokenFromAxios = () => {
   return new Promise((resolve) => {

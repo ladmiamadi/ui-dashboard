@@ -3,6 +3,9 @@ import { FormGroup, Label, Input } from 'reactstrap';
 import { Checkbox } from '../../index';
 
 interface Props {
+  //checkboxes: Checkbox[],
+  /*className?: string,
+  checkboxes: string[],*/
   checkboxes: Checkbox[],
   className?: string,
   keyName: string,

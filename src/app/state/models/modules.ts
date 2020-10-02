@@ -3,24 +3,25 @@ import { createModel } from '@rematch/core';
 import { Module } from '../../index';
 import { Toastify } from '../../../helpers/Toastify';
 
-type ModulesState = {
-  list: Module[],
-};
+interface State {
+  modules: Module[],
+}
 
 export const modules = createModel({
   state: {
-    list: [],
-  } as ModulesState,
+    modules: [],
+  } as State,
   reducers: {
-    updateModulesList: (state: ModulesState, payload: Module[]): ModulesState => ({ list: payload })
+    updateList: (state: State, modules: Module[]): State => ({ modules }),
   },
   effects: {
     async fetchModules() {
       try {
         const { data } = await apiService.get('/api/modules');
-        this.updateModulesList(data);
+
+        this.updateList(data);
       } catch (error) {
-        (new Toastify()).error(`Module doesn't exist. ${ error.message }`);
+        new Toastify().error(`Module doesn't exist. ${error.message}`);
       }
     },
   },

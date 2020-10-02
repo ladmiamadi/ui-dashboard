@@ -6,6 +6,9 @@ import { YearOptionList } from './YearOptionList';
 import { UtilsDate, YearSegment } from '../../index';
 
 interface Props {
+  // day: string,
+  // month: string,
+  // year: string,
   className?: string,
   label: string,
   keyName: string,
@@ -16,14 +19,18 @@ interface Props {
 
 export class DateFormField extends React.Component<Props> {
   render() {
+    const date = new Date();
+
     return (
       <FormGroup className={this.props.className}>
-        <Label className="form-label" for={this.props.keyName}>{ this.props.label }</Label>
+        <Label className="form-label" htmlFor={this.props.keyName}>{ this.props.label }</Label>
         <div className="date">
           <Input
             onChange={(event) => this.props.handleOnChange(this.props.keyName + '-day', +event.target.value)}
             className="form-input"
             type="select"
+            // id={this.props.keyName}
+            // defaultValue={this.props.day}
             id={this.props.keyName + '-day'}
             value={this.props.values.day}
           >
@@ -33,6 +40,8 @@ export class DateFormField extends React.Component<Props> {
             onChange={(event) => this.props.handleOnChange(this.props.keyName + '-month', +event.target.value)}
             className="form-input"
             type="select"
+            // id={this.props.keyName}
+            // defaultValue={this.props.month}
             id={this.props.keyName + '-month'}
             value={this.props.values.month}
           >
@@ -42,6 +51,8 @@ export class DateFormField extends React.Component<Props> {
             onChange={(event) => this.props.handleOnChange(this.props.keyName + '-year', +event.target.value)}
             className="form-input"
             type="select"
+            // id={this.props.keyName}
+            // defaultValue={this.props.year}
             id={this.props.keyName + '-year'}
             value={this.props.values.year}
           >
