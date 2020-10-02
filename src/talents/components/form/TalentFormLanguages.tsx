@@ -7,6 +7,7 @@ import { ModalCustom } from '../../../app/components/utils/ModalCustom';
 import { UserLanguage } from '../../../app';
 import { UserLanguagesDisplay } from './UserLanguagesDisplay';
 import { LANGUAGES } from '../../constants/language';
+import { userLanguages } from '../../state/models/languages/user-languages';
 
 interface Props {
   isFetching: boolean,
@@ -55,7 +56,13 @@ export class TalentFormLanguages extends React.Component<Props, State> {
   }
 
   updateUserLanguage = (property: string, value: string) => {
-    this.props.updateUserLanguage({ language: property, level: value });
+    const languages = userLanguages.state.languages;
+    const langId = Number.parseInt(value);
+    const language = languages.find(l => l.id === langId);
+
+    if (!language) throw new Error(`Unknown language ID: ${langId}`);
+
+    this.props.updateUserLanguage(language);
   }
 
   render() {

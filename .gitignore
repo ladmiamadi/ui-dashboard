@@ -25,7 +25,6 @@ env.js
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-package-lock.json
 Front.code-workspace
 .vscode/settings.json
 /.vscode

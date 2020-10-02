@@ -9,7 +9,7 @@ import '../../../talents/components/form/styles/modal-custom.css';
 interface Props {
   isModalShown: boolean,
   toggleModal: () => void,
-  titleModal: string
+  titleModal: string,
 }
 
 export class ModalCustom extends React.Component<Props> {
