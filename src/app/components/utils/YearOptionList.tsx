@@ -3,7 +3,7 @@ import { OptionList } from './OptionList';
 
 interface Props {
   toYear: number,
-  fromYear: number
+  fromYear: number,
 }
 
 export class YearOptionList extends React.Component<Props> {

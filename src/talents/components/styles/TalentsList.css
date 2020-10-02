@@ -1,0 +1,36 @@
+#talents-list h3 {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+#talents-list .search-bar div#input * {
+  font-size: 2rem;
+}
+
+#talents-list .col-2.element {
+  text-align: center;
+  font-size: 1.5rem;
+  background: #f1f1f1;
+  border-radius: 1rem;
+  margin: 1rem;
+  padding: 1rem;
+  box-shadow: 0 0 10px -6px rgba(0,0,0,0.75);
+  cursor: pointer;
+}
+
+#talents-list .col-2.element:hover {
+  box-shadow: 0 0 10px -4px rgba(0,0,0,0.75);
+}
+
+#talents-list .search-bar {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.profile-picture {
+  max-width: 100%;
+}
