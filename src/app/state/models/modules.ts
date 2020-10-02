@@ -21,7 +21,7 @@ export const modules = createModel({
 
         this.updateList(data);
       } catch (error) {
-        (new Toastify()).error(`Module doesn't exist. ${ error.message }`);
+        new Toastify().error(`Module doesn't exist. ${error.message}`);
       }
     },
   },
