@@ -15,7 +15,7 @@ export class UserLanguagesDisplay extends React.Component<Props> {
       <>
         <Row form className="row-almost-large">
           {
-            this.props.userLanguages.map(({id, language, level }, index) =>
+            this.props.userLanguages.map(({language, level }, index) =>
               (
                 <Col key={index} md={6}>
                   <SelectFormField
