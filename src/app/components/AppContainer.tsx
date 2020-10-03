@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { RootDispatch } from '../state/store';
-//import { RootState } from '../state/store';
 
 interface Props {
   children: React.ReactNode,
