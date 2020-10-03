@@ -6,8 +6,8 @@ import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormField';
 import { RootDispatch, RootState } from '../../../app/state/store';
-import DateSlicer from '../../helpers/DateSlicer';
-import { FormatDate } from '../../index.d';
+//import DateSlicer from '../../helpers/DateSlicer';
+//import { FormatDate } from '../../index.d';
 import { UpdateUserPayload } from '../../state/models/user';
 import { Checkbox } from '../../../app/';
 
@@ -28,13 +28,13 @@ export class TalentFormInternship extends React.Component<Props> {
       { label: 'dimanche', checked: false },
     ];
 
-    let startDate = new Date();
-    let endDate = new Date();
+    //let startDate = new Date();
+    //let endDate = new Date();
 
-    if (this.props.user.userJob) {
-      startDate = this.props.user.userJob.startDate;
-      endDate = this.props.user.userJob.endDate;
-    }
+    // if (this.props.user.userJob) {
+    //   startDate = this.props.user.userJob.startDate;
+    //   endDate = this.props.user.userJob.endDate;
+    // }
 
     return (
       <div className="form-section">

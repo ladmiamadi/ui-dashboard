@@ -4,8 +4,8 @@ import { User } from '../../../app';
 import { DateFormField } from '../../../app/components/utils/DateFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { RootDispatch, RootState } from '../../../app/state/store';
-import DateSlicer from '../../helpers/DateSlicer';
-import { FormatDate } from '../../index.d';
+//import DateSlicer from '../../helpers/DateSlicer';
+//import { FormatDate } from '../../index.d';
 import { UpdateUserPayload } from '../../state/models/user';
 
 interface Props {

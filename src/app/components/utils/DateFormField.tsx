@@ -19,7 +19,7 @@ interface Props {
 
 export class DateFormField extends React.Component<Props> {
   render() {
-    const date = new Date();
+    //const date = new Date();
 
     return (
       <FormGroup className={this.props.className}>
