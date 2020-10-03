@@ -22,9 +22,9 @@ export class TalentFormInstitution extends React.Component<Props> {
     return (
       <div className="form-section">
         <FieldForm
+          className="large"
           keyName="institution"
           label="École: "
-          className="large"
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
@@ -34,9 +34,9 @@ export class TalentFormInstitution extends React.Component<Props> {
           })}
           value={userProfileWorking?.institution} />
         <FieldForm
+          className="medium"
           keyName="institution-phone"
           label="Téléphone École: "
-          className="medium"
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
@@ -46,9 +46,9 @@ export class TalentFormInstitution extends React.Component<Props> {
           })}
           value={userProfileWorking?.phoneInstitution} />
         <FieldForm
+          className="medium"
           keyName="institution-email"
           label="Mail École: "
-          className="medium"
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
@@ -58,9 +58,9 @@ export class TalentFormInstitution extends React.Component<Props> {
           })}          
           value={userProfileWorking?.mailInstitution} />
         <FieldForm
+          className="large"
           keyName="institution-contact"
           label="Personne de contact: "
-          className="large"
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',

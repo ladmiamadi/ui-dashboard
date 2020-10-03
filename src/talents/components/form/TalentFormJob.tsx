@@ -22,9 +22,9 @@ export class TalentFormJob extends React.Component<Props> {
     return (
       <div className="form-section">
         <FieldForm
+          className="large"
           keyName="job-desired"
           label="Métier souhaité: "
-          className="large"
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
@@ -34,9 +34,9 @@ export class TalentFormJob extends React.Component<Props> {
           })}
           value={userProfileWorking?.desiredJob} />
         <FieldForm
+          className="large"
           keyName="job-mobility"
           label="Mobilité: "
-          className="large"
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
@@ -46,9 +46,9 @@ export class TalentFormJob extends React.Component<Props> {
           })}          
           value={userProfileWorking?.mobility} />
         <FieldForm
+          className="large"
           keyName="job-description"
           label="Description: "
-          className="large"
           rows={5}
           type="textarea"
           handleChange={(value) => this.props.modifyUser({
@@ -59,9 +59,9 @@ export class TalentFormJob extends React.Component<Props> {
           })}          
           value={userProfileWorking?.descriptionInFrench} />
         <FieldForm
+          className="medium"
           keyName="job-actual-pay"
           label="Salaire actuel: "
-          className="medium"
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
@@ -71,9 +71,9 @@ export class TalentFormJob extends React.Component<Props> {
           })}          
           value={userProfileWorking?.actualSalary} />
         <FieldForm
+          className="medium"
           keyName="job-desired-pay"
           label="Salaire souhaité: "
-          className="medium"
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',

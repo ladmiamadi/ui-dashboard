@@ -23,9 +23,9 @@ export class TalentFormAddress extends React.Component<Props> {
     return (
       <div className="form-section">
         <FieldForm
+          className="medium"
           keyName="street"
           label="Rue: "
-          className="medium"
           type="text"
           handleChange={(value: string) => this.props.modifyUser({
             category: 'userAddress', 
@@ -68,9 +68,9 @@ export class TalentFormAddress extends React.Component<Props> {
           })}
           value={this.props.user.userAddress?.zipCode} />
         <FieldForm
+          className="medium"
           keyName="city"
           label="Ville: "
-          className="medium"
           type="text"
           handleChange={(value: string) => this.props.modifyUser({
             category: 'userAddress',

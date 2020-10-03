@@ -4,8 +4,8 @@ import { User } from '../../../app';
 import { DateFormField } from '../../../app/components/utils/DateFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { RootDispatch, RootState } from '../../../app/state/store';
-import DateSlicer from '../../helpers/DateSlicer';
-import { FormatDate } from '../../index.d';
+//import DateSlicer from '../../helpers/DateSlicer';
+//import { FormatDate } from '../../index.d';
 import { UpdateUserPayload } from '../../state/models/user';
 
 interface Props {
@@ -37,19 +37,21 @@ export class TalentFormFormation extends React.Component<Props> {
                 })}
                 value={elem.institution} />
               <DateFormField
+                className="medium"
                 keyName="formation-start"
                 label="Début formation: "
-                className="medium"
-                day={DateSlicer.formatDate(elem.startDate.toString(), FormatDate.DAY)}
-                month={DateSlicer.formatDate(elem.startDate.toString(), FormatDate.MONTH)}
-                year={DateSlicer.formatDate(elem.startDate.toString(), FormatDate.YEAR)} />
+                values={{ day: 1, month: 1, year: 2000 }}
+                yearSegment={{ yearStart: 2000, yearEnd: 2100 }}
+                handleOnChange={() => {}}
+              />
               <DateFormField
+                className="medium"
                 keyName="formation-end"
                 label="Fin: "
-                className="medium"
-                day={DateSlicer.formatDate(elem.endDate.toString(), FormatDate.DAY)}
-                month={DateSlicer.formatDate(elem.endDate.toString(), FormatDate.MONTH)}
-                year={DateSlicer.formatDate(elem.endDate.toString(), FormatDate.YEAR)} />
+                values={{ day: 1, month: 1, year: 2000 }}
+                yearSegment={{ yearStart: 2000, yearEnd: 2100 }}
+                handleOnChange={() => {}}
+              />
               <FieldForm
                 keyName="formation-diploma"
                 label="Diplôme obtenu: "

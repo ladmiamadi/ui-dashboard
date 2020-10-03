@@ -1,14 +1,13 @@
-import { FormGroup, Label } from 'reactstrap';
-import Input from 'reactstrap/lib/Input';
-import { OptionList } from './OptionList';
 import React from 'react';
+import { FormGroup, Label, Input } from 'reactstrap';
+import { OptionList } from './OptionList';
 
 interface Props {
-  options: string[],
+  className?: string,
   label: string,
   keyName: string,
-  className?: string,
   value: string,
+  options: string[],
   handleOnChange: (property: string, value: string) => void,
   updateModel?: (value: string, property: string) => void,
 }

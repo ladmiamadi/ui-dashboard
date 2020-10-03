@@ -3,16 +3,16 @@ import { FormGroup, Label } from 'reactstrap';
 import Input, { InputType } from 'reactstrap/lib/Input';
 
 interface Props {
-  rows?: number,
-  label: string,
-  keyName: string,
   className?: string,
+  label: string,
+  keyName: string
+  rows?: number,
   type: InputType,
   value?: any,
   handleChange: (value: string) => void,
 }
 
-interface State {
+interface State {//
   value?: any,
 }
 
@@ -36,6 +36,7 @@ export class FieldForm extends React.Component<Props, State> {
       <FormGroup className={this.props.className}>
         <Label className="form-label" htmlFor={this.props.keyName}>{ this.props.label }</Label>
         <Input
+          //onChange={(event) => this.props.handleOnChange(this.props.keyName, event.target.value)}
           className="form-input"
           type={this.props.type}
           id={this.props.keyName}
