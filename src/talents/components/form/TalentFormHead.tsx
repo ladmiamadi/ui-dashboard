@@ -20,7 +20,7 @@ export class TalentFormHead extends React.Component<Props> {
       this.props.user.userProfiles, 'working',
     );
     const filePath = userProfileWorking ?
-      `${env('MEDIA_URL')}${userProfileWorking?.picture.filePath}` :
+      `${env('MEDIA_URL')}${userProfileWorking?.picture?.filePath}` :
       '';
     
     return (

@@ -15,7 +15,7 @@ export class TalentsListElement extends React.Component<Props> {
         <img
           className="profile-picture"
           alt={profile.firstName}
-          src={`${env('MEDIA_URL')}/${profile.picture.filePath}`}
+          src={`${env('MEDIA_URL')}/${profile?.picture?.filePath}`}
         />
         <br />
         { profile.lastName }
