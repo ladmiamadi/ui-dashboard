@@ -25,6 +25,8 @@ export class UserFactory {
       id: 0,
       username: '',
       password: '',
+      isActive: false,
+      createdDate: new Date(),
     };
 
     return dtoUser;

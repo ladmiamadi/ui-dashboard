@@ -6,10 +6,11 @@ export interface Module {
 }
 
 export interface User {
-  id: number | null,
   username: string,
   password: string,
-  createdDate?: Date,
+  isActive: boolean,
+  createdDate: Date,
+  id?: number | null,
   updatedDate?: Date,
   userProfiles?: UserProfile[],
   userAddress?: UserAddress,
@@ -25,47 +26,70 @@ export interface User {
 }
 
 export interface UserAddress {
-  id: number,
-  street: string,
-  number: string,
-  box: string
-  zipCode: number,
-  city: string,
-  country : string
-  status: string,
+  country: string,
+  id?: number,
+  user?: User,
+  street?: string,
+  number?: string,
+  box?: string
+  zipCode?: number,
+  city?: string,
+  status?: string,
 }
 
 export interface UserProfile {
-  id: number,
-  lastName: string,
-  firstName: string,
-  phone: string,
-  requestInFrench: string,
-  requestInEnglish: string,
-  requestInDutch: string,
-  motivationInFrench : string,
-  motivationInEnglish : string,
-  motivationInDutch : string,
-  mobility: string,
-  birthDate: Date,
-  institution: string,
-  descriptionInFrench: string,
-  descriptionInEnglish: string,
-  descriptionInDutch: string,
-  isActuallyLookingForJob: boolean,
-  phoneInstitution: string,
-  mailInstitution: string,
-  personContactInstitution: string,
-  desiredJob: string,
-  actualSalary: number,
-  expectedSalary: number,
-  status: string,
   environment: string
-  picture: MediaObject,
+  firstName: string,
+  lastName: string,
+  phone: string,
+  mailInstitution?: string,
+  birthDate: Date,
+  desiredJob?: string,
+  id?: number,
+  user?: User,
+  requestInFrench?: string,
+  requestInEnglish?: string,
+  requestInDutch?: string,
+  motivationInFrench?: string,
+  motivationInEnglish?: string,
+  motivationInDutch?: string,
+  mobility?: string,
+  institution?: string,
+  descriptionInFrench?: string,
+  descriptionInEnglish?: string,
+  descriptionInDutch?: string,
+  isActuallyLookingForJob?: boolean,
+  phoneInstitution?: string,
+  personContactInstitution?: string,
+  actualSalary?: number,
+  expectedSalary?: number,
+  status?: string,
+  picture?: MediaObject,
 }
 
 export interface MediaObject {
   filePath: string,
+  desiredJob?: string,
+  id?: number,
+  user?: User,
+  requestInFrench?: string,
+  requestInEnglish?: string,
+  requestInDutch?: string,
+  motivationInFrench?: string,
+  motivationInEnglish?: string,
+  motivationInDutch?: string,
+  mobility?: string,
+  institution?: string,
+  descriptionInFrench?: string,
+  descriptionInEnglish?: string,
+  descriptionInDutch?: string,
+  isActuallyLookingForJob?: boolean,
+  phoneInstitution?: string,
+  personContactInstitution?: string,
+  actualSalary?: number,
+  expectedSalary?: number,
+  status?: string,
+  picture?: MediaObject,
 }
 
 export interface UserAbsence {
@@ -120,18 +144,19 @@ export interface UserSkill {
 }
 
 export interface UserJob {
+  user?: User,
   job: Job,
-  startDate: Date,
-  endDate: Date,
-  isWorkingOnMonday: boolean,
-  isWorkingOnTuesday: boolean,
-  isWorkingOnWednesday: boolean,
-  isWorkingOnThursday: boolean,
-  isWorkingOnFriday: boolean,
-  isWorkingOnSaturday: boolean,
-  isWorkingOnSunday: boolean,
-  status: string,
-  workingHours: string,
+  startDate?: Date,
+  endDate?: Date,
+  isWorkingOnMonday?: boolean,
+  isWorkingOnTuesday?: boolean,
+  isWorkingOnWednesday?: boolean,
+  isWorkingOnThursday?: boolean,
+  isWorkingOnFriday?: boolean,
+  isWorkingOnSaturday?: boolean,
+  isWorkingOnSunday?: boolean,
+  status?: string,
+  workingHours?: string,
 }
 
 export interface Role {
@@ -161,6 +186,10 @@ export interface Job {
   isOpen: boolean,
   createdDate: Date,
   updatedDate: Date,
+}
+
+export interface MediaObject {
+  filePath: string,
 }
 
 export interface YearSegment {

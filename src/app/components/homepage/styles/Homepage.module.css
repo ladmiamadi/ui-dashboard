@@ -1,0 +1,23 @@
+.CardBody {
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    font-size: 1.8rem;
+    font-family: 'Ubuntu', sans-serif;
+    color: #888;
+}
+
+.CardTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'Heebo', sans-serif
+}
+
+.Container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.row-homepage {
+  position: relative;
+  z-index: 0;
+}
