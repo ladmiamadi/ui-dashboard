@@ -25,9 +25,8 @@ export const users = createModel({
 
   effects: {
     async fetchTalents() {
-      this.setIsFetching(true);
-
       try {
+        this.setIsFetching(true);
         const { data } = await apiService.get('/api/users');
 
         this.updateList(data);

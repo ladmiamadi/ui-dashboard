@@ -35,3 +35,4 @@ const mapDispatch = (dispatch: RootDispatch) => ({
 });
 
 export default connect(mapState, mapDispatch)(TalentsListContainer);
+

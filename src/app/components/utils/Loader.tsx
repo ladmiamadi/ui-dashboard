@@ -7,7 +7,9 @@ export class Loader extends React.Component {
     return (
       <Container>
         <Row className="d-flex justify-content-center pt-4">
-          <div className="loader" />
+          <div className="loader">
+            <div />
+          </div>
         </Row>
       </Container>
     );

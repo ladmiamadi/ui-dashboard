@@ -56,7 +56,9 @@ export class TalentsListElement extends React.Component <Props, State> {
         <img
           className="profile-picture"
           alt={this.props.profile.firstName}
-          src={`${env('MEDIA_URL')}/${this.props.profile.picture.filePath}`}
+          src={`${env('MEDIA_URL')}/${this.props.profile?.picture?.filePath}`}
+          // alt={profile.firstName}
+          // src={`${env('MEDIA_URL')}/${profile?.picture?.filePath}`}
         />
         <p className="profile-info">
           {this.props.profile.firstName}

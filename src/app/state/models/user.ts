@@ -1,6 +1,6 @@
 import { apiService } from '../../http/service';
+import { UserFactory } from '../../../talents/helpers/UserFactory';
 import { createModel } from '@rematch/core';
-import { createEmptyUser } from '../../helpers/user';
 import { User } from '../../index';
 import { Toastify } from '../../../helpers/Toastify';
 
@@ -11,13 +11,13 @@ interface State {
 
 export const user = createModel({
   state: {
-    user: createEmptyUser(),
+    user: UserFactory.createEmptyUser(),
     isFetching: false,
   } as State,
   reducers: {
     updateUser: (state: State, user: User): State => ({ ...state, user }),
     setIsFetching: (state: State, isFetching: boolean): State => ({ ...state, isFetching }),
-    resetUser: (state: State): State => ({ ...state, user: createEmptyUser() }),
+    resetUser: (state: State): State => ({ ...state, user: UserFactory.createEmptyUser() }),
   },
   effects: {
     async fetchUser(id:number) {

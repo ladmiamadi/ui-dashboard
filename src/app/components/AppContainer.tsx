@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { RootDispatch } from '../state/store';
 
 interface Props {
+  children: React.ReactNode,
   fetchModules: () => Promise<void>,
 }
 
@@ -16,6 +17,7 @@ export class AppContainer extends React.Component<Props> {
   }
 }
 
+// const mapState = (mapState: RootState) => ({});
 const mapState = () => ({});
 
 const mapDispatch = (dispatch: RootDispatch) => ({
