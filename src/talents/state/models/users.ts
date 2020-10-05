@@ -2,7 +2,7 @@ import { Toastify } from '../../../helpers/Toastify';
 import { User } from '../../../app';
 import { apiService } from '../../../app/http/service';
 import { createModel } from '@rematch/core';
-import { createEmptyUser } from '../../../app/helpers/user';
+import { UserFactory } from '../../helpers/UserFactory';
 
 interface State {
   users: User[],
@@ -13,7 +13,7 @@ interface State {
 export const users = createModel({
   state: {
     users: [],
-    userSelected: createEmptyUser(),
+    userSelected: UserFactory.createEmptyUser(),
     isFetching: false,
   } as State,
 

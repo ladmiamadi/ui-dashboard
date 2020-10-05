@@ -20,7 +20,7 @@ export const auth = createModel({
     async verifyToken(token: string) {
       addTokenToRequestInterceptor(token);
 
-      await apiService.post('api/token/verify', {});
+      //await apiService.post('api/token/verify', {});
 
       this.updateToken(token);
       this.setIsVerifiedToken(true);
