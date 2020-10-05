@@ -3,24 +3,44 @@ import { connect } from 'react-redux';
 import { Col, Container, Row } from 'reactstrap';
 import { User } from '../../app';
 import { RootState } from '../../app/state/store';
-import { TalentsListElement } from './TalentsListElement';
+import TalentsListElement from './TalentsListElement';
 import './styles/TalentsList.css';
+import { UserProfileHelpers } from '../../app/helpers/UserProfileHelpers';
 
 interface Props {
   users: User[],
 }
 
-export class TalentsList extends React.Component<Props> {
+interface State {
+  isModalOpen:boolean,
+}
+
+export class TalentsList extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = { isModalOpen: false };
+  }
+
+  toggleModal = () => {
+    this.setState({ isModalOpen: !this.state.isModalOpen });
+  }
+
   render() {
     return (
-      <Container className="mt-5">
-        <Row>
+      <Container className={this.state.isModalOpen ? 'hide-card' : 'talent-card'}>
+        <Row className="talent-row">
           {
             this.props.users.map((talent, index) => (
-              <Col key={index} className="element" xs={2}>
+              <Col key={index} className="element" xs={5} sm={3} xl={2}>
                 {
-                  talent.userProfiles?.filter((profile) => profile.environment === 'live')
-                    .map((profile) => <TalentsListElement key={profile.id} profile={profile} />)
+                  UserProfileHelpers.findUserProfileLive(talent)?.map((profile) =>
+                    <TalentsListElement
+                      key={profile.id}
+                      profile={profile}
+                      talent={talent}
+                      toggleModal={this.toggleModal}
+                    />)
                 }
               </Col>
             ))

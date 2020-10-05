@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
+import ProfileEditValidation from '../../talents/components/profileValidation/ProfileEditValidation';
 import AppContainer from './AppContainer';
 import TalentFormPage from '../../talents/components/form/TalentFormPage';
 import AuthenticationGuard from '../../authentication/components/AuthenticationGuard';
@@ -22,8 +23,9 @@ export class App extends React.Component {
               <Route path="/" exact component={Homepage} />
               <Route path="/talent" exact component={TalentFormPage} />
               <Route path="/talents" exact component= {TalentsListPage} />
+              <Route path="/editprofile" exact component={ProfileEditValidation} />
               <Route path="/intern" exact component={RegisterUser} />
-            </AppContainer>
+            </AppContainer>         
           </AuthenticationGuard>
         </Provider>
       </Router>

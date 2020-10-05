@@ -8,12 +8,12 @@ import { connect } from 'react-redux';
 interface Props {
   users: User[],
   isFetching: boolean,
-  fetchTalents: () => Promise<void>,
+  fetchTalents: () => void,
 }
 
 export class TalentsListContainer extends React.Component<Props> {
-  async componentDidMount() {
-    await this.props.fetchTalents();
+  componentDidMount() {
+    this.props.fetchTalents();
   }
 
   render() {
@@ -35,3 +35,4 @@ const mapDispatch = (dispatch: RootDispatch) => ({
 });
 
 export default connect(mapState, mapDispatch)(TalentsListContainer);
+
