@@ -1,0 +1,61 @@
+.experience-form {
+    width: 100%;
+    border-top: solid 0.1rem #151515;
+    box-sizing: border-box;
+    margin-right: 0;
+    margin-left: 0;
+    padding: 2rem 0;
+}
+
+.label-date-experience {
+    display: block;
+    font-size: 2rem;
+}
+
+.experience-textarea {
+    min-height: 15rem;
+    font-size: 1.5rem;
+}
+
+.experience-input {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.experience-date-picker {
+    margin-bottom: 2rem;
+}
+
+.experience-label {
+    font-size: 2rem;
+}
+
+.experience-modal h5 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .label-date-experience {
+        font-size: 1.5rem;
+    }
+
+    .experience-textarea {
+        font-size: 1rem;
+    }
+
+    .experience-input {
+        font-size: 1rem;
+    }
+
+    .experience-label {
+        font-size: 1.5rem;
+    }
+    .experience-date-picker input {
+        font-size: 1rem;
+    }
+}
+
+
+

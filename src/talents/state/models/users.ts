@@ -2,25 +2,22 @@ import { Toastify } from '../../../helpers/Toastify';
 import { User } from '../../../app';
 import { apiService } from '../../../app/http/service';
 import { createModel } from '@rematch/core';
-import { UserFactory } from '../../helpers/UserFactory';
+import { UsersDatesFormatter } from '../../../app/formatter/usersDatesFormatter';
 
 interface State {
   users: User[],
-  userSelected: User,
   isFetching: boolean,
 }
 
 export const users = createModel({
   state: {
     users: [],
-    userSelected: UserFactory.createEmptyUser(),
     isFetching: false,
   } as State,
 
   reducers: {
     updateList: (state: State, users: User[]): State => ({ ...state, users: users }),
     setIsFetching: (state: State, isFetching: boolean): State => ({ ...state, isFetching }),
-    updateUserSelected: (state: State, user: User): State => ({ ...state, userSelected: user }),
   },
 
   effects: {
@@ -28,6 +25,8 @@ export const users = createModel({
       try {
         this.setIsFetching(true);
         const { data } = await apiService.get('/api/users');
+
+        UsersDatesFormatter.transformDateFormat(data);
 
         this.updateList(data);
       } catch(error) {

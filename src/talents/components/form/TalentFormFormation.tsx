@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { User } from '../../../app';
 import { DateFormField } from '../../../app/components/utils/DateFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
-import { RootDispatch, RootState } from '../../../app/state/store';
+import { RootState } from '../../../app/state/store';
+// import { RootDispatch, RootState } from '../../../app/state/store';
 //import DateSlicer from '../../helpers/DateSlicer';
 //import { FormatDate } from '../../index.d';
-import { UpdateUserPayload } from '../../state/models/user';
+import { UpdateUserPayload } from '../../state/models/userSelected';
 
 interface Props {
   user: User,
@@ -76,8 +77,9 @@ const mapState = (state: RootState) => ({
   user: state.user.user,
 });
 
-const mapDispatch = (dispatch: RootDispatch) => ({
-  modifyUser: dispatch.user.modifyUser,
-});
+// const mapDispatch = (dispatch: RootDispatch) => ({
+//   modifyUser: dispatch.user.modifyUser,
+// });
 
-export default connect(mapState, mapDispatch)(TalentFormFormation);
+// export default connect(mapState, mapDispatch)(TalentFormFormation);
+export default connect(mapState)(TalentFormFormation);

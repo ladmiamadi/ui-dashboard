@@ -29,20 +29,20 @@ export const addLanguage = createModel({
         ...state, language,
       };
     },
-    resetLanguage: (state) => ({ ...state, language: UserLanguageFactory.createEmptyLanguage() }),
+    resetLanguage: (state: LanguageState) => ({ ...state, language: UserLanguageFactory.createEmptyLanguage() }),
   },
   effects: (dispatch: any) => ({
-    async postLanguage(userLanguage : UserLanguage) {
+    async postLanguage(userLanguage : UserLanguage, state) {
       try {
         this.setIsPosting(true);
 
         await apiService.post('/api/user_languages', {
-          user: '/api/users/1',
+          user: `api/users/${state.userSelected.userSelected.id}`,
           language: userLanguage.language,
           level: userLanguage.level,
         });
 
-        dispatch.userLanguages.addUserLanguages(userLanguage);
+        dispatch.userSelected.addUserLanguage(userLanguage);
         this.resetLanguage();
 
         (new Toastify()).info('Language added successfully.');

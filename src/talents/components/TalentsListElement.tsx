@@ -1,89 +1,33 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { ModalCustom } from '../../app/components/utils/ModalCustom';
-import { RootDispatch, RootState } from '../../app/state/store';
-import { TalentModal } from './modal/TalentModal';
 import { User, UserProfile } from '../../app';
 import { env } from '../../helpers/environment';
-import { Redirect } from 'react-router-dom';
-import { UserProfileHelpers } from '../../app/helpers/UserProfileHelpers';
 import './styles/TalentsList.css';
 import './styles/TalentModal.css';
 
-interface Props {
+interface Props{
   profile: UserProfile,
   talent: User,
-  toggleModal: () => void,
-  updateUserSelected: (userSelected: User) => void,
 }
 
-interface State {
-  isModalShown: boolean,
-  redirect: string,
-}
-
-export class TalentsListElement extends React.Component <Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      isModalShown: false,
-      redirect: '',
-    };
-  }
-
-  toggleModal = () => {
-    this.props.updateUserSelected(this.props.talent);
-
-    if (UserProfileHelpers.isUserHaveWorkingOnValidationProfile(this.props.talent)) {
-      this.setState({
-        isModalShown: !this.state.isModalShown,
-      });
-
-      this.props.toggleModal();
-    } else
-    // we need to redirect to the talentForm when we will merge with the form
-      this.setState({ redirect: '/' });
-  }
-
+export default class TalentsListElement extends React.Component<Props> {
   render() {
-    if (this.state.redirect !== ''){
-      return <Redirect to={{ pathname: this.state.redirect }} />;
-    }
+    const picture = this.props.profile.picture ?
+      `${env('MEDIA_URL')}${this.props.profile.picture?.filePath}` : '';
 
     return (
-      <div className="id-card" onClick={this.toggleModal}>
+      <div className="id-card">
         <img
           className="profile-picture"
           alt={this.props.profile.firstName}
-          src={`${env('MEDIA_URL')}/${this.props.profile?.picture?.filePath}`}
-          // alt={profile.firstName}
-          // src={`${env('MEDIA_URL')}/${profile?.picture?.filePath}`}
+          src={picture}
         />
         <p className="profile-info">
           {this.props.profile.firstName}
         </p>
         <p className="profile-info">
-          {this.props.profile.firstName}
+          {this.props.profile.lastName}
         </p>
-        <ModalCustom
-          isModalShown={this.state.isModalShown}
-          toggleModal={this.toggleModal}
-          titleModal={this.props.profile.firstName + ' ' + this.props.profile.lastName}
-          className="talent-title">
-          <TalentModal talent={this.props.talent}/>
-        </ModalCustom>
       </div>
     );
   }
 }
-
-const mapState = (state: RootState) => ({
-  userSelected: state.users.userSelected,
-});
-
-const mapDispatch = (dispatch: RootDispatch) => ({
-  updateUserSelected: dispatch.users.updateUserSelected,
-});
-
-export default connect(mapState, mapDispatch)(TalentsListElement);

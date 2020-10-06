@@ -1,17 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { User, UserProfile } from '../../../app';
 import { FieldForm }  from '../../../app/components/utils/FieldForm';
-import { RootDispatch, RootState } from '../../../app/state/store';
-import { UpdateUserPayload } from '../../state/models/user';
+import { UpdateUserPayload } from '../../state/models/userSelected';
 import ProfileCollection from '../../helpers/ProfileCollection';
+import classes from './styles/TalentFormJob.module.css';
 
 interface Props {
   user: User,
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-export class TalentFormJob extends React.Component<Props> {
+export default class TalentFormJob extends React.Component<Props> {
   render() {
     const indexWorking: number = ProfileCollection.findWorkingIndex(this.props.user.userProfiles);
     const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
@@ -20,11 +19,12 @@ export class TalentFormJob extends React.Component<Props> {
     );
 
     return (
-      <div className="form-section">
+      <div className={classes['job-section']}>
         <FieldForm
-          className="large"
+          //className="large"
           keyName="job-desired"
           label="Métier souhaité: "
+          className={classes['job-field']}
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
@@ -34,9 +34,10 @@ export class TalentFormJob extends React.Component<Props> {
           })}
           value={userProfileWorking?.desiredJob} />
         <FieldForm
-          className="large"
+          //className="large"
           keyName="job-mobility"
           label="Mobilité: "
+          className={classes['job-field']}
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
@@ -46,9 +47,34 @@ export class TalentFormJob extends React.Component<Props> {
           })}          
           value={userProfileWorking?.mobility} />
         <FieldForm
-          className="large"
+          keyName="job-actual-pay"
+          label="Salaire actuel: "
+          className={classes['job-field']}
+          type="number"
+          handleChange={(value) => this.props.modifyUser({
+            category: 'userProfiles',
+            property: 'actualSalary',
+            value: +value,
+            index: indexWorking,
+          })}          
+          value={userProfileWorking?.actualSalary} />
+        <FieldForm
+          //className="medium"
+          keyName="job-desired-pay"
+          label="Salaire souhaité: "
+          className={classes['job-field']}
+          type="number"
+          handleChange={(value) => this.props.modifyUser({
+            category: 'userProfiles',
+            property: 'expectedSalary',
+            value: +value,
+            index: indexWorking,
+          })}          
+          value={userProfileWorking?.expectedSalary} />
+        <FieldForm
           keyName="job-description"
           label="Description: "
+          className={classes['job-description']}
           rows={5}
           type="textarea"
           handleChange={(value) => this.props.modifyUser({
@@ -58,42 +84,7 @@ export class TalentFormJob extends React.Component<Props> {
             index: indexWorking,
           })}          
           value={userProfileWorking?.descriptionInFrench} />
-        <FieldForm
-          className="medium"
-          keyName="job-actual-pay"
-          label="Salaire actuel: "
-          type="text"
-          handleChange={(value) => this.props.modifyUser({
-            category: 'userProfiles',
-            property: 'actualSalary',
-            value: value,
-            index: indexWorking,
-          })}          
-          value={userProfileWorking?.actualSalary} />
-        <FieldForm
-          className="medium"
-          keyName="job-desired-pay"
-          label="Salaire souhaité: "
-          type="text"
-          handleChange={(value) => this.props.modifyUser({
-            category: 'userProfiles',
-            property: 'expectedSalary',
-            value: value,
-            index: indexWorking,
-          })}          
-          value={userProfileWorking?.expectedSalary} />
       </div>
     );
   }
 }
-
-const mapState = (state: RootState) => ({
-  user: state.user.user,
-});
-
-const mapDispatch = (dispatch: RootDispatch) => ({
-  modifyUser: dispatch.user.modifyUser,
-});
-
-export default connect(mapState, mapDispatch)(TalentFormJob);
-
