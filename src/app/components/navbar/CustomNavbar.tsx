@@ -1,15 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { RootState, RootDispatch } from '../../state/store';
+import { RootState } from '../../state/store';
 import logoHDM from '../../assets/LogoHDM.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { Module } from '../../index.d';
+import { Module, User } from '../../index.d';
 import './styles/CustomNavbar.css';
 
 interface Props {
+  user: User,
   modules: Module[],
+  updateUser: () => Promise<void>,
+  updateModulesList: () => Promise<void>,
   logout: () => Promise<void>,
 }
 
@@ -30,11 +33,14 @@ export class CustomNavbar extends React.Component<Props, State> {
 
   render() {
     const toggleClassName = this.state.isMenuOpened ? 'active' : '';
-    
+
     return (
       <div className="component-nav">
         <div className="info-user">
           <div className="container">
+            <div className="user-box">
+              ({ this.props.user.username })
+            </div>
           </div>
         </div>
         <div className="nav nav-bar">
@@ -72,7 +78,9 @@ const mapState = (state: RootState) => ({
   modules: state.modules.modules,
 });
 
-const mapDispatch = (dispatch: RootDispatch) => ({
+const mapDispatch = (dispatch: any) => ({
+  updateUser: dispatch.user.updateUser,
+  updateModulesList: dispatch.modules.updateModulesList,
   logout: dispatch.auth.logout,
 });
 

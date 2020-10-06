@@ -1,14 +1,11 @@
+import fr from 'date-fns/locale/fr';
 import React from 'react';
-import { connect } from 'react-redux';
+import ReactDatePicker from 'react-datepicker';
 import { User } from '../../../app';
-import { DateFormField } from '../../../app/components/utils/DateFormField';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormField';
-import { RootDispatch, RootState } from '../../../app/state/store';
-//import DateSlicer from '../../helpers/DateSlicer';
-//import { FormatDate } from '../../index.d';
-import { UpdateUserPayload } from '../../state/models/user';
+import { UpdateUserPayload } from '../../state/models/userSelected';
 import { Checkbox } from '../../../app/';
 
 interface Props {
@@ -16,7 +13,7 @@ interface Props {
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-export class TalentFormInternship extends React.Component<Props> {
+export default class TalentFormInternship extends React.Component<Props> {
   render() {
     const checkboxes: Checkbox[] = [
       { label: 'lundi', checked: false },
@@ -27,15 +24,6 @@ export class TalentFormInternship extends React.Component<Props> {
       { label: 'samedi', checked: false },
       { label: 'dimanche', checked: false },
     ];
-
-    //let startDate = new Date();
-    //let endDate = new Date();
-
-    // if (this.props.user.userJob) {
-    //   startDate = this.props.user.userJob.startDate;
-    //   endDate = this.props.user.userJob.endDate;
-    // }
-
     return (
       <div className="form-section">
         <div className="form-elements">
@@ -44,24 +32,50 @@ export class TalentFormInternship extends React.Component<Props> {
             label="Statut du stage: "
             options={['aaa', 'bbb']}
             className="large"
-            handleOnChange={() => ({})}
-            value="Aucun"
+            handleChange={() => ({})}
+            value=""
           />
-          <DateFormField
-            keyName="internship-start"
-            label="Début: "
-            values={{ day: 1, month: 1, year: 2000 }}
-            yearSegment={{ yearStart: 2000, yearEnd: 2100 }}
-            handleOnChange={() => {}}
+          <label className="label-internship">Début:  </label>
+          <ReactDatePicker
+            className="intern-datepicker"
+            selected={this.props.user.userJob?.startDate}
+            isClearable
+            dateFormat="dd/MM/yyyy"
+            showMonthDropdown
+            showYearDropdown
+            dropdownMode="select"
+            locale={fr}
+            onChange={(value) => this.props.modifyUser({
+              category: 'userJob',
+              property: 'startDate',
+              value: value,
+              index: -1,
+            })}
           />
-          <DateFormField
-            keyName="internship-end"
-            label="Fin: "
-            values={{ day: 1, month: 1, year: 2000 }}
-            yearSegment={{ yearStart: 2000, yearEnd: 2100 }}
-            handleOnChange={() => {}}
+          <label className="label-internship">Fin:  </label>
+          <ReactDatePicker
+            className="intern-datepicker"
+            selected={this.props.user.userJob?.endDate}
+            isClearable
+            dateFormat="dd/MM/yyyy"
+            showMonthDropdown
+            showYearDropdown
+            dropdownMode="select"
+            locale={fr}
+            onChange={(value) => this.props.modifyUser({
+              category: 'userJob',
+              property: 'endDate',
+              value: value,
+              index: -1,
+            })}
           />
-            <CheckboxFormField
+          {/* <CheckboxFormField
+            keyName="internship-days"
+            label="Jour(s) d'activité: "
+            className="large days"
+            checkboxes={['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche']} 
+          /> */}
+          <CheckboxFormField
           checkboxes={checkboxes}
           className="large days"
           keyName="internship-days"
@@ -85,13 +99,3 @@ export class TalentFormInternship extends React.Component<Props> {
     );
   }
 }
-
-const mapState = (state: RootState) => ({
-  user: state.user.user,
-});
-
-const mapDispatch = (dispatch: RootDispatch) => ({
-  modifyUser: dispatch.user.modifyUser,
-});
-
-export default connect(mapState, mapDispatch)(TalentFormInternship);

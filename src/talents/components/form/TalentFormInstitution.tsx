@@ -1,17 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { User, UserProfile } from '../../../app';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
-import { RootDispatch, RootState } from '../../../app/state/store';
-import { UpdateUserPayload } from '../../state/models/user';
+import { UpdateUserPayload } from '../../state/models/userSelected';
 import ProfileCollection from '../../helpers/ProfileCollection';
+import classes from './styles/TalentFormInstitution.module.css';
 
 interface Props {
   user: User,
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-export class TalentFormInstitution extends React.Component<Props> {
+export default class TalentFormInstitution extends React.Component<Props> {
   render() {
     const indexWorking: number = ProfileCollection.findWorkingIndex(this.props.user.userProfiles);
     const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
@@ -20,11 +19,12 @@ export class TalentFormInstitution extends React.Component<Props> {
     );
 
     return (
-      <div className="form-section">
+      <div className={classes['institution-section']}>
         <FieldForm
-          className="large"
+          //className="large"
           keyName="institution"
           label="École: "
+          className={classes['institution-field']}
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
@@ -34,9 +34,10 @@ export class TalentFormInstitution extends React.Component<Props> {
           })}
           value={userProfileWorking?.institution} />
         <FieldForm
-          className="medium"
+          //className="medium"
           keyName="institution-phone"
           label="Téléphone École: "
+          className={classes['institution-field']}
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
@@ -46,9 +47,10 @@ export class TalentFormInstitution extends React.Component<Props> {
           })}
           value={userProfileWorking?.phoneInstitution} />
         <FieldForm
-          className="medium"
+          //className="medium"
           keyName="institution-email"
           label="Mail École: "
+          className={classes['institution-field']}
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
@@ -58,9 +60,10 @@ export class TalentFormInstitution extends React.Component<Props> {
           })}          
           value={userProfileWorking?.mailInstitution} />
         <FieldForm
-          className="large"
+          //className="large"
           keyName="institution-contact"
           label="Personne de contact: "
+          className={classes['institution-field']}
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
@@ -73,13 +76,3 @@ export class TalentFormInstitution extends React.Component<Props> {
     );
   }
 }
-
-const mapState = (state: RootState) => ({
-  user: state.user.user,
-});
-
-const mapDispatch = (dispatch: RootDispatch) => ({
-  modifyUser: dispatch.user.modifyUser,
-});
-
-export default connect(mapState, mapDispatch)(TalentFormInstitution);

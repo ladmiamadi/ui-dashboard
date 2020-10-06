@@ -3,12 +3,13 @@ import { FormGroup, Label, Input } from 'reactstrap';
 import { OptionList } from './OptionList';
 
 interface Props {
+  // options:string[],
+  options: string[],
   className?: string,
   label: string,
   keyName: string,
   value: string,
-  options: string[],
-  handleOnChange: (property: string, value: string) => void,
+  handleChange: (property: string, value: string) => void,
   updateModel?: (value: string, property: string) => void,
 }
 
@@ -22,12 +23,12 @@ export class SelectFormField extends React.Component<Props> {
   render() {
     return (
       <FormGroup className={this.props.className}>
-        <Label className="form-label" htmlFor={this.props.keyName}>{ this.props.label }</Label>
+        <Label className="form-label" htmlFor={this.props.label}>{ this.props.label }</Label>
         <Input
-          onChange={event => this.props.handleOnChange(this.props.keyName, event.target.value)}
+          onChange={event => this.props.handleChange(this.props.keyName, event.target.value)}
           className="form-input"
           type="select"
-          id={this.props.keyName}
+          id={this.props.label}
           value={this.props.value}
         >
           <option disabled>Aucun</option>

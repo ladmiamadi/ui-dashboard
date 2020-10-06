@@ -1,0 +1,20 @@
+.label-training-form {
+  font-size: 2rem;
+  margin-top: 15px;
+}
+
+.input-training-form {
+  font-size: 1.5rem;
+  align-self: center;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .label-training-form {
+      font-size: 1.5rem;
+  }
+
+  .input-training-form {
+    font-size: 1.3rem;
+  }
+}

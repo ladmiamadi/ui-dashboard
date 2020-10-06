@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import { InputState, IsFormValid, UserSignUp } from '../../../index.d';
-import { formValidator } from '../../../helpers/formValidatorHelper';
+import { IsFormValid, UserSignUp } from '../../../index.d';
+import { FormValidator } from '../../../helpers/FormValidator';
 import { createDtoUserIntern } from '../../../helpers/userFactoryHelper';
 import { Job, User } from '../../../../app';
 import { RootState, RootDispatch } from '../../../../app/state/store';
@@ -18,8 +18,8 @@ interface Props {
 }
 
 export class ContentModalFooter extends React.Component<Props> {
-  isPostAvailable = (): InputState => {
-    return this.props.isRequesting ? InputState.FALSE : formValidator(this.props.isFormValid);
+  isPostAvailable = (): boolean  => {
+    return this.props.isRequesting ? false : FormValidator.isAllFieldValidated<IsFormValid>(this.props.isFormValid);
   }
 
   postUserInDb = () => {
@@ -29,8 +29,8 @@ export class ContentModalFooter extends React.Component<Props> {
   }
 
   render() {
-    const isPostAvailable: InputState = this.isPostAvailable();
-    const colorButtonAdd = isPostAvailable === InputState.TRUE ? 'success' : 'secondary';
+    const isPostAvailable = this.isPostAvailable();
+    const colorButtonAdd = isPostAvailable ? 'success' : 'secondary';
 
     return (
       <>

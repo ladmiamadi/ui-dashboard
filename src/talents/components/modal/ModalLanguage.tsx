@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Row } from 'reactstrap';
+import { Button, Row, Container } from 'reactstrap';
 import { RootDispatch, RootState } from '../../../app/state/store';
 import { UserLanguage } from '../../../app/index';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
@@ -18,7 +18,7 @@ interface Props {
 }
 
 export class ModalLanguage extends React.Component<Props> {
-  updateLanguageTest = (property: string, value: string) => {
+  updateLanguage = (property: string, value: string) => {
     this.props.updateLanguage({ property, value });
   }
 
@@ -26,13 +26,13 @@ export class ModalLanguage extends React.Component<Props> {
     const newLanguage = UserLanguageFactory.createEmptyLanguage();
 
     return (
-      <>
+      <Container>
         <Row>
           <SelectFormField
             keyName="language"
             label="Ajouter une nouvelle langue : "
             options={this.props.languages}
-            handleOnChange={this.updateLanguageTest}
+            handleChange={this.updateLanguage}
             value={this.props.language.language}
           />
         </Row>
@@ -43,7 +43,7 @@ export class ModalLanguage extends React.Component<Props> {
               label="Niveau : "
               keyName="level"
               options={LANGUAGES_LEVEL}
-              handleOnChange={this.updateLanguageTest}
+              handleChange={this.updateLanguage}
               value={this.props.language.level}
             />
           </Row>
@@ -63,7 +63,7 @@ export class ModalLanguage extends React.Component<Props> {
             </Row>
           )
         }
-      </>
+      </Container>
     );
   }
 }
@@ -77,6 +77,7 @@ const mapDispatch = (dispatch: RootDispatch) => ({
   postLanguage: dispatch.addLanguage.postLanguage,
   resetLanguage: dispatch.addLanguage.resetLanguage,
   updateLanguage: dispatch.addLanguage.updateLanguage,
+
 });
 
 export default connect(mapState, mapDispatch)(ModalLanguage);

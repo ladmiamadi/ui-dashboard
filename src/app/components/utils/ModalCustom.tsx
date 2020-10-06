@@ -4,7 +4,7 @@ import {
   ModalBody,
   ModalHeader,
 } from 'reactstrap';
-import '../../../talents/components/form/styles/modal-custom.css';
+import './styles/modal-custom.css';
 
 interface Props {
   isModalShown: boolean,
@@ -16,18 +16,14 @@ interface Props {
 export class ModalCustom extends React.Component<Props> {
   render() {
     return (
-      <div>
-        <Modal isOpen={this.props.isModalShown} toggle={this.props.toggleModal} className="modal-action">
-          {/* <ModalHeader className={this.props.className} toggle={this.props.toggleModal}>
-            { this.props.titleModal } */}
-          <ModalHeader toggle={this.props.toggleModal} tag="div">
-            <h6 className="header-modal">{ this.props.titleModal }</h6>
-          </ModalHeader>
-          <ModalBody className="modal-body-content">
-            { this.props.children }
-          </ModalBody>
-        </Modal>
-      </div>
+      <Modal isOpen={this.props.isModalShown} toggle={this.props.toggleModal} className="modal-action">
+        <ModalHeader className={this.props.className} toggle={this.props.toggleModal}>
+          { this.props.titleModal }
+        </ModalHeader>
+        <ModalBody className="modal-content">
+          { this.props.children }
+        </ModalBody>
+      </Modal>
     );
   }
 }
