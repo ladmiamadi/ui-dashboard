@@ -18,16 +18,16 @@ export class App extends React.Component {
     return (
       <Router history={history}>
         <Provider store={store}>
-          <AuthenticationGuard localToken={localStorage.getItem('hdm-network:admin:auth-token')}>
-            <AppContainer>
+          <AppContainer>
+            <AuthenticationGuard localToken={localStorage.getItem('hdm-network:admin:auth-token')}>
               <CustomNavbar/>
                 <Route path="/" exact component={Homepage} />
                 <Route path="/talent" exact component={TalentFormPage} />
                 <Route path="/talents" exact component= {TalentsListPage} />
                 <Route path="/editprofile" exact component={ProfileEditValidation} />
                 <Route path="/intern" exact component={RegisterUser} />
-            </AppContainer>         
-          </AuthenticationGuard>
+            </AuthenticationGuard>
+          </AppContainer>                 
         </Provider>
       </Router>
     );
