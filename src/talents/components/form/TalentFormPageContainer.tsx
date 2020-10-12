@@ -12,6 +12,7 @@ import TalentFormTraining from './TalentFormTraining';
 import TalentFormJob from './TalentFormJob';
 import TalentFormLanguages from './TalentFormLanguages';
 import TalentFormSkills from './TalentFormSkills';
+//import TalentFormFormation from "./TalentFormFormation";
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import classes from './styles/TalentFormPageContainer.module.css';
 
@@ -31,6 +32,7 @@ export class TalentFormPageContainer extends React.Component<Props> {
           <TalentFormInternship {...this.props} />
           <TalentFormJob {...this.props} />
           <TalentFormSkills />
+          {/* <TalentFormFormation {...this.props} /> */}
           <TalentFormLanguages {...this.props} />
           <TalentFormTraining {...this.props} />
           <TalentFormExperience {...this.props} />
