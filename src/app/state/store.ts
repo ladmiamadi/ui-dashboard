@@ -7,6 +7,7 @@ import * as user from './models/user';
 import * as users from '../../talents/state/models/users';
 import * as userSelected from '../../talents/state/models/userSelected';
 import * as userSignUp from '../../talents/state/models/userSignUp';
+import * as userLanguages from '../../talents/state/models/languages/user-languages';
 
 const models = {
   ...auth,
@@ -15,6 +16,7 @@ const models = {
   ...modules,
   ...userSelected,
   ...language,
+  ...userLanguages,
   ...userSignUp,
   ...experience,
 };

@@ -12,22 +12,27 @@ import { store } from '../state/store';
 import RegisterUser from '../../talents/components/add-new-talent/modal/RegisterUser';
 import './styles/App.css';
 import history from '../helpers/history';
+import AuthenticationForm from '../../authentication/components/AuthenticationForm';
+
 
 export class App extends React.Component {
   render() {
     return (
       <Router history={history}>
         <Provider store={store}>
-          <AuthenticationGuard localToken={localStorage.getItem('hdm-network:admin:auth-token')}>
-            <AppContainer>
+          <AppContainer>
+            <AuthenticationGuard 
+            form={<AuthenticationForm />}
+            localToken={localStorage.getItem('hdm:admin:auth-token')}
+            >
               <CustomNavbar/>
                 <Route path="/" exact component={Homepage} />
                 <Route path="/talent" exact component={TalentFormPage} />
                 <Route path="/talents" exact component= {TalentsListPage} />
                 <Route path="/editprofile" exact component={ProfileEditValidation} />
                 <Route path="/intern" exact component={RegisterUser} />
-            </AppContainer>         
-          </AuthenticationGuard>
+            </AuthenticationGuard>
+          </AppContainer>                 
         </Provider>
       </Router>
     );
