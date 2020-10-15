@@ -63,7 +63,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
         <div className="form-section almost-large">
           <div className="form-elements">
             <div className="section-add">
-            <h6>Langues: </h6>
+              <h6>Langues: </h6>
               <Button
                   onClick={this.toggleModalAndResetModalOnQuit}
                   className="form-add-button"
