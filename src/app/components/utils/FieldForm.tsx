@@ -42,7 +42,7 @@ export class FieldForm extends React.Component<Props, State> {
           id={this.props.keyName}
           rows={this.props.rows}
           onChange={(event: FormEvent<HTMLInputElement>) => this.handleChange(event.currentTarget.value)}
-          // defaultValue={this.state.value}
+          defaultValue={this.state.value}
         />
       </FormGroup>
     );
