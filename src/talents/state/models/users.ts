@@ -25,11 +25,8 @@ export const users = createModel({
     initLists: (state: State, users: User[]): State => ({ ...state, users, filteredUsers: users }),
     updateSearchTerm: (state: State, searchTerm: string): State => ({ ...state, searchTerm }),
     updateFilteredUsers: (state: State): State => {
-      if () {
-
-      }
-
-      return ({...state, filteredUsers: })
+      const filteredUsers = state.users.filter(u => u.username.includes(state.searchTerm));
+      return ({...state, filteredUsers })
     },
   },
 

@@ -88,7 +88,7 @@ export class TalentsList extends React.Component<Props, State> {
 }
 
 const mapState = (state: RootState) => ({
-  users: state.users.users,
+  users: state.users.filteredUsers,
   userSelected: state.userSelected.userSelected,
 });
 

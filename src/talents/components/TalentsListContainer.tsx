@@ -12,6 +12,7 @@ interface Props {
   searchTerm: string,
   fetchTalents: () => void,
   updateSearchTerm: (searchTerm: string) => void,
+  updateFilteredUsers: () => void,
 }
 
 export class TalentsListContainer extends React.Component<Props> {
@@ -27,7 +28,7 @@ export class TalentsListContainer extends React.Component<Props> {
     return <TalentsDashBoard 
       searchTerm={this.props.searchTerm}
       updateSearchTerm={this.props.updateSearchTerm}
-    />;
+      updateFilteredUsers={this.props.updateFilteredUsers}  />;
   }
 }
 
