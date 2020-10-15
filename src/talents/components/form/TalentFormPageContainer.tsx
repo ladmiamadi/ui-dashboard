@@ -15,6 +15,7 @@ import TalentFormSkills from './TalentFormSkills';
 //import TalentFormFormation from "./TalentFormFormation";
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import classes from './styles/TalentFormPageContainer.module.css';
+import './styles/TalentForm.css';
 
 interface Props {
   user: User,
@@ -24,26 +25,29 @@ interface Props {
 export class TalentFormPageContainer extends React.Component<Props> {
   render() {
     return (
-      <Container>
-        <Form className={classes.TalentFormContainer}>
-          <TalentFormHead {...this.props} />
-          <TalentFormAddress {...this.props} />
-          <TalentFormInstitution {...this.props} />
-          <TalentFormInternship {...this.props} />
-          <TalentFormJob {...this.props} />
-          <TalentFormSkills />
-          {/* <TalentFormFormation {...this.props} /> */}
-          <TalentFormLanguages {...this.props} />
-          <TalentFormTraining {...this.props} />
-          <TalentFormExperience {...this.props} />
-          <button
-            type="submit"
-            className={classes.TalentFormButton}
-          >
-            Sauvegarder les changements
-          </button>
-        </Form>
-      </Container>
+      <div className="talent-form-page">
+        <Container>
+          <Form className={classes.TalentFormContainer}>
+            <TalentFormHead {...this.props} />
+            <TalentFormAddress {...this.props} />
+            <TalentFormInstitution {...this.props} />
+            <TalentFormInternship {...this.props} />
+            <TalentFormJob {...this.props} />
+            <TalentFormSkills />
+            {/* <TalentFormFormation {...this.props} /> */}
+            <TalentFormLanguages {...this.props} />
+            <TalentFormTraining {...this.props} />
+            <TalentFormExperience {...this.props} />
+            <button
+              type="submit"
+              className={classes.TalentFormButton}
+            >
+              Sauvegarder les changements
+            </button>
+          </Form>
+        </Container>
+      </div>
+      
     );
   }
 }
