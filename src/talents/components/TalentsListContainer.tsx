@@ -4,7 +4,7 @@ import { Loader } from '../../app/components/utils/Loader';
 import { TalentsDashBoard } from './TalentsDashBoard';
 import { User } from '../../app';
 import { connect } from 'react-redux';
-import { doubleArrayOfFormPropsConstructor } from '../../authentication/formHelpers/formHelpers';
+//import { doubleArrayOfFormPropsConstructor } from '../../authentication/formHelpers/formHelpers';
 
 interface Props {
   users: User[],
@@ -40,6 +40,7 @@ const mapState = (state: RootState) => ({
 const mapDispatch = (dispatch: RootDispatch) => ({
   fetchTalents: dispatch.users.fetchTalents,
   updateSearchTerm: dispatch.users.updateSearchTerm,
+  updateFilteredUsers: dispatch.users.updateFilteredUsers,
 });
 
 export default connect(mapState, mapDispatch)(TalentsListContainer);

@@ -10,7 +10,6 @@ import { TalentModal } from './modal/TalentModal';
 import TalentsListElement from './TalentsListElement';
 import { UserProfileHelpers } from '../../app/helpers/UserProfileHelpers';
 import './styles/TalentsList.css';
-import { ContentModalBody } from './add-new-talent/modal/ContentBody';
 
 interface Props {
   users: User[],

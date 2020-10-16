@@ -6,8 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 interface Props {
   icon?: IconDefinition,
   placeholder?: string,
-  onSearch: (search: string) => any,
   value: string,
+  onSearch: (search: string) => void,
+  validateSearch?: () => void,
 }
 
 export class SearchBar extends React.Component<Props> {
@@ -24,6 +25,12 @@ export class SearchBar extends React.Component<Props> {
           onChange={({ target }) => this.props.onSearch(target.value)}
           className="search-bar"
           value={this.props.value}
+          onKeyUp={(event) => {
+              if (this.props.validateSearch && event.key === 'Enter'){
+                this.props.validateSearch();                
+              }           
+            }
+          }
         />
       </InputGroup>
     );
