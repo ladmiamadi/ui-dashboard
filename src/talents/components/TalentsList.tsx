@@ -10,6 +10,7 @@ import { TalentModal } from './modal/TalentModal';
 import TalentsListElement from './TalentsListElement';
 import { UserProfileHelpers } from '../../app/helpers/UserProfileHelpers';
 import './styles/TalentsList.css';
+import { ContentModalBody } from './add-new-talent/modal/ContentBody';
 
 interface Props {
   users: User[],
@@ -37,8 +38,21 @@ export class TalentsList extends React.Component<Props, State> {
     } else
       history.push('/talent');
   }
+  // filteredIntern = (talent: User) => {
+  //   this.props.updateUserSelected;
+
+  //   if (contentSearchBar == ){
+
+  //   }
+  // }
+  // filteredModal(event) {
+  //   this.setState({searchTerm
+  //   })
+
+  // }
 
   render() {
+    // let filteredInterns = this.props.updateUserSelected;
     return (
       <Container className={this.state.isModalOpen ? 'hide-card' : 'talent-card'}>
         <Row className="talent-row">
@@ -57,7 +71,9 @@ export class TalentsList extends React.Component<Props, State> {
                         toggleModal={() => this.toggleModal(talent)}
                         titleModal={profile.firstName + ' ' + profile.lastName}
                         className="talent-title">
-                        <TalentModal talent={talent}/>
+                          {/* console.log(this.state.isModalOpen); */}
+                        <TalentModal talent={talent}/>$
+                        
                       </ModalCustom>
                     </React.Fragment>
                   )

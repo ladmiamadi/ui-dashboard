@@ -8,7 +8,7 @@ import { RootState } from '../../../app/state/store';
 //import DateSlicer from '../../helpers/DateSlicer';
 //import { FormatDate } from '../../index.d';
 import { UpdateUserPayload } from '../../state/models/userSelected';
-import ReactDatePicker from "react-datepicker";
+import ReactDatePicker from 'react-datepicker';
 
 interface Props {
   user: User,
@@ -39,13 +39,13 @@ export class TalentFormFormation extends React.Component<Props> {
                 })}
                 value={elem.institution} />
               <ReactDatePicker
-                  selected={elem.startDate}
-                  onChange={(value) => this.props.modifyUser({
-                    category: 'userTrainings',
-                    property: 'startDate',
-                    value: value,
-                    index: index,
-                  })}
+                selected={elem.startDate}
+                onChange={(value) => this.props.modifyUser({
+                  category: 'userTrainings',
+                  property: 'startDate',
+                  value: value,
+                  index: index,
+                })}
               />
               <DateFormField
                 className="medium"

@@ -22,9 +22,6 @@ export default class TalentsListElement extends React.Component<Props> {
           src={picture}
         />
         <p className="profile-info">
-          {this.props.profile.firstName}
-        </p>
-        <p className="profile-info">
           {this.props.profile.lastName}
         </p>
       </div>
