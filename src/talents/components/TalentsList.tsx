@@ -5,19 +5,20 @@ import _ from 'lodash';
 import { User } from '../../app';
 import { ModalCustom } from '../../app/components/utils/ModalCustom';
 import history from '../../app/helpers/history';
-import { RootDispatch, RootState } from '../../app/state/store';
+import { RootDispatch } from '../../app/state/store';
 import { TalentModal } from './modal/TalentModal';
 import TalentsListElement from './TalentsListElement';
 import { UserProfileHelpers } from '../../app/helpers/UserProfileHelpers';
 import './styles/TalentsList.css';
 
 interface Props {
+  searchTerm: string,
   users: User[],
   updateUserSelected: (userSelected: User) => void,
 }
 
 interface State {
-  isModalOpen:boolean,
+  isModalOpen: boolean,
 }
 
 export class TalentsList extends React.Component<Props, State> {
@@ -37,48 +38,33 @@ export class TalentsList extends React.Component<Props, State> {
     } else
       history.push('/talent');
   }
-  // filteredIntern = (talent: User) => {
-  //   this.props.updateUserSelected;
-
-  //   if (contentSearchBar == ){
-
-  //   }
-  // }
-  // filteredModal(event) {
-  //   this.setState({searchTerm
-  //   })
-
-  // }
 
   render() {
-    // let filteredInterns = this.props.updateUserSelected;
     return (
       <Container className={this.state.isModalOpen ? 'hide-card' : 'talent-card'}>
         <Row className="talent-row">
           {
             this.props.users.map((talent, index) => (
-              <Col key={index} className="element" xs={5} sm={3} xl={2} onClick={() => this.toggleModal(talent)}>
-                {
-                  UserProfileHelpers.findUserProfileLive(talent)?.map((profile) => (
-                    <React.Fragment key={profile.id}>
-                      <TalentsListElement
-                        profile={profile}
-                        talent={talent}
-                      />
-                      <ModalCustom
-                        isModalShown={this.state.isModalOpen}
-                        toggleModal={() => this.toggleModal(talent)}
-                        titleModal={profile.firstName + ' ' + profile.lastName}
-                        className="talent-title">
-                          {/* console.log(this.state.isModalOpen); */}
-                        <TalentModal talent={talent}/>$
-                        
-                      </ModalCustom>
-                    </React.Fragment>
-                  )
-                    )
-                }
-              </Col>
+              UserProfileHelpers.findUserProfileLive(talent, this.props.searchTerm)?.map((profile) => (
+
+                <Col key={index} className="element" xs={5} sm={3} xl={2} onClick={() => this.toggleModal(talent)}>
+                  <React.Fragment key={profile.id}>
+                    <TalentsListElement
+                      profile={profile}
+                      talent={talent}
+                    />
+                    <ModalCustom
+                      isModalShown={this.state.isModalOpen}
+                      toggleModal={() => this.toggleModal(talent)}
+                      titleModal={profile.firstName + ' ' + profile.lastName}
+                      className="talent-title">
+                      <TalentModal talent={talent}/>$
+
+                    </ModalCustom>
+                  </React.Fragment>
+                </Col>
+
+              ))
             ))
           }
         </Row>
@@ -87,13 +73,8 @@ export class TalentsList extends React.Component<Props, State> {
   }
 }
 
-const mapState = (state: RootState) => ({
-  users: state.users.filteredUsers,
-  userSelected: state.userSelected.userSelected,
-});
-
 const mapDispatch = (dispatch: RootDispatch) => ({
   updateUserSelected: dispatch.userSelected.updateUserSelected,
 });
 
-export default connect(mapState, mapDispatch)(TalentsList);
+export default connect(() => {}, mapDispatch)(TalentsList);

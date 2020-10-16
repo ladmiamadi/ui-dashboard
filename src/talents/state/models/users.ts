@@ -3,7 +3,7 @@ import { User } from '../../../app';
 import { apiService } from '../../../app/http/service';
 import { createModel } from '@rematch/core';
 import { UsersDatesFormatter } from '../../../app/formatter/usersDatesFormatter';
-//import { SearchBar } from '../../../app/components/utils/SearchBar';
+
 interface State {
   searchTerm: string,
   filteredUsers: User[],
@@ -24,10 +24,6 @@ export const users = createModel({
     setIsFetching: (state: State, isFetching: boolean): State => ({ ...state, isFetching }),
     initLists: (state: State, users: User[]): State => ({ ...state, users, filteredUsers: users }),
     updateSearchTerm: (state: State, searchTerm: string): State => ({ ...state, searchTerm }),
-    updateFilteredUsers: (state: State): State => {
-      const filteredUsers = state.users.filter(u => u.username.includes(state.searchTerm));
-      return ({...state, filteredUsers })
-    },
   },
 
   effects: {

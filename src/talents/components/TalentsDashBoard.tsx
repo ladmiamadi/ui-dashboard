@@ -2,12 +2,13 @@ import React from 'react';
 import { Container } from 'reactstrap';
 import { SearchBar } from '../../app/components/utils/SearchBar';
 import TalentsList from './TalentsList';
+import { User } from '../../app';
 import './styles/TalentsList.css';
 
 interface Props {
   searchTerm: string,
+  users: User[]
   updateSearchTerm: (searchTerm: string) => void,
-  updateFilteredUsers: () => void,
 }
 
 export class TalentsDashBoard extends React.Component<Props> {
@@ -21,11 +22,13 @@ export class TalentsDashBoard extends React.Component<Props> {
               this.props.updateSearchTerm(value);
             }}
             placeholder="Rechercher un talent..."
-            validateSearch={this.props.updateFilteredUsers}
             value={this.props.searchTerm}
           />       
         </div>
-        <TalentsList />
+        <TalentsList
+          searchTerm={this.props.searchTerm}
+          users={this.props.users}
+        />
       </Container>
     );
   }

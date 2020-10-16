@@ -12,7 +12,6 @@ interface Props {
   searchTerm: string,
   fetchTalents: () => void,
   updateSearchTerm: (searchTerm: string) => void,
-  updateFilteredUsers: () => void,
 }
 
 export class TalentsListContainer extends React.Component<Props> {
@@ -28,12 +27,13 @@ export class TalentsListContainer extends React.Component<Props> {
     return <TalentsDashBoard 
       searchTerm={this.props.searchTerm}
       updateSearchTerm={this.props.updateSearchTerm}
-      updateFilteredUsers={this.props.updateFilteredUsers}  />;
+      users={this.props.users}
+    />;
   }
 }
 
 const mapState = (state: RootState) => ({
-  users: state.users.filteredUsers,
+  users: state.users.users,
   searchTerm: state.users.searchTerm,
   isFetching: state.users.isFetching,
 });
@@ -41,7 +41,6 @@ const mapState = (state: RootState) => ({
 const mapDispatch = (dispatch: RootDispatch) => ({
   fetchTalents: dispatch.users.fetchTalents,
   updateSearchTerm: dispatch.users.updateSearchTerm,
-  updateFilteredUsers: dispatch.users.updateFilteredUsers,
 });
 
 export default connect(mapState, mapDispatch)(TalentsListContainer);
