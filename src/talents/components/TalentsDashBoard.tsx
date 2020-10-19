@@ -22,7 +22,7 @@ export class TalentsDashBoard extends React.Component<Props> {
             }}
             placeholder="Rechercher un talent..."
             value={this.props.searchTerm}
-          />       
+          />
         </div>
         <TalentsList
           searchTerm={this.props.searchTerm}
