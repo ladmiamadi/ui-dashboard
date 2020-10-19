@@ -3,6 +3,13 @@ import { User, UserProfile } from '../index';
 
 export class UserProfileHelpers extends React.Component {
 
+  // private static errorInternNotFound() {
+  //   return "stagiaire introuvable";
+  // }
+  // private static isNotInternPresent(profile: UserProfile, searchTerm: string): boolean{
+  //   return UserProfileHelpers.isMatchingProfile(profile,searchTerm), false && UserProfileHelpers.errorInternNotFound(), true
+  // }
+
   private static isMatchingProfile(profile: UserProfile, searchTerm: string): boolean {
     return profile.firstName.toLocaleLowerCase().includes(searchTerm)
       || profile.lastName.toLocaleLowerCase().includes(searchTerm);
