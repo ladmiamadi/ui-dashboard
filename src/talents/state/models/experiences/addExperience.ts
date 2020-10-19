@@ -9,7 +9,7 @@ export interface ExperienceState {
 
 export interface UpdateExperiencePayload {
   property: string,
-  value: string | Date | null,
+  value: string | Date | [Date, Date] | null,
 }
 
 export const addExperience = createModel({

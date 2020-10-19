@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 interface Props {
   icon?: IconDefinition,
   placeholder?: string,
-  onSearch: (search: string) => any,
   value: string,
+  onSearch: (search: string) => void,
 }
 
 export class SearchBar extends React.Component<Props> {
