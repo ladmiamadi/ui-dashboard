@@ -8,16 +8,14 @@
 
 .button-talent-modal {
     margin-left: auto;
-    
     margin-right: auto;
     display: block;
 }
-
 
 .add-margin-top-modal {
     margin-top: 2.5rem;
 }
 
-.add-margin-top-modal p{
-    margin-bottom: 0 !important;
+.add-margin-top-modal p {
+    margin-bottom: 0;
 }

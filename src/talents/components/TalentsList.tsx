@@ -70,16 +70,16 @@ export class TalentsList extends React.Component<Props, State> {
                         </ModalCustom>
                       </React.Fragment>
                     </Col>
-                  ) : null                
+                  ) : null
                 ) 
-              ))             
+              ))
             }
           </Row>
         ) : (
         <h1 className="no-user-found">No matching user profiles were found.</h1>
           )
         }
-      </Container >
+      </Container>
     );
   }
 }
