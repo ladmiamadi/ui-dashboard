@@ -10,9 +10,9 @@ import { Provider } from 'react-redux';
 import { TalentsListPage } from '../../talents/components/TalentsListPage';
 import { store } from '../state/store';
 import RegisterUser from '../../talents/components/add-new-talent/modal/RegisterUser';
-import './styles/App.css';
 import history from '../helpers/history';
 import AuthenticationForm from '../../authentication/components/AuthenticationForm';
+import './styles/App.css';
 
 export class App extends React.Component {
   render() {

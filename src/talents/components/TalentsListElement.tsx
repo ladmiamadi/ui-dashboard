@@ -1,12 +1,11 @@
 import React from 'react';
-import { User, UserProfile } from '../../app';
+import { UserProfile } from '../../app';
 import { env } from '../../helpers/environment';
 import './styles/TalentsList.css';
 import './styles/TalentModal.css';
 
 interface Props {
   profile: UserProfile,
-  talent: User,
 }
 
 export default class TalentsListElement extends React.Component<Props> {

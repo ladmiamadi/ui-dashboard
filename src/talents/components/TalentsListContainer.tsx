@@ -4,7 +4,6 @@ import { Loader } from '../../app/components/utils/Loader';
 import { TalentsDashBoard } from './TalentsDashBoard';
 import { User } from '../../app';
 import { connect } from 'react-redux';
-//import { doubleArrayOfFormPropsConstructor } from '../../authentication/formHelpers/formHelpers';
 
 interface Props {
   users: User[],

@@ -12,7 +12,6 @@ interface Props {
 }
 
 export class TalentsDashBoard extends React.Component<Props> {
-
   render() {
     return (
       <Container>
