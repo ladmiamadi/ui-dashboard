@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Col, Container, Row } from 'reactstrap';
 import _ from 'lodash';
-import { User} from '../../app';
+import { User } from '../../app';
 import { ModalCustom } from '../../app/components/utils/ModalCustom';
 import history from '../../app/helpers/history';
 import { RootDispatch } from '../../app/state/store';
@@ -39,7 +39,7 @@ export class TalentsList extends React.Component<Props, State> {
       history.push('/talent');
   }
 
-  userHasMatchingProfile(user: User) : boolean {
+  userHasMatchingProfile(user: User): boolean {
     const userProfileLive = UserProfileHelpers.findUserProfileLive(user, this.props.searchTerm);
 
     return userProfileLive ? userProfileLive.length > 0 : false;
@@ -71,7 +71,7 @@ export class TalentsList extends React.Component<Props, State> {
                       </React.Fragment>
                     </Col>
                   ) : null
-                ) 
+                )
               ))
             }
           </Row>
