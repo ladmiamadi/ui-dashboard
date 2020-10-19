@@ -39,36 +39,48 @@ export class TalentsList extends React.Component<Props, State> {
       history.push('/talent');
   }
 
+  userHasMatchingProfile(user: User): boolean {
+    const userProfileLive = UserProfileHelpers.findUserProfileLive(user, this.props.searchTerm);
+    return userProfileLive ? userProfileLive.length > 0 :  false;
+  }
+
   render() {
+    const existUsersWithLiveProfile = this.props.users.filter(user => this.userHasMatchingProfile(user)).length > 0;
+
     return (
       <Container className={this.state.isModalOpen ? 'hide-card' : 'talent-card'}>
-        <Row className="talent-row">
-          {
-            this.props.users.map((talent, index) => (
-              UserProfileHelpers.findUserProfileLive(talent, this.props.searchTerm)?.map((profile) => (
+        { existUsersWithLiveProfile ? (
+          <Row className="talent-row">
+            {
+              this.props.users.map((talent, index) => (
+                UserProfileHelpers.findUserProfileLive(talent, this.props.searchTerm)?.map((profile) => (
 
-                <Col key={index} className="element" xs={5} sm={3} xl={2} onClick={() => this.toggleModal(talent)}>
-                  <React.Fragment key={profile.id}>
-                    <TalentsListElement
-                      profile={profile}
-                      talent={talent}
-                    />
-                    <ModalCustom
-                      isModalShown={this.state.isModalOpen}
-                      toggleModal={() => this.toggleModal(talent)}
-                      titleModal={profile.firstName + ' ' + profile.lastName}
-                      className="talent-title">
-                      <TalentModal talent={talent}/>$
+                  <Col key={index} className="element" xs={5} sm={3} xl={2} onClick={() => this.toggleModal(talent)}>
+                    <React.Fragment key={profile.id}>
+                      <TalentsListElement
+                        profile={profile}
+                        talent={talent}
+                      />
+                      <ModalCustom
+                        isModalShown={this.state.isModalOpen}
+                        toggleModal={() => this.toggleModal(talent)}
+                        titleModal={profile.firstName + ' ' + profile.lastName}
+                        className="talent-title">
+                        <TalentModal talent={talent} />$
 
                     </ModalCustom>
-                  </React.Fragment>
-                </Col>
+                    </React.Fragment>
+                  </Col>
 
+                ))
               ))
-            ))
-          }
-        </Row>
-      </Container>
+            }
+          </Row>
+        ) : (
+            <Row className="talent-row">No matching user profiles were found</Row>
+          )
+        }
+      </Container >
     );
   }
 }
@@ -77,4 +89,4 @@ const mapDispatch = (dispatch: RootDispatch) => ({
   updateUserSelected: dispatch.userSelected.updateUserSelected,
 });
 
-export default connect(() => {}, mapDispatch)(TalentsList);
+export default connect(() => { }, mapDispatch)(TalentsList);
