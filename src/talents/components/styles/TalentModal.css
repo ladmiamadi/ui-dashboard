@@ -13,10 +13,11 @@
     display: block;
 }
 
-#add-margin-top-modal {
+
+.add-margin-top-modal {
     margin-top: 2.5rem;
 }
 
-p {
+.add-margin-top-modal p{
     margin-bottom: 0 !important;
 }

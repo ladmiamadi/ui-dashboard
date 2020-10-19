@@ -20,7 +20,7 @@ export default class TalentsListElement extends React.Component<Props> {
           alt={this.props.profile.firstName}
           src={picture}
         />
-        <div id="add-margin-top-modal">
+        <div className="add-margin-top-modal">
           <p>
             {this.props.profile.lastName}
           </p>

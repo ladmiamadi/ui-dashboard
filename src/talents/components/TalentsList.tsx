@@ -41,7 +41,7 @@ export class TalentsList extends React.Component<Props, State> {
 
   userHasMatchingProfile(user: User) : boolean {
     const userProfileLive = UserProfileHelpers.findUserProfileLive(user, this.props.searchTerm);
-    
+
     return userProfileLive ? userProfileLive.length > 0 : false;
   }
 
@@ -76,7 +76,7 @@ export class TalentsList extends React.Component<Props, State> {
             }
           </Row>
         ) : (
-        <h1 id="no-user-founded">No matching user profiles were found</h1>
+        <h1 className="no-user-found">No matching user profiles were found.</h1>
           )
         }
       </Container >
