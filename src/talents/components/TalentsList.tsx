@@ -88,4 +88,4 @@ const mapDispatch = (dispatch: RootDispatch) => ({
   updateUserSelected: dispatch.userSelected.updateUserSelected,
 });
 
-export default connect(() => { }, mapDispatch)(TalentsList);
+export default connect(() => {}, mapDispatch)(TalentsList);
