@@ -1,0 +1,18 @@
+button {
+    background: white;
+    border: none;
+    cursor: pointer;
+}
+
+.react-calendar-timeline .rct-dateHeader-primary {
+    background: white;
+    color: black;
+}
+
+.react-calendar-timeline .rct-header-root {
+    background: white;
+}
+
+.react-calendar-timeline .rct-vertical-lines .rct-vl.rct-day-6, .react-calendar-timeline .rct-vertical-lines .rct-vl.rct-day-0 {
+    background-color: black;
+}

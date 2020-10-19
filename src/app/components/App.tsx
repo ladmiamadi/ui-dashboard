@@ -15,6 +15,9 @@ import history from '../helpers/history';
 import AuthenticationForm from '../../authentication/components/AuthenticationForm';
 
 
+import TimelineCustom from '../timeline/components/Timeline';
+
+
 export class App extends React.Component {
   render() {
     return (
@@ -31,6 +34,7 @@ export class App extends React.Component {
                 <Route path="/talents" exact component= {TalentsListPage} />
                 <Route path="/editprofile" exact component={ProfileEditValidation} />
                 <Route path="/intern" exact component={RegisterUser} />
+                <Route path="/timeline" exact component={TimelineCustom} />
             </AuthenticationGuard>
           </AppContainer>                 
         </Provider>
