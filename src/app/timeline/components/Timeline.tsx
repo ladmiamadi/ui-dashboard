@@ -8,15 +8,23 @@ import Timeline, {
 import Data from "../common/Data"
 import 'react-calendar-timeline/lib/Timeline.css'
 import '../styles/Timeline.css'
+import TimelineTitle from './TimelineTitle'
 
 interface Props {
     Data: string | number,
     moment: number
 }
 
+interface itemRenderer {
+  getItemProps: any,
+  item: any,
+  itemContext: any
+}
+
 interface State {
     visibleTimeStart: number,
-    visibleTimeEnd: number
+    visibleTimeEnd: number,
+    groupsidlist: any
 }
 
 // Interfaces are not working...
@@ -59,6 +67,18 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
       .add(1, "week")
       .valueOf();
 
+    /* IMPORTANT
+    Groups ids :
+      1: DEV -=- 2: RH -=- 3: Commercial
+    */
+    const groupsidlist = {
+      0: "DEV 1",
+      1: "DEV 2",
+      2: "DEV 3",
+      3: "RH",
+      4: "Commercial",
+    }
+
     /*const GroupToNodes = Groups.map(groups => {
       const isRoot = () => {
         if (groups.title == "DEV" || groups.title == "RH" || groups.title == "B2B")
@@ -76,8 +96,44 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
 
     this.state = {
       visibleTimeStart,
-      visibleTimeEnd
+      visibleTimeEnd,
+      groupsidlist,
     };
+  }
+
+  // result = items //// sorted = group
+  sort_data_array = (toreturn:any) => {
+    let sorting = [...Data.Groups]
+    let unsorteditems = [...Data.Items]
+    let sortedname = []
+    let sorted = []
+    let result = []
+    let i
+    let j
+    for (i in Data.Groups) {
+      sortedname.push(sorting[i].rightTitle)
+    }
+    sortedname.sort()
+    for (i in Data.Groups) {
+      for (j in Data.Groups) {
+        if (sorting[j].rightTitle == sortedname[i]) {
+          sorted.push(sorting[j])
+          break
+        }
+      }
+    }
+    for (i in Data.Groups) {
+      for (j in Data.Groups) {
+        if (this.state.groupsidlist[j] == sorted[i].rightTitle) {
+          result.push(unsorteditems[j])
+          break
+        }
+      }
+    }
+    console.log(result)
+    console.log("vs")
+    console.log(sorted)
+    return [...result]
   }
 
   /* convert_timeline_to_multiple_days
@@ -88,12 +144,13 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
   */
   convert_timeline_to_multiple_days = () => {
     let i;
-    let rsltData = [...Data.Items];
+    let rsltData = this.sort_data_array(1);
     let newCP = {...rsltData[0]};
     let datelimit;
     let newDates;
     let arraybckp = 0;
 
+    console.log(rsltData)
     for (i in Data.Items) {
       arraybckp = Number(i)+1;
       datelimit = Data.Items[i].end_time;
@@ -120,36 +177,54 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
     return rsltData;
   }
 
+  //Edit the styling of the items
+  itemRenderer = ({ item, getItemProps, itemContext }:itemRenderer) => {
+    const background = itemContext.selected ? (item.state == 0 ? (item.state = 1, "yellow") : (item.state == 1 ? (item.state = 2, "red") : (item.state = 0, "green") ) ) : 
+    (item.state == 0 ? "green" : (item.state == 1 ? "yellow" : "red" ) )
+    const color = (item.state == 1 ? "black" : "white" )
+    const borderColor = itemContext.selected ? "orange" : "rgba(0, 0, 0, 0.500)"
+    return (
+      <div
+        {...getItemProps({
+          style: {
+            background,
+            color,
+            borderColor,
+            borderLeftWidth: itemContext.selected ? 5 : 1,
+            borderRightWidth: itemContext.selected ? 5 : 1
+          }
+        })}
+      >
+        {item.state == 0 ? itemContext.title : (item.state == 1 ? "EN ATTENTE" : "ABSENT")}
+      </div>
+    );
+  };
 
   onPrevClick = () => {
-    const zoom = this.state.visibleTimeEnd - this.state.visibleTimeStart;
     this.setState(state => ({
-      visibleTimeStart: state.visibleTimeStart - zoom,
-      visibleTimeEnd: state.visibleTimeEnd - zoom
+      visibleTimeStart: Number(moment(state.visibleTimeStart).startOf("week").add(-1, 'week').add(1, 'days')),
+      visibleTimeEnd: Number(moment(state.visibleTimeEnd).startOf("week").add(-1, 'week').add(1, 'days'))
     }));
   };
 
   onPrevClickMonth = () => {
-    const zoom = (this.state.visibleTimeEnd - this.state.visibleTimeStart)*4;
     this.setState(state => ({
-      visibleTimeStart: state.visibleTimeStart - zoom,
-      visibleTimeEnd: state.visibleTimeEnd - zoom
+      visibleTimeStart: Number(moment(state.visibleTimeStart).startOf("week").add(-1, 'month').startOf("week").add(1, 'days')),
+      visibleTimeEnd: Number(moment(state.visibleTimeEnd).startOf("week").add(-1, 'month').startOf("week").add(1, 'days'))
     }));
   };
 
   onNextClick = () => {
-    const zoom = this.state.visibleTimeEnd - this.state.visibleTimeStart;
     this.setState(state => ({
-      visibleTimeStart: state.visibleTimeStart + zoom,
-      visibleTimeEnd: state.visibleTimeEnd + zoom
+      visibleTimeStart: Number(moment(state.visibleTimeStart).startOf("week").add(1, 'week').add(1, 'days')),
+      visibleTimeEnd: Number(moment(state.visibleTimeEnd).startOf("week").add(1, 'week').add(1, 'days'))
     }));
   };
 
   onNextClickMonth = () => {
-    const zoom = (this.state.visibleTimeEnd - this.state.visibleTimeStart)*4;
     this.setState(state => ({
-      visibleTimeStart: state.visibleTimeStart + zoom,
-      visibleTimeEnd: state.visibleTimeEnd + zoom
+      visibleTimeStart: Number(moment(state.visibleTimeStart).startOf("week").add(1, 'month').startOf("week").add(1, 'days')),
+      visibleTimeEnd: Number(moment(state.visibleTimeEnd).startOf("week").add(1, 'month').startOf("week").add(1, 'days'))
     }));
   };
 
@@ -158,6 +233,7 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
     const newarrayitems = this.convert_timeline_to_multiple_days()
     return (
       <div>
+        <TimelineTitle />
         <button onClick={this.onPrevClickMonth}>{"<<<"}</button>
         <button onClick={this.onPrevClick}>{"<<"}</button>
         {/* <button onClick={this.onPrevClickDay}>{"<"}</button>
@@ -170,20 +246,23 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
           items={newarrayitems}
           stackItems
           canMove={false}
-          itemHeightRatio={0.75}
+          itemHeightRatio={0.55}
+          lineHeight={55}
           visibleTimeStart={visibleTimeStart}
           visibleTimeEnd={visibleTimeEnd}
           rightSidebarWidth={75}
+          sidebarWidth={100}
+          itemRenderer={this.itemRenderer}
           >
           <TimelineHeaders>
             <SidebarHeader>
               {({ getRootProps }) => {
-                return <div {...getRootProps()}>Name</div>
+                return <div {...getRootProps()}>Nom</div>
               }}
             </SidebarHeader>
             <SidebarHeader variant="right">
               {({ getRootProps }) => {
-                return <div {...getRootProps()}>Profession</div>
+                return <div {...getRootProps()}>Fonction</div>
               }}
             </SidebarHeader>
             <DateHeader unit="primaryHeader" />

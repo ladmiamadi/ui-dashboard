@@ -28,15 +28,22 @@ export type DataItems = {
   title: string,
   start_time: number,
   end_time: number,
+  state: number
 }
 
 export let Groups:Array<DataGroups> = //export let Groups:ReadonlyArray<DataGroups>
 [
     {
-      id: 1,
+      id: 0,
       title: 'Pierre',
       groupLabelKey: "Carles",
-      rightTitle: 'DEV',
+      rightTitle: 'DEV 1',
+    },
+    {
+      id: 1,
+      title: 'Jackes',
+      groupLabelKey: "Michelin",
+      rightTitle: 'DEV 2',
     },
     {
       id: 2,
@@ -46,9 +53,15 @@ export let Groups:Array<DataGroups> = //export let Groups:ReadonlyArray<DataGrou
     },
     {
       id: 3,
+      title: 'Alice',
+      groupLabelKey: "Rudolf",
+      rightTitle: 'DEV 3',
+    },
+    {
+      id: 4,
       title: 'Paul',
       groupLabelKey: "Vandenghem",
-      rightTitle: 'B2B',
+      rightTitle: 'Commercial',
     }
 ]
 
@@ -103,26 +116,45 @@ export let Groups = //export let Groups:ReadonlyArray<DataGroups>
 export let Items = //export let Items:ReadonlyArray<DataItems>
 [
     {
+        id: 0,
+        group: 0,
+        title: '8h30 - 12h / 13h - 16h30',
+        start_time: Number(moment().startOf('day')),
+        end_time: Number(moment().startOf('day').add(5, 'days')),
+        state: 0
+    },
+    {
         id: 1,
         group: 1,
-        title: '8h30 - 12h / 12h30 - 16h30',
+        title: '8h45 - 12h / 13h - 16h45',
         start_time: Number(moment().startOf('day')),
-        end_time: Number(moment().startOf('day').add(3, 'days'))
+        end_time: Number(moment().startOf('day').add(5, 'days')),
+        state: 0
     },
     {
         id: 2,
         group: 2,
-        title: '8h30 - 12h / 12h30 - 16h30',
-        start_time: Number(moment().startOf('day').add(-3, 'days')),
-        end_time:  Number(moment().startOf('day').add(9, 'days'))
+        title: '9h - 12h / 13h - 17h',
+        start_time: Number(moment().startOf('day').add(-4, 'days')),
+        end_time:  Number(moment().startOf('day').add(9, 'days')),
+        state: 0
     },
     {
         id: 3,
         group: 3,
-        title: '8h30 - 12h / 12h30 - 16h30',
+        title: '8h - 12h / 13h - 16h',
         start_time: Number(moment().startOf('day').add(2, 'days')),
-        end_time: Number(moment().startOf('day').add(13, 'days'))
-    }
+        end_time: Number(moment().startOf('day').add(13, 'days')),
+        state: 0
+    },
+    {
+        id: 4,
+        group: 4,
+        title: '8h - 12h / 13h - 16h',
+        start_time: Number(moment().startOf('day').add(2, 'days')),
+        end_time: Number(moment().startOf('day').add(13, 'days')),
+        state: 0
+  }
 ]
 
 

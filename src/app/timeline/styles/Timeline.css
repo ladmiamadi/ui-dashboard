@@ -14,5 +14,35 @@ button {
 }
 
 .react-calendar-timeline .rct-vertical-lines .rct-vl.rct-day-6, .react-calendar-timeline .rct-vertical-lines .rct-vl.rct-day-0 {
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.650);
 }
+
+.react-calendar-timeline .rct-item  .rct-item-content {
+    position: sticky;
+    text-align: center;
+    position: -webkit-sticky;
+    left: 0px;
+    overflow: hidden;
+    display: inline-block;
+    border-radius: 2px;
+    padding: 0 6px;
+    z-index: 1;
+    height: 100%; }
+
+.react-calendar-timeline .rct-items .rct-item {
+    overflow: hidden;
+    position: absolute;
+    box-sizing: border-box;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1; }/*
+
+.react-calendar-timeline .rct-items .rct-item.selected {
+      background: #FFC107;
+      border: 1px solid #FF9800;
+      z-index: 2; }
+      .react-calendar-timeline .rct-items .rct-item.selected.can-move {
+        cursor: move; }
+      .react-calendar-timeline .rct-items .rct-item.selected.can-resize {
+        border-right-width: 3px; }*/
