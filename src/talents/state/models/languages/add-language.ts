@@ -37,7 +37,7 @@ export const addLanguage = createModel({
         this.setIsPosting(true);
 
         await apiService.post('/api/user_languages', {
-          user: '/api/users/${user_id}',
+          user: '/api/users/1',
           language: userLanguage.language,
           level: userLanguage.level,
         });
