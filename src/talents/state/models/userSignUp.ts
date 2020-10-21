@@ -100,7 +100,7 @@ export const userSignUp = createModel({
       try {
         const { data } = await apiService.post('/api/users', userSentInDb);
 
-        this.concatUsername(data.username); 
+        this.concatUsername(data.username);
 
         (new Toastify()).info('Success adding ' + data.username + ' in the database.');
 
@@ -123,6 +123,6 @@ export const userSignUp = createModel({
       } finally {
         this.setIsJobsFetching(false);
       }
-    }
+    },
   },
 });

@@ -11,6 +11,7 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     environment: 'live',
     firstName: userSignUp.firstName,
     lastName: userSignUp.lastName,
+    email: userSignUp.username,
     phone: userSignUp.phone,
     status: 'VALIDATED',
   };
@@ -20,6 +21,7 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     environment: 'working',
     firstName: userSignUp.firstName,
     lastName: userSignUp.lastName,
+    email: userSignUp.username,
     phone: userSignUp.phone,
     status: 'VALIDATED',
   };

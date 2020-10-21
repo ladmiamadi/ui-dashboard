@@ -6,7 +6,7 @@ export const createEmptyUserSignUp = (): UserSignUp => ({
   jobPosition: '',
   firstName: '',
   lastName: '',
-  username: '',  
+  username: '',
   phone: '',
 });
 
