@@ -24,7 +24,8 @@ interface itemRenderer {
 interface State {
     visibleTimeStart: number,
     visibleTimeEnd: number,
-    groupsidlist: any
+    groupsidlist: any,
+    SortedData: any
 }
 
 // Interfaces are not working...
@@ -79,6 +80,10 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
       4: "Commercial",
     }
 
+    const SortedData = {
+      Groups: [...Data.Groups],
+      Items: [...Data.Items]
+    }
     /*const GroupToNodes = Groups.map(groups => {
       const isRoot = () => {
         if (groups.title == "DEV" || groups.title == "RH" || groups.title == "B2B")
@@ -98,11 +103,12 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
       visibleTimeStart,
       visibleTimeEnd,
       groupsidlist,
+      SortedData,
     };
   }
 
   // result = items //// sorted = group
-  sort_data_array = (toreturn:any) => {
+  sort_data_array = () => {
     let sorting = [...Data.Groups]
     let unsorteditems = [...Data.Items]
     let sortedname = []
@@ -130,10 +136,8 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
         }
       }
     }
-    console.log(result)
-    console.log("vs")
-    console.log(sorted)
-    return [...result]
+    this.state.SortedData.Groups = sorted
+    this.state.SortedData.Items = result
   }
 
   /* convert_timeline_to_multiple_days
@@ -143,14 +147,15 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
       the program will convert this timeline in 5 seperate days (2 less because weekend), and all other workdays will be able to be selected, so in this case, weekday for Monday
   */
   convert_timeline_to_multiple_days = () => {
+    this.sort_data_array()
+  
     let i;
-    let rsltData = this.sort_data_array(1);
+    let rsltData = [...this.state.SortedData.Items];
     let newCP = {...rsltData[0]};
     let datelimit;
     let newDates;
     let arraybckp = 0;
 
-    console.log(rsltData)
     for (i in Data.Items) {
       arraybckp = Number(i)+1;
       datelimit = Data.Items[i].end_time;
@@ -242,7 +247,7 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
         <button onClick={this.onNextClickMonth}>{">>>"}</button>
         <Timeline
           //keys={newkeys}
-          groups={Data.Groups}
+          groups={this.state.SortedData.Groups}
           items={newarrayitems}
           stackItems
           canMove={false}
