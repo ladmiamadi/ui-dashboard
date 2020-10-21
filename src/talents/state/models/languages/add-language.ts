@@ -2,6 +2,7 @@ import { createModel } from '@rematch/core';
 import { UserLanguageFactory } from '../../../helpers/UserLanguageFactory';
 import { Toastify } from '../../../../helpers/Toastify';
 import { UserLanguage } from '../../../../app';
+import { apiService } from '../../../../app/http/service';
 
 export interface LanguageState {
   language: UserLanguage,
@@ -35,11 +36,11 @@ export const addLanguage = createModel({
       try {
         this.setIsPosting(true);
 
-        /*await apiService.post('/api/user_languages', {
-          user: '/api/users/1',
+        await apiService.post('/api/user_languages', {
+          user: '/api/users/${user_id}',
           language: userLanguage.language,
           level: userLanguage.level,
-        });*/
+        });
 
         dispatch.userLanguages.addUserLanguages(userLanguage);
         this.resetLanguage();
