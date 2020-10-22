@@ -65,6 +65,7 @@ export interface UserProfile {
   status: string,
   environment: string
   picture?: MediaObject,
+  position?: string,
 }
 
 export interface MediaObject {

@@ -15,6 +15,7 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     email: userSignUp.username,
     phone: userSignUp.phone,
     status: 'VALIDATED',
+    position: userSignUp.jobPosition,    
   };
 
   const userProfileWorking: UserProfile = {
@@ -26,6 +27,7 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     email: userSignUp.username,
     phone: userSignUp.phone,
     status: 'VALIDATED',
+    position: userSignUp.jobPosition,
   };
 
   const job: Job = jobCollection.filter((job: Job) => job.position === userSignUp.jobPosition)[0];

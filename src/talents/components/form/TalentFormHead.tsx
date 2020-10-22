@@ -67,7 +67,7 @@ export default class TalentFormHead extends React.Component<Props> {
             label="Fonction: "
             options={['dev', 'SEO', 'HR', 'WebDesign', 'Commercial']}
             handleChange={() => ({})}
-            value="Aucun"
+            value={userProfileWorking?.position || ''}
           />
           <FieldForm
             keyName="email"
