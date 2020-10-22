@@ -6,7 +6,7 @@ export const FORM_REGISTER: FormRegister = {
     label: 'Plateforme',
     regEx: '.',
     type: 'text',
-  },
+  },                  
   firstName: {
     id: 'firstName',
     label: 'Prénom',
