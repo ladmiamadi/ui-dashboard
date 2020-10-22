@@ -7,7 +7,7 @@ import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import ProfileCollection from '../../helpers/ProfileCollection';
-//import { COUNTRIES } from '../../constants/countries';
+import { COUNTRIES } from '../../constants/countries';
 
 interface Props {
   user: User,
@@ -104,7 +104,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               keyName="country"
               className="address-field-form"
               label="Pays: "
-              options={['Afghanistan', 'Afrique du Sud', 'Albanie', 'Algérie', 'Allemagne', 'Andorre', 'Angola', 'Anguilla',	'Antigua-et-Barbuda', 'Antilles Néerlandaises']}
+              options={COUNTRIES}
               handleChange={() => ({})}
               value="Aucun"
             />
