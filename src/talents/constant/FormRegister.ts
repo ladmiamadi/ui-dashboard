@@ -1,6 +1,12 @@
 import { FormRegister } from '..';
 
 export const FORM_REGISTER: FormRegister = {
+  platform: {
+    id: 'platform',
+    label: 'Plateforme',
+    regEx: '.',
+    type: 'text',
+  },
   firstName: {
     id: 'firstName',
     label: 'Prénom',
@@ -15,7 +21,7 @@ export const FORM_REGISTER: FormRegister = {
   },
   country: {
     id: 'country',
-    label: 'Pays',
+    label: 'Nationalité',
     regEx: '.',
     type: 'text',
   },

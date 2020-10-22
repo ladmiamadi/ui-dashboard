@@ -30,10 +30,10 @@ export default class TalentFormInternship extends React.Component<Props> {
           <SelectFormField
             keyName="internship-status"
             label="Statut du stage: "
-            options={['aaa', 'bbb']}
+            options={['Début', 'En cours', 'Fin']}
             className="large"
             handleChange={() => ({})}
-            value=""
+            value="Début"
           />
           <label className="label-internship">Début:  </label>
           <ReactDatePicker

@@ -29,7 +29,8 @@ export const doubleArrayPropsInput = (
 
   return ([
     [
-      createField(props, 'firstName'),
+      createField(props, 'platform'),
+      createField(props, 'firstName'),        
       createField(props, 'lastName'),
     ],
     [

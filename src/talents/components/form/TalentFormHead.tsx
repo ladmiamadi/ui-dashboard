@@ -29,6 +29,17 @@ export default class TalentFormHead extends React.Component<Props> {
           src={filePath}
         />
         <div className="head-block">
+        <FieldForm
+            keyName="platform"
+            label="Plateforme: "
+            type="text"
+            handleChange={(value) => this.props.modifyUser({
+              value: value,
+              index: indexWorking,
+              category: 'userProfiles',
+              property: 'platform',
+            })}
+            value={userProfileWorking?.platform} />
           <FieldForm
             keyName="lastname"
             label="Nom: "
@@ -54,7 +65,7 @@ export default class TalentFormHead extends React.Component<Props> {
           <SelectFormField
             keyName="function"
             label="Fonction: "
-            options={['aaa', 'bbb']}
+            options={['dev', 'SEO', 'HR', 'WebDesign', 'Commercial']}
             handleChange={() => ({})}
             value="Aucun"
           />
@@ -82,7 +93,7 @@ export default class TalentFormHead extends React.Component<Props> {
             value={userProfileWorking?.phone} />
           <FieldForm
             keyName="place"
-            label="Localisation: "
+            label="Nationalité: "
             type="text"
             handleChange={(value) => this.props.modifyUser({
               value: value,
