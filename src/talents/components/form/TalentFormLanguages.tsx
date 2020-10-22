@@ -12,7 +12,8 @@ import { UpdateUserPayload } from '../../state/models/userSelected';
 interface Props {
   isFetching: boolean,
   userLanguages: UserLanguage[],
-  fetchLanguages: () => Promise<void>,
+  userId?: number,
+  fetchLanguages: (userId: number|undefined) => Promise<void>,
   modifyUser: (payload: UpdateUserPayload) => void,
   updateUserLanguage: (language: UserLanguage) => void,
   resetLanguage: () => void,
@@ -45,7 +46,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
   }
 
   componentDidMount = async () => {
-    await this.props.fetchLanguages();
+    await this.props.fetchLanguages(this.props.userId);
   }
 
   toggleModalAndResetModalOnQuit = () => {
@@ -97,6 +98,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
 const mapState = (state: RootState) => ({
   userLanguages: state.userLanguages.languages,
   isFetching: state.userLanguages.isFetching,
+  userId: state.userSelected.userSelected.id,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({

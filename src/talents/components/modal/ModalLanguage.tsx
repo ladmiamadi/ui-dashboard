@@ -12,9 +12,10 @@ interface Props {
     language: UserLanguage,
     languages: string[],
     isPosting: boolean,
+    userId: number | undefined,
     resetLanguage: () => void,
     updateLanguage: (payload: UpdateLanguagePayload) => void,
-    postLanguage: (userLanguage: UserLanguage) => void,
+    postLanguage: (arg: { userLanguage: UserLanguage, userId: number | undefined }) => void,
 }
 
 export class ModalLanguage extends React.Component<Props> {
@@ -23,6 +24,7 @@ export class ModalLanguage extends React.Component<Props> {
     }
 
     render() {
+
         const newLanguage = UserLanguageFactory.createEmptyLanguage();
 
         return (
@@ -55,7 +57,7 @@ export class ModalLanguage extends React.Component<Props> {
                             <Button
                                 className="form-add-button modal-button"
                                 color="default"
-                                onClick={() => this.props.postLanguage(this.props.language)}
+                                onClick={() => this.props.postLanguage({ userLanguage: this.props.language, userId: this.props.userId })}
                                 disabled={this.props.isPosting}
                             >
                                 Ajouter une langue
@@ -71,6 +73,7 @@ export class ModalLanguage extends React.Component<Props> {
 const mapState = (state: RootState) => ({
     language: state.addLanguage.language,
     isPosting: state.addLanguage.isPosting,
+    userId: state.userSelected.userSelected.id,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({

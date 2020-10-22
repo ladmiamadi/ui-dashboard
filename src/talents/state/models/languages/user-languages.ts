@@ -41,11 +41,13 @@ export const userLanguages = createModel({
         },
     },
     effects: {
-        async fetchLanguages() {
+        async fetchLanguages(userId: number|undefined) {
+            if (userId === undefined) return;
+
             try {
                 this.setIsFetching(true);
-                //comment
-                const { data } = await apiService.get('/api/users/1');
+
+                const { data } = await apiService.get(`/api/users/${userId}`);
 
                 this.initUserLanguages(UserLanguagesCollectionFactory.createCollectionFromUser(data));
             } catch (error) {
