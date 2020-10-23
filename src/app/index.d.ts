@@ -32,7 +32,8 @@ export interface UserAddress {
   box?: string
   zipCode?: number,
   city?: string,
-  country: string
+  country?: string,
+  nationality: string,
   status?: string,
 }
 

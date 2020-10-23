@@ -15,10 +15,6 @@ interface Props {
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-// interface State {
-//   unselectedCountries: string[],
-// }
-
 export default class TalentFormAddress extends React.Component<Props> {
   render() {
     const indexWorking: number = ProfileCollection.findWorkingIndex(this.props.user.userProfiles);
@@ -81,7 +77,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               handleChange={(value: string) => this.props.modifyUser({
                 category: 'userAddress',
                 property: 'zipCode',
-                value: +value,
+                value: value,
                 index: -1,
               })}
               value={this.props.user.userAddress?.zipCode} />
@@ -107,7 +103,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               label="Pays: "
               options={COUNTRIES}
               handleChange={() => ({})}
-              value="Aucun"
+              value={this.props.user.userAddress?.country || ''}
             />
           </Col>
           <Col md={6}>

@@ -34,7 +34,8 @@ export const doubleArrayPropsInput = (
       createField(props, 'lastName'),
     ],
     [
-      createField(props, 'country'),
+      createField(props, 'nationality'),
+      // createField(props, 'country'),
       createField(props, 'phone'),
     ],
     [

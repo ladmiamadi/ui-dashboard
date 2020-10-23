@@ -3,7 +3,8 @@ import { Job, User, UserAddress, UserJob, UserProfile } from '../../app';
 
 export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]): User => {
   const userAddress: UserAddress = {
-    country: userSignUp.country,
+    // country: userSignUp.country,
+    nationality: userSignUp.nationality,
   };
 
   const userProfile: UserProfile = {

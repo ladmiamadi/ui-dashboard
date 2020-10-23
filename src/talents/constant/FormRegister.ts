@@ -19,12 +19,12 @@ export const FORM_REGISTER: FormRegister = {
     regEx: '.',
     type: 'text',
   },
-  country: {
-    id: 'country',
-    label: 'Nationalité',
-    regEx: '.',
-    type: 'text',
-  },
+  // country: {
+  //   id: 'country',
+  //   label: 'Pays',
+  //   regEx: '.',
+  //   type: 'select',
+  // },
   phone: {
     id: 'phone',
     label: 'Téléphone',
@@ -37,6 +37,12 @@ export const FORM_REGISTER: FormRegister = {
     regEx: '.',
     type: 'select',
   },
+  nationality: {
+    id: 'nationality',
+    label: 'Nationalité',
+    regEx: '.',
+    type: 'text',
+  }, 
   birthDate: {
     id: 'birthDate',
     label: 'Date de naissance',

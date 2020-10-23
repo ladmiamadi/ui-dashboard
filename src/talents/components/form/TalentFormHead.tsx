@@ -6,6 +6,7 @@ import { UpdateUserPayload } from '../../state/models/userSelected';
 import ProfileCollection from '../../helpers/ProfileCollection';
 import { env } from '../../../helpers/environment';
 import { FUNCTION } from '../../constants/function';
+// import { COUNTRIES } from '../../constants/countries';
 interface Props {
   user: User,
   modifyUser: (payload: UpdateUserPayload) => void,
@@ -88,9 +89,16 @@ export default class TalentFormHead extends React.Component<Props> {
               value: value,
               index: -1,
               category: 'userAddress',
-              property: 'country',
+              property: 'nationality',
             })}
-            value={this.props.user.userAddress?.country} />
+            value={this.props.user.userAddress?.nationality} />
+            {/* <SelectFormField
+            keyName="function"
+            label="Fonction: "
+            options={COUNTRIES}
+            handleChange={() => ({})}
+            value={this.props.user.userAddress?.country || ''}
+          /> */}
           <FieldForm
             keyName="platform"
             label="Plateforme: "
