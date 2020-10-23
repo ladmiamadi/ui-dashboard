@@ -8,6 +8,7 @@ import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import ProfileCollection from '../../helpers/ProfileCollection';
 import { COUNTRIES } from '../../constants/countries';
+import { INTERNOPTIONS } from '../../constants/internshipOptions';
 
 interface Props {
   user: User,
@@ -133,7 +134,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               keyName="search"
               className="address-field-form"
               label="Actuellement en recherche: "
-              options={['Oui', 'Non']}
+              options={INTERNOPTIONS}
               handleChange={() => ({})}
               value="Aucun"
             />
