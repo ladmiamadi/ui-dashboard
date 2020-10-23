@@ -29,17 +29,6 @@ export default class TalentFormHead extends React.Component<Props> {
           src={filePath}
         />
         <div className="head-block">
-        <FieldForm
-            keyName="platform"
-            label="Plateforme: "
-            type="text"
-            handleChange={(value) => this.props.modifyUser({
-              value: value,
-              index: indexWorking,
-              category: 'userProfiles',
-              property: 'platform',
-            })}
-            value={userProfileWorking?.platform} />
           <FieldForm
             keyName="lastname"
             label="Nom: "
@@ -102,6 +91,17 @@ export default class TalentFormHead extends React.Component<Props> {
               property: 'country',
             })}
             value={this.props.user.userAddress?.country} />
+          <FieldForm
+            keyName="platform"
+            label="Plateforme: "
+            type="text"
+            handleChange={(value) => this.props.modifyUser({
+              value: value,
+              index: indexWorking,
+              category: 'userProfiles',
+              property: 'platform',
+            })}
+            value={userProfileWorking?.platform} />
         </div>
         <div className="connection-box">
           <p>Envoyez un email pour configurer la connexion</p>
