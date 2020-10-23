@@ -7,9 +7,9 @@ class TimelineTitle extends Component{
         timenow: (moment().format('MMMM Do YYYY, h:mm:ss'))
     }
 
-    componentDidUpdate() {
+    /*componentDidUpdate() {
         this.state.timenow = (moment().format('MMMM Do YYYY, h:mm:ss'))
-    }
+    }*/
 
     render() {
         return (

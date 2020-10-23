@@ -13,6 +13,7 @@ export type DataGroups = {
   title: string,
   groupLabelKey: string,
   rightTitle: string,
+  display: number
 }
 
 // Old DataItems
@@ -28,7 +29,8 @@ export type DataItems = {
   title: string,
   start_time: number,
   end_time: number,
-  state: number
+  state: number,
+  display: number
 }
 
 export let Groups:Array<DataGroups> = //export let Groups:ReadonlyArray<DataGroups>
@@ -37,31 +39,43 @@ export let Groups:Array<DataGroups> = //export let Groups:ReadonlyArray<DataGrou
       id: 0,
       title: 'Pierre',
       groupLabelKey: "Carles",
-      rightTitle: 'DEV 1',
+      rightTitle: 'DEV',
+      display: 1,
     },
     {
       id: 1,
       title: 'Jackes',
       groupLabelKey: "Michelin",
-      rightTitle: 'DEV 2',
+      rightTitle: 'DEV',
+      display: 1,
     },
     {
       id: 2,
       title: 'Thomas',
       groupLabelKey: "Clemente",
       rightTitle: 'RH',
+      display: 1,
     },
     {
       id: 3,
       title: 'Alice',
       groupLabelKey: "Rudolf",
-      rightTitle: 'DEV 3',
+      rightTitle: 'DEV',
+      display: 1,
     },
     {
       id: 4,
       title: 'Paul',
       groupLabelKey: "Vandenghem",
       rightTitle: 'Commercial',
+      display: 1,
+    },
+    {
+      id: 5,
+      title: 'Pierre',
+      groupLabelKey: "Louis",
+      rightTitle: 'Commercial',
+      display: 1,
     }
 ]
 
@@ -119,17 +133,19 @@ export let Items = //export let Items:ReadonlyArray<DataItems>
         id: 0,
         group: 0,
         title: '8h30 - 12h / 13h - 16h30',
-        start_time: Number(moment().startOf('day')),
+        start_time: Number(moment().startOf('day').add(-2, 'days')),
         end_time: Number(moment().startOf('day').add(5, 'days')),
-        state: 0
+        state: 0,
+        display: 1
     },
     {
         id: 1,
         group: 1,
         title: '8h45 - 12h / 13h - 16h45',
-        start_time: Number(moment().startOf('day')),
-        end_time: Number(moment().startOf('day').add(5, 'days')),
-        state: 0
+        start_time: Number(moment().startOf('day').add(-3, 'days')),
+        end_time: Number(moment().startOf('day').add(7, 'days')),
+        state: 0,
+        display: 1
     },
     {
         id: 2,
@@ -137,24 +153,36 @@ export let Items = //export let Items:ReadonlyArray<DataItems>
         title: '9h - 12h / 13h - 17h',
         start_time: Number(moment().startOf('day').add(-4, 'days')),
         end_time:  Number(moment().startOf('day').add(9, 'days')),
-        state: 0
+        state: 0,
+        display: 1
     },
     {
         id: 3,
         group: 3,
         title: '8h - 12h / 13h - 16h',
-        start_time: Number(moment().startOf('day').add(2, 'days')),
+        start_time: Number(moment().startOf('day').add(0, 'days')),
         end_time: Number(moment().startOf('day').add(13, 'days')),
-        state: 0
+        state: 1,
+        display: 1
     },
     {
         id: 4,
         group: 4,
         title: '8h - 12h / 13h - 16h',
-        start_time: Number(moment().startOf('day').add(2, 'days')),
-        end_time: Number(moment().startOf('day').add(13, 'days')),
-        state: 0
-  }
+        start_time: Number(moment().startOf('day').add(1, 'days')),
+        end_time: Number(moment().startOf('day').add(16, 'days')),
+        state: 0,
+        display: 1
+  },
+  {
+    id: 5,
+    group: 5,
+    title: '8h10 - 12h / 13h - 16h10',
+    start_time: Number(moment().startOf('day').add(-1, 'days')),
+    end_time: Number(moment().startOf('day').add(16, 'days')),
+    state: 0,
+    display: 1
+}
 ]
 
 
