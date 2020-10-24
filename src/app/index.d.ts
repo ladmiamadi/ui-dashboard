@@ -35,6 +35,7 @@ export interface UserAddress {
   country?: string,
   nationality: string,
   status?: string,
+  internOptions?: string,
 }
 
 export interface UserProfile {

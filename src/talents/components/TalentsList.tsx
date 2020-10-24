@@ -76,7 +76,7 @@ export class TalentsList extends React.Component<Props, State> {
             }
           </Row>
         ) : (
-        <h1 className="no-user-found">No matching user profiles were found.</h1>
+        <h1 className="no-user-found">Aucun profil utilisateur correspondant n'a été trouvé.</h1>
           )
         }
       </Container>

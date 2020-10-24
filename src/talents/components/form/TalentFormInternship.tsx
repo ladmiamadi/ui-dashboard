@@ -16,13 +16,13 @@ interface Props {
 export default class TalentFormInternship extends React.Component<Props> {
   render() {
     const checkboxes: Checkbox[] = [
-      { label: 'lundi', checked: false },
-      { label: 'mardi', checked: false } ,
-      { label: 'mercredi', checked: false },
-      { label: 'jeudi', checked: false },
-      { label: 'vendredi', checked: false },
-      { label: 'samedi', checked: false },
-      { label: 'dimanche', checked: false },
+      { label: 'lundi', checked: this.props.user.userJob?.isWorkingOnMonday || false },
+      { label: 'mardi', checked: this.props.user.userJob?.isWorkingOnTuesday || false } ,
+      { label: 'mercredi', checked: this.props.user.userJob?.isWorkingOnWednesday || false },
+      { label: 'jeudi', checked: this.props.user.userJob?.isWorkingOnThursday || false },
+      { label: 'vendredi', checked: this.props.user.userJob?.isWorkingOnFriday || false },
+      { label: 'samedi', checked: this.props.user.userJob?.isWorkingOnSaturday || false },
+      { label: 'dimanche', checked: this.props.user.userJob?.isWorkingOnSunday || false },
     ];
     return (
       <div className="form-section">

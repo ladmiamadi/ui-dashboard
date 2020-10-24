@@ -5,7 +5,9 @@ export class UserProfileHelpers extends React.Component {
 
   private static isMatchingProfile(profile: UserProfile, searchTerm: string): boolean {
     return profile.firstName.toLocaleLowerCase().includes(searchTerm)
-      || profile.lastName.toLocaleLowerCase().includes(searchTerm);
+      || profile.lastName.toLocaleLowerCase().includes(searchTerm)
+      || profile.email.toLocaleLowerCase().includes(searchTerm)
+      || (profile.position || '').toLocaleLowerCase().includes(searchTerm);
   }
 
   private static isMatchingProfileWithSearch(profile: UserProfile, searchTermsStr: string): boolean {

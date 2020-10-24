@@ -5,6 +5,7 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
   const userAddress: UserAddress = {
     // country: userSignUp.country,
     nationality: userSignUp.nationality,
+    //internOptions: userSignUp.internOptions,
   };
 
   const userProfile: UserProfile = {

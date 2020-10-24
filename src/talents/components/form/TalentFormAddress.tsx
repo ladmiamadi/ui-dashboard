@@ -132,7 +132,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               label="Actuellement en recherche: "
               options={INTERNOPTIONS}
               handleChange={() => ({})}
-              value="Aucun"
+              value={this.props.user.userAddress?.internOptions || ''}
             />
           </Col>
         </Row>
