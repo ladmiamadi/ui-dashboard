@@ -7,6 +7,7 @@ import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormField';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import { Checkbox } from '../../../app/';
+//import { property } from 'lodash';
 
 interface Props {
   user: User,
@@ -14,26 +15,66 @@ interface Props {
 }
 
 export default class TalentFormInternship extends React.Component<Props> {
+
+  mapLabelToProperty(label: string) {
+    let property;
+
+    switch (label) {
+      case 'lundi':
+        property = 'isWorkingOnMonday';
+        break;
+      case 'mardi':
+        property = 'isWorkingOnTuesday';
+        break;
+      case 'mercredi':
+        property = 'isWorkingOnWednesday';
+        break;
+      case 'jeudi':
+        property = 'isWorkingOnThursday';
+        break;
+      case 'vendredi':
+        property = 'isWorkingOnFriday';
+        break;
+      case 'samedi':
+        property = 'isWorkingOnSaturday';
+        break;
+      case 'dimanche':
+        property = 'isWorkingOnSunday';
+        break;
+      default:
+        throw new Error(`Unknown value for label: '${label}'`);
+      // break;
+    }
+
+    return property;
+  }
+
   render() {
     const checkboxes: Checkbox[] = [
       { label: 'lundi', checked: this.props.user.userJob?.isWorkingOnMonday || false },
-      { label: 'mardi', checked: this.props.user.userJob?.isWorkingOnTuesday || false } ,
+      { label: 'mardi', checked: this.props.user.userJob?.isWorkingOnTuesday || false },
       { label: 'mercredi', checked: this.props.user.userJob?.isWorkingOnWednesday || false },
       { label: 'jeudi', checked: this.props.user.userJob?.isWorkingOnThursday || false },
       { label: 'vendredi', checked: this.props.user.userJob?.isWorkingOnFriday || false },
       { label: 'samedi', checked: this.props.user.userJob?.isWorkingOnSaturday || false },
       { label: 'dimanche', checked: this.props.user.userJob?.isWorkingOnSunday || false },
     ];
+
     return (
       <div className="form-section">
         <div className="form-elements">
           <SelectFormField
-            keyName="internship-status"
+            keyName="status"
             label="Statut du stage: "
             options={['En Cours', 'Fin']}
             className="large"
-            handleChange={() => ({})}
-            value=""
+            handleChange={(property, value) => this.props.modifyUser({
+              category: 'userJob',
+              property,
+              value,
+              index: -1,
+            })}
+            value={this.props.user.userJob?.status || ''}
           />
           <label className="label-internship">Début:  </label>
           <ReactDatePicker
@@ -80,7 +121,12 @@ export default class TalentFormInternship extends React.Component<Props> {
             className="large days"
             keyName="internship-days"
             label="Jour(s) d'activité: "
-            handleOnChange={() => {}}
+            handleOnChange={(label, value) => this.props.modifyUser({
+              category: 'userJob',
+              property: this.mapLabelToProperty(label),
+              value: value,
+              index: -1,
+            })}
           />
           <FieldForm
             keyName="internship-hours"

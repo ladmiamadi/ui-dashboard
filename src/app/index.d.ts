@@ -68,6 +68,8 @@ export interface UserProfile {
   environment: string
   picture?: MediaObject,
   position?: string,
+  countryDesiredJob?: string,
+  cityDesiredJob?: string,
 }
 
 export interface MediaObject {
@@ -108,7 +110,7 @@ export interface UserExperience {
   task: string,
 }
 
-export interface Training<T, U, D=T> {
+export interface Training<T, U, D = T> {
   id?: U,
   institution: T,
   startDate: D,

@@ -6,7 +6,7 @@ export const FORM_REGISTER: FormRegister = {
     label: 'Plateforme',
     regEx: '.',
     type: 'text',
-  },                  
+  },
   firstName: {
     id: 'firstName',
     label: 'Prénom',
@@ -19,12 +19,6 @@ export const FORM_REGISTER: FormRegister = {
     regEx: '.',
     type: 'text',
   },
-  // country: {
-  //   id: 'country',
-  //   label: 'Pays',
-  //   regEx: '.',
-  //   type: 'select',
-  // },
   phone: {
     id: 'phone',
     label: 'Téléphone',
@@ -42,7 +36,7 @@ export const FORM_REGISTER: FormRegister = {
     label: 'Nationalité',
     regEx: '.',
     type: 'text',
-  }, 
+  },
   birthDate: {
     id: 'birthDate',
     label: 'Date de naissance',

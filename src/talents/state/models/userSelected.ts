@@ -11,10 +11,10 @@ export interface UpdateUserPayload {
   index: number,
   category: string,
   property: string,
-  value: number | string | Date | [Date, Date] | null,
+  value: number | string | Date | [Date, Date] | null | boolean,
 }
 
-export const userSelected = createModel ({
+export const userSelected = createModel({
   state: {
     userSelected: createEmptyUser(),
   } as UserState,

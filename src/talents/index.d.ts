@@ -20,7 +20,6 @@ export enum LoggedUserStatus {
 
 export interface UserRegister<T> {
   birthDate: T,
-  // country: T,
   nationality: T,
   jobPosition: T,
   firstName: T,

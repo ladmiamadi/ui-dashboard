@@ -14,7 +14,7 @@ interface Props {
 }
 
 export class SelectFormField extends React.Component<Props> {
-  updateModelOnChange = (value: string , property: string) => {
+  updateModelOnChange = (value: string, property: string) => {
     if (this.props.updateModel) {
       this.props.updateModel(value, property);
     }
@@ -23,7 +23,7 @@ export class SelectFormField extends React.Component<Props> {
   render() {
     return (
       <FormGroup className={this.props.className}>
-        <Label className="form-label" htmlFor={this.props.label}>{ this.props.label }</Label>
+        <Label className="form-label" htmlFor={this.props.label}>{this.props.label}</Label>
         <Input
           onChange={event => this.props.handleChange(this.props.keyName, event.target.value)}
           className="form-input"
@@ -31,7 +31,7 @@ export class SelectFormField extends React.Component<Props> {
           id={this.props.label}
           value={this.props.value}
         >
-          <option disabled>Aucun</option>
+          <option>Aucun</option>
           <OptionList options={this.props.options} />
         </Input>
       </FormGroup>

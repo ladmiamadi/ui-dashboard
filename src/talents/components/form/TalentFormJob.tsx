@@ -1,9 +1,11 @@
 import React from 'react';
 import { User, UserProfile } from '../../../app';
-import { FieldForm }  from '../../../app/components/utils/FieldForm';
+import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import ProfileCollection from '../../helpers/ProfileCollection';
 import classes from './styles/TalentFormJob.module.css';
+import { COUNTRIES } from '../../constants/countries';
+import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 
 interface Props {
   user: User,
@@ -14,7 +16,7 @@ export default class TalentFormJob extends React.Component<Props> {
   render() {
     const indexWorking: number = ProfileCollection.findWorkingIndex(this.props.user.userProfiles);
     const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
-      this.props.user.userProfiles, 
+      this.props.user.userProfiles,
       'working',
     );
 
@@ -29,7 +31,7 @@ export default class TalentFormJob extends React.Component<Props> {
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'desiredJob',
-            value: value,
+            value,
             index: indexWorking,
           })}
           value={userProfileWorking?.desiredJob} />
@@ -42,10 +44,34 @@ export default class TalentFormJob extends React.Component<Props> {
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'mobility',
-            value: value,
+            value,
             index: indexWorking,
-          })}          
+          })}
           value={userProfileWorking?.mobility} />
+        <SelectFormField
+          keyName="countryDesiredJob"
+          className={classes['job-field']}
+          label="Pays souhaité: "
+          options={COUNTRIES}
+          handleChange={(property, value) => this.props.modifyUser({
+            category: 'userProfiles',
+            property,
+            value,
+            index: indexWorking,
+          })}
+          value={userProfileWorking?.countryDesiredJob || ''} />
+        <FieldForm
+          keyName="job-city"
+          label="Ville souhaité: "
+          className={classes['job-field']}
+          type="text"
+          handleChange={(value) => this.props.modifyUser({
+            category: 'userProfiles',
+            property: 'desiredCity',
+            value,
+            index: indexWorking,
+          })}
+          value={userProfileWorking?.cityDesiredJob} />
         <FieldForm
           keyName="job-actual-pay"
           label="Salaire actuel: "
@@ -56,7 +82,7 @@ export default class TalentFormJob extends React.Component<Props> {
             property: 'actualSalary',
             value: +value,
             index: indexWorking,
-          })}          
+          })}
           value={userProfileWorking?.actualSalary} />
         <FieldForm
           //className="medium"
@@ -69,7 +95,7 @@ export default class TalentFormJob extends React.Component<Props> {
             property: 'expectedSalary',
             value: +value,
             index: indexWorking,
-          })}          
+          })}
           value={userProfileWorking?.expectedSalary} />
         <FieldForm
           keyName="job-description"
@@ -80,9 +106,9 @@ export default class TalentFormJob extends React.Component<Props> {
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'descriptionInFrench',
-            value: value,
+            value,
             index: indexWorking,
-          })}          
+          })}
           value={userProfileWorking?.descriptionInFrench} />
       </div>
     );

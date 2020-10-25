@@ -35,7 +35,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               handleChange={(value: string) => this.props.modifyUser({
                 category: 'userAddress',
                 property: 'street',
-                value: value,
+                value,
                 index: -1,
               })}
               value={this.props.user.userAddress?.street} />
@@ -49,7 +49,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               handleChange={(value: string) => this.props.modifyUser({
                 category: 'userAddress',
                 property: 'number',
-                value: value,
+                value,
                 index: -1,
               })}
               value={this.props.user.userAddress?.number} />
@@ -63,7 +63,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               handleChange={(value: string) => this.props.modifyUser({
                 category: 'userAddress',
                 property: 'box',
-                value: value,
+                value,
                 index: -1,
               })}
               value={this.props.user.userAddress?.box} />
@@ -77,7 +77,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               handleChange={(value: string) => this.props.modifyUser({
                 category: 'userAddress',
                 property: 'zipCode',
-                value: value,
+                value,
                 index: -1,
               })}
               value={this.props.user.userAddress?.zipCode} />
@@ -91,7 +91,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               handleChange={(value: string) => this.props.modifyUser({
                 category: 'userAddress',
                 property: 'city',
-                value: value,
+                value,
                 index: -1,
               })}
               value={this.props.user.userAddress?.city} />
@@ -102,7 +102,12 @@ export default class TalentFormAddress extends React.Component<Props> {
               className="address-field-form"
               label="Pays: "
               options={COUNTRIES}
-              handleChange={() => ({})}
+              handleChange={(property, value) => this.props.modifyUser({
+                category: 'userAddress',
+                property,
+                value,
+                index: -1,
+              })}
               value={this.props.user.userAddress?.country || ''}
             />
           </Col>
@@ -120,18 +125,23 @@ export default class TalentFormAddress extends React.Component<Props> {
               onChange={(value) => this.props.modifyUser({
                 category: 'userProfiles',
                 property: 'birthDate',
-                value: value,
+                value,
                 index: indexWorking,
               })}
             />
           </Col>
           <Col md={6}>
             <SelectFormField
-              keyName="search"
+              keyName="internOptions"
               className="address-field-form"
               label="Actuellement en recherche: "
               options={INTERNOPTIONS}
-              handleChange={() => ({})}
+              handleChange={(property, value) => this.props.modifyUser({
+                category: 'userAddress',
+                property,
+                value,
+                index: -1,
+              })}
               value={this.props.user.userAddress?.internOptions || ''}
             />
           </Col>
