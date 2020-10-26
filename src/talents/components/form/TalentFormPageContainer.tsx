@@ -20,14 +20,23 @@ import './styles/TalentForm.css';
 interface Props {
   user: User,
   modifyUser: (payload: UpdateUserPayload) => void,
+  saveUserInDb: (user: User) => Promise<void>,
 }
 
 export class TalentFormPageContainer extends React.Component<Props> {
+
+  handleSubmit(event: any) {
+    event.preventDefault();
+
+    this.props.saveUserInDb(this.props.user);
+  }
+
   render() {
     return (
       <div className="talent-form-page">
         <Container>
-          <Form className={classes.TalentFormContainer}>
+          <Form onSubmit={(event) => this.handleSubmit(event)}
+          className={classes.TalentFormContainer}>
             <TalentFormHead {...this.props} />
             <TalentFormAddress {...this.props} />
             <TalentFormInstitution {...this.props} />
@@ -58,6 +67,7 @@ const mapState = (state: RootState) => ({
 
 const mapDispatch = (dispatch: RootDispatch) => ({
   modifyUser: dispatch.userSelected.modifyUser,
+  saveUserInDb: dispatch.userSelected.saveUserInDb,
 });
 
 export default connect(mapState, mapDispatch)(TalentFormPageContainer);
