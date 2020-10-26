@@ -67,14 +67,14 @@ export let Groups:Array<DataGroups> = //export let Groups:ReadonlyArray<DataGrou
       id: 4,
       title: 'Paul',
       groupLabelKey: "Vandenghem",
-      rightTitle: 'Commercial',
+      rightTitle: 'B2B',
       display: 1,
     },
     {
       id: 5,
       title: 'Pierre',
       groupLabelKey: "Louis",
-      rightTitle: 'Commercial',
+      rightTitle: 'B2B',
       display: 1,
     }
 ]

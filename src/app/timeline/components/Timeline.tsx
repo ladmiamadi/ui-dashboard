@@ -19,7 +19,7 @@ interface Props {
 interface itemRenderer {
   getItemProps: any,
   item: any,
-  itemContext: any
+  itemContext: any,
 }
 
 interface groupRenderer {
@@ -29,6 +29,8 @@ interface groupRenderer {
 interface State {
     visibleTimeStart: number,
     visibleTimeEnd: number,
+    renderitems: any,
+    rendergroups: any,
     groupslistall: any,
     SortedData: any
 }
@@ -57,6 +59,7 @@ interface State {
   itemTimeStartKey: "start",
   itemTimeEndKey: "end"
 };*/
+
 
 export class TimelineCustom extends React.Component<Props,State> {//React.Component<Props,State,Key>
 
@@ -101,9 +104,14 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
       });
     })*/
 
+    const renderitems = this.itemRenderer
+    const rendergroups = this.groupRenderer
+
     this.state = {
       visibleTimeStart,
       visibleTimeEnd,
+      renderitems,
+      rendergroups,
       groupslistall,
       SortedData,
     };
@@ -169,17 +177,19 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
   /* Sort the data by fonction
   */
   SortDataArray = () => {
-    /*let init_groups = [...Data.Groups]
-    let init_items = [...Data.Items]
-    this.setState({SortedData: {Groups: init_groups}})
-    this.setState({SortedData: {Items: init_items}})*/
-    let sortedgroups = this.state.SortedData.Groups
+    console.log("=============================");
+    
+    //let init_object = Object.assign({}, this.state.SortedData);
+    let init_object = {...this.state.SortedData}
+    //let sortedgroups_state = this.state.SortedData.Groups
+    let sortedgroups_state = init_object.Groups
+    //let init_items_state = this.state.SortedData.Items
     let i
   
-    for (i in sortedgroups) {
-      sortedgroups[i].rightTitle = this.AddNumberAfterGroupname(sortedgroups[i].rightTitle)
+    for (i in sortedgroups_state) {
+      sortedgroups_state[i].rightTitle = this.AddNumberAfterGroupname(sortedgroups_state[i].rightTitle)
     }
-    sortedgroups.sort((a:any, b:any) => {
+    sortedgroups_state.sort((a:any, b:any) => {
       let diff1 = a.rightTitle.toLowerCase(),
       diff2 = b.rightTitle.toLowerCase();
 
@@ -191,6 +201,7 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
       }
       return 0;
     });
+    this.setState({SortedData: init_object})
   }
 
   /* ConvertTimelineToMultipleDays
@@ -203,7 +214,11 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
     this.SortDataArray()
   
     let i;
-    let rsltData = this.state.SortedData.Items;
+    //let init_object = Object.assign({}, this.state.SortedData);
+    let init_object = {...this.state.SortedData}
+    //let init_object = {...this.state.SortedData}
+    //let rsltData = this.state.SortedData.Items;
+    let rsltData = init_object.Items;
     let newCP = {...rsltData[0]};
     let datelimit;
     let newDates;
@@ -227,9 +242,13 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
           newCP.state = Data.Items[i].state
         arraybckp = rsltData.push(newCP);
       }
+      
+      //rsltData.splice(Number(i), 1)
       delete rsltData[Number(i)]; // Works but may result in crash if we manipulate this later without check
       //rsltData.splice(Number(i), 1) //Other way of doing it
     }
+    //SETSTATE
+    this.setState({SortedData: init_object})
   }
 
   //Edit the styling of the items
@@ -239,6 +258,8 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
     const color = (item.state === 1 ? "black" : "white" );
     const borderColor = itemContext.selected ? "orange" : "rgba(0, 0, 0, 0.500)";
     const display = (item.display === 0 ? "none" : "inline")
+    const raison = "?"
+    console.log("itemRenderer");
     return (
       <div
         {...getItemProps({
@@ -250,11 +271,11 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
             borderLeftWidth: itemContext.selected ? 5 : 1,
             borderRightWidth: itemContext.selected ? 5 : 1
           }
-        })}
+        }, item.itemProps)}
       >
-        {item.state === 0 ? itemContext.title : (item.state === 1 ? "EN ATTENTE" : (item.state === 2 ? "ABSENT" : "FERIE"))}
+        {item.state === 0 ? item.title : (item.state === 1 ? "EN ATTENTE" : (item.state === 2 ? ("ABSENT " + "(" + raison + ")") : "FERIE"))}
       </div>
-    );
+    );//item.title
   };
 
   // Edit the styling of the left panel
@@ -263,7 +284,8 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
     const color = "black"
     const borderColor = "black"
     const display = (group.display === 0 ? "none" : "inline")
-    console.log(group)
+    //console.log(group)
+    console.log("groupRenderer");
     return (
       <div className="custom-group"
         style={{
@@ -310,17 +332,50 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
 
   ChangeDisplayGroup = (tochange:any, enable:any) => {
     let i
-    let SortedDataGroups = Object.assign({}, this.state.SortedData)
+    let j
+    //let SortedDataGroups = Object.assign({}, this.state.SortedData);
+    let SortedDataGroups = {...this.state.SortedData}
+    let groupidchange = []
+    //const SortedDataGroups = [...this.state.SortedData]
+    console.log("POUTINE");
+    console.log(SortedDataGroups.Groups);
+    
     for (i in SortedDataGroups.Groups) {
+      //console.log(SortedDataGroups.Groups[i].rightTitle + " VS " + tochange);
+      
       if (SortedDataGroups.Groups[i].rightTitle === tochange) {
-        if (enable === 1)
+        if (enable === 1) {
           SortedDataGroups.Groups[i].display = 1
-        else
+        }
+        else {
+          //console.log(SortedDataGroups.Groups[i]);
+          
           SortedDataGroups.Groups[i].display = 0
+          groupidchange.push(SortedDataGroups.Groups[i].id)
+          SortedDataGroups.Groups.splice(i, 1)
+          //delete SortedDataGroups.Groups[Number(i)];
+        }
       }
     }
-    this.setState({SortedData : SortedDataGroups})
-    //console.log(this.state.SortedData.Groups)
+    for (i in SortedDataGroups.Items) {
+      console.log(SortedDataGroups.Items[i].group + " VS " + groupidchange);
+      for (j in groupidchange) {
+      if (SortedDataGroups.Items[i].group === groupidchange[j]) {
+        if (enable === 0) {
+          SortedDataGroups.Items[i].state = 2
+          SortedDataGroups.Items[i].title = "YES"
+          SortedDataGroups.Items.splice(i, 1)
+        }
+      }
+    }
+  }
+    console.log("POOTIS");
+    //this.setState({SortedData : SortedDataGroups})
+    this.setState(state => ({
+      visibleTimeStart: Number(moment(state.visibleTimeStart)),
+      SortedData: SortedDataGroups
+    }));
+    console.log(SortedDataGroups)
   }
 
   ToggleCheckBox = (onetable:any) => {
@@ -347,14 +402,18 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
       //this.setState({groupslistall})
   }
 
-  render() {
+  componentWillMount() {
     this.ConvertTimelineToMultipleDays(); //Call all sorting functions for timeline
-    const { visibleTimeStart, visibleTimeEnd, SortedData } = this.state;
+  }
+
+  render() {
+    /*if (this.state.SortedData.Items.length === this.state.SortedData.Groups.length)
+      this.ConvertTimelineToMultipleDays(); //Call all sorting functions for timeline*/
+    const { visibleTimeStart, visibleTimeEnd, SortedData, rendergroups, renderitems } = this.state;
     /*const RenderTimelineFilters = this.state.groupslistall.map((tb: any, index: any) => {
       return <TimelineFilters key={index} grouplist={tb}/>
     })*/
-    console.log("render");
-    console.log(SortedData.Groups);
+    console.log("UPDATED RENDER");
     
     return (
       <div>
@@ -368,18 +427,19 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
         <button onClick={this.onNextClick}>{">>"}</button>
         <button onClick={this.onNextClickMonth}>{">>>"}</button>
         <Timeline
-          //keys={newkeys}
           groups={SortedData.Groups}
           items={SortedData.Items}
-          stackItems
+          stackItems={true}
           canMove={false}
           itemHeightRatio={0.55}
           lineHeight={55}
           visibleTimeStart={visibleTimeStart}
           visibleTimeEnd={visibleTimeEnd}
           sidebarWidth={100}
-          itemRenderer={this.itemRenderer}
-          groupRenderer={this.groupRenderer}
+          itemRenderer={renderitems}
+          //itemRenderer={this.itemRenderer}
+          groupRenderer={rendergroups}
+          //groupRenderer={this.groupRenderer}
           >
           <TimelineHeaders>
             <SidebarHeader>
