@@ -1,5 +1,5 @@
 .TimelineFilters {
-    background-color: rgba(0, 0, 0, 0.100);
+    background-color: rgba(0, 0, 0, 0.080);
     padding: 10px;
     margin: 25px;
 }
@@ -9,15 +9,22 @@
 }
 
 .checkboxinput {
-    margin: 5px;
-}
-
-.TimelineFilters_Checkboxes {
-    display: inline;
     margin: 10px;
 }
 
-.TimelineFilters_Title {
+.TimelineFiltersCheckboxes {
+    display: inline;
+    margin: 10px;
+    font-size: 15px;
+}
+
+.TimelineFiltersReason {
+    display: block;
+    margin: 10px;
+    font-size: 15px;
+}
+
+.TimelineFiltersTitle {
     text-align: left;
 }
 

@@ -30,7 +30,7 @@ export type DataItems = {
   start_time: number,
   end_time: number,
   state: number,
-  display: number
+  reason: string
 }
 
 export let Groups:Array<DataGroups> = //export let Groups:ReadonlyArray<DataGroups>
@@ -72,7 +72,7 @@ export let Groups:Array<DataGroups> = //export let Groups:ReadonlyArray<DataGrou
     },
     {
       id: 5,
-      title: 'Pierre',
+      title: 'Marc',
       groupLabelKey: "Louis",
       rightTitle: 'B2B',
       display: 1,
@@ -129,32 +129,41 @@ export let Groups = //export let Groups:ReadonlyArray<DataGroups>
 
 export let Items = //export let Items:ReadonlyArray<DataItems>
 [
+  {
+    id: -1,
+    group: -1,
+    title: 'Aucun Résultat trouvé, merci de verifier vos entrées dans le filtre',
+    start_time: Number(moment().startOf('week')),
+    end_time: Number(moment().startOf('week').add(1, 'week').add(1, 'day')),
+    state: 0,
+    reason: "ERROR"
+},
     {
         id: 0,
         group: 0,
         title: '8h30 - 12h / 13h - 16h30',
-        start_time: Number(moment().startOf('day').add(-2, 'days')),
+        start_time: Number(moment().startOf('day').add(-1, 'days')),
         end_time: Number(moment().startOf('day').add(5, 'days')),
         state: 0,
-        display: 1
+        reason: "Non Justifiée"
     },
     {
         id: 1,
         group: 1,
         title: '8h45 - 12h / 13h - 16h45',
-        start_time: Number(moment().startOf('day').add(-3, 'days')),
+        start_time: Number(moment().startOf('day').add(1, 'days')),
         end_time: Number(moment().startOf('day').add(7, 'days')),
         state: 0,
-        display: 1
+        reason: "Non Justifiée"
     },
     {
         id: 2,
         group: 2,
         title: '9h - 12h / 13h - 17h',
-        start_time: Number(moment().startOf('day').add(-4, 'days')),
+        start_time: Number(moment().startOf('day').add(-3, 'days')),
         end_time:  Number(moment().startOf('day').add(9, 'days')),
         state: 0,
-        display: 1
+        reason: "Non Justifiée"
     },
     {
         id: 3,
@@ -163,7 +172,7 @@ export let Items = //export let Items:ReadonlyArray<DataItems>
         start_time: Number(moment().startOf('day').add(0, 'days')),
         end_time: Number(moment().startOf('day').add(13, 'days')),
         state: 1,
-        display: 1
+        reason: "Non Justifiée"
     },
     {
         id: 4,
@@ -172,16 +181,16 @@ export let Items = //export let Items:ReadonlyArray<DataItems>
         start_time: Number(moment().startOf('day').add(1, 'days')),
         end_time: Number(moment().startOf('day').add(16, 'days')),
         state: 0,
-        display: 1
+        reason: "Non Justifiée"
   },
   {
     id: 5,
     group: 5,
     title: '8h10 - 12h / 13h - 16h10',
-    start_time: Number(moment().startOf('day').add(-1, 'days')),
+    start_time: Number(moment().startOf('day').add(2, 'days')),
     end_time: Number(moment().startOf('day').add(16, 'days')),
     state: 0,
-    display: 1
+    reason: "Non Justifiée"
 }
 ]
 

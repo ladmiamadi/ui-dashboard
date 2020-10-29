@@ -31,8 +31,10 @@ interface State {
     visibleTimeEnd: number,
     renderitems: any,
     rendergroups: any,
-    groupslistall: any,
-    SortedData: any
+    listOfGroups: any,
+    displayData: any,
+    filterBackupDisplayData: any,
+    reason: any
 }
 
 // Interfaces are not working...
@@ -60,7 +62,10 @@ interface State {
   itemTimeEndKey: "end"
 };*/
 
-
+/*
+  Groups : People + Fonction
+  Items : Days in timeline
+*/
 export class TimelineCustom extends React.Component<Props,State> {//React.Component<Props,State,Key>
 
   constructor(props:Props) {
@@ -75,8 +80,8 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
       .add(1, "week")
       .valueOf();
 
-    // This is automatically edited for each new group added from SortedData
-    const groupslistall = [
+    // This is automatically edited for each new group added from displayData
+    const listOfGroups = [
       {
       id: 0,
       groupname: "DEV",
@@ -85,24 +90,21 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
       }
     ]
 
-    const SortedData = {
+    const displayData = {
       Groups: [...Data.Groups],
       Items: [...Data.Items]
     }
-    /*const GroupToNodes = Groups.map(groups => {
-      const isRoot = () => {
-        if (groups.title == "DEV" || groups.title == "RH" || groups.title == "B2B")
-          return true
-        else
-          return false
-      }
-      const parent = isRoot() ? null : groups.id;
 
-      return Object.assign({}, groups, {
-        root: isRoot,
-        parent: parent
-      });
-    })*/
+    const reason = "Non Justifiée"
+
+    const filterBackupDisplayData = [    
+      {
+      id: 0,
+      title: 'EXAMPLE',
+      groupLabelKey: "EXAMPLE",
+      rightTitle: 'EXAMPLE',
+      display: 2,
+    },]
 
     const renderitems = this.itemRenderer
     const rendergroups = this.groupRenderer
@@ -112,84 +114,44 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
       visibleTimeEnd,
       renderitems,
       rendergroups,
-      groupslistall,
-      SortedData,
+      listOfGroups,
+      displayData,
+      filterBackupDisplayData,
+      reason
     };
   }
 
-  AddNumberAfterGroupname = (tosearch:string) => {
-    let backuparray = this.state.groupslistall;
-    let backuparraycpy = {...backuparray[0]};
-    let i;
-    for (i in backuparray) {
-      if (backuparray[i].groupname === tosearch) {
-        backuparray[i].total += 1;
+  addFonctionNameToFilters = (tosearch:string) => {
+    let listOfFonction = this.state.listOfGroups;
+    let copyOfOneItemFonction = {...listOfFonction[0]};
+
+    for (let i in listOfFonction) {
+      if (listOfFonction[i].groupname === tosearch) {
+        listOfFonction[i].total += 1;
         return tosearch;
       }
     }
-    backuparraycpy.id = backuparray.length-1;
-    backuparraycpy.groupname = tosearch;
-    backuparraycpy.total = 1;
-    backuparraycpy.display = 1;
-    backuparray.push(backuparraycpy);
+    copyOfOneItemFonction.id = listOfFonction.length-1;
+    copyOfOneItemFonction.groupname = tosearch;
+    copyOfOneItemFonction.total = 1;
+    copyOfOneItemFonction.display = 1;
+    listOfFonction.push(copyOfOneItemFonction);
     return tosearch;
   }
 
-  // OLD SORTING of Groups and items
-  // OBSELETE
-  // result = items //// sorted = group
-  /*SortDataArray = () => {
-    this.AddNumberAfterGroupname("Dev")
-    this.AddNumberAfterGroupname("PD")
-    let sorting = this.state.SortedData.Groups
-    let unsorteditems = this.state.SortedData.Items
-    let sortedname = []
-    let sorted = []
-    let result = []
-    let i
-    let j
-    for (i in Data.Groups) {
-      sortedname.push(sorting[i].rightTitle)
-    }
-    sortedname.sort()
-    for (i in Data.Groups) {
-      for (j in Data.Groups) {
-        if (sorting[j].rightTitle === sortedname[i]) {
-          sorted.push(sorting[j])
-          break
-        }
-      }
-    }
-    for (i in Data.Items) {
-      for (j in Data.Items) {
-        if (this.state.groupsidlist[j] === sorted[i].rightTitle) {
-          result.push(unsorteditems[j])
-          break
-        }
-      }
-    }
-    //this.setState({SortedData: {Groups: [...sorted]}}) // good but doesnt work
-    //this.SortedData()
-    this.state.SortedData.Groups = sorted
-    this.state.SortedData.Items = result
-  }*/
-
   /* Sort the data by fonction
   */
-  SortDataArray = () => {
-    console.log("=============================");
-    
-    //let init_object = Object.assign({}, this.state.SortedData);
-    let init_object = {...this.state.SortedData}
-    //let sortedgroups_state = this.state.SortedData.Groups
-    let sortedgroups_state = init_object.Groups
-    //let init_items_state = this.state.SortedData.Items
-    let i
-  
-    for (i in sortedgroups_state) {
-      sortedgroups_state[i].rightTitle = this.AddNumberAfterGroupname(sortedgroups_state[i].rightTitle)
-    }
-    sortedgroups_state.sort((a:any, b:any) => {
+  sortAndListOfFonctions = () => {
+    let copyDisplayData = {...this.state.displayData};
+
+    for (let i in copyDisplayData.Groups)
+      copyDisplayData.Groups[i].rightTitle = this.addFonctionNameToFilters(copyDisplayData.Groups[i].rightTitle);
+    this.sortDataArray(copyDisplayData.Groups);
+    this.setState({displayData: copyDisplayData});
+  }
+
+  sortDataArray = (tosort:any) => {
+    tosort.sort((a:any, b:any) => {
       let diff1 = a.rightTitle.toLowerCase(),
       diff2 = b.rightTitle.toLowerCase();
 
@@ -201,65 +163,65 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
       }
       return 0;
     });
-    this.setState({SortedData: init_object})
   }
 
-  /* ConvertTimelineToMultipleDays
+  /* convertTimelineToMultipleDays
     -------------------------------------
     Convert a timezone to be split in multiple selected days
-    EXAMPLE : Thomas work from 10 october to 17 october with 1 day break on monday
-      the program will convert this timeline in 5 seperate days (2 less because weekend), and all other workdays will be able to be selected, so in this case, weekday for Monday
+    EXAMPLE : Thomas work from 10 october to 17 october
+      the program will convert this timeline in 7 seperate days (2 in the weekend will have different styling), and all other workdays will be able to be selected
   */
-  ConvertTimelineToMultipleDays = () => {
-    this.SortDataArray()
+  convertTimelineToMultipleDays = () => {
+    this.sortAndListOfFonctions()
   
-    let i;
-    //let init_object = Object.assign({}, this.state.SortedData);
-    let init_object = {...this.state.SortedData}
-    //let init_object = {...this.state.SortedData}
-    //let rsltData = this.state.SortedData.Items;
-    let rsltData = init_object.Items;
-    let newCP = {...rsltData[0]};
-    let datelimit;
-    let newDates;
-    let arraybckp = 0;
+    let copyDisplayData = {...this.state.displayData}
+    let DisplayDataItems = copyDisplayData.Items;
+    let copyAndEditLastDisplayItem = {...DisplayDataItems[0]};
+    let endDateOfItem;
+    let newDateOfLastItem;
+    let newArrayLenghtOfItem = 0;
 
-    for (i in Data.Items) {
-      arraybckp = Number(i)+1;
-      datelimit = Data.Items[i].end_time;
-      newCP = {...rsltData[i]};
-      newDates = newCP.start_time;
+    for (let i in Data.Items) {
+      if (Data.Items[i].group === -1)
+        continue;
+      newArrayLenghtOfItem = Number(i)+1;
+      endDateOfItem = Data.Items[i].end_time;
+      copyAndEditLastDisplayItem = {...DisplayDataItems[i]};
+      newDateOfLastItem = copyAndEditLastDisplayItem.start_time;
 
-      while (newDates <= Number(moment(datelimit).startOf('day').add(1, 'days'))) {
-        newCP = {...rsltData[arraybckp-1]};
-        newCP.start_time = Number(moment(newDates).startOf('day'));
-        newDates = Number(moment(newDates).startOf('day').add(1, 'days'));
-        newCP.end_time = newDates;
-        newCP.id = rsltData.length+1;
-        if (moment(newCP.start_time).startOf('day').format('dddd') === "Saturday" || moment(newCP.start_time).startOf('day').format('dddd') === "Sunday")
-          newCP.state = 3
+      while (newDateOfLastItem <= Number(moment(endDateOfItem).startOf('day').add(1, 'days'))) {
+        copyAndEditLastDisplayItem = {...DisplayDataItems[newArrayLenghtOfItem-1]};
+        copyAndEditLastDisplayItem.start_time = Number(moment(newDateOfLastItem).startOf('day'));
+        newDateOfLastItem = Number(moment(newDateOfLastItem).startOf('day').add(1, 'days'));
+        copyAndEditLastDisplayItem.end_time = newDateOfLastItem;
+        copyAndEditLastDisplayItem.id = DisplayDataItems.length+1;
+        if (moment(copyAndEditLastDisplayItem.start_time).startOf('day').format('dddd') === "Saturday" || moment(copyAndEditLastDisplayItem.start_time).startOf('day').format('dddd') === "Sunday")
+          copyAndEditLastDisplayItem.state = 3;
         else
-          newCP.state = Data.Items[i].state
-        arraybckp = rsltData.push(newCP);
+          copyAndEditLastDisplayItem.state = Data.Items[i].state;
+          newArrayLenghtOfItem = DisplayDataItems.push(copyAndEditLastDisplayItem);
       }
-      
-      //rsltData.splice(Number(i), 1)
-      delete rsltData[Number(i)]; // Works but may result in crash if we manipulate this later without check
-      //rsltData.splice(Number(i), 1) //Other way of doing it
+      delete DisplayDataItems[Number(i)]; // Works but may result in crash if we manipulate this later without check
+      //rsltData = rsltData.splice(Number(i), 1) //This doesn't work unless we execute the loop for another time maybe (not very optimised)
     }
-    //SETSTATE
-    this.setState({SortedData: init_object})
+    this.setState({
+      displayData: copyDisplayData
+    });
   }
 
   //Edit the styling of the items
   itemRenderer = ({ item, getItemProps, itemContext }:itemRenderer) => {
-    const background = itemContext.selected ? (item.state === 0 ? (item.state = 1, "yellow") : (item.state === 1 ? (item.state = 2, "red") : (item.state === 2 ? (item.state = 3, "gray") : (item.state = 0, "green") ) ) ) : 
-    (item.state === 0 ? "green" : (item.state === 1 ? "yellow" : ((item.state === 2 ? "red" : "gray" )) ) );
-    const color = (item.state === 1 ? "black" : "white" );
+    let background = itemContext.selected ? (item.state === 0 ? (item.state = 1, "yellow") : (item.state === 1 ? (item.state = 2, "red") : (item.state === 2 ? (item.state = 3, "gray") : (item.state = 0, "green") ) ) ) : 
+    (item.state === 0 ? "green" : (item.state === 1 ? "yellow" : (item.state === 2 ? "red" : "gray" ) ) );
+    let color = (item.state === 1 ? "black" : "white" );
     const borderColor = itemContext.selected ? "orange" : "rgba(0, 0, 0, 0.500)";
-    const display = (item.display === 0 ? "none" : "inline")
-    const raison = "?"
-    console.log("itemRenderer");
+    if (itemContext.selected)
+      item.reason = this.state.reason;
+    if (item.group === -1) {
+      color = "black";
+      background = "red";
+      item.state = 0;
+    }
     return (
       <div
         {...getItemProps({
@@ -267,15 +229,14 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
             background,
             color,
             borderColor,
-            display,
             borderLeftWidth: itemContext.selected ? 5 : 1,
             borderRightWidth: itemContext.selected ? 5 : 1
           }
         }, item.itemProps)}
       >
-        {item.state === 0 ? item.title : (item.state === 1 ? "EN ATTENTE" : (item.state === 2 ? ("ABSENT " + "(" + raison + ")") : "FERIE"))}
+        {item.state === 0 ? item.title : (item.state === 1 ? "EN ATTENTE" : (item.state === 2 ? ("ABSENT (" + item.reason + ")") : "FERIE"))}
       </div>
-    );//item.title
+    );
   };
 
   // Edit the styling of the left panel
@@ -283,17 +244,13 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
     //const background = "white"
     const color = "black"
     const borderColor = "black"
-    const display = (group.display === 0 ? "none" : "inline")
-    //console.log(group)
-    console.log("groupRenderer");
     return (
       <div className="custom-group"
         style={{
           textAlign: 'center',
           //background,
           color,
-          borderColor,
-          display,
+          borderColor
         }}
       >
         <span className="title">[{group.rightTitle}] - {group.title}</span>
@@ -330,96 +287,127 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
     }));
   };
 
-  ChangeDisplayGroup = (tochange:any, enable:any) => {
-    let i
-    let j
-    //let SortedDataGroups = Object.assign({}, this.state.SortedData);
-    let SortedDataGroups = {...this.state.SortedData}
-    let groupidchange = []
-    //const SortedDataGroups = [...this.state.SortedData]
-    console.log("POUTINE");
-    console.log(SortedDataGroups.Groups);
+  /*
+    Change what group (Fonctions) to display in function of filters
+  */
+  changeDisplayGroup = (tochange:any, enable:boolean)=> {
+    let copyDisplayData = {...this.state.displayData};
+    let copyBackupDataFilter = [...this.state.filterBackupDisplayData];
     
-    for (i in SortedDataGroups.Groups) {
-      //console.log(SortedDataGroups.Groups[i].rightTitle + " VS " + tochange);
-      
-      if (SortedDataGroups.Groups[i].rightTitle === tochange) {
-        if (enable === 1) {
-          SortedDataGroups.Groups[i].display = 1
-        }
-        else {
-          //console.log(SortedDataGroups.Groups[i]);
-          
-          SortedDataGroups.Groups[i].display = 0
-          groupidchange.push(SortedDataGroups.Groups[i].id)
-          SortedDataGroups.Groups.splice(i, 1)
-          //delete SortedDataGroups.Groups[Number(i)];
+    for (let i in copyDisplayData.Groups) {
+      if (!copyDisplayData.Groups[i])
+        continue;
+      if (copyDisplayData.Groups[i].rightTitle === tochange) {
+        if (!enable) {
+          copyBackupDataFilter.push(copyDisplayData.Groups[i]);
+          copyDisplayData.Groups[i].display = 0;
+          copyDisplayData.Groups.splice(Number(i), 1);
         }
       }
     }
-    for (i in SortedDataGroups.Items) {
-      console.log(SortedDataGroups.Items[i].group + " VS " + groupidchange);
-      for (j in groupidchange) {
-      if (SortedDataGroups.Items[i].group === groupidchange[j]) {
-        if (enable === 0) {
-          SortedDataGroups.Items[i].state = 2
-          SortedDataGroups.Items[i].title = "YES"
-          SortedDataGroups.Items.splice(i, 1)
+    // Re-Verification to make sure everything that is matching has been moved and deleted with splice
+    for (let i in copyDisplayData.Groups) {
+      if (!copyDisplayData.Groups[i])
+        continue;
+      if (copyDisplayData.Groups[i].rightTitle === tochange) {
+        if (!enable) {
+          copyBackupDataFilter.push(copyDisplayData.Groups[i]);
+          copyDisplayData.Groups[i].display = 0;
+          copyDisplayData.Groups.splice(Number(i), 1);
         }
       }
     }
-  }
-    console.log("POOTIS");
-    //this.setState({SortedData : SortedDataGroups})
+    // -----------------
+    if (enable) {
+      for (let i in copyBackupDataFilter) {
+        if (!copyBackupDataFilter[i])
+          continue;
+        if (copyBackupDataFilter[i].rightTitle === tochange) {
+          console.log(copyBackupDataFilter);
+          copyDisplayData.Groups.push(copyBackupDataFilter[i]);
+          copyDisplayData.Groups[copyDisplayData.Groups.length-1].display = 1;
+          copyBackupDataFilter.splice(Number(i), 1);
+        }
+      }
+      // Re-Verification to make sure everything that is matching has been moved and deleted with splice
+      for (let i in copyBackupDataFilter) {
+        if (!copyBackupDataFilter[i])
+          continue;
+        if (copyBackupDataFilter[i].rightTitle === tochange) {
+          console.log(copyBackupDataFilter);
+          copyDisplayData.Groups.push(copyBackupDataFilter[i]);
+          copyDisplayData.Groups[copyDisplayData.Groups.length-1].display = 1;
+          copyBackupDataFilter.splice(Number(i), 1);
+        }
+      }
+      // -----------------
+    }
+    this.changeDisplayGroupWhenNoResults(copyDisplayData)
+    this.sortDataArray(copyDisplayData.Groups)
     this.setState(state => ({
-      visibleTimeStart: Number(moment(state.visibleTimeStart)),
-      SortedData: SortedDataGroups
+      filterBackupDisplayData: copyBackupDataFilter,
+      displayData: copyDisplayData,
+      visibleTimeStart: Number(state.visibleTimeStart)+1 //Forcing timeline refresh
     }));
-    console.log(SortedDataGroups)
   }
 
-  ToggleCheckBox = (onetable:any) => {
-    //this.ConvertTimelineToMultipleDays();
-    /*let getData = this.state.groupslistall
-    if (getData[onetable].display === 0)
-      getData[onetable].display = 1
-    else
-      getData[onetable].display = 0*/
-      /*this.setState(prevState => ({
-        groupslistall: prevState.groupslistall.map(
-          (obj: { display: number }) => (obj.display === 0 ? Object.assign(obj, { display: 0}) : Object.assign(obj, { display: 1}))
-        )
-      }))*/
-      let groupslistall = this.state.groupslistall
-      if (groupslistall[onetable].display === 0) {
-        groupslistall[onetable].display = 1
-        this.ChangeDisplayGroup(groupslistall[onetable].groupname, 1)
+  changeDisplayGroupWhenNoResults = (copyDisplayData:any)=> {
+    let noResultGroups =     
+    {
+      id: -1,
+      title: 'NO RESULT',
+      groupLabelKey: "NO RESULT",
+      rightTitle: 'ERROR',
+      display: 1,
+    }
+    if (copyDisplayData.Groups.length === 0) {
+      copyDisplayData.Groups.push(noResultGroups);
+    }
+    else {
+      for (let i in copyDisplayData.Groups) {
+        if (copyDisplayData.Groups[i].rightTitle === 'ERROR') {
+          console.log("dab");
+          copyDisplayData.Groups.splice(Number(i), 1);
+        }
+      }
+      for (let i in copyDisplayData.Groups) {
+        if (copyDisplayData.Groups[i].rightTitle === 'ERROR') {
+          console.log("dab");
+          copyDisplayData.Groups.splice(Number(i), 1);
+        }
+      }
+    }
+  }
+
+  toggleCheckBox = (onetable:any) => {
+      let listOfFonction = this.state.listOfGroups
+      if (listOfFonction[onetable].display === 0) {
+        listOfFonction[onetable].display = 1;
+        this.changeDisplayGroup(listOfFonction[onetable].groupname, true);
       }
       else {
-        groupslistall[onetable].display = 0
-        this.ChangeDisplayGroup(groupslistall[onetable].groupname, 0)
+        listOfFonction[onetable].display = 0;
+        this.changeDisplayGroup(listOfFonction[onetable].groupname, false);
       }
-      //this.setState({groupslistall})
   }
 
+  reasonToggle = (newreason:any) => {
+    this.setState({
+      reason: newreason
+    });
+  }
+
+  //Call all sorting functions for timeline
   componentWillMount() {
-    this.ConvertTimelineToMultipleDays(); //Call all sorting functions for timeline
+    this.convertTimelineToMultipleDays();
   }
 
   render() {
-    /*if (this.state.SortedData.Items.length === this.state.SortedData.Groups.length)
-      this.ConvertTimelineToMultipleDays(); //Call all sorting functions for timeline*/
-    const { visibleTimeStart, visibleTimeEnd, SortedData, rendergroups, renderitems } = this.state;
-    /*const RenderTimelineFilters = this.state.groupslistall.map((tb: any, index: any) => {
-      return <TimelineFilters key={index} grouplist={tb}/>
-    })*/
-    console.log("UPDATED RENDER");
-    
+    const { visibleTimeStart, visibleTimeEnd, displayData, rendergroups, renderitems } = this.state;
     return (
       <div>
         <TimelineTitle />
-        {/*RenderTimelineFilters*/}
-        <TimelineFilters groupslistall={this.state.groupslistall} onChange={this.ToggleCheckBox} />
+        <TimelineFilters listOfGroups={this.state.listOfGroups} onChangeCheckBox={this.toggleCheckBox} onChangeReason={this.reasonToggle}/>
         <button onClick={this.onPrevClickMonth}>{"<<<"}</button>
         <button onClick={this.onPrevClick}>{"<<"}</button>
         {/* <button onClick={this.onPrevClickDay}>{"<"}</button>
@@ -427,8 +415,8 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
         <button onClick={this.onNextClick}>{">>"}</button>
         <button onClick={this.onNextClickMonth}>{">>>"}</button>
         <Timeline
-          groups={SortedData.Groups}
-          items={SortedData.Items}
+          groups={displayData.Groups}
+          items={displayData.Items}
           stackItems={true}
           canMove={false}
           itemHeightRatio={0.55}
@@ -437,9 +425,7 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
           visibleTimeEnd={visibleTimeEnd}
           sidebarWidth={100}
           itemRenderer={renderitems}
-          //itemRenderer={this.itemRenderer}
           groupRenderer={rendergroups}
-          //groupRenderer={this.groupRenderer}
           >
           <TimelineHeaders>
             <SidebarHeader>
