@@ -20,29 +20,29 @@ export default class TalentFormInternship extends React.Component<Props> {
     let property;
 
     switch (label) {
-      case 'lundi':
-        property = 'isWorkingOnMonday';
-        break;
-      case 'mardi':
-        property = 'isWorkingOnTuesday';
-        break;
-      case 'mercredi':
-        property = 'isWorkingOnWednesday';
-        break;
-      case 'jeudi':
-        property = 'isWorkingOnThursday';
-        break;
-      case 'vendredi':
-        property = 'isWorkingOnFriday';
-        break;
-      case 'samedi':
-        property = 'isWorkingOnSaturday';
-        break;
-      case 'dimanche':
-        property = 'isWorkingOnSunday';
-        break;
-      default:
-        throw new Error(`Unknown value for label: '${label}'`);
+    case 'lundi':
+      property = 'isWorkingOnMonday';
+      break;
+    case 'mardi':
+      property = 'isWorkingOnTuesday';
+      break;
+    case 'mercredi':
+      property = 'isWorkingOnWednesday';
+      break;
+    case 'jeudi':
+      property = 'isWorkingOnThursday';
+      break;
+    case 'vendredi':
+      property = 'isWorkingOnFriday';
+      break;
+    case 'samedi':
+      property = 'isWorkingOnSaturday';
+      break;
+    case 'dimanche':
+      property = 'isWorkingOnSunday';
+      break;
+    default:
+      throw new Error(`Unknown value for label: '${label}'`);
       // break;
     }
 
@@ -62,11 +62,14 @@ export default class TalentFormInternship extends React.Component<Props> {
 
     return (
       <div className="form-section">
+        <div className="form-title">
+          <h6>Stage: </h6>
+        </div>
         <div className="form-elements">
           <SelectFormField
             keyName="status"
             label="Statut du stage: "
-            options={['En Cours', 'Fin']}
+            options={['Non initié', 'En Cours', 'Avorté', 'Fin']}
             className="large"
             handleChange={(property, value) => this.props.modifyUser({
               category: 'userJob',
@@ -109,13 +112,7 @@ export default class TalentFormInternship extends React.Component<Props> {
               value: value,
               index: -1,
             })}
-          />
-          {/* <CheckboxFormField
-            keyName="internship-days"
-            label="Jour(s) d'activité: "
-            className="large days"
-            checkboxes={['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche']} 
-          /> */}
+          />          
           <CheckboxFormField
             checkboxes={checkboxes}
             className="large days"

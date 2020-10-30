@@ -1,4 +1,5 @@
 import React from 'react';
+import fr from 'date-fns/locale/fr';
 import { User, UserProfile } from '../../../app';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
@@ -6,7 +7,7 @@ import { UpdateUserPayload } from '../../state/models/userSelected';
 import ProfileCollection from '../../helpers/ProfileCollection';
 import { env } from '../../../helpers/environment';
 import { FUNCTION } from '../../constants/function';
-// import { COUNTRIES } from '../../constants/countries';
+import { DatePickerFieldForm } from '../../../app/components/utils/DatePickerFieldForm';
 interface Props {
   user: User,
   modifyUser: (payload: UpdateUserPayload) => void,
@@ -23,7 +24,7 @@ export default class TalentFormHead extends React.Component<Props> {
 
     return (
       <div className="form-head">
-        <h1 className="talent-title">Gestion des talents: Nom Prénom</h1>
+        <h1 className="talent-title">Gestion des talents: </h1>
         <img
           className="profile-picture"
           alt={userProfileWorking?.firstName}
@@ -86,6 +87,18 @@ export default class TalentFormHead extends React.Component<Props> {
               property: 'phone',
             })}
             value={userProfileWorking?.phone} />
+          <DatePickerFieldForm
+            keyName="birthDate"
+            label="Date de naissance: "
+            value={userProfileWorking?.birthDate}
+            locale={fr}
+            handleChange={(value) => this.props.modifyUser({
+              category: 'userProfiles',
+              property: 'birthDate',
+              value,
+              index: indexWorking,
+            })}
+          />
           <FieldForm
             keyName="place"
             label="Nationalité: "
@@ -93,10 +106,11 @@ export default class TalentFormHead extends React.Component<Props> {
             handleChange={(value) => this.props.modifyUser({
               value: value,
               index: -1,
-              category: 'userAddress',
+              category: 'userProfiles',
               property: 'nationality',
             })}
-            value={this.props.user.userAddress?.nationality} />
+            //value={this.props.user.userProfiles?.nationality} />
+            value={userProfileWorking?.nationality} />
           <FieldForm
             keyName="platform"
             label="Plateforme: "

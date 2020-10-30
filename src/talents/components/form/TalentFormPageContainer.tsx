@@ -36,7 +36,7 @@ export class TalentFormPageContainer extends React.Component<Props> {
       <div className="talent-form-page">
         <Container>
           <Form onSubmit={(event) => this.handleSubmit(event)}
-          className={classes.TalentFormContainer}>
+            className={classes.TalentFormContainer}>
             <TalentFormHead {...this.props} />
             <TalentFormAddress {...this.props} />
             <TalentFormInstitution {...this.props} />

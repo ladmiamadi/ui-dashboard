@@ -14,14 +14,16 @@ export default class TalentFormInstitution extends React.Component<Props> {
   render() {
     const indexWorking: number = ProfileCollection.findWorkingIndex(this.props.user.userProfiles);
     const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
-      this.props.user.userProfiles, 
+      this.props.user.userProfiles,
       'working',
     );
 
     return (
       <div className={classes['institution-section']}>
+        <div className="form-title">
+          <h6>Institution: </h6>
+        </div>
         <FieldForm
-          //className="large"
           keyName="institution"
           label="École: "
           className={classes['institution-field']}
@@ -34,7 +36,6 @@ export default class TalentFormInstitution extends React.Component<Props> {
           })}
           value={userProfileWorking?.institution} />
         <FieldForm
-          //className="medium"
           keyName="institution-phone"
           label="Téléphone École: "
           className={classes['institution-field']}
@@ -47,7 +48,6 @@ export default class TalentFormInstitution extends React.Component<Props> {
           })}
           value={userProfileWorking?.phoneInstitution} />
         <FieldForm
-          //className="medium"
           keyName="institution-email"
           label="Mail École: "
           className={classes['institution-field']}
@@ -57,10 +57,9 @@ export default class TalentFormInstitution extends React.Component<Props> {
             property: 'mailInstitution',
             value: value,
             index: indexWorking,
-          })}          
+          })}
           value={userProfileWorking?.mailInstitution} />
         <FieldForm
-          //className="large"
           keyName="institution-contact"
           label="Personne de contact: "
           className={classes['institution-field']}
@@ -70,7 +69,7 @@ export default class TalentFormInstitution extends React.Component<Props> {
             property: 'personContactInstitution',
             value: value,
             index: indexWorking,
-          })}          
+          })}
           value={userProfileWorking?.personContactInstitution} />
       </div>
     );

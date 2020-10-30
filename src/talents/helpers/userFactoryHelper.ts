@@ -3,9 +3,6 @@ import { Job, User, UserAddress, UserJob, UserProfile } from '../../app';
 
 export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]): User => {
   const userAddress: UserAddress = {
-    // country: userSignUp.country,
-    nationality: userSignUp.nationality,
-    //internOptions: userSignUp.internOptions,
   };
 
   const userProfile: UserProfile = {
@@ -17,7 +14,8 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     email: userSignUp.username,
     phone: userSignUp.phone,
     status: 'VALIDATED',
-    position: userSignUp.jobPosition,    
+    position: userSignUp.jobPosition,
+    nationality: userSignUp.nationality,
   };
 
   const userProfileWorking: UserProfile = {
@@ -30,6 +28,7 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     phone: userSignUp.phone,
     status: 'VALIDATED',
     position: userSignUp.jobPosition,
+    nationality: userSignUp.nationality,
   };
 
   const job: Job = jobCollection.filter((job: Job) => job.position === userSignUp.jobPosition)[0];

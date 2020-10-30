@@ -13,7 +13,7 @@ interface Props {
   isFetching: boolean,
   userLanguages: UserLanguage[],
   userId?: number,
-  fetchLanguages: (userId: number|undefined) => Promise<void>,
+  fetchLanguages: (userId: number | undefined) => Promise<void>,
   modifyUser: (payload: UpdateUserPayload) => void,
   updateUserLanguage: (language: UserLanguage) => void,
   resetLanguage: () => void,
@@ -73,14 +73,17 @@ export class TalentFormLanguages extends React.Component<Props, State> {
               color="default"
               disabled={this.props.isFetching}
             >
-                Ajouter une langue
+              Ajouter une langue
             </Button>
           </div>
         </div>
-        <UserLanguagesDisplay
-          userLanguages={this.props.userLanguages}
-          updateUserLanguage={this.updateUserLanguage}
-        />
+        {
+          (this.props.userLanguages.length > 0) &&
+          <UserLanguagesDisplay
+            userLanguages={this.props.userLanguages}
+            updateUserLanguage={this.updateUserLanguage}
+          />
+        }
         <ModalCustom
           isModalShown={this.state.isModalShown}
           toggleModal={this.toggleModalAndResetModalOnQuit}

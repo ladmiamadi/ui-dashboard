@@ -3,7 +3,6 @@ import { FormGroup, Label, Input } from 'reactstrap';
 import { OptionList } from './OptionList';
 
 interface Props {
-  // options:string[],
   options: string[],
   className?: string,
   label: string,

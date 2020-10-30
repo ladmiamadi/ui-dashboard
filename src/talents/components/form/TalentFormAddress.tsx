@@ -1,14 +1,11 @@
-import fr from 'date-fns/locale/fr';
 import React from 'react';
-import ReactDatePicker from 'react-datepicker';
 import { Col, Row } from 'reactstrap';
-import { User, UserProfile } from '../../../app';
-import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import { User } from '../../../app';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
-import { UpdateUserPayload } from '../../state/models/userSelected';
-import ProfileCollection from '../../helpers/ProfileCollection';
+import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { COUNTRIES } from '../../constants/countries';
 import { INTERNOPTIONS } from '../../constants/internshipOptions';
+import { UpdateUserPayload } from '../../state/models/userSelected';
 
 interface Props {
   user: User,
@@ -17,14 +14,12 @@ interface Props {
 
 export default class TalentFormAddress extends React.Component<Props> {
   render() {
-    const indexWorking: number = ProfileCollection.findWorkingIndex(this.props.user.userProfiles);
-    const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
-      this.props.user.userProfiles,
-      'working',
-    );
 
     return (
       <div className="address-section">
+        <div className="form-title">
+          <h6>Adresse: </h6>
+        </div>
         <Row>
           <Col md={6}>
             <FieldForm
@@ -109,25 +104,6 @@ export default class TalentFormAddress extends React.Component<Props> {
                 index: -1,
               })}
               value={this.props.user.userAddress?.country || ''}
-            />
-          </Col>
-          <Col md={6}>
-            <label className="label-birthdate">Date de naissance:  </label>
-            <ReactDatePicker
-              className="address-datepicker"
-              selected={userProfileWorking?.birthDate}
-              isClearable
-              dateFormat="dd/MM/yyyy"
-              showMonthDropdown
-              showYearDropdown
-              dropdownMode="select"
-              locale={fr}
-              onChange={(value) => this.props.modifyUser({
-                category: 'userProfiles',
-                property: 'birthDate',
-                value,
-                index: indexWorking,
-              })}
             />
           </Col>
           <Col md={6}>
