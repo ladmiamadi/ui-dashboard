@@ -1,5 +1,6 @@
 import fr from 'date-fns/locale/fr';
 import React from 'react';
+import { Col, Row } from 'reactstrap';
 import ReactDatePicker from 'react-datepicker';
 import { User } from '../../../app';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
@@ -7,7 +8,6 @@ import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormField';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import { Checkbox } from '../../../app/';
-//import { property } from 'lodash';
 
 interface Props {
   user: User,
@@ -43,7 +43,6 @@ export default class TalentFormInternship extends React.Component<Props> {
       break;
     default:
       throw new Error(`Unknown value for label: '${label}'`);
-      // break;
     }
 
     return property;
@@ -66,53 +65,62 @@ export default class TalentFormInternship extends React.Component<Props> {
           <h6>Stage: </h6>
         </div>
         <div className="form-elements">
-          <SelectFormField
-            keyName="status"
-            label="Statut du stage: "
-            options={['Non initié', 'En Cours', 'Avorté', 'Fin']}
-            className="large"
-            handleChange={(property, value) => this.props.modifyUser({
-              category: 'userJob',
-              property,
-              value,
-              index: -1,
-            })}
-            value={this.props.user.userJob?.status || ''}
-          />
-          <label className="label-internship">Début:  </label>
-          <ReactDatePicker
-            className="intern-datepicker"
-            selected={this.props.user.userJob?.startDate}
-            isClearable
-            dateFormat="dd/MM/yyyy"
-            showMonthDropdown
-            showYearDropdown
-            dropdownMode="select"
-            locale={fr}
-            onChange={(value) => this.props.modifyUser({
-              category: 'userJob',
-              property: 'startDate',
-              value: value,
-              index: -1,
-            })}
-          />
-          <label className="label-internship">Fin:  </label>
-          <ReactDatePicker
-            className="intern-datepicker"
-            selected={this.props.user.userJob?.endDate}
-            isClearable
-            dateFormat="dd/MM/yyyy"
-            showMonthDropdown
-            showYearDropdown
-            dropdownMode="select"
-            locale={fr}
-            onChange={(value) => this.props.modifyUser({
-              category: 'userJob',
-              property: 'endDate',
-              value: value,
-              index: -1,
-            })}
-          />          
+          <Row>
+            <Col md={4}>
+              <SelectFormField
+                keyName="status"
+                label="Statut du stage: "
+                options={['Non initié', 'En cours', 'Abandonné', 'Fini']}
+                className="large"
+                handleChange={(property, value) => this.props.modifyUser({
+                  category: 'userJob',
+                  property,
+                  value,
+                  index: -1,
+                })}
+                value={this.props.user.userJob?.status || ''}
+              />
+            </Col>
+
+            <Col md={4}>
+              <label className="label-internship">Début:  </label>
+              <ReactDatePicker
+                className="intern-datepicker form-control"
+                selected={this.props.user.userJob?.startDate}
+                isClearable
+                dateFormat="dd/MM/yyyy"
+                showMonthDropdown
+                showYearDropdown
+                dropdownMode="select"
+                locale={fr}
+                onChange={(value) => this.props.modifyUser({
+                  category: 'userJob',
+                  property: 'startDate',
+                  value: value,
+                  index: -1,
+                })}
+              />
+            </Col>
+            <Col md={4}>
+              <label className="label-internship">Fin:  </label>
+              <ReactDatePicker
+                className="intern-datepicker form-control"
+                selected={this.props.user.userJob?.endDate}
+                isClearable
+                dateFormat="dd/MM/yyyy"
+                showMonthDropdown
+                showYearDropdown
+                dropdownMode="select"
+                locale={fr}
+                onChange={(value) => this.props.modifyUser({
+                  category: 'userJob',
+                  property: 'endDate',
+                  value: value,
+                  index: -1,
+                })}
+              />
+            </Col>
+          </Row>
           <CheckboxFormField
             checkboxes={checkboxes}
             className="large days"
@@ -125,18 +133,20 @@ export default class TalentFormInternship extends React.Component<Props> {
               index: -1,
             })}
           />
-          <FieldForm
-            keyName="internship-hours"
-            label="Horaire: "
-            className="large"
-            type="text"
-            handleChange={(value) => this.props.modifyUser({
-              category: 'userJob',
-              property: 'workingHours',
-              value: value,
-              index: -1,
-            })}
-            value={this.props.user.userJob?.workingHours} />
+          <Col md={4}>
+            <FieldForm
+              keyName="internship-hours"
+              label="Horaire: "
+              className="large"
+              type="text"
+              handleChange={(value) => this.props.modifyUser({
+                category: 'userJob',
+                property: 'workingHours',
+                value: value,
+                index: -1,
+              })}
+              value={this.props.user.userJob?.workingHours} />
+          </Col>
         </div>
       </div>
     );

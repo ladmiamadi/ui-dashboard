@@ -22,8 +22,8 @@ export class TalentsListContainer extends React.Component<Props> {
     if (this.props.isFetching) {
       return <Loader />;
     }
-    
-    return <TalentsDashBoard 
+
+    return <TalentsDashBoard
       searchTerm={this.props.searchTerm}
       updateSearchTerm={this.props.updateSearchTerm}
       users={this.props.users}

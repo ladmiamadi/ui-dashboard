@@ -21,7 +21,7 @@ interface State {
   training: UserTraining,
 }
 
-type ExcludeIdPropertyFromTraining<T, U, D=T> = Omit<Training<T, U, D>, 'id'>;
+type ExcludeIdPropertyFromTraining<T, U, D = T> = Omit<Training<T, U, D>, 'id'>;
 
 export type IsFormValid = ExcludeIdPropertyFromTraining<InputState, number>;
 export type UserTraining = ExcludeIdPropertyFromTraining<string, number, Date | null>;
@@ -52,7 +52,7 @@ export class ModalTraining extends React.Component<Props, State> {
 
   updateTraining = (property: keyof UserTraining, value: string | Date | null) => {
     const training = { ...this.state.training };
-    if (typeof value === 'string' && (property === 'institution' || property === 'degreeObtained' ))
+    if (typeof value === 'string' && (property === 'institution' || property === 'degreeObtained'))
       training[property] = value;
     else if ((property === 'startDate' || property === 'endDate') && (value === null || value instanceof Date))
       training[property] = value;

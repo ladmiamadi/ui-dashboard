@@ -12,7 +12,7 @@ interface State {
   redirect: string,
 }
 
-export class TalentModal extends React.Component <Props, State> {
+export class TalentModal extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -22,21 +22,21 @@ export class TalentModal extends React.Component <Props, State> {
   redirect = () => {
     this.setState({ redirect: '/editprofile' });
   }
-  
+
   render() {
     if (this.state.redirect !== '') {
       return <Redirect
         to={{ pathname: this.state.redirect }} />;
     }
 
-    return(
+    return (
       <Router>
         <>
           <div className="talent-modal-content">
             Une demande de modification est en cours pour ce talent,
             veuillez faire le néccessaire avant de consulter la fiche.
           </div>
-          <br/>
+          <br />
           <Button className="button-talent-modal" onClick={this.redirect}>Ok</Button>
         </>
       </Router>

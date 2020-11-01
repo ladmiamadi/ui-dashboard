@@ -5,14 +5,13 @@ import { User } from '../../../app';
 import { RootState, RootDispatch } from '../../../app/state/store';
 import TalentFormHead from './TalentFormHead';
 import TalentFormAddress from './TalentFormAddress';
-import TalentFormInstitution  from './TalentFormInstitution';
+import TalentFormInstitution from './TalentFormInstitution';
 import TalentFormInternship from './TalentFormInternship';
 import TalentFormExperience from './TalentFormExperience';
 import TalentFormTraining from './TalentFormTraining';
 import TalentFormJob from './TalentFormJob';
 import TalentFormLanguages from './TalentFormLanguages';
 import TalentFormSkills from './TalentFormSkills';
-//import TalentFormFormation from "./TalentFormFormation";
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import classes from './styles/TalentFormPageContainer.module.css';
 import './styles/TalentForm.css';
@@ -43,7 +42,6 @@ export class TalentFormPageContainer extends React.Component<Props> {
             <TalentFormInternship {...this.props} />
             <TalentFormJob {...this.props} />
             <TalentFormSkills />
-            {/* <TalentFormFormation {...this.props} /> */}
             <TalentFormLanguages {...this.props} />
             <TalentFormTraining {...this.props} />
             <TalentFormExperience {...this.props} />
@@ -56,7 +54,7 @@ export class TalentFormPageContainer extends React.Component<Props> {
           </Form>
         </Container>
       </div>
-      
+
     );
   }
 }

@@ -109,7 +109,6 @@ export default class TalentFormHead extends React.Component<Props> {
               category: 'userProfiles',
               property: 'nationality',
             })}
-            //value={this.props.user.userProfiles?.nationality} />
             value={userProfileWorking?.nationality} />
           <FieldForm
             keyName="platform"

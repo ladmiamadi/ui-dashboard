@@ -13,8 +13,8 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 
 interface Props {
   experience: UserExperience,
-  addUserExperience: (payload: UserExperience) =>void,
-  updateExperience: (payload: UpdateExperiencePayload) =>void,
+  addUserExperience: (payload: UserExperience) => void,
+  updateExperience: (payload: UpdateExperiencePayload) => void,
   toggleModal: () => void;
 }
 
@@ -38,7 +38,7 @@ export class ModalExperience extends React.Component<Props> {
           },
           {
             label: 'Non',
-            onClick: () => {},
+            onClick: () => { },
           },
         ],
       });

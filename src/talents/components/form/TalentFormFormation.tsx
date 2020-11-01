@@ -50,7 +50,7 @@ export class TalentFormFormation extends React.Component<Props> {
                 label="Début formation: "
                 values={{ day: 1, month: 1, year: 2000 }}
                 yearSegment={{ yearStart: 2000, yearEnd: 2100 }}
-                handleOnChange={() => {}}
+                handleOnChange={() => { }}
               />
               <DateFormField
                 className="medium"
@@ -58,7 +58,7 @@ export class TalentFormFormation extends React.Component<Props> {
                 label="Fin: "
                 values={{ day: 1, month: 1, year: 2000 }}
                 yearSegment={{ yearStart: 2000, yearEnd: 2100 }}
-                handleOnChange={() => {}}
+                handleOnChange={() => { }}
               />
               <FieldForm
                 keyName="formation-diploma"
@@ -84,9 +84,4 @@ const mapState = (state: RootState) => ({
   user: state.user.user,
 });
 
-// const mapDispatch = (dispatch: RootDispatch) => ({
-//   modifyUser: dispatch.user.modifyUser,
-// });
-
-// export default connect(mapState, mapDispatch)(TalentFormFormation);
 export default connect(mapState)(TalentFormFormation);
