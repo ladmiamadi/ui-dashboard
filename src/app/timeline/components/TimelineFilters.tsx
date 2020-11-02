@@ -14,7 +14,11 @@ const TimelineFilters = (props: any) => {
         props.onChangeReason(TimelineFiltersReasonVALUE)
     }
 
-    const RenderTimelineFilters = props.listOfGroups.map((tb: any, index: any) => {
+    const SendFiltersName = (TimelineFiltersNameVALUE:any) => {
+        props.onChangeName(TimelineFiltersNameVALUE)
+    }
+
+    const RenderTimelineFilters = props.listOfFonctions.map((tb: any, index: any) => {
         return (
             <label key={index} className="TimelineFiltersCheckboxes">{tb.groupname} ({tb.total})
             <input className="checkboxinput" type="checkbox" onChange={() => {props.onChangeCheckBox(index)}} defaultChecked={CheckTheCheckBox(tb)} ></input>
@@ -28,16 +32,19 @@ const TimelineFilters = (props: any) => {
                 <div className="TimelineFiltersCheckboxes">
                     {RenderTimelineFilters}
                 </div>
-                <div className="TimelineFiltersReason">
-                <label htmlFor="reason">Raison de l'absence: </label>
-                    <select name="reasons" id="reasonid" onChange={e => SendFiltersReason(e.target.value)}>
-                        <option value="Non Justifiée">Non Justifiée</option>
-                        <option value="Personnel">Personnel</option>
-                        <option value="Maladie">Maladie</option>
-                    </select>
+                <div className="TimelineFiltersSearch">Rechercher un nom : 
+                    <input onChange={e => SendFiltersName(e.target.value)} type="text" className="TimelineFiltersSearchName"></input>
                 </div>
-                <div className="TimelineFiltersReason">Rechercher un nom : 
-                    <input type="text" id="TimelineFiltersSearch" name="TimelineFiltersSearchName"></input>
+                <div className="TimelineFiltersReason">
+                <label htmlFor="reason">Motifs de l'absence: </label>
+                    <select name="reasons" id="reasonid" className="TimelineFiltersSelect" onChange={e => SendFiltersReason(e.target.value)}>
+                        <option value="Maladie">Maladie</option>
+                        <option value="Personnel">Personnel</option>
+                        <option value="Non Justifiée">Non Justifiée</option>
+                        <option value="Formation">Formation</option>
+                        <option value="Retard">Retard</option>
+                        <option value="Lacement">Lacement</option>
+                    </select>
                 </div>
             </div>
         )
