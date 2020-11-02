@@ -25,12 +25,12 @@ export default class TalentFormJob extends React.Component<Props> {
           label="Actuellement en recherche: "
           options={INTERNOPTIONS}
           handleChange={(property, value) => this.props.modifyUser({
-            category: 'userAddress',
+            category: 'userDesiredJob',
             property,
             value,
             index: -1,
           })}
-          value={this.props.user.userAddress?.internOptions || ''} />
+          value={this.props.user.userDesiredJob?.internOptions || ''} />
         <FieldForm
           keyName="desiredJob"
           label="Métier souhaité: "

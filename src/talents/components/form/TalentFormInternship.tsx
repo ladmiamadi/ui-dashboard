@@ -96,7 +96,7 @@ export default class TalentFormInternship extends React.Component<Props> {
                 })}
               />
             </Col>
-            <Col md={4}>              
+            <Col md={4}>
               <DatePickerFieldForm
                 keyName="endDate"
                 label="Fin: "
@@ -111,32 +111,38 @@ export default class TalentFormInternship extends React.Component<Props> {
               />
             </Col>
           </Row>
-          <CheckboxFormField
-            checkboxes={checkboxes}
-            className="large days"
-            keyName="internship-days"
-            label="Jour(s) d'activité: "
-            handleOnChange={(label, value) => this.props.modifyUser({
-              category: 'userJob',
-              property: this.mapLabelToProperty(label),
-              value: value,
-              index: -1,
-            })}
-          />
-          <Col md={4}>
-            <FieldForm
-              keyName="internship-hours"
-              label="Horaire: "
-              className="large"
-              type="text"
-              handleChange={(value) => this.props.modifyUser({
-                category: 'userJob',
-                property: 'workingHours',
-                value: value,
-                index: -1,
-              })}
-              value={this.props.user.userJob?.workingHours} />
-          </Col>
+          <Row>
+            <Col md={12}>
+              <CheckboxFormField
+                checkboxes={checkboxes}
+                className="large days"
+                keyName="internship-days"
+                label="Jour(s) d'activité: "
+                handleOnChange={(label, value) => this.props.modifyUser({
+                  category: 'userJob',
+                  property: this.mapLabelToProperty(label),
+                  value: value,
+                  index: -1,
+                })}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={4}>
+              <FieldForm
+                keyName="internship-hours"
+                label="Horaire: "
+                className="large"
+                type="text"
+                handleChange={(value) => this.props.modifyUser({
+                  category: 'userJob',
+                  property: 'workingHours',
+                  value: value,
+                  index: -1,
+                })}
+                value={this.props.user.userJob?.workingHours} />
+            </Col>
+          </Row>
         </div>
       </div>
     );

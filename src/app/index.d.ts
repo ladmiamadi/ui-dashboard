@@ -48,6 +48,7 @@ export interface UserDesiredJob {
   currentSalary: number,
   desiredSalary: number,
   jobDescription: string,
+  internOptions: string,
 }
 
 export interface UserProfile {
