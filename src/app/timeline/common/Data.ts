@@ -13,7 +13,7 @@ export type DataGroups = {
   title: string,
   groupLabelKey: string,
   rightTitle: string,
-  display: number
+  convention: number
 }
 
 // Old DataItems
@@ -40,42 +40,42 @@ export let Groups:Array<DataGroups> = //export let Groups:ReadonlyArray<DataGrou
       title: 'Pierre',
       groupLabelKey: "Carles",
       rightTitle: 'DEV',
-      display: 1,
+      convention: 0,
     },
     {
       id: 1,
       title: 'Jackes',
       groupLabelKey: "Michelin",
       rightTitle: 'DEV',
-      display: 1,
+      convention: 1,
     },
     {
       id: 2,
       title: 'Thomas',
       groupLabelKey: "Clemente",
       rightTitle: 'RH',
-      display: 1,
+      convention: 2,
     },
     {
       id: 3,
       title: 'Alice',
       groupLabelKey: "Rudolf",
       rightTitle: 'DEV',
-      display: 1,
+      convention: 3,
     },
     {
       id: 4,
       title: 'Paul',
       groupLabelKey: "Vandenghem",
       rightTitle: 'B2B',
-      display: 1,
+      convention: 4,
     },
     {
       id: 5,
       title: 'Marc',
       groupLabelKey: "Louis",
       rightTitle: 'B2B',
-      display: 1,
+      convention: 5,
     }
 ]
 
@@ -142,19 +142,19 @@ export let Items = //export let Items:ReadonlyArray<DataItems>
         id: 0,
         group: 0,
         title: '8h30 - 12h / 13h - 16h30',
-        start_time: Number(moment().startOf('day').add(-3, 'days')),
-        end_time: Number(moment().startOf('day').add(5, 'days')),
+        start_time: Number(moment().startOf('day').add(3, 'days')),
+        end_time: Number(moment().startOf('day').add(9, 'days')),
         state: 0,
-        reason: "Non Justifiée"
+        reason: "Maladie"
     },
     {
         id: 1,
         group: 1,
         title: '8h45 - 12h / 13h - 16h45',
-        start_time: Number(moment().startOf('day').add(-2, 'days')),
+        start_time: Number(moment().startOf('day').add(1, 'days')),
         end_time: Number(moment().startOf('day').add(7, 'days')),
         state: 0,
-        reason: "Non Justifiée"
+        reason: "Maladie"
     },
     {
         id: 2,
@@ -163,34 +163,34 @@ export let Items = //export let Items:ReadonlyArray<DataItems>
         start_time: Number(moment().startOf('day').add(-10, 'days')),
         end_time:  Number(moment().startOf('day').add(9, 'days')),
         state: 0,
-        reason: "Non Justifiée"
+        reason: "Maladie"
     },
     {
         id: 3,
         group: 3,
         title: '8h - 12h / 13h - 16h',
-        start_time: Number(moment().startOf('day').add(0, 'days')),
+        start_time: Number(moment().startOf('day').add(2, 'days')),
         end_time: Number(moment().startOf('day').add(13, 'days')),
         state: 1,
-        reason: "Non Justifiée"
+        reason: "Maladie"
     },
     {
         id: 4,
         group: 4,
         title: '8h - 12h / 13h - 16h',
-        start_time: Number(moment().startOf('day').add(-1, 'days')),
+        start_time: Number(moment().startOf('day').add(4, 'days')),
         end_time: Number(moment().startOf('day').add(16, 'days')),
         state: 0,
-        reason: "Non Justifiée"
+        reason: "Maladie"
   },
   {
     id: 5,
     group: 5,
     title: '8h10 - 12h / 13h - 16h10',
-    start_time: Number(moment().startOf('day').add(0, 'days')),
+    start_time: Number(moment().startOf('day').add(1, 'days')),
     end_time: Number(moment().startOf('day').add(16, 'days')),
     state: 0,
-    reason: "Non Justifiée"
+    reason: "Maladie"
 }
 ]
 

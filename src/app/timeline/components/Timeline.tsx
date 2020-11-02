@@ -10,6 +10,7 @@ import 'react-calendar-timeline/lib/Timeline.css'
 import '../styles/Timeline.css'
 import TimelineTitle from './TimelineTitle'
 import TimelineFilters from './TimelineFilters'
+import TimelineInfo from './TimelineInfo'
 
 // interface avec maj au debut
 interface Props {
@@ -17,13 +18,13 @@ interface Props {
     moment: number
 }
 
-interface itemRenderer {
+interface daysRender {
   getItemProps: any,
   item: any,
   itemContext: any,
 }
 
-interface groupRenderer {
+interface fonctionRender {
   group: any
 }
 
@@ -106,7 +107,7 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
       Days: [...Data.Items]
     }
 
-    const reason = "Non Justifiée"
+    const reason = "Maladie"
 
     const searchName = ""
 
@@ -119,8 +120,10 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
       display: 2,
     },]
 
-    const renderDays = this.itemRenderer
-    const renderFonctions = this.groupRenderer
+    const renderDays = this.daysRender
+    const renderFonctions = this.fonctionRender
+
+    const selectedDisplayitem = {}
 
     this.state = {
       visibleTimeStart,
@@ -217,19 +220,68 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
           newArrayLenghtOfItem = DisplayDataDays.push(copyAndEditLastDisplayItem);
       }
       delete DisplayDataDays[Number(i)]; // Works but may result in crash if we manipulate this later without check
-      //rsltData = rsltData.splice(Number(i), 1) //This doesn't work unless we execute the loop for another time maybe (not very optimised)
+      //DisplayDataDays.splice(Number(i), 1) //This doesn't work unless we execute the loop for another time maybe (not very optimised)
     }
+    console.log(copyDisplayData);
+    
     this.setState({
       displayData: copyDisplayData,
       displayDataBackup: copyDisplayData
     });
   }
 
+  daysRenderDisplayAbsenceReason = (days:any) => {
+    switch (days.reason) {
+      case "Maladie":
+        return "orange";
+      case "Personnel":
+        return "gray";
+      case "Non Justifiée":
+        return "red";
+      case "Formation":
+        return "blue";
+      case "Retard":
+        return "brown";
+      case "Lacement":
+        return "purple";
+      default:
+        return "red";
+    }
+  }
+
+  daysRenderDisplayBackground = (days:any) => {
+    switch (days.state) {
+      case 0:
+        return "green";
+      case 1:
+        return this.daysRenderDisplayAbsenceReason(days);
+      default:
+        return "gray";
+    }
+  }
+
+  daysRenderChangeStateBackground = (days:any) => {
+    switch (days.state) {
+      case 0:
+        days.state = 1;
+        return this.daysRenderDisplayAbsenceReason(days);
+      default:
+        days.state = 0;
+        return "green";
+    }
+  }
+
+  daysRenderChangeStateColor = (days:any) => {
+    if (days.reason === "Maladie" && days.state === 1)
+      return "black"
+    else
+      return "white"
+  }
+
   //Edit the styling of the items
-  itemRenderer = ({ item, getItemProps, itemContext }:itemRenderer) => {
-    let background = itemContext.selected ? (item.state === 0 ? (item.state = 1, "yellow") : (item.state === 1 ? (item.state = 2, "red") : (item.state === 2 ? (item.state = 3, "gray") : (item.state = 0, "green") ) ) ) : 
-    (item.state === 0 ? "green" : (item.state === 1 ? "yellow" : (item.state === 2 ? "red" : "gray" ) ) );
-    let color = (item.state === 1 ? "black" : "white" );
+  daysRender = ({ item, getItemProps, itemContext }:daysRender) => {
+    let background = itemContext.selected ? this.daysRenderChangeStateBackground(item) : this.daysRenderDisplayBackground(item)
+    let color = this.daysRenderChangeStateColor(item)
     const borderColor = itemContext.selected ? "orange" : "rgba(0, 0, 0, 0.500)";
     if (itemContext.selected)
       item.reason = this.state.reason;
@@ -237,6 +289,9 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
       color = "black";
       background = "red";
       item.state = 0;
+    }
+    if (itemContext.selected) {
+      console.log(item);
     }
     return (
       <div
@@ -250,17 +305,17 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
           }
         }, item.itemProps)}
       >
-        {item.state === 0 ? item.title : (item.state === 1 ? "EN ATTENTE" : (item.state === 2 ? ("ABSENT (" + item.reason + ")") : "FERIE"))}
+        {item.state === 0 ? item.title : (item.state === 1 ? ("ABSENT (" + item.reason + ")") : "FERIE")}
       </div>
     );
   };
 
   // Edit the styling of the left panel
-  groupRenderer = ({ group }:groupRenderer) => {
+  fonctionRender = ({ group }:fonctionRender) => {
     //const background = "white"
-    const color = "black"
-    const borderColor = "black"
-    const fontSize = "11px"
+    const color = "black";
+    const borderColor = "black";
+    const fontSize = "11px";
     return (
       <div className="custom-group"
         style={{
@@ -384,7 +439,7 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
     });
   }
 
-  //Call all sorting functions for timeline
+  //Call all sorting functions for timeline, can be called 1 time only
   componentWillMount() {
     this.convertTimelineToMultipleDays();
   }
@@ -395,6 +450,7 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
       <div>
         <TimelineTitle />
         <TimelineFilters listOfFonctions={this.state.listOfFonctions} onChangeCheckBox={this.toggleCheckBox} onChangeReason={this.reasonToggle} onChangeName={this.filterNameChange}/>
+    {<TimelineInfo />}
         <button onClick={this.onPrevClickMonth}>{"<<<"}</button>
         <button onClick={this.onPrevClick}>{"<<"}</button>
         {/* <button onClick={this.onPrevClickDay}>{"<"}</button>

@@ -1,0 +1,45 @@
+.TimelineInfo {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.080);
+    padding: 10px;
+    margin: 25px;
+}
+
+.TimelineInfoContent {
+    display: flex;
+    margin: 10px;
+    font-size: 18px;
+}
+
+.TimelineInfoTitle {
+    text-align: left;
+}
+
+.TimelineInfoPerson {
+    margin: 10px;
+}
+
+.TimelineInfoDates {
+    margin: 10px;
+}
+
+.TimelineInfoState {
+    margin: 10px;
+}
+
+.checkmark {
+    margin-right: 25px;
+    margin-left: 25px;
+}
+
+.checkboxinput {
+    margin: 5px;
+    height: 18px;
+    width: 18px;
+}
+
+.TimelineInfoCheckboxes {
+    display: inline;
+    margin: 5px;
+    font-size: 18px;
+}
