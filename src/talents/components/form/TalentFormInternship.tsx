@@ -8,6 +8,7 @@ import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormField';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import { Checkbox } from '../../../app/';
+import { STATUSOPTIONS } from '../../constants/StatusOptions';
 
 interface Props {
   user: User,
@@ -68,9 +69,9 @@ export default class TalentFormInternship extends React.Component<Props> {
           <Row>
             <Col md={4}>
               <SelectFormField
-                keyName="status"
-                label="Statut du stage: "
-                options={['Non initié', 'En cours', 'Abandonné', 'Fini']}
+                keyName="statusOptions"
+                label="Status du stage: "
+                options={STATUSOPTIONS}
                 className="large"
                 handleChange={(property, value) => this.props.modifyUser({
                   category: 'userJob',

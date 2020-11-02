@@ -1,0 +1,1 @@
+export const STATUSOPTIONS = ['Non initié', 'En cours', 'Abandonné', 'Fini'];
