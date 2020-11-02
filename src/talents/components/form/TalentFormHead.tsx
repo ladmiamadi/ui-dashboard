@@ -1,19 +1,28 @@
-import React from 'react';
 import fr from 'date-fns/locale/fr';
-import { User, UserProfile } from '../../../app';
-import { SelectFormField } from '../../../app/components/utils/SelectFormField';
-import { FieldForm } from '../../../app/components/utils/FieldForm';
-import { UpdateUserPayload } from '../../state/models/userSelected';
-import ProfileCollection from '../../helpers/ProfileCollection';
-import { env } from '../../../helpers/environment';
-import { FUNCTION } from '../../constants/function';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Job, User, UserProfile } from '../../../app';
 import { DatePickerFieldForm } from '../../../app/components/utils/DatePickerFieldForm';
+import { FieldForm } from '../../../app/components/utils/FieldForm';
+import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import { RootDispatch, RootState } from '../../../app/state/store';
+import { env } from '../../../helpers/environment';
+import ProfileCollection from '../../helpers/ProfileCollection';
+import { UpdateUserPayload } from '../../state/models/userSelected';
+
 interface Props {
   user: User,
+  jobCollection: Job[],
   modifyUser: (payload: UpdateUserPayload) => void,
+  fetchJobsInDb: () => Promise<void>,
 }
 
-export default class TalentFormHead extends React.Component<Props> {
+export class TalentFormHead extends React.Component<Props> {
+
+  componentDidMount() {
+    this.props.fetchJobsInDb();
+  }
+
   render() {
     const indexWorking: number = ProfileCollection.findWorkingIndex(this.props.user.userProfiles);
     const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
@@ -21,6 +30,8 @@ export default class TalentFormHead extends React.Component<Props> {
     );
     const filePath: string = userProfileWorking && userProfileWorking.picture ?
       `${env('MEDIA_URL')}${userProfileWorking?.picture?.filePath}` : '';
+
+    const jobPositions = this.props.jobCollection.map((job: Job) => job.position);
 
     return (
       <div className="form-head">
@@ -56,7 +67,7 @@ export default class TalentFormHead extends React.Component<Props> {
           <SelectFormField
             keyName="position"
             label="Fonction: "
-            options={FUNCTION}
+            options={jobPositions}
             handleChange={(property, value) => this.props.modifyUser({
               category: 'userProfiles',
               property,
@@ -72,10 +83,10 @@ export default class TalentFormHead extends React.Component<Props> {
             handleChange={(value) => this.props.modifyUser({
               value: value,
               index: -1,
-              category: 'username',
+              category: 'userProfiles',
               property: '',
             })}
-            value={this.props.user.username} />
+            value={userProfileWorking?.email} />
           <FieldForm
             keyName="phone"
             label="Téléphone: "
@@ -129,4 +140,15 @@ export default class TalentFormHead extends React.Component<Props> {
       </div>
     );
   }
+
 }
+
+const mapState = (state: RootState) => ({
+  jobCollection: state.userSignUp.jobCollection,
+});
+
+const mapDispatch = (dispatch: RootDispatch) => ({
+  fetchJobsInDb: dispatch.userSignUp.fetchJobsInDb,
+});
+
+export default connect(mapState, mapDispatch)(TalentFormHead);

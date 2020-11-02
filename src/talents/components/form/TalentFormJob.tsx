@@ -3,6 +3,7 @@ import { User } from '../../../app';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { COUNTRIES } from '../../constants/countries';
+import { INTERNOPTIONS } from '../../constants/internshipOptions';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import classes from './styles/TalentFormJob.module.css';
 
@@ -16,8 +17,20 @@ export default class TalentFormJob extends React.Component<Props> {
     return (
       <div className={classes['job-section']}>
         <div className="form-title">
-          <h6>Emploi désiré</h6>
+          <h6>Emploi désiré: </h6>
         </div>
+        <SelectFormField
+          keyName="internOptions"
+          className={classes['job-field']}
+          label="Actuellement en recherche: "
+          options={INTERNOPTIONS}
+          handleChange={(property, value) => this.props.modifyUser({
+            category: 'userAddress',
+            property,
+            value,
+            index: -1,
+          })}
+          value={this.props.user.userAddress?.internOptions || ''} />
         <FieldForm
           keyName="desiredJob"
           label="Métier souhaité: "

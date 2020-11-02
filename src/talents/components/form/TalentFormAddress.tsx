@@ -4,7 +4,6 @@ import { User } from '../../../app';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { COUNTRIES } from '../../constants/countries';
-import { INTERNOPTIONS } from '../../constants/internshipOptions';
 import { UpdateUserPayload } from '../../state/models/userSelected';
 
 interface Props {
@@ -105,22 +104,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               })}
               value={this.props.user.userAddress?.country || ''}
             />
-          </Col>
-          <Col md={6}>
-            <SelectFormField
-              keyName="internOptions"
-              className="address-field-form"
-              label="Actuellement en recherche: "
-              options={INTERNOPTIONS}
-              handleChange={(property, value) => this.props.modifyUser({
-                category: 'userAddress',
-                property,
-                value,
-                index: -1,
-              })}
-              value={this.props.user.userAddress?.internOptions || ''}
-            />
-          </Col>
+          </Col>          
         </Row>
       </div>
     );

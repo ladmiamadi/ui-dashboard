@@ -38,7 +38,6 @@ export class DatePickerFieldForm extends React.Component<Props, State> {
           id={this.props.keyName}
           className="form-input form-control"
           selected={this.props.value}
-          isClearable
           dateFormat="dd/MM/yyyy"
           showMonthDropdown
           showYearDropdown

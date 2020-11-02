@@ -1,7 +1,6 @@
 import fr from 'date-fns/locale/fr';
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-import ReactDatePicker from 'react-datepicker';
 import { User } from '../../../app';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
@@ -9,6 +8,7 @@ import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormFie
 import { UpdateUserPayload } from '../../state/models/userSelected';
 import { Checkbox } from '../../../app/';
 import { STATUSOPTIONS } from '../../constants/StatusOptions';
+import { DatePickerFieldForm } from '../../../app/components/utils/DatePickerFieldForm';
 
 interface Props {
   user: User,
@@ -82,41 +82,30 @@ export default class TalentFormInternship extends React.Component<Props> {
                 value={this.props.user.userJob?.status || ''}
               />
             </Col>
-
             <Col md={4}>
-              <label className="label-internship">Début:  </label>
-              <ReactDatePicker
-                className="intern-datepicker form-control"
-                selected={this.props.user.userJob?.startDate}
-                isClearable
-                dateFormat="dd/MM/yyyy"
-                showMonthDropdown
-                showYearDropdown
-                dropdownMode="select"
+              <DatePickerFieldForm
+                keyName="intern-datepicker form-control"
+                label="Début: "
+                value={this.props.user.userJob?.startDate}
                 locale={fr}
-                onChange={(value) => this.props.modifyUser({
+                handleChange={(value) => this.props.modifyUser({
                   category: 'userJob',
                   property: 'startDate',
-                  value: value,
+                  value,
                   index: -1,
                 })}
               />
             </Col>
-            <Col md={4}>
-              <label className="label-internship">Fin:  </label>
-              <ReactDatePicker
-                className="intern-datepicker form-control"
-                selected={this.props.user.userJob?.endDate}
-                isClearable
-                dateFormat="dd/MM/yyyy"
-                showMonthDropdown
-                showYearDropdown
-                dropdownMode="select"
+            <Col md={4}>              
+              <DatePickerFieldForm
+                keyName="endDate"
+                label="Fin: "
+                value={this.props.user.userJob?.endDate}
                 locale={fr}
-                onChange={(value) => this.props.modifyUser({
+                handleChange={(value) => this.props.modifyUser({
                   category: 'userJob',
                   property: 'endDate',
-                  value: value,
+                  value,
                   index: -1,
                 })}
               />

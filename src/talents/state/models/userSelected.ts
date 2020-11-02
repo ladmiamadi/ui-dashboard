@@ -80,7 +80,7 @@ export const userSelected = createModel({
   effects: {
     async saveUserInDb(user: User) {
       this.setIsRequesting(true);
-
+      
       try {
         const { data } = await apiService.put(`/api/users/${user.id}`, user);
 
