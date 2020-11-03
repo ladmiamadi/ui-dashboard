@@ -69,7 +69,7 @@ export default class TalentFormInternship extends React.Component<Props> {
           <Row>
             <Col md={4}>
               <SelectFormField
-                keyName="statusOptions"
+                keyName="status"
                 label="Status du stage: "
                 options={STATUSOPTIONS}
                 className="large"

@@ -1,0 +1,1 @@
+export const PLACEMENTOPTIONS = ['Oui','Non','HDM-Network'];
