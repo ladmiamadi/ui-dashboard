@@ -8,6 +8,18 @@
   margin-top: 20px; 
 }
 
+.job-section2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px;
+  margin-top: 20px; 
+}
+
+.job-hdmnetwork {
+  background-color: lightblue;  
+}
+
 .job-field {
   width: 47.5%;
 }

@@ -41,6 +41,7 @@ export interface UserAddress {
 export interface UserDesiredJob {
   id?: number,
   userId: number,
+  placementOptions: string,
   desiredJob: string,
   mobility: string,
   desiredCountry: string,
