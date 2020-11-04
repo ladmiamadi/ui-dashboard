@@ -40,15 +40,15 @@ export class ModalLanguage extends React.Component<Props> {
           </Row>
           {
             this.props.language.language !== newLanguage.language &&
-                    <Row className="d-flex">
-                      <SelectFormField
-                        label="Niveau : "
-                        keyName="level"
-                        options={LANGUAGES_LEVEL}
-                        handleChange={this.updateLanguageTest}
-                        value={this.props.language.level}
-                      />
-                    </Row>
+              <Row className="d-flex">
+                <SelectFormField
+                  label="Niveau : "
+                  keyName="level"
+                  options={LANGUAGES_LEVEL}
+                  handleChange={this.updateLanguageTest}
+                  value={this.props.language.level}
+                />
+              </Row>
           }
           {
             this.props.language.level !== newLanguage.level

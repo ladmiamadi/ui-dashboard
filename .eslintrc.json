@@ -41,25 +41,60 @@
             "error",
             "always"
         ],
-        "jsx-quotes": ["error", "prefer-double"],
+        "jsx-quotes": [
+            "error",
+            "prefer-double"
+        ],
         "react/no-unescaped-entities": 0,
-        "react/jsx-curly-spacing": ["error", { "when": "never", "attributes": true, "children": false }],
+        "react/jsx-curly-spacing": [
+            "error",
+            {
+                "when": "never",
+                "attributes": true,
+                "children": false
+            }
+        ],
         "space-infix-ops": "warn",
-        "object-curly-spacing": [2, "always"],
-        "max-len": ["error", { "code": 120 }],
-        "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1 }],
+        "object-curly-spacing": [
+            2,
+            "always"
+        ],
+        "max-len": [
+            "error",
+            {
+                "code": 120
+            }
+        ],
+        "no-multiple-empty-lines": [
+            "error",
+            {
+                "max": 1,
+                "maxEOF": 1
+            }
+        ],
         "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": ["error", {
-            "vars": "all",
-            "args": "after-used",
-            "ignoreRestSiblings": false
-        }],
-        "comma-dangle": ["error", {
-            "arrays": "always-multiline",
-            "objects": "always-multiline",
-            "imports": "always-multiline",
-            "exports": "always-multiline",
-            "functions": "always-multiline"
-        }]
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            {
+                "vars": "all",
+                "args": "after-used",
+                "ignoreRestSiblings": false
+            }
+        ],
+        "comma-dangle": [
+            "error",
+            {
+                "arrays": "always-multiline",
+                "objects": "always-multiline",
+                "imports": "always-multiline",
+                "exports": "always-multiline",
+                "functions": "always-multiline"
+            }
+        ]
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
     }
 }

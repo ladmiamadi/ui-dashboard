@@ -10,8 +10,8 @@ interface Props {
 
 export default class TalentsListElement extends React.Component<Props> {
   render() {
-    const picture = this.props.profile.picture ?
-      `${env('MEDIA_URL')}${this.props.profile.picture?.filePath}` : '';
+    const picture = env('MEDIA_URL') + (this.props.profile.picture ?
+      `${this.props.profile.picture?.filePath}` : '/default_avatar.png');
 
     return (
       <div className="id-card">

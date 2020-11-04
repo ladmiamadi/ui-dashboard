@@ -1,5 +1,5 @@
 import { UserSignUp } from '..';
-import { Job, User, UserAddress, UserJob, UserProfile } from '../../app';
+import { Job, User, UserAddress, UserDesiredJob, UserJob, UserProfile } from '../../app';
 
 export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]): User => {
   const userAddress: UserAddress = {
@@ -36,6 +36,10 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     job: job,
   };
 
+  const userDesiredJob: UserDesiredJob = {
+    placementOptions: undefined,
+  };
+
   return {
     createdDate: new Date(),
     isActive: true,
@@ -44,5 +48,6 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     userAddress: userAddress,
     userProfiles: [userProfile, userProfileWorking],
     userJob: userJob,
+    userDesiredJob,
   };
 };

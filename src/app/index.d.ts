@@ -40,16 +40,16 @@ export interface UserAddress {
 
 export interface UserDesiredJob {
   id?: number,
-  userId: number,
-  placementOptions: string,
-  desiredJob: string,
-  mobility: string,
-  desiredCountry: string,
-  desiredCity: string,
-  currentSalary: number,
-  desiredSalary: number,
-  jobDescription: string,
-  internOptions: string,
+  userId?: number,
+  placementOptions: string | undefined,
+  desiredJob?: string,
+  mobility?: string,
+  desiredCountry?: string,
+  desiredCity?: string,
+  currentSalary?: number,
+  desiredSalary?: number,
+  jobDescription?: string,
+  internOptions?: string,
 }
 
 export interface UserProfile {

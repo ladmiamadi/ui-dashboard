@@ -4,16 +4,16 @@ import Input, { InputType } from 'reactstrap/lib/Input';
 
 interface Props {
   className?: string,
-  label: string,
   keyName: string
+  label: string,
   rows?: number,
   type: InputType,
-  value?: any,
+  value?: string | number,
   handleChange: (value: string) => void,
 }
 
 interface State {
-  value?: any,
+  value?: string | number,
 }
 
 export class FieldForm extends React.Component<Props, State> {

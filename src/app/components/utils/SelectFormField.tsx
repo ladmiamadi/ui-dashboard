@@ -3,10 +3,10 @@ import { FormGroup, Label, Input } from 'reactstrap';
 import { OptionList } from './OptionList';
 
 interface Props {
-  options: string[],
   className?: string,
-  label: string,
   keyName: string,
+  label: string,
+  options: string[],
   value: string,
   handleChange: (property: string, value: string) => void,
   updateModel?: (value: string, property: string) => void,

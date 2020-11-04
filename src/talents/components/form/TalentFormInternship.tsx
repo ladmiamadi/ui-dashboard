@@ -15,49 +15,37 @@ interface Props {
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
+enum WEEK_DAYS {
+  LUNDI = 'lundi',
+  MARDI = 'mardi',
+  MERCREDI = 'mercredi',
+  JEUDI = 'jeudi',
+  VENDREDI = 'vendredi',
+  SAMEDI = 'samedi',
+  DIMANCHE = 'dimanche',
+}
+
+export const DAYS_TO_INTERSHIP_PROPERTIES = {
+  [WEEK_DAYS.LUNDI]: 'isWorkingOnMonday',
+  [WEEK_DAYS.MARDI]: 'isWorkingOnTuesday',
+  [WEEK_DAYS.MERCREDI]: 'isWorkingOnWednesday',
+  [WEEK_DAYS.JEUDI]: 'isWorkingOnThursday',
+  [WEEK_DAYS.VENDREDI]: 'isWorkingOnFriday',
+  [WEEK_DAYS.SAMEDI]: 'isWorkingOnSaturday',
+  [WEEK_DAYS.DIMANCHE]: 'isWorkingOnSunday',
+};
+
 export default class TalentFormInternship extends React.Component<Props> {
-
-  mapLabelToProperty(label: string) {
-    let property;
-
-    switch (label) {
-    case 'lundi':
-      property = 'isWorkingOnMonday';
-      break;
-    case 'mardi':
-      property = 'isWorkingOnTuesday';
-      break;
-    case 'mercredi':
-      property = 'isWorkingOnWednesday';
-      break;
-    case 'jeudi':
-      property = 'isWorkingOnThursday';
-      break;
-    case 'vendredi':
-      property = 'isWorkingOnFriday';
-      break;
-    case 'samedi':
-      property = 'isWorkingOnSaturday';
-      break;
-    case 'dimanche':
-      property = 'isWorkingOnSunday';
-      break;
-    default:
-      throw new Error(`Unknown value for label: '${label}'`);
-    }
-
-    return property;
-  }
 
   render() {
     const checkboxes: Checkbox[] = [
-      { label: 'lundi', checked: this.props.user.userJob?.isWorkingOnMonday || false },
-      { label: 'mardi', checked: this.props.user.userJob?.isWorkingOnTuesday || false },
-      { label: 'mercredi', checked: this.props.user.userJob?.isWorkingOnWednesday || false },
-      { label: 'jeudi', checked: this.props.user.userJob?.isWorkingOnThursday || false },
-      { label: 'vendredi', checked: this.props.user.userJob?.isWorkingOnFriday || false },
-      { label: 'samedi', checked: this.props.user.userJob?.isWorkingOnSaturday || false },
-      { label: 'dimanche', checked: this.props.user.userJob?.isWorkingOnSunday || false },
+      { label: WEEK_DAYS.LUNDI, checked: this.props.user.userJob?.isWorkingOnMonday || false },
+      { label: WEEK_DAYS.MARDI, checked: this.props.user.userJob?.isWorkingOnTuesday || false },
+      { label: WEEK_DAYS.MERCREDI, checked: this.props.user.userJob?.isWorkingOnWednesday || false },
+      { label: WEEK_DAYS.JEUDI, checked: this.props.user.userJob?.isWorkingOnThursday || false },
+      { label: WEEK_DAYS.VENDREDI, checked: this.props.user.userJob?.isWorkingOnFriday || false },
+      { label: WEEK_DAYS.SAMEDI, checked: this.props.user.userJob?.isWorkingOnSaturday || false },
+      { label: WEEK_DAYS.DIMANCHE, checked: this.props.user.userJob?.isWorkingOnSunday || false },
     ];
 
     return (
@@ -120,7 +108,7 @@ export default class TalentFormInternship extends React.Component<Props> {
                 label="Jour(s) d'activité: "
                 handleOnChange={(label, value) => this.props.modifyUser({
                   category: 'userJob',
-                  property: this.mapLabelToProperty(label),
+                  property: DAYS_TO_INTERSHIP_PROPERTIES[label as WEEK_DAYS],
                   value: value,
                   index: -1,
                 })}

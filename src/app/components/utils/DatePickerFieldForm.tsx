@@ -4,25 +4,14 @@ import { FormGroup, Label } from 'reactstrap';
 
 interface Props {
   className?: string,
-  label: string,
   keyName: string,
-  value?: any,
+  label: string,
   locale?: Locale,
+  value?: Date,
   handleChange: (value: Date | null) => void,
 }
 
-interface State {
-  value?: any,
-}
-
-export class DatePickerFieldForm extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      value: this.props.value,
-    };
-  }
+export class DatePickerFieldForm extends React.Component<Props> {
 
   handleChange(value: Date | null) {
     if (this.props.handleChange) {

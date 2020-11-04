@@ -28,8 +28,8 @@ export class TalentFormHead extends React.Component<Props> {
     const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
       this.props.user.userProfiles, 'working',
     );
-    const filePath: string = userProfileWorking && userProfileWorking.picture ?
-      `${env('MEDIA_URL')}${userProfileWorking?.picture?.filePath}` : '';
+    const filePath: string = env('MEDIA_URL') + (userProfileWorking && userProfileWorking.picture ?
+      `${env('MEDIA_URL')}${userProfileWorking?.picture?.filePath}` : '/default_avatar.png');
 
     const jobPositions = this.props.jobCollection.map((job: Job) => job.position);
 

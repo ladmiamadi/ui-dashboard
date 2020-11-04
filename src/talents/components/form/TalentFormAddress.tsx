@@ -1,10 +1,10 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-import { User } from '../../../app';
+import { COUNTRIES } from '../../constants/countries';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
-import { COUNTRIES } from '../../constants/countries';
 import { UpdateUserPayload } from '../../state/models/userSelected';
+import { User } from '../../../app';
 
 interface Props {
   user: User,
