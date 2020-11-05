@@ -1,8 +1,8 @@
 import React from 'react';
+import { UserProfile } from '../../app';
+import { env } from '../../helpers/environment';
 import './styles/TalentModal.css';
 import './styles/TalentsList.css';
-import { env } from '../../helpers/environment';
-import { UserProfile } from '../../app';
 
 interface Props {
   profile: UserProfile,

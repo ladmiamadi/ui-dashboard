@@ -1,15 +1,15 @@
 import React from 'react';
 import _ from 'lodash';
-import './styles/TalentsList.css';
-import { Col, Container, Row } from 'reactstrap';
 import { connect } from 'react-redux';
+import { Col, Container, Row } from 'reactstrap';
+import { User } from '../../app';
 import { ModalCustom } from '../../app/components/utils/ModalCustom';
+import history from '../../app/helpers/history';
+import { UserProfileHelpers } from '../../app/helpers/UserProfileHelpers';
 import { RootDispatch } from '../../app/state/store';
 import { TalentModal } from './modal/TalentModal';
-import { User } from '../../app';
-import { UserProfileHelpers } from '../../app/helpers/UserProfileHelpers';
-import history from '../../app/helpers/history';
 import TalentsListElement from './TalentsListElement';
+import './styles/TalentsList.css';
 
 interface Props {
   searchTerm: string,

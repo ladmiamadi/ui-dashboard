@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, Label, Input } from 'reactstrap';
+import { FormGroup, Input, Label } from 'reactstrap';
 import { OptionList } from './OptionList';
 
 interface Props {

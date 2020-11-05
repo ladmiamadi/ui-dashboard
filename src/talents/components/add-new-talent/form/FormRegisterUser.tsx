@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { doubleArrayPropsInput } from '../../../helpers/formRegisterHelper';
-import { Job } from '../../../../app';
 import { Row } from 'reactstrap';
-import { UserSignUp, IsFormValid, UserRegister } from '../../..';
-import classes from '../styles/FormRegisterUser.module.css';
+import { IsFormValid, UserRegister, UserSignUp } from '../../..';
+import { Job } from '../../../../app';
+import { doubleArrayPropsInput } from '../../../helpers/formRegisterHelper';
 import InputRegisterUsers from './inputs/InputRegisterUsers';
+import classes from '../styles/FormRegisterUser.module.css';
 
 export interface Props {
   isFormValid: IsFormValid,
@@ -16,9 +16,9 @@ export interface Props {
 }
 
 export default class FormRegisterUser extends Component<Props> {
-
   render() {
     const doubleArrayOfAllInputs = doubleArrayPropsInput(this.props);
+
     return (
       <>
         {

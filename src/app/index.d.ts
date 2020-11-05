@@ -47,7 +47,7 @@ export interface UserDesiredJob {
   desiredSalary?: number,
   jobDescription?: string,
   internOptions?: string,
-  placementOptions: string | undefined,
+  placementOptions?: string | undefined,
 }
 
 export interface UserProfile {

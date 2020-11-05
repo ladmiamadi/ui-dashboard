@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { User } from '../../app';
 import { Loader } from '../../app/components/utils/Loader';
 import { RootDispatch, RootState } from '../../app/state/store';
 import { TalentsDashBoard } from './TalentsDashBoard';
-import { User } from '../../app';
 
 interface Props {
-  users: User[],
   isFetching: boolean,
   searchTerm: string,
+  users: User[],
   fetchTalents: () => void,
   updateSearchTerm: (searchTerm: string) => void,
 }
