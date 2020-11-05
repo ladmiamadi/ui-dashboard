@@ -24,7 +24,7 @@ interface Props {
 
 export class TalentFormPageContainer extends React.Component<Props> {
 
-  handleSubmit(event: any) {
+  handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     this.props.saveUserInDb(this.props.user);

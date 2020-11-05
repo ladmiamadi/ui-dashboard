@@ -1,4 +1,4 @@
-import { FORM_REGISTER } from '../constant/FormRegister';
+import { FORM_REGISTER } from '../constant/form-register';
 import { Job } from '../../app';
 import { Props as FormRegisterProps } from '../components/add-new-talent/form/FormRegisterUser';
 import { PropsForInput, UserRegister } from '..';

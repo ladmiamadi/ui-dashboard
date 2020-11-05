@@ -40,8 +40,6 @@ export class UserFactory {
     zipCode: 0,
     city: '',
     country: '',
-    status: '',
-    internOptions: '',
   })
 
   public createEmptyUserRole = (dtoUser: User) => ({
