@@ -6,7 +6,7 @@ import { User } from '../../../app';
 import InputFormField from '../../../app/components/utils/InputFormField';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
 import { RootDispatch } from '../../../app/state/store';
-import { UpdateUserPayload } from '../../state/models/userSelected';
+import { UpdateUserPayload } from '../../state/models/user-selected';
 import ModalExperience from '../modal/ModalExperience';
 import fr from 'date-fns/locale/fr';
 import 'react-datepicker/dist/react-datepicker.css';

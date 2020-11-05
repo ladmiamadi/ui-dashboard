@@ -1,14 +1,14 @@
-import fr from 'date-fns/locale/fr';
 import React from 'react';
 import { connect } from 'react-redux';
-import { Job, User, UserProfile } from '../../../app';
 import { DatePickerFieldForm } from '../../../app/components/utils/DatePickerFieldForm';
-import { FieldForm } from '../../../app/components/utils/FieldForm';
-import { SelectFormField } from '../../../app/components/utils/SelectFormField';
-import { RootDispatch, RootState } from '../../../app/state/store';
 import { env } from '../../../helpers/environment';
+import { FieldForm } from '../../../app/components/utils/FieldForm';
+import { Job, User, UserProfile } from '../../../app';
+import { RootDispatch, RootState } from '../../../app/state/store';
+import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import { UpdateUserPayload } from '../../state/models/user-selected';
+import fr from 'date-fns/locale/fr';
 import ProfileCollection from '../../helpers/ProfileCollection';
-import { UpdateUserPayload } from '../../state/models/userSelected';
 
 interface Props {
   user: User,
@@ -30,7 +30,6 @@ export class TalentFormHead extends React.Component<Props> {
     );
     const filePath: string = env('MEDIA_URL') + (userProfileWorking && userProfileWorking.picture ?
       `${env('MEDIA_URL')}${userProfileWorking?.picture?.filePath}` : '/default_avatar.png');
-
     const jobPositions = this.props.jobCollection.map((job: Job) => job.position);
 
     return (
@@ -81,10 +80,10 @@ export class TalentFormHead extends React.Component<Props> {
             label="Mail: "
             type="text"
             handleChange={(value) => this.props.modifyUser({
-              value: value,
+              value,
               index: -1,
               category: 'userProfiles',
-              property: '',
+              property: 'email',
             })}
             value={userProfileWorking?.email} />
           <FieldForm
@@ -92,7 +91,7 @@ export class TalentFormHead extends React.Component<Props> {
             label="Téléphone: "
             type="text"
             handleChange={(value) => this.props.modifyUser({
-              value: value,
+              value,
               index: indexWorking,
               category: 'userProfiles',
               property: 'phone',
@@ -115,7 +114,7 @@ export class TalentFormHead extends React.Component<Props> {
             label="Nationalité: "
             type="text"
             handleChange={(value) => this.props.modifyUser({
-              value: value,
+              value,
               index: -1,
               category: 'userProfiles',
               property: 'nationality',
@@ -126,7 +125,7 @@ export class TalentFormHead extends React.Component<Props> {
             label="Plateforme: "
             type="text"
             handleChange={(value) => this.props.modifyUser({
-              value: value,
+              value,
               index: indexWorking,
               category: 'userProfiles',
               property: 'platform',

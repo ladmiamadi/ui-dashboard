@@ -1,11 +1,11 @@
 import React from 'react';
-import { User } from '../../../app';
-import { FieldForm } from '../../../app/components/utils/FieldForm';
-import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { COUNTRIES } from '../../constants/countries';
+import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { INTERNOPTIONS } from '../../constants/internshipOptions';
 import { PLACEMENTOPTIONS } from '../../constants/PlacementOptions';
-import { UpdateUserPayload } from '../../state/models/userSelected';
+import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import { UpdateUserPayload } from '../../state/models/user-selected';
+import { User } from '../../../app';
 import classes from './styles/TalentFormJob.module.css';
 
 interface Props {

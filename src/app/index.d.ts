@@ -33,15 +33,12 @@ export interface UserAddress {
   box?: string
   zipCode?: number,
   city?: string,
-  country?: string,  
-  status?: string,
-  internOptions?: string,
+  country?: string,
 }
 
 export interface UserDesiredJob {
   id?: number,
   userId?: number,
-  placementOptions: string | undefined,
   desiredJob?: string,
   mobility?: string,
   desiredCountry?: string,
@@ -50,6 +47,7 @@ export interface UserDesiredJob {
   desiredSalary?: number,
   jobDescription?: string,
   internOptions?: string,
+  placementOptions: string | undefined,
 }
 
 export interface UserProfile {
@@ -57,16 +55,14 @@ export interface UserProfile {
   lastName: string,
   firstName: string,
   email: string,
-  platform: string,
   phone: string,
-  nationality: string,
   requestInFrench?: string,
   requestInEnglish?: string,
   requestInDutch?: string,
   motivationInFrench?: string,
   motivationInEnglish?: string,
   motivationInDutch?: string,
-  birthDate: Date,  
+  birthDate: Date,
   institution?: string,
   descriptionInFrench?: string,
   descriptionInEnglish?: string,
@@ -74,11 +70,13 @@ export interface UserProfile {
   isActuallyLookingForJob?: boolean,
   phoneInstitution?: string,
   mailInstitution?: string,
-  personContactInstitution?: string,  
+  personContactInstitution?: string,
   status: string,
   environment: string
   picture?: MediaObject,
-  position?: string,  
+  position?: string,
+  platform: string,
+  nationality: string,
 }
 
 export interface MediaObject {

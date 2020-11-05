@@ -3,7 +3,7 @@ import { Col, Row } from 'reactstrap';
 import { COUNTRIES } from '../../constants/countries';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
-import { UpdateUserPayload } from '../../state/models/userSelected';
+import { UpdateUserPayload } from '../../state/models/user-selected';
 import { User } from '../../../app';
 
 interface Props {
@@ -71,7 +71,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               handleChange={(value: string) => this.props.modifyUser({
                 category: 'userAddress',
                 property: 'zipCode',
-                value,
+                value: +value,
                 index: -1,
               })}
               value={this.props.user.userAddress?.zipCode} />
@@ -104,7 +104,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               })}
               value={this.props.user.userAddress?.country || ''}
             />
-          </Col>          
+          </Col>
         </Row>
       </div>
     );

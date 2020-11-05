@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { User } from '../../../app';
 import { DateFormField } from '../../../app/components/utils/DateFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { RootState } from '../../../app/state/store';
-import { UpdateUserPayload } from '../../state/models/userSelected';
+import { UpdateUserPayload } from '../../state/models/user-selected';
+import { User } from '../../../app';
 import ReactDatePicker from 'react-datepicker';
 
 interface Props {
@@ -50,7 +50,7 @@ export class TalentFormFormation extends React.Component<Props> {
                 label="Début formation: "
                 values={{ day: 1, month: 1, year: 2000 }}
                 yearSegment={{ yearStart: 2000, yearEnd: 2100 }}
-                handleOnChange={() => { }}
+                handleOnChange={() => {}}
               />
               <DateFormField
                 className="medium"
@@ -58,7 +58,7 @@ export class TalentFormFormation extends React.Component<Props> {
                 label="Fin: "
                 values={{ day: 1, month: 1, year: 2000 }}
                 yearSegment={{ yearStart: 2000, yearEnd: 2100 }}
-                handleOnChange={() => { }}
+                handleOnChange={() => {}}
               />
               <FieldForm
                 keyName="formation-diploma"

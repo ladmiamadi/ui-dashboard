@@ -1,14 +1,14 @@
-import fr from 'date-fns/locale/fr';
 import React from 'react';
-import { Col, Row } from 'reactstrap';
-import { User } from '../../../app';
-import { SelectFormField } from '../../../app/components/utils/SelectFormField';
-import { FieldForm } from '../../../app/components/utils/FieldForm';
-import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormField';
-import { UpdateUserPayload } from '../../state/models/userSelected';
 import { Checkbox } from '../../../app/';
-import { STATUSOPTIONS } from '../../constants/StatusOptions';
+import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormField';
+import { Col, Row } from 'reactstrap';
 import { DatePickerFieldForm } from '../../../app/components/utils/DatePickerFieldForm';
+import { FieldForm } from '../../../app/components/utils/FieldForm';
+import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import { STATUSOPTIONS } from '../../constants/StatusOptions';
+import { UpdateUserPayload } from '../../state/models/user-selected';
+import { User } from '../../../app';
+import fr from 'date-fns/locale/fr';
 
 interface Props {
   user: User,
@@ -109,7 +109,7 @@ export default class TalentFormInternship extends React.Component<Props> {
                 handleOnChange={(label, value) => this.props.modifyUser({
                   category: 'userJob',
                   property: DAYS_TO_INTERSHIP_PROPERTIES[label as WEEK_DAYS],
-                  value: value,
+                  value,
                   index: -1,
                 })}
               />
@@ -125,7 +125,7 @@ export default class TalentFormInternship extends React.Component<Props> {
                 handleChange={(value) => this.props.modifyUser({
                   category: 'userJob',
                   property: 'workingHours',
-                  value: value,
+                  value,
                   index: -1,
                 })}
                 value={this.props.user.userJob?.workingHours} />

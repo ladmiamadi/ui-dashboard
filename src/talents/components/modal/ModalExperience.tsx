@@ -1,15 +1,15 @@
 import React from 'react';
-import ReactDatePicker from 'react-datepicker';
-import { connect } from 'react-redux';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Button } from 'reactstrap';
-import InputFormField from '../../../app/components/utils/InputFormField';
-import { UserExperience } from '../../../app/index';
+import { confirmAlert } from 'react-confirm-alert';
+import { connect } from 'react-redux';
 import { RootDispatch, RootState } from '../../../app/state/store';
 import { UpdateExperiencePayload } from '../../state/models/experiences/addExperience';
-import { confirmAlert } from 'react-confirm-alert';
-import fr from 'date-fns/locale/fr';
+import { UserExperience } from '../../../app/index';
 import classes from '../form/styles/TalentFormExperience.module.css';
-import 'react-confirm-alert/src/react-confirm-alert.css';
+import fr from 'date-fns/locale/fr';
+import InputFormField from '../../../app/components/utils/InputFormField';
+import ReactDatePicker from 'react-datepicker';
 
 interface Props {
   experience: UserExperience,

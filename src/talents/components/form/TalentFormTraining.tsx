@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import { User } from '../../../app';
-import { UpdateUserPayload } from '../../state/models/userSelected';
+import { UpdateUserPayload } from '../../state/models/user-selected';
 import ModalTraining from '../modal/ModalTraining';
 import TrainingForm from './TrainingForm';
 import classes from './styles/TalentFormTraining.module.css';

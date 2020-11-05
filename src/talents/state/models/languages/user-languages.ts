@@ -34,6 +34,7 @@ export const userLanguages = createModel({
         .findIndex((toFind) => toFind === newLanguage.language);
 
       languages[indexLanguage] = newLanguage;
+
       return {
         ...state, languages,
       };
@@ -41,7 +42,10 @@ export const userLanguages = createModel({
   },
   effects: {
     async fetchLanguages(userId: number | undefined) {
-      if (userId === undefined) return;
+      if (userId === undefined) {
+        return;
+      }
+
       try {
         this.setIsFetching(true);
         const { data } = await apiService.get(`/api/users/${userId}`);

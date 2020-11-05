@@ -1,20 +1,20 @@
 import React from 'react';
+import './styles/TalentForm.css';
 import { connect } from 'react-redux';
 import { Container, Form } from 'reactstrap';
-import { User } from '../../../app';
 import { RootState, RootDispatch } from '../../../app/state/store';
-import TalentFormHead from './TalentFormHead';
+import { UpdateUserPayload } from '../../state/models/user-selected';
+import { User } from '../../../app';
+import classes from './styles/TalentFormPageContainer.module.css';
 import TalentFormAddress from './TalentFormAddress';
+import TalentFormExperience from './TalentFormExperience';
+import TalentFormHead from './TalentFormHead';
 import TalentFormInstitution from './TalentFormInstitution';
 import TalentFormInternship from './TalentFormInternship';
-import TalentFormExperience from './TalentFormExperience';
-import TalentFormTraining from './TalentFormTraining';
 import TalentFormJob from './TalentFormJob';
 import TalentFormLanguages from './TalentFormLanguages';
 import TalentFormSkills from './TalentFormSkills';
-import { UpdateUserPayload } from '../../state/models/userSelected';
-import classes from './styles/TalentFormPageContainer.module.css';
-import './styles/TalentForm.css';
+import TalentFormTraining from './TalentFormTraining';
 
 interface Props {
   user: User,

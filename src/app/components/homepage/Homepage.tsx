@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { RootDispatch, RootState } from '../../state/store';
-import { connect } from 'react-redux';
-import { Module } from '../../index.d';
 import './styles/Homepage.css';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Module } from '../../index.d';
+import { RootDispatch, RootState } from '../../state/store';
 
 interface Props {
   modules: Module[],

@@ -1,9 +1,9 @@
 import React from 'react';
-import { User, UserProfile } from '../../../app';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
-import { UpdateUserPayload } from '../../state/models/userSelected';
-import ProfileCollection from '../../helpers/ProfileCollection';
+import { UpdateUserPayload } from '../../state/models/user-selected';
+import { User, UserProfile } from '../../../app';
 import classes from './styles/TalentFormInstitution.module.css';
+import ProfileCollection from '../../helpers/ProfileCollection';
 
 interface Props {
   user: User,

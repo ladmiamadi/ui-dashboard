@@ -1,22 +1,22 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
-import { RootDispatch, RootState } from '../../../app/state/store';
-import ModalLanguage from '../modal/ModalLanguage';
+import { connect } from 'react-redux';
+import { LANGUAGES } from '../../constants/language';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
+import { RootDispatch, RootState } from '../../../app/state/store';
+import { UpdateUserPayload } from '../../state/models/user-selected';
 import { UserLanguage } from '../../../app';
 import { UserLanguagesDisplay } from './UserLanguagesDisplay';
-import { LANGUAGES } from '../../constants/language';
-import { UpdateUserPayload } from '../../state/models/userSelected';
+import ModalLanguage from '../modal/ModalLanguage';
 
 interface Props {
   isFetching: boolean,
-  userLanguages: UserLanguage[],
   userId?: number,
+  userLanguages: UserLanguage[],
   fetchLanguages: (userId: number | undefined) => Promise<void>,
   modifyUser: (payload: UpdateUserPayload) => void,
-  updateUserLanguage: (language: UserLanguage) => void,
   resetLanguage: () => void,
+  updateUserLanguage: (language: UserLanguage) => void,
 }
 
 interface State {

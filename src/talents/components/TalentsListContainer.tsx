@@ -1,9 +1,9 @@
 import React from 'react';
-import { RootDispatch, RootState } from '../../app/state/store';
+import { connect } from 'react-redux';
 import { Loader } from '../../app/components/utils/Loader';
+import { RootDispatch, RootState } from '../../app/state/store';
 import { TalentsDashBoard } from './TalentsDashBoard';
 import { User } from '../../app';
-import { connect } from 'react-redux';
 
 interface Props {
   users: User[],

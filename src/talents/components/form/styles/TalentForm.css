@@ -63,9 +63,8 @@
 }
 
 .form-elements {
-    width: 100%;    
+    width: 100%;
     padding: .5rem;
-        
 }
 
 .form-title {
@@ -75,14 +74,13 @@
     margin-bottom: 10px;
 }
 
-.form-title > h6 {  
-    font-size: 2rem;   
+.form-title > h6 {
+    font-size: 2rem;
     margin-block-start: .75em;
     margin-block-end: .9em;
 }
 
 .form-label {
-
     font-size: 2rem;
     margin-left: 15px;
     margin-right: 10px;
@@ -96,7 +94,7 @@
     box-sizing: border-box;
 }
 
-.form-row.row-almost-large {
+.form-row .row-almost-large {
     width: 100%;
     border-top: solid 1px #151515;
 }
@@ -264,7 +262,7 @@
         width: 50%;
         min-width: 300px;
         margin-bottom: 20px;
-    }  
+    }
 
     .form-head img, .connection-box {
         width: 20%;

@@ -1,12 +1,12 @@
+import { apiService } from '../../../../app/http/service';
 import { createModel } from '@rematch/core';
-import { UserLanguageFactory } from '../../../helpers/UserLanguageFactory';
 import { Toastify } from '../../../../helpers/Toastify';
 import { UserLanguage } from '../../../../app';
-import { apiService } from '../../../../app/http/service';
+import { UserLanguageFactory } from '../../../helpers/UserLanguageFactory';
 
 export interface LanguageState {
-  language: UserLanguage,
   isPosting: boolean,
+  language: UserLanguage,
 }
 
 export interface UpdateLanguagePayload {
@@ -16,8 +16,8 @@ export interface UpdateLanguagePayload {
 
 export const addLanguage = createModel({
   state: {
-    language: UserLanguageFactory.createEmptyLanguage(),
     isPosting: false,
+    language: UserLanguageFactory.createEmptyLanguage(),
   } as LanguageState,
   reducers: {
     setIsPosting: (state: LanguageState, isPosting): LanguageState => ({ ...state, isPosting }),
@@ -32,7 +32,7 @@ export const addLanguage = createModel({
     resetLanguage: (state) => ({ ...state, language: UserLanguageFactory.createEmptyLanguage() }),
   },
   effects: (dispatch: any) => ({
-    async postLanguage( { userLanguage, userId } : { userLanguage: UserLanguage, userId: number | undefined } ) {
+    async postLanguage({ userLanguage, userId } : { userLanguage: UserLanguage, userId: number | undefined }) {
       try {
         this.setIsPosting(true);
 
