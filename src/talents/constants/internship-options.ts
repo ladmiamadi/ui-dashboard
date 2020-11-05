@@ -1,0 +1,1 @@
+export const INTERNOPTIONS = ['Alternance','CDI','CDD','Stage'];

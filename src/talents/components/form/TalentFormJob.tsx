@@ -1,8 +1,8 @@
 import React from 'react';
 import { COUNTRIES } from '../../constants/countries';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
-import { INTERNOPTIONS } from '../../constants/internshipOptions';
-import { PLACEMENTOPTIONS } from '../../constants/PlacementOptions';
+import { INTERNOPTIONS } from '../../constants/internship-options';
+import { PLACEMENTOPTIONS } from '../../constants/placement-options';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { UpdateUserPayload } from '../../state/models/user-selected';
 import { User } from '../../../app';

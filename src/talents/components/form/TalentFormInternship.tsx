@@ -5,7 +5,7 @@ import { Col, Row } from 'reactstrap';
 import { DatePickerFieldForm } from '../../../app/components/utils/DatePickerFieldForm';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
-import { STATUSOPTIONS } from '../../constants/StatusOptions';
+import { STATUSOPTIONS } from '../../constants/status-options';
 import { UpdateUserPayload } from '../../state/models/user-selected';
 import { User } from '../../../app';
 import fr from 'date-fns/locale/fr';
