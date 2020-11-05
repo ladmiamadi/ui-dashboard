@@ -12,7 +12,6 @@ interface Props {
 }
 
 export class DatePickerFieldForm extends React.Component<Props> {
-
   handleChange(value: Date | null) {
     if (this.props.handleChange) {
       this.props.handleChange(value);

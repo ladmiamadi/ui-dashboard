@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import { IsFormValid, UserSignUp } from '../../../index.d';
-import { FormValidator } from '../../../helpers/FormValidator';
 import { createDtoUserIntern } from '../../../helpers/userFactoryHelper';
+import { FormValidator } from '../../../helpers/FormValidator';
+import { IsFormValid, UserSignUp } from '../../../index.d';
 import { Job, User } from '../../../../app';
 import { RootState, RootDispatch } from '../../../../app/state/store';
 
@@ -18,7 +18,7 @@ interface Props {
 }
 
 export class ContentModalFooter extends React.Component<Props> {
-  isPostAvailable = (): boolean  => {
+  isPostAvailable = (): boolean => {
     return this.props.isRequesting ? false : FormValidator.isAllFieldValidated<IsFormValid>(this.props.isFormValid);
   }
 
@@ -34,21 +34,21 @@ export class ContentModalFooter extends React.Component<Props> {
 
     return (
       <>
-        <Button 
-          color={colorButtonAdd} 
-          disabled={!isPostAvailable} 
+        <Button
+          color={colorButtonAdd}
+          disabled={!isPostAvailable}
           onClick={this.postUserInDb}>
-            Ajouter
+          Ajouter
         </Button>
         <Button
           color="warning"
           onClick={this.props.resetUserSignUp}>
-            Tout effacer
+          Tout effacer
         </Button>
-        <Button 
-          color="danger" 
+        <Button
+          color="danger"
           onClick={this.props.toggleModal}>
-            Retour
+          Retour
         </Button>
       </>
     );

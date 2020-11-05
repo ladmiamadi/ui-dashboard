@@ -12,19 +12,7 @@ interface Props {
   handleChange: (value: string) => void,
 }
 
-interface State {
-  value?: string | number,
-}
-
-export class FieldForm extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      value: this.props.value,
-    };
-  }
-
+export class FieldForm extends React.Component<Props> {
   handleChange(value: string) {
     if (this.props.handleChange) {
       this.props.handleChange(value);
@@ -42,7 +30,7 @@ export class FieldForm extends React.Component<Props, State> {
           rows={this.props.rows}
           locale="fr"
           onChange={(event: FormEvent<HTMLInputElement>) => this.handleChange(event.currentTarget.value)}
-          defaultValue={this.state.value}
+          defaultValue={this.props.value}
         />
       </FormGroup>
     );
