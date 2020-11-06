@@ -1,9 +1,9 @@
-import _ from 'lodash';
-import { apiService } from '../../../app/http/service';
-import { createEmptyUser } from '../../../app/helpers/user';
 import { createModel } from '@rematch/core';
+import _ from 'lodash';
+import { User, UserExperience, UserLanguage, UserTraining } from '../../../app';
+import { createEmptyUser } from '../../../app/helpers/user';
+import { apiService } from '../../../app/http/service';
 import { Toastify } from '../../../helpers/Toastify';
-import { User, UserLanguage, UserTraining, UserExperience } from '../../../app';
 
 export interface UserState {
   isRequesting: boolean,

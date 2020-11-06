@@ -9,13 +9,13 @@ import { UserLanguageFactory } from '../../helpers/UserLanguageFactory';
 import { UpdateLanguagePayload } from '../../state/models/languages/add-language';
 
 interface Props {
-  isPosting: boolean,
   language: UserLanguage,
   languages: string[],
+  isPosting: boolean,
   userId: number | undefined,
-  postLanguage: (arg: { userLanguage: UserLanguage, userId: number | undefined }) => void,
   resetLanguage: () => void,
   updateLanguage: (payload: UpdateLanguagePayload) => void,
+  postLanguage: (arg: { userLanguage: UserLanguage, userId: number | undefined }) => void,
 }
 
 export class ModalLanguage extends React.Component<Props> {

@@ -1,7 +1,7 @@
-import { apiService } from '../../../../app/http/service';
 import { createModel } from '@rematch/core';
-import { Toastify } from '../../../../helpers/Toastify';
 import { UserLanguage } from '../../../../app';
+import { apiService } from '../../../../app/http/service';
+import { Toastify } from '../../../../helpers/Toastify';
 import { UserLanguageFactory } from '../../../helpers/UserLanguageFactory';
 
 export interface LanguageState {
@@ -21,7 +21,7 @@ export const addLanguage = createModel({
   } as LanguageState,
   reducers: {
     setIsPosting: (state: LanguageState, isPosting): LanguageState => ({ ...state, isPosting }),
-    updateLanguage: (state: LanguageState, payload: UpdateLanguagePayload): LanguageState  => {
+    updateLanguage: (state: LanguageState, payload: UpdateLanguagePayload): LanguageState => {
       const language = { ...state.language } as any;
       language[payload.property] = payload.value;
 
@@ -32,7 +32,7 @@ export const addLanguage = createModel({
     resetLanguage: (state) => ({ ...state, language: UserLanguageFactory.createEmptyLanguage() }),
   },
   effects: (dispatch: any) => ({
-    async postLanguage({ userLanguage, userId } : { userLanguage: UserLanguage, userId: number | undefined }) {
+    async postLanguage({ userLanguage, userId }: { userLanguage: UserLanguage, userId: number | undefined }) {
       try {
         this.setIsPosting(true);
 
@@ -46,7 +46,7 @@ export const addLanguage = createModel({
         this.resetLanguage();
 
         (new Toastify()).info('Language added successfully.');
-      } catch(error) {
+      } catch (error) {
         (new Toastify()).info(`Unable to add a new language. ${error.message}`);
       } finally {
         this.setIsPosting(false);

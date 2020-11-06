@@ -1,12 +1,12 @@
 import { createModel } from '@rematch/core';
-import { apiService } from '../../../../app/http/service';
 import { UserLanguage } from '../../../../app';
-import { UserLanguagesCollectionFactory } from '../../../helpers/UserLanguagesCollectionFactory';
+import { apiService } from '../../../../app/http/service';
 import { Toastify } from '../../../../helpers/Toastify';
+import { UserLanguagesCollectionFactory } from '../../../helpers/UserLanguagesCollectionFactory';
 
 export interface State {
-    languages: UserLanguage[],
-    isFetching: boolean,
+  languages: UserLanguage[],
+  isFetching: boolean,
 }
 
 export const userLanguages = createModel({
@@ -49,6 +49,7 @@ export const userLanguages = createModel({
       try {
         this.setIsFetching(true);
         const { data } = await apiService.get(`/api/users/${userId}`);
+
         this.initUserLanguages(UserLanguagesCollectionFactory.createCollectionFromUser(data));
       } catch (error) {
         (new Toastify()).info(`Unable to fetch user languages. ${error.message}`);
