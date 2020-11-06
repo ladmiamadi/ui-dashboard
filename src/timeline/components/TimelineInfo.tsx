@@ -6,34 +6,34 @@ const TimelineInfo = (props: any) => {
     const undef = "UNDEFINED"
 
         return (
-            <div className="TimelineInfo">
-                <h1 className="TimelineInfoTitle" id="Title">Information</h1>
-                <div className="TimelineInfoContent">
-                    <div className="TimelineInfoPerson">
+            <div className="timeline-info">
+                <h1 className="timeline-info-title" id="title">Information</h1>
+                <div className="timeline-info-content">
+                    <div className="timeline-info-person">
                         <p>Prénom : {undef}</p>
                         <p>Nom : {undef}</p>
                         <p>Durée Stage : {undef}</p>
                     </div>
-                    <div className="TimelineInfoDates">
+                    <div className="timeline-info-dates">
                         <p>Moi Début : {undef}</p>
                         <p>Date Début Stage : {undef}</p>
                         <p>Date Fin Stage : {undef}</p>
                     </div>
-                    <div className="TimelineInfoState">
+                    <div className="timeline-info-state">
                         <p>Progression de la Convention: </p>
-                        <label className="TimelineInfoCheckboxes">(1/5) Recu 
+                        <label className="timeline-infoC-checkboxes">(1/5) Recu 
                         <input className="checkboxinput" type="checkbox"></input>
                         <span className="checkmark"></span></label>
-                        <label className="TimelineInfoCheckboxes">(2/5) Complet 
+                        <label className="timeline-info-checkboxes">(2/5) Complet 
                         <input className="checkboxinput" type="checkbox"></input>
                         <span className="checkmark"></span></label>
-                        <label className="TimelineInfoCheckboxes">(3/5) Verifié 
+                        <label className="timeline-info-checkboxes">(3/5) Verifié 
                         <input className="checkboxinput" type="checkbox"></input>
                         <span className="checkmark"></span></label>
-                        <label className="TimelineInfoCheckboxes">(4/5) Attente 
+                        <label className="timeline-info-checkboxes">(4/5) Attente 
                         <input className="checkboxinput" type="checkbox"></input>
                         <span className="checkmark"></span></label>
-                        <label className="TimelineInfoCheckboxes">(5/5) Signée 
+                        <label className="timeline-info-checkboxes">(5/5) Signée 
                         <input className="checkboxinput" type="checkbox"></input>
                         <span className="checkmark"></span></label>
                     </div>

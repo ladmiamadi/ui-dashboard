@@ -1,29 +1,29 @@
-.TimelineInfo {
+.timeline-info {
     display: none;
     background-color: rgba(0, 0, 0, 0.080);
     padding: 10px;
     margin: 25px;
 }
 
-.TimelineInfoContent {
+.timeline-info-content {
     display: flex;
     margin: 10px;
     font-size: 18px;
 }
 
-.TimelineInfoTitle {
+.timeline-info-title {
     text-align: left;
 }
 
-.TimelineInfoPerson {
+.timeline-info-person {
     margin: 10px;
 }
 
-.TimelineInfoDates {
+.timeline-info-dates {
     margin: 10px;
 }
 
-.TimelineInfoState {
+.timeline-info-state {
     margin: 10px;
 }
 
@@ -38,7 +38,7 @@
     width: 18px;
 }
 
-.TimelineInfoCheckboxes {
+.timeline-info-checkboxes {
     display: inline;
     margin: 5px;
     font-size: 18px;

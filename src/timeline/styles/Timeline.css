@@ -36,13 +36,4 @@ button {
     font-size: 12px;
     text-align: center;
     cursor: pointer;
-    z-index: 1; }/*
-
-.react-calendar-timeline .rct-items .rct-item.selected {
-      background: #FFC107;
-      border: 1px solid #FF9800;
-      z-index: 2; }
-      .react-calendar-timeline .rct-items .rct-item.selected.can-move {
-        cursor: move; }
-      .react-calendar-timeline .rct-items .rct-item.selected.can-resize {
-        border-right-width: 3px; }*/
+    z-index: 1; }

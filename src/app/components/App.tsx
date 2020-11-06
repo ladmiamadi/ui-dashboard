@@ -13,10 +13,7 @@ import RegisterUser from '../../talents/components/add-new-talent/modal/Register
 import './styles/App.css';
 import history from '../helpers/history';
 import AuthenticationForm from '../../authentication/components/AuthenticationForm';
-
-
-import TimelineCustom from '../timeline/components/Timeline';
-
+import TimelineContainer from '../../timeline/components/TimelineContainer';
 
 export class App extends React.Component {
   render() {
@@ -34,7 +31,7 @@ export class App extends React.Component {
                 <Route path="/talents" exact component= {TalentsListPage} />
                 <Route path="/editprofile" exact component={ProfileEditValidation} />
                 <Route path="/intern" exact component={RegisterUser} />
-                <Route path="/timeline" exact component={TimelineCustom} />
+                <Route path="/timeline" exact component={TimelineContainer} />
             </AuthenticationGuard>
           </AppContainer>                 
         </Provider>
