@@ -1,9 +1,9 @@
-import { apiService } from '../../../app/http/service';
-import { createEmptyUserSignUp, createEmptyIsFormValid } from '../../helpers/userSignUpFactoryHelper';
 import { createModel } from '@rematch/core';
+import { FormValidPayload, IsFormValid, UserSignUp, UserSignUpPayload } from '../..';
+import { Job, User } from '../../../app';
+import { apiService } from '../../../app/http/service';
 import { Toastify } from '../../../helpers/Toastify';
-import { User, Job } from '../../../app';
-import { UserSignUpPayload, FormValidPayload, UserSignUp, IsFormValid } from '../..';
+import { createEmptyIsFormValid, createEmptyUserSignUp } from '../../helpers/UserSignUpFactoryHelper';
 
 export interface UserSignUpState {
   isFormValid: IsFormValid,
@@ -25,7 +25,7 @@ export const userSignUp = createModel({
   } as UserSignUpState,
   reducers: {
     concatUsername: (state: UserSignUpState, payload: string) => {
-      const updatedUsernameCollection: string[] = [ ...state.usernameCollection ]
+      const updatedUsernameCollection: string[] = [...state.usernameCollection]
         .concat(payload);
 
       return ({
@@ -33,50 +33,50 @@ export const userSignUp = createModel({
         usernameCollection: updatedUsernameCollection,
       });
     },
-    resetUserSignUp: (state: UserSignUpState): UserSignUpState => ({ 
-      ...state, 
-      isFormValid: createEmptyIsFormValid(), 
-      userSignUp: createEmptyUserSignUp(), 
+    resetUserSignUp: (state: UserSignUpState): UserSignUpState => ({
+      ...state,
+      isFormValid: createEmptyIsFormValid(),
+      userSignUp: createEmptyUserSignUp(),
     }),
-    setIsFormValid: (state: UserSignUpState, payload: FormValidPayload): UserSignUpState => { 
+    setIsFormValid: (state: UserSignUpState, payload: FormValidPayload): UserSignUpState => {
       const newIsFormValid: IsFormValid = {
         ...state.isFormValid,
       };
-  
+
       newIsFormValid[payload.property] = payload.isInputValid;
 
       return ({
-        ...state, 
+        ...state,
         isFormValid: newIsFormValid,
       });
     },
     setIsJobsFetching: (state: UserSignUpState, isJobsFetching: boolean): UserSignUpState => ({
-      ...state, 
-      isJobsFetching, 
+      ...state,
+      isJobsFetching,
     }),
     setIsRequesting: (state: UserSignUpState, isRequesting: boolean): UserSignUpState => ({
-      ...state, 
-      isRequesting, 
+      ...state,
+      isRequesting,
     }),
-    updateUserSignUp: (state: UserSignUpState, payload: UserSignUpPayload): UserSignUpState => { 
+    updateUserSignUp: (state: UserSignUpState, payload: UserSignUpPayload): UserSignUpState => {
       const newUserSignUp: UserSignUp = {
         ...state.userSignUp,
       };
-  
+
       newUserSignUp[payload.property] = payload.value;
 
       return ({
-        ...state, 
-        userSignUp: newUserSignUp, 
+        ...state,
+        userSignUp: newUserSignUp,
       });
     },
-    updateUsernameCollection: (state: UserSignUpState, usernameCollection: string[]) => ({ 
-      ...state, 
-      usernameCollection, 
+    updateUsernameCollection: (state: UserSignUpState, usernameCollection: string[]) => ({
+      ...state,
+      usernameCollection,
     }),
-    updateJobCollection: (state: UserSignUpState, jobCollection: Job[]) => ({ 
-      ...state, 
-      jobCollection, 
+    updateJobCollection: (state: UserSignUpState, jobCollection: Job[]) => ({
+      ...state,
+      jobCollection,
     }),
   },
   effects: {
@@ -88,8 +88,8 @@ export const userSignUp = createModel({
         const usernameCollection = data.map((user: User) => user.username);
 
         this.updateUsernameCollection(usernameCollection);
-      } catch(error) {
-        (new Toastify()).error(`Unable to get the user from the database. ${ error.message }`);
+      } catch (error) {
+        (new Toastify()).error(`Unable to get the user from the database. ${error.message}`);
       } finally {
         this.setIsRequesting(false);
       }
@@ -105,8 +105,8 @@ export const userSignUp = createModel({
         (new Toastify()).info('Success adding ' + data.username + ' in the database.');
 
         this.resetUserSignUp();
-      } catch(error) {
-        (new Toastify()).error(`Unable to post the user in the database. ${ error.message }`);
+      } catch (error) {
+        (new Toastify()).error(`Unable to post the user in the database. ${error.message}`);
       } finally {
         this.setIsRequesting(false);
       }
@@ -118,8 +118,8 @@ export const userSignUp = createModel({
         const { data } = await apiService.get('/api/jobs');
 
         this.updateJobCollection(data);
-      } catch(error) {
-        (new Toastify()).error(`Unable to get the jobs from the database. ${ error.message }`);
+      } catch (error) {
+        (new Toastify()).error(`Unable to get the jobs from the database. ${error.message}`);
       } finally {
         this.setIsJobsFetching(false);
       }

@@ -11,7 +11,7 @@ export const createEmptyUserSignUp = (): UserSignUp => ({
   phone: '',
 });
 
-export const createEmptyIsFormValid = (): IsFormValid => ({  
+export const createEmptyIsFormValid = (): IsFormValid => ({
   birthDate: InputState.UNDEFINED,
   jobPosition: InputState.UNDEFINED,
   firstName: InputState.UNDEFINED,

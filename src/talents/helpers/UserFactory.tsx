@@ -1,14 +1,16 @@
-import { User } from '../../app';
+import { Job, MediaObject, Role, User, UserAddress, UserDesiredJob, UserJob, UserRole } from '../../app';
 
 export class UserFactory {
-  public createDTOUser = (user: User) => ({
+  public createDTOUser = (user: User): User => ({
     id: user.id,
     username: user.username,
     password: user.password,
+    isActive: user.isActive,
     createdDate: user.createdDate,
     updatedDate: user.updatedDate,
     userProfiles: user.userProfiles,
     userAddress: user.userAddress,
+    userDesiredJob: user.userDesiredJob,
     userAbsences: user.userAbsences,
     userInterviews: user.userInterviews,
     userContracts: user.userContracts,
@@ -18,9 +20,9 @@ export class UserFactory {
     userRole: user.userRole,
     userSkills: user.userSkills,
     userJob: user.userJob,
-  })
+  });
 
-  static createEmptyUser = () => {
+  static createEmptyUser = (): User => {
     const dtoUser: User = {
       id: 0,
       username: '',
@@ -32,21 +34,21 @@ export class UserFactory {
     return dtoUser;
   }
 
-  public createEmptyUserDesiredJob = () => ({
+  public createEmptyUserDesiredJob = (): UserDesiredJob => ({
     id: 0,
-    user_id: 0,
-    desired_job: '',
+    userId: 0,
+    desiredJob: '',
     mobility: '',
-    job_description: '',
-    desired_country: '',
-    desired_city: '',
-    current_salary: 0,
-    desired_salary: 0,
-    intern_options: '',
-    placement_options: '',
+    desiredCountry: '',
+    desiredCity: '',
+    currentSalary: 0,
+    desiredSalary: 0,
+    jobDescription: '',
+    internOptions: '',
+    placementOptions: '',
   })
 
-  public createEmptyUserAddress = () => ({
+  public createEmptyUserAddress = (): UserAddress => ({
     id: 0,
     street: '',
     number: '',
@@ -56,19 +58,17 @@ export class UserFactory {
     country: '',
   })
 
-  public createEmptyUserRole = (dtoUser: User) => ({
-    user: dtoUser,
+  public createEmptyUserRole = (): UserRole => ({
     role: this.createEmptyRole(),
   })
 
-  public createEmptyRole = () => ({
+  public createEmptyRole = (): Role => ({
     id: 0,
     name: '',
-    userRoles: [],
   })
 
-  public createEmptyUserJob = () => ({
-    job: this.createEmptyJob,
+  public createEmptyUserJob = (): UserJob => ({
+    job: this.createEmptyJob(),
     startDate: new Date(),
     endDate: new Date(),
     isWorkingOnMonday: false,
@@ -82,7 +82,7 @@ export class UserFactory {
     workingHours: '',
   })
 
-  public createEmptyJob = () => ({
+  public createEmptyJob = (): Job => ({
     id: 0,
     titleInFrench: '',
     titleInEnglish: '',
@@ -95,14 +95,13 @@ export class UserFactory {
     LongDescriptionInDutch: '',
     position: '',
     link: '',
-    picture: this.createEmptyMediaObject,
+    picture: this.createEmptyMediaObject(),
     isOpen: false,
     createdDate: new Date(),
     updatedDate: new Date(),
-    userJobs: [],
   })
 
-  public createEmptyMediaObject = () => ({
+  public createEmptyMediaObject = (): MediaObject => ({
     filePath: '',
   })
 }
