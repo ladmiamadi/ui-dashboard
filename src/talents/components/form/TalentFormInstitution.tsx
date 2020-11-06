@@ -31,7 +31,7 @@ export default class TalentFormInstitution extends React.Component<Props> {
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'institution',
-            value: value,
+            value,
             index: indexWorking,
           })}
           value={userProfileWorking?.institution} />
@@ -43,7 +43,7 @@ export default class TalentFormInstitution extends React.Component<Props> {
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'phoneInstitution',
-            value: value,
+            value,
             index: indexWorking,
           })}
           value={userProfileWorking?.phoneInstitution} />
@@ -55,7 +55,7 @@ export default class TalentFormInstitution extends React.Component<Props> {
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'mailInstitution',
-            value: value,
+            value,
             index: indexWorking,
           })}
           value={userProfileWorking?.mailInstitution} />
@@ -67,7 +67,7 @@ export default class TalentFormInstitution extends React.Component<Props> {
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'personContactInstitution',
-            value: value,
+            value,
             index: indexWorking,
           })}
           value={userProfileWorking?.personContactInstitution} />

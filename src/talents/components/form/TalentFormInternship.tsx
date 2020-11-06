@@ -1,51 +1,31 @@
+import fr from 'date-fns/locale/fr';
 import React from 'react';
+import { Col, Row } from 'reactstrap';
+import { User } from '../../../app';
 import { Checkbox } from '../../../app/';
 import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormField';
-import { Col, Row } from 'reactstrap';
 import { DatePickerFieldForm } from '../../../app/components/utils/DatePickerFieldForm';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { STATUSOPTIONS } from '../../constants/status-options';
+import { DAYS_TO_INTERSHIP_PROPERTIES } from '../../constants/week-days';
 import { UpdateUserPayload } from '../../state/models/user-selected';
-import { User } from '../../../app';
-import fr from 'date-fns/locale/fr';
 
 interface Props {
   user: User,
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-enum WEEK_DAYS {
-  LUNDI = 'lundi',
-  MARDI = 'mardi',
-  MERCREDI = 'mercredi',
-  JEUDI = 'jeudi',
-  VENDREDI = 'vendredi',
-  SAMEDI = 'samedi',
-  DIMANCHE = 'dimanche',
-}
-
-export const DAYS_TO_INTERSHIP_PROPERTIES = {
-  [WEEK_DAYS.LUNDI]: 'isWorkingOnMonday',
-  [WEEK_DAYS.MARDI]: 'isWorkingOnTuesday',
-  [WEEK_DAYS.MERCREDI]: 'isWorkingOnWednesday',
-  [WEEK_DAYS.JEUDI]: 'isWorkingOnThursday',
-  [WEEK_DAYS.VENDREDI]: 'isWorkingOnFriday',
-  [WEEK_DAYS.SAMEDI]: 'isWorkingOnSaturday',
-  [WEEK_DAYS.DIMANCHE]: 'isWorkingOnSunday',
-};
-
 export default class TalentFormInternship extends React.Component<Props> {
-
   render() {
     const checkboxes: Checkbox[] = [
-      { label: WEEK_DAYS.LUNDI, checked: this.props.user.userJob?.isWorkingOnMonday || false },
-      { label: WEEK_DAYS.MARDI, checked: this.props.user.userJob?.isWorkingOnTuesday || false },
-      { label: WEEK_DAYS.MERCREDI, checked: this.props.user.userJob?.isWorkingOnWednesday || false },
-      { label: WEEK_DAYS.JEUDI, checked: this.props.user.userJob?.isWorkingOnThursday || false },
-      { label: WEEK_DAYS.VENDREDI, checked: this.props.user.userJob?.isWorkingOnFriday || false },
-      { label: WEEK_DAYS.SAMEDI, checked: this.props.user.userJob?.isWorkingOnSaturday || false },
-      { label: WEEK_DAYS.DIMANCHE, checked: this.props.user.userJob?.isWorkingOnSunday || false },
+      { label: 'lundi', checked: this.props.user.userJob?.isWorkingOnMonday || false },
+      { label: 'mardi', checked: this.props.user.userJob?.isWorkingOnTuesday || false },
+      { label: 'mercredi', checked: this.props.user.userJob?.isWorkingOnWednesday || false },
+      { label: 'jeudi', checked: this.props.user.userJob?.isWorkingOnThursday || false },
+      { label: 'vendredi', checked: this.props.user.userJob?.isWorkingOnFriday || false },
+      { label: 'samedi', checked: this.props.user.userJob?.isWorkingOnSaturday || false },
+      { label: 'dimanche', checked: this.props.user.userJob?.isWorkingOnSunday || false },
     ];
 
     return (
@@ -108,7 +88,7 @@ export default class TalentFormInternship extends React.Component<Props> {
                 label="Jour(s) d'activité: "
                 handleOnChange={(label, value) => this.props.modifyUser({
                   category: 'userJob',
-                  property: DAYS_TO_INTERSHIP_PROPERTIES[label as WEEK_DAYS],
+                  property: DAYS_TO_INTERSHIP_PROPERTIES[label],
                   value,
                   index: -1,
                 })}
