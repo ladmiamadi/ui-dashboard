@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import { createDtoUserIntern } from '../../../helpers/userFactoryHelper';
+import { createDtoUserIntern } from '../../../helpers/UserFactoryHelper';
 import { FormValidator } from '../../../helpers/FormValidator';
 import { IsFormValid, UserSignUp } from '../../../index.d';
 import { Job, User } from '../../../../app';
