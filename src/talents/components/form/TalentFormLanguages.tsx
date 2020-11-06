@@ -1,13 +1,13 @@
 import React from 'react';
-import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import { LANGUAGES } from '../../constants/language';
+import { Button } from 'reactstrap';
+import { UserLanguage } from '../../../app';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
 import { RootDispatch, RootState } from '../../../app/state/store';
+import { LANGUAGES } from '../../constants/language';
 import { UpdateUserPayload } from '../../state/models/user-selected';
-import { UserLanguage } from '../../../app';
-import { UserLanguagesDisplay } from './UserLanguagesDisplay';
 import ModalLanguage from '../modal/ModalLanguage';
+import { UserLanguagesDisplay } from './UserLanguagesDisplay';
 
 interface Props {
   isFetching: boolean,

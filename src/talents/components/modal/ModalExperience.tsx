@@ -1,21 +1,21 @@
 import React from 'react';
-import 'react-confirm-alert/src/react-confirm-alert.css';
-import { Button } from 'reactstrap';
+import fr from 'date-fns/locale/fr';
 import { confirmAlert } from 'react-confirm-alert';
+import ReactDatePicker from 'react-datepicker';
 import { connect } from 'react-redux';
+import { Button } from 'reactstrap';
+import InputFormField from '../../../app/components/utils/InputFormField';
+import { UserExperience } from '../../../app/index';
 import { RootDispatch, RootState } from '../../../app/state/store';
 import { UpdateExperiencePayload } from '../../state/models/experiences/addExperience';
-import { UserExperience } from '../../../app/index';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import classes from '../form/styles/TalentFormExperience.module.css';
-import fr from 'date-fns/locale/fr';
-import InputFormField from '../../../app/components/utils/InputFormField';
-import ReactDatePicker from 'react-datepicker';
 
 interface Props {
   experience: UserExperience,
   addUserExperience: (payload: UserExperience) => void,
-  updateExperience: (payload: UpdateExperiencePayload) => void,
   toggleModal: () => void;
+  updateExperience: (payload: UpdateExperiencePayload) => void,
 }
 
 export class ModalExperience extends React.Component<Props> {
@@ -38,7 +38,7 @@ export class ModalExperience extends React.Component<Props> {
           },
           {
             label: 'Non',
-            onClick: () => { },
+            onClick: () => {},
           },
         ],
       });
@@ -64,7 +64,7 @@ export class ModalExperience extends React.Component<Props> {
           type="text"
           handleChange={(value: string) => this.props.updateExperience({
             property: 'company',
-            value: value,
+            value,
           })}
           value={this.props.experience.company}
         />
@@ -75,7 +75,7 @@ export class ModalExperience extends React.Component<Props> {
           type="text"
           handleChange={(value: string) => this.props.updateExperience({
             property: 'position',
-            value: value,
+            value,
           })}
           value={this.props.experience.position}
         />
@@ -92,7 +92,7 @@ export class ModalExperience extends React.Component<Props> {
             locale={fr}
             onChange={(value) => this.props.updateExperience({
               property: 'startDate',
-              value: value,
+              value,
             })}
           />
         </div>
@@ -109,7 +109,7 @@ export class ModalExperience extends React.Component<Props> {
             locale={fr}
             onChange={(value) => this.props.updateExperience({
               property: 'endDate',
-              value: value,
+              value,
             })}
           />
         </div>
@@ -120,7 +120,7 @@ export class ModalExperience extends React.Component<Props> {
           type="textarea"
           handleChange={(value: string) => this.props.updateExperience({
             property: 'task',
-            value: value,
+            value,
           })}
           value={this.props.experience.task}
         />

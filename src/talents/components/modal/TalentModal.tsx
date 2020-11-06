@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from 'reactstrap';
 import { BrowserRouter as Router, Redirect } from 'react-router-dom';
+import { Button } from 'reactstrap';
 import { User } from '../../../app';
 import '../styles/TalentModal.css';
 

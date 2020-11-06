@@ -1,11 +1,9 @@
 import React from 'react';
-import './styles/TalentForm.css';
 import { connect } from 'react-redux';
 import { Container, Form } from 'reactstrap';
-import { RootState, RootDispatch } from '../../../app/state/store';
-import { UpdateUserPayload } from '../../state/models/user-selected';
 import { User } from '../../../app';
-import classes from './styles/TalentFormPageContainer.module.css';
+import { RootDispatch, RootState } from '../../../app/state/store';
+import { UpdateUserPayload } from '../../state/models/user-selected';
 import TalentFormAddress from './TalentFormAddress';
 import TalentFormExperience from './TalentFormExperience';
 import TalentFormHead from './TalentFormHead';
@@ -15,6 +13,8 @@ import TalentFormJob from './TalentFormJob';
 import TalentFormLanguages from './TalentFormLanguages';
 import TalentFormSkills from './TalentFormSkills';
 import TalentFormTraining from './TalentFormTraining';
+import './styles/TalentForm.css';
+import classes from './styles/TalentFormPageContainer.module.css';
 
 interface Props {
   user: User,
@@ -23,7 +23,6 @@ interface Props {
 }
 
 export class TalentFormPageContainer extends React.Component<Props> {
-
   handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 

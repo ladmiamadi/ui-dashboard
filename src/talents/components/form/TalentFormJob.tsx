@@ -1,11 +1,11 @@
 import React from 'react';
-import { COUNTRIES } from '../../constants/countries';
+import { User } from '../../../app';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
+import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import { COUNTRIES } from '../../constants/countries';
 import { INTERNOPTIONS } from '../../constants/internship-options';
 import { PLACEMENTOPTIONS } from '../../constants/placement-options';
-import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { UpdateUserPayload } from '../../state/models/user-selected';
-import { User } from '../../../app';
 import classes from './styles/TalentFormJob.module.css';
 
 interface Props {
@@ -24,7 +24,6 @@ export default class TalentFormJob extends React.Component<Props> {
         <div className="form-title">
           <h6>Emploi désiré: </h6>
         </div>
-
         <SelectFormField
           keyName="placementOptions"
           className={classes['job-field']}
@@ -37,10 +36,9 @@ export default class TalentFormJob extends React.Component<Props> {
             index: -1,
           })}
           value={this.props.user.userDesiredJob?.placementOptions || ''} />
-
         {showInternOptions && (
           <div className={isHdmPlacement ? classes['job-hdmnetwork'] : ''}>
-            <div className={classes['job-section2']}>
+            <div className={classes['job-section-b']}>
               <SelectFormField
                 keyName="internOptions"
                 className={classes['job-field']}

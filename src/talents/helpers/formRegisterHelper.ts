@@ -1,8 +1,8 @@
-import { FORM_REGISTER } from '../constant/form-register';
-import { Job } from '../../app';
-import { Props as FormRegisterProps } from '../components/add-new-talent/form/FormRegisterUser';
 import { PropsForInput, UserRegister } from '..';
+import { Job } from '../../app';
 import { Toastify } from '../../helpers/Toastify';
+import { Props as FormRegisterProps } from '../components/add-new-talent/form/FormRegisterUser';
+import { FORM_REGISTER } from '../constant/form-register';
 
 export const isUsernameAlreadyExists = (idValue: string, usernameCollection?: string[]): boolean => {
   const isUsernameUnique = !usernameCollection?.includes(idValue);

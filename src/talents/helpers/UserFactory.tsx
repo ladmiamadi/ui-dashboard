@@ -32,6 +32,20 @@ export class UserFactory {
     return dtoUser;
   }
 
+  public createEmptyUserDesiredJob = () => ({
+    id: 0,
+    user_id: 0,
+    desired_job: '',
+    mobility: '',
+    job_description: '',
+    desired_country: '',
+    desired_city: '',
+    current_salary: 0,
+    desired_salary: 0,
+    intern_options: '',
+    placement_options: '',
+  })
+
   public createEmptyUserAddress = () => ({
     id: 0,
     street: '',

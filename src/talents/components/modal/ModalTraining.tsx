@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 import { Training } from '../../../app';
-import { TrainingFactory } from '../../helpers/TrainingFactory';
-import { RootDispatch } from '../../../app/state/store';
-import TrainingForm from '../form/TrainingForm';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
-import { InputState } from '../../index.d';
+import { RootDispatch } from '../../../app/state/store';
 import { FormValidator } from '../../helpers/FormValidator';
+import { TrainingFactory } from '../../helpers/TrainingFactory';
+import { InputState } from '../../index.d';
+import TrainingForm from '../form/TrainingForm';
 import classes from './styles/ModalTraining.module.css';
 
 interface Props {

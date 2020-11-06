@@ -1,30 +1,30 @@
 import React from 'react';
-import { Button, Row } from 'reactstrap';
 import { connect } from 'react-redux';
-import { LANGUAGES_LEVEL } from '../../constants/language';
-import { RootDispatch, RootState } from '../../../app/state/store';
-import { SelectFormField } from '../../../app/components/utils/SelectFormField';
-import { UpdateLanguagePayload } from '../../state/models/languages/add-language';
+import { Button, Row } from 'reactstrap';
 import { UserLanguage } from '../../../app';
+import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import { RootDispatch, RootState } from '../../../app/state/store';
+import { LANGUAGES_LEVEL } from '../../constants/language';
 import { UserLanguageFactory } from '../../helpers/UserLanguageFactory';
+import { UpdateLanguagePayload } from '../../state/models/languages/add-language';
 
 interface Props {
   isPosting: boolean,
   language: UserLanguage,
   languages: string[],
   userId: number | undefined,
+  postLanguage: (arg: { userLanguage: UserLanguage, userId: number | undefined }) => void,
   resetLanguage: () => void,
   updateLanguage: (payload: UpdateLanguagePayload) => void,
-  postLanguage: (arg: { userLanguage: UserLanguage, userId: number | undefined }) => void,
 }
 
 export class ModalLanguage extends React.Component<Props> {
   updateLanguageTest = (property: string, value: string) => {
     this.props.updateLanguage({ property, value });
   }
-
   render() {
     const newLanguage = UserLanguageFactory.createEmptyLanguage();
+
     return (
       <>
         <Row>
@@ -59,7 +59,7 @@ export class ModalLanguage extends React.Component<Props> {
                 )}
                 disabled={this.props.isPosting}
               >
-              Ajouter une langue
+                Ajouter une langue
               </Button>
             </Row>
           )

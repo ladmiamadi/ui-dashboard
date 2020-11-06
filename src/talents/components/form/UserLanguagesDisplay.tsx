@@ -1,12 +1,12 @@
 import React from 'react';
+import { Col, Row } from 'reactstrap';
 import { UserLanguage } from '../../../app';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
-import { Col, Row } from 'reactstrap';
 import { LANGUAGES_LEVEL } from '../../constants/language';
 
 interface Props {
-  userLanguages: UserLanguage[],
   updateUserLanguage: (property: string, value: string) => void,
+  userLanguages: UserLanguage[],
 }
 
 export class UserLanguagesDisplay extends React.Component<Props> {
