@@ -1,20 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { DatePickerFieldForm } from '../../../app/components/utils/DatePickerFieldForm';
-import { env } from '../../../helpers/environment';
-import { FieldForm } from '../../../app/components/utils/FieldForm';
-import { Job, User, UserProfile } from '../../../app';
-import { RootDispatch, RootState } from '../../../app/state/store';
-import { SelectFormField } from '../../../app/components/utils/SelectFormField';
-import { UpdateUserPayload } from '../../state/models/user-selected';
 import fr from 'date-fns/locale/fr';
+import { connect } from 'react-redux';
+import { Job, User, UserProfile } from '../../../app';
+import { DatePickerFieldForm } from '../../../app/components/utils/DatePickerFieldForm';
+import { FieldForm } from '../../../app/components/utils/FieldForm';
+import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import { RootDispatch, RootState } from '../../../app/state/store';
+import { env } from '../../../helpers/environment';
 import ProfileCollection from '../../helpers/ProfileCollection';
+import { UpdateUserPayload } from '../../state/models/user-selected';
 
 interface Props {
-  user: User,
   jobCollection: Job[],
-  modifyUser: (payload: UpdateUserPayload) => void,
+  user: User,
   fetchJobsInDb: () => Promise<void>,
+  modifyUser: (payload: UpdateUserPayload) => void,
 }
 
 export class TalentFormHead extends React.Component<Props> {
@@ -46,7 +46,7 @@ export class TalentFormHead extends React.Component<Props> {
             label="Nom: "
             type="text"
             handleChange={(value) => this.props.modifyUser({
-              value: value,
+              value,
               index: indexWorking,
               category: 'userProfiles',
               property: 'lastName',
@@ -57,7 +57,7 @@ export class TalentFormHead extends React.Component<Props> {
             label="Prénom: "
             type="text"
             handleChange={(value) => this.props.modifyUser({
-              value: value,
+              value,
               index: indexWorking,
               category: 'userProfiles',
               property: 'firstName',
@@ -139,7 +139,6 @@ export class TalentFormHead extends React.Component<Props> {
       </div>
     );
   }
-
 }
 
 const mapState = (state: RootState) => ({

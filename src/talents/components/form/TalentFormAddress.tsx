@@ -1,10 +1,10 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-import { COUNTRIES } from '../../constants/countries';
+import { User } from '../../../app';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import { COUNTRIES } from '../../constants/countries';
 import { UpdateUserPayload } from '../../state/models/user-selected';
-import { User } from '../../../app';
 
 interface Props {
   user: User,
@@ -13,7 +13,6 @@ interface Props {
 
 export default class TalentFormAddress extends React.Component<Props> {
   render() {
-
     return (
       <div className="address-section">
         <div className="form-title">

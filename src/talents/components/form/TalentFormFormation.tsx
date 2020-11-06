@@ -1,11 +1,11 @@
 import React from 'react';
+import ReactDatePicker from 'react-datepicker';
 import { connect } from 'react-redux';
+import { User } from '../../../app';
 import { DateFormField } from '../../../app/components/utils/DateFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { RootState } from '../../../app/state/store';
 import { UpdateUserPayload } from '../../state/models/user-selected';
-import { User } from '../../../app';
-import ReactDatePicker from 'react-datepicker';
 
 interface Props {
   user: User,
@@ -31,8 +31,8 @@ export class TalentFormFormation extends React.Component<Props> {
                 handleChange={(value) => this.props.modifyUser({
                   category: 'userTrainings',
                   property: 'institution',
-                  value: value,
-                  index: index,
+                  value,
+                  index,
                 })}
                 value={elem.institution} />
               <ReactDatePicker
@@ -40,8 +40,8 @@ export class TalentFormFormation extends React.Component<Props> {
                 onChange={(value) => this.props.modifyUser({
                   category: 'userTrainings',
                   property: 'startDate',
-                  value: value,
-                  index: index,
+                  value,
+                  index,
                 })}
               />
               <DateFormField
@@ -68,8 +68,8 @@ export class TalentFormFormation extends React.Component<Props> {
                 handleChange={(value) => this.props.modifyUser({
                   category: 'userTrainings',
                   property: 'degreeObtained',
-                  value: value,
-                  index: index,
+                  value,
+                  index,
                 })}
                 value={elem.degreeObtained} />
             </div>
