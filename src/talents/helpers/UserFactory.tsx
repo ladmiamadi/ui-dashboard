@@ -36,7 +36,6 @@ export class UserFactory {
 
   public createEmptyUserDesiredJob = (): UserDesiredJob => ({
     id: 0,
-    userId: 0,
     desiredJob: '',
     mobility: '',
     desiredCountry: '',

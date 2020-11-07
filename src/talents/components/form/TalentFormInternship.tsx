@@ -7,7 +7,7 @@ import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormFie
 import { DatePickerFieldForm } from '../../../app/components/utils/DatePickerFieldForm';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
-import { STATUSOPTIONS } from '../../constants/status-options';
+import { STATUS_OPTIONS } from '../../constants/status-options';
 import { DAYS_TO_INTERSHIP_PROPERTIES } from '../../constants/week-days';
 import { UpdateUserPayload } from '../../state/models/user-selected';
 
@@ -39,7 +39,7 @@ export default class TalentFormInternship extends React.Component<Props> {
               <SelectFormField
                 keyName="status"
                 label="Status du stage: "
-                options={STATUSOPTIONS}
+                options={STATUS_OPTIONS}
                 className="large"
                 handleChange={(property, value) => this.props.modifyUser({
                   category: 'userJob',
