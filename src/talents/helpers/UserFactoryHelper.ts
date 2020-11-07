@@ -5,7 +5,7 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
   const userAddress: UserAddress = {
   };
 
-  const userProfile: UserProfile = {
+  const userProfileLive: UserProfile = {
     birthDate: new Date(userSignUp.birthDate),
     environment: 'live',
     firstName: userSignUp.firstName,
@@ -37,7 +37,7 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
   };
 
   const userDesiredJob: UserDesiredJob = {
-    placementOptions: undefined,
+    placementOptions: '',
   };
 
   return {
@@ -46,7 +46,7 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     password: 'sosecure',
     username: userSignUp.username,
     userAddress: userAddress,
-    userProfiles: [userProfile, userProfileWorking],
+    userProfiles: [userProfileLive, userProfileWorking],
     userJob: userJob,
     userDesiredJob,
   };

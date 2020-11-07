@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserProfile } from '../../app';
-import { env } from '../../helpers/environment';
+import { calculateUserProfileUrlPicture } from '../helpers/UserProfileHelper';
 import './styles/TalentModal.css';
 import './styles/TalentsList.css';
 
@@ -10,8 +10,7 @@ interface Props {
 
 export default class TalentsListElement extends React.Component<Props> {
   render() {
-    const picture = env('MEDIA_URL') + (this.props.profile.picture ?
-      `${this.props.profile.picture?.filePath}` : '/default_avatar.png');
+    const picture = calculateUserProfileUrlPicture(this.props.profile);
 
     return (
       <div className="id-card">

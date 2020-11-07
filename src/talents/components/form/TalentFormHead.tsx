@@ -1,13 +1,13 @@
-import React from 'react';
 import fr from 'date-fns/locale/fr';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Job, User, UserProfile } from '../../../app';
 import { DatePickerFieldForm } from '../../../app/components/utils/DatePickerFieldForm';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { RootDispatch, RootState } from '../../../app/state/store';
-import { env } from '../../../helpers/environment';
 import ProfileCollection from '../../helpers/ProfileCollection';
+import { calculateUserProfileUrlPicture } from '../../helpers/UserProfileHelper';
 import { UpdateUserPayload } from '../../state/models/user-selected';
 
 interface Props {
@@ -28,8 +28,7 @@ export class TalentFormHead extends React.Component<Props> {
     const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
       this.props.user.userProfiles, 'working',
     );
-    const filePath: string = env('MEDIA_URL') + (userProfileWorking && userProfileWorking.picture ?
-      `${env('MEDIA_URL')}${userProfileWorking?.picture?.filePath}` : '/default_avatar.png');
+    const filePath = calculateUserProfileUrlPicture(userProfileWorking);
     const jobPositions = this.props.jobCollection.map((job: Job) => job.position);
 
     return (
