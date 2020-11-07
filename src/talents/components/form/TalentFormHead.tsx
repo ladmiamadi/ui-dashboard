@@ -1,5 +1,5 @@
-import fr from 'date-fns/locale/fr';
 import React from 'react';
+import fr from 'date-fns/locale/fr';
 import { connect } from 'react-redux';
 import { Job, User, UserProfile } from '../../../app';
 import { DatePickerFieldForm } from '../../../app/components/utils/DatePickerFieldForm';
