@@ -48,6 +48,7 @@ export const userLanguages = createModel({
 
       try {
         this.setIsFetching(true);
+
         const { data } = await apiService.get(`/api/users/${userId}`);
 
         this.initUserLanguages(UserLanguagesCollectionFactory.createCollectionFromUser(data));

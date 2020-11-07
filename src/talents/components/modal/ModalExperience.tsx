@@ -1,5 +1,5 @@
-import React from 'react';
 import fr from 'date-fns/locale/fr';
+import React from 'react';
 import { confirmAlert } from 'react-confirm-alert';
 import ReactDatePicker from 'react-datepicker';
 import { connect } from 'react-redux';
