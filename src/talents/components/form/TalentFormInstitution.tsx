@@ -12,10 +12,10 @@ interface Props {
 
 export default class TalentFormInstitution extends React.Component<Props> {
   render() {
-    const indexWorking: number = ProfileCollection.findLiveIndex(this.props.user.userProfiles);
-    const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
+    const indexLive: number = ProfileCollection.findLiveIndex(this.props.user.userProfiles);
+    const userProfileLive: UserProfile | undefined = ProfileCollection.filterByEnvironment(
       this.props.user.userProfiles,
-      'working',
+      'live',
     );
 
     return (
@@ -32,9 +32,9 @@ export default class TalentFormInstitution extends React.Component<Props> {
             category: 'userProfiles',
             property: 'institution',
             value,
-            index: indexWorking,
+            index: indexLive,
           })}
-          value={userProfileWorking?.institution} />
+          value={userProfileLive?.institution} />
         <FieldForm
           keyName="institution-phone"
           label="Téléphone École: "
@@ -44,9 +44,9 @@ export default class TalentFormInstitution extends React.Component<Props> {
             category: 'userProfiles',
             property: 'phoneInstitution',
             value,
-            index: indexWorking,
+            index: indexLive,
           })}
-          value={userProfileWorking?.phoneInstitution} />
+          value={userProfileLive?.phoneInstitution} />
         <FieldForm
           keyName="institution-email"
           label="Mail École: "
@@ -56,9 +56,9 @@ export default class TalentFormInstitution extends React.Component<Props> {
             category: 'userProfiles',
             property: 'mailInstitution',
             value,
-            index: indexWorking,
+            index: indexLive,
           })}
-          value={userProfileWorking?.mailInstitution} />
+          value={userProfileLive?.mailInstitution} />
         <FieldForm
           keyName="institution-contact"
           label="Personne de contact: "
@@ -68,9 +68,9 @@ export default class TalentFormInstitution extends React.Component<Props> {
             category: 'userProfiles',
             property: 'personContactInstitution',
             value,
-            index: indexWorking,
+            index: indexLive,
           })}
-          value={userProfileWorking?.personContactInstitution} />
+          value={userProfileLive?.personContactInstitution} />
       </div>
     );
   }
