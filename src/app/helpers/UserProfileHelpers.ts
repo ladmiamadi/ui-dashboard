@@ -1,7 +1,9 @@
-import React from 'react';
+import { env } from '../../helpers/environment';
 import { User, UserProfile } from '../index';
 
-export class UserProfileHelpers extends React.Component {
+const DEFAULT_AVATAR_IMG = '/default_avatar.png';
+
+export class UserProfileHelpers {
 
   private static isMatchingProfile(profile: UserProfile, searchTerm: string): boolean {
     return profile.firstName.toLocaleLowerCase().includes(searchTerm)
@@ -31,5 +33,12 @@ export class UserProfileHelpers extends React.Component {
   public static isUserHaveWorkingOnValidationProfile(user: User): number | undefined {
     return user.userProfiles?.filter((profile) =>
       profile.environment === 'working' && profile.status === 'ON_VALIDATION').length;
+  }
+
+  public static calculateUserProfilePictureUrl(userProfile?: UserProfile): string {
+    return env('MEDIA_URL')
+      + (userProfile && userProfile.picture
+        ? `${userProfile.picture.filePath}`
+        : DEFAULT_AVATAR_IMG);
   }
 }

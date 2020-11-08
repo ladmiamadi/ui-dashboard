@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserProfile } from '../../app';
-import { calculateUserProfileUrlPicture } from '../helpers/UserProfileHelper';
+import { UserProfileHelpers } from '../../app/helpers/UserProfileHelpers';
 import './styles/TalentModal.css';
 import './styles/TalentsList.css';
 
@@ -10,7 +10,7 @@ interface Props {
 
 export default class TalentsListElement extends React.Component<Props> {
   render() {
-    const picture = calculateUserProfileUrlPicture(this.props.profile);
+    const picture = UserProfileHelpers.calculateUserProfilePictureUrl(this.props.profile);
 
     return (
       <div className="id-card">

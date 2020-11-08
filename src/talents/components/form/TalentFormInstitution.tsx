@@ -12,7 +12,7 @@ interface Props {
 
 export default class TalentFormInstitution extends React.Component<Props> {
   render() {
-    const indexWorking: number = ProfileCollection.findWorkingIndex(this.props.user.userProfiles);
+    const indexWorking: number = ProfileCollection.findLiveIndex(this.props.user.userProfiles);
     const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
       this.props.user.userProfiles,
       'working',

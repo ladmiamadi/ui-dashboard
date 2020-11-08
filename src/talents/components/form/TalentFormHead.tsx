@@ -5,9 +5,9 @@ import { Job, User, UserProfile } from '../../../app';
 import { DatePickerFieldForm } from '../../../app/components/utils/DatePickerFieldForm';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import { UserProfileHelpers } from '../../../app/helpers/UserProfileHelpers';
 import { RootDispatch, RootState } from '../../../app/state/store';
 import ProfileCollection from '../../helpers/ProfileCollection';
-import { calculateUserProfileUrlPicture } from '../../helpers/UserProfileHelper';
 import { UpdateUserPayload } from '../../state/models/user-selected';
 
 interface Props {
@@ -24,11 +24,11 @@ export class TalentFormHead extends React.Component<Props> {
   }
 
   render() {
-    const indexWorking: number = ProfileCollection.findWorkingIndex(this.props.user.userProfiles);
-    const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
-      this.props.user.userProfiles, 'working',
+    const indexLive: number = ProfileCollection.findLiveIndex(this.props.user.userProfiles);
+    const userProfileLive: UserProfile | undefined = ProfileCollection.filterByEnvironment(
+      this.props.user.userProfiles, 'live',
     );
-    const filePath = calculateUserProfileUrlPicture(userProfileWorking);
+    const filePath = UserProfileHelpers.calculateUserProfilePictureUrl(userProfileLive);
     const jobPositions = this.props.jobCollection.map((job: Job) => job.position);
 
     return (
@@ -36,7 +36,7 @@ export class TalentFormHead extends React.Component<Props> {
         <h1 className="talent-title">Gestion des talents: </h1>
         <img
           className="profile-picture"
-          alt={userProfileWorking?.firstName}
+          alt={userProfileLive?.firstName}
           src={filePath}
         />
         <div className="head-block">
@@ -46,22 +46,22 @@ export class TalentFormHead extends React.Component<Props> {
             type="text"
             handleChange={(value) => this.props.modifyUser({
               value,
-              index: indexWorking,
+              index: indexLive,
               category: 'userProfiles',
               property: 'lastName',
             })}
-            value={userProfileWorking?.lastName} />
+            value={userProfileLive?.lastName} />
           <FieldForm
             keyName="firstname"
             label="Prénom: "
             type="text"
             handleChange={(value) => this.props.modifyUser({
               value,
-              index: indexWorking,
+              index: indexLive,
               category: 'userProfiles',
               property: 'firstName',
             })}
-            value={userProfileWorking?.firstName} />
+            value={userProfileLive?.firstName} />
           <SelectFormField
             keyName="position"
             label="Fonction: "
@@ -70,9 +70,9 @@ export class TalentFormHead extends React.Component<Props> {
               category: 'userProfiles',
               property,
               value,
-              index: indexWorking,
+              index: indexLive,
             })}
-            value={userProfileWorking?.position || ''}
+            value={userProfileLive?.position || ''}
           />
           <FieldForm
             keyName="email"
@@ -84,28 +84,28 @@ export class TalentFormHead extends React.Component<Props> {
               category: 'userProfiles',
               property: 'email',
             })}
-            value={userProfileWorking?.email} />
+            value={userProfileLive?.email} />
           <FieldForm
             keyName="phone"
             label="Téléphone: "
             type="text"
             handleChange={(value) => this.props.modifyUser({
               value,
-              index: indexWorking,
+              index: indexLive,
               category: 'userProfiles',
               property: 'phone',
             })}
-            value={userProfileWorking?.phone} />
+            value={userProfileLive?.phone} />
           <DatePickerFieldForm
             keyName="birthDate"
             label="Date de naissance: "
-            value={userProfileWorking?.birthDate}
+            value={userProfileLive?.birthDate}
             locale={fr}
             handleChange={(value) => this.props.modifyUser({
               category: 'userProfiles',
               property: 'birthDate',
               value,
-              index: indexWorking,
+              index: indexLive,
             })}
           />
           <FieldForm
@@ -118,18 +118,18 @@ export class TalentFormHead extends React.Component<Props> {
               category: 'userProfiles',
               property: 'nationality',
             })}
-            value={userProfileWorking?.nationality} />
+            value={userProfileLive?.nationality} />
           <FieldForm
             keyName="platform"
             label="Plateforme: "
             type="text"
             handleChange={(value) => this.props.modifyUser({
               value,
-              index: indexWorking,
+              index: indexLive,
               category: 'userProfiles',
               property: 'platform',
             })}
-            value={userProfileWorking?.platform} />
+            value={userProfileLive?.platform} />
         </div>
         <div className="connection-box">
           <p>Envoyez un email pour configurer la connexion</p>
