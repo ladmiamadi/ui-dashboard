@@ -1,7 +1,7 @@
 //import React from 'react';
 import '../styles/TimelineInfo.css';
 
-// TODO : change this by a class and add the display to state
+// TODO : make this timeline info to see state of intership (signed, not signed, ect)
 /*const TimelineInfo = (props: any) => {
   const undef = 'UNDEFINED';
 

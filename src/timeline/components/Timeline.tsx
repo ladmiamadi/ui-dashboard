@@ -102,8 +102,6 @@ export class TimelineCustom extends React.Component<Props,State> {
       reason,
       searchName,
     };
-
-    //this.convertTimelineToMultipleDays();
   }
 
   /* convertTimelineToMultipleDays
@@ -248,15 +246,12 @@ filterNameChange = (nametochange:any) => {
     });
   }
 
+  // TODO: change componentWillMount
   //Call all sorting functions for timeline to sort it to be understable for the timeline, call only at the begining
   // not found yet a replacement of componentWillMount without it breaks everything on the timeline
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.convertTimelineToMultipleDays();
   }
-
-  /*componentDidMount() {
-    this.convertTimelineToMultipleDays();
-  }*/
 
   render() {
     const { visibleTimeStart, visibleTimeEnd, displayData } = this.state;
@@ -268,11 +263,9 @@ filterNameChange = (nametochange:any) => {
           onChangeCheckBox={this.toggleCheckBox} 
           onChangeReason={this.reasonToggle} 
           onChangeName={this.filterNameChange}/>
-        {/*<TimelineInfo test="UNDEFINED"/>*/} />}
+        {/*<TimelineInfo />*/} />}
         <button onClick={this.onPrevClickMonth}>{'<<<'}</button>
         <button onClick={this.onPrevClick}>{'<<'}</button>
-        {/* <button onClick={this.onPrevClickDay}>{"<"}</button>
-        <button onClick={this.onNextClickDay}>{">"}</button> */}
         <button onClick={this.onNextClick}>{'>>'}</button>
         <button onClick={this.onNextClickMonth}>{'>>>'}</button>
         <Timeline

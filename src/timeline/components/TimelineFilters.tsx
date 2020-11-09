@@ -1,7 +1,6 @@
 import React from 'react';
 import '../styles/TimelineFilters.css';
 
-// TODO : change this by a class and add the display to state
 const TimelineFilters = (props: any) => {
   const CheckTheCheckBox = (onetb:any) => {
     if (onetb.display === 1)
