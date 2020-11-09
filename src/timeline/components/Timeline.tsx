@@ -253,6 +253,7 @@ filterNameChange = (nametochange:any) => {
     this.convertTimelineToMultipleDays();
   }
 
+  //<TimelineInfo />
   render() {
     const { visibleTimeStart, visibleTimeEnd, displayData } = this.state;
     return (
@@ -262,12 +263,11 @@ filterNameChange = (nametochange:any) => {
           listOfFonctions={this.state.listOfFonctions} 
           onChangeCheckBox={this.toggleCheckBox} 
           onChangeReason={this.reasonToggle} 
-          onChangeName={this.filterNameChange}/>
-        {/*<TimelineInfo />*/} />}
-        <button onClick={this.onPrevClickMonth}>{'<<<'}</button>
-        <button onClick={this.onPrevClick}>{'<<'}</button>
-        <button onClick={this.onNextClick}>{'>>'}</button>
-        <button onClick={this.onNextClickMonth}>{'>>>'}</button>
+          onChangeName={this.filterNameChange} />
+        <button onClick={this.onPrevClickMonth}>{"<<<"}</button>
+        <button onClick={this.onPrevClick}>{"<<"}</button>
+        <button onClick={this.onNextClick}>{">>"}</button>
+        <button onClick={this.onNextClickMonth}>{">>>"}</button>
         <Timeline
           groups={displayData.Fonctions}
           items={displayData.Days}
