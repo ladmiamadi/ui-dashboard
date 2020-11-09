@@ -8,7 +8,8 @@ let sortAndListOfFonctions = (stateDisplayData:any, stateListOfFonctions:any) =>
     for (let i in copyDisplayData.Fonctions) {
       if (copyDisplayData.Fonctions[i].rightTitle === "ERROR")
         continue;
-      copyDisplayData.Fonctions[i].rightTitle = addFonctionNameToFilters(copyDisplayData.Fonctions[i].rightTitle, stateListOfFonctions);
+      copyDisplayData.Fonctions[i].rightTitle = addFonctionNameToFilters(copyDisplayData.Fonctions[i].rightTitle, 
+        stateListOfFonctions);
     }
     sortDataArray(copyDisplayData.Fonctions);
     return copyDisplayData
@@ -55,7 +56,8 @@ export let convertTimelineToMultipleDaysRemote = (stateDisplayData:any, stateLis
         copyAndEditLastDisplayItem.end_time = newDateOfLastItem;
         copyAndEditLastDisplayItem.id = DisplayDataDays.length+1;
         for (let j in Data.Items[i].workdays) {
-          if (moment(copyAndEditLastDisplayItem.start_time).startOf('day').format('dddd') === Data.Items[i].workdays[j]) {
+          if (moment(copyAndEditLastDisplayItem.start_time).startOf('day').format('dddd') === 
+          Data.Items[i].workdays[j]) {
             copyAndEditLastDisplayItem.state = Data.Items[i].state;
             break;
           }
@@ -65,9 +67,7 @@ export let convertTimelineToMultipleDaysRemote = (stateDisplayData:any, stateLis
         newArrayLenghtOfItem = DisplayDataDays.push(copyAndEditLastDisplayItem);
       }
       delete DisplayDataDays[Number(i)]; // Works but may result in crash if we manipulate this later without check
-      //DisplayDataDays.splice(Number(i), 1) //This doesn't work unless we execute the loop for another time maybe (not very optimised)
-    }
-    console.log(copyDisplayData);
-    
+      //DisplayDataDays.splice(Number(i), 1) //This doesn't work really well...
+    }    
     return copyDisplayData
 }

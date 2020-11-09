@@ -94,8 +94,6 @@ export let convertDataToTimeline = (users:any) => {
       internshipDateBase.push(copyBaseIntershipDate);
     }
   }
-  console.log(internshipPersonBase);
-  console.log(internshipDateBase);
 }
 
 export default {Groups, Items}

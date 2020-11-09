@@ -3,7 +3,7 @@ import { RootDispatch, RootState } from '../../app/state/store';
 import { Loader } from '../../app/components/utils/Loader';
 import { User } from '../../app';
 import { connect } from 'react-redux';
-import TimelineCustom from './Timeline'
+import TimelineCustom from './Timeline';
 
 interface Props {
   users: User[],

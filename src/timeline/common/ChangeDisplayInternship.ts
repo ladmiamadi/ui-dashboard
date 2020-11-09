@@ -19,7 +19,8 @@ export let changeDisplayInternshipWhenNoResults = (copyDisplayData:any)=> {
   }
 }
 
-export let changeDisplayInternshipByFonction = (copyDisplaybackup:any, toChangeOnName:any, statedisplayDataBackupFonctions:any, statelistOfFonctions:any) => {
+export let changeDisplayInternshipByFonction = (copyDisplaybackup:any, toChangeOnName:any, 
+  statedisplayDataBackupFonctions:any, statelistOfFonctions:any) => {
     let stateDisplayDataBackup = statedisplayDataBackupFonctions
     let listOfFonctions = statelistOfFonctions
     
@@ -29,7 +30,8 @@ export let changeDisplayInternshipByFonction = (copyDisplaybackup:any, toChangeO
     for (let i in stateDisplayDataBackup) {
       for (let j in listOfFonctions) {
         if (listOfFonctions[j].display === 1 && listOfFonctions[j].groupname === stateDisplayDataBackup[i].rightTitle)
-          if (stateDisplayDataBackup[i].title.toLowerCase().includes(toChangeOnName.toLowerCase()) || stateDisplayDataBackup[i].groupLabelKey.toLowerCase().includes(toChangeOnName.toLowerCase())) {
+          if (stateDisplayDataBackup[i].title.toLowerCase().includes(toChangeOnName.toLowerCase()) || 
+          stateDisplayDataBackup[i].groupLabelKey.toLowerCase().includes(toChangeOnName.toLowerCase())) {
             listOfFonctions[j].total += 1
             copyDisplaybackup.push(stateDisplayDataBackup[i])
           }
