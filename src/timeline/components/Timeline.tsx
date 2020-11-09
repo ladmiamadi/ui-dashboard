@@ -5,19 +5,23 @@ import Timeline, {
   SidebarHeader,
   DateHeader
 } from 'react-calendar-timeline' //type:            yarn add react-calendar-timeline && yarn add @types/react-calendar-timeline                to fix module not found
+import { RootState, RootDispatch } from '../../app/state/store';
+import { connect } from 'react-redux';
+
 import Data from "../common/Data"
-import { convertDataToTimeline, sortDataArray } from "../common/Data"
-import { changeDisplayInternshipWhenNoResults, changeDisplayInternshipByFonction } from "../common/ChangeDisplayInternship"
+import { User } from '../../app';
+
 import 'react-calendar-timeline/lib/Timeline.css'
 import '../styles/Timeline.css'
+
 import TimelineTitle from './TimelineTitle'
 import TimelineFilters from './TimelineFilters'
 import TimelineInfo from './TimelineInfo'
-import {daysRenderDisplayBackground, daysRenderChangeStateBackground, daysRenderChangeStateColor} from '../common/RenderDisplay'
+
+import { convertDataToTimeline, sortDataArray } from "../common/Data"
+import { changeDisplayInternshipWhenNoResults, changeDisplayInternshipByFonction } from "../common/ChangeDisplayInternship"
+import { daysRenderDisplayBackground, daysRenderChangeStateBackground, daysRenderChangeStateColor } from '../common/RenderDisplay'
 import { convertTimelineToMultipleDaysRemote } from '../common/ConvertDataToMultipleDays'
-import { RootState, RootDispatch } from '../../app/state/store';
-import { connect } from 'react-redux';
-import { User } from '../../app';
 
 interface Props {
   users: User[],
@@ -47,7 +51,7 @@ interface State {
   Groups : People + Fonction (Dev)
   Items : Days in timeline
 */
-export class TimelineCustom extends React.Component<Props,State> {//React.Component<Props,State,Key>
+export class TimelineCustom extends React.Component<Props,State> {
 
   constructor(props:Props) {
     super(props);
@@ -194,10 +198,9 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
     Change what group (Fonctions) to display in function of filters
   */
   changeDisplayInternship = (toChangeOnFonction:any, toChangeOnName:any, enable:boolean)=> {
-    let copyDisplaybackup = new Array()
+    let copyDisplaybackup = new Array();
 
     copyDisplaybackup = changeDisplayInternshipByFonction(copyDisplaybackup, toChangeOnName, this.state.displayDataBackup.Fonctions, this.state.listOfFonctions)
-
     changeDisplayInternshipWhenNoResults(copyDisplaybackup)
     sortDataArray(copyDisplaybackup)
     this.setState(state => ({
@@ -226,7 +229,7 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
     this.setState({
       searchName: nametochange
     });
-}
+  }
 
   reasonToggle = (newreason:any) => {
     this.setState({
@@ -234,7 +237,8 @@ export class TimelineCustom extends React.Component<Props,State> {//React.Compon
     });
   }
 
-  //Call all sorting functions for timeline, can be called 1 time only
+  //Call all sorting functions for timeline to sort it to be understable for the timeline, call only at the begining
+  // not found yet a replacement of componentWillMount without it breaks everything on the timeline
   componentWillMount() {
     this.convertTimelineToMultipleDays();
   }
@@ -284,7 +288,7 @@ const mapState = (state: RootState) => ({
   isFetching: state.users.isFetching,
 });
 
-// push
+// push data in db
 const mapDispatch = (dispatch: RootDispatch) => ({
   fetchTalents: dispatch.users.fetchTalents,
 });
