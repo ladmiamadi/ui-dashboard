@@ -10,10 +10,10 @@ import { Provider } from 'react-redux';
 import { TalentsListPage } from '../../talents/components/TalentsListPage';
 import { store } from '../state/store';
 import RegisterUser from '../../talents/components/add-new-talent/modal/RegisterUser';
-import './styles/App.css';
 import history from '../helpers/history';
 import AuthenticationForm from '../../authentication/components/AuthenticationForm';
 import TimelineContainer from '../../timeline/components/TimelineContainer';
+import './styles/App.css';
 
 export class App extends React.Component {
   render() {
@@ -22,16 +22,16 @@ export class App extends React.Component {
         <Provider store={store}>
           <AppContainer>
             <AuthenticationGuard 
-            form={<AuthenticationForm />}
-            localToken={localStorage.getItem('hdm:admin:auth-token')}
+              form={<AuthenticationForm />}
+              localToken={localStorage.getItem('hdm:admin:auth-token')}
             >
               <CustomNavbar/>
-                <Route path="/" exact component={Homepage} />
-                <Route path="/talent" exact component={TalentFormPage} />
-                <Route path="/talents" exact component= {TalentsListPage} />
-                <Route path="/editprofile" exact component={ProfileEditValidation} />
-                <Route path="/intern" exact component={RegisterUser} />
-                <Route path="/timeline" exact component={TimelineContainer} />
+              <Route path="/" exact component={Homepage} />
+              <Route path="/talent" exact component={TalentFormPage} />
+              <Route path="/talents" exact component= {TalentsListPage} />
+              <Route path="/editprofile" exact component={ProfileEditValidation} />
+              <Route path="/intern" exact component={RegisterUser} />
+              <Route path="/timeline" exact component={TimelineContainer} />
             </AuthenticationGuard>
           </AppContainer>                 
         </Provider>
