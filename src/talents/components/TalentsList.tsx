@@ -5,19 +5,20 @@ import _ from 'lodash';
 import { User } from '../../app';
 import { ModalCustom } from '../../app/components/utils/ModalCustom';
 import history from '../../app/helpers/history';
-import { RootDispatch, RootState } from '../../app/state/store';
+import { RootDispatch } from '../../app/state/store';
 import { TalentModal } from './modal/TalentModal';
 import TalentsListElement from './TalentsListElement';
 import { UserProfileHelpers } from '../../app/helpers/UserProfileHelpers';
 import './styles/TalentsList.css';
 
 interface Props {
+  searchTerm: string,
   users: User[],
   updateUserSelected: (userSelected: User) => void,
 }
 
 interface State {
-  isModalOpen:boolean,
+  isModalOpen: boolean,
 }
 
 export class TalentsList extends React.Component<Props, State> {
@@ -38,47 +39,53 @@ export class TalentsList extends React.Component<Props, State> {
       history.push('/talent');
   }
 
+  userHasMatchingProfile(user: User): boolean {
+    const userProfileLive = UserProfileHelpers.findUserProfileLive(user, this.props.searchTerm);
+
+    return userProfileLive ? userProfileLive.length > 0 : false;
+  }
+
   render() {
+    const filteredUsers = this.props.users.filter(user => this.userHasMatchingProfile(user));
+
     return (
       <Container className={this.state.isModalOpen ? 'hide-card' : 'talent-card'}>
-        <Row className="talent-row">
-          {
-            this.props.users.map((talent, index) => (
-              <Col key={index} className="element" xs={5} sm={3} xl={2} onClick={() => this.toggleModal(talent)}>
-                {
-                  UserProfileHelpers.findUserProfileLive(talent)?.map((profile) => (
-                    <React.Fragment key={profile.id}>
-                      <TalentsListElement
-                        profile={profile}
-                        talent={talent}
-                      />
-                      <ModalCustom
-                        isModalShown={this.state.isModalOpen}
-                        toggleModal={() => this.toggleModal(talent)}
-                        titleModal={profile.firstName + ' ' + profile.lastName}
-                        className="talent-title">
-                        <TalentModal talent={talent}/>
-                      </ModalCustom>
-                    </React.Fragment>
-                  )
-                    )
-                }
-              </Col>
-            ))
-          }
-        </Row>
+        { filteredUsers.length > 0 ? (
+          <Row className="talent-row">
+            {
+              filteredUsers.map((talent, index) => (
+                talent.userProfiles?.map(userProfile => userProfile.environment === "live" ? 
+                  (
+                    <Col key={index} className="element" xs={5} sm={3} xl={2} onClick={() => this.toggleModal(talent)}>
+                      <React.Fragment key={talent.id}>
+                        <TalentsListElement
+                          profile={userProfile}
+                        />
+                        <ModalCustom
+                          isModalShown={this.state.isModalOpen}
+                          toggleModal={() => this.toggleModal(talent)}
+                          titleModal={userProfile.firstName + ' ' + userProfile.lastName}
+                          className="talent-title">
+                          <TalentModal talent={talent}/>
+                        </ModalCustom>
+                      </React.Fragment>
+                    </Col>
+                  ) : null
+                )
+              ))
+            }
+          </Row>
+        ) : (
+        <h1 className="no-user-found">No matching user profiles were found.</h1>
+          )
+        }
       </Container>
     );
   }
 }
 
-const mapState = (state: RootState) => ({
-  users: state.users.users,
-  userSelected: state.userSelected.userSelected,
-});
-
 const mapDispatch = (dispatch: RootDispatch) => ({
   updateUserSelected: dispatch.userSelected.updateUserSelected,
 });
 
-export default connect(mapState, mapDispatch)(TalentsList);
+export default connect(() => {}, mapDispatch)(TalentsList);

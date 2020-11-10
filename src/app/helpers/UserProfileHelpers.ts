@@ -1,9 +1,23 @@
 import React from 'react';
-import { User } from '../index';
+import { User, UserProfile } from '../index';
 
 export class UserProfileHelpers extends React.Component {
-  public static findUserProfileLive(user: User) {
-    return user.userProfiles?.filter((profile) => profile.environment === 'live');
+
+  private static isMatchingProfile(profile: UserProfile, searchTerm: string): boolean {
+    return profile.firstName.toLocaleLowerCase().includes(searchTerm)
+      || profile.lastName.toLocaleLowerCase().includes(searchTerm);
+  }
+
+  private static isMatchingProfileWithSearch(profile: UserProfile, searchTermsStr: string): boolean {
+    const searhTerms = searchTermsStr.toLocaleLowerCase().split(' ');
+    return searhTerms.reduce(
+      (isMatchingProfileWithSearch: boolean, searchTerm: string) => isMatchingProfileWithSearch && this.isMatchingProfile(profile, searchTerm),
+      true
+    );
+  }
+
+  public static findUserProfileLive(user: User, searchTermsStr: string) {
+    return user.userProfiles?.filter((profile) => (profile.environment === 'live' && this.isMatchingProfileWithSearch(profile, searchTermsStr)));
   }
 
   public static findUserProfileWorking(user: User) {

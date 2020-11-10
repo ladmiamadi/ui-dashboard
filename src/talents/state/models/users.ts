@@ -5,19 +5,22 @@ import { createModel } from '@rematch/core';
 import { UsersDatesFormatter } from '../../../app/formatter/usersDatesFormatter';
 
 interface State {
+  searchTerm: string,
   users: User[],
   isFetching: boolean,
 }
 
 export const users = createModel({
   state: {
+    searchTerm: '',
     users: [],
     isFetching: false,
   } as State,
 
   reducers: {
-    updateList: (state: State, users: User[]): State => ({ ...state, users: users }),
+    updateList: (state: State, users: User[]): State => ({ ...state, users }),
     setIsFetching: (state: State, isFetching: boolean): State => ({ ...state, isFetching }),
+    updateSearchTerm: (state: State, searchTerm: string): State => ({ ...state, searchTerm }),
   },
 
   effects: {

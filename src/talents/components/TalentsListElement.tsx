@@ -1,12 +1,11 @@
 import React from 'react';
-import { User, UserProfile } from '../../app';
+import { UserProfile } from '../../app';
 import { env } from '../../helpers/environment';
 import './styles/TalentsList.css';
 import './styles/TalentModal.css';
 
-interface Props{
+interface Props {
   profile: UserProfile,
-  talent: User,
 }
 
 export default class TalentsListElement extends React.Component<Props> {
@@ -21,12 +20,14 @@ export default class TalentsListElement extends React.Component<Props> {
           alt={this.props.profile.firstName}
           src={picture}
         />
-        <p className="profile-info">
-          {this.props.profile.firstName}
-        </p>
-        <p className="profile-info">
-          {this.props.profile.lastName}
-        </p>
+        <div className="add-margin-top-modal">
+          <p>
+            {this.props.profile.lastName}
+          </p>
+          <p>
+            {this.props.profile.firstName}
+          </p>
+        </div>
       </div>
     );
   }

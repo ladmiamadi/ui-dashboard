@@ -7,11 +7,13 @@ import { ModalCustom } from '../../../app/components/utils/ModalCustom';
 import { UserLanguage } from '../../../app';
 import { UserLanguagesDisplay } from './UserLanguagesDisplay';
 import { LANGUAGES } from '../../constants/language';
+import { UpdateUserPayload } from '../../state/models/userSelected';
 
 interface Props {
   isFetching: boolean,
   userLanguages: UserLanguage[],
   fetchLanguages: () => Promise<void>,
+  modifyUser: (payload: UpdateUserPayload) => void,
   updateUserLanguage: (language: UserLanguage) => void,
   resetLanguage: () => void,
 }
@@ -37,7 +39,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
 
       this.setState({
         unselectedLanguages: this.state.unselectedLanguages
-            .filter((language) => !userLanguages.includes(language)),
+          .filter((language) => !userLanguages.includes(language)),
       });
     }
   }
@@ -60,34 +62,34 @@ export class TalentFormLanguages extends React.Component<Props, State> {
 
   render() {
     return (
-        <div className="form-section almost-large">
-          <div className="form-elements">
-            <div className="section-add">
-              <h6>Langues: </h6>
-              <Button
-                  onClick={this.toggleModalAndResetModalOnQuit}
-                  className="form-add-button"
-                  color="default"
-                  disabled={this.props.isFetching}
-              >
+      <div className="form-section almost-large">
+        <div className="form-elements">
+          <div className="section-add">
+            <h6>Langues: </h6>
+            <Button
+              onClick={this.toggleModalAndResetModalOnQuit}
+              className="form-add-button"
+              color="default"
+              disabled={this.props.isFetching}
+            >
                 Ajouter une langue
-              </Button>
-            </div>
+            </Button>
           </div>
-          <UserLanguagesDisplay
-              userLanguages={this.props.userLanguages}
-              updateUserLanguage={this.updateUserLanguage}
-          />
-          <ModalCustom
-              isModalShown={this.state.isModalShown}
-              toggleModal={this.toggleModalAndResetModalOnQuit}
-              titleModal="Ajouter une langue"
-          >
-            <ModalLanguage
-                languages={this.state.unselectedLanguages}
-            />
-          </ModalCustom>
         </div>
+        <UserLanguagesDisplay
+          userLanguages={this.props.userLanguages}
+          updateUserLanguage={this.updateUserLanguage}
+        />
+        <ModalCustom
+          isModalShown={this.state.isModalShown}
+          toggleModal={this.toggleModalAndResetModalOnQuit}
+          titleModal="Ajouter une langue"
+        >
+          <ModalLanguage
+            languages={this.state.unselectedLanguages}
+          />
+        </ModalCustom>
+      </div>
     );
   }
 }
