@@ -21,6 +21,10 @@ apiService.interceptors.response.use((response) => {
     addTokenToRequestInterceptor(response.data.token);
   }
 
+  if (response.status === 401) {
+    document.location.href = '/?logout';
+  }
+
   return response;
 });
 
