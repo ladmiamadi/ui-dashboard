@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import axios from 'axios';
 import { env } from '../../helpers/environment';
+import { Toastify } from '../../helpers/Toastify';
 
 let tokenInterceptor: number = -1;
 
@@ -22,7 +23,12 @@ apiService.interceptors.response.use((response) => {
   }
 
   if (response.status === 401) {
-    document.location.href = '/?logout';
+    (new Toastify()).error('Your session isn\'t valid anymore. ' +
+      'You will be disconnected in 5 seconds.');
+
+    setTimeout(() => {
+      document.location.href = '/?logout';
+    }, 5000);
   }
 
   return response;
