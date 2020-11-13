@@ -6,6 +6,7 @@ import logoHDM from '../../assets/LogoHDM.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { Module, User } from '../../index.d';
+import { tokenManager } from '../../helpers/TokenManagement';
 import './styles/CustomNavbar.css';
 
 interface Props {
@@ -13,7 +14,6 @@ interface Props {
   modules: Module[],
   updateUser: () => Promise<void>,
   updateModulesList: () => Promise<void>,
-  logout: () => Promise<void>,
 }
 
 interface State {
@@ -23,6 +23,8 @@ interface State {
 export class CustomNavbar extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
+
+    tokenManager();
 
     this.state = {
       isMenuOpened: false,
@@ -61,7 +63,10 @@ export class CustomNavbar extends React.Component<Props, State> {
                 <Link key={module.name} to={module.link}>{ module.linkText }</Link>) }
               <button
                 className="logo-out"
-                onClick={this.props.logout}
+                onClick={() => {
+                  localStorage.clear();
+                  window.location.href = '/?logout';
+                }}
               >
                 <FontAwesomeIcon className="icon-logout" icon={faSignOutAlt} />
               </button>
@@ -81,7 +86,6 @@ const mapState = (state: RootState) => ({
 const mapDispatch = (dispatch: any) => ({
   updateUser: dispatch.user.updateUser,
   updateModulesList: dispatch.modules.updateModulesList,
-  logout: dispatch.auth.logout,
 });
 
 export default connect(mapState, mapDispatch)(CustomNavbar);
