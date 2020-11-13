@@ -10,6 +10,7 @@ import './styles/CustomNavbar.css';
 
 //temporary
 import { addTokenToRequestInterceptor } from '../../http/service';
+import { tokenManager } from '../../helpers/tokenManagement';
 
 interface Props {
   user: User,
@@ -22,13 +23,13 @@ interface State {
   isMenuOpened: boolean,
 }
 
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDUyMDA1MzAsImV4cCI6MTYwNTIwNDEzMCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiUXVlbnRpbiJ9.RxhO2eJDJKDIDDnmZvFPCTA5LWwYk1dfVequo9_6A2alIrcJ3JYLZTD78m68E3FGgLx1xJfMmqIwyqJZB2S11ncoCMHdPfsCwAEIUrjxVSOO3m_OfkbLmEuRtRcWsnepwr4rsOLW59ysqZbUb660P055kcwxflDYoekrIvl2Ls3ZwGjk9F-ATiox0QOKi7m93FBLedZQYkKyF69LvOX499kI5NUrb0LYJrLahKekJeWTCRzXDntyvHqXPDPwleAqd8-2VvaLijsEfEA_u1Vgv2_c3_AxesIOjrY9gRQN31mcu08DgDbWAvCzFUWkkJ3aaGmy6Bn-cRpuSoTwwEx6fIgmKvHRc47QqR-RjdRqf1XH09HSKZ-VgSzHg06DKsmf7_nTZKgwLazPUY6oyPHBUQNjPjAWp-H8FSSvnEZTBAYv1xOQAnf0Oj5CsO-NEXPXS-kezMCRrvuzr2sggnzMRfuN8SmGJOdfg_gbnWiP6dbNX0OfYdLiFnUw_WEVK3kjAUj3EV_Cf9N4CDnwcD6i9jCc2B3Sp_1i2cv1Q5-urPLGIp9EN3fezwasAFVH_wplH5pmDNN-EWPV3evJ2xsT7n8WYm3XSPjL2BQoD7nHLY1PiqK-B4pnvLEbkX5cB2-VGINFGZMTkNNs3Ou7nwbTY1HsAP62vbnwlMxyoM5uyk8';
+// const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDUyMDA1MzAsImV4cCI6MTYwNTIwNDEzMCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiUXVlbnRpbiJ9.RxhO2eJDJKDIDDnmZvFPCTA5LWwYk1dfVequo9_6A2alIrcJ3JYLZTD78m68E3FGgLx1xJfMmqIwyqJZB2S11ncoCMHdPfsCwAEIUrjxVSOO3m_OfkbLmEuRtRcWsnepwr4rsOLW59ysqZbUb660P055kcwxflDYoekrIvl2Ls3ZwGjk9F-ATiox0QOKi7m93FBLedZQYkKyF69LvOX499kI5NUrb0LYJrLahKekJeWTCRzXDntyvHqXPDPwleAqd8-2VvaLijsEfEA_u1Vgv2_c3_AxesIOjrY9gRQN31mcu08DgDbWAvCzFUWkkJ3aaGmy6Bn-cRpuSoTwwEx6fIgmKvHRc47QqR-RjdRqf1XH09HSKZ-VgSzHg06DKsmf7_nTZKgwLazPUY6oyPHBUQNjPjAWp-H8FSSvnEZTBAYv1xOQAnf0Oj5CsO-NEXPXS-kezMCRrvuzr2sggnzMRfuN8SmGJOdfg_gbnWiP6dbNX0OfYdLiFnUw_WEVK3kjAUj3EV_Cf9N4CDnwcD6i9jCc2B3Sp_1i2cv1Q5-urPLGIp9EN3fezwasAFVH_wplH5pmDNN-EWPV3evJ2xsT7n8WYm3XSPjL2BQoD7nHLY1PiqK-B4pnvLEbkX5cB2-VGINFGZMTkNNs3Ou7nwbTY1HsAP62vbnwlMxyoM5uyk8';
 
 export class CustomNavbar extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    addTokenToRequestInterceptor(token);
+    tokenManager();
 
     this.state = {
       isMenuOpened: false,
