@@ -13,7 +13,7 @@ export const tokenManager = async () => {
     }
 
   } catch (error) {
-    const { data } = await apiService.post('api/login_check', { 'username': 'Quentin', 'password': 'test' });
+    const { data } = await apiService.post('api/login_check', { 'username': 'antoine@test.com', 'password': 'test' });
 
     if (!data.token) {
       throw new Error('No token in the response');
