@@ -1,27 +1,20 @@
 import React from 'react';
-import '../styles/TimelineFilters.css';
+import { listOfFonctionsInterface } from '../index';
+import './styles/TimelineFilters.css';
 
 const TimelineFilters = (props: any) => {
-  const CheckTheCheckBox = (onetb:any) => {
+  const checkFonctionDisplay = (onetb:listOfFonctionsInterface) => {
     if (onetb.display === 1)
       return true;
     else
       return false;
   };
 
-  const SendFiltersReason = (TimelineFiltersReasonVALUE:any) => {
-    props.onChangeReason(TimelineFiltersReasonVALUE);
-  };
-
-  const SendFiltersName = (TimelineFiltersNameVALUE:any) => {
-    props.onChangeName(TimelineFiltersNameVALUE);
-  };
-
-  const RenderTimelineFilters = props.listOfFonctions.map((tb: any, index: any) => {
+  const RenderTimelineFilters = props.listOfFonctions.map((tb: listOfFonctionsInterface, index: number) => {
     return (
       <label key={index} className="timeline-filters-checkboxes">{tb.groupname} ({tb.total})
         <input className="checkboxinput" type="checkbox" 
-          onChange={() => {props.onChangeCheckBox(index);}} defaultChecked={CheckTheCheckBox(tb)} ></input>
+          onChange={() => {props.onChangeCheckBox(index);}} defaultChecked={checkFonctionDisplay(tb)} ></input>
         <span className="checkmark"></span>
       </label> );
   });
@@ -33,13 +26,13 @@ const TimelineFilters = (props: any) => {
         {RenderTimelineFilters}
       </div>
       <div className="timeline-filters-search">Rechercher un nom : 
-        <input onChange={e => SendFiltersName(e.target.value)} type="text" 
+        <input onChange={e => props.onChangeName(e.target.value)} type="text" 
           className="timeline-filters-search-name"></input>
       </div>
       <div className="timeline-filters-reason">
         <label htmlFor="reason">Motifs de l'absence: </label>
         <select name="reasons" id="reasonid" className="timeline-filters-select" 
-          onChange={e => SendFiltersReason(e.target.value)}>
+          onChange={e => props.onChangeReason(e.target.value)}>
           <option value="Maladie">Maladie</option>
           <option value="Personnel">Personnel</option>
           <option value="Non Justifiée">Non Justifiée</option>

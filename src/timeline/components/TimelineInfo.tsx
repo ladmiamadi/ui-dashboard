@@ -1,5 +1,5 @@
 //import React from 'react';
-import '../styles/TimelineInfo.css';
+import './styles/TimelineInfo.css';
 
 // TODO : make this timeline info to see state of intership (signed, not signed, ect)
 /*const TimelineInfo = (props: any) => {

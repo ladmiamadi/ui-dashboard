@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../styles/TimelineTitle.css';
+import './styles/TimelineTitle.css';
 
 class TimelineTitle extends Component{
   render() {
