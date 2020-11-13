@@ -82,6 +82,8 @@ export class TimelineContainer extends React.Component<Props> {
            onChangeCheckBox={this.toggleCheckBox} 
            onChangeReason={(newreason:string) => {this.props.updateTimelineReason(newreason);}}
            onChangeName={(nametochange:string) => {
+            renderTimelineUpdateDisplayWithFilters(
+              nametochange, this.props.timelineFonctions, this.props.timelineUsers);
              this.props.updateTimelineSearchName(nametochange);}} />
          <TimelineCustom />
        </div>);
