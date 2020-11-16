@@ -10,7 +10,7 @@ interface Props {
 
 export default class TalentsListElement extends React.Component<Props> {
   render() {
-    const picture = UserProfileHelpers.calculateUserProfilePictureUrl(this.props.profile);
+    const picture = UserProfileHelpers.addUserProfilePictureUrl(this.props.profile);
 
     return (
       <div className="id-card">
