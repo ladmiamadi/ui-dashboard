@@ -1,22 +1,25 @@
-import { listOfFonctionsInterface, displayDataTimelineInterface } from '../../index'
+import { listOfFonctionsInterface, displayDataTimelineInterface, visibleTimeInterface } from '../../index'
 import { createModel } from '@rematch/core';
 import moment from 'moment';
 
 interface State {
-  visibleTimeStart: number,
-  visibleTimeEnd: number,
+  visibleTime: visibleTimeInterface,
   reason: string,
   searchName: string,
+  displayEmptyField: boolean,
   timelineUsers: displayDataTimelineInterface,
   timelineFonctions: listOfFonctionsInterface[],
 }
 
 export const timeline = createModel({
   state: {
-    visibleTimeStart: moment().startOf('week').add(1, 'day').valueOf(),
-    visibleTimeEnd: moment().startOf('week').add(1, 'week').add(1, 'day').valueOf(),
+    visibleTime: {
+      start: moment().startOf('week').add(1, 'day').valueOf(),
+      end: moment().startOf('week').add(1, 'week').add(1, 'day').valueOf(),
+    },
     reason: 'Maladie',
     searchName: '',
+    displayEmptyField: true,
     timelineUsers: {
       Fonctions: [],
       Days: [],
@@ -25,12 +28,11 @@ export const timeline = createModel({
   } as State,
 
   reducers: {
-    //updateTimelineUsers: (state: State, timelineUsers: displayDataTimelineInterface): State => ({ ...state, timelineUsers }),
     updateTimelineUsers: (state: State, payload: displayDataTimelineInterface): State => ({ ...state, timelineUsers: payload }),
+    updateTimelineVisibleTime: (state: State, payload: visibleTimeInterface): State => ({ ...state, visibleTime: payload }),
     updateTimelineFonctions: (state: State, timelineFonctions: listOfFonctionsInterface[]): State => ({ ...state, timelineFonctions }),
-    updateTimelineVisibleTimeStart: (state: State, visibleTimeStart: number): State => ({ ...state, visibleTimeStart }),
-    updateTimelineVisibleTimeEnd: (state: State, visibleTimeEnd: number): State => ({ ...state, visibleTimeEnd }),
     updateTimelineReason: (state: State, reason: string): State => ({ ...state, reason }),
     updateTimelineSearchName: (state: State, searchName: string): State => ({ ...state, searchName }),
+    updateTimelineEmptyField: (state: State, displayEmptyField: boolean): State => ({ ...state, displayEmptyField }),
   },
 });

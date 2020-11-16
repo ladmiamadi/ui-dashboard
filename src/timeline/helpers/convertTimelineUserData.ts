@@ -10,9 +10,11 @@ let sortAndListOfFonctions = (stateDisplayData:displayDataTimelineInterface,
       if (dpfonction.rightTitle === "ERROR")
         return 1;
       dpfonction.rightTitle = addFonctionNameToFilters(dpfonction.rightTitle, stateListOfFonctions);
+
       return 0;
     })
     sortTimelineUsersByFonction(copyDisplayData.Fonctions);
+
     return copyDisplayData
 }
 
@@ -23,6 +25,7 @@ let addFonctionNameToFilters = (tosearch:string, listOfFonctionsState:listOfFonc
     for (let i in listOfFonction) {
       if (listOfFonction[i].groupname === tosearch) {
         listOfFonction[i].total += 1;
+
         return tosearch;
       }
     }
@@ -31,15 +34,15 @@ let addFonctionNameToFilters = (tosearch:string, listOfFonctionsState:listOfFonc
     copyOfOneItemFonction.total = 1;
     copyOfOneItemFonction.display = 1;
     listOfFonction.push(copyOfOneItemFonction);
+
     return tosearch;
 }
 
 export let renderTimelineDisplaySeperateDays = (stateDisplayData:displayDataTimelineInterface, 
   stateListOfFonctions:listOfFonctionsInterface[]) => {
-    let copyDisplayData = sortAndListOfFonctions(stateDisplayData, stateListOfFonctions)
-    let DisplayDataDays = copyDisplayData.Days;
-    let copyAndEditLastDisplayItem = {...DisplayDataDays[0]};
-    let endDateOfItem;
+    let newRenderDisplayTimeline = sortAndListOfFonctions(stateDisplayData, stateListOfFonctions)
+    let daysOfTimeline = newRenderDisplayTimeline.Days;
+    let copyAndEditLastDisplayItem = {...daysOfTimeline[0]};
     let newDateOfLastItem;
     let newArrayLenghtOfItem = 0;
 
@@ -47,30 +50,30 @@ export let renderTimelineDisplaySeperateDays = (stateDisplayData:displayDataTime
       if (days.group === -1)
         return 1;
       newArrayLenghtOfItem = index+1;
-      endDateOfItem = days.end_time;
-      copyAndEditLastDisplayItem = {...DisplayDataDays[index]};
+      copyAndEditLastDisplayItem = {...daysOfTimeline[index]};
       newDateOfLastItem = copyAndEditLastDisplayItem.start_time;
 
-      while (newDateOfLastItem < moment(endDateOfItem).startOf('day').add(1, 'days').valueOf()) {
-        copyAndEditLastDisplayItem = {...DisplayDataDays[newArrayLenghtOfItem-1]};
+      while (newDateOfLastItem < moment(days.end_time).startOf('day').add(1, 'days').valueOf()) {
+        copyAndEditLastDisplayItem = {...daysOfTimeline[newArrayLenghtOfItem-1]};
         copyAndEditLastDisplayItem.start_time = moment(newDateOfLastItem).startOf('day').valueOf();
         newDateOfLastItem = moment(newDateOfLastItem).startOf('day').add(1, 'days').valueOf();
         copyAndEditLastDisplayItem.end_time = newDateOfLastItem;
-        copyAndEditLastDisplayItem.id = DisplayDataDays.length+1;
+        copyAndEditLastDisplayItem.id = daysOfTimeline.length+1;
         for (let j in days.workdays) {
           if (moment(copyAndEditLastDisplayItem.start_time).startOf('day').format('dddd') === 
           days.workdays[j]) {
             copyAndEditLastDisplayItem.state = days.state;
+
             break;
-          }
-          else
+          } else
             copyAndEditLastDisplayItem.state = 3;
         }
-        newArrayLenghtOfItem = DisplayDataDays.push(copyAndEditLastDisplayItem);
+        newArrayLenghtOfItem = daysOfTimeline.push(copyAndEditLastDisplayItem);
       }
-      delete DisplayDataDays[index]; // Works but may result in crash if we manipulate this later without check
-      //DisplayDataDays.splice(index, 1) //This doesn't work really well...
+      delete daysOfTimeline[index]; // Works but may result in crash if we manipulate this later without check
+      //daysOfTimeline.splice(index, 1) //This doesn't work really well...
+
       return 0;
     })
-    return copyDisplayData
+    return newRenderDisplayTimeline
 }

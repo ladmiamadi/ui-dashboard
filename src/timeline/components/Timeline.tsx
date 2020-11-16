@@ -12,23 +12,22 @@ import { daysRenderDisplayBackground,
   daysRenderChangeStateBackground, 
   daysRenderChangeStateColor, renderTimelineUpdateDisplayWithFilters } from '../helpers/renderTimelineUser';
 import { listOfFonctionsInterface, displayDataTimelineInterface, 
-  timelineRenderDays, timelineRenderFonction } from '../index';
+  timelineRenderDays, timelineRenderFonction, visibleTimeInterface } from './../index';
 import 'react-calendar-timeline/lib/Timeline.css';
 import './styles/Timeline.css';
 
 interface Props {
-  updateTimelineVisibleTimeStart: (visibleTimeStart: number) => void,
-  updateTimelineVisibleTimeEnd: (visibleTimeEnd: number) => void,
   updateTimelineReason: (reason: string) => void,
   updateTimelineSearchName: (searchName: string) => void,
   updateTimelineUsers: (timelineUsers: displayDataTimelineInterface) => void,
   updateTimelineFonctions: (timelineFonctions: listOfFonctionsInterface[]) => void,
+  updateTimelineVisibleTime: (visibleTime: visibleTimeInterface) => void,
   timelineUsers: displayDataTimelineInterface,
   timelineFonctions: listOfFonctionsInterface[],
-  visibleTimeStart: number,
-  visibleTimeEnd: number,
+  visibleTime: visibleTimeInterface,
   reason: string,
   searchName: string,
+  displayEmptyField: boolean,
   users: User[],
 }
 
@@ -36,14 +35,17 @@ export class TimelineCustom extends React.Component<Props> {
   daysRender = ({ item, getItemProps, itemContext }:timelineRenderDays) => {
     if (itemContext.selected)
       item.reason = this.props.reason;
+
     let background = itemContext.selected ? daysRenderChangeStateBackground(item) : daysRenderDisplayBackground(item);
     let color = daysRenderChangeStateColor(item);
     const borderColor = itemContext.selected ? 'orange' : 'rgba(0, 0, 0, 0.500)';
+
     if (item.group === -1) {
       color = 'black';
       background = 'red';
       item.state = 0;
     }
+
     return (
       <div
         {...getItemProps({
@@ -65,6 +67,7 @@ export class TimelineCustom extends React.Component<Props> {
     const color = 'black';
     const borderColor = 'black';
     const fontSize = '11px';
+
     return (
       <div className="custom-group"
         style={{
@@ -80,31 +83,39 @@ export class TimelineCustom extends React.Component<Props> {
   }
 
   onPrevClick = () => {
-    this.props.updateTimelineVisibleTimeStart(
-      moment(this.props.visibleTimeStart).startOf('week').add(-1, 'week').add(1, 'days').valueOf());
-    this.props.updateTimelineVisibleTimeEnd(
-      moment(this.props.visibleTimeEnd).startOf('week').add(-1, 'week').add(1, 'days').valueOf());
+    let newDisplayTime:visibleTimeInterface = {
+      start: moment(this.props.visibleTime.start).startOf('week').add(-1, 'week').add(1, 'days').valueOf(),
+      end: moment(this.props.visibleTime.end).startOf('week').add(-1, 'week').add(1, 'days').valueOf(),
+    };
+    this.props.updateTimelineVisibleTime(newDisplayTime);
   };
 
   onPrevClickMonth = () => {
-    this.props.updateTimelineVisibleTimeStart(
-      moment(this.props.visibleTimeStart).startOf('week').add(-1, 'month').startOf('week').add(1, 'days').valueOf());
-    this.props.updateTimelineVisibleTimeEnd(
-      moment(this.props.visibleTimeEnd).startOf('week').add(-1, 'month').startOf('week').add(1, 'days').valueOf());
+    let newDisplayTime:visibleTimeInterface = {
+      start: moment(this.props.visibleTime.start)
+        .startOf('week').add(-1, 'month').startOf('week').add(1, 'days').valueOf(),
+      end: moment(this.props.visibleTime.end)
+        .startOf('week').add(-1, 'month').startOf('week').add(1, 'days').valueOf(),
+    };
+    this.props.updateTimelineVisibleTime(newDisplayTime);
   };
 
   onNextClick = () => {
-    this.props.updateTimelineVisibleTimeStart(
-      moment(this.props.visibleTimeStart).startOf('week').add(1, 'week').add(1, 'days').valueOf());
-    this.props.updateTimelineVisibleTimeEnd(
-      moment(this.props.visibleTimeEnd).startOf('week').add(1, 'week').add(1, 'days').valueOf());
+    let newDisplayTime:visibleTimeInterface = {
+      start: moment(this.props.visibleTime.start).startOf('week').add(1, 'week').add(1, 'days').valueOf(),
+      end: moment(this.props.visibleTime.end).startOf('week').add(1, 'week').add(1, 'days').valueOf(),
+    };
+    this.props.updateTimelineVisibleTime(newDisplayTime);
   };
 
   onNextClickMonth = () => {
-    this.props.updateTimelineVisibleTimeStart(
-      moment(this.props.visibleTimeStart).startOf('week').add(1, 'month').startOf('week').add(1, 'days').valueOf());
-    this.props.updateTimelineVisibleTimeEnd(
-      moment(this.props.visibleTimeEnd).startOf('week').add(1, 'month').startOf('week').add(1, 'days').valueOf());
+    let newDisplayTime:visibleTimeInterface = {
+      start: moment(this.props.visibleTime.start)
+        .startOf('week').add(1, 'month').startOf('week').add(1, 'days').valueOf(),
+      end: moment(this.props.visibleTime.end)
+        .startOf('week').add(1, 'month').startOf('week').add(1, 'days').valueOf(),
+    };
+    this.props.updateTimelineVisibleTime(newDisplayTime);
   };
 
   render() {
@@ -116,14 +127,18 @@ export class TimelineCustom extends React.Component<Props> {
         <button onClick={this.onNextClickMonth}>{'>>>'}</button>
         <Timeline
           groups={renderTimelineUpdateDisplayWithFilters(
-            this.props.searchName, this.props.timelineFonctions, this.props.timelineUsers)}
+            this.props.searchName, 
+            this.props.displayEmptyField, 
+            this.props.visibleTime, 
+            this.props.timelineFonctions, 
+            this.props.timelineUsers)}
           items={this.props.timelineUsers.Days}
           stackItems={true}
           canMove={false}
           itemHeightRatio={0.55}
           lineHeight={55}
-          visibleTimeStart={this.props.visibleTimeStart}
-          visibleTimeEnd={this.props.visibleTimeEnd}
+          visibleTimeStart={this.props.visibleTime.start}
+          visibleTimeEnd={this.props.visibleTime.end}
           sidebarWidth={100}
           itemRenderer={this.daysRender}
           groupRenderer={this.fonctionRender}
@@ -143,10 +158,10 @@ export class TimelineCustom extends React.Component<Props> {
 }
 
 const mapState = (state: RootState) => ({
-  visibleTimeStart: state.timeline.visibleTimeStart,
-  visibleTimeEnd: state.timeline.visibleTimeEnd,
+  visibleTime: state.timeline.visibleTime,
   reason: state.timeline.reason,
   searchName: state.timeline.searchName,
+  displayEmptyField: state.timeline.displayEmptyField,
   users: state.users.users,
   timelineUsers: state.timeline.timelineUsers,
   timelineFonctions: state.timeline.timelineFonctions,
@@ -154,10 +169,10 @@ const mapState = (state: RootState) => ({
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({
-  updateTimelineVisibleTimeStart: dispatch.timeline.updateTimelineVisibleTimeStart,
-  updateTimelineVisibleTimeEnd: dispatch.timeline.updateTimelineVisibleTimeEnd,
+  updateTimelineVisibleTime: dispatch.timeline.updateTimelineVisibleTime,
   updateTimelineReason: dispatch.timeline.updateTimelineReason,
   updateTimelineSearchName: dispatch.timeline.updateTimelineSearchName,
+  updateTimelineEmptyField: dispatch.timeline.updateTimelineEmptyField,
   updateTimelineUsers: dispatch.timeline.updateTimelineUsers,
   updateTimelineFonctions: dispatch.timeline.updateTimelineFonctions,
   fetchTalents: dispatch.users.fetchTalents,

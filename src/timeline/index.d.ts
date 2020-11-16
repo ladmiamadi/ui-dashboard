@@ -17,6 +17,11 @@ export interface daysInterface {
     workdays: string[],
 }
 
+export interface visibleTimeInterface {
+    start: number,
+    end: number,
+}
+
 export interface daysRenderInterface {
     id: number,
     group: number,

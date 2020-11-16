@@ -40,6 +40,11 @@ const TimelineFilters = (props: any) => {
           <option value="Retard">Retard</option>
           <option value="Déplacement">Déplacement</option>
         </select>
+        <label className="timeline-filters-checkboxes">Afficher lignes vides
+          <input className="checkboxinput" type="checkbox" 
+            onChange={() => {props.onChangeEmptyField();}} defaultChecked={true}></input>
+          <span className="checkmark"></span>
+        </label>
       </div>
     </div>
   );

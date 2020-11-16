@@ -30,39 +30,40 @@ export const sortTimelineUsersByFonction = (tosort:fonctionInterface[]) => {
     let diff1 = a.rightTitle.toLowerCase(),
     diff2 = b.rightTitle.toLowerCase();
 
-    if (diff1 < diff2) {
+    if (diff1 < diff2)
         return -1;
-    }
-    if (diff1 > diff2) {
+
+    if (diff1 > diff2)
         return 1;
-    }
+
     return 0;
   });
 }
 
 const isWorkingOn = (person:UserJob) => {
   let workingdays = [];
-  if (person.isWorkingOnMonday === true) {
+
+  if (person.isWorkingOnMonday === true)
     workingdays.push("Monday");
-  }
-  if (person.isWorkingOnTuesday === true) {
+
+  if (person.isWorkingOnTuesday === true)
     workingdays.push("Tuesday");
-  }
-  if (person.isWorkingOnWednesday === true) {
+
+  if (person.isWorkingOnWednesday === true)
     workingdays.push("Wednesday");
-  }
-  if (person.isWorkingOnThursday === true) {
+
+  if (person.isWorkingOnThursday === true)
     workingdays.push("Thursday");
-  }
-  if (person.isWorkingOnFriday === true) {
+
+  if (person.isWorkingOnFriday === true)
     workingdays.push("Friday");
-  }
-  if (person.isWorkingOnSaturday === true) {
+
+  if (person.isWorkingOnSaturday === true)
     workingdays.push("Saturday");
-  }
-  if (person.isWorkingOnSunday === true) {
+
+  if (person.isWorkingOnSunday === true)
     workingdays.push("Sunday");
-  }
+
   return workingdays;
 }
 
@@ -79,6 +80,7 @@ export let convertDBDataToTimelineData = (users:User[]) => {
     const hasworkinghours = userdb?.userJob?.workingHours
     copyBaseIntershipPerson = {...internshipPersonBase[internshipPersonBase.length-1]};
     copyBaseIntershipDate = {...internshipDateBase[internshipDateBase.length-1]};
+
     if (userdb.userJob && userdb.userProfiles && userdb.userJob.job) {
       copyBaseIntershipPerson.id += 1;
       copyBaseIntershipPerson.title = capitalizeFirstLetter(userdb.userProfiles[0].firstName);

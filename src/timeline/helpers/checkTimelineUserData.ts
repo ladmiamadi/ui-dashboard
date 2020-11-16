@@ -1,4 +1,4 @@
-import { fonctionInterface, listOfFonctionsInterface } from '../index'
+import { fonctionInterface, listOfFonctionsInterface, displayDataTimelineInterface, visibleTimeInterface } from '../index'
 
 export let renderTimelineAddErrorWhenNoResults = (copyDisplayData:fonctionInterface[])=> {
   let noResultFonctions =     
@@ -22,26 +22,42 @@ export let renderTimelineAddErrorWhenNoResults = (copyDisplayData:fonctionInterf
   }
 }
 
-export let checkTimelineUserDataWithFilter = (copyDisplaybackup:fonctionInterface[], toChangeOnName:string, 
-  statedisplayDataBackupFonctions:fonctionInterface[], statelistOfFonctions:listOfFonctionsInterface[]) => {
-    let stateDisplayDataBackup = statedisplayDataBackupFonctions
-    let listOfFonctions = statelistOfFonctions
-    
-    listOfFonctions.map((tb: listOfFonctionsInterface) => {
+export let checkTimelineUserDataWithFilter = (toChangeOnName:string, checkEmptyField:boolean, visibleTime:visibleTimeInterface, 
+  stateDisplay:displayDataTimelineInterface, statelistOfFonctions:listOfFonctionsInterface[]) => {
+    let newTimelineDisplay:fonctionInterface[] = []
+
+    statelistOfFonctions.map((tb: listOfFonctionsInterface) => {
       tb.total = 0;
+
       return 0;
     });
-    stateDisplayDataBackup.map((displayData: fonctionInterface) => {
-      listOfFonctions.map((fonctionData: listOfFonctionsInterface) => {
-        if (fonctionData.display === 1 && fonctionData.groupname === displayData.rightTitle)
+    stateDisplay.Fonctions.map((displayData: fonctionInterface) => {
+      statelistOfFonctions.map((fonctionData: listOfFonctionsInterface) => {
+        if (fonctionData.display === 1 && fonctionData.groupname === displayData.rightTitle && isEmptyFonctionOfVisibleTimeline(checkEmptyField, stateDisplay, displayData, visibleTime))
           if (displayData.title.toLowerCase().includes(toChangeOnName.toLowerCase()) || 
           displayData.groupLabelKey.toLowerCase().includes(toChangeOnName.toLowerCase())) {
             fonctionData.total += 1
-            copyDisplaybackup.push(displayData)
+            newTimelineDisplay.push(displayData)
           }
           return 0;
         });
         return 0;
       });
-    return copyDisplaybackup;
+    return newTimelineDisplay;
   }
+
+let isEmptyFonctionOfVisibleTimeline = (displayEmptyField:boolean, stateDisplayRender:displayDataTimelineInterface, 
+  currentFonction:fonctionInterface, visibleTime:visibleTimeInterface) => {
+
+  if (displayEmptyField)
+    return true;
+
+  for (let i in stateDisplayRender.Days) {
+    if (stateDisplayRender.Days[i].group === currentFonction.id) {
+      if ((stateDisplayRender.Days[i].end_time >= visibleTime.start && stateDisplayRender.Days[i].end_time <= visibleTime.start) || (
+        stateDisplayRender.Days[i].start_time >= visibleTime.end && stateDisplayRender.Days[i].start_time <= visibleTime.end))
+        return true;
+    }
+  }
+  return false;
+}

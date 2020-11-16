@@ -6,27 +6,27 @@ import { connect } from 'react-redux';
 import TimelineCustom from './Timeline';
 import TimelineTitle from './TimelineTitle';
 import TimelineFilters from './TimelineFilters';
-import { listOfFonctionsInterface, displayDataTimelineInterface } from '../index';
+import { listOfFonctionsInterface, visibleTimeInterface, displayDataTimelineInterface } from '../index';
 import { convertDBDataToTimelineData } from '../helpers/getUserDataFromDB';
 import { renderTimelineDisplaySeperateDays } from '../helpers/convertTimelineUserData';
 import { renderTimelineAddErrorWhenNoResults } from '../helpers/checkTimelineUserData';
 import { renderTimelineUpdateDisplayWithFilters } from '../helpers/renderTimelineUser';
 
 interface Props {
-  updateTimelineVisibleTimeStart: (visibleTimeStart: number) => void,
-  updateTimelineVisibleTimeEnd: (visibleTimeEnd: number) => void,
   updateTimelineReason: (reason: string) => void,
   updateTimelineSearchName: (searchName: string) => void,
   updateTimelineUsers: (timelineUsers: displayDataTimelineInterface) => void,
+  updateTimelineVisibleTime: (visibleTime: visibleTimeInterface) => void,
   updateTimelineFonctions: (timelineFonctions: listOfFonctionsInterface[]) => void,
+  updateTimelineEmptyField: (displayEmptyField: boolean) => void,
   timelineUsers: displayDataTimelineInterface,
   timelineFonctions: listOfFonctionsInterface[],
   users: User[],
   isFetching: boolean,
-  visibleTimeStart: number,
-  visibleTimeEnd: number,
+  visibleTime: visibleTimeInterface,
   reason: string,
   searchName: string,
+  displayEmptyField: boolean,
   fetchTalents: () => void,
 }
 
@@ -50,6 +50,7 @@ export class TimelineContainer extends React.Component<Props> {
     let newdata = convertDBDataToTimelineData(this.props.users);
     listOfFonctions.shift();
     let newDisplayData = renderTimelineDisplaySeperateDays(newdata, listOfFonctions);
+
     renderTimelineAddErrorWhenNoResults(newDisplayData.Fonctions);
     this.props.updateTimelineUsers(newDisplayData);
     this.props.updateTimelineFonctions(listOfFonctions);
@@ -57,33 +58,51 @@ export class TimelineContainer extends React.Component<Props> {
  
    toggleCheckBox = (onetable:number) => {
      let listOfFonction = [...this.props.timelineFonctions];
+
      if (listOfFonction[onetable].display === 0)
        listOfFonction[onetable].display = 1;
      else
        listOfFonction[onetable].display = 0;
      this.props.updateTimelineFonctions(listOfFonction);
      renderTimelineUpdateDisplayWithFilters(
-       this.props.searchName, this.props.timelineFonctions, this.props.timelineUsers);
+       this.props.searchName, 
+       this.props.displayEmptyField, 
+       this.props.visibleTime, 
+       this.props.timelineFonctions, 
+       this.props.timelineUsers);
+   }
+
+   toggleEmptyFields = () => {
+     if (this.props.displayEmptyField) {
+       this.props.updateTimelineEmptyField(false);
+     } else {
+       this.props.updateTimelineEmptyField(true);
+     }
    }
 
    render() {
      if (this.props.isFetching) {
        hasBeenFetched = true;
+
        return <Loader />;
      }
-     if (!hasBeenFetched) {
+     if (!hasBeenFetched)
        return <Loader />;
-     }
      return (
        <div>
          <TimelineTitle />
          <TimelineFilters 
            listOfFonctions={this.props.timelineFonctions}
            onChangeCheckBox={this.toggleCheckBox} 
+           onChangeEmptyField={this.toggleEmptyFields}
            onChangeReason={(newreason:string) => {this.props.updateTimelineReason(newreason);}}
            onChangeName={(nametochange:string) => {
              renderTimelineUpdateDisplayWithFilters(
-               nametochange, this.props.timelineFonctions, this.props.timelineUsers);
+               nametochange, 
+               this.props.displayEmptyField, 
+               this.props.visibleTime, 
+               this.props.timelineFonctions, 
+               this.props.timelineUsers);
              this.props.updateTimelineSearchName(nametochange);}} />
          <TimelineCustom />
        </div>);
@@ -91,10 +110,10 @@ export class TimelineContainer extends React.Component<Props> {
 }
 
 const mapState = (state: RootState) => ({
-  visibleTimeStart: state.timeline.visibleTimeStart,
-  visibleTimeEnd: state.timeline.visibleTimeEnd,
+  visibleTime: state.timeline.visibleTime,
   reason: state.timeline.reason,
   searchName: state.timeline.searchName,
+  displayEmptyField: state.timeline.displayEmptyField,
   timelineUsers: state.timeline.timelineUsers,
   timelineFonctions: state.timeline.timelineFonctions,
   users: state.users.users,
@@ -102,10 +121,10 @@ const mapState = (state: RootState) => ({
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({
-  updateTimelineVisibleTimeStart: dispatch.timeline.updateTimelineVisibleTimeStart,
-  updateTimelineVisibleTimeEnd: dispatch.timeline.updateTimelineVisibleTimeEnd,
+  updateTimelineVisibleTime: dispatch.timeline.updateTimelineVisibleTime,
   updateTimelineReason: dispatch.timeline.updateTimelineReason,
   updateTimelineSearchName: dispatch.timeline.updateTimelineSearchName,
+  updateTimelineEmptyField: dispatch.timeline.updateTimelineEmptyField,
   updateTimelineUsers: dispatch.timeline.updateTimelineUsers,
   updateTimelineFonctions: dispatch.timeline.updateTimelineFonctions,
   fetchTalents: dispatch.users.fetchTalents,
