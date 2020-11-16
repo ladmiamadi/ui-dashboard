@@ -19,64 +19,64 @@ interface Props {
 
 export class ModalLanguage extends React.Component<Props> {
     updateLanguageTest = (property: string, value: string) => {
-      this.props.updateLanguage({ property, value });
+        this.props.updateLanguage({ property, value });
     }
 
     render() {
-      const newLanguage = UserLanguageFactory.createEmptyLanguage();
+        const newLanguage = UserLanguageFactory.createEmptyLanguage();
 
-      return (
-        <>
-          <Row>
-            <SelectFormField
-              keyName="language"
-              label="Ajouter une nouvelle langue : "
-              options={this.props.languages}
-              handleChange={this.updateLanguageTest}
-              value={this.props.language.language}
-            />
-          </Row>
-          {
-            this.props.language.language !== newLanguage.language &&
-                    <Row className="d-flex">
-                      <SelectFormField
-                        label="Niveau : "
-                        keyName="level"
-                        options={LANGUAGES_LEVEL}
+        return (
+            <>
+                <Row>
+                    <SelectFormField
+                        keyName="language"
+                        label="Ajouter une nouvelle langue : "
+                        options={this.props.languages}
                         handleChange={this.updateLanguageTest}
-                        value={this.props.language.level}
-                      />
+                        value={this.props.language.language}
+                    />
+                </Row>
+                {
+                    this.props.language.language !== newLanguage.language &&
+                    <Row className="d-flex">
+                        <SelectFormField
+                            label="Niveau : "
+                            keyName="level"
+                            options={LANGUAGES_LEVEL}
+                            handleChange={this.updateLanguageTest}
+                            value={this.props.language.level}
+                        />
                     </Row>
-          }
-          {
-            this.props.language.level !== newLanguage.level
+                }
+                {
+                    this.props.language.level !== newLanguage.level
                     && (
-                      <Row>
-                        <Button
-                          className="form-add-button modal-button"
-                          color="default"
-                          onClick={() => this.props.postLanguage(this.props.language)}
-                          disabled={this.props.isPosting}
-                        >
+                        <Row>
+                            <Button
+                                className="form-add-button modal-button"
+                                color="default"
+                                onClick={() => this.props.postLanguage(this.props.language)}
+                                disabled={this.props.isPosting}
+                            >
                                 Ajouter une langue
-                        </Button>
-                      </Row>
+                            </Button>
+                        </Row>
                     )
-          }
-        </>
-      );
+                }
+            </>
+        );
     }
 }
 
 const mapState = (state: RootState) => ({
-  language: state.addLanguage.language,
-  isPosting: state.addLanguage.isPosting,
+    language: state.addLanguage.language,
+    isPosting: state.addLanguage.isPosting,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({
-  postLanguage: dispatch.addLanguage.postLanguage,
-  resetLanguage: dispatch.addLanguage.resetLanguage,
-  updateLanguage: dispatch.addLanguage.updateLanguage,
+    postLanguage: dispatch.addLanguage.postLanguage,
+    resetLanguage: dispatch.addLanguage.resetLanguage,
+    updateLanguage: dispatch.addLanguage.updateLanguage,
 });
 
 export default connect(mapState, mapDispatch)(ModalLanguage);

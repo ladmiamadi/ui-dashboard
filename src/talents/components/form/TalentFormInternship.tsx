@@ -76,12 +76,12 @@ export default class TalentFormInternship extends React.Component<Props> {
             checkboxes={['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche']} 
           /> */}
           <CheckboxFormField
-            checkboxes={checkboxes}
-            className="large days"
-            keyName="internship-days"
-            label="Jour(s) d'activité: "
-            handleOnChange={() => {}}
-          />
+          checkboxes={checkboxes}
+          className="large days"
+          keyName="internship-days"
+          label="Jour(s) d'activité: "
+          handleOnChange={() => {}}
+        />
           <FieldForm
             keyName="internship-hours"
             label="Horaire: "

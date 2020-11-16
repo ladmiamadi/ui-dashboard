@@ -24,7 +24,7 @@ interface State {
 export class TalentsList extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    
+
     this.state = { isModalOpen: false };
   }
 
@@ -54,7 +54,7 @@ export class TalentsList extends React.Component<Props, State> {
           <Row className="talent-row">
             {
               filteredUsers.map((talent, index) => (
-                talent.userProfiles?.map(userProfile => userProfile.environment === 'live' ? 
+                talent.userProfiles?.map(userProfile => userProfile.environment === "live" ? 
                   (
                     <Col key={index} className="element" xs={5} sm={3} xl={2} onClick={() => this.toggleModal(talent)}>
                       <React.Fragment key={talent.id}>
@@ -76,8 +76,8 @@ export class TalentsList extends React.Component<Props, State> {
             }
           </Row>
         ) : (
-          <h1 className="no-user-found">No matching user profiles were found.</h1>
-        )
+        <h1 className="no-user-found">No matching user profiles were found.</h1>
+          )
         }
       </Container>
     );
