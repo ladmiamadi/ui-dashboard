@@ -17,7 +17,7 @@ export class UserLanguagesDisplay extends React.Component<Props> {
           {
             this.props.userLanguages.map(({ language, level }, index) =>
               (
-                <Col key={index} md={6}>
+                <Col key={index} lg={6} md={8}>
                   <SelectFormField
                     key={index}
                     keyName={language}

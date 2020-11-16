@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, Input, Label } from 'reactstrap';
+import { Col, FormGroup, Input, Label, Row } from 'reactstrap';
 import { Checkbox } from '../../index';
 
 interface Props {
@@ -13,11 +13,11 @@ interface Props {
 export class CheckboxFormField extends React.Component<Props> {
   render() {
     return (
-      <FormGroup className={this.props.className}>
+      <FormGroup className={this.props.className} >
         <Label className="form-label" for={this.props.keyName}>{this.props.label}</Label>
-        <div className="checkboxes">
+        <Row className="checkboxes">
           {this.props.checkboxes.map(({ label, checked }) =>
-            <div key={label}>
+            <Col xs={6} sm={3} md={4} lg={3} key={label}>
               <Label>
                 {checked ?
                   <Input
@@ -35,9 +35,9 @@ export class CheckboxFormField extends React.Component<Props> {
                 }
                 {label}
               </Label>
-            </div>,
+            </Col>,
           )}
-        </div>
+        </Row>
       </FormGroup>
     );
   }

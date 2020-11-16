@@ -35,7 +35,7 @@ export class UserProfileHelpers {
       profile.environment === 'working' && profile.status === 'ON_VALIDATION').length;
   }
 
-  public static addUserProfilePictureUrl(userProfile?: UserProfile): string {
+  public static getUserProfilePictureUrl(userProfile?: UserProfile): string {
     return env('MEDIA_URL')
       + (userProfile && userProfile.picture
         ? `${userProfile.picture.filePath}`

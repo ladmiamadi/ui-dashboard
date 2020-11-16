@@ -28,7 +28,7 @@ export class TalentFormHead extends React.Component<Props> {
     const userProfileLive: UserProfile | undefined = ProfileCollection.filterByEnvironment(
       this.props.user.userProfiles, 'live',
     );
-    const filePath = UserProfileHelpers.addUserProfilePictureUrl(userProfileLive);
+    const filePath = UserProfileHelpers.getUserProfilePictureUrl(userProfileLive);
     const jobPositions = this.props.jobCollection.map((job: Job) => job.position);
 
     return (

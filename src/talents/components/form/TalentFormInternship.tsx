@@ -35,7 +35,7 @@ export default class TalentFormInternship extends React.Component<Props> {
         </div>
         <div className="form-elements">
           <Row>
-            <Col md={4}>
+            <Col md={6}>
               <SelectFormField
                 keyName="status"
                 label="Status du stage: "
@@ -50,7 +50,9 @@ export default class TalentFormInternship extends React.Component<Props> {
                 value={this.props.user.userJob?.status || ''}
               />
             </Col>
-            <Col md={4}>
+          </Row>
+          <Row>
+            <Col md={6}>
               <DatePickerFieldForm
                 keyName="intern-datepicker form-control"
                 label="Début: "
@@ -64,7 +66,7 @@ export default class TalentFormInternship extends React.Component<Props> {
                 })}
               />
             </Col>
-            <Col md={4}>
+            <Col md={6}>
               <DatePickerFieldForm
                 keyName="endDate"
                 label="Fin: "
@@ -80,23 +82,21 @@ export default class TalentFormInternship extends React.Component<Props> {
             </Col>
           </Row>
           <Row>
-            <Col md={12}>
-              <CheckboxFormField
-                checkboxes={checkboxes}
-                className="large days"
-                keyName="internship-days"
-                label="Jour(s) d'activité: "
-                handleOnChange={(label, value) => this.props.modifyUser({
-                  category: 'userJob',
-                  property: DAYS_TO_INTERSHIP_PROPERTIES[label],
-                  value,
-                  index: -1,
-                })}
-              />
-            </Col>
+            <CheckboxFormField
+              checkboxes={checkboxes}
+              className="large days"
+              keyName="internship-days"
+              label="Jour(s) d'activité: "
+              handleOnChange={(label, value) => this.props.modifyUser({
+                category: 'userJob',
+                property: DAYS_TO_INTERSHIP_PROPERTIES[label],
+                value,
+                index: -1,
+              })}
+            />
           </Row>
           <Row>
-            <Col md={4}>
+            <Col md={6}>
               <FieldForm
                 keyName="internship-hours"
                 label="Horaire: "
