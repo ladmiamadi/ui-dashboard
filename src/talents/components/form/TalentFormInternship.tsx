@@ -1,10 +1,10 @@
-import fr from 'date-fns/locale/fr';
 import React from 'react';
-import { Col, Row } from 'reactstrap';
+import fr from 'date-fns/locale/fr';
+import ReactDatePicker from 'react-datepicker';
+import { Col, FormGroup, Row } from 'reactstrap';
 import { User } from '../../../app';
 import { Checkbox } from '../../../app/';
 import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormField';
-import { DatePickerFieldForm } from '../../../app/components/utils/DatePickerFieldForm';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { STATUS_OPTIONS } from '../../constants/status-options';
@@ -40,7 +40,7 @@ export default class TalentFormInternship extends React.Component<Props> {
                 keyName="status"
                 label="Status du stage: "
                 options={STATUS_OPTIONS}
-                className="large"
+                className="address-field-form"
                 handleChange={(property, value) => this.props.modifyUser({
                   category: 'userJob',
                   property,
@@ -50,57 +50,11 @@ export default class TalentFormInternship extends React.Component<Props> {
                 value={this.props.user.userJob?.status || ''}
               />
             </Col>
-          </Row>
-          <Row>
-            <Col md={6}>
-              <DatePickerFieldForm
-                keyName="intern-datepicker form-control"
-                label="Début: "
-                value={this.props.user.userJob?.startDate}
-                locale={fr}
-                handleChange={(value) => this.props.modifyUser({
-                  category: 'userJob',
-                  property: 'startDate',
-                  value,
-                  index: -1,
-                })}
-              />
-            </Col>
-            <Col md={6}>
-              <DatePickerFieldForm
-                keyName="endDate"
-                label="Fin: "
-                value={this.props.user.userJob?.endDate}
-                locale={fr}
-                handleChange={(value) => this.props.modifyUser({
-                  category: 'userJob',
-                  property: 'endDate',
-                  value,
-                  index: -1,
-                })}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <CheckboxFormField
-              checkboxes={checkboxes}
-              className="large days"
-              keyName="internship-days"
-              label="Jour(s) d'activité: "
-              handleOnChange={(label, value) => this.props.modifyUser({
-                category: 'userJob',
-                property: DAYS_TO_INTERSHIP_PROPERTIES[label],
-                value,
-                index: -1,
-              })}
-            />
-          </Row>
-          <Row>
             <Col md={6}>
               <FieldForm
                 keyName="internship-hours"
                 label="Horaire: "
-                className="large"
+                className="address-field-form"
                 type="text"
                 handleChange={(value) => this.props.modifyUser({
                   category: 'userJob',
@@ -111,6 +65,67 @@ export default class TalentFormInternship extends React.Component<Props> {
                 value={this.props.user.userJob?.workingHours} />
             </Col>
           </Row>
+          <Row>
+            <Col md={6}>
+              <FormGroup className="address-field-form">
+                <label className="form-label">Debut: </label>
+                <ReactDatePicker
+                  className={'datepicker form-input form-control'}
+                  selected={this.props.user.userJob?.startDate}
+                  isClearable
+                  dateFormat="dd/MM/yyyy"
+                  showMonthDropdown
+                  showYearDropdown
+                  dropdownMode="select"
+                  locale={fr}
+                  onChange={(value) => this.props.modifyUser({
+                    category: 'userJob',
+                    property: 'startDate',
+                    value,
+                    index: -1,
+                  })}
+                />
+              </FormGroup>
+            </Col>
+            <Col md={6}>
+              <FormGroup className="address-field-form">
+                <label className="form-label">Fin: </label>
+                <ReactDatePicker
+                  className={'datepicker form-input form-control'}
+                  selected={this.props.user.userJob?.endDate}
+                  isClearable
+                  dateFormat="dd/MM/yyyy"
+                  showMonthDropdown
+                  showYearDropdown
+                  dropdownMode="select"
+                  locale={fr}
+                  onChange={(value) => this.props.modifyUser({
+                    category: 'userJob',
+                    property: 'endDate',
+                    value,
+                    index: -1,
+                  })}
+                />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <CheckboxFormField
+                checkboxes={checkboxes}
+                className="large days"
+                keyName="internship-days"
+                label="Jour(s) d'activité: "
+                handleOnChange={(label, value) => this.props.modifyUser({
+                  category: 'userJob',
+                  property: DAYS_TO_INTERSHIP_PROPERTIES[label],
+                  value,
+                  index: -1,
+                })}
+              />
+            </Col>
+          </Row>
+
         </div>
       </div>
     );
