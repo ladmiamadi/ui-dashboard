@@ -6,7 +6,7 @@ export const tokenManager = async () => {
   try {
     if (token) {
       addTokenToRequestInterceptor(token);
-      
+
       await apiService.post('api/token/verify', {});
     } else {
       throw new Error('No token found');

@@ -1,14 +1,14 @@
 import React from 'react';
-import { RootDispatch, RootState } from '../../app/state/store';
-import { Loader } from '../../app/components/utils/Loader';
-import { TalentsDashBoard } from './TalentsDashBoard';
-import { User } from '../../app';
 import { connect } from 'react-redux';
+import { User } from '../../app';
+import { Loader } from '../../app/components/utils/Loader';
+import { RootDispatch, RootState } from '../../app/state/store';
+import { TalentsDashBoard } from './TalentsDashBoard';
 
 interface Props {
-  users: User[],
   isFetching: boolean,
   searchTerm: string,
+  users: User[],
   fetchTalents: () => void,
   updateSearchTerm: (searchTerm: string) => void,
 }
@@ -22,8 +22,8 @@ export class TalentsListContainer extends React.Component<Props> {
     if (this.props.isFetching) {
       return <Loader />;
     }
-    
-    return <TalentsDashBoard 
+
+    return <TalentsDashBoard
       searchTerm={this.props.searchTerm}
       updateSearchTerm={this.props.updateSearchTerm}
       users={this.props.users}

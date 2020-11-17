@@ -1,8 +1,8 @@
 import React from 'react';
 import { UserProfile } from '../../app';
-import { env } from '../../helpers/environment';
-import './styles/TalentsList.css';
+import { UserProfileHelpers } from '../../app/helpers/UserProfileHelpers';
 import './styles/TalentModal.css';
+import './styles/TalentsList.css';
 
 interface Props {
   profile: UserProfile,
@@ -10,8 +10,7 @@ interface Props {
 
 export default class TalentsListElement extends React.Component<Props> {
   render() {
-    const picture = this.props.profile.picture ?
-      `${env('MEDIA_URL')}${this.props.profile.picture?.filePath}` : '';
+    const picture = UserProfileHelpers.getUserProfilePictureUrl(this.props.profile);
 
     return (
       <div className="id-card">

@@ -1,21 +1,25 @@
 import { createModel } from '@rematch/core';
-import { User, UserLanguage, UserTraining, UserExperience } from '../../../app';
-import { createEmptyUser } from '../../../app/helpers/user';
 import _ from 'lodash';
+import { User, UserExperience, UserLanguage, UserTraining } from '../../../app';
+import { createEmptyUser } from '../../../app/helpers/user';
+import { apiService } from '../../../app/http/service';
+import { Toastify } from '../../../helpers/Toastify';
 
 export interface UserState {
+  isRequesting: boolean,
   userSelected: User,
 }
 
 export interface UpdateUserPayload {
-  index: number,
   category: string,
+  index: number,
   property: string,
-  value: number | string | Date | [Date, Date] | null,
+  value: number | string | Date | [Date, Date] | boolean | null,
 }
 
-export const userSelected = createModel ({
+export const userSelected = createModel({
   state: {
+    isRequesting: false,
     userSelected: createEmptyUser(),
   } as UserState,
   reducers: {
@@ -67,6 +71,25 @@ export const userSelected = createModel ({
       userSelected.userTrainings = userTraining;
 
       return { ...state, userSelected };
+    },
+    setIsRequesting: (state: UserState, isRequesting: boolean): UserState => ({
+      ...state,
+      isRequesting,
+    }),
+  },
+  effects: {
+    async saveUserInDb(user: User) {
+      this.setIsRequesting(true);
+
+      try {
+        const { data } = await apiService.put(`/api/users/${user.id}`, user);
+
+        (new Toastify()).info('Success saving user ' + data.username + ' in the database.');
+      } catch (error) {
+        (new Toastify()).error(`Unable to put the user in the database. ${error.message}`);
+      } finally {
+        this.setIsRequesting(false);
+      }
     },
   },
 });

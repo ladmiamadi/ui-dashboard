@@ -8,7 +8,7 @@ import {
   UserSignUpPayload,
   InputState,
   IsFormValid } from '../../../index.d';
-import { isUsernameAlreadyExists } from '../../../helpers/formRegisterHelper';
+import { isUsernameAlreadyExists } from '../../../helpers/FormRegisterHelper';
 import { RootState, RootDispatch } from '../../../../app/state/store';
 import FormRegisterUser from '../form/FormRegisterUser';
 import { Job } from '../../../../app';

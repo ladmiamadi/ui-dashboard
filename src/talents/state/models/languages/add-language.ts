@@ -1,11 +1,12 @@
 import { createModel } from '@rematch/core';
-import { UserLanguageFactory } from '../../../helpers/UserLanguageFactory';
-import { Toastify } from '../../../../helpers/Toastify';
 import { UserLanguage } from '../../../../app';
+import { apiService } from '../../../../app/http/service';
+import { Toastify } from '../../../../helpers/Toastify';
+import { UserLanguageFactory } from '../../../helpers/UserLanguageFactory';
 
 export interface LanguageState {
-  language: UserLanguage,
   isPosting: boolean,
+  language: UserLanguage,
 }
 
 export interface UpdateLanguagePayload {
@@ -15,12 +16,12 @@ export interface UpdateLanguagePayload {
 
 export const addLanguage = createModel({
   state: {
-    language: UserLanguageFactory.createEmptyLanguage(),
     isPosting: false,
+    language: UserLanguageFactory.createEmptyLanguage(),
   } as LanguageState,
   reducers: {
     setIsPosting: (state: LanguageState, isPosting): LanguageState => ({ ...state, isPosting }),
-    updateLanguage: (state: LanguageState, payload: UpdateLanguagePayload): LanguageState  => {
+    updateLanguage: (state: LanguageState, payload: UpdateLanguagePayload): LanguageState => {
       const language = { ...state.language } as any;
       language[payload.property] = payload.value;
 
@@ -31,21 +32,21 @@ export const addLanguage = createModel({
     resetLanguage: (state) => ({ ...state, language: UserLanguageFactory.createEmptyLanguage() }),
   },
   effects: (dispatch: any) => ({
-    async postLanguage(userLanguage : UserLanguage) {
+    async postLanguage({ userLanguage, userId }: { userLanguage: UserLanguage, userId: number | undefined }) {
       try {
         this.setIsPosting(true);
 
-        /*await apiService.post('/api/user_languages', {
-          user: '/api/users/1',
+        await apiService.post('/api/user_languages', {
+          user: `/api/users/${userId}`,
           language: userLanguage.language,
           level: userLanguage.level,
-        });*/
+        });
 
         dispatch.userLanguages.addUserLanguages(userLanguage);
         this.resetLanguage();
 
         (new Toastify()).info('Language added successfully.');
-      } catch(error) {
+      } catch (error) {
         (new Toastify()).info(`Unable to add a new language. ${error.message}`);
       } finally {
         this.setIsPosting(false);

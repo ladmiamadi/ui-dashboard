@@ -14,6 +14,7 @@ export interface User {
   updatedDate?: Date,
   userProfiles?: UserProfile[],
   userAddress?: UserAddress,
+  userDesiredJob?: UserDesiredJob,
   userAbsences?: UserAbsence[],
   userInterviews?: UserInterview[],
   userContracts?: UserContract[],
@@ -32,14 +33,27 @@ export interface UserAddress {
   box?: string
   zipCode?: number,
   city?: string,
-  country: string
-  status?: string,
+  country?: string,
+}
+
+export interface UserDesiredJob {
+  id?: number,
+  desiredJob?: string,
+  mobility?: string,
+  desiredCountry?: string,
+  desiredCity?: string,
+  currentSalary?: number,
+  desiredSalary?: number,
+  jobDescription?: string,
+  internOptions?: string,
+  placementOptions: string,
 }
 
 export interface UserProfile {
   id?: number,
   lastName: string,
   firstName: string,
+  email: string,
   phone: string,
   requestInFrench?: string,
   requestInEnglish?: string,
@@ -47,7 +61,6 @@ export interface UserProfile {
   motivationInFrench?: string,
   motivationInEnglish?: string,
   motivationInDutch?: string,
-  mobility?: string,
   birthDate: Date,
   institution?: string,
   descriptionInFrench?: string,
@@ -57,12 +70,12 @@ export interface UserProfile {
   phoneInstitution?: string,
   mailInstitution?: string,
   personContactInstitution?: string,
-  desiredJob?: string,
-  actualSalary?: number,
-  expectedSalary?: number,
   status: string,
   environment: string
   picture?: MediaObject,
+  position?: string,
+  platform: string,
+  nationality: string,
 }
 
 export interface MediaObject {
@@ -103,7 +116,7 @@ export interface UserExperience {
   task: string,
 }
 
-export interface Training<T, U, D=T> {
+export interface Training<T, U, D = T> {
   id?: U,
   institution: T,
   startDate: D,

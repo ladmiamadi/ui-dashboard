@@ -5,7 +5,19 @@
   border: 3px solid #151515;
   padding: 10px;
   box-sizing: border-box;
-  margin-top: 20px; 
+  margin-top: 20px;
+}
+
+.job-section-b {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.job-hdmnetwork {
+  background-color: rgb(129, 233, 129);
 }
 
 .job-field {

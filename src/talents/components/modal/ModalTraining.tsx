@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 import { Training } from '../../../app';
-import { TrainingFactory } from '../../helpers/TrainingFactory';
-import { RootDispatch } from '../../../app/state/store';
-import TrainingForm from '../form/TrainingForm';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
-import { InputState } from '../../index.d';
+import { RootDispatch } from '../../../app/state/store';
 import { FormValidator } from '../../helpers/FormValidator';
+import { TrainingFactory } from '../../helpers/TrainingFactory';
+import { InputState } from '../../index.d';
+import TrainingForm from '../form/TrainingForm';
 import classes from './styles/ModalTraining.module.css';
 
 interface Props {
@@ -21,7 +21,7 @@ interface State {
   training: UserTraining,
 }
 
-type ExcludeIdPropertyFromTraining<T, U, D=T> = Omit<Training<T, U, D>, 'id'>;
+type ExcludeIdPropertyFromTraining<T, U, D = T> = Omit<Training<T, U, D>, 'id'>;
 
 export type IsFormValid = ExcludeIdPropertyFromTraining<InputState, number>;
 export type UserTraining = ExcludeIdPropertyFromTraining<string, number, Date | null>;
@@ -52,7 +52,7 @@ export class ModalTraining extends React.Component<Props, State> {
 
   updateTraining = (property: keyof UserTraining, value: string | Date | null) => {
     const training = { ...this.state.training };
-    if (typeof value === 'string' && (property === 'institution' || property === 'degreeObtained' ))
+    if (typeof value === 'string' && (property === 'institution' || property === 'degreeObtained'))
       training[property] = value;
     else if ((property === 'startDate' || property === 'endDate') && (value === null || value instanceof Date))
       training[property] = value;

@@ -1,22 +1,22 @@
-import { RematchRootState, init } from '@rematch/core';
-import * as language  from '../../talents/state/models/languages/add-language';
+import { init, RematchRootState } from '@rematch/core';
 import * as experience from '../../talents/state/models/experiences/addExperience';
+import * as language from '../../talents/state/models/languages/add-language';
+import * as userLanguages from '../../talents/state/models/languages/user-languages';
+import * as userSelected from '../../talents/state/models/user-selected';
+import * as userSignUp from '../../talents/state/models/user-sign-up';
+import * as users from '../../talents/state/models/users';
 import * as modules from './models/modules';
 import * as user from './models/user';
-import * as users from '../../talents/state/models/users';
-import * as userSelected from '../../talents/state/models/userSelected';
-import * as userSignUp from '../../talents/state/models/userSignUp';
-import * as userLanguages from '../../talents/state/models/languages/user-languages';
 
 const models = {
-  ...user,
-  ...users,
-  ...modules,
-  ...userSelected,
-  ...language,
-  ...userLanguages,
-  ...userSignUp,
   ...experience,
+  ...language,
+  ...modules,
+  ...user,
+  ...userLanguages,
+  ...users,
+  ...userSelected,
+  ...userSignUp,
 };
 
 export const store = init({

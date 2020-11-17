@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Row } from 'reactstrap';
-import { UserSignUp, IsFormValid, UserRegister } from '../../..';
-import { doubleArrayPropsInput } from '../../../helpers/formRegisterHelper';
-import InputRegisterUsers from './inputs/InputRegisterUsers';
+import { IsFormValid, UserRegister, UserSignUp } from '../../..';
 import { Job } from '../../../../app';
+import { doubleArrayPropsInput } from '../../../helpers/FormRegisterHelper';
+import InputRegisterUsers from './inputs/InputRegisterUsers';
 import classes from '../styles/FormRegisterUser.module.css';
 
 export interface Props {
@@ -11,8 +11,8 @@ export interface Props {
   jobCollection: Job[],
   usernameCollection: string[],
   userSignUp: UserSignUp,
-  updateUserSignUp: <T>(property: keyof UserRegister<T>, Value: string) => void,
   setIsFormValid: <T>(property: keyof UserRegister<T>, regEx: string) => void,
+  updateUserSignUp: <T>(property: keyof UserRegister<T>, Value: string) => void,
 }
 
 export default class FormRegisterUser extends Component<Props> {
@@ -22,8 +22,8 @@ export default class FormRegisterUser extends Component<Props> {
     return (
       <>
         {
-          doubleArrayOfAllInputs.map((array, index) => 
-            <Row 
+          doubleArrayOfAllInputs.map((array, index) =>
+            <Row
               key={index}
               className={classes.RowFormRegisterUser}>
               {
