@@ -1,6 +1,6 @@
 import { fonctionInterface, listOfFonctionsInterface, displayDataTimelineInterface, visibleTimeInterface } from '../index'
 
-export let renderTimelineAddErrorWhenNoResults = (copyDisplayData:fonctionInterface[])=> {
+export let renderTimelineAddErrorWhenNoResults = (copyDisplayData: fonctionInterface[])=> {
   let noResultFonctions =     
   {
     id: -1,
@@ -10,8 +10,9 @@ export let renderTimelineAddErrorWhenNoResults = (copyDisplayData:fonctionInterf
     display: 1,
     convention: 0,
   }
-  if (copyDisplayData.length === 0)
+  if (copyDisplayData.length === 0) {
     copyDisplayData.push(noResultFonctions);
+  }
   else {
     copyDisplayData.map((dpdata:fonctionInterface, index:number) => {
       if (dpdata.rightTitle === 'ERROR') {
@@ -22,9 +23,9 @@ export let renderTimelineAddErrorWhenNoResults = (copyDisplayData:fonctionInterf
   }
 }
 
-export let checkTimelineUserDataWithFilter = (toChangeOnName:string, checkEmptyField:boolean, visibleTime:visibleTimeInterface, 
-  stateDisplay:displayDataTimelineInterface, statelistOfFonctions:listOfFonctionsInterface[]) => {
-    let newTimelineDisplay:fonctionInterface[] = []
+export let checkTimelineUserDataWithFilter = (toChangeOnName: string, checkEmptyField: boolean, visibleTime: visibleTimeInterface, 
+  stateDisplay: displayDataTimelineInterface, statelistOfFonctions: listOfFonctionsInterface[]) => {
+    let newTimelineDisplay: fonctionInterface[] = []
 
     statelistOfFonctions.map((tb: listOfFonctionsInterface) => {
       tb.total = 0;
@@ -46,12 +47,12 @@ export let checkTimelineUserDataWithFilter = (toChangeOnName:string, checkEmptyF
     return newTimelineDisplay;
   }
 
-let isEmptyFonctionOfVisibleTimeline = (displayEmptyField:boolean, stateDisplayRender:displayDataTimelineInterface, 
-  currentFonction:fonctionInterface, visibleTime:visibleTimeInterface) => {
+let isEmptyFonctionOfVisibleTimeline = (displayEmptyField: boolean, stateDisplayRender: displayDataTimelineInterface, 
+  currentFonction: fonctionInterface, visibleTime: visibleTimeInterface) => {
 
-  if (displayEmptyField)
+  if (displayEmptyField) {
     return true;
-
+  }
   for (let i in stateDisplayRender.Days) {
     if (stateDisplayRender.Days[i].group === currentFonction.id) {
       if ((stateDisplayRender.Days[i].end_time >= visibleTime.start && stateDisplayRender.Days[i].end_time <= visibleTime.start) || (

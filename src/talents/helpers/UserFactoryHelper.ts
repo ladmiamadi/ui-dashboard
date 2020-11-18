@@ -1,18 +1,21 @@
 import { UserSignUp } from '..';
-import { Job, User, UserAddress, UserJob, UserProfile } from '../../app';
+import { Job, User, UserAddress, UserDesiredJob, UserJob, UserProfile } from '../../app';
 
 export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]): User => {
   const userAddress: UserAddress = {
-    country: userSignUp.country,
   };
 
-  const userProfile: UserProfile = {
+  const userProfileLive: UserProfile = {
     birthDate: new Date(userSignUp.birthDate),
     environment: 'live',
     firstName: userSignUp.firstName,
     lastName: userSignUp.lastName,
+    platform: userSignUp.platform,
+    email: userSignUp.username,
     phone: userSignUp.phone,
     status: 'VALIDATED',
+    position: userSignUp.jobPosition,
+    nationality: userSignUp.nationality,
   };
 
   const userProfileWorking: UserProfile = {
@@ -20,13 +23,21 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     environment: 'working',
     firstName: userSignUp.firstName,
     lastName: userSignUp.lastName,
+    platform: userSignUp.platform,
+    email: userSignUp.username,
     phone: userSignUp.phone,
     status: 'VALIDATED',
+    position: userSignUp.jobPosition,
+    nationality: userSignUp.nationality,
   };
 
   const job: Job = jobCollection.filter((job: Job) => job.position === userSignUp.jobPosition)[0];
   const userJob: UserJob = {
     job: job,
+  };
+
+  const userDesiredJob: UserDesiredJob = {
+    placementOptions: '',
   };
 
   return {
@@ -35,7 +46,8 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     password: 'sosecure',
     username: userSignUp.username,
     userAddress: userAddress,
-    userProfiles: [userProfile, userProfileWorking],
+    userProfiles: [userProfileLive, userProfileWorking],
     userJob: userJob,
+    userDesiredJob,
   };
 };

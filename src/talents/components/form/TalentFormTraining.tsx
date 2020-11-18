@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import { User } from '../../../app';
-import { UpdateUserPayload } from '../../state/models/userSelected';
+import { UpdateUserPayload } from '../../state/models/user-selected';
 import ModalTraining from '../modal/ModalTraining';
 import TrainingForm from './TrainingForm';
 import classes from './styles/TalentFormTraining.module.css';
@@ -52,26 +52,26 @@ export default class TalentFormTraining extends React.Component<Props, State> {
                 institution: (value) => this.props.modifyUser({
                   category: 'userTrainings',
                   property: 'institution',
-                  value: value,
-                  index: index,
+                  value,
+                  index,
                 }),
                 degreeObtained: (value) => this.props.modifyUser({
                   category: 'userTrainings',
                   property: 'degreeObtained',
-                  value: value,
-                  index: index,
+                  value,
+                  index,
                 }),
                 startDate: (value: Date | null) => this.props.modifyUser({
                   category: 'userTrainings',
                   property: 'startDate',
-                  value: value,
-                  index: index,
+                  value,
+                  index,
                 }),
                 endDate: (value: Date | null) => this.props.modifyUser({
                   category: 'userTrainings',
                   property: 'endDate',
-                  value: value,
-                  index: index,
+                  value,
+                  index,
                 }),
               }}
             />

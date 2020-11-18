@@ -1,4 +1,5 @@
 import React from 'react';
+import fr from 'date-fns/locale/fr';
 import ReactDatePicker from 'react-datepicker';
 import { connect } from 'react-redux';
 import { Button, Col, Row } from 'reactstrap';
@@ -6,11 +7,10 @@ import { User } from '../../../app';
 import InputFormField from '../../../app/components/utils/InputFormField';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
 import { RootDispatch } from '../../../app/state/store';
-import { UpdateUserPayload } from '../../state/models/userSelected';
+import { UpdateUserPayload } from '../../state/models/user-selected';
 import ModalExperience from '../modal/ModalExperience';
-import fr from 'date-fns/locale/fr';
-import 'react-datepicker/dist/react-datepicker.css';
 import classes from './styles/TalentFormExperience.module.css';
+import 'react-datepicker/dist/react-datepicker.css';
 
 interface Props {
   user: User,
@@ -61,8 +61,8 @@ export class TalentFormExperience extends React.Component<Props, State> {
                     handleChange={(value: string) => this.props.modifyUser({
                       category: 'userExperiences',
                       property: 'company',
-                      value: value,
-                      index: index,
+                      value,
+                      index,
                     })}
                     value={elem.company}
                   />
@@ -76,8 +76,8 @@ export class TalentFormExperience extends React.Component<Props, State> {
                     handleChange={(value: string) => this.props.modifyUser({
                       category: 'userExperiences',
                       property: 'position',
-                      value: value,
-                      index: index,
+                      value,
+                      index,
                     })}
                     value={elem.position}
                   />
@@ -96,8 +96,8 @@ export class TalentFormExperience extends React.Component<Props, State> {
                     onChange={(value) => this.props.modifyUser({
                       category: 'userExperiences',
                       property: 'startDate',
-                      value: value,
-                      index: index,
+                      value,
+                      index,
                     })}
                   />
                 </Col>
@@ -116,8 +116,8 @@ export class TalentFormExperience extends React.Component<Props, State> {
                     onChange={(value) => this.props.modifyUser({
                       category: 'userExperiences',
                       property: 'endDate',
-                      value: value,
-                      index: index,
+                      value,
+                      index,
                     })}
                   />
                 </Col>
@@ -130,8 +130,8 @@ export class TalentFormExperience extends React.Component<Props, State> {
                     handleChange={(value: string) => this.props.modifyUser({
                       category: 'userExperiences',
                       property: 'task',
-                      value: value,
-                      index: index,
+                      value,
+                      index,
                     })}
                     value={elem.task}
                   />

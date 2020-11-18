@@ -1,6 +1,7 @@
 import moment from "moment"
 import { User, UserJob } from '../../app';
-import { fonctionInterface, daysInterface, displayDataTimelineInterface } from '../index'
+import { fonctionInterface, displayDataTimelineInterface } from '../index'
+import { defaultVisibleTime } from './initialise'
 
 const internshipPersonBase = [
   {
@@ -12,21 +13,23 @@ const internshipPersonBase = [
   },
 ]
 
+const errorVisibleTime = defaultVisibleTime();
+
 const internshipDateBase = [
   {
     id: -1,
     group: -1,
     title: 'Aucun Résultat trouvé, merci de verifier vos entrées dans le filtre',
-    start_time: Number(moment().startOf('week')),
-    end_time: Number(moment().startOf('week').add(1, 'week').add(1, 'day')),
+    start_time: errorVisibleTime.start,
+    end_time: errorVisibleTime.end,
     state: 0,
     reason: "ERROR",
     workdays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-},
+  },
 ]
 
-export const sortTimelineUsersByFonction = (tosort:fonctionInterface[]) => {
-  tosort.sort((a:fonctionInterface, b:fonctionInterface) => {
+export const sortTimelineUsersByFonction = (tosort: fonctionInterface[]) => {
+  tosort.sort((a: fonctionInterface, b: fonctionInterface) => {
     let diff1 = a.rightTitle.toLowerCase(),
     diff2 = b.rightTitle.toLowerCase();
 
@@ -40,7 +43,7 @@ export const sortTimelineUsersByFonction = (tosort:fonctionInterface[]) => {
   });
 }
 
-const isWorkingOn = (person:UserJob) => {
+const isWorkingOn = (person: UserJob) => {
   let workingdays = [];
 
   if (person.isWorkingOnMonday === true)
@@ -67,34 +70,17 @@ const isWorkingOn = (person:UserJob) => {
   return workingdays;
 }
 
-const capitalizeFirstLetter = (tocap:string) => {
+const capitalizeFirstLetter = (tocap: string) => {
   return tocap.charAt(0).toUpperCase() + tocap.slice(1);
 }
 
-export let convertDBDataToTimelineData = (users:User[]) => {
-  let copyBaseIntershipPerson:fonctionInterface;
-  let copyBaseIntershipDate:daysInterface;
-  let result:displayDataTimelineInterface;
+export const convertDBDataToTimelineData = (users:User[]) => {
+  let result: displayDataTimelineInterface;
 
-  users.map((userdb:User) => {
-    const hasworkinghours = userdb?.userJob?.workingHours
-    copyBaseIntershipPerson = {...internshipPersonBase[internshipPersonBase.length-1]};
-    copyBaseIntershipDate = {...internshipDateBase[internshipDateBase.length-1]};
-
+  users.map((userdb: User) => {
     if (userdb.userJob && userdb.userProfiles && userdb.userJob.job) {
-      copyBaseIntershipPerson.id += 1;
-      copyBaseIntershipPerson.title = capitalizeFirstLetter(userdb.userProfiles[0].firstName);
-      copyBaseIntershipPerson.groupLabelKey = capitalizeFirstLetter(userdb.userProfiles[0].lastName);
-      copyBaseIntershipPerson.rightTitle = capitalizeFirstLetter(userdb.userJob.job.position);
-      internshipPersonBase.push(copyBaseIntershipPerson);
-      copyBaseIntershipDate.id += 1;
-      copyBaseIntershipDate.group += 1;
-      copyBaseIntershipDate.title = !hasworkinghours ? "none" : hasworkinghours;
-      copyBaseIntershipDate.start_time = Number(moment(userdb.userJob.startDate).startOf('day'));
-      copyBaseIntershipDate.end_time = Number(moment(userdb.userJob.endDate).startOf('day'));
-      copyBaseIntershipDate.reason = "Maladie";
-      copyBaseIntershipDate.workdays = isWorkingOn(userdb.userJob);
-      internshipDateBase.push(copyBaseIntershipDate);
+      internshipPersonBase.push(convertDBFonctionToTimelineFonction(userdb));
+      internshipDateBase.push(convertDBDaysToTimelineDays(userdb));
     }
     return 0;
   });
@@ -103,4 +89,33 @@ export let convertDBDataToTimelineData = (users:User[]) => {
     Days: internshipDateBase
   };
   return result;
+}
+
+const convertDBFonctionToTimelineFonction = (userdb: User) => {
+  let copyBaseIntershipPerson = {...internshipPersonBase[internshipPersonBase.length-1]};
+  
+  if (userdb.userJob && userdb.userProfiles && userdb.userJob.job) {
+    copyBaseIntershipPerson = {...internshipPersonBase[internshipPersonBase.length-1]};
+    copyBaseIntershipPerson.id += 1;
+    copyBaseIntershipPerson.title = capitalizeFirstLetter(userdb.userProfiles[0].firstName);
+    copyBaseIntershipPerson.groupLabelKey = capitalizeFirstLetter(userdb.userProfiles[0].lastName);
+    copyBaseIntershipPerson.rightTitle = capitalizeFirstLetter(userdb.userJob.job.position);
+  }
+  return copyBaseIntershipPerson;
+}
+
+const convertDBDaysToTimelineDays = (userdb: User) => {
+  let copyBaseIntershipDate = {...internshipDateBase[internshipDateBase.length-1]};
+  const hasworkinghours = userdb?.userJob?.workingHours
+  
+  if (userdb.userJob && userdb.userProfiles && userdb.userJob.job) {
+    copyBaseIntershipDate.id += 1;
+    copyBaseIntershipDate.group += 1;
+    copyBaseIntershipDate.title = !hasworkinghours ? "undefined" : hasworkinghours;
+    copyBaseIntershipDate.start_time = moment(userdb.userJob.startDate).startOf('day').valueOf();
+    copyBaseIntershipDate.end_time = moment(userdb.userJob.endDate).startOf('day').valueOf();
+    copyBaseIntershipDate.reason = "Maladie";
+    copyBaseIntershipDate.workdays = isWorkingOn(userdb.userJob);
+  }
+  return copyBaseIntershipDate;
 }

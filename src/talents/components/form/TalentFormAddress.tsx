@@ -1,12 +1,10 @@
-import fr from 'date-fns/locale/fr';
 import React from 'react';
-import ReactDatePicker from 'react-datepicker';
 import { Col, Row } from 'reactstrap';
-import { User, UserProfile } from '../../../app';
-import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import { User } from '../../../app';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
-import { UpdateUserPayload } from '../../state/models/userSelected';
-import ProfileCollection from '../../helpers/ProfileCollection';
+import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import { COUNTRIES } from '../../constants/countries';
+import { UpdateUserPayload } from '../../state/models/user-selected';
 
 interface Props {
   user: User,
@@ -15,14 +13,11 @@ interface Props {
 
 export default class TalentFormAddress extends React.Component<Props> {
   render() {
-    const indexWorking: number = ProfileCollection.findWorkingIndex(this.props.user.userProfiles);
-    const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
-      this.props.user.userProfiles,
-      'working',
-    );
-
     return (
       <div className="address-section">
+        <div className="form-title">
+          <h6>Adresse: </h6>
+        </div>
         <Row>
           <Col md={6}>
             <FieldForm
@@ -33,7 +28,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               handleChange={(value: string) => this.props.modifyUser({
                 category: 'userAddress',
                 property: 'street',
-                value: value,
+                value,
                 index: -1,
               })}
               value={this.props.user.userAddress?.street} />
@@ -47,7 +42,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               handleChange={(value: string) => this.props.modifyUser({
                 category: 'userAddress',
                 property: 'number',
-                value: value,
+                value,
                 index: -1,
               })}
               value={this.props.user.userAddress?.number} />
@@ -61,7 +56,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               handleChange={(value: string) => this.props.modifyUser({
                 category: 'userAddress',
                 property: 'box',
-                value: value,
+                value,
                 index: -1,
               })}
               value={this.props.user.userAddress?.box} />
@@ -89,7 +84,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               handleChange={(value: string) => this.props.modifyUser({
                 category: 'userAddress',
                 property: 'city',
-                value: value,
+                value,
                 index: -1,
               })}
               value={this.props.user.userAddress?.city} />
@@ -99,38 +94,14 @@ export default class TalentFormAddress extends React.Component<Props> {
               keyName="country"
               className="address-field-form"
               label="Pays: "
-              options={['aaa', 'bbb']}
-              handleChange={() => ({})}
-              value="Aucun"
-            />
-          </Col>
-          <Col md={6}>
-            <label className="label-birthdate">Date de naissance:  </label>
-            <ReactDatePicker
-              className="address-datepicker"
-              selected={userProfileWorking?.birthDate}
-              isClearable
-              dateFormat="dd/MM/yyyy"
-              showMonthDropdown
-              showYearDropdown
-              dropdownMode="select"
-              locale={fr}
-              onChange={(value) => this.props.modifyUser({
-                category: 'userProfiles',
-                property: 'birthDate',
-                value: value,
-                index: indexWorking,
+              options={COUNTRIES}
+              handleChange={(property, value) => this.props.modifyUser({
+                category: 'userAddress',
+                property,
+                value,
+                index: -1,
               })}
-            />
-          </Col>
-          <Col md={6}>
-            <SelectFormField
-              keyName="search"
-              className="address-field-form"
-              label="Actuellement en recherche: "
-              options={['Oui', 'Non']}
-              handleChange={() => ({})}
-              value="Aucun"
+              value={this.props.user.userAddress?.country || ''}
             />
           </Col>
         </Row>

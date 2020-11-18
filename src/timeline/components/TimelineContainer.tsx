@@ -3,9 +3,9 @@ import { RootDispatch, RootState } from '../../app/state/store';
 import { Loader } from '../../app/components/utils/Loader';
 import { User } from '../../app';
 import { connect } from 'react-redux';
-import TimelineCustom from './Timeline';
+import TimelineCustom from './TimelineCustom';
 import TimelineTitle from './TimelineTitle';
-import TimelineFilters from './TimelineFilters';
+import { TimelineFilters } from './TimelineFilters';
 import { listOfFonctionsInterface, visibleTimeInterface, displayDataTimelineInterface } from '../index';
 import { convertDBDataToTimelineData } from '../helpers/getUserDataFromDB';
 import { renderTimelineDisplaySeperateDays } from '../helpers/convertTimelineUserData';
@@ -29,8 +29,6 @@ interface Props {
   displayEmptyField: boolean,
   fetchTalents: () => void,
 }
-
-let hasBeenFetched = false;
 
 export class TimelineContainer extends React.Component<Props> {
   componentDidMount = async () => {
@@ -56,7 +54,7 @@ export class TimelineContainer extends React.Component<Props> {
     this.props.updateTimelineFonctions(listOfFonctions);
   }
  
-   toggleCheckBox = (onetable:number) => {
+   toggleCheckBox = (onetable: number) => {
      let listOfFonction = [...this.props.timelineFonctions];
 
      if (listOfFonction[onetable].display === 0)
@@ -82,12 +80,8 @@ export class TimelineContainer extends React.Component<Props> {
 
    render() {
      if (this.props.isFetching) {
-       hasBeenFetched = true;
-
        return <Loader />;
      }
-     if (!hasBeenFetched)
-       return <Loader />;
      return (
        <div>
          <TimelineTitle />
@@ -95,8 +89,8 @@ export class TimelineContainer extends React.Component<Props> {
            listOfFonctions={this.props.timelineFonctions}
            onChangeCheckBox={this.toggleCheckBox} 
            onChangeEmptyField={this.toggleEmptyFields}
-           onChangeReason={(newreason:string) => {this.props.updateTimelineReason(newreason);}}
-           onChangeName={(nametochange:string) => {
+           onChangeReason={(newreason: string) => {this.props.updateTimelineReason(newreason);}}
+           onChangeName={(nametochange: string) => {
              renderTimelineUpdateDisplayWithFilters(
                nametochange, 
                this.props.displayEmptyField, 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { User, UserProfile } from '../../../app';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
-import { UpdateUserPayload } from '../../state/models/userSelected';
 import ProfileCollection from '../../helpers/ProfileCollection';
+import { UpdateUserPayload } from '../../state/models/user-selected';
 import classes from './styles/TalentFormInstitution.module.css';
 
 interface Props {
@@ -12,16 +12,18 @@ interface Props {
 
 export default class TalentFormInstitution extends React.Component<Props> {
   render() {
-    const indexWorking: number = ProfileCollection.findWorkingIndex(this.props.user.userProfiles);
-    const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
-      this.props.user.userProfiles, 
-      'working',
+    const indexLive: number = ProfileCollection.findLiveIndex(this.props.user.userProfiles);
+    const userProfileLive: UserProfile | undefined = ProfileCollection.filterByEnvironment(
+      this.props.user.userProfiles,
+      'live',
     );
 
     return (
       <div className={classes['institution-section']}>
+        <div className="form-title">
+          <h6>Institution: </h6>
+        </div>
         <FieldForm
-          //className="large"
           keyName="institution"
           label="École: "
           className={classes['institution-field']}
@@ -29,12 +31,11 @@ export default class TalentFormInstitution extends React.Component<Props> {
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'institution',
-            value: value,
-            index: indexWorking,
+            value,
+            index: indexLive,
           })}
-          value={userProfileWorking?.institution} />
+          value={userProfileLive?.institution} />
         <FieldForm
-          //className="medium"
           keyName="institution-phone"
           label="Téléphone École: "
           className={classes['institution-field']}
@@ -42,12 +43,11 @@ export default class TalentFormInstitution extends React.Component<Props> {
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'phoneInstitution',
-            value: value,
-            index: indexWorking,
+            value,
+            index: indexLive,
           })}
-          value={userProfileWorking?.phoneInstitution} />
+          value={userProfileLive?.phoneInstitution} />
         <FieldForm
-          //className="medium"
           keyName="institution-email"
           label="Mail École: "
           className={classes['institution-field']}
@@ -55,12 +55,11 @@ export default class TalentFormInstitution extends React.Component<Props> {
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'mailInstitution',
-            value: value,
-            index: indexWorking,
-          })}          
-          value={userProfileWorking?.mailInstitution} />
+            value,
+            index: indexLive,
+          })}
+          value={userProfileLive?.mailInstitution} />
         <FieldForm
-          //className="large"
           keyName="institution-contact"
           label="Personne de contact: "
           className={classes['institution-field']}
@@ -68,10 +67,10 @@ export default class TalentFormInstitution extends React.Component<Props> {
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
             property: 'personContactInstitution',
-            value: value,
-            index: indexWorking,
-          })}          
-          value={userProfileWorking?.personContactInstitution} />
+            value,
+            index: indexLive,
+          })}
+          value={userProfileLive?.personContactInstitution} />
       </div>
     );
   }

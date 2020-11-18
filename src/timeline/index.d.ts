@@ -46,12 +46,64 @@ export interface displayDataTimelineInterface {
     Days: daysInterface[],
 }
 
-export interface timelineRenderDays {
+export interface timelineRenderDaysDefaultInterface {
+    getItemProps: any,
+    item: itemInterface,
+    itemContext: itemContextInterface,
+}
+
+export interface timelineRenderDaysInterface {
     getItemProps: any,
     item: any,
     itemContext: any,
+    reasonState: string,
 }
   
-export interface timelineRenderFonction {
+export interface timelineRenderFonctionInterface {
     group: fonctionInterface
+}
+
+export interface timelineContextInterface {
+    timelineWidth: number,
+    visibleTimeStart: number,
+    visibleTimeEnd: number,
+    canvasTimeStart: number,
+    canvasTimeEnd: number,
+}
+
+export interface itemInterface {
+    id: number,
+    group: number,
+    title: string,
+    start_time: number,
+    end_time: number,
+    state: number,
+    reason: string,
+    workdays: string[],
+}
+
+export interface itemContextInterface {
+    dimensions: object,
+    useResizeHandle: boolean,
+    title: string,
+    canMove: boolean,
+    canResizeLeft: boolean,
+    canResizeRight: boolean,
+    selected: boolean,
+    dragging: boolean,
+    dragStart: object,
+    dragTime: number,
+    dragGroupDelta: number,
+    resizing: boolean,
+    resizeEdge: any,
+    resizeStart: number,
+    resizeTime: number,
+    width: boolean,
+}
+
+export interface getCorrectTimeInterface {
+    prevWeek: visibleTimeInterface
+    nextWeek: visibleTimeInterface
+    prevMonth: visibleTimeInterface
+    nextMonth: visibleTimeInterface
 }

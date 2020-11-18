@@ -2,26 +2,37 @@ import { daysInterface, listOfFonctionsInterface, displayDataTimelineInterface, 
 import { renderTimelineAddErrorWhenNoResults, checkTimelineUserDataWithFilter } from '../helpers/checkTimelineUserData';
 import { sortTimelineUsersByFonction } from '../helpers/getUserDataFromDB';
 
-let daysRenderDisplayAbsenceReason = (days:daysInterface) => {
-    switch (days.reason) {
-      case "Maladie":
-        return "orange";
-      case "Personnel":
-        return "gray";
-      case "Non Justifiée":
-        return "red";
-      case "Formation":
-        return "blue";
-      case "Retard":
-        return "brown";
-      case "Déplacement":
-        return "purple";
-      default:
-        return "red";
-    }
+const absenceReasonList = [
+  "Maladie",
+  "Personnel",
+  "Non Justifiée",
+  "Formation",
+  "Retard",
+  "Déplacement",
+]
+
+const absenceColorList = [
+  "orange",
+  "gray",
+  "red",
+  "blue",
+  "brown",
+  "purple",
+]
+
+const daysRenderDisplayAbsenceReason = (days: daysInterface) => {
+    let result = "red";
+
+    absenceReasonList.map((reason: string, index: number) => {
+      if (reason === days.reason) {
+        result = absenceColorList[index];
+      }
+      return result;
+    })
+    return result;
 }
 
-export let daysRenderDisplayBackground = (days:daysInterface) => {
+export const daysRenderDisplayBackground = (days: daysInterface) => {
     switch (days.state) {
       case 0:
         return "green";
@@ -32,7 +43,7 @@ export let daysRenderDisplayBackground = (days:daysInterface) => {
     }
 }
 
-export let daysRenderChangeStateBackground = (days:daysInterface) => {
+export const daysRenderChangeStateBackground = (days: daysInterface) => {
     switch (days.state) {
       case 0:
         days.state = 1;
@@ -43,16 +54,16 @@ export let daysRenderChangeStateBackground = (days:daysInterface) => {
     }
 }
 
-export let daysRenderChangeStateColor = (days:daysInterface) => {
-    if (days.reason === "Maladie" && days.state === 1)
+export const daysRenderChangeStateColor = (days: daysInterface) => {
+    if (days.reason === absenceReasonList[0] && days.state === 1)
       return "black";
     else
       return "white";
 }
 
-export let renderTimelineUpdateDisplayWithFilters = (toChangeOnName:string, displayEmptyField:boolean, visibleTime:visibleTimeInterface,
-  timelineFonctions:listOfFonctionsInterface[], timelineUsers:displayDataTimelineInterface) => {
-  let newRenderData:fonctionInterface[] = []
+export const renderTimelineUpdateDisplayWithFilters = (toChangeOnName: string, displayEmptyField: boolean, visibleTime: visibleTimeInterface,
+  timelineFonctions: listOfFonctionsInterface[], timelineUsers: displayDataTimelineInterface) => {
+  let newRenderData: fonctionInterface[] = []
 
   newRenderData = checkTimelineUserDataWithFilter(
     toChangeOnName, displayEmptyField, visibleTime, timelineUsers, timelineFonctions);

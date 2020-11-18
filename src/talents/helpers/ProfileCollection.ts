@@ -5,7 +5,7 @@ export default class ProfileCollection {
     return profiles ? { ...profiles?.filter((profile) => profile.environment === environment)[0] } : undefined;
   }
 
-  public static findWorkingIndex(profileList: UserProfile[] | undefined): number {
-    return profileList ? profileList?.findIndex(profile => profile?.environment === 'working') : -1;
-  } 
+  public static findLiveIndex(profileList: UserProfile[] | undefined): number {
+    return profileList ? profileList?.findIndex(profile => profile?.environment === 'live') : -1;
+  }
 }

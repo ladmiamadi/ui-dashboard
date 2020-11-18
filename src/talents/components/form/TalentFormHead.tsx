@@ -1,31 +1,42 @@
 import React from 'react';
-import { User, UserProfile } from '../../../app';
-import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import fr from 'date-fns/locale/fr';
+import { connect } from 'react-redux';
+import { Job, User, UserProfile } from '../../../app';
+import { DatePickerFieldForm } from '../../../app/components/utils/DatePickerFieldForm';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
-import { UpdateUserPayload } from '../../state/models/userSelected';
+import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import { UserProfileHelpers } from '../../../app/helpers/UserProfileHelpers';
+import { RootDispatch, RootState } from '../../../app/state/store';
 import ProfileCollection from '../../helpers/ProfileCollection';
-import { env } from '../../../helpers/environment';
+import { UpdateUserPayload } from '../../state/models/user-selected';
 
 interface Props {
+  jobCollection: Job[],
   user: User,
+  fetchJobsInDb: () => Promise<void>,
   modifyUser: (payload: UpdateUserPayload) => void,
 }
 
-export default class TalentFormHead extends React.Component<Props> {
+export class TalentFormHead extends React.Component<Props> {
+
+  componentDidMount() {
+    this.props.fetchJobsInDb();
+  }
+
   render() {
-    const indexWorking: number = ProfileCollection.findWorkingIndex(this.props.user.userProfiles);
-    const userProfileWorking: UserProfile | undefined = ProfileCollection.filterByEnvironment(
-      this.props.user.userProfiles, 'working',
+    const indexLive: number = ProfileCollection.findLiveIndex(this.props.user.userProfiles);
+    const userProfileLive: UserProfile | undefined = ProfileCollection.filterByEnvironment(
+      this.props.user.userProfiles, 'live',
     );
-    const filePath: string = userProfileWorking && userProfileWorking.picture ?
-      `${env('MEDIA_URL')}${userProfileWorking?.picture?.filePath}` : '';
+    const filePath = UserProfileHelpers.getUserProfilePictureUrl(userProfileLive);
+    const jobPositions = this.props.jobCollection.map((job: Job) => job.position);
 
     return (
       <div className="form-head">
-        <h1 className="talent-title">Gestion des talents: Nom Prénom</h1>
+        <h1 className="talent-title">Gestion des talents: </h1>
         <img
           className="profile-picture"
-          alt={userProfileWorking?.firstName}
+          alt={userProfileLive?.firstName}
           src={filePath}
         />
         <div className="head-block">
@@ -34,63 +45,91 @@ export default class TalentFormHead extends React.Component<Props> {
             label="Nom: "
             type="text"
             handleChange={(value) => this.props.modifyUser({
-              value: value,
-              index: indexWorking,
+              value,
+              index: indexLive,
               category: 'userProfiles',
               property: 'lastName',
             })}
-            value={userProfileWorking?.lastName} />
+            value={userProfileLive?.lastName} />
           <FieldForm
             keyName="firstname"
             label="Prénom: "
             type="text"
             handleChange={(value) => this.props.modifyUser({
-              value: value,
-              index: indexWorking,
+              value,
+              index: indexLive,
               category: 'userProfiles',
               property: 'firstName',
             })}
-            value={userProfileWorking?.firstName} />
+            value={userProfileLive?.firstName} />
           <SelectFormField
-            keyName="function"
+            keyName="position"
             label="Fonction: "
-            options={['aaa', 'bbb']}
-            handleChange={() => ({})}
-            value="Aucun"
+            options={jobPositions}
+            handleChange={(property, value) => this.props.modifyUser({
+              category: 'userProfiles',
+              property,
+              value,
+              index: indexLive,
+            })}
+            value={userProfileLive?.position || ''}
           />
           <FieldForm
             keyName="email"
             label="Mail: "
             type="text"
             handleChange={(value) => this.props.modifyUser({
-              value: value,
+              value,
               index: -1,
-              category: 'username',
-              property: '',
+              category: 'userProfiles',
+              property: 'email',
             })}
-            value={this.props.user.username} />
+            value={userProfileLive?.email} />
           <FieldForm
             keyName="phone"
             label="Téléphone: "
             type="text"
             handleChange={(value) => this.props.modifyUser({
-              value: value,
-              index: indexWorking,
+              value,
+              index: indexLive,
               category: 'userProfiles',
               property: 'phone',
             })}
-            value={userProfileWorking?.phone} />
+            value={userProfileLive?.phone} />
+          <DatePickerFieldForm
+            keyName="birthDate"
+            label="Date de naissance: "
+            value={userProfileLive?.birthDate}
+            locale={fr}
+            handleChange={(value) => this.props.modifyUser({
+              category: 'userProfiles',
+              property: 'birthDate',
+              value,
+              index: indexLive,
+            })}
+          />
           <FieldForm
             keyName="place"
-            label="Localisation: "
+            label="Nationalité: "
             type="text"
             handleChange={(value) => this.props.modifyUser({
-              value: value,
+              value,
               index: -1,
-              category: 'userAddress',
-              property: 'country',
+              category: 'userProfiles',
+              property: 'nationality',
             })}
-            value={this.props.user.userAddress?.country} />
+            value={userProfileLive?.nationality} />
+          <FieldForm
+            keyName="platform"
+            label="Plateforme: "
+            type="text"
+            handleChange={(value) => this.props.modifyUser({
+              value,
+              index: indexLive,
+              category: 'userProfiles',
+              property: 'platform',
+            })}
+            value={userProfileLive?.platform} />
         </div>
         <div className="connection-box">
           <p>Envoyez un email pour configurer la connexion</p>
@@ -100,3 +139,13 @@ export default class TalentFormHead extends React.Component<Props> {
     );
   }
 }
+
+const mapState = (state: RootState) => ({
+  jobCollection: state.userSignUp.jobCollection,
+});
+
+const mapDispatch = (dispatch: RootDispatch) => ({
+  fetchJobsInDb: dispatch.userSignUp.fetchJobsInDb,
+});
+
+export default connect(mapState, mapDispatch)(TalentFormHead);

@@ -2,13 +2,14 @@ import { displayDataTimelineInterface, fonctionInterface, listOfFonctionsInterfa
 import { sortTimelineUsersByFonction } from "../helpers/getUserDataFromDB"
 import moment from "moment"
 
-let sortAndListOfFonctions = (stateDisplayData:displayDataTimelineInterface, 
-  stateListOfFonctions:listOfFonctionsInterface[]) => {
+let sortAndListOfFonctions = (stateDisplayData: displayDataTimelineInterface, 
+  stateListOfFonctions: listOfFonctionsInterface[]) => {
     let copyDisplayData = {...stateDisplayData};
 
-    copyDisplayData.Fonctions.map((dpfonction:fonctionInterface) => {
-      if (dpfonction.rightTitle === "ERROR")
+    copyDisplayData.Fonctions.map((dpfonction: fonctionInterface) => {
+      if (dpfonction.rightTitle === "ERROR") {
         return 1;
+      }
       dpfonction.rightTitle = addFonctionNameToFilters(dpfonction.rightTitle, stateListOfFonctions);
 
       return 0;
@@ -18,7 +19,7 @@ let sortAndListOfFonctions = (stateDisplayData:displayDataTimelineInterface,
     return copyDisplayData
 }
 
-let addFonctionNameToFilters = (tosearch:string, listOfFonctionsState:listOfFonctionsInterface[]) => {
+let addFonctionNameToFilters = (tosearch: string, listOfFonctionsState: listOfFonctionsInterface[]) => {
     let listOfFonction = listOfFonctionsState;
     let copyOfOneItemFonction = {...listOfFonction[0]};
 
@@ -38,17 +39,18 @@ let addFonctionNameToFilters = (tosearch:string, listOfFonctionsState:listOfFonc
     return tosearch;
 }
 
-export let renderTimelineDisplaySeperateDays = (stateDisplayData:displayDataTimelineInterface, 
-  stateListOfFonctions:listOfFonctionsInterface[]) => {
+export let renderTimelineDisplaySeperateDays = (stateDisplayData: displayDataTimelineInterface, 
+  stateListOfFonctions: listOfFonctionsInterface[]) => {
     let newRenderDisplayTimeline = sortAndListOfFonctions(stateDisplayData, stateListOfFonctions)
     let daysOfTimeline = newRenderDisplayTimeline.Days;
     let copyAndEditLastDisplayItem = {...daysOfTimeline[0]};
     let newDateOfLastItem;
     let newArrayLenghtOfItem = 0;
 
-    stateDisplayData.Days.map((days:daysInterface, index:number) => {
-      if (days.group === -1)
+    stateDisplayData.Days.map((days: daysInterface, index: number) => {
+      if (days.group === -1) {
         return 1;
+      }
       newArrayLenghtOfItem = index+1;
       copyAndEditLastDisplayItem = {...daysOfTimeline[index]};
       newDateOfLastItem = copyAndEditLastDisplayItem.start_time;
@@ -63,7 +65,6 @@ export let renderTimelineDisplaySeperateDays = (stateDisplayData:displayDataTime
           if (moment(copyAndEditLastDisplayItem.start_time).startOf('day').format('dddd') === 
           days.workdays[j]) {
             copyAndEditLastDisplayItem.state = days.state;
-
             break;
           } else
             copyAndEditLastDisplayItem.state = 3;

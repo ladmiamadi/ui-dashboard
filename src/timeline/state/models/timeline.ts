@@ -1,6 +1,6 @@
 import { listOfFonctionsInterface, displayDataTimelineInterface, visibleTimeInterface } from '../../index'
+import { defaultVisibleTime, defaultAbsenceReason } from '../../helpers/initialise'
 import { createModel } from '@rematch/core';
-import moment from 'moment';
 
 interface State {
   visibleTime: visibleTimeInterface,
@@ -13,11 +13,8 @@ interface State {
 
 export const timeline = createModel({
   state: {
-    visibleTime: {
-      start: moment().startOf('week').add(1, 'day').valueOf(),
-      end: moment().startOf('week').add(1, 'week').add(1, 'day').valueOf(),
-    },
-    reason: 'Maladie',
+    visibleTime: defaultVisibleTime(),
+    reason: defaultAbsenceReason(),
     searchName: '',
     displayEmptyField: true,
     timelineUsers: {

@@ -1,8 +1,8 @@
-import { Toastify } from '../../helpers/Toastify';
-import { Job } from '../../app';
-import { FORM_REGISTER } from '../constant/FormRegister';
-import { Props as FormRegisterProps } from '../components/add-new-talent/form/FormRegisterUser';
 import { PropsForInput, UserRegister } from '..';
+import { Job } from '../../app';
+import { Toastify } from '../../helpers/Toastify';
+import { Props as FormRegisterProps } from '../components/add-new-talent/form/FormRegisterUser';
+import { FORM_REGISTER } from '../constant/form-register';
 
 export const isUsernameAlreadyExists = (idValue: string, usernameCollection?: string[]): boolean => {
   const isUsernameUnique = !usernameCollection?.includes(idValue);
@@ -16,10 +16,10 @@ export const isUsernameAlreadyExists = (idValue: string, usernameCollection?: st
 
 const createField = <T>(props: FormRegisterProps, property: keyof UserRegister<T>): PropsForInput => ({
   ...FORM_REGISTER[property],
-  isInputValid: props.isFormValid[property],
   idValue: props.userSignUp[property],
-  updateUserSignUp: props.updateUserSignUp,
+  isInputValid: props.isFormValid[property],
   setIsFormValid: props.setIsFormValid,
+  updateUserSignUp: props.updateUserSignUp,
 });
 
 export const doubleArrayPropsInput = (
@@ -29,11 +29,12 @@ export const doubleArrayPropsInput = (
 
   return ([
     [
+      createField(props, 'platform'),
       createField(props, 'firstName'),
       createField(props, 'lastName'),
     ],
     [
-      createField(props, 'country'),
+      createField(props, 'nationality'),
       createField(props, 'phone'),
     ],
     [

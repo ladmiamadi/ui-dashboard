@@ -1,14 +1,14 @@
 import React from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Col, Container, Row } from 'reactstrap';
-import _ from 'lodash';
 import { User } from '../../app';
 import { ModalCustom } from '../../app/components/utils/ModalCustom';
 import history from '../../app/helpers/history';
+import { UserProfileHelpers } from '../../app/helpers/UserProfileHelpers';
 import { RootDispatch } from '../../app/state/store';
 import { TalentModal } from './modal/TalentModal';
 import TalentsListElement from './TalentsListElement';
-import { UserProfileHelpers } from '../../app/helpers/UserProfileHelpers';
 import './styles/TalentsList.css';
 
 interface Props {
@@ -54,7 +54,7 @@ export class TalentsList extends React.Component<Props, State> {
           <Row className="talent-row">
             {
               filteredUsers.map((talent, index) => (
-                talent.userProfiles?.map(userProfile => userProfile.environment === "live" ? 
+                talent.userProfiles?.map(userProfile => userProfile.environment === 'live' ?
                   (
                     <Col key={index} className="element" xs={5} sm={3} xl={2} onClick={() => this.toggleModal(talent)}>
                       <React.Fragment key={talent.id}>
@@ -76,8 +76,8 @@ export class TalentsList extends React.Component<Props, State> {
             }
           </Row>
         ) : (
-        <h1 className="no-user-found">No matching user profiles were found.</h1>
-          )
+          <h1 className="no-user-found">Aucun profil utilisateur correspondant n'a été trouvé.</h1>
+        )
         }
       </Container>
     );
