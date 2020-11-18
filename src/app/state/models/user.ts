@@ -24,7 +24,7 @@ export const user = createModel({
       this.setIsFetching(true);
       try {
         const { data } = await apiService.get('api/users' + { id });
-
+        
         this.updateUser(data);
       } catch (error) {
         (new Toastify()).error(`User doesn't exist. ${ error.message }`);

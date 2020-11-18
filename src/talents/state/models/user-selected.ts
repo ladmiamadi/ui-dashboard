@@ -82,6 +82,9 @@ export const userSelected = createModel({
       this.setIsRequesting(true);
 
       try {
+        delete user.userRole;
+        // delete user.userSkills;
+
         const { data } = await apiService.put(`/api/users/${user.id}`, user);
 
         (new Toastify()).info('Success saving user ' + data.username + ' in the database.');

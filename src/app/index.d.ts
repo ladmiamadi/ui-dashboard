@@ -127,7 +127,7 @@ export interface Training<T, U, D = T> {
 type UserTraining = Training<string, number, Date | null>;
 
 export interface UserRole {
-  role: Role,
+  role?: Role | null,
 }
 
 export interface UserSkill {
