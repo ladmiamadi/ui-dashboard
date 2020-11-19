@@ -46,6 +46,14 @@ export interface displayDataTimelineInterface {
     Days: daysInterface[],
 }
 
+export interface timelineFiltersInterface {
+    searchName: string,
+    displayEmptyField: boolean,
+    visibleTime: visibleTimeInterface,
+    timelineFonctions: listOfFonctionsInterface[],
+    timelineUsers: displayDataTimelineInterface,
+}
+
 export interface timelineRenderDaysDefaultInterface {
     getItemProps: any,
     item: itemInterface,

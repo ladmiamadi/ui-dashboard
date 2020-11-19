@@ -1,4 +1,4 @@
-import { daysInterface, listOfFonctionsInterface, displayDataTimelineInterface, fonctionInterface, visibleTimeInterface } from '../index'
+import { daysInterface, fonctionInterface, timelineFiltersInterface } from '../index'
 import { renderTimelineAddErrorWhenNoResults, checkTimelineUserDataWithFilter } from '../helpers/checkTimelineUserData';
 import { sortTimelineUsersByFonction } from '../helpers/getUserDataFromDB';
 
@@ -61,6 +61,18 @@ export const daysRenderChangeStateColor = (days: daysInterface) => {
       return "white";
 }
 
+export const renderTimelineUpdateDisplayWithFilters = (timelineFilters: timelineFiltersInterface) => {
+  let newRenderData: fonctionInterface[] = []
+
+  newRenderData = checkTimelineUserDataWithFilter(timelineFilters);
+
+  renderTimelineAddErrorWhenNoResults(newRenderData, timelineFilters);
+  sortTimelineUsersByFonction(newRenderData);
+
+  return newRenderData;
+}
+
+/*
 export const renderTimelineUpdateDisplayWithFilters = (toChangeOnName: string, displayEmptyField: boolean, visibleTime: visibleTimeInterface,
   timelineFonctions: listOfFonctionsInterface[], timelineUsers: displayDataTimelineInterface) => {
   let newRenderData: fonctionInterface[] = []
@@ -73,3 +85,4 @@ export const renderTimelineUpdateDisplayWithFilters = (toChangeOnName: string, d
 
   return newRenderData;
 }
+*/

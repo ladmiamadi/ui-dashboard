@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 import TimelineCustom from './TimelineCustom';
 import TimelineTitle from './TimelineTitle';
 import { TimelineFilters } from './TimelineFilters';
-import { listOfFonctionsInterface, visibleTimeInterface, displayDataTimelineInterface } from '../index';
+import { listOfFonctionsInterface, visibleTimeInterface, displayDataTimelineInterface, 
+  timelineFiltersInterface } from '../index';
 import { convertDBDataToTimelineData } from '../helpers/getUserDataFromDB';
 import { renderTimelineDisplaySeperateDays } from '../helpers/convertTimelineUserData';
 import { renderTimelineAddErrorWhenNoResults } from '../helpers/checkTimelineUserData';
@@ -37,6 +38,13 @@ export class TimelineContainer extends React.Component<Props> {
   }
 
   convertRawDBDataToTimelineData = () => {
+    const timelineFilters: timelineFiltersInterface = {
+      searchName: this.props.searchName,
+      displayEmptyField: this.props.displayEmptyField,
+      visibleTime: this.props.visibleTime,
+      timelineFonctions: this.props.timelineFonctions,
+      timelineUsers: this.props.timelineUsers,
+    };
     let listOfFonctions = [
       {
         id: -1,
@@ -49,33 +57,59 @@ export class TimelineContainer extends React.Component<Props> {
     listOfFonctions.shift();
     let newDisplayData = renderTimelineDisplaySeperateDays(newdata, listOfFonctions);
 
-    renderTimelineAddErrorWhenNoResults(newDisplayData.Fonctions);
+    renderTimelineAddErrorWhenNoResults(newDisplayData.Fonctions, timelineFilters);
     this.props.updateTimelineUsers(newDisplayData);
     this.props.updateTimelineFonctions(listOfFonctions);
   }
  
    toggleCheckBox = (onetable: number) => {
      let listOfFonction = [...this.props.timelineFonctions];
+     let timelineFilters: timelineFiltersInterface = {
+       searchName: this.props.searchName,
+       displayEmptyField: this.props.displayEmptyField,
+       visibleTime: this.props.visibleTime,
+       timelineFonctions: listOfFonction,
+       timelineUsers: this.props.timelineUsers,
+     };
 
-     if (listOfFonction[onetable].display === 0)
+     if (listOfFonction[onetable].display === 0) {
        listOfFonction[onetable].display = 1;
-     else
+     } else {
        listOfFonction[onetable].display = 0;
+     }
+     renderTimelineUpdateDisplayWithFilters(timelineFilters);
      this.props.updateTimelineFonctions(listOfFonction);
-     renderTimelineUpdateDisplayWithFilters(
-       this.props.searchName, 
-       this.props.displayEmptyField, 
-       this.props.visibleTime, 
-       this.props.timelineFonctions, 
-       this.props.timelineUsers);
+   }
+
+   updateSearchTherms = (nametochange: string) => {
+     const timelineFilters: timelineFiltersInterface = {
+       searchName: nametochange,
+       displayEmptyField: this.props.displayEmptyField,
+       visibleTime: this.props.visibleTime,
+       timelineFonctions: this.props.timelineFonctions,
+       timelineUsers: this.props.timelineUsers,
+     };
+     this.props.updateTimelineSearchName(nametochange);
+     renderTimelineUpdateDisplayWithFilters(timelineFilters);
    }
 
    toggleEmptyFields = () => {
+     let timelineFilters: timelineFiltersInterface = {
+       searchName: this.props.searchName,
+       displayEmptyField: this.props.displayEmptyField,
+       visibleTime: this.props.visibleTime,
+       timelineFonctions: this.props.timelineFonctions,
+       timelineUsers: this.props.timelineUsers,
+     };
+
      if (this.props.displayEmptyField) {
        this.props.updateTimelineEmptyField(false);
+       timelineFilters.displayEmptyField = false;
      } else {
        this.props.updateTimelineEmptyField(true);
+       timelineFilters.displayEmptyField = true;
      }
+     renderTimelineUpdateDisplayWithFilters(timelineFilters);
    }
 
    render() {
@@ -90,14 +124,7 @@ export class TimelineContainer extends React.Component<Props> {
            onChangeCheckBox={this.toggleCheckBox} 
            onChangeEmptyField={this.toggleEmptyFields}
            onChangeReason={(newreason: string) => {this.props.updateTimelineReason(newreason);}}
-           onChangeName={(nametochange: string) => {
-             renderTimelineUpdateDisplayWithFilters(
-               nametochange, 
-               this.props.displayEmptyField, 
-               this.props.visibleTime, 
-               this.props.timelineFonctions, 
-               this.props.timelineUsers);
-             this.props.updateTimelineSearchName(nametochange);}} />
+           onChangeName={(nametochange: string) => {this.updateSearchTherms(nametochange);}} />
          <TimelineCustom />
        </div>);
    }

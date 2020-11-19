@@ -1,6 +1,6 @@
-import { fonctionInterface, listOfFonctionsInterface, displayDataTimelineInterface, visibleTimeInterface } from '../index'
+import { fonctionInterface, listOfFonctionsInterface, timelineFiltersInterface } from '../index'
 
-export let renderTimelineAddErrorWhenNoResults = (copyDisplayData: fonctionInterface[])=> {
+export const renderTimelineAddErrorWhenNoResults = (copyDisplayData: fonctionInterface[], timelineFilters: timelineFiltersInterface)=> {
   let noResultFonctions =     
   {
     id: -1,
@@ -10,10 +10,11 @@ export let renderTimelineAddErrorWhenNoResults = (copyDisplayData: fonctionInter
     display: 1,
     convention: 0,
   }
+
+  changeErrorVisibleTime(timelineFilters);
   if (copyDisplayData.length === 0) {
     copyDisplayData.push(noResultFonctions);
-  }
-  else {
+  } else {
     copyDisplayData.map((dpdata:fonctionInterface, index:number) => {
       if (dpdata.rightTitle === 'ERROR') {
        copyDisplayData.splice(index, 1);
@@ -23,20 +24,29 @@ export let renderTimelineAddErrorWhenNoResults = (copyDisplayData: fonctionInter
   }
 }
 
-export let checkTimelineUserDataWithFilter = (toChangeOnName: string, checkEmptyField: boolean, visibleTime: visibleTimeInterface, 
-  stateDisplay: displayDataTimelineInterface, statelistOfFonctions: listOfFonctionsInterface[]) => {
+const changeErrorVisibleTime = (timelineFilters: timelineFiltersInterface) => {
+  if (timelineFilters.timelineUsers.Days.length <= 1) {
+    return 0;
+  }
+  
+  timelineFilters.timelineUsers.Days[0].start_time = timelineFilters.visibleTime.start;
+  timelineFilters.timelineUsers.Days[0].end_time = timelineFilters.visibleTime.end;
+}
+
+export const checkTimelineUserDataWithFilter = (timelineFilters: timelineFiltersInterface) => {
     let newTimelineDisplay: fonctionInterface[] = []
 
-    statelistOfFonctions.map((tb: listOfFonctionsInterface) => {
+    timelineFilters.timelineFonctions.map((tb: listOfFonctionsInterface) => {
       tb.total = 0;
 
       return 0;
     });
-    stateDisplay.Fonctions.map((displayData: fonctionInterface) => {
-      statelistOfFonctions.map((fonctionData: listOfFonctionsInterface) => {
-        if (fonctionData.display === 1 && fonctionData.groupname === displayData.rightTitle && isEmptyFonctionOfVisibleTimeline(checkEmptyField, stateDisplay, displayData, visibleTime))
-          if (displayData.title.toLowerCase().includes(toChangeOnName.toLowerCase()) || 
-          displayData.groupLabelKey.toLowerCase().includes(toChangeOnName.toLowerCase())) {
+    timelineFilters.timelineUsers.Fonctions.map((displayData: fonctionInterface) => {
+      timelineFilters.timelineFonctions.map((fonctionData: listOfFonctionsInterface) => {
+        if (fonctionData.display === 1 && fonctionData.groupname === displayData.rightTitle && 
+          isEmptyFonctionOfVisibleTimeline(timelineFilters, displayData))
+          if (displayData.title.toLowerCase().includes(timelineFilters.searchName.toLowerCase()) || 
+          displayData.groupLabelKey.toLowerCase().includes(timelineFilters.searchName.toLowerCase())) {
             fonctionData.total += 1
             newTimelineDisplay.push(displayData)
           }
@@ -45,18 +55,19 @@ export let checkTimelineUserDataWithFilter = (toChangeOnName: string, checkEmpty
         return 0;
       });
     return newTimelineDisplay;
-  }
+}
 
-let isEmptyFonctionOfVisibleTimeline = (displayEmptyField: boolean, stateDisplayRender: displayDataTimelineInterface, 
-  currentFonction: fonctionInterface, visibleTime: visibleTimeInterface) => {
+const isEmptyFonctionOfVisibleTimeline = (timelineFilters: timelineFiltersInterface, currentFonction: fonctionInterface) => {
 
-  if (displayEmptyField) {
+  if (timelineFilters.displayEmptyField) {
     return true;
   }
-  for (let i in stateDisplayRender.Days) {
-    if (stateDisplayRender.Days[i].group === currentFonction.id) {
-      if ((stateDisplayRender.Days[i].end_time >= visibleTime.start && stateDisplayRender.Days[i].end_time <= visibleTime.start) || (
-        stateDisplayRender.Days[i].start_time >= visibleTime.end && stateDisplayRender.Days[i].start_time <= visibleTime.end))
+  for (let i in timelineFilters.timelineUsers.Days) {
+    if (timelineFilters.timelineUsers.Days[i].group === currentFonction.id) {
+      if ((timelineFilters.timelineUsers.Days[i].end_time >= timelineFilters.visibleTime.start && 
+        timelineFilters.timelineUsers.Days[i].end_time <= timelineFilters.visibleTime.start) || (
+        timelineFilters.timelineUsers.Days[i].start_time >= timelineFilters.visibleTime.end && 
+        timelineFilters.timelineUsers.Days[i].start_time <= timelineFilters.visibleTime.end))
         return true;
     }
   }

@@ -12,7 +12,8 @@ import { TimelineRenderFonction } from './TimelineRenderFonction';
 import { TimelineRenderDays } from './TimelineRenderDays';
 import { renderTimelineUpdateDisplayWithFilters } from '../helpers/renderTimelineUser';
 import { listOfFonctionsInterface, displayDataTimelineInterface, 
-  timelineRenderDaysDefaultInterface, timelineRenderFonctionInterface, visibleTimeInterface } from './../index';
+  timelineRenderDaysDefaultInterface, timelineRenderFonctionInterface, 
+  visibleTimeInterface, timelineFiltersInterface } from './../index';
 import 'react-calendar-timeline/lib/Timeline.css';
 import './styles/Timeline.css';
 
@@ -45,7 +46,13 @@ export class TimelineCustom extends React.Component<Props> {
   }
 
   render() {
-    //const { searchName, displayEmptyField } = this.props
+    const timelineFilters: timelineFiltersInterface = {
+      searchName: this.props.searchName,
+      displayEmptyField: this.props.displayEmptyField,
+      visibleTime: this.props.visibleTime,
+      timelineFonctions: this.props.timelineFonctions,
+      timelineUsers: this.props.timelineUsers,
+    };
     return (
       <div>
         <TimelineNavigation
@@ -53,12 +60,7 @@ export class TimelineCustom extends React.Component<Props> {
           {this.props.updateTimelineVisibleTime(newtime);}} 
           visibleTime={this.props.visibleTime}/>
         <Timeline
-          groups={renderTimelineUpdateDisplayWithFilters(
-            this.props.searchName, 
-            this.props.displayEmptyField, 
-            this.props.visibleTime, 
-            this.props.timelineFonctions, 
-            this.props.timelineUsers)}
+          groups={renderTimelineUpdateDisplayWithFilters(timelineFilters)}
           items={this.props.timelineUsers.Days}
           stackItems={true}
           canMove={false}
