@@ -84,8 +84,8 @@ export const userSignUp = createModel({
       this.setIsRequesting(true);
 
       try {
-        const { data } = await apiService.get('/api/users');
-        const usernameCollection = data.map((user: User) => user.username);
+        const { data: users } = await apiService.get<User[]>('/api/users');
+        const usernameCollection = users.map((user: User) => user.username);
 
         this.updateUsernameCollection(usernameCollection);
       } catch (error) {

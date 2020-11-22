@@ -27,13 +27,17 @@ export const users = createModel({
     async fetchTalents() {
       try {
         this.setIsFetching(true);
-        const { data } = await apiService.get('/api/users');
+        const { data: users } = await apiService.get<User[]>('/api/users');
+        users.forEach(user => {
+          if (user.userAddress == null) {
+            user.userAddress = {};
+          }
+        });
+        UsersDatesFormatter.transformDateFormat(users);
 
-        UsersDatesFormatter.transformDateFormat(data);
-
-        this.updateList(data);
-      } catch(error) {
-        (new Toastify()).error(`Unable to fetch talents. ${ error.message }`);
+        this.updateList(users);
+      } catch (error) {
+        (new Toastify()).error(`Unable to fetch talents. ${error.message}`);
       } finally {
         this.setIsFetching(false);
       }

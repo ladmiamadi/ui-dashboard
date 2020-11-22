@@ -1,6 +1,7 @@
 import { createModel } from '@rematch/core';
 import _ from 'lodash';
 import { User, UserExperience, UserLanguage, UserTraining } from '../../../app';
+import { UsersDatesFormatter } from '../../../app/formatter/usersDatesFormatter';
 import { createEmptyUser } from '../../../app/helpers/user';
 import { apiService } from '../../../app/http/service';
 import { Toastify } from '../../../helpers/Toastify';
@@ -85,9 +86,11 @@ export const userSelected = createModel({
         delete user.userRole;
         // delete user.userSkills;
 
-        const { data } = await apiService.put(`/api/users/${user.id}`, user);
+        const { data: updatedUser } = await apiService.put<User>(`/api/users/${user.id}`, user);
+        UsersDatesFormatter.transformUserDateFormat(updatedUser);
+        this.updateUserSelected(updatedUser);
 
-        (new Toastify()).info('Success saving user ' + data.username + ' in the database.');
+        (new Toastify()).info('Success saving user ' + updatedUser.username + ' in the database.');
       } catch (error) {
         (new Toastify()).error(`Unable to put the user in the database. ${error.message}`);
       } finally {
