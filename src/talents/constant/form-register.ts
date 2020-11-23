@@ -1,12 +1,6 @@
 import { FormRegister } from '..';
 
 export const FORM_REGISTER: FormRegister = {
-  platform: {
-    id: 'platform',
-    label: 'Plateforme',
-    regEx: '.',
-    type: 'text',
-  },
   firstName: {
     id: 'firstName',
     label: 'Prénom',
@@ -48,5 +42,11 @@ export const FORM_REGISTER: FormRegister = {
     label: 'Email',
     regEx: '^[A-Za-z0-9._-]+@[A-Za-z0-9._-]{2,}[.][A-Za-z]{2,4}$',
     type: 'email',
+  },
+  platform: {
+    id: 'platform',
+    label: 'Plateforme',
+    regEx: '.',
+    type: 'text',
   },
 };

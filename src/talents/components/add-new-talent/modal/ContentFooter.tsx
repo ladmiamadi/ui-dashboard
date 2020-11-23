@@ -30,7 +30,7 @@ export class ContentModalFooter extends React.Component<Props> {
 
   render() {
     const isPostAvailable = this.isPostAvailable();
-    const colorButtonAdd = isPostAvailable ? 'success' : 'secondary';
+    const colorButtonAdd = isPostAvailable ? 'success' : 'primary';
 
     return (
       <>
@@ -46,7 +46,7 @@ export class ContentModalFooter extends React.Component<Props> {
           Tout effacer
         </Button>
         <Button
-          color="danger"
+          color="secondary"
           onClick={this.props.toggleModal}>
           Retour
         </Button>
