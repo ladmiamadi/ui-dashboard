@@ -34,6 +34,17 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
   const job: Job = jobCollection.filter((job: Job) => job.position === userSignUp.jobPosition)[0];
   const userJob: UserJob = {
     job: job,
+    startDate: new Date(),
+    endDate: new Date(),
+    isWorkingOnMonday: false,
+    isWorkingOnTuesday: false,
+    isWorkingOnWednesday: false,
+    isWorkingOnThursday: false,
+    isWorkingOnFriday: false,
+    isWorkingOnSaturday: false,
+    isWorkingOnSunday: false,
+    status: 'Aucun',
+    workingHours: '',
   };
 
   const userDesiredJob: UserDesiredJob = {
