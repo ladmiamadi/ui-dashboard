@@ -84,7 +84,9 @@ export class TalentFormHead extends React.Component<Props> {
               category: 'userProfiles',
               property: 'email',
             })}
-            value={userProfileLive?.email} />
+            value={userProfileLive?.email}
+            required={true}
+          />
           <FieldForm
             keyName="phone"
             label="Téléphone: "
