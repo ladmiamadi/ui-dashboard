@@ -11,6 +11,7 @@ import TalentFormInstitution from './TalentFormInstitution';
 import TalentFormInternship from './TalentFormInternship';
 import TalentFormJob from './TalentFormJob';
 import TalentFormLanguages from './TalentFormLanguages';
+import TalentFormRecruitment from './TalentFormRecruitment';
 import TalentFormSkills from './TalentFormSkills';
 import TalentFormTraining from './TalentFormTraining';
 import './styles/TalentForm.css';
@@ -36,6 +37,7 @@ export class TalentFormPageContainer extends React.Component<Props> {
           <Form onSubmit={(event) => this.handleSubmit(event)}
             className={classes.TalentFormContainer}>
             <TalentFormHead {...this.props} />
+            <TalentFormRecruitment {...this.props} />
             <TalentFormAddress {...this.props} />
             <TalentFormInstitution {...this.props} />
             <TalentFormInternship {...this.props} />

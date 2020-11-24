@@ -81,7 +81,7 @@ export class TalentFormHead extends React.Component<Props> {
           />
           <FieldForm
             keyName="email"
-            label="Mail: "
+            label="Email: "
             type="text"
             handleChange={(value) => this.props.modifyUser({
               value,
@@ -107,41 +107,28 @@ export class TalentFormHead extends React.Component<Props> {
           />
           <DatePickerFieldForm
             keyName="birthDate"
-            label="Date de naissance: "
-            value={userProfileLive?.birthDate}
+            label="Début du stage: "
+            value={this.props.user.userJob?.startDate}
             locale={fr}
             handleChange={(value) => this.props.modifyUser({
-              category: 'userProfiles',
-              property: 'birthDate',
+              category: 'userJob',
+              property: 'startDate',
               value,
               index: indexLive,
             })}
-            required={false}
+            required={true}
           />
-          <FieldForm
-            keyName="place"
-            label="Nationalité: "
-            type="text"
+          <DatePickerFieldForm
+            keyName="birthDate"
+            label="Fin du stage: "
+            value={this.props.user.userJob?.endDate}
+            locale={fr}
             handleChange={(value) => this.props.modifyUser({
-              value,
-              index: -1,
-              category: 'userProfiles',
-              property: 'nationality',
-            })}
-            value={userProfileLive?.nationality}
-            required={false}
-          />
-          <FieldForm
-            keyName="platform"
-            label="Plateforme: "
-            type="text"
-            handleChange={(value) => this.props.modifyUser({
+              category: 'userJob',
+              property: 'endDate',
               value,
               index: indexLive,
-              category: 'userProfiles',
-              property: 'platform',
             })}
-            value={userProfileLive?.platform}
             required={true}
           />
         </div>
