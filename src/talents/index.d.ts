@@ -40,6 +40,7 @@ interface Field {
   label: string,
   regEx: string,
   type: InputType,
+  required?: true,
 }
 
 export interface UserSignUpPayload {
@@ -61,6 +62,7 @@ export interface PropsForInput {
   usernameCollection?: string[],
   type: InputType,
   regEx: string,
+  required?: boolean,
   updateUserSignUp: (property: keyof UserRegister<T>, idValue: string) => void,
   setIsFormValid: (property: keyof UserRegister<T>, regEx: string) => void,
 }

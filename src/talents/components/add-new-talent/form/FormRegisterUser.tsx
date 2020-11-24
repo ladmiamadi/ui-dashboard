@@ -3,7 +3,7 @@ import { Row } from 'reactstrap';
 import { IsFormValid, UserRegister, UserSignUp } from '../../..';
 import { Job } from '../../../../app';
 import { doubleArrayPropsInput } from '../../../helpers/FormRegisterHelper';
-import InputRegisterUsers from './inputs/InputRegisterUsers';
+import InputRegisterUsers from './InputRegisterUsers';
 import classes from '../styles/FormRegisterUser.module.css';
 
 export interface Props {

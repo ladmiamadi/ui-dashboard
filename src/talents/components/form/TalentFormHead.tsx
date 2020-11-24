@@ -50,7 +50,9 @@ export class TalentFormHead extends React.Component<Props> {
               category: 'userProfiles',
               property: 'lastName',
             })}
-            value={userProfileLive?.lastName} />
+            value={userProfileLive?.lastName}
+            required={true}
+          />
           <FieldForm
             keyName="firstname"
             label="Prénom: "
@@ -61,7 +63,9 @@ export class TalentFormHead extends React.Component<Props> {
               category: 'userProfiles',
               property: 'firstName',
             })}
-            value={userProfileLive?.firstName} />
+            value={userProfileLive?.firstName}
+            required={true}
+          />            
           <SelectFormField
             keyName="position"
             label="Fonction: "
@@ -97,7 +101,9 @@ export class TalentFormHead extends React.Component<Props> {
               category: 'userProfiles',
               property: 'phone',
             })}
-            value={userProfileLive?.phone} />
+            value={userProfileLive?.phone}
+            required={true}
+          />
           <DatePickerFieldForm
             keyName="birthDate"
             label="Date de naissance: "
@@ -120,7 +126,9 @@ export class TalentFormHead extends React.Component<Props> {
               category: 'userProfiles',
               property: 'nationality',
             })}
-            value={userProfileLive?.nationality} />
+            value={userProfileLive?.nationality}
+            required={true}
+          />
           <FieldForm
             keyName="platform"
             label="Plateforme: "
@@ -131,7 +139,9 @@ export class TalentFormHead extends React.Component<Props> {
               category: 'userProfiles',
               property: 'platform',
             })}
-            value={userProfileLive?.platform} />
+            value={userProfileLive?.platform}
+            required={true}
+          />
         </div>
         <div className="connection-box">
           <p>Envoyez un email pour configurer la connexion</p>

@@ -29,13 +29,8 @@ export const doubleArrayPropsInput = (
 
   return ([
     [
-      createField(props, 'platform'),
       createField(props, 'firstName'),
       createField(props, 'lastName'),
-    ],
-    [
-      createField(props, 'nationality'),
-      createField(props, 'phone'),
     ],
     [
       {
@@ -45,10 +40,17 @@ export const doubleArrayPropsInput = (
       createField(props, 'birthDate'),
     ],
     [
+      
       {
         ...createField(props, 'username'),
         usernameCollection: props.usernameCollection,
       },
+      createField(props, 'phone'),
+    ],
+    
+    [
+      createField(props, 'platform'),
+      createField(props, 'nationality'),      
     ],
   ]);
 };
