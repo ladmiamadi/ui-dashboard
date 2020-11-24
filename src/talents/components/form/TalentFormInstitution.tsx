@@ -34,7 +34,9 @@ export default class TalentFormInstitution extends React.Component<Props> {
             value,
             index: indexLive,
           })}
-          value={userProfileLive?.institution} />
+          value={userProfileLive?.institution}
+          required={true}
+        />
         <FieldForm
           keyName="institution-phone"
           label="Téléphone École: "
@@ -46,7 +48,9 @@ export default class TalentFormInstitution extends React.Component<Props> {
             value,
             index: indexLive,
           })}
-          value={userProfileLive?.phoneInstitution} />
+          value={userProfileLive?.phoneInstitution}
+          required={true}
+        />
         <FieldForm
           keyName="institution-email"
           label="Mail École: "
@@ -58,7 +62,9 @@ export default class TalentFormInstitution extends React.Component<Props> {
             value,
             index: indexLive,
           })}
-          value={userProfileLive?.mailInstitution} />
+          value={userProfileLive?.mailInstitution}
+          required={true}
+        />
         <FieldForm
           keyName="institution-contact"
           label="Personne de contact: "
@@ -70,7 +76,9 @@ export default class TalentFormInstitution extends React.Component<Props> {
             value,
             index: indexLive,
           })}
-          value={userProfileLive?.personContactInstitution} />
+          value={userProfileLive?.personContactInstitution}
+          required={true}
+        />
       </div>
     );
   }

@@ -2,8 +2,6 @@ import { UserSignUp } from '..';
 import { Job, User, UserAddress, UserDesiredJob, UserJob, UserProfile } from '../../app';
 
 export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]): User => {
-  const userAddress: UserAddress = {
-  };
 
   const userProfileLive: UserProfile = {
     birthDate: new Date(userSignUp.birthDate),
@@ -45,6 +43,15 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     isWorkingOnSunday: false,
     status: 'Aucun',
     workingHours: '',
+  };
+
+  const userAddress: UserAddress = {
+    street: '',
+    number: '',
+    zipCode: 0,
+    city: '',
+    box: '',
+    country: '',
   };
 
   const userDesiredJob: UserDesiredJob = {

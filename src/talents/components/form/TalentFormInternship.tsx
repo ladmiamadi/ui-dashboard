@@ -24,8 +24,6 @@ export default class TalentFormInternship extends React.Component<Props> {
       { label: 'mercredi', checked: this.props.user.userJob?.isWorkingOnWednesday || false },
       { label: 'jeudi', checked: this.props.user.userJob?.isWorkingOnThursday || false },
       { label: 'vendredi', checked: this.props.user.userJob?.isWorkingOnFriday || false },
-      { label: 'samedi', checked: this.props.user.userJob?.isWorkingOnSaturday || false },
-      { label: 'dimanche', checked: this.props.user.userJob?.isWorkingOnSunday || false },
     ];
 
     return (
@@ -48,6 +46,7 @@ export default class TalentFormInternship extends React.Component<Props> {
                   index: -1,
                 })}
                 value={this.props.user.userJob?.status || ''}
+                required={true}
               />
             </Col>
             <Col md={6}>

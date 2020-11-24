@@ -41,19 +41,6 @@ export class TalentFormHead extends React.Component<Props> {
         />
         <div className="head-block">
           <FieldForm
-            keyName="lastname"
-            label="Nom: "
-            type="text"
-            handleChange={(value) => this.props.modifyUser({
-              value,
-              index: indexLive,
-              category: 'userProfiles',
-              property: 'lastName',
-            })}
-            value={userProfileLive?.lastName}
-            required={true}
-          />
-          <FieldForm
             keyName="firstname"
             label="Prénom: "
             type="text"
@@ -64,6 +51,19 @@ export class TalentFormHead extends React.Component<Props> {
               property: 'firstName',
             })}
             value={userProfileLive?.firstName}
+            required={true}
+          />
+          <FieldForm
+            keyName="lastname"
+            label="Nom: "
+            type="text"
+            handleChange={(value) => this.props.modifyUser({
+              value,
+              index: indexLive,
+              category: 'userProfiles',
+              property: 'lastName',
+            })}
+            value={userProfileLive?.lastName}
             required={true}
           />
           <SelectFormField
@@ -103,7 +103,7 @@ export class TalentFormHead extends React.Component<Props> {
               property: 'phone',
             })}
             value={userProfileLive?.phone}
-            required={true}
+            required={false}
           />
           <DatePickerFieldForm
             keyName="birthDate"
@@ -116,6 +116,7 @@ export class TalentFormHead extends React.Component<Props> {
               value,
               index: indexLive,
             })}
+            required={false}
           />
           <FieldForm
             keyName="place"
@@ -128,7 +129,7 @@ export class TalentFormHead extends React.Component<Props> {
               property: 'nationality',
             })}
             value={userProfileLive?.nationality}
-            required={true}
+            required={false}
           />
           <FieldForm
             keyName="platform"

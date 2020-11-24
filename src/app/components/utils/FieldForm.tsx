@@ -24,7 +24,7 @@ export class FieldForm extends React.Component<Props> {
     return (
       <FormGroup className={this.props.className}>
         <Label className="form-label" htmlFor={this.props.keyName}>
-          {this.props.required && '*'}{this.props.label}
+          {this.props.label}{this.props.required && '*'}
         </Label>
         <Input
           className="form-input"

@@ -4,6 +4,4 @@ export const DAYS_TO_INTERSHIP_PROPERTIES: { [key: string]: string } = {
   'mercredi': 'isWorkingOnWednesday',
   'jeudi': 'isWorkingOnThursday',
   'vendredi': 'isWorkingOnFriday',
-  'samedi': 'isWorkingOnSaturday',
-  'dimanche': 'isWorkingOnSunday',
 };
