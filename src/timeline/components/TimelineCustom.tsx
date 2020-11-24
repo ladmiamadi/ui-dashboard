@@ -8,6 +8,7 @@ import { TimelineNavigation } from './TimelineNavigation';
 import { RootState, RootDispatch } from '../../app/state/store';
 import { connect } from 'react-redux';
 import { User } from '../../app';
+import { timelineConstParameters } from '../constants/timelineParameters';
 import TimelineRenderFonction from './TimelineRenderFonction';
 import TimelineRenderDays from './TimelineRenderDays';
 import { renderTimelineUpdateDisplayWithFilters } from '../helpers/renderTimelineUserData';
@@ -46,15 +47,11 @@ export class TimelineCustom extends React.Component<Props> {
           {this.props.updateTimelineVisibleTime(newtime);}} 
           visibleTime={visibleTime}/>
         <Timeline
+          {...timelineConstParameters}
           groups={renderTimelineUpdateDisplayWithFilters(this.props.timeline)}
           items={timelineUsers.Days}
-          stackItems={true}
-          canMove={false}
-          itemHeightRatio={0.55}
-          lineHeight={55}
           visibleTimeStart={visibleTime.start}
           visibleTimeEnd={visibleTime.end}
-          sidebarWidth={125}
           itemRenderer={(timelineRenderDays : timelineRenderDaysInterface) => 
             <TimelineRenderDays {...timelineRenderDays} />}
           groupRenderer={(timelineRenderFonction: timelineRenderFonctionInterface) =>
