@@ -31,7 +31,9 @@ export default class TalentFormAddress extends React.Component<Props> {
                 value,
                 index: -1,
               })}
-              value={this.props.user.userAddress?.street} />
+              value={this.props.user.userAddress?.street}
+              required={true}
+            />
           </Col>
           <Col md={6}>
             <FieldForm
@@ -45,7 +47,9 @@ export default class TalentFormAddress extends React.Component<Props> {
                 value,
                 index: -1,
               })}
-              value={this.props.user.userAddress?.number} />
+              value={this.props.user.userAddress?.number}
+              required={true}
+            />
           </Col>
           <Col md={6}>
             <FieldForm

@@ -65,7 +65,7 @@ export class TalentFormHead extends React.Component<Props> {
             })}
             value={userProfileLive?.firstName}
             required={true}
-          />            
+          />
           <SelectFormField
             keyName="position"
             label="Fonction: "
@@ -77,6 +77,7 @@ export class TalentFormHead extends React.Component<Props> {
               index: indexLive,
             })}
             value={userProfileLive?.position || ''}
+            required={true}
           />
           <FieldForm
             keyName="email"

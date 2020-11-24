@@ -48,6 +48,14 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
   };
 
   const userDesiredJob: UserDesiredJob = {
+    desiredJob: '',
+    mobility: '',
+    desiredCountry: '',
+    desiredCity: '',
+    currentSalary: 0,
+    desiredSalary: 0,
+    jobDescription: '',
+    internOptions: '',
     placementOptions: '',
   };
 

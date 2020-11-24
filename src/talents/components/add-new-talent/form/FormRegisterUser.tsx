@@ -5,7 +5,6 @@ import { Job } from '../../../../app';
 import { doubleArrayPropsInput } from '../../../helpers/FormRegisterHelper';
 import InputRegisterUsers from './InputRegisterUsers';
 import classes from '../styles/FormRegisterUser.module.css';
-
 export interface Props {
   isFormValid: IsFormValid,
   jobCollection: Job[],
