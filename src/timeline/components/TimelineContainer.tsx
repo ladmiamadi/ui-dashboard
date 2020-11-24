@@ -5,13 +5,14 @@ import { User } from '../../app';
 import { connect } from 'react-redux';
 import TimelineCustom from './TimelineCustom';
 import TimelineTitle from './TimelineTitle';
-import { TimelineFilters } from './TimelineFilters';
-import { listOfFonctionsInterface, visibleTimeInterface, displayDataTimelineInterface, 
-  timelineFiltersInterface } from '../index';
-import { convertDBDataToTimelineData } from '../helpers/getUserDataFromDB';
-import { renderTimelineDisplaySeperateDays } from '../helpers/convertTimelineUserData';
-import { renderTimelineAddErrorWhenNoResults } from '../helpers/checkTimelineUserData';
-import { renderTimelineUpdateDisplayWithFilters } from '../helpers/renderTimelineUser';
+import TimelineOptions from './TimelineOptions';
+import { listOfFonctionsInterface, 
+  visibleTimeInterface, 
+  displayDataTimelineInterface, 
+  timelineFilters,
+  timelineContainerPropsInterface,
+} from '../index';
+import { convertRawDBDataToTimelineData } from '../helpers/databaseUserDataToTimelineData';
 
 interface Props {
   updateTimelineReason: (reason: string) => void,
@@ -20,123 +21,35 @@ interface Props {
   updateTimelineVisibleTime: (visibleTime: visibleTimeInterface) => void,
   updateTimelineFonctions: (timelineFonctions: listOfFonctionsInterface[]) => void,
   updateTimelineEmptyField: (displayEmptyField: boolean) => void,
-  timelineUsers: displayDataTimelineInterface,
-  timelineFonctions: listOfFonctionsInterface[],
+  timeline: timelineFilters,
   users: User[],
   isFetching: boolean,
-  visibleTime: visibleTimeInterface,
-  reason: string,
-  searchName: string,
-  displayEmptyField: boolean,
   fetchTalents: () => void,
 }
 
 export class TimelineContainer extends React.Component<Props> {
   componentDidMount = async () => {
     await this.props.fetchTalents();
-    this.convertRawDBDataToTimelineData();
+    let updateTimeline: timelineContainerPropsInterface = this.props;
+    convertRawDBDataToTimelineData(updateTimeline, this.props.timeline);
   }
 
-  convertRawDBDataToTimelineData = () => {
-    const timelineFilters: timelineFiltersInterface = {
-      searchName: this.props.searchName,
-      displayEmptyField: this.props.displayEmptyField,
-      visibleTime: this.props.visibleTime,
-      timelineFonctions: this.props.timelineFonctions,
-      timelineUsers: this.props.timelineUsers,
-    };
-    let listOfFonctions = [
-      {
-        id: -1,
-        groupname: 'ERROR',
-        total: 0,
-        display: 1,
-      },
-    ];
-    let newdata = convertDBDataToTimelineData(this.props.users);
-    listOfFonctions.shift();
-    let newDisplayData = renderTimelineDisplaySeperateDays(newdata, listOfFonctions);
-
-    renderTimelineAddErrorWhenNoResults(newDisplayData.Fonctions, timelineFilters);
-    this.props.updateTimelineUsers(newDisplayData);
-    this.props.updateTimelineFonctions(listOfFonctions);
+  render() {
+    if (this.props.isFetching) {
+      return <Loader />;
+    }
+     
+    return (
+      <div>
+        <TimelineTitle />
+        <TimelineOptions {...this.props} />
+        <TimelineCustom />
+      </div>);
   }
- 
-   toggleCheckBox = (onetable: number) => {
-     let listOfFonction = [...this.props.timelineFonctions];
-     let timelineFilters: timelineFiltersInterface = {
-       searchName: this.props.searchName,
-       displayEmptyField: this.props.displayEmptyField,
-       visibleTime: this.props.visibleTime,
-       timelineFonctions: listOfFonction,
-       timelineUsers: this.props.timelineUsers,
-     };
-
-     if (listOfFonction[onetable].display === 0) {
-       listOfFonction[onetable].display = 1;
-     } else {
-       listOfFonction[onetable].display = 0;
-     }
-     renderTimelineUpdateDisplayWithFilters(timelineFilters);
-     this.props.updateTimelineFonctions(listOfFonction);
-   }
-
-   updateSearchTherms = (nametochange: string) => {
-     const timelineFilters: timelineFiltersInterface = {
-       searchName: nametochange,
-       displayEmptyField: this.props.displayEmptyField,
-       visibleTime: this.props.visibleTime,
-       timelineFonctions: this.props.timelineFonctions,
-       timelineUsers: this.props.timelineUsers,
-     };
-     this.props.updateTimelineSearchName(nametochange);
-     renderTimelineUpdateDisplayWithFilters(timelineFilters);
-   }
-
-   toggleEmptyFields = () => {
-     let timelineFilters: timelineFiltersInterface = {
-       searchName: this.props.searchName,
-       displayEmptyField: this.props.displayEmptyField,
-       visibleTime: this.props.visibleTime,
-       timelineFonctions: this.props.timelineFonctions,
-       timelineUsers: this.props.timelineUsers,
-     };
-
-     if (this.props.displayEmptyField) {
-       this.props.updateTimelineEmptyField(false);
-       timelineFilters.displayEmptyField = false;
-     } else {
-       this.props.updateTimelineEmptyField(true);
-       timelineFilters.displayEmptyField = true;
-     }
-     renderTimelineUpdateDisplayWithFilters(timelineFilters);
-   }
-
-   render() {
-     if (this.props.isFetching) {
-       return <Loader />;
-     }
-     return (
-       <div>
-         <TimelineTitle />
-         <TimelineFilters 
-           listOfFonctions={this.props.timelineFonctions}
-           onChangeCheckBox={this.toggleCheckBox} 
-           onChangeEmptyField={this.toggleEmptyFields}
-           onChangeReason={(newreason: string) => {this.props.updateTimelineReason(newreason);}}
-           onChangeName={(nametochange: string) => {this.updateSearchTherms(nametochange);}} />
-         <TimelineCustom />
-       </div>);
-   }
 }
 
 const mapState = (state: RootState) => ({
-  visibleTime: state.timeline.visibleTime,
-  reason: state.timeline.reason,
-  searchName: state.timeline.searchName,
-  displayEmptyField: state.timeline.displayEmptyField,
-  timelineUsers: state.timeline.timelineUsers,
-  timelineFonctions: state.timeline.timelineFonctions,
+  timeline: state.timeline,
   users: state.users.users,
   isFetching: state.users.isFetching,
 });

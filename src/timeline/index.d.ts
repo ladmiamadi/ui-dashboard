@@ -1,3 +1,15 @@
+import { User } from '../../app';
+import { toggleCheckBox, updateSearchTherms, toggleEmptyFields } from '../helpers/updateTimelineOptions';
+
+export interface timelineFilters {
+    visibleTime: visibleTimeInterface,
+    reason: string,
+    searchName: string,
+    displayEmptyField: boolean,
+    timelineUsers: displayDataTimelineInterface,
+    timelineFonctions: listOfFonctionsInterface[],
+  }
+
 export interface fonctionInterface {
     id: number,
     title: string,
@@ -5,7 +17,7 @@ export interface fonctionInterface {
     rightTitle: string,
     convention: number,
 }
-  
+
 export interface daysInterface {
     id: number,
     group: number,
@@ -15,6 +27,7 @@ export interface daysInterface {
     state: number,
     reason: string,
     workdays: string[],
+    itemProps: any,
 }
 
 export interface visibleTimeInterface {
@@ -32,6 +45,7 @@ export interface daysRenderInterface {
     reason: string,
     workdays: string[],
     selected: boolean,
+    itemProps: any,
 }
 
 export interface listOfFonctionsInterface {
@@ -54,21 +68,44 @@ export interface timelineFiltersInterface {
     timelineUsers: displayDataTimelineInterface,
 }
 
-export interface timelineRenderDaysDefaultInterface {
-    getItemProps: any,
+export interface timelineRenderDaysInterface {
+    getItemProps: (style: any, itemProps: any) => any,
     item: itemInterface,
     itemContext: itemContextInterface,
-}
-
-export interface timelineRenderDaysInterface {
-    getItemProps: any,
-    item: any,
-    itemContext: any,
-    reasonState: string,
 }
   
 export interface timelineRenderFonctionInterface {
     group: fonctionInterface
+}
+
+export interface timelineOptionsPropsInterface {
+    updateTimelineReason: (reason: string) => void,
+    updateTimelineSearchName: (searchName: string) => void,
+    updateTimelineFonctions: (timelineFonctions: listOfFonctionsInterface[]) => void,
+    updateTimelineEmptyField: (displayEmptyField: boolean) => void,
+    timeline: timelineFilters,
+}
+
+export interface timelineFiltersPropsInterface {
+    timeline: timelineFilters,
+    onChangeCheckBox: (onetable: number) => toggleCheckBox,
+    onChangeEmptyField: () => toggleEmptyFields,
+    onChangeReason: (newreason: string) => updateTimelineReason,
+    onChangeName: (nametochange: string) => updateSearchTherms,
+    timelineOptionsProps: timelineOptionsPropsInterface,
+}
+
+export interface timelineContainerPropsInterface {
+    updateTimelineReason: (reason: string) => void,
+    updateTimelineSearchName: (searchName: string) => void,
+    updateTimelineUsers: (timelineUsers: displayDataTimelineInterface) => void,
+    updateTimelineVisibleTime: (visibleTime: visibleTimeInterface) => void,
+    updateTimelineFonctions: (timelineFonctions: listOfFonctionsInterface[]) => void,
+    updateTimelineEmptyField: (displayEmptyField: boolean) => void,
+    timeline: timelineFilters,
+    users: User[],
+    isFetching: boolean,
+    fetchTalents: () => void,
 }
 
 export interface timelineContextInterface {
@@ -88,6 +125,7 @@ export interface itemInterface {
     state: number,
     reason: string,
     workdays: string[],
+    itemProps: any,
 }
 
 export interface itemContextInterface {
@@ -107,11 +145,4 @@ export interface itemContextInterface {
     resizeStart: number,
     resizeTime: number,
     width: boolean,
-}
-
-export interface getCorrectTimeInterface {
-    prevWeek: visibleTimeInterface
-    nextWeek: visibleTimeInterface
-    prevMonth: visibleTimeInterface
-    nextMonth: visibleTimeInterface
 }

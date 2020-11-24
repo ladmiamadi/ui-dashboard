@@ -1,15 +1,6 @@
-import { listOfFonctionsInterface, displayDataTimelineInterface, visibleTimeInterface } from '../../index'
-import { defaultVisibleTime, defaultAbsenceReason } from '../../helpers/initialise'
+import { listOfFonctionsInterface, displayDataTimelineInterface, visibleTimeInterface, timelineFilters } from '../../index'
+import { defaultVisibleTime, defaultAbsenceReason } from '../../helpers/defaultTimeline'
 import { createModel } from '@rematch/core';
-
-interface State {
-  visibleTime: visibleTimeInterface,
-  reason: string,
-  searchName: string,
-  displayEmptyField: boolean,
-  timelineUsers: displayDataTimelineInterface,
-  timelineFonctions: listOfFonctionsInterface[],
-}
 
 export const timeline = createModel({
   state: {
@@ -22,14 +13,14 @@ export const timeline = createModel({
       Days: [],
     },
     timelineFonctions: [],
-  } as State,
+  } as timelineFilters,
 
   reducers: {
-    updateTimelineUsers: (state: State, payload: displayDataTimelineInterface): State => ({ ...state, timelineUsers: payload }),
-    updateTimelineVisibleTime: (state: State, payload: visibleTimeInterface): State => ({ ...state, visibleTime: payload }),
-    updateTimelineFonctions: (state: State, timelineFonctions: listOfFonctionsInterface[]): State => ({ ...state, timelineFonctions }),
-    updateTimelineReason: (state: State, reason: string): State => ({ ...state, reason }),
-    updateTimelineSearchName: (state: State, searchName: string): State => ({ ...state, searchName }),
-    updateTimelineEmptyField: (state: State, displayEmptyField: boolean): State => ({ ...state, displayEmptyField }),
+    updateTimelineUsers: (state: timelineFilters, payload: displayDataTimelineInterface): timelineFilters => ({ ...state, timelineUsers: payload }),
+    updateTimelineVisibleTime: (state: timelineFilters, payload: visibleTimeInterface): timelineFilters => ({ ...state, visibleTime: payload }),
+    updateTimelineFonctions: (state: timelineFilters, timelineFonctions: listOfFonctionsInterface[]): timelineFilters => ({ ...state, timelineFonctions }),
+    updateTimelineReason: (state: timelineFilters, reason: string): timelineFilters => ({ ...state, reason }),
+    updateTimelineSearchName: (state: timelineFilters, searchName: string): timelineFilters => ({ ...state, searchName }),
+    updateTimelineEmptyField: (state: timelineFilters, displayEmptyField: boolean): timelineFilters => ({ ...state, displayEmptyField }),
   },
 });

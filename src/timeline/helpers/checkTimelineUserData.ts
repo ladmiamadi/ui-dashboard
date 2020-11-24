@@ -1,7 +1,7 @@
 import { fonctionInterface, listOfFonctionsInterface, timelineFiltersInterface } from '../index'
 
 export const renderTimelineAddErrorWhenNoResults = (copyDisplayData: fonctionInterface[], timelineFilters: timelineFiltersInterface)=> {
-  let noResultFonctions =     
+  const noResultFonctions = 
   {
     id: -1,
     title: 'NO RESULT',
@@ -44,7 +44,7 @@ export const checkTimelineUserDataWithFilter = (timelineFilters: timelineFilters
     timelineFilters.timelineUsers.Fonctions.map((displayData: fonctionInterface) => {
       timelineFilters.timelineFonctions.map((fonctionData: listOfFonctionsInterface) => {
         if (fonctionData.display === 1 && fonctionData.groupname === displayData.rightTitle && 
-          isEmptyFonctionOfVisibleTimeline(timelineFilters, displayData))
+          isFonctionVisibleOnTimeline(timelineFilters, displayData))
           if (displayData.title.toLowerCase().includes(timelineFilters.searchName.toLowerCase()) || 
           displayData.groupLabelKey.toLowerCase().includes(timelineFilters.searchName.toLowerCase())) {
             fonctionData.total += 1
@@ -57,7 +57,7 @@ export const checkTimelineUserDataWithFilter = (timelineFilters: timelineFilters
     return newTimelineDisplay;
 }
 
-const isEmptyFonctionOfVisibleTimeline = (timelineFilters: timelineFiltersInterface, currentFonction: fonctionInterface) => {
+const isFonctionVisibleOnTimeline = (timelineFilters: timelineFiltersInterface, currentFonction: fonctionInterface) => {
 
   if (timelineFilters.displayEmptyField) {
     return true;

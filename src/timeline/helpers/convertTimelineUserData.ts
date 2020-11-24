@@ -1,8 +1,12 @@
-import { displayDataTimelineInterface, fonctionInterface, listOfFonctionsInterface, daysInterface } from '../index'
-import { sortTimelineUsersByFonction } from "../helpers/getUserDataFromDB"
+import { displayDataTimelineInterface, 
+  fonctionInterface, 
+  listOfFonctionsInterface, 
+  daysInterface,
+} from '../index'
+import { sortTimelineUsersByFonction } from "../helpers/databaseUserDataToTimelineData"
 import moment from "moment"
 
-let sortAndListOfFonctions = (stateDisplayData: displayDataTimelineInterface, 
+const sortAndListOfFonctions = (stateDisplayData: displayDataTimelineInterface, 
   stateListOfFonctions: listOfFonctionsInterface[]) => {
     let copyDisplayData = {...stateDisplayData};
 
@@ -16,10 +20,10 @@ let sortAndListOfFonctions = (stateDisplayData: displayDataTimelineInterface,
     })
     sortTimelineUsersByFonction(copyDisplayData.Fonctions);
 
-    return copyDisplayData
+    return copyDisplayData;
 }
 
-let addFonctionNameToFilters = (tosearch: string, listOfFonctionsState: listOfFonctionsInterface[]) => {
+const addFonctionNameToFilters = (tosearch: string, listOfFonctionsState: listOfFonctionsInterface[]) => {
     let listOfFonction = listOfFonctionsState;
     let copyOfOneItemFonction = {...listOfFonction[0]};
 
@@ -39,7 +43,7 @@ let addFonctionNameToFilters = (tosearch: string, listOfFonctionsState: listOfFo
     return tosearch;
 }
 
-export let renderTimelineDisplaySeperateDays = (stateDisplayData: displayDataTimelineInterface, 
+export const renderTimelineDisplaySeperateDays = (stateDisplayData: displayDataTimelineInterface, 
   stateListOfFonctions: listOfFonctionsInterface[]) => {
     let newRenderDisplayTimeline = sortAndListOfFonctions(stateDisplayData, stateListOfFonctions)
     let daysOfTimeline = newRenderDisplayTimeline.Days;
@@ -71,8 +75,7 @@ export let renderTimelineDisplaySeperateDays = (stateDisplayData: displayDataTim
         }
         newArrayLenghtOfItem = daysOfTimeline.push(copyAndEditLastDisplayItem);
       }
-      delete daysOfTimeline[index]; // Works but may result in crash if we manipulate this later without check
-      //daysOfTimeline.splice(index, 1) //This doesn't work really well...
+      delete daysOfTimeline[index];
 
       return 0;
     })

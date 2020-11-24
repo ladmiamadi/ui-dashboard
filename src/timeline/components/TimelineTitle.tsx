@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './styles/TimelineTitle.css';
 
-class TimelineTitle extends Component{
+class TimelineTitle extends Component {
   render() {
     return (
       <div>

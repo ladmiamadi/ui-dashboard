@@ -1,7 +1,9 @@
 import moment from "moment"
 import { User, UserJob } from '../../app';
-import { fonctionInterface, displayDataTimelineInterface } from '../index'
-import { defaultVisibleTime } from './initialise'
+import { fonctionInterface, displayDataTimelineInterface, timelineContainerPropsInterface, timelineFilters } from '../index'
+import { defaultVisibleTime } from './defaultTimeline'
+import { renderTimelineAddErrorWhenNoResults } from '../helpers/checkTimelineUserData';
+import { renderTimelineDisplaySeperateDays } from './convertTimelineUserData';
 
 const internshipPersonBase = [
   {
@@ -24,7 +26,8 @@ const internshipDateBase = [
     end_time: errorVisibleTime.end,
     state: 0,
     reason: "ERROR",
-    workdays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    workdays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    itemProps: '',
   },
 ]
 
@@ -46,26 +49,33 @@ export const sortTimelineUsersByFonction = (tosort: fonctionInterface[]) => {
 const isWorkingOn = (person: UserJob) => {
   let workingdays = [];
 
-  if (person.isWorkingOnMonday === true)
+  if (person.isWorkingOnMonday) {
     workingdays.push("Monday");
+  }
 
-  if (person.isWorkingOnTuesday === true)
+  if (person.isWorkingOnTuesday) {
     workingdays.push("Tuesday");
+  }
 
-  if (person.isWorkingOnWednesday === true)
+  if (person.isWorkingOnWednesday) {
     workingdays.push("Wednesday");
+  }
 
-  if (person.isWorkingOnThursday === true)
+  if (person.isWorkingOnThursday) {
     workingdays.push("Thursday");
+  }
 
-  if (person.isWorkingOnFriday === true)
+  if (person.isWorkingOnFriday) {
     workingdays.push("Friday");
+  }
 
-  if (person.isWorkingOnSaturday === true)
+  if (person.isWorkingOnSaturday) {
     workingdays.push("Saturday");
+  }
 
-  if (person.isWorkingOnSunday === true)
+  if (person.isWorkingOnSunday) {
     workingdays.push("Sunday");
+  }
 
   return workingdays;
 }
@@ -89,6 +99,24 @@ export const convertDBDataToTimelineData = (users:User[]) => {
     Days: internshipDateBase
   };
   return result;
+}
+
+export const convertRawDBDataToTimelineData = (updateTimeline: timelineContainerPropsInterface, timeline: timelineFilters) => {
+  let listOfFonctions = [
+    {
+      id: -1,
+      groupname: 'ERROR',
+      total: 0,
+      display: 1,
+    },
+  ];
+  let newdata = convertDBDataToTimelineData(updateTimeline.users);
+  listOfFonctions.shift();
+  let newDisplayData = renderTimelineDisplaySeperateDays(newdata, listOfFonctions);
+
+  renderTimelineAddErrorWhenNoResults(newDisplayData.Fonctions, timeline);
+  updateTimeline.updateTimelineUsers(newDisplayData);
+  updateTimeline.updateTimelineFonctions(listOfFonctions);
 }
 
 const convertDBFonctionToTimelineFonction = (userdb: User) => {
