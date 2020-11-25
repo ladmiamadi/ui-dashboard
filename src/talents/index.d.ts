@@ -27,6 +27,7 @@ export interface UserRegister<T> {
   phone: T,
   recruitmentTray: T,
   recruitmentComments: T,
+  institutionSection: T,
   institution: T,
   emailInstitution: T,
   phoneInstitution: T,
@@ -45,6 +46,7 @@ interface Field {
   regEx: string,
   type: InputType,
   required?: true,
+  isSectionTitle?: boolean,
 }
 
 export interface UserSignUpPayload {
@@ -68,6 +70,7 @@ export interface PropsForInput {
   type: InputType,
   regEx: string,
   required?: boolean,
+  isSectionTitle?: boolean,
   updateUserSignUp: (property: keyof UserRegister<T>, idValue: string) => void,
   setIsFormValid: (property: keyof UserRegister<T>, regEx: string) => void,
 }

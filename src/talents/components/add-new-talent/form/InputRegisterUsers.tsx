@@ -8,7 +8,7 @@ export default class InputRegisterUsers extends Component<PropsForInput> {
 
     return (
       <Col>
-        <Label>{this.props.required && '*'}{label}</Label>
+        <Label>{label}{this.props.required && '*'}</Label>
         <Input
           id={id}
           invalid={isInputValid === InputState.FALSE}

@@ -21,18 +21,18 @@ export default class FormRegisterUser extends Component<Props> {
     return (
       <>
         {
-          doubleArrayOfAllInputs.map((array, index) =>
+          doubleArrayOfAllInputs.map((inputsPropsRow, index) =>
             <Row
               key={index}
               className={classes.RowFormRegisterUser}>
               {
-                array.map((props) =>
-                  <InputRegisterUsers
-                    key={props.id}
-                    {...props}
-                  />,
+                inputsPropsRow.map((inputProps) =>
+                  <>
+                    {inputProps.isSectionTitle && <h4 className="register-form-title">{inputProps.label}</h4>}
+                    {!inputProps.isSectionTitle && <InputRegisterUsers key={inputProps.id} {...inputProps} />}
+                  </>,
                 )
-              }
+              },
             </Row>,
           )
         }

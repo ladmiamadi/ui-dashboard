@@ -61,6 +61,7 @@ export interface UserProfile {
   motivationInFrench?: string,
   motivationInEnglish?: string,
   motivationInDutch?: string,
+  institutionSection?: string,
   institution?: string,
   descriptionInFrench?: string,
   descriptionInEnglish?: string,

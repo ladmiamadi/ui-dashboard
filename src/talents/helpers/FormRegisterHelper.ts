@@ -58,6 +58,9 @@ export const doubleArrayPropsInput = (
       createField(props, 'recruitmentComments'),
     ],
     [
+      createField(props, 'institutionSection'),
+    ],
+    [
       createField(props, 'institution'),
       {
         ...createField(props, 'emailInstitution'),

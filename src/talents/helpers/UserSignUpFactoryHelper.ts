@@ -9,6 +9,7 @@ export const createEmptyUserSignUp = (): UserSignUp => ({
   phone: '',
   recruitmentTray: '',
   recruitmentComments: '',
+  institutionSection: '',
   institution: '',
   emailInstitution: '',
   phoneInstitution: '',
@@ -25,6 +26,7 @@ export const createEmptyIsFormValid = (): IsFormValid => ({
   phone: InputState.UNDEFINED,
   recruitmentTray: InputState.UNDEFINED,
   recruitmentComments: InputState.UNDEFINED,
+  institutionSection: InputState.TRUE, // No validation needed
   institution: InputState.UNDEFINED,
   emailInstitution: InputState.UNDEFINED,
   phoneInstitution: InputState.UNDEFINED,

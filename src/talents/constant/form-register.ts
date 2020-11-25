@@ -57,6 +57,13 @@ export const FORM_REGISTER: FormRegister = {
     type: 'text',
     required: true,
   },
+  institutionSection: {
+    id: 'institutionSection',
+    label: 'Institution',
+    regEx: '.',
+    type: 'text',
+    isSectionTitle: true,
+  },
   institution: {
     id: 'institution',
     label: 'École',

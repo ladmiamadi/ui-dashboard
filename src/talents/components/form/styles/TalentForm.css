@@ -363,3 +363,7 @@
 #formation-start, #formation-end {
   overflow: hidden;
 }
+
+.register-form-title {
+    margin-left: 15px;
+}
