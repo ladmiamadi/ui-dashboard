@@ -53,7 +53,7 @@ export default class TalentFormInstitution extends React.Component<Props> {
         />
         <FieldForm
           keyName="institution-email"
-          label="Mail École: "
+          label="Email École: "
           className={classes['institution-field']}
           type="text"
           handleChange={(value) => this.props.modifyUser({

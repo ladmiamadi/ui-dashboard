@@ -38,7 +38,7 @@ export default class TalentFormInternship extends React.Component<Props> {
                 keyName="status"
                 label="Status du stage: "
                 options={STATUS_OPTIONS}
-                className="address-field-form"
+                className="intership-field-form"
                 handleChange={(property, value) => this.props.modifyUser({
                   category: 'userJob',
                   property,
@@ -53,7 +53,7 @@ export default class TalentFormInternship extends React.Component<Props> {
               <FieldForm
                 keyName="internship-hours"
                 label="Horaire: "
-                className="address-field-form"
+                className="intership-field-form"
                 type="text"
                 handleChange={(value) => this.props.modifyUser({
                   category: 'userJob',
@@ -66,7 +66,7 @@ export default class TalentFormInternship extends React.Component<Props> {
           </Row>
           <Row>
             <Col md={6}>
-              <FormGroup className="address-field-form">
+              <FormGroup className="intership-field-form">
                 <label className="form-label">Debut: </label>
                 <ReactDatePicker
                   className={'datepicker form-input form-control'}
@@ -87,7 +87,7 @@ export default class TalentFormInternship extends React.Component<Props> {
               </FormGroup>
             </Col>
             <Col md={6}>
-              <FormGroup className="address-field-form">
+              <FormGroup className="intership-field-form">
                 <label className="form-label">Fin: </label>
                 <ReactDatePicker
                   className={'datepicker form-input form-control'}

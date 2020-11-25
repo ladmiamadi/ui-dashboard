@@ -3,6 +3,7 @@ import { Job } from '../../app';
 import { Toastify } from '../../helpers/Toastify';
 import { Props as FormRegisterProps } from '../components/add-new-talent/form/FormRegisterUser';
 import { FORM_REGISTER } from '../constant/form-register';
+import { RECRUITMENT_TRAY_OPTIONS } from '../constants/recruitment-tray-options';
 
 export const isUsernameAlreadyExists = (idValue: string, usernameCollection?: string[]): boolean => {
   const isUsernameUnique = !usernameCollection?.includes(idValue);
@@ -37,20 +38,35 @@ export const doubleArrayPropsInput = (
         ...createField(props, 'jobPosition'),
         options: jobPosition,
       },
-      createField(props, 'birthDate'),
-    ],
-    [
-      
       {
         ...createField(props, 'username'),
         usernameCollection: props.usernameCollection,
       },
+    ],
+    [
       createField(props, 'phone'),
     ],
-    
     [
       createField(props, 'platform'),
-      createField(props, 'nationality'),      
+      {
+        ...createField(props, 'recruitmentTray'),
+        options: RECRUITMENT_TRAY_OPTIONS,
+
+      },
+    ],
+    [
+      createField(props, 'recruitmentComments'),
+    ],
+    [
+      createField(props, 'institutionName'),
+      {
+        ...createField(props, 'institutionEmail'),
+        usernameCollection: props.usernameCollection,
+      },
+    ],
+    [
+      createField(props, 'institutionPhone'),
+      createField(props, 'contactPerson'),
     ],
   ]);
 };

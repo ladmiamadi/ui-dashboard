@@ -3,7 +3,7 @@ import { Col, Row } from 'reactstrap';
 import { User, UserProfile } from '../../../app';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
-import { RECRUITMENT_OPTIONS } from '../../constants/recruitment-options';
+import { RECRUITMENT_TRAY_OPTIONS } from '../../constants/recruitment-tray-options';
 import ProfileCollection from '../../helpers/ProfileCollection';
 import { UpdateUserPayload } from '../../state/models/user-selected';
 
@@ -24,11 +24,11 @@ export default class TalentFormRecruitment extends React.Component<Props> {
           <h6>Recrutement: </h6>
         </div>
         <Row>
-          <Col>
+          <Col md={6}>
             <FieldForm
               keyName="platform"
               label="Plateforme: "
-              className="address-field-form"
+              className="recruitment-field-form"
               type="text"
               handleChange={(value) => this.props.modifyUser({
                 value,
@@ -40,12 +40,12 @@ export default class TalentFormRecruitment extends React.Component<Props> {
               required={true}
             />
           </Col>
-          <Col>
+          <Col md={6}>
             <SelectFormField
               keyName="inbox"
-              className="address-field-form"
+              className="recruitment-field-form"
               label="Boîte e-mail: "
-              options={RECRUITMENT_OPTIONS}
+              options={RECRUITMENT_TRAY_OPTIONS}
               handleChange={(property, value) => this.props.modifyUser({
                 category: 'userRecruitment',
                 property,
@@ -62,7 +62,7 @@ export default class TalentFormRecruitment extends React.Component<Props> {
             <FieldForm
               keyName="recruitmentComments"
               label="Commentaires sur le recrutement: "
-              className="address-field-form"
+              className="recruitment-field-form"
               rows={5}
               type="textarea"
               handleChange={(value) => this.props.modifyUser({
