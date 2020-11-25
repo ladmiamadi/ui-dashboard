@@ -19,14 +19,18 @@ export enum LoggedUserStatus {
 }
 
 export interface UserRegister<T> {
-  birthDate: T,
-  nationality: T,
   jobPosition: T,
   firstName: T,
   lastName: T,
   platform: T,
   username: T,
   phone: T,
+  recruitmentTray: T,
+  recruitmentComments: T,
+  institution: T,
+  emailInstitution: T,
+  phoneInstitution: T,
+  personContactInstitution: T,
 }
 
 export type UserSignUp = UserRegister<string>;
@@ -58,6 +62,7 @@ export interface PropsForInput {
   idValue: string,
   isInputValid: InputState,
   options?: string[],
+  optionsMenu?: string,
   label: string,
   usernameCollection?: string[],
   type: InputType,

@@ -61,21 +61,21 @@ export interface UserProfile {
   motivationInFrench?: string,
   motivationInEnglish?: string,
   motivationInDutch?: string,
-  birthDate: Date,
   institution?: string,
   descriptionInFrench?: string,
   descriptionInEnglish?: string,
   descriptionInDutch?: string,
   isActuallyLookingForJob?: boolean,
   phoneInstitution?: string,
-  mailInstitution?: string,
+  emailInstitution?: string,
   personContactInstitution?: string,
   status: string,
   environment: string
   picture?: MediaObject,
   position?: string,
-  platform: string,
-  nationality: string,
+  platform?: string,
+  recruitmentTray?: string,
+  recruitmentComments?: string,
 }
 
 export interface MediaObject {

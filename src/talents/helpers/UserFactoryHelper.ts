@@ -4,7 +4,6 @@ import { Job, User, UserAddress, UserDesiredJob, UserJob, UserProfile } from '..
 export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]): User => {
 
   const userProfileLive: UserProfile = {
-    birthDate: new Date(userSignUp.birthDate),
     environment: 'live',
     firstName: userSignUp.firstName,
     lastName: userSignUp.lastName,
@@ -13,11 +12,15 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     phone: userSignUp.phone,
     status: 'VALIDATED',
     position: userSignUp.jobPosition,
-    nationality: userSignUp.nationality,
+    recruitmentTray: userSignUp.recruitmentTray,
+    recruitmentComments: userSignUp.recruitmentComments,
+    institution: userSignUp.institution,
+    emailInstitution: userSignUp.emailInstitution,
+    phoneInstitution: userSignUp.phoneInstitution,
+    personContactInstitution: userSignUp.personContactInstitution,
   };
 
   const userProfileWorking: UserProfile = {
-    birthDate: new Date(userSignUp.birthDate),
     environment: 'working',
     firstName: userSignUp.firstName,
     lastName: userSignUp.lastName,
@@ -26,7 +29,12 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     phone: userSignUp.phone,
     status: 'VALIDATED',
     position: userSignUp.jobPosition,
-    nationality: userSignUp.nationality,
+    recruitmentTray: userSignUp.recruitmentTray,
+    recruitmentComments: userSignUp.recruitmentComments,
+    institution: userSignUp.institution,
+    emailInstitution: userSignUp.emailInstitution,
+    phoneInstitution: userSignUp.phoneInstitution,
+    personContactInstitution: userSignUp.personContactInstitution,
   };
 
   const job: Job = jobCollection.filter((job: Job) => job.position === userSignUp.jobPosition)[0];

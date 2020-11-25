@@ -52,7 +52,7 @@ export default class TalentFormRecruitment extends React.Component<Props> {
                 value,
                 index: -1,
               })}
-              value={this.props.user.userAddress?.country || ''}
+              value={userProfileLive?.recruitmentTray || ''}
               required={true}
             />
           </Col>
@@ -71,7 +71,7 @@ export default class TalentFormRecruitment extends React.Component<Props> {
                 value,
                 index: -1,
               })}
-              value={this.props.user.userDesiredJob?.jobDescription}
+              value={userProfileLive?.recruitmentComments}
             />
           </Col>
         </Row>

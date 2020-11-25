@@ -62,7 +62,7 @@ export default class TalentFormInstitution extends React.Component<Props> {
             value,
             index: indexLive,
           })}
-          value={userProfileLive?.mailInstitution}
+          value={userProfileLive?.emailInstitution}
           required={true}
         />
         <FieldForm

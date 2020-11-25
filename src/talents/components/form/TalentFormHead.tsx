@@ -106,7 +106,7 @@ export class TalentFormHead extends React.Component<Props> {
             required={false}
           />
           <DatePickerFieldForm
-            keyName="birthDate"
+            keyName="startDate"
             label="Début du stage: "
             value={this.props.user.userJob?.startDate}
             locale={fr}
@@ -119,7 +119,7 @@ export class TalentFormHead extends React.Component<Props> {
             required={true}
           />
           <DatePickerFieldForm
-            keyName="birthDate"
+            keyName="endDate"
             label="Fin du stage: "
             value={this.props.user.userJob?.endDate}
             locale={fr}

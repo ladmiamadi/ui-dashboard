@@ -1,23 +1,32 @@
 import { InputState, IsFormValid, UserSignUp } from '../index.d';
 
 export const createEmptyUserSignUp = (): UserSignUp => ({
-  birthDate: '2000-01-01',
   jobPosition: '',
   firstName: '',
   platform: '',
-  nationality: '',
   lastName: '',
   username: '',
   phone: '',
+  recruitmentTray: '',
+  recruitmentComments: '',
+  institution: '',
+  emailInstitution: '',
+  phoneInstitution: '',
+  personContactInstitution: '',
+
 });
 
 export const createEmptyIsFormValid = (): IsFormValid => ({
-  birthDate: InputState.UNDEFINED,
   jobPosition: InputState.UNDEFINED,
   firstName: InputState.UNDEFINED,
   platform: InputState.UNDEFINED,
-  nationality: InputState.UNDEFINED,
   lastName: InputState.UNDEFINED,
   username: InputState.UNDEFINED,
   phone: InputState.UNDEFINED,
+  recruitmentTray: InputState.UNDEFINED,
+  recruitmentComments: InputState.UNDEFINED,
+  institution: InputState.UNDEFINED,
+  emailInstitution: InputState.UNDEFINED,
+  phoneInstitution: InputState.UNDEFINED,
+  personContactInstitution: InputState.UNDEFINED,
 });

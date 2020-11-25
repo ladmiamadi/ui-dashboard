@@ -1,1 +1,0 @@
-export const RECRUITMENT_OPTIONS = ['ThunderBird', 'Gmail'];
