@@ -29,7 +29,7 @@ export default class TalentFormRecruitment extends React.Component<Props> {
             <FieldForm
               keyName="platform"
               label="Plateforme: "
-              className="recruitment-field-form"
+              className="generic-field-form"
               type="text"
               handleChange={(value) => this.props.modifyUser({
                 value,
@@ -44,7 +44,7 @@ export default class TalentFormRecruitment extends React.Component<Props> {
           <Col md={6}>
             <SelectFormField
               keyName="mailboxHR"
-              className="recruitment-field-form"
+              className="generic-field-form"
               label="Boîte e-mail: "
               options={RECRUITMENT_TRAY_OPTIONS}
               handleChange={(property, value) => this.props.modifyUser({
@@ -63,7 +63,7 @@ export default class TalentFormRecruitment extends React.Component<Props> {
             <FieldForm
               keyName="recruitmentComments"
               label="Commentaires sur le recrutement: "
-              className="recruitment-field-form"
+              className="generic-field-form"
               rows={5}
               type="textarea"
               handleChange={(value) => this.props.modifyUser({

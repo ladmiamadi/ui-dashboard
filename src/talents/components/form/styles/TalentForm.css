@@ -236,7 +236,7 @@
     display: block;
 }
 
-.address-section {
+.generic-section {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -246,20 +246,11 @@
     margin-top: 20px;
 }
 
-.address-field-form.form-group {
+.generic-field-form.form-group {
     display: block;
 }
 
-.address-field-form.form-group .form-input {
-    width: 100%;
-    font-size: 1.5rem;
-}
-
-.intership-field-form.form-group {
-    display: block;
-}
-
-.intership-field-form.form-group .form-input {
+.generic-field-form.form-group .form-input {
     width: 100%;
     font-size: 1.5rem;
 }
@@ -270,16 +261,6 @@
     box-sizing: border-box;
     margin-top: 20px;
 }
-
-.recruitment-field-form.form-group {
-    display: block;
-}
-
-.recruitment-field-form.form-group .form-input {
-    width: 100%;
-    font-size: 1.5rem;
-}
-
 
 @media (max-width: 768px) {
     .form-label {

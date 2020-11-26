@@ -14,7 +14,7 @@ interface Props {
 export default class TalentFormAddress extends React.Component<Props> {
   render() {
     return (
-      <div className="address-section">
+      <div className="generic-section">
         <div className="form-title">
           <h6>Adresse: </h6>
         </div>
@@ -23,7 +23,7 @@ export default class TalentFormAddress extends React.Component<Props> {
             <FieldForm
               keyName="street"
               label="Rue: "
-              className="address-field-form"
+              className="generic-field-form"
               type="text"
               handleChange={(value: string) => this.props.modifyUser({
                 category: 'userAddress',
@@ -40,7 +40,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               keyName="number"
               label="Num: "
               type="text"
-              className="address-field-form"
+              className="generic-field-form"
               handleChange={(value: string) => this.props.modifyUser({
                 category: 'userAddress',
                 property: 'number',
@@ -56,7 +56,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               keyName="postal-box"
               label="BP: "
               type="text"
-              className="address-field-form"
+              className="generic-field-form"
               handleChange={(value: string) => this.props.modifyUser({
                 category: 'userAddress',
                 property: 'box',
@@ -70,7 +70,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               keyName="postal-code"
               label="Code Postal: "
               type="number"
-              className="address-field-form"
+              className="generic-field-form"
               handleChange={(value: string) => this.props.modifyUser({
                 category: 'userAddress',
                 property: 'zipCode',
@@ -83,7 +83,7 @@ export default class TalentFormAddress extends React.Component<Props> {
             <FieldForm
               keyName="city"
               label="Ville: "
-              className="address-field-form"
+              className="generic-field-form"
               type="text"
               handleChange={(value: string) => this.props.modifyUser({
                 category: 'userAddress',
@@ -96,7 +96,7 @@ export default class TalentFormAddress extends React.Component<Props> {
           <Col md={6}>
             <SelectFormField
               keyName="country"
-              className="address-field-form"
+              className="generic-field-form"
               label="Pays: "
               options={COUNTRIES}
               handleChange={(property, value) => this.props.modifyUser({
