@@ -72,6 +72,7 @@ export default class TalentFormRecruitment extends React.Component<Props> {
                 index: -1,
               })}
               value={userProfileLive?.recruitmentComments}
+              required={true}
             />
           </Col>
         </Row>

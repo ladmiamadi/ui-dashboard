@@ -58,7 +58,7 @@ export default class TalentFormInstitution extends React.Component<Props> {
           type="text"
           handleChange={(value) => this.props.modifyUser({
             category: 'userProfiles',
-            property: 'mailInstitution',
+            property: 'emailInstitution',
             value,
             index: indexLive,
           })}
