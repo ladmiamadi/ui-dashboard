@@ -49,8 +49,8 @@ export const FORM_REGISTER: FormRegister = {
     type: 'text',
     required: true,
   },
-  recruitmentTray: {
-    id: 'recruitmentTray',
+  mailboxHR: {
+    id: 'mailboxHR',
     label: 'Boîte e-mail',
     regEx: '.',
     type: 'select',

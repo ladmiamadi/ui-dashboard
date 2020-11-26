@@ -47,12 +47,12 @@ export const doubleArrayPropsInput = (
       createField(props, 'phone'),
     ],
     [
-      createField(props, 'recrutementSection'),      
+      createField(props, 'recrutementSection'),
     ],
     [
       createField(props, 'platform'),
       {
-        ...createField(props, 'recruitmentTray'),
+        ...createField(props, 'mailboxHR'),
         options: RECRUITMENT_TRAY_OPTIONS,
 
       },

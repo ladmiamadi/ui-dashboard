@@ -75,7 +75,8 @@ export interface UserProfile {
   picture?: MediaObject,
   position?: string,
   platform?: string,
-  recruitmentTray?: string,
+  sourceByHR?: string,
+  mailboxHR?: string,
   recruitmentComments?: string,
 }
 

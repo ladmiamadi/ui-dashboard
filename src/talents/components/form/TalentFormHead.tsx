@@ -1,13 +1,11 @@
 import React from 'react';
-import fr from 'date-fns/locale/fr';
 import { connect } from 'react-redux';
 import { Job, User, UserProfile } from '../../../app';
-import { DatePickerFieldForm } from '../../../app/components/utils/DatePickerFieldForm';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { UserProfileHelpers } from '../../../app/helpers/UserProfileHelpers';
-import { HUMAN_RESOURCES_STAFF } from '../../constants/human-resources-staff';
 import { RootDispatch, RootState } from '../../../app/state/store';
+import { HUMAN_RESOURCES_STAFF } from '../../constants/human-resources-staff';
 import ProfileCollection from '../../helpers/ProfileCollection';
 import { UpdateUserPayload } from '../../state/models/user-selected';
 
@@ -105,9 +103,9 @@ export class TalentFormHead extends React.Component<Props> {
             })}
             value={userProfileLive?.phone}
             required={false}
-          />          
+          />
           <SelectFormField
-            keyName="sourcedBy"
+            keyName="sourceByHR"
             label="Sourcé par: "
             options={HUMAN_RESOURCES_STAFF}
             handleChange={(property, value) => this.props.modifyUser({
@@ -116,7 +114,7 @@ export class TalentFormHead extends React.Component<Props> {
               value,
               index: indexLive,
             })}
-            value={userProfileLive?.position || ''}
+            value={userProfileLive?.sourceByHR || ''}
             required={true}
           />
         </div>

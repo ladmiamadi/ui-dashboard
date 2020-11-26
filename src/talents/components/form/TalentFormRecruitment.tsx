@@ -14,6 +14,7 @@ interface Props {
 
 export default class TalentFormRecruitment extends React.Component<Props> {
   render() {
+    const indexLive: number = ProfileCollection.findLiveIndex(this.props.user.userProfiles);
     const userProfileLive: UserProfile | undefined = ProfileCollection.filterByEnvironment(
       this.props.user.userProfiles, 'live',
     );
@@ -32,27 +33,27 @@ export default class TalentFormRecruitment extends React.Component<Props> {
               type="text"
               handleChange={(value) => this.props.modifyUser({
                 value,
-                index: -1,
-                category: 'userRecruitment',
+                index: indexLive,
+                category: 'userProfiles',
                 property: 'platform',
               })}
-              value={userProfileLive?.platform}
+              value={userProfileLive?.platform || ''}
               required={true}
             />
           </Col>
           <Col md={6}>
             <SelectFormField
-              keyName="inbox"
+              keyName="mailboxHR"
               className="recruitment-field-form"
               label="Boîte e-mail: "
               options={RECRUITMENT_TRAY_OPTIONS}
               handleChange={(property, value) => this.props.modifyUser({
-                category: 'userRecruitment',
+                category: 'userProfiles',
                 property,
                 value,
-                index: -1,
+                index: indexLive,
               })}
-              value={userProfileLive?.recruitmentTray || ''}
+              value={userProfileLive?.mailboxHR || ''}
               required={true}
             />
           </Col>
@@ -66,12 +67,12 @@ export default class TalentFormRecruitment extends React.Component<Props> {
               rows={5}
               type="textarea"
               handleChange={(value) => this.props.modifyUser({
-                category: 'userRecruitment',
+                category: 'userProfiles',
                 property: 'recruitmentComments',
                 value,
-                index: -1,
+                index: indexLive,
               })}
-              value={userProfileLive?.recruitmentComments}
+              value={userProfileLive?.recruitmentComments || ''}
               required={true}
             />
           </Col>

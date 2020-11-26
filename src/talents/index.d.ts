@@ -23,11 +23,10 @@ export interface UserRegister<T> {
   firstName: T,
   lastName: T,
   username: T,
-  
   phone: T,
   recrutementSection: T,
   platform: T,
-  recruitmentTray: T,
+  mailboxHR: T,
   recruitmentComments: T,
   institutionSection: T,
   institution: T,
