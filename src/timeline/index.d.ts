@@ -1,16 +1,14 @@
-import { User } from '../../app';
-import { toggleCheckBox, updateSearchTherms, toggleEmptyFields } from '../helpers/updateTimelineOptions';
-
-export interface timelineFilters {
-    visibleTime: visibleTimeInterface,
+export interface TimelineFilterData {
+    visibleTime: visibleTime,
     reason: string,
     searchName: string,
     displayEmptyField: boolean,
-    timelineUsers: displayDataTimelineInterface,
-    timelineFonctions: listOfFonctionsInterface[],
+    timelineUsers: TimelineDataUsers,
+    timelineFonctions: GroupDisplay[],
+    isConverting: boolean,
   }
 
-export interface fonctionInterface {
+export interface TimelineGroup {
     id: number,
     title: string,
     groupLabelKey: string,
@@ -18,7 +16,7 @@ export interface fonctionInterface {
     convention: number,
 }
 
-export interface daysInterface {
+export interface TimelineItem {
     id: number,
     group: number,
     title: string,
@@ -30,90 +28,39 @@ export interface daysInterface {
     itemProps: any,
 }
 
-export interface visibleTimeInterface {
+export interface TimelineVisibleTime {
     start: number,
     end: number,
 }
 
-export interface daysRenderInterface {
-    id: number,
-    group: number,
-    title: string,
-    start_time: number,
-    end_time: number,
-    state: number,
-    reason: string,
-    workdays: string[],
-    selected: boolean,
-    itemProps: any,
-}
-
-export interface listOfFonctionsInterface {
+export interface GroupDisplay {
     id: number,
     groupname: string,
     total: number,
     display: number,
 }
 
-export interface displayDataTimelineInterface {
-    Fonctions: fonctionInterface[],
-    Days: daysInterface[],
+export interface TimelineDataUsers {
+    groups: TimelineGroup[],
+    items: TimelineItem[],
 }
 
-export interface timelineFiltersInterface {
-    searchName: string,
-    displayEmptyField: boolean,
-    visibleTime: visibleTimeInterface,
-    timelineFonctions: listOfFonctionsInterface[],
-    timelineUsers: displayDataTimelineInterface,
-}
-
-export interface timelineRenderDaysInterface {
-    getItemProps: (style: any, itemProps: any) => any,
+export interface ItemRendererObject {
     item: itemInterface,
-    itemContext: itemContextInterface,
+    itemContext: ItemContextProperties,
+    getItemProps: (style: any, itemProps: any) => any,
 }
   
-export interface timelineRenderFonctionInterface {
-    group: fonctionInterface
+export interface GroupRenderObject {
+    group: TimelineGroup
 }
 
 export interface timelineOptionsPropsInterface {
+    timeline: TimelineFilterData,
     updateTimelineReason: (reason: string) => void,
     updateTimelineSearchName: (searchName: string) => void,
-    updateTimelineFonctions: (timelineFonctions: listOfFonctionsInterface[]) => void,
+    updateTimelineFonctions: (timelineFonctions: GroupDisplay[]) => void,
     updateTimelineEmptyField: (displayEmptyField: boolean) => void,
-    timeline: timelineFilters,
-}
-
-export interface timelineFiltersPropsInterface {
-    timeline: timelineFilters,
-    onChangeCheckBox: (onetable: number) => toggleCheckBox,
-    onChangeEmptyField: () => toggleEmptyFields,
-    onChangeReason: (newreason: string) => updateTimelineReason,
-    onChangeName: (nametochange: string) => updateSearchTherms,
-    timelineOptionsProps: timelineOptionsPropsInterface,
-}
-
-export interface timelineContainerPropsInterface {
-    updateTimelineReason: (reason: string) => void,
-    updateTimelineSearchName: (searchName: string) => void,
-    updateTimelineUsers: (timelineUsers: displayDataTimelineInterface) => void,
-    updateTimelineVisibleTime: (visibleTime: visibleTimeInterface) => void,
-    updateTimelineFonctions: (timelineFonctions: listOfFonctionsInterface[]) => void,
-    updateTimelineEmptyField: (displayEmptyField: boolean) => void,
-    timeline: timelineFilters,
-    users: User[],
-    isFetching: boolean,
-    fetchTalents: () => void,
-}
-
-export interface timelineContextInterface {
-    timelineWidth: number,
-    visibleTimeStart: number,
-    visibleTimeEnd: number,
-    canvasTimeStart: number,
-    canvasTimeEnd: number,
 }
 
 export interface itemInterface {
@@ -128,7 +75,7 @@ export interface itemInterface {
     itemProps: any,
 }
 
-export interface itemContextInterface {
+export interface ItemContextProperties {
     dimensions: object,
     useResizeHandle: boolean,
     title: string,

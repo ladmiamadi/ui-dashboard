@@ -1,15 +1,17 @@
 import React from 'react';
 import moment from 'moment';
-import { visibleTimeInterface } from '../index';
+import { TimelineVisibleTime } from '../index';
+import { RootState, RootDispatch } from '../../app/state/store';
+import { connect } from 'react-redux';
 
 interface Props {
-    updateTimelineVisibleTime: (visibleTime: visibleTimeInterface) => void,
-    visibleTime: visibleTimeInterface,
+    updateTimelineVisibleTime: (visibleTime: TimelineVisibleTime) => void,
+    visibleTime: TimelineVisibleTime,
 }
 
 export class TimelineNavigation extends React.Component<Props> {
   onPrevClick = () => {
-    let newDisplayTime: visibleTimeInterface = {
+    let newDisplayTime: TimelineVisibleTime = {
       start: moment(this.props.visibleTime.start).startOf('week').add(-1, 'week').add(1, 'days').valueOf(),
       end: moment(this.props.visibleTime.end).startOf('week').add(-1, 'week').add(1, 'days').valueOf(),
     };
@@ -17,7 +19,7 @@ export class TimelineNavigation extends React.Component<Props> {
   };
 
   onPrevClickMonth = () => {
-    let newDisplayTime: visibleTimeInterface = {
+    let newDisplayTime: TimelineVisibleTime = {
       start: moment(this.props.visibleTime.start)
         .startOf('week').add(-1, 'month').startOf('week').add(1, 'days').valueOf(),
       end: moment(this.props.visibleTime.end)
@@ -27,7 +29,7 @@ export class TimelineNavigation extends React.Component<Props> {
   };
 
   onNextClick = () => {
-    let newDisplayTime: visibleTimeInterface = {
+    let newDisplayTime: TimelineVisibleTime = {
       start: moment(this.props.visibleTime.start).startOf('week').add(1, 'week').add(1, 'days').valueOf(),
       end: moment(this.props.visibleTime.end).startOf('week').add(1, 'week').add(1, 'days').valueOf(),
     };
@@ -35,7 +37,7 @@ export class TimelineNavigation extends React.Component<Props> {
   };
 
   onNextClickMonth = () => {
-    let newDisplayTime: visibleTimeInterface = {
+    let newDisplayTime: TimelineVisibleTime = {
       start: moment(this.props.visibleTime.start)
         .startOf('week').add(1, 'month').startOf('week').add(1, 'days').valueOf(),
       end: moment(this.props.visibleTime.end)
@@ -56,4 +58,12 @@ export class TimelineNavigation extends React.Component<Props> {
   }
 }
 
-export default TimelineNavigation;
+const mapState = (state: RootState) => ({
+  visibleTime: state.timeline.visibleTime,
+});
+
+const mapDispatch = (dispatch: RootDispatch) => ({
+  updateTimelineVisibleTime: dispatch.timeline.updateTimelineVisibleTime,
+});
+
+export default connect(mapState, mapDispatch)(TimelineNavigation);

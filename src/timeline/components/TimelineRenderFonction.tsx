@@ -1,7 +1,7 @@
 import React from 'react';
-import { timelineRenderFonctionInterface } from '../index';
+import { GroupRenderObject } from '../index';
 
-class TimelineRenderFonction extends React.Component<timelineRenderFonctionInterface>{
+class TimelineRenderFonction extends React.Component<GroupRenderObject>{
   render() {
 
     return (

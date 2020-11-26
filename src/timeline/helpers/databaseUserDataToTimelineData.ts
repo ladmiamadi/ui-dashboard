@@ -1,9 +1,7 @@
 import moment from "moment"
 import { User, UserJob } from '../../app';
-import { fonctionInterface, displayDataTimelineInterface, timelineContainerPropsInterface, timelineFilters } from '../index'
+import { TimelineGroup, TimelineDataUsers } from '../index'
 import { defaultVisibleTime } from './defaultTimeline'
-import { renderTimelineAddErrorWhenNoResults } from '../helpers/checkTimelineUserData';
-import { renderTimelineDisplaySeperateDays } from './convertTimelineUserData';
 
 const internshipPersonBase = [
   {
@@ -31,8 +29,8 @@ const internshipDateBase = [
   },
 ]
 
-export const sortTimelineUsersByFonction = (tosort: fonctionInterface[]) => {
-  tosort.sort((a: fonctionInterface, b: fonctionInterface) => {
+export const sortTimelineUsersByFonction = (tosort: TimelineGroup[]) => {
+  tosort.sort((a: TimelineGroup, b: TimelineGroup) => {
     let diff1 = a.rightTitle.toLowerCase(),
     diff2 = b.rightTitle.toLowerCase();
 
@@ -85,7 +83,7 @@ const capitalizeFirstLetter = (tocap: string) => {
 }
 
 export const convertDBDataToTimelineData = (users:User[]) => {
-  let result: displayDataTimelineInterface;
+  let result: TimelineDataUsers;
 
   users.map((userdb: User) => {
     if (userdb.userJob && userdb.userProfiles && userdb.userJob.job) {
@@ -95,28 +93,10 @@ export const convertDBDataToTimelineData = (users:User[]) => {
     return 0;
   });
   result = {
-    Fonctions: internshipPersonBase,
-    Days: internshipDateBase
+    groups: internshipPersonBase,
+    items: internshipDateBase
   };
   return result;
-}
-
-export const convertRawDBDataToTimelineData = (updateTimeline: timelineContainerPropsInterface, timeline: timelineFilters) => {
-  let listOfFonctions = [
-    {
-      id: -1,
-      groupname: 'ERROR',
-      total: 0,
-      display: 1,
-    },
-  ];
-  let newdata = convertDBDataToTimelineData(updateTimeline.users);
-  listOfFonctions.shift();
-  let newDisplayData = renderTimelineDisplaySeperateDays(newdata, listOfFonctions);
-
-  renderTimelineAddErrorWhenNoResults(newDisplayData.Fonctions, timeline);
-  updateTimeline.updateTimelineUsers(newDisplayData);
-  updateTimeline.updateTimelineFonctions(listOfFonctions);
 }
 
 const convertDBFonctionToTimelineFonction = (userdb: User) => {

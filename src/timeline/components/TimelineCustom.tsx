@@ -4,57 +4,40 @@ import Timeline, {
   SidebarHeader,
   DateHeader,
 } from 'react-calendar-timeline';
-import { TimelineNavigation } from './TimelineNavigation';
-import { RootState, RootDispatch } from '../../app/state/store';
+import TimelineNavigation from './TimelineNavigation';
+import { RootState } from '../../app/state/store';
 import { connect } from 'react-redux';
-import { User } from '../../app';
 import { timelineConstParameters } from '../constants/timelineParameters';
 import TimelineRenderFonction from './TimelineRenderFonction';
 import TimelineRenderDays from './TimelineRenderDays';
 import { renderTimelineUpdateDisplayWithFilters } from '../helpers/renderTimelineUserData';
 import { 
-  listOfFonctionsInterface, 
-  displayDataTimelineInterface, 
-  timelineRenderDaysInterface, 
-  timelineRenderFonctionInterface, 
-  visibleTimeInterface, 
-  timelineFilters, 
-} from './../index';
+  ItemRendererObject, 
+  GroupRenderObject, 
+  TimelineFilterData, 
+} from '../index';
 import 'react-calendar-timeline/lib/Timeline.css';
 import './styles/Timeline.css';
 
 interface Props {
-  updateTimelineReason: (reason: string) => void,
-  updateTimelineSearchName: (searchName: string) => void,
-  updateTimelineUsers: (timelineUsers: displayDataTimelineInterface) => void,
-  updateTimelineFonctions: (timelineFonctions: listOfFonctionsInterface[]) => void,
-  updateTimelineVisibleTime: (visibleTime: visibleTimeInterface) => void,
-  timeline: timelineFilters,
-  users: User[],
+  timeline: TimelineFilterData,
 }
 
 export class TimelineCustom extends React.Component<Props> {
   render() {
-    const { 
-      visibleTime, 
-      timelineUsers,
-    } = this.props.timeline;
 
     return (
       <div>
-        <TimelineNavigation
-          updateTimelineVisibleTime={(newtime: visibleTimeInterface) =>
-          {this.props.updateTimelineVisibleTime(newtime);}} 
-          visibleTime={visibleTime}/>
+        <TimelineNavigation />
         <Timeline
           {...timelineConstParameters}
           groups={renderTimelineUpdateDisplayWithFilters(this.props.timeline)}
-          items={timelineUsers.Days}
-          visibleTimeStart={visibleTime.start}
-          visibleTimeEnd={visibleTime.end}
-          itemRenderer={(timelineRenderDays : timelineRenderDaysInterface) => 
+          items={this.props.timeline.timelineUsers.items}
+          visibleTimeStart={this.props.timeline.visibleTime.start}
+          visibleTimeEnd={this.props.timeline.visibleTime.end}
+          itemRenderer={(timelineRenderDays : ItemRendererObject) => 
             <TimelineRenderDays {...timelineRenderDays} />}
-          groupRenderer={(timelineRenderFonction: timelineRenderFonctionInterface) =>
+          groupRenderer={(timelineRenderFonction: GroupRenderObject) =>
             <TimelineRenderFonction {...timelineRenderFonction} />
           }
         >
@@ -74,17 +57,6 @@ export class TimelineCustom extends React.Component<Props> {
 
 const mapState = (state: RootState) => ({
   timeline: state.timeline,
-  users: state.users.users,
 });
 
-const mapDispatch = (dispatch: RootDispatch) => ({
-  updateTimelineVisibleTime: dispatch.timeline.updateTimelineVisibleTime,
-  updateTimelineReason: dispatch.timeline.updateTimelineReason,
-  updateTimelineSearchName: dispatch.timeline.updateTimelineSearchName,
-  updateTimelineEmptyField: dispatch.timeline.updateTimelineEmptyField,
-  updateTimelineUsers: dispatch.timeline.updateTimelineUsers,
-  updateTimelineFonctions: dispatch.timeline.updateTimelineFonctions,
-  fetchTalents: dispatch.users.fetchTalents,
-});
-
-export default connect(mapState, mapDispatch)(TimelineCustom);
+export default connect(mapState)(TimelineCustom);

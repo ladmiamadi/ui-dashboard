@@ -1,7 +1,7 @@
-import { daysInterface } from '../index'
+import { TimelineItem } from '../index'
 import { absenceReasonList, absenceColorList } from '../constants/absenceReasons'
 
-const daysRenderDisplayAbsenceReason = (days: daysInterface) => {
+const daysRenderDisplayAbsenceReason = (days: TimelineItem) => {
     let result = "red";
 
     absenceReasonList.map((reason: string, index: number) => {
@@ -13,7 +13,7 @@ const daysRenderDisplayAbsenceReason = (days: daysInterface) => {
     return result;
 }
 
-export const daysRenderDisplayBackground = (days: daysInterface) => {
+export const daysRenderDisplayBackground = (days: TimelineItem) => {
     switch (days.state) {
       case 0:
         return "green";
@@ -24,7 +24,7 @@ export const daysRenderDisplayBackground = (days: daysInterface) => {
     }
 }
 
-export const daysRenderChangeStateBackground = (days: daysInterface) => {
+export const daysRenderChangeStateBackground = (days: TimelineItem) => {
     switch (days.state) {
       case 0:
         days.state = 1;
@@ -35,7 +35,7 @@ export const daysRenderChangeStateBackground = (days: daysInterface) => {
     }
 }
 
-export const daysRenderChangeStateColor = (days: daysInterface) => {
+export const daysRenderChangeStateColor = (days: TimelineItem) => {
     if (days.reason === absenceReasonList[0] && days.state === 1)
       return "black";
     else

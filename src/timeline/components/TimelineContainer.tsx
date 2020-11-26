@@ -6,62 +6,45 @@ import { connect } from 'react-redux';
 import TimelineCustom from './TimelineCustom';
 import TimelineTitle from './TimelineTitle';
 import TimelineOptions from './TimelineOptions';
-import { listOfFonctionsInterface, 
-  visibleTimeInterface, 
-  displayDataTimelineInterface, 
-  timelineFilters,
-  timelineContainerPropsInterface,
-} from '../index';
-import { convertRawDBDataToTimelineData } from '../helpers/databaseUserDataToTimelineData';
 
 interface Props {
-  updateTimelineReason: (reason: string) => void,
-  updateTimelineSearchName: (searchName: string) => void,
-  updateTimelineUsers: (timelineUsers: displayDataTimelineInterface) => void,
-  updateTimelineVisibleTime: (visibleTime: visibleTimeInterface) => void,
-  updateTimelineFonctions: (timelineFonctions: listOfFonctionsInterface[]) => void,
-  updateTimelineEmptyField: (displayEmptyField: boolean) => void,
-  timeline: timelineFilters,
+  initTimeline: (users: User[]) => void,
   users: User[],
   isFetching: boolean,
+  isConverting: boolean,
   fetchTalents: () => void,
 }
 
 export class TimelineContainer extends React.Component<Props> {
   componentDidMount = async () => {
     await this.props.fetchTalents();
-    let updateTimeline: timelineContainerPropsInterface = this.props;
-    convertRawDBDataToTimelineData(updateTimeline, this.props.timeline);
+    await this.props.initTimeline(this.props.users);
   }
 
   render() {
-    if (this.props.isFetching) {
+    if (this.props.isFetching || this.props.isConverting) {
+      
       return <Loader />;
     }
-     
+
     return (
       <div>
         <TimelineTitle />
-        <TimelineOptions {...this.props} />
+        <TimelineOptions />
         <TimelineCustom />
       </div>);
   }
 }
 
 const mapState = (state: RootState) => ({
-  timeline: state.timeline,
   users: state.users.users,
   isFetching: state.users.isFetching,
+  isConverting: state.timeline.isConverting,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({
-  updateTimelineVisibleTime: dispatch.timeline.updateTimelineVisibleTime,
-  updateTimelineReason: dispatch.timeline.updateTimelineReason,
-  updateTimelineSearchName: dispatch.timeline.updateTimelineSearchName,
-  updateTimelineEmptyField: dispatch.timeline.updateTimelineEmptyField,
-  updateTimelineUsers: dispatch.timeline.updateTimelineUsers,
-  updateTimelineFonctions: dispatch.timeline.updateTimelineFonctions,
   fetchTalents: dispatch.users.fetchTalents,
+  initTimeline: dispatch.timeline.initTimeline,
 });
 
 export default connect(mapState, mapDispatch)(TimelineContainer);

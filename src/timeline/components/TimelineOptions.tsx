@@ -1,7 +1,9 @@
 import React from 'react';
+import { RootDispatch, RootState } from '../../app/state/store';
+import { connect } from 'react-redux';
 import { 
-  listOfFonctionsInterface, 
-  timelineFilters,
+  GroupDisplay, 
+  TimelineFilterData,
 } from '../index';
 import { TimelineAbsences } from './TimelineAbsences';
 import { TimelineFilters } from './TimelineFilters';
@@ -10,9 +12,9 @@ import './styles/TimelineOptions.css';
 interface Props {
   updateTimelineReason: (reason: string) => void,
   updateTimelineSearchName: (searchName: string) => void,
-  updateTimelineFonctions: (timelineFonctions: listOfFonctionsInterface[]) => void,
+  updateTimelineFonctions: (timelineFonctions: GroupDisplay[]) => void,
   updateTimelineEmptyField: (displayEmptyField: boolean) => void,
-  timeline: timelineFilters,
+  timeline: TimelineFilterData,
 }
 
 export class TimelineOptions extends React.Component<Props> {
@@ -29,4 +31,15 @@ export class TimelineOptions extends React.Component<Props> {
   }
 }
 
-export default TimelineOptions;
+const mapState = (state: RootState) => ({
+  timeline: state.timeline,
+});
+
+const mapDispatch = (dispatch: RootDispatch) => ({
+  updateTimelineReason: dispatch.timeline.updateTimelineReason,
+  updateTimelineSearchName: dispatch.timeline.updateTimelineSearchName,
+  updateTimelineEmptyField: dispatch.timeline.updateTimelineEmptyField,
+  updateTimelineFonctions: dispatch.timeline.updateTimelineFonctions,
+});
+
+export default connect(mapState, mapDispatch)(TimelineOptions);

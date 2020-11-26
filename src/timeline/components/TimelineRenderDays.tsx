@@ -1,12 +1,12 @@
 import React from 'react';
-import { timelineRenderDaysInterface } from '../index';
+import { ItemRendererObject } from '../index';
 import { daysRenderDisplayBackground, 
   daysRenderChangeStateBackground, 
   daysRenderChangeStateColor } from '../helpers/renderTimelineUserState';
 import { RootState } from '../../app/state/store';
 import { connect } from 'react-redux';
 
-interface Props extends timelineRenderDaysInterface {
+interface Props extends ItemRendererObject {
   reason: string,
 }
 
@@ -19,7 +19,7 @@ export class TimelineRenderDays extends React.Component<Props> {
       daysRenderChangeStateBackground(this.props.item) : 
       daysRenderDisplayBackground(this.props.item);
     let color = daysRenderChangeStateColor(this.props.item);
-    const borderColor = this.props.itemContext.selected ? 'orange' : 'rgba(0, 0, 0, 0.500)';
+    const borderColor = this.props.itemContext.selected ? 'orange' : 'rgba(0,0,0,0.5)';
     if (this.props.item.group === -1) {
       color = 'black';
       background = 'red';

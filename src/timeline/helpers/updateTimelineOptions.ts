@@ -1,17 +1,19 @@
 import {
-    timelineFiltersInterface,
+  TimelineFilterData,
     timelineOptionsPropsInterface
   } from '../index';
 import { renderTimelineUpdateDisplayWithFilters } from '../helpers/renderTimelineUserData';
 
 export const toggleCheckBox = (timelineOptionProps: timelineOptionsPropsInterface, onetable: number) => {
     let listOfFonction = [...timelineOptionProps.timeline.timelineFonctions];
-    let timelineFilters: timelineFiltersInterface = {
+    let timelineFilters: TimelineFilterData = {
+      reason: timelineOptionProps.timeline.reason,
       searchName: timelineOptionProps.timeline.searchName,
       displayEmptyField: timelineOptionProps.timeline.displayEmptyField,
       visibleTime: timelineOptionProps.timeline.visibleTime,
       timelineFonctions: listOfFonction,
       timelineUsers: timelineOptionProps.timeline.timelineUsers,
+      isConverting: false,
     };
 
     if (listOfFonction[onetable].display === 0) {
@@ -24,24 +26,28 @@ export const toggleCheckBox = (timelineOptionProps: timelineOptionsPropsInterfac
   }
 
 export const updateSearchTherms = (timelineOptionProps: timelineOptionsPropsInterface, nametochange: string) => {
-    const timelineFilters: timelineFiltersInterface = {
+    const timelineFilters: TimelineFilterData = {
+      reason: timelineOptionProps.timeline.reason,
       searchName: nametochange,
       displayEmptyField: timelineOptionProps.timeline.displayEmptyField,
       visibleTime: timelineOptionProps.timeline.visibleTime,
       timelineFonctions: timelineOptionProps.timeline.timelineFonctions,
       timelineUsers: timelineOptionProps.timeline.timelineUsers,
+      isConverting: false,
     };
     timelineOptionProps.updateTimelineSearchName(nametochange);
     renderTimelineUpdateDisplayWithFilters(timelineFilters);
   }
 
 export const toggleEmptyFields = (timelineOptionProps: timelineOptionsPropsInterface) => {
-    let timelineFilters: timelineFiltersInterface = {
+    let timelineFilters: TimelineFilterData = {
+      reason: timelineOptionProps.timeline.reason,
       searchName: timelineOptionProps.timeline.searchName,
       displayEmptyField: timelineOptionProps.timeline.displayEmptyField,
       visibleTime: timelineOptionProps.timeline.visibleTime,
       timelineFonctions: timelineOptionProps.timeline.timelineFonctions,
       timelineUsers: timelineOptionProps.timeline.timelineUsers,
+      isConverting: false,
     };
 
     if (timelineOptionProps.timeline.displayEmptyField) {

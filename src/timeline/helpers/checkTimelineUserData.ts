@@ -1,6 +1,6 @@
-import { fonctionInterface, listOfFonctionsInterface, timelineFiltersInterface } from '../index'
+import { TimelineGroup, GroupDisplay, TimelineFilterData } from '../index'
 
-export const renderTimelineAddErrorWhenNoResults = (copyDisplayData: fonctionInterface[], timelineFilters: timelineFiltersInterface)=> {
+export const renderTimelineAddErrorWhenNoResults = (copyDisplayData: TimelineGroup[], timelineFilters: TimelineFilterData)=> {
   const noResultFonctions = 
   {
     id: -1,
@@ -15,7 +15,7 @@ export const renderTimelineAddErrorWhenNoResults = (copyDisplayData: fonctionInt
   if (copyDisplayData.length === 0) {
     copyDisplayData.push(noResultFonctions);
   } else {
-    copyDisplayData.map((dpdata:fonctionInterface, index:number) => {
+    copyDisplayData.map((dpdata:TimelineGroup, index:number) => {
       if (dpdata.rightTitle === 'ERROR') {
        copyDisplayData.splice(index, 1);
       }
@@ -24,25 +24,25 @@ export const renderTimelineAddErrorWhenNoResults = (copyDisplayData: fonctionInt
   }
 }
 
-const changeErrorVisibleTime = (timelineFilters: timelineFiltersInterface) => {
-  if (timelineFilters.timelineUsers.Days.length <= 1) {
+const changeErrorVisibleTime = (timelineFilters: TimelineFilterData) => {
+  if (timelineFilters.timelineUsers.items.length <= 1) {
     return 0;
   }
   
-  timelineFilters.timelineUsers.Days[0].start_time = timelineFilters.visibleTime.start;
-  timelineFilters.timelineUsers.Days[0].end_time = timelineFilters.visibleTime.end;
+  timelineFilters.timelineUsers.items[0].start_time = timelineFilters.visibleTime.start;
+  timelineFilters.timelineUsers.items[0].end_time = timelineFilters.visibleTime.end;
 }
 
-export const checkTimelineUserDataWithFilter = (timelineFilters: timelineFiltersInterface) => {
-    let newTimelineDisplay: fonctionInterface[] = []
+export const checkTimelineUserDataWithFilter = (timelineFilters: TimelineFilterData) => {
+    let newTimelineDisplay: TimelineGroup[] = []
 
-    timelineFilters.timelineFonctions.map((tb: listOfFonctionsInterface) => {
+    timelineFilters.timelineFonctions.map((tb: GroupDisplay) => {
       tb.total = 0;
 
       return 0;
     });
-    timelineFilters.timelineUsers.Fonctions.map((displayData: fonctionInterface) => {
-      timelineFilters.timelineFonctions.map((fonctionData: listOfFonctionsInterface) => {
+    timelineFilters.timelineUsers.groups.map((displayData: TimelineGroup) => {
+      timelineFilters.timelineFonctions.map((fonctionData: GroupDisplay) => {
         if (fonctionData.display === 1 && fonctionData.groupname === displayData.rightTitle && 
           isFonctionVisibleOnTimeline(timelineFilters, displayData))
           if (displayData.title.toLowerCase().includes(timelineFilters.searchName.toLowerCase()) || 
@@ -57,17 +57,17 @@ export const checkTimelineUserDataWithFilter = (timelineFilters: timelineFilters
     return newTimelineDisplay;
 }
 
-const isFonctionVisibleOnTimeline = (timelineFilters: timelineFiltersInterface, currentFonction: fonctionInterface) => {
+const isFonctionVisibleOnTimeline = (timelineFilters: TimelineFilterData, currentFonction: TimelineGroup) => {
 
   if (timelineFilters.displayEmptyField) {
     return true;
   }
-  for (let i in timelineFilters.timelineUsers.Days) {
-    if (timelineFilters.timelineUsers.Days[i].group === currentFonction.id) {
-      if ((timelineFilters.timelineUsers.Days[i].end_time >= timelineFilters.visibleTime.start && 
-        timelineFilters.timelineUsers.Days[i].end_time <= timelineFilters.visibleTime.start) || (
-        timelineFilters.timelineUsers.Days[i].start_time >= timelineFilters.visibleTime.end && 
-        timelineFilters.timelineUsers.Days[i].start_time <= timelineFilters.visibleTime.end))
+  for (let i in timelineFilters.timelineUsers.items) {
+    if (timelineFilters.timelineUsers.items[i].group === currentFonction.id) {
+      if ((timelineFilters.timelineUsers.items[i].end_time >= timelineFilters.visibleTime.start && 
+        timelineFilters.timelineUsers.items[i].end_time <= timelineFilters.visibleTime.start) || (
+        timelineFilters.timelineUsers.items[i].start_time >= timelineFilters.visibleTime.end && 
+        timelineFilters.timelineUsers.items[i].start_time <= timelineFilters.visibleTime.end))
         return true;
     }
   }

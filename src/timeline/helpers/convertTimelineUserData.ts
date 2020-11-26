@@ -1,16 +1,16 @@
-import { displayDataTimelineInterface, 
-  fonctionInterface, 
-  listOfFonctionsInterface, 
-  daysInterface,
+import { TimelineDataUsers, 
+  TimelineGroup, 
+  GroupDisplay, 
+  TimelineItem,
 } from '../index'
 import { sortTimelineUsersByFonction } from "../helpers/databaseUserDataToTimelineData"
 import moment from "moment"
 
-const sortAndListOfFonctions = (stateDisplayData: displayDataTimelineInterface, 
-  stateListOfFonctions: listOfFonctionsInterface[]) => {
+const sortAndListOfFonctions = (stateDisplayData: TimelineDataUsers, 
+  stateListOfFonctions: GroupDisplay[]) => {
     let copyDisplayData = {...stateDisplayData};
 
-    copyDisplayData.Fonctions.map((dpfonction: fonctionInterface) => {
+    copyDisplayData.groups.map((dpfonction: TimelineGroup) => {
       if (dpfonction.rightTitle === "ERROR") {
         return 1;
       }
@@ -18,12 +18,12 @@ const sortAndListOfFonctions = (stateDisplayData: displayDataTimelineInterface,
 
       return 0;
     })
-    sortTimelineUsersByFonction(copyDisplayData.Fonctions);
+    sortTimelineUsersByFonction(copyDisplayData.groups);
 
     return copyDisplayData;
 }
 
-const addFonctionNameToFilters = (tosearch: string, listOfFonctionsState: listOfFonctionsInterface[]) => {
+const addFonctionNameToFilters = (tosearch: string, listOfFonctionsState: GroupDisplay[]) => {
     let listOfFonction = listOfFonctionsState;
     let copyOfOneItemFonction = {...listOfFonction[0]};
 
@@ -43,15 +43,15 @@ const addFonctionNameToFilters = (tosearch: string, listOfFonctionsState: listOf
     return tosearch;
 }
 
-export const renderTimelineDisplaySeperateDays = (stateDisplayData: displayDataTimelineInterface, 
-  stateListOfFonctions: listOfFonctionsInterface[]) => {
+export const renderTimelineDisplaySeperateDays = (stateDisplayData: TimelineDataUsers, 
+  stateListOfFonctions: GroupDisplay[]) => {
     let newRenderDisplayTimeline = sortAndListOfFonctions(stateDisplayData, stateListOfFonctions)
-    let daysOfTimeline = newRenderDisplayTimeline.Days;
+    let daysOfTimeline = newRenderDisplayTimeline.items;
     let copyAndEditLastDisplayItem = {...daysOfTimeline[0]};
     let newDateOfLastItem;
     let newArrayLenghtOfItem = 0;
 
-    stateDisplayData.Days.map((days: daysInterface, index: number) => {
+    stateDisplayData.items.map((days: TimelineItem, index: number) => {
       if (days.group === -1) {
         return 1;
       }
