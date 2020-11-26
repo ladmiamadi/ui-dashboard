@@ -1,12 +1,14 @@
 import { InputState, IsFormValid, UserSignUp } from '../index.d';
 
 export const createEmptyUserSignUp = (): UserSignUp => ({
-  jobPosition: '',
+
   firstName: '',
-  platform: '',
   lastName: '',
+  jobPosition: '',
   username: '',
   phone: '',
+  recrutementSection: '',
+  platform: '',
   recruitmentTray: '',
   recruitmentComments: '',
   institutionSection: '',
@@ -18,12 +20,14 @@ export const createEmptyUserSignUp = (): UserSignUp => ({
 });
 
 export const createEmptyIsFormValid = (): IsFormValid => ({
-  jobPosition: InputState.UNDEFINED,
+
   firstName: InputState.UNDEFINED,
-  platform: InputState.UNDEFINED,
   lastName: InputState.UNDEFINED,
+  jobPosition: InputState.UNDEFINED,
   username: InputState.UNDEFINED,
   phone: InputState.UNDEFINED,
+  recrutementSection: InputState.TRUE, // No validation needed
+  platform: InputState.UNDEFINED,
   recruitmentTray: InputState.UNDEFINED,
   recruitmentComments: InputState.UNDEFINED,
   institutionSection: InputState.TRUE, // No validation needed

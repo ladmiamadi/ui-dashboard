@@ -6,6 +6,7 @@ import { DatePickerFieldForm } from '../../../app/components/utils/DatePickerFie
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { UserProfileHelpers } from '../../../app/helpers/UserProfileHelpers';
+import { HUMAN_RESOURCES_STAFF } from '../../constants/human-resources-staff';
 import { RootDispatch, RootState } from '../../../app/state/store';
 import ProfileCollection from '../../helpers/ProfileCollection';
 import { UpdateUserPayload } from '../../state/models/user-selected';
@@ -104,31 +105,18 @@ export class TalentFormHead extends React.Component<Props> {
             })}
             value={userProfileLive?.phone}
             required={false}
-          />
-          <DatePickerFieldForm
-            keyName="startDate"
-            label="Début du stage: "
-            value={this.props.user.userJob?.startDate}
-            locale={fr}
-            handleChange={(value) => this.props.modifyUser({
-              category: 'userJob',
-              property: 'startDate',
+          />          
+          <SelectFormField
+            keyName="sourcedBy"
+            label="Sourcé par: "
+            options={HUMAN_RESOURCES_STAFF}
+            handleChange={(property, value) => this.props.modifyUser({
+              category: 'userProfiles',
+              property,
               value,
               index: indexLive,
             })}
-            required={true}
-          />
-          <DatePickerFieldForm
-            keyName="endDate"
-            label="Fin du stage: "
-            value={this.props.user.userJob?.endDate}
-            locale={fr}
-            handleChange={(value) => this.props.modifyUser({
-              category: 'userJob',
-              property: 'endDate',
-              value,
-              index: indexLive,
-            })}
+            value={userProfileLive?.position || ''}
             required={true}
           />
         </div>

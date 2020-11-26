@@ -35,7 +35,13 @@ export const FORM_REGISTER: FormRegister = {
     regEx: '^[+]?[0-9]+$',
     type: 'text',
   },
-
+  recrutementSection: {
+    id: 'recrutementSection',
+    label: 'Recrutement',
+    regEx: '.',
+    type: 'text',
+    isSectionTitle: true,
+  },
   platform: {
     id: 'platform',
     label: 'Plateforme',

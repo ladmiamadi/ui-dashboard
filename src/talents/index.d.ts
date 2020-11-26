@@ -22,9 +22,11 @@ export interface UserRegister<T> {
   jobPosition: T,
   firstName: T,
   lastName: T,
-  platform: T,
   username: T,
+  
   phone: T,
+  recrutementSection: T,
+  platform: T,
   recruitmentTray: T,
   recruitmentComments: T,
   institutionSection: T,

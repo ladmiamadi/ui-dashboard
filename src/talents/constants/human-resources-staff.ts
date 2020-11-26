@@ -1,0 +1,1 @@
+export const HUMAN_RESOURCES_STAFF = ['personne 1', 'personne 2', 'personne 3', 'personne 4'];

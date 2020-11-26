@@ -28,7 +28,7 @@ export default class FormRegisterUser extends Component<Props> {
               {
                 inputsPropsRow.map((inputProps) =>
                   <>
-                    {inputProps.isSectionTitle && <h4 className="register-form-title">{inputProps.label}</h4>}
+                    {inputProps.isSectionTitle && <h5 className="register-form-title">{inputProps.label}</h5>}
                     {!inputProps.isSectionTitle && <InputRegisterUsers key={inputProps.id} {...inputProps} />}
                   </>,
                 )
