@@ -54,7 +54,7 @@ export interface UserProfile {
   lastName: string,
   firstName: string,
   email: string,
-  phone: string,
+  phone?: string,
   requestInFrench?: string,
   requestInEnglish?: string,
   requestInDutch?: string,

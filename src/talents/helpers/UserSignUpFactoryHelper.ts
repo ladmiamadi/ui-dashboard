@@ -6,7 +6,6 @@ export const createEmptyUserSignUp = (): UserSignUp => ({
   lastName: '',
   jobPosition: '',
   username: '',
-  phone: '',
   recrutementSection: '',
   platform: '',
   recruitmentComments: '',
@@ -25,7 +24,6 @@ export const createEmptyIsFormValid = (): IsFormValid => ({
   lastName: InputState.UNDEFINED,
   jobPosition: InputState.UNDEFINED,
   username: InputState.UNDEFINED,
-  phone: InputState.UNDEFINED,
   recrutementSection: InputState.TRUE, // No validation needed
   platform: InputState.UNDEFINED,
   recruitmentComments: InputState.UNDEFINED,

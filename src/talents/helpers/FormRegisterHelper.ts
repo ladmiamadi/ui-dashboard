@@ -44,9 +44,6 @@ export const doubleArrayPropsInput = (
       },
     ],
     [
-      createField(props, 'phone'),
-    ],
-    [
       createField(props, 'recrutementSection'),
     ],
     [
