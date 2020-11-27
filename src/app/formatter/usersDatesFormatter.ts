@@ -10,10 +10,14 @@ export class UsersDatesFormatter {
 
   public static transformUserDateFormat(user: User) {
     FormatDates.formatDate(user);
-    if (user.userJob)
+    if (user.userJob) {
       FormatDates.formatDate(user.userJob);
-    if (user.userJob && user.userJob.job)
+    }
+
+    if (user.userJob && user.userJob.job) {
       FormatDates.formatDate(user.userJob.job);
+    }
+
     FormatDates.updateDateFromList(user.userExperiences as [any]);
     FormatDates.updateDateFromList(user.userTrainings as [any]);
     FormatDates.updateDateFromList(user.userContracts as [any]);

@@ -24,11 +24,11 @@ export const createEmptyIsFormValid = (): IsFormValid => ({
   lastName: InputState.UNDEFINED,
   jobPosition: InputState.UNDEFINED,
   username: InputState.UNDEFINED,
-  recrutementSection: InputState.TRUE, // No validation needed
+  recrutementSection: InputState.TRUE,
   platform: InputState.UNDEFINED,
   recruitmentComments: InputState.UNDEFINED,
   mailboxHR: InputState.UNDEFINED,
-  institutionSection: InputState.TRUE, // No validation needed
+  institutionSection: InputState.TRUE,
   institution: InputState.UNDEFINED,
   emailInstitution: InputState.UNDEFINED,
   phoneInstitution: InputState.UNDEFINED,

@@ -28,6 +28,7 @@ export const users = createModel({
       try {
         this.setIsFetching(true);
         const { data: users } = await apiService.get<User[]>('/api/users');
+
         users.forEach(user => {
           if (user.userAddress == null) {
             user.userAddress = {};

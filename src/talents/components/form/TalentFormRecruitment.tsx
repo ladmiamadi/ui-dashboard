@@ -16,7 +16,8 @@ export default class TalentFormRecruitment extends React.Component<Props> {
   render() {
     const indexLive: number = ProfileCollection.findLiveIndex(this.props.user.userProfiles);
     const userProfileLive: UserProfile | undefined = ProfileCollection.filterByEnvironment(
-      this.props.user.userProfiles, 'live',
+      this.props.user.userProfiles,
+      'live',
     );
 
     return (

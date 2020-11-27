@@ -84,9 +84,9 @@ export const userSelected = createModel({
 
       try {
         delete user.userRole;
-        // delete user.userSkills;
 
         const { data: updatedUser } = await apiService.put<User>(`/api/users/${user.id}`, user);
+
         UsersDatesFormatter.transformUserDateFormat(updatedUser);
         this.updateUserSelected(updatedUser);
 

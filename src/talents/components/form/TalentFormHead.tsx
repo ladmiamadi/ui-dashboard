@@ -29,7 +29,9 @@ export class TalentFormHead extends React.Component<Props> {
     );
     const filePath = UserProfileHelpers.getUserProfilePictureUrl(userProfileLive);
     const jobPositions = this.props.jobCollection.map((job: Job) => job.position);
-    const users = this.props.users.map(usermap => UserProfileHelpers.getUsernameFromUser(usermap)).filter(usermap => usermap !== '');
+    const users = this.props.users
+      .map(user => UserProfileHelpers.getUsernameFromUser(user))
+      .filter(user => user !== '');
 
     return (
       <div className="form-head">
