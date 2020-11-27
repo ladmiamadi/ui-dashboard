@@ -5,13 +5,13 @@ import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { UserProfileHelpers } from '../../../app/helpers/UserProfileHelpers';
 import { RootDispatch, RootState } from '../../../app/state/store';
-import { HUMAN_RESOURCES_STAFF } from '../../constants/human-resources-staff';
 import ProfileCollection from '../../helpers/ProfileCollection';
 import { UpdateUserPayload } from '../../state/models/user-selected';
 
 interface Props {
   jobCollection: Job[],
   user: User,
+  users: User[],
   fetchJobsInDb: () => Promise<void>,
   modifyUser: (payload: UpdateUserPayload) => void,
 }
@@ -22,6 +22,15 @@ export class TalentFormHead extends React.Component<Props> {
     this.props.fetchJobsInDb();
   }
 
+  getUsernameFromUser(user: User): string {
+    if (!user.userProfiles) {
+      return '';
+    }
+
+    const userProfileLive = user.userProfiles.find(up => up.environment === 'live');
+    return (userProfileLive) ? userProfileLive.firstName + ' ' + userProfileLive.lastName : '';
+  }
+
   render() {
     const indexLive: number = ProfileCollection.findLiveIndex(this.props.user.userProfiles);
     const userProfileLive: UserProfile | undefined = ProfileCollection.filterByEnvironment(
@@ -29,6 +38,7 @@ export class TalentFormHead extends React.Component<Props> {
     );
     const filePath = UserProfileHelpers.getUserProfilePictureUrl(userProfileLive);
     const jobPositions = this.props.jobCollection.map((job: Job) => job.position);
+    const users = this.props.users.map(u => this.getUsernameFromUser(u));
 
     return (
       <div className="form-head">
@@ -107,7 +117,7 @@ export class TalentFormHead extends React.Component<Props> {
           <SelectFormField
             keyName="sourceByHR"
             label="Sourcé par: "
-            options={HUMAN_RESOURCES_STAFF}
+            options={users}
             handleChange={(property, value) => this.props.modifyUser({
               category: 'userProfiles',
               property,

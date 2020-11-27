@@ -18,6 +18,7 @@ import './styles/TalentForm.css';
 import classes from './styles/TalentFormPageContainer.module.css';
 
 interface Props {
+  users: User[],
   user: User,
   modifyUser: (payload: UpdateUserPayload) => void,
   saveUserInDb: (user: User) => Promise<void>,
@@ -61,6 +62,7 @@ export class TalentFormPageContainer extends React.Component<Props> {
 }
 
 const mapState = (state: RootState) => ({
+  users: state.users.users,
   user: state.userSelected.userSelected,
 });
 
