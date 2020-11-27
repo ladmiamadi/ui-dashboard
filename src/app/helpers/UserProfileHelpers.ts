@@ -41,4 +41,14 @@ export class UserProfileHelpers {
         ? `${userProfile.picture.filePath}`
         : DEFAULT_AVATAR_IMG);
   }
+
+  public static getUsernameFromUser(user: User): string {
+    if (!user.userProfiles) {
+      return '';
+    }
+
+    const userProfileLive = user.userProfiles.find(up => up.environment === 'live');
+
+    return (userProfileLive) ? userProfileLive.firstName + ' ' + userProfileLive.lastName : '';
+  }
 }

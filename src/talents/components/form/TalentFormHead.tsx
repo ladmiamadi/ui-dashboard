@@ -22,15 +22,6 @@ export class TalentFormHead extends React.Component<Props> {
     this.props.fetchJobsInDb();
   }
 
-  getUsernameFromUser(user: User): string {
-    if (!user.userProfiles) {
-      return '';
-    }
-
-    const userProfileLive = user.userProfiles.find(up => up.environment === 'live');
-    return (userProfileLive) ? userProfileLive.firstName + ' ' + userProfileLive.lastName : '';
-  }
-
   render() {
     const indexLive: number = ProfileCollection.findLiveIndex(this.props.user.userProfiles);
     const userProfileLive: UserProfile | undefined = ProfileCollection.filterByEnvironment(
@@ -38,7 +29,7 @@ export class TalentFormHead extends React.Component<Props> {
     );
     const filePath = UserProfileHelpers.getUserProfilePictureUrl(userProfileLive);
     const jobPositions = this.props.jobCollection.map((job: Job) => job.position);
-    const users = this.props.users.map(u => this.getUsernameFromUser(u));
+    const users = this.props.users.map(usermap => UserProfileHelpers.getUsernameFromUser(usermap)).filter(usermap => usermap !== '');
 
     return (
       <div className="form-head">
@@ -126,6 +117,7 @@ export class TalentFormHead extends React.Component<Props> {
             })}
             value={userProfileLive?.sourceByHR || ''}
             required={true}
+            size={5}
           />
         </div>
         <div className="connection-box">

@@ -8,6 +8,7 @@ interface Props {
   label: string,
   options: string[],
   required?: boolean,
+  size?: number,
   value: string,
   handleChange: (property: string, value: string) => void,
   updateModel?: (value: string, property: string) => void,
@@ -31,6 +32,7 @@ export class SelectFormField extends React.Component<Props> {
           id={this.props.label}
           value={this.props.value}
           required={this.props.required}
+          size={this.props.size}
         >
           <option>Aucun</option>
           <OptionList options={this.props.options} />
