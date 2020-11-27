@@ -8,6 +8,15 @@ export class UsersDatesFormatter {
     });
   }
 
+  static fieldsWithDates: Array<keyof User> = [
+    'userExperiences',
+    'userTrainings',
+    'userContracts',
+    'userAbsences',
+    'userInterviews',
+    'userProfiles',
+  ];
+
   public static transformUserDateFormat(user: User) {
     FormatDates.formatDate(user);
     if (user.userJob) {
@@ -18,12 +27,9 @@ export class UsersDatesFormatter {
       FormatDates.formatDate(user.userJob.job);
     }
 
-    FormatDates.updateDateFromList(user.userExperiences as [any]);
-    FormatDates.updateDateFromList(user.userTrainings as [any]);
-    FormatDates.updateDateFromList(user.userContracts as [any]);
-    FormatDates.updateDateFromList(user.userAbsences as [any]);
-    FormatDates.updateDateFromList(user.userInterviews as [any]);
-    FormatDates.updateDateFromList(user.userProfiles as [any]);
+    UsersDatesFormatter.fieldsWithDates.map((fieldWithDates) =>
+      FormatDates.updateDateFromList(user[fieldWithDates] as [any]),
+    );
   }
 }
 

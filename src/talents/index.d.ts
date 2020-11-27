@@ -25,6 +25,7 @@ export interface UserRegister<T> {
   username: T,
   recrutementSection: T,
   platform: T,
+  phone: T,
   mailboxHR: T,
   recruitmentComments: T,
   institutionSection: T,
@@ -75,3 +76,6 @@ export interface PropsForInput {
   setIsFormValid: (property: keyof UserRegister<T>, regEx: string) => void,
 }
 
+export enum POSITIONS {
+  HR = 'HR',
+}

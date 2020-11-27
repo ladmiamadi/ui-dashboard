@@ -65,7 +65,6 @@ export default class TalentFormRecruitment extends React.Component<Props> {
               keyName="recruitmentComments"
               label="Commentaires sur le recrutement: "
               className="generic-field-form"
-              rows={5}
               type="textarea"
               handleChange={(value) => this.props.modifyUser({
                 category: 'userProfiles',

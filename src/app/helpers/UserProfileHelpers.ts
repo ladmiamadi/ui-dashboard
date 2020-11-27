@@ -1,10 +1,10 @@
 import { env } from '../../helpers/environment';
+import { POSITIONS } from '../../talents/index.d';
 import { User, UserProfile } from '../index';
 
 const DEFAULT_AVATAR_IMG = '/default_avatar.png';
 
 export class UserProfileHelpers {
-
   private static isMatchingProfile(profile: UserProfile, searchTerm: string): boolean {
     return profile.firstName.toLocaleLowerCase().includes(searchTerm)
       || profile.lastName.toLocaleLowerCase().includes(searchTerm)
@@ -50,5 +50,15 @@ export class UserProfileHelpers {
     const userProfileLive = user.userProfiles.find(up => up.environment === 'live');
 
     return (userProfileLive) ? userProfileLive.firstName + ' ' + userProfileLive.lastName : '';
+  }
+
+  public static isHR(user: User): unknown {
+    if (!user.userProfiles) {
+      return '';
+    }
+
+    const userProfileLive = user.userProfiles.find(up => up.environment === 'live');
+
+    return userProfileLive?.position === POSITIONS.HR.toString();
   }
 }

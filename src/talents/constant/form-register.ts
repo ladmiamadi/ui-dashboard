@@ -29,6 +29,12 @@ export const FORM_REGISTER: FormRegister = {
     type: 'email',
     required: true,
   },
+  phone: {
+    id: 'phone',
+    label: 'Téléphone',
+    regEx: '^[+]?[0-9]*$',
+    type: 'text',
+  },
   recrutementSection: {
     id: 'recrutementSection',
     label: 'Recrutement',
@@ -54,7 +60,7 @@ export const FORM_REGISTER: FormRegister = {
     id: 'recruitmentComments',
     label: 'Commentaires sur le recrutement',
     regEx: '.',
-    type: 'text',
+    type: 'textarea',
     required: true,
   },
   institutionSection: {
@@ -81,7 +87,7 @@ export const FORM_REGISTER: FormRegister = {
   phoneInstitution: {
     id: 'phoneInstitution',
     label: 'Téléphone École:',
-    regEx: '.',
+    regEx: '^[+]?[0-9]+$',
     type: 'text',
     required: true,
   },
