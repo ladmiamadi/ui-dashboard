@@ -1,17 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { RootDispatch, RootState } from '../../app/state/store';
 import { Loader } from '../../app/components/utils/Loader';
 import { User } from '../../app';
-import { connect } from 'react-redux';
 import TimelineCustom from './TimelineCustom';
 import TimelineTitle from './TimelineTitle';
 import TimelineOptions from './TimelineOptions';
 
 interface Props {
-  initTimeline: (users: User[]) => void,
   users: User[],
   isFetching: boolean,
   isConverting: boolean,
+  initTimeline: (users: User[]) => void,
   fetchTalents: () => void,
 }
 
@@ -23,7 +23,6 @@ export class TimelineContainer extends React.Component<Props> {
 
   render() {
     if (this.props.isFetching || this.props.isConverting) {
-      
       return <Loader />;
     }
 

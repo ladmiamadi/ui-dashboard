@@ -1,58 +1,24 @@
 import React from 'react';
-import moment from 'moment';
+import { connect } from 'react-redux';
 import { TimelineVisibleTime } from '../index';
 import { RootState, RootDispatch } from '../../app/state/store';
-import { connect } from 'react-redux';
+import { onPrevClickMonth, onPrevClick, onNextClick, onNextClickMonth } from '../helpers/updateNavigation';
 
 interface Props {
-    updateTimelineVisibleTime: (visibleTime: TimelineVisibleTime) => void,
     visibleTime: TimelineVisibleTime,
+    updateTimelineVisibleTime: (visibleTime: TimelineVisibleTime) => void,
 }
 
 export class TimelineNavigation extends React.Component<Props> {
-  onPrevClick = () => {
-    let newDisplayTime: TimelineVisibleTime = {
-      start: moment(this.props.visibleTime.start).startOf('week').add(-1, 'week').add(1, 'days').valueOf(),
-      end: moment(this.props.visibleTime.end).startOf('week').add(-1, 'week').add(1, 'days').valueOf(),
-    };
-    this.props.updateTimelineVisibleTime(newDisplayTime);
-  };
-
-  onPrevClickMonth = () => {
-    let newDisplayTime: TimelineVisibleTime = {
-      start: moment(this.props.visibleTime.start)
-        .startOf('week').add(-1, 'month').startOf('week').add(1, 'days').valueOf(),
-      end: moment(this.props.visibleTime.end)
-        .startOf('week').add(-1, 'month').startOf('week').add(1, 'days').valueOf(),
-    };
-    this.props.updateTimelineVisibleTime(newDisplayTime);
-  };
-
-  onNextClick = () => {
-    let newDisplayTime: TimelineVisibleTime = {
-      start: moment(this.props.visibleTime.start).startOf('week').add(1, 'week').add(1, 'days').valueOf(),
-      end: moment(this.props.visibleTime.end).startOf('week').add(1, 'week').add(1, 'days').valueOf(),
-    };
-    this.props.updateTimelineVisibleTime(newDisplayTime);
-  };
-
-  onNextClickMonth = () => {
-    let newDisplayTime: TimelineVisibleTime = {
-      start: moment(this.props.visibleTime.start)
-        .startOf('week').add(1, 'month').startOf('week').add(1, 'days').valueOf(),
-      end: moment(this.props.visibleTime.end)
-        .startOf('week').add(1, 'month').startOf('week').add(1, 'days').valueOf(),
-    };
-    this.props.updateTimelineVisibleTime(newDisplayTime);
-  };
-
   render() {
+    const { visibleTime, updateTimelineVisibleTime } = this.props;
+
     return (
       <div>
-        <button onClick={this.onPrevClickMonth}>{'<<<'}</button>
-        <button onClick={this.onPrevClick}>{'<<'}</button>
-        <button onClick={this.onNextClick}>{'>>'}</button>
-        <button onClick={this.onNextClickMonth}>{'>>>'}</button>
+        <button onClick={() => onPrevClickMonth(visibleTime, updateTimelineVisibleTime)}>{'<<<'}</button>
+        <button onClick={() => onPrevClick(visibleTime, updateTimelineVisibleTime)}>{'<<'}</button>
+        <button onClick={() => onNextClick(visibleTime, updateTimelineVisibleTime)}>{'>>'}</button>
+        <button onClick={() => onNextClickMonth(visibleTime, updateTimelineVisibleTime)}>{'>>>'}</button>
       </div>
     );
   }

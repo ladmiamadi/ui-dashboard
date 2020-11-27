@@ -4,18 +4,18 @@ import Timeline, {
   SidebarHeader,
   DateHeader,
 } from 'react-calendar-timeline';
-import TimelineNavigation from './TimelineNavigation';
-import { RootState } from '../../app/state/store';
 import { connect } from 'react-redux';
-import { timelineConstParameters } from '../constants/timelineParameters';
+import { RootState } from '../../app/state/store';
+import {
+  ItemRendererObject,
+  GroupRenderObject,
+  TimelineFilterData,
+} from '../index';
+import TimelineNavigation from './TimelineNavigation';
 import TimelineRenderFonction from './TimelineRenderFonction';
 import TimelineRenderDays from './TimelineRenderDays';
+import { TIMELINE_PARAMETERS } from '../constants/timeline-parameters';
 import { renderTimelineUpdateDisplayWithFilters } from '../helpers/renderTimelineUserData';
-import { 
-  ItemRendererObject, 
-  GroupRenderObject, 
-  TimelineFilterData, 
-} from '../index';
 import 'react-calendar-timeline/lib/Timeline.css';
 import './styles/Timeline.css';
 
@@ -25,16 +25,17 @@ interface Props {
 
 export class TimelineCustom extends React.Component<Props> {
   render() {
+    const { timelineUsers, visibleTime } = this.props.timeline;
 
     return (
       <div>
         <TimelineNavigation />
         <Timeline
-          {...timelineConstParameters}
+          {...TIMELINE_PARAMETERS}
           groups={renderTimelineUpdateDisplayWithFilters(this.props.timeline)}
-          items={this.props.timeline.timelineUsers.items}
-          visibleTimeStart={this.props.timeline.visibleTime.start}
-          visibleTimeEnd={this.props.timeline.visibleTime.end}
+          items={timelineUsers.items}
+          visibleTimeStart={visibleTime.start}
+          visibleTimeEnd={visibleTime.end}
           itemRenderer={(timelineRenderDays : ItemRendererObject) => 
             <TimelineRenderDays {...timelineRenderDays} />}
           groupRenderer={(timelineRenderFonction: GroupRenderObject) =>

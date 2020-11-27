@@ -37,7 +37,7 @@ export interface GroupDisplay {
     id: number,
     groupname: string,
     total: number,
-    display: number,
+    display: boolean,
 }
 
 export interface TimelineDataUsers {
@@ -46,7 +46,7 @@ export interface TimelineDataUsers {
 }
 
 export interface ItemRendererObject {
-    item: itemInterface,
+    item: TimelineItem,
     itemContext: ItemContextProperties,
     getItemProps: (style: any, itemProps: any) => any,
 }
@@ -61,18 +61,6 @@ export interface timelineOptionsPropsInterface {
     updateTimelineSearchName: (searchName: string) => void,
     updateTimelineFonctions: (timelineFonctions: GroupDisplay[]) => void,
     updateTimelineEmptyField: (displayEmptyField: boolean) => void,
-}
-
-export interface itemInterface {
-    id: number,
-    group: number,
-    title: string,
-    start_time: number,
-    end_time: number,
-    state: number,
-    reason: string,
-    workdays: string[],
-    itemProps: any,
 }
 
 export interface ItemContextProperties {

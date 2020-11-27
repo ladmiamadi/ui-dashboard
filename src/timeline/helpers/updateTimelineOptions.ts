@@ -1,61 +1,48 @@
 import {
+  GroupDisplay,
   TimelineFilterData,
-    timelineOptionsPropsInterface
-  } from '../index';
+} from '../index';
 import { renderTimelineUpdateDisplayWithFilters } from '../helpers/renderTimelineUserData';
 
-export const toggleCheckBox = (timelineOptionProps: timelineOptionsPropsInterface, onetable: number) => {
-    let listOfFonction = [...timelineOptionProps.timeline.timelineFonctions];
-    let timelineFilters: TimelineFilterData = {
-      reason: timelineOptionProps.timeline.reason,
-      searchName: timelineOptionProps.timeline.searchName,
-      displayEmptyField: timelineOptionProps.timeline.displayEmptyField,
-      visibleTime: timelineOptionProps.timeline.visibleTime,
-      timelineFonctions: listOfFonction,
-      timelineUsers: timelineOptionProps.timeline.timelineUsers,
-      isConverting: false,
-    };
+export const toggleCheckBox = (
+  updateTimelineFonctions: (timelineFonctions: GroupDisplay[]) => void,
+  timeline: TimelineFilterData, onetable: number) => {
+  let listOfFonction = [...timeline.timelineFonctions];
+  let timelineFilters: TimelineFilterData = {
+    ...timeline,
+    timelineFonctions: listOfFonction,
+  };
 
-    if (listOfFonction[onetable].display === 0) {
-      listOfFonction[onetable].display = 1;
-    } else {
-      listOfFonction[onetable].display = 0;
-    }
-    renderTimelineUpdateDisplayWithFilters(timelineFilters);
-    timelineOptionProps.updateTimelineFonctions(listOfFonction);
+  listOfFonction[onetable].display = !listOfFonction[onetable].display;
+  renderTimelineUpdateDisplayWithFilters(timelineFilters);
+  updateTimelineFonctions(listOfFonction);
+};
+
+export const updateSearchTherms = (
+  updateTimelineSearchName: (searchName: string) => void, timeline: TimelineFilterData, nametochange: string) => {
+  const timelineFilters: TimelineFilterData = {
+    ...timeline,
+    searchName: nametochange,
+    isConverting: false,
+  };
+
+  updateTimelineSearchName(nametochange);
+  renderTimelineUpdateDisplayWithFilters(timelineFilters);
+};
+
+export const toggleEmptyFields = (
+  updateTimelineEmptyField: (displayEmptyField: boolean) => void, timeline: TimelineFilterData) => {
+  let timelineFilters: TimelineFilterData = {
+    ...timeline,
+  };
+
+  if (timeline.displayEmptyField) {
+    updateTimelineEmptyField(false);
+    timelineFilters.displayEmptyField = false;
+  } else {
+    updateTimelineEmptyField(true);
+    timelineFilters.displayEmptyField = true;
   }
 
-export const updateSearchTherms = (timelineOptionProps: timelineOptionsPropsInterface, nametochange: string) => {
-    const timelineFilters: TimelineFilterData = {
-      reason: timelineOptionProps.timeline.reason,
-      searchName: nametochange,
-      displayEmptyField: timelineOptionProps.timeline.displayEmptyField,
-      visibleTime: timelineOptionProps.timeline.visibleTime,
-      timelineFonctions: timelineOptionProps.timeline.timelineFonctions,
-      timelineUsers: timelineOptionProps.timeline.timelineUsers,
-      isConverting: false,
-    };
-    timelineOptionProps.updateTimelineSearchName(nametochange);
-    renderTimelineUpdateDisplayWithFilters(timelineFilters);
-  }
-
-export const toggleEmptyFields = (timelineOptionProps: timelineOptionsPropsInterface) => {
-    let timelineFilters: TimelineFilterData = {
-      reason: timelineOptionProps.timeline.reason,
-      searchName: timelineOptionProps.timeline.searchName,
-      displayEmptyField: timelineOptionProps.timeline.displayEmptyField,
-      visibleTime: timelineOptionProps.timeline.visibleTime,
-      timelineFonctions: timelineOptionProps.timeline.timelineFonctions,
-      timelineUsers: timelineOptionProps.timeline.timelineUsers,
-      isConverting: false,
-    };
-
-    if (timelineOptionProps.timeline.displayEmptyField) {
-        timelineOptionProps.updateTimelineEmptyField(false);
-      timelineFilters.displayEmptyField = false;
-    } else {
-        timelineOptionProps.updateTimelineEmptyField(true);
-      timelineFilters.displayEmptyField = true;
-    }
-    renderTimelineUpdateDisplayWithFilters(timelineFilters);
-  }
+  renderTimelineUpdateDisplayWithFilters(timelineFilters);
+};

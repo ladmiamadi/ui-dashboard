@@ -3,7 +3,6 @@ import { GroupRenderObject } from '../index';
 
 class TimelineRenderFonction extends React.Component<GroupRenderObject>{
   render() {
-
     return (
       <div className="custom-group"
         style={{

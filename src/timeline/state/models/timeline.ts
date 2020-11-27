@@ -1,5 +1,5 @@
-import { GroupDisplay, TimelineDataUsers, TimelineVisibleTime, TimelineFilterData } from '../../index'
-import { defaultVisibleTime, defaultAbsenceReason } from '../../helpers/defaultTimeline'
+import { GroupDisplay, TimelineDataUsers, TimelineVisibleTime, TimelineFilterData } from '../../index';
+import { defaultVisibleTime, defaultAbsenceReason } from '../../helpers/defaultTimeline';
 import { createModel } from '@rematch/core';
 import { User } from '../../../app';
 import { Toastify } from '../../../helpers/Toastify';
@@ -33,11 +33,10 @@ export const timeline = createModel({
   effects: {
     async initTimeline(users: User[]) {
       try {
-        let listOfFonctions: GroupDisplay[] = [];
-        let newdata = convertDBDataToTimelineData(users);
-        let newDisplayData = renderTimelineDisplaySeperateDays(newdata, listOfFonctions);
-        this.updateTimelineUsers(newDisplayData);
-        this.updateTimelineFonctions(listOfFonctions);
+        let newUsers = convertDBDataToTimelineData(users);
+        let { newRenderDisplayTimeline, listOfFunction } = renderTimelineDisplaySeperateDays(newUsers);
+        this.updateTimelineUsers(newRenderDisplayTimeline);
+        this.updateTimelineFonctions(listOfFunction);
       } catch(error) {
         (new Toastify()).error(`Unable to convert userDataFromDB to Timeline. ${ error.message }`);
       } finally {
