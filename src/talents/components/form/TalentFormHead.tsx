@@ -33,7 +33,7 @@ export class TalentFormHead extends React.Component<Props> {
 
     const jobPositions = this.props.jobCollection.map((job: Job) => job.position);
 
-    const users = this.props.users
+    const sourceByHRItems = this.props.users
       .filter(user => UserProfileHelpers.isHR(user))
       .map(user => UserProfileHelpers.getUsernameFromUser(user))
       .filter(username => username !== '');
@@ -115,7 +115,7 @@ export class TalentFormHead extends React.Component<Props> {
           <SelectFormField
             keyName="sourceByHR"
             label="Sourcé par: "
-            options={users}
+            options={sourceByHRItems}
             handleChange={(property, value) => this.props.modifyUser({
               category: 'userProfiles',
               property,
@@ -123,7 +123,7 @@ export class TalentFormHead extends React.Component<Props> {
               index: indexLive,
             })}
             value={userProfileLive?.sourceByHR || ''}
-            required={true}          
+            required={true}
           />
         </div>
         <div className="connection-box">
