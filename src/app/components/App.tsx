@@ -18,10 +18,10 @@ export class App extends React.Component {
       <Router history={history}>
         <Provider store={store}>
           <AppContainer>
-            <CustomNavbar/>
+            <CustomNavbar />
             <Route path="/" exact component={Homepage} />
             <Route path="/talent" exact component={TalentFormPage} />
-            <Route path="/talents" exact component= {TalentsListPage} />
+            <Route path="/talents" exact component={TalentsListPage} />
             <Route path="/editprofile" exact component={ProfileEditValidation} />
             <Route path="/intern" exact component={RegisterUser} />
           </AppContainer>

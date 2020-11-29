@@ -8,6 +8,7 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { Module, User } from '../../index.d';
 import { tokenManager } from '../../helpers/TokenManagement';
 import './styles/CustomNavbar.css';
+import { LoggedUserStatus } from '../../../talents/index.d';
 
 interface Props {
   user: User,
@@ -34,6 +35,8 @@ export class CustomNavbar extends React.Component<Props, State> {
   showOrHide = () => this.setState({ isMenuOpened: !this.state.isMenuOpened });
 
   render() {
+    const loggedUser = LoggedUserStatus.ADMIN;
+    const hasUserPrivileges = loggedUser === LoggedUserStatus.ADMIN || loggedUser === LoggedUserStatus.RH;
     const toggleClassName = this.state.isMenuOpened ? 'active' : '';
 
     return (
@@ -41,7 +44,7 @@ export class CustomNavbar extends React.Component<Props, State> {
         <div className="info-user">
           <div className="container">
             <div className="user-box">
-              ({ this.props.user.username })
+              ({this.props.user.username})
             </div>
           </div>
         </div>
@@ -59,8 +62,9 @@ export class CustomNavbar extends React.Component<Props, State> {
               </div>
             </button>
             <div className="menu">
-              { this.props.modules.map((module) =>
-                <Link key={module.name} to={module.link}>{ module.linkText }</Link>) }
+              {this.props.modules.map((module) =>
+                (!module.requiresPrivileges || hasUserPrivileges) && <Link key={module.name} to={module.link}>{module.linkText}</Link>)
+              }
               <button
                 className="logo-out"
                 onClick={() => {

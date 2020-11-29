@@ -3,6 +3,7 @@ export interface Module {
   description: string,
   linkText: string,
   link: string,
+  requiresPrivileges: boolean,
 }
 
 export interface User {
