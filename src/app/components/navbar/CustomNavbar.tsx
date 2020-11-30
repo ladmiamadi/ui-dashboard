@@ -63,7 +63,8 @@ export class CustomNavbar extends React.Component<Props, State> {
             </button>
             <div className="menu">
               {this.props.modules.map((module) =>
-                (!module.requiresPrivileges || hasUserPrivileges) && <Link key={module.name} to={module.link}>{module.linkText}</Link>)
+                (!module.requiresPrivileges || hasUserPrivileges) && <Link key={module.name}
+                  to={module.link}>{module.linkText}</Link>)
               }
               <button
                 className="logo-out"

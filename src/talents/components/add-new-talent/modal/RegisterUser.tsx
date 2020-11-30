@@ -20,7 +20,6 @@ export class ModalRegisterUser extends Component<Props> {
   }
 
   toggleModal = () => {
-    // Only called for closing
     this.props.history.goBack();
   }
 
