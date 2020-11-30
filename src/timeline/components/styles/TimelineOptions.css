@@ -1,0 +1,53 @@
+.timeline-filters {
+    background-color: rgba(0, 0, 0, 0.080);
+    padding: 10px;
+    margin: 25px;
+}
+
+.checkmark {
+    margin-right: 25px;
+    margin-left: 25px;
+}
+
+.checkboxinput {
+    margin: 5px;
+    height: 18px;
+    width: 18px;
+}
+
+.timeline-filters-checkboxes {
+    display: inline;
+    margin: 5px;
+    font-size: 18px;
+}
+
+
+.timeline-filters-search-name {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.timeline-filters-select {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.timeline-filters-reason {
+    display: block;
+    margin: 10px;
+    font-size: 18px;
+}
+
+.timeline-filters-search {
+    display: block;
+    margin: 10px;
+    font-size: 18px;
+}
+
+.timeline-filters-title {
+    text-align: left;
+}
+
+#title {
+    font-size: 25px;
+}

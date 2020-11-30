@@ -1,0 +1,39 @@
+button {
+    background: white;
+    border: none;
+    cursor: pointer;
+}
+
+.react-calendar-timeline .rct-dateHeader-primary {
+    background: white;
+    color: black;
+}
+
+.react-calendar-timeline .rct-header-root {
+    background: white;
+}
+
+.react-calendar-timeline .rct-vertical-lines .rct-vl.rct-day-6, .react-calendar-timeline .rct-vertical-lines .rct-vl.rct-day-0 {
+    background-color: rgba(0, 0, 0, 0.650);
+}
+
+.react-calendar-timeline .rct-item  .rct-item-content {
+    position: sticky;
+    text-align: center;
+    position: -webkit-sticky;
+    left: 0px;
+    overflow: hidden;
+    display: inline-block;
+    border-radius: 2px;
+    padding: 0 6px;
+    z-index: 1;
+    height: 100%; }
+
+.react-calendar-timeline .rct-items .rct-item {
+    overflow: hidden;
+    position: absolute;
+    box-sizing: border-box;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1; }
