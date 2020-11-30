@@ -3,8 +3,8 @@ import { User } from '../../../app';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { COUNTRIES } from '../../constants/countries';
-import { INTERNOPTIONS } from '../../constants/internship-options';
-import { PLACEMENTOPTIONS } from '../../constants/placement-options';
+import { INTERN_OPTIONS } from '../../constants/internship-options';
+import { PLACEMENT_OPTIONS } from '../../constants/placement-options';
 import { UpdateUserPayload } from '../../state/models/user-selected';
 import classes from './styles/TalentFormJob.module.css';
 
@@ -28,7 +28,7 @@ export default class TalentFormJob extends React.Component<Props> {
           keyName="placementOptions"
           className={classes['job-field']}
           label="Placement "
-          options={PLACEMENTOPTIONS}
+          options={PLACEMENT_OPTIONS}
           handleChange={(property, value) => this.props.modifyUser({
             category: 'userDesiredJob',
             property,
@@ -43,7 +43,7 @@ export default class TalentFormJob extends React.Component<Props> {
                 keyName="internOptions"
                 className={classes['job-field']}
                 label="Actuellement en recherche: "
-                options={INTERNOPTIONS}
+                options={INTERN_OPTIONS}
                 handleChange={(property, value) => this.props.modifyUser({
                   category: 'userDesiredJob',
                   property,

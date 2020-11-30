@@ -1,1 +1,1 @@
-export const INTERNOPTIONS = ['Alternance','CDI','CDD','Stage'];
+export const INTERN_OPTIONS = ['Alternance', 'CDI', 'CDD', 'Stage'];

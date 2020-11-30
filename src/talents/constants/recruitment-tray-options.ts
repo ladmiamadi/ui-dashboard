@@ -1,0 +1,1 @@
+export const RECRUITMENT_TRAY_OPTIONS = ['ThunderBird', 'Gmail'];

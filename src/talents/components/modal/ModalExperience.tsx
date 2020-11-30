@@ -97,7 +97,7 @@ export class ModalExperience extends React.Component<Props> {
           />
         </div>
         <div className={classes['experience-date-picker']}>
-          <label className={classes['label-date-experience']}>date de fin: </label>
+          <label className={classes['label-date-experience']}>Date de fin: </label>
           <ReactDatePicker
             selected={this.props.experience.endDate}
             isClearable
