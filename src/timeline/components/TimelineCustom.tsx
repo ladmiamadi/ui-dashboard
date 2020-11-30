@@ -36,7 +36,7 @@ export class TimelineCustom extends React.Component<Props> {
           items={timelineUsers.items}
           visibleTimeStart={visibleTime.start}
           visibleTimeEnd={visibleTime.end}
-          itemRenderer={(timelineRenderDays : ItemRendererObject) => 
+          itemRenderer={(timelineRenderDays: ItemRendererObject) =>
             <TimelineRenderDays {...timelineRenderDays} />}
           groupRenderer={(timelineRenderFonction: GroupRenderObject) =>
             <TimelineRenderFonction {...timelineRenderFonction} />

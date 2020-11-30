@@ -16,13 +16,19 @@ export interface TimelineGroup {
     convention: number,
 }
 
+export enum TimelineItemState {
+    PRESENT,
+    ABSENT,
+    HOLIDAY,
+}
+
 export interface TimelineItem {
     id: number,
     group: number,
     title: string,
     start_time: number,
     end_time: number,
-    state: number,
+    state: TimelineItemState,
     reason: string,
     workdays: string[],
     itemProps: any,
@@ -53,14 +59,6 @@ export interface ItemRendererObject {
   
 export interface GroupRenderObject {
     group: TimelineGroup
-}
-
-export interface timelineOptionsPropsInterface {
-    timeline: TimelineFilterData,
-    updateTimelineReason: (reason: string) => void,
-    updateTimelineSearchName: (searchName: string) => void,
-    updateTimelineFonctions: (timelineFonctions: GroupDisplay[]) => void,
-    updateTimelineEmptyField: (displayEmptyField: boolean) => void,
 }
 
 export interface ItemContextProperties {

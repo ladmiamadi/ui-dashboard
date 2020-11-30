@@ -22,8 +22,12 @@ export class TimelineAbsences extends React.Component<Props> {
   }
 }
 
+const mapState = () => ({
+    
+});
+
 const mapDispatch = (dispatch: RootDispatch) => ({
   updateTimelineReason: dispatch.timeline.updateTimelineReason,
 });
 
-export default connect(() => {}, mapDispatch)(TimelineAbsences);
+export default connect(mapState, mapDispatch)(TimelineAbsences);

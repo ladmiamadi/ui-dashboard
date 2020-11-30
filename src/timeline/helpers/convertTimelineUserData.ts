@@ -61,22 +61,13 @@ export const renderTimelineDisplaySeperateDays = (stateDisplayData: TimelineData
     newArrayLenghtOfItem = index + 1;
     copyAndEditLastDisplayItem = { ...daysOfTimeline[index] };
     newDateOfLastItem = copyAndEditLastDisplayItem.start_time;
+
     while (newDateOfLastItem < moment(days.end_time).startOf('day').add(1, 'days').valueOf()) {
       copyAndEditLastDisplayItem = { ...daysOfTimeline[newArrayLenghtOfItem - 1] };
-      copyAndEditLastDisplayItem.start_time = moment(newDateOfLastItem).startOf('day').valueOf();
+      copyAndEditLastDisplayItem = editLastDisplayItem(copyAndEditLastDisplayItem, newDateOfLastItem, daysOfTimeline);
       newDateOfLastItem = moment(newDateOfLastItem).startOf('day').add(1, 'days').valueOf();
       copyAndEditLastDisplayItem.end_time = newDateOfLastItem;
-      copyAndEditLastDisplayItem.id = daysOfTimeline.length + 1;
-
-      for (let j in days.workdays) {
-        if (moment(copyAndEditLastDisplayItem.start_time).startOf('day').format('dddd') === 
-          days.workdays[j]) {
-          copyAndEditLastDisplayItem.state = days.state;
-          break;
-        } else {
-          copyAndEditLastDisplayItem.state = 3;
-        }
-      }
+      setWorkdays(days, copyAndEditLastDisplayItem);
       newArrayLenghtOfItem = daysOfTimeline.push(copyAndEditLastDisplayItem);
     }
     delete daysOfTimeline[index];
@@ -85,4 +76,25 @@ export const renderTimelineDisplaySeperateDays = (stateDisplayData: TimelineData
   });
 
   return { newRenderDisplayTimeline, listOfFunction };
+};
+
+const editLastDisplayItem = (
+  copyAndEditLastDisplayItem: TimelineItem, newDateOfLastItem: number, daysOfTimeline: TimelineItem[]) => {
+  copyAndEditLastDisplayItem.start_time = moment(newDateOfLastItem).startOf('day').valueOf();
+  copyAndEditLastDisplayItem.id = daysOfTimeline.length + 1;
+
+  return copyAndEditLastDisplayItem;
+};
+
+const setWorkdays = (days: TimelineItem, copyAndEditLastDisplayItem: TimelineItem) => {
+  for (let j in days.workdays) {
+
+    if (moment(copyAndEditLastDisplayItem.start_time).startOf('day').format('dddd') ===
+        days.workdays[j]) {
+      copyAndEditLastDisplayItem.state = days.state;
+      break;
+    } else {
+      copyAndEditLastDisplayItem.state = 2;
+    }
+  }
 };

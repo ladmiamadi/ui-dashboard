@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { RootState } from '../../app/state/store';
 import { ItemRendererObject } from '../index';
 import { renderDaysStyle } from '../helpers/renderDaysColor';
+import { setTimelineItemContent } from '../helpers/renderTimelineUserData';
 
 interface Props extends ItemRendererObject {
   reason: string,
@@ -24,8 +25,7 @@ export class TimelineRenderDays extends React.Component<Props> {
           },
         }, this.props.item.itemProps)}
       >
-        {this.props.item.state === 0 ? this.props.item.title : 
-          (this.props.item.state === 1 ? ('ABSENT (' + this.props.item.reason + ')') : 'FERIE')}
+        {setTimelineItemContent(this.props)}
       </div>
     );
   }
