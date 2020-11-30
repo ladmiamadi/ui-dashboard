@@ -1,0 +1,45 @@
+.timeline-info {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.080);
+    padding: 10px;
+    margin: 25px;
+}
+
+.timeline-info-content {
+    display: flex;
+    margin: 10px;
+    font-size: 18px;
+}
+
+.timeline-info-title {
+    text-align: left;
+}
+
+.timeline-info-person {
+    margin: 10px;
+}
+
+.timeline-info-dates {
+    margin: 10px;
+}
+
+.timeline-info-state {
+    margin: 10px;
+}
+
+.checkmark {
+    margin-right: 25px;
+    margin-left: 25px;
+}
+
+.checkboxinput {
+    margin: 5px;
+    height: 18px;
+    width: 18px;
+}
+
+.timeline-info-checkboxes {
+    display: inline;
+    margin: 5px;
+    font-size: 18px;
+}

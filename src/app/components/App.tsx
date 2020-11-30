@@ -10,6 +10,7 @@ import { TalentsListPage } from '../../talents/components/TalentsListPage';
 import { store } from '../state/store';
 import RegisterUser from '../../talents/components/add-new-talent/modal/RegisterUser';
 import history from '../helpers/history';
+import TimelineContainer from '../../timeline/components/TimelineContainer';
 import './styles/App.css';
 
 export class App extends React.Component {
@@ -24,6 +25,7 @@ export class App extends React.Component {
             <Route path="/talents" exact component= {TalentsListPage} />
             <Route path="/editprofile" exact component={ProfileEditValidation} />
             <Route path="/intern" exact component={RegisterUser} />
+            <Route path="/timeline" exact component={TimelineContainer} />
           </AppContainer>
         </Provider>
       </Router>

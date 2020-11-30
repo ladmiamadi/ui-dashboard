@@ -7,6 +7,7 @@ import * as userSignUp from '../../talents/state/models/user-sign-up';
 import * as users from '../../talents/state/models/users';
 import * as modules from './models/modules';
 import * as user from './models/user';
+import * as timeline from '../../timeline/state/models/timeline';
 
 const models = {
   ...experience,
@@ -17,6 +18,7 @@ const models = {
   ...users,
   ...userSelected,
   ...userSignUp,
+  ...timeline,
 };
 
 export const store = init({
