@@ -1,33 +1,11 @@
 import moment from 'moment';
-import { User, UserJob } from '../../app';
+import { User } from '../../app';
 import { TimelineGroup, TimelineDataUsers } from '../index';
-import { defaultVisibleTime } from './defaultTimeline';
+import { INTERNSHIP_DATE_BASE, INTERSHIP_PERSON_BASE, IS_WORKING_TO_DAYS } from '../constants/timeline-item';
 
-const internshipPersonBase = [
-  {
-    id: -1,
-    title: 'ERROR',
-    groupLabelKey: 'ERROR',
-    rightTitle: 'ERROR',
-    convention: 0,
-  },
-];
+const internshipPersonBase = INTERSHIP_PERSON_BASE;
 
-const errorVisibleTime = defaultVisibleTime();
-
-const internshipDateBase = [
-  {
-    id: -1,
-    group: -1,
-    title: 'Aucun Résultat trouvé pour cette semaine, verifier vos entrées dans le filtre',
-    start_time: errorVisibleTime.start,
-    end_time: errorVisibleTime.end,
-    state: 0,
-    reason: 'ERROR',
-    workdays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-    itemProps: '',
-  },
-];
+const internshipDateBase = INTERNSHIP_DATE_BASE;
 
 export const sortTimelineUsersByFonction = (tosort: TimelineGroup[]) => {
   tosort.sort((a: TimelineGroup, b: TimelineGroup) => {
@@ -47,38 +25,9 @@ export const sortTimelineUsersByFonction = (tosort: TimelineGroup[]) => {
   });
 };
 
-const isWorkingOn = (person: UserJob) => {
-  let workingdays = [];
-
-  if (person.isWorkingOnMonday) {
-    workingdays.push('Monday');
-  }
-
-  if (person.isWorkingOnTuesday) {
-    workingdays.push('Tuesday');
-  }
-
-  if (person.isWorkingOnWednesday) {
-    workingdays.push('Wednesday');
-  }
-
-  if (person.isWorkingOnThursday) {
-    workingdays.push('Thursday');
-  }
-
-  if (person.isWorkingOnFriday) {
-    workingdays.push('Friday');
-  }
-
-  if (person.isWorkingOnSaturday) {
-    workingdays.push('Saturday');
-  }
-
-  if (person.isWorkingOnSunday) {
-    workingdays.push('Sunday');
-  }
-
-  return workingdays;
+const isWorkingOn = (person: any) => {
+  return IS_WORKING_TO_DAYS.filter(dayInstance => person[dayInstance.workingDay])
+    .map(dayInstance => dayInstance.day);
 };
 
 const capitalizeFirstLetter = (tocap: string) => {
@@ -89,7 +38,6 @@ export const convertDBDataToTimelineData = (users:User[]) => {
   let result: TimelineDataUsers;
 
   users.map((userdb: User) => {
-
     if (userdb.userJob && userdb.userProfiles && userdb.userJob.job) {
       internshipPersonBase.push(convertDBFonctionToTimelineFonction(userdb));
       internshipDateBase.push(convertDBDaysToTimelineDays(userdb));

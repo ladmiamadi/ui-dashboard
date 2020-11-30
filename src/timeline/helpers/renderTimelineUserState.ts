@@ -5,7 +5,6 @@ const daysRenderDisplayAbsenceReason = (days: TimelineItem) => {
   let result = 'red';
 
   REASONS_LIST.map((reason: string, index: number) => {
-
     if (reason === days.reason) {
       result = REASONS_LIST_COLOR[index];
     }

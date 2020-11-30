@@ -89,7 +89,6 @@ const editLastDisplayItem = (
 
 const setWorkdays = (days: TimelineItem, copyAndEditLastDisplayItem: TimelineItem) => {
   for (let j in days.workdays) {
-
     if (moment(copyAndEditLastDisplayItem.start_time).startOf('day').format('dddd') ===
         days.workdays[j]) {
       copyAndEditLastDisplayItem.state = days.state;
