@@ -1,14 +1,13 @@
 import React from 'react';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { RootState } from '../../state/store';
 import logoHDM from '../../assets/LogoHDM.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { Module, User } from '../../index.d';
 import { tokenManager } from '../../helpers/TokenManagement';
+import { Module, User } from '../../index.d';
+import { RootState } from '../../state/store';
 import './styles/CustomNavbar.css';
-import { LoggedUserStatus } from '../../../talents/index.d';
 
 interface Props {
   user: User,
@@ -32,13 +31,13 @@ export class CustomNavbar extends React.Component<Props, State> {
     };
   }
 
+  private toggleClassName(): string {
+    return this.state.isMenuOpened ? 'active' : '';
+  }
+
   showOrHide = () => this.setState({ isMenuOpened: !this.state.isMenuOpened });
 
   render() {
-    const loggedUser = LoggedUserStatus.ADMIN;
-    const hasUserPrivileges = loggedUser === LoggedUserStatus.ADMIN || loggedUser === LoggedUserStatus.RH;
-    const toggleClassName = this.state.isMenuOpened ? 'active' : '';
-
     return (
       <div className="component-nav">
         <div className="info-user">
@@ -56,14 +55,14 @@ export class CustomNavbar extends React.Component<Props, State> {
                 <span className="logo-title">ADMIN DASHBOARD</span>
               </Link>
             </div>
-            <button id="toggle" className={toggleClassName} onClick={this.showOrHide}>
+            <button id="toggle" className={this.toggleClassName()} onClick={this.showOrHide}>
               <div className="nav-icon">
                 <div />
               </div>
             </button>
             <div className="menu">
               {this.props.modules.map((module) =>
-                (!module.requiresPrivileges || hasUserPrivileges) && <Link key={module.name}
+                <Link key={module.name}
                   to={module.link}>{module.linkText}</Link>)
               }
               <button

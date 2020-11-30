@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { LoggedUserStatus } from '../../../talents/index.d';
 import { Module } from '../../index.d';
 import { RootDispatch, RootState } from '../../state/store';
 import './styles/Homepage.css';
@@ -17,9 +16,6 @@ export class Homepage extends React.Component<Props> {
   }
 
   render() {
-    const loggedUser = LoggedUserStatus.ADMIN;
-    const hasUserPrivileges = loggedUser === LoggedUserStatus.ADMIN || loggedUser === LoggedUserStatus.RH;
-
     return (
       <div>
         <article className="container">
@@ -27,7 +23,6 @@ export class Homepage extends React.Component<Props> {
             <div className="row row-homepage">
               {this.props.modules.map(
                 (module, index) =>
-                  (!module.requiresPrivileges || hasUserPrivileges) &&
                   <div className="col-md-4 col-sm-12 my-2" key={index}>
                     <div className="card">
                       <div className="card-body">

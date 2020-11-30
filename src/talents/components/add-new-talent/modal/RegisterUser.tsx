@@ -1,5 +1,5 @@
-import { History } from 'history';
 import React, { Component } from 'react';
+import { History } from 'history';
 import { connect } from 'react-redux';
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { RootDispatch } from '../../../../app/state/store';
@@ -23,11 +23,13 @@ export class ModalRegisterUser extends Component<Props> {
     this.props.history.goBack();
   }
 
-  render() {
-    const isModalRequested = this.props.location.hash === '#modal-intern';
+  private isModalRequested(): boolean {
+    return this.props.location.hash === '#modal-intern';
+  }
 
+  render() {
     return (
-      <Modal isOpen={isModalRequested} toggle={this.toggleModal}>
+      <Modal isOpen={this.isModalRequested()} toggle={this.toggleModal}>
         <ModalHeader>Ajout d'un nouveau stagiaire.</ModalHeader>
         <ModalBody>
           <ContentModalBody />
