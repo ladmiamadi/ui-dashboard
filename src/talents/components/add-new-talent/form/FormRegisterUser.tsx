@@ -3,7 +3,7 @@ import { Row } from 'reactstrap';
 import { IsFormValid, UserRegister, UserSignUp } from '../../..';
 import { Job } from '../../../../app';
 import { doubleArrayPropsInput } from '../../../helpers/FormRegisterHelper';
-import InputRegisterUsers from './inputs/InputRegisterUsers';
+import InputRegisterUsers from './InputRegisterUsers';
 import classes from '../styles/FormRegisterUser.module.css';
 
 export interface Props {
@@ -22,18 +22,18 @@ export default class FormRegisterUser extends Component<Props> {
     return (
       <>
         {
-          doubleArrayOfAllInputs.map((array, index) =>
+          doubleArrayOfAllInputs.map((inputsPropsRow, index) =>
             <Row
               key={index}
               className={classes.RowFormRegisterUser}>
               {
-                array.map((props) =>
-                  <InputRegisterUsers
-                    key={props.id}
-                    {...props}
-                  />,
+                inputsPropsRow.map((inputProps) =>
+                  <>
+                    {inputProps.isSectionTitle && <h5 className="register-form-title">{inputProps.label}</h5>}
+                    {!inputProps.isSectionTitle && <InputRegisterUsers key={inputProps.id} {...inputProps} />}
+                  </>,
                 )
-              }
+              },
             </Row>,
           )
         }

@@ -20,14 +20,14 @@ export const user = createModel({
     resetUser: (state: State): State => ({ ...state, user: createEmptyUser() }),
   },
   effects: {
-    async fetchUser(id:number) {
+    async fetchUser(id: number) {
       this.setIsFetching(true);
       try {
-        const { data } = await apiService.get('api/users' + { id });
+        const { data: user } = await apiService.get<User>('api/users' + { id });
 
-        this.updateUser(data);
+        this.updateUser(user);
       } catch (error) {
-        (new Toastify()).error(`User doesn't exist. ${ error.message }`);
+        (new Toastify()).error(`User doesn't exist. ${error.message}`);
       } finally {
         this.setIsFetching(false);
       }

@@ -1,8 +1,6 @@
 import React from 'react';
-import fr from 'date-fns/locale/fr';
 import { connect } from 'react-redux';
 import { Job, User, UserProfile } from '../../../app';
-import { DatePickerFieldForm } from '../../../app/components/utils/DatePickerFieldForm';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { UserProfileHelpers } from '../../../app/helpers/UserProfileHelpers';
@@ -13,6 +11,7 @@ import { UpdateUserPayload } from '../../state/models/user-selected';
 interface Props {
   jobCollection: Job[],
   user: User,
+  users: User[],
   fetchJobsInDb: () => Promise<void>,
   modifyUser: (payload: UpdateUserPayload) => void,
 }
@@ -25,11 +24,19 @@ export class TalentFormHead extends React.Component<Props> {
 
   render() {
     const indexLive: number = ProfileCollection.findLiveIndex(this.props.user.userProfiles);
+
     const userProfileLive: UserProfile | undefined = ProfileCollection.filterByEnvironment(
       this.props.user.userProfiles, 'live',
     );
+
     const filePath = UserProfileHelpers.getUserProfilePictureUrl(userProfileLive);
+
     const jobPositions = this.props.jobCollection.map((job: Job) => job.position);
+
+    const sourceByHRItems = this.props.users
+      .filter(user => UserProfileHelpers.isHR(user))
+      .map(user => UserProfileHelpers.getUsernameFromUser(user))
+      .filter(username => username !== '');
 
     return (
       <div className="form-head">
@@ -41,17 +48,6 @@ export class TalentFormHead extends React.Component<Props> {
         />
         <div className="head-block">
           <FieldForm
-            keyName="lastname"
-            label="Nom: "
-            type="text"
-            handleChange={(value) => this.props.modifyUser({
-              value,
-              index: indexLive,
-              category: 'userProfiles',
-              property: 'lastName',
-            })}
-            value={userProfileLive?.lastName} />
-          <FieldForm
             keyName="firstname"
             label="Prénom: "
             type="text"
@@ -61,7 +57,22 @@ export class TalentFormHead extends React.Component<Props> {
               category: 'userProfiles',
               property: 'firstName',
             })}
-            value={userProfileLive?.firstName} />
+            value={userProfileLive?.firstName}
+            required={true}
+          />
+          <FieldForm
+            keyName="lastname"
+            label="Nom: "
+            type="text"
+            handleChange={(value) => this.props.modifyUser({
+              value,
+              index: indexLive,
+              category: 'userProfiles',
+              property: 'lastName',
+            })}
+            value={userProfileLive?.lastName}
+            required={true}
+          />
           <SelectFormField
             keyName="position"
             label="Fonction: "
@@ -73,10 +84,11 @@ export class TalentFormHead extends React.Component<Props> {
               index: indexLive,
             })}
             value={userProfileLive?.position || ''}
+            required={true}
           />
           <FieldForm
             keyName="email"
-            label="Mail: "
+            label="Email: "
             type="text"
             handleChange={(value) => this.props.modifyUser({
               value,
@@ -84,7 +96,9 @@ export class TalentFormHead extends React.Component<Props> {
               category: 'userProfiles',
               property: 'email',
             })}
-            value={userProfileLive?.email} />
+            value={userProfileLive?.email}
+            required={true}
+          />
           <FieldForm
             keyName="phone"
             label="Téléphone: "
@@ -95,41 +109,22 @@ export class TalentFormHead extends React.Component<Props> {
               category: 'userProfiles',
               property: 'phone',
             })}
-            value={userProfileLive?.phone} />
-          <DatePickerFieldForm
-            keyName="birthDate"
-            label="Date de naissance: "
-            value={userProfileLive?.birthDate}
-            locale={fr}
-            handleChange={(value) => this.props.modifyUser({
-              category: 'userProfiles',
-              property: 'birthDate',
-              value,
-              index: indexLive,
-            })}
+            value={userProfileLive?.phone}
+            required={false}
           />
-          <FieldForm
-            keyName="place"
-            label="Nationalité: "
-            type="text"
-            handleChange={(value) => this.props.modifyUser({
-              value,
-              index: -1,
+          <SelectFormField
+            keyName="sourceByHR"
+            label="Sourcé par: "
+            options={sourceByHRItems}
+            handleChange={(property, value) => this.props.modifyUser({
               category: 'userProfiles',
-              property: 'nationality',
-            })}
-            value={userProfileLive?.nationality} />
-          <FieldForm
-            keyName="platform"
-            label="Plateforme: "
-            type="text"
-            handleChange={(value) => this.props.modifyUser({
+              property,
               value,
               index: indexLive,
-              category: 'userProfiles',
-              property: 'platform',
             })}
-            value={userProfileLive?.platform} />
+            value={userProfileLive?.sourceByHR || ''}
+            required={true}
+          />
         </div>
         <div className="connection-box">
           <p>Envoyez un email pour configurer la connexion</p>

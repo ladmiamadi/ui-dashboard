@@ -1,9 +1,9 @@
-import fr from 'date-fns/locale/fr';
 import React from 'react';
+import fr from 'date-fns/locale/fr';
 import ReactDatePicker from 'react-datepicker';
-import { Container, Row, Col } from 'reactstrap';
-import InputFormField, { ClassName } from '../../../app/components/utils/InputFormField';
+import { Col, Container, Row } from 'reactstrap';
 import { UserTraining } from '../../../app';
+import InputFormField, { ClassName } from '../../../app/components/utils/InputFormField';
 import classes from './styles/TrainingForm.module.css';
 
 interface Props {

@@ -1,20 +1,35 @@
+import { User } from '..';
 import { FormatDates } from '../helpers/formatDates';
 
 export class UsersDatesFormatter {
-  public static transformDateFormat(dataCollection: [any]) {
-    dataCollection.forEach(data => {
-      FormatDates.formatDate(data);
-      if (data.userJob)
-        FormatDates.formatDate(data.userJob);
-      if (data.userJob && data.userJob.job)
-        FormatDates.formatDate(data.userJob.job);
-      FormatDates.updateDateFromList(data.userExperiences);
-      FormatDates.updateDateFromList(data.userTrainings);
-      FormatDates.updateDateFromList(data.userContracts);
-      FormatDates.updateDateFromList(data.userAbsences);
-      FormatDates.updateDateFromList(data.userInterviews);
-      FormatDates.updateDateFromList(data.userProfiles);
+  public static transformDateFormat(userCollection: User[]) {
+    userCollection.forEach(user => {
+      UsersDatesFormatter.transformUserDateFormat(user);
     });
+  }
+
+  static fieldsWithDates: Array<keyof User> = [
+    'userExperiences',
+    'userTrainings',
+    'userContracts',
+    'userAbsences',
+    'userInterviews',
+    'userProfiles',
+  ];
+
+  public static transformUserDateFormat(user: User) {
+    FormatDates.formatDate(user);
+    if (user.userJob) {
+      FormatDates.formatDate(user.userJob);
+    }
+
+    if (user.userJob && user.userJob.job) {
+      FormatDates.formatDate(user.userJob.job);
+    }
+
+    UsersDatesFormatter.fieldsWithDates.map((fieldWithDates) =>
+      FormatDates.updateDateFromList(user[fieldWithDates] as [any]),
+    );
   }
 }
 

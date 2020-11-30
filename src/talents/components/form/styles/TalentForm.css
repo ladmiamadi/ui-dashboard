@@ -236,7 +236,7 @@
     display: block;
 }
 
-.address-section {
+.generic-section {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -246,13 +246,20 @@
     margin-top: 20px;
 }
 
-.address-field-form.form-group {
+.generic-field-form.form-group {
     display: block;
 }
 
-.address-field-form.form-group .form-input {
+.generic-field-form.form-group .form-input {
     width: 100%;
     font-size: 1.5rem;
+}
+
+.recruitment-section {
+    border: 3px solid #151515;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 20px;
 }
 
 @media (max-width: 768px) {
@@ -336,4 +343,8 @@
 
 #formation-start, #formation-end {
   overflow: hidden;
+}
+
+.register-form-title {
+    margin-left: 15px;
 }

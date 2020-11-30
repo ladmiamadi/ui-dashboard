@@ -54,28 +54,30 @@ export interface UserProfile {
   lastName: string,
   firstName: string,
   email: string,
-  phone: string,
+  phone?: string,
   requestInFrench?: string,
   requestInEnglish?: string,
   requestInDutch?: string,
   motivationInFrench?: string,
   motivationInEnglish?: string,
   motivationInDutch?: string,
-  birthDate: Date,
+  institutionSection?: string,
   institution?: string,
   descriptionInFrench?: string,
   descriptionInEnglish?: string,
   descriptionInDutch?: string,
   isActuallyLookingForJob?: boolean,
   phoneInstitution?: string,
-  mailInstitution?: string,
+  emailInstitution?: string,
   personContactInstitution?: string,
   status: string,
   environment: string
   picture?: MediaObject,
   position?: string,
-  platform: string,
-  nationality: string,
+  platform?: string,
+  sourceByHR?: string,
+  mailboxHR?: string,
+  recruitmentComments?: string,
 }
 
 export interface MediaObject {
@@ -127,7 +129,7 @@ export interface Training<T, U, D = T> {
 type UserTraining = Training<string, number, Date | null>;
 
 export interface UserRole {
-  role: Role,
+  role?: Role | null,
 }
 
 export interface UserSkill {

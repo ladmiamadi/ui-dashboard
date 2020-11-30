@@ -6,6 +6,7 @@ interface Props {
   className?: string,
   keyName: string
   label: string,
+  required?: boolean,
   rows?: number,
   type: InputType,
   value?: string | number,
@@ -22,7 +23,9 @@ export class FieldForm extends React.Component<Props> {
   render() {
     return (
       <FormGroup className={this.props.className}>
-        <Label className="form-label" htmlFor={this.props.keyName}>{this.props.label}</Label>
+        <Label className="form-label" htmlFor={this.props.keyName}>
+          {this.props.label}{this.props.required && '*'}
+        </Label>
         <Input
           className="form-input"
           type={this.props.type}
@@ -31,6 +34,7 @@ export class FieldForm extends React.Component<Props> {
           locale="fr"
           onChange={(event: FormEvent<HTMLInputElement>) => this.handleChange(event.currentTarget.value)}
           defaultValue={this.props.value}
+          required={this.props.required}
         />
       </FormGroup>
     );

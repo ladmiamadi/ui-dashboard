@@ -19,14 +19,20 @@ export enum LoggedUserStatus {
 }
 
 export interface UserRegister<T> {
-  birthDate: T,
-  nationality: T,
   jobPosition: T,
   firstName: T,
   lastName: T,
-  platform: T,
   username: T,
+  recrutementSection: T,
+  platform: T,
   phone: T,
+  mailboxHR: T,
+  recruitmentComments: T,
+  institutionSection: T,
+  institution: T,
+  emailInstitution: T,
+  phoneInstitution: T,
+  personContactInstitution: T,
 }
 
 export type UserSignUp = UserRegister<string>;
@@ -40,6 +46,8 @@ interface Field {
   label: string,
   regEx: string,
   type: InputType,
+  required?: true,
+  isSectionTitle?: boolean,
 }
 
 export interface UserSignUpPayload {
@@ -57,11 +65,17 @@ export interface PropsForInput {
   idValue: string,
   isInputValid: InputState,
   options?: string[],
+  optionsMenu?: string,
   label: string,
   usernameCollection?: string[],
   type: InputType,
   regEx: string,
+  required?: boolean,
+  isSectionTitle?: boolean,
   updateUserSignUp: (property: keyof UserRegister<T>, idValue: string) => void,
   setIsFormValid: (property: keyof UserRegister<T>, regEx: string) => void,
 }
 
+export enum POSITIONS {
+  HR = 'HR',
+}

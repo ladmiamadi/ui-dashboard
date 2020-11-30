@@ -7,6 +7,7 @@ interface Props {
   keyName: string,
   label: string,
   locale?: Locale,
+  required?: boolean,
   value?: Date,
   handleChange: (value: Date | null) => void,
 }
@@ -21,7 +22,8 @@ export class DatePickerFieldForm extends React.Component<Props> {
   render() {
     return (
       <FormGroup className={this.props.className}>
-        <Label className="form-label" htmlFor={this.props.keyName}>{this.props.label}</Label>
+        <Label className="form-label" htmlFor={this.props.keyName}>
+          {this.props.label}{this.props.required && '*'}</Label>
         <ReactDatePicker
           id={this.props.keyName}
           className="form-input form-control"
@@ -32,6 +34,7 @@ export class DatePickerFieldForm extends React.Component<Props> {
           dropdownMode="select"
           locale={this.props.locale}
           onChange={(value) => this.handleChange(value)}
+          required={this.props.required}
         />
       </FormGroup>
     );
