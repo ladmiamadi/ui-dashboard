@@ -54,6 +54,7 @@ export const renderTimelineDisplaySeperateDays = (stateDisplayData: TimelineData
   let newArrayLenghtOfItem = 0;
 
   stateDisplayData.items.map((days: TimelineItem, index: number) => {
+
     if (days.group === -1) {
       return 1;
     }

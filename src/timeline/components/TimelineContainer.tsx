@@ -22,6 +22,7 @@ export class TimelineContainer extends React.Component<Props> {
   }
 
   render() {
+
     if (this.props.isFetching || this.props.isConverting) {
       return <Loader />;
     }

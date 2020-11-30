@@ -31,6 +31,7 @@ const internshipDateBase = [
 
 export const sortTimelineUsersByFonction = (tosort: TimelineGroup[]) => {
   tosort.sort((a: TimelineGroup, b: TimelineGroup) => {
+
     let diff1 = a.rightTitle.toLowerCase(),
       diff2 = b.rightTitle.toLowerCase();
 
@@ -88,12 +89,15 @@ export const convertDBDataToTimelineData = (users:User[]) => {
   let result: TimelineDataUsers;
 
   users.map((userdb: User) => {
+
     if (userdb.userJob && userdb.userProfiles && userdb.userJob.job) {
       internshipPersonBase.push(convertDBFonctionToTimelineFonction(userdb));
       internshipDateBase.push(convertDBDaysToTimelineDays(userdb));
     }
+
     return 0;
   });
+
   result = {
     groups: internshipPersonBase,
     items: internshipDateBase,
