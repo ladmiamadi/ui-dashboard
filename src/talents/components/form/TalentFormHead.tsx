@@ -117,12 +117,12 @@ export class TalentFormHead extends React.Component<Props> {
             label="Sourcé par: "
             options={sourceByHRItems}
             handleChange={(property, value) => this.props.modifyUser({
-              category: 'userProfiles',
+              category: 'userRecruitment',
               property,
               value,
-              index: indexLive,
+              index: -1,
             })}
-            value={userProfileLive?.sourceByHR || ''}
+            value={this.props.user.userRecruitment?.sourceByHR || ''}
             required={true}
           />
         </div>

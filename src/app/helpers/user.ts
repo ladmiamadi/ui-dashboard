@@ -8,6 +8,11 @@ export const createEmptyUser = (): User => ({
   createdDate: new Date(),
   updatedDate: new Date(),
   userProfiles: [],
+  userRecruitment: {
+    platform: '',
+    mailboxHR: '',
+    recruitmentComments: '',
+  },
   userAbsences: [],
   userInterviews: [],
   userContracts: [],
