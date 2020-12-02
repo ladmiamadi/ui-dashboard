@@ -14,7 +14,7 @@ export enum InputState {
 
 export enum LoggedUserStatus {
   ADMIN,
-  HR,
+  RH,
   GUEST,
 }
 
@@ -77,5 +77,5 @@ export interface PropsForInput {
 }
 
 export enum POSITIONS {
-  HR = 'HR',
+  RH = 'RH',
 }

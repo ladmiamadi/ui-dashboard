@@ -21,16 +21,18 @@ export class Homepage extends React.Component<Props> {
         <article className="container">
           <div className="section-top-border">
             <div className="row row-homepage">
-              {this.props.modules.map((module, index) =>
-                <div className="col-md-4 col-sm-12 my-2" key={index}>
-                  <div className="card">
-                    <div className="card-body">
-                      <h5 className="card-title">{module.name}</h5>
-                      <p className="card-text">{module.description}</p>
-                      <Link to={module.link}>{module.linkText}</Link>
+              {this.props.modules.map(
+                (module, index) =>
+                  <div className="col-md-4 col-sm-12 my-2" key={index}>
+                    <div className="card">
+                      <div className="card-body">
+                        <h5 className="card-title">{module.name}</h5>
+                        <p className="card-text">{module.description}</p>
+                        <Link to={module.link}>{module.linkText}</Link>
+                      </div>
                     </div>
-                  </div>
-                </div>)}
+                  </div>,
+              )}
             </div>
           </div>
         </article>

@@ -59,6 +59,6 @@ export class UserProfileHelpers {
 
     const userProfileLive = user.userProfiles.find(up => up.environment === 'live');
 
-    return userProfileLive?.position === POSITIONS.HR.toString();
+    return userProfileLive?.position === POSITIONS.RH.toString();
   }
 }

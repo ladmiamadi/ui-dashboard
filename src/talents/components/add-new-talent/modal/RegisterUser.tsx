@@ -1,60 +1,43 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
+import { History } from 'history';
 import { connect } from 'react-redux';
-import { LoggedUserStatus } from '../../../index.d';
+import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { RootDispatch } from '../../../../app/state/store';
 import ContentModalBody from './ContentBody';
 import ContentModalFooter from './ContentFooter';
-import classes from '../styles/FormRegisterUser.module.css';
 
 interface Props {
   fetchJobsInDb: () => Promise<void>,
   fetchUserInDb: () => Promise<void>,
+  location: Location,
+  history: History,
 }
 
-interface State {
-  isModalVisible: boolean,
-}
-
-export class ModalRegisterUser extends Component<Props, State> {
-  state = {
-    isModalVisible: false,
-  }
-
+export class ModalRegisterUser extends Component<Props> {
   componentDidMount() {
     this.props.fetchUserInDb();
     this.props.fetchJobsInDb();
   }
 
   toggleModal = () => {
-    this.setState((prevState) =>  ({ isModalVisible: !prevState.isModalVisible }));
+    this.props.history.goBack();
+  }
+
+  private isModalRequested(): boolean {
+    return this.props.location.hash === '#modal-intern';
   }
 
   render() {
-    const loggedUser = LoggedUserStatus.ADMIN;
-    
     return (
-      <>
-        {
-          (loggedUser === LoggedUserStatus.ADMIN || loggedUser === LoggedUserStatus.HR)  && 
-          <Button
-            onClick={this.toggleModal}
-            color="primary"
-            className={classes.AddNewIntern}
-          >
-            Ajouter un stagiaire
-          </Button>
-        }
-        <Modal isOpen={this.state.isModalVisible} toggle={this.toggleModal}>
-          <ModalHeader>Ajout d'un nouveau stagiaire.</ModalHeader>
-          <ModalBody>
-            <ContentModalBody />
-          </ModalBody>
-          <ModalFooter>
-            <ContentModalFooter toggleModal={this.toggleModal} />
-          </ModalFooter>
-        </Modal>
-      </>
+      <Modal isOpen={this.isModalRequested()} toggle={this.toggleModal}>
+        <ModalHeader>Ajout d'un nouveau stagiaire.</ModalHeader>
+        <ModalBody>
+          <ContentModalBody />
+        </ModalBody>
+        <ModalFooter>
+          <ContentModalFooter toggleModal={this.toggleModal} />
+        </ModalFooter>
+      </Modal>
     );
   }
 }
