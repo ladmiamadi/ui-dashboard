@@ -22,6 +22,10 @@ export class TalentFormHead extends React.Component<Props> {
     this.props.fetchJobsInDb();
   }
 
+  mapUsernameToUser(username: string): User | null {
+    return this.props.users.find(user => user.username === username) || null;
+  }
+
   render() {
     const indexLive: number = ProfileCollection.findLiveIndex(this.props.user.userProfiles);
 
@@ -33,10 +37,9 @@ export class TalentFormHead extends React.Component<Props> {
 
     const jobPositions = this.props.jobCollection.map((job: Job) => job.position);
 
-    const sourceByHRItems = this.props.users
+    const recruiters = this.props.users
       .filter(user => UserProfileHelpers.isHR(user))
-      .map(user => UserProfileHelpers.getUsernameFromUser(user))
-      .filter(username => username !== '');
+      .map(user => UserProfileHelpers.buildOptionValueFromUser(user));
 
     return (
       <div className="form-head">
@@ -113,16 +116,16 @@ export class TalentFormHead extends React.Component<Props> {
             required={false}
           />
           <SelectFormField
-            keyName="sourceByHR"
+            keyName="recruitedByUser"
             label="Sourcé par: "
-            options={sourceByHRItems}
+            options={recruiters}
             handleChange={(property, value) => this.props.modifyUser({
               category: 'userRecruitment',
               property,
-              value,
+              value: this.mapUsernameToUser(value),
               index: -1,
             })}
-            value={this.props.user.userRecruitment?.sourceByHR || ''}
+            value={this.props.user.userRecruitment.recruitedByUser?.username || ''}
             required={true}
           />
         </div>

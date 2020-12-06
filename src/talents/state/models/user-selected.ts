@@ -15,7 +15,7 @@ export interface UpdateUserPayload {
   category: string,
   index: number,
   property: string,
-  value: number | string | Date | [Date, Date] | boolean | null,
+  value: number | string | Date | [Date, Date] | boolean | null | User,
 }
 
 export const userSelected = createModel({
@@ -45,6 +45,7 @@ export const userSelected = createModel({
     addUserLanguage: (state: UserState, userLanguage: UserLanguage): UserState => {
       const updatedLanguages = state.userSelected.userLanguages?.map(language => ({ ...language }))
         .concat(userLanguage);
+      
       const copyUserSelected: User = { ...state.userSelected };
 
       copyUserSelected.userLanguages = updatedLanguages;

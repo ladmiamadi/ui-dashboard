@@ -1,5 +1,6 @@
 import { env } from '../../helpers/environment';
 import { POSITIONS } from '../../talents/index.d';
+import { OptionValue } from '../components/utils/OptionList';
 import { User, UserProfile } from '../index';
 
 const DEFAULT_AVATAR_IMG = '/default_avatar.png';
@@ -42,14 +43,23 @@ export class UserProfileHelpers {
         : DEFAULT_AVATAR_IMG);
   }
 
-  public static getUsernameFromUser(user: User): string {
+  public static getFullNameFromUser(user: User): string {
     if (!user.userProfiles) {
-      return '';
+      return user.username;
     }
 
     const userProfileLive = user.userProfiles.find(up => up.environment === 'live');
 
-    return (userProfileLive) ? userProfileLive.firstName + ' ' + userProfileLive.lastName : '';
+    return (userProfileLive)
+      ? userProfileLive.firstName + ' ' + userProfileLive.lastName
+      : user.username;
+  }
+
+  public static buildOptionValueFromUser(user: User): OptionValue {
+    return {
+      label: this.getFullNameFromUser(user),
+      value: user.username,
+    };
   }
 
   public static isHR(user: User): unknown {

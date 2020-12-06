@@ -1,8 +1,8 @@
-import { Toastify } from '../../../helpers/Toastify';
+import { createModel } from '@rematch/core';
 import { User } from '../../../app';
 import { apiService } from '../../../app/http/service';
-import { createModel } from '@rematch/core';
-import { UsersDatesFormatter } from '../../../app/formatter/usersDatesFormatter';
+import { Toastify } from '../../../helpers/Toastify';
+import { UserAdapterHelper } from '../../helpers/UserAdapterHelper';
 
 interface State {
   searchTerm: string,
@@ -29,12 +29,7 @@ export const users = createModel({
         this.setIsFetching(true);
         const { data: users } = await apiService.get<User[]>('/api/users');
 
-        users.forEach(user => {
-          if (user.userAddress == null) {
-            user.userAddress = {};
-          }
-        });
-        UsersDatesFormatter.transformDateFormat(users);
+        UserAdapterHelper.postprocessUsers(users);
 
         this.updateList(users);
       } catch (error) {
