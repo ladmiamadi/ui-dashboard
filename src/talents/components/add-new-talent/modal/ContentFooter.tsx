@@ -49,15 +49,15 @@ export class ContentModalFooter extends React.Component<Props> {
         <Button
           color={colorButtonAdd}
           disabled={!isPostAvailable}
-          onClick={() => this.postUserInDb(false)}>
-          Ajouter
+          onClick={() => this.postUserInDb(true)}>
+          Ajouter et Editer
         </Button>
         <Button
           color={colorButtonAdd}
           disabled={!isPostAvailable}
-          onClick={() => this.postUserInDb(true)}>
-          Ajouter et Editer
-        </Button>
+          onClick={() => this.postUserInDb(false)}>
+          Ajouter
+        </Button>        
         <Button
           color="warning"
           onClick={this.props.resetUserSignUp}>
