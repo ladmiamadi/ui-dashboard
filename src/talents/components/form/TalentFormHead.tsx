@@ -5,6 +5,7 @@ import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { UserProfileHelpers } from '../../../app/helpers/UserProfileHelpers';
 import { RootDispatch, RootState } from '../../../app/state/store';
+import { mapToOptionValues } from '../../helpers/FormHelper';
 import ProfileCollection from '../../helpers/ProfileCollection';
 import { UpdateUserPayload } from '../../state/models/user-selected';
 
@@ -79,7 +80,7 @@ export class TalentFormHead extends React.Component<Props> {
           <SelectFormField
             keyName="position"
             label="Fonction: "
-            options={jobPositions}
+            options={mapToOptionValues(jobPositions)}
             handleChange={(property, value) => this.props.modifyUser({
               category: 'userProfiles',
               property,

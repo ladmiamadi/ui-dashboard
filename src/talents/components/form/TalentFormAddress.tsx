@@ -4,6 +4,7 @@ import { User } from '../../../app';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { COUNTRIES } from '../../constants/countries';
+import { mapToOptionValues } from '../../helpers/FormHelper';
 import { UpdateUserPayload } from '../../state/models/user-selected';
 
 interface Props {
@@ -96,7 +97,7 @@ export default class TalentFormAddress extends React.Component<Props> {
               keyName="country"
               className="generic-field-form"
               label="Pays: "
-              options={COUNTRIES}
+              options={mapToOptionValues(COUNTRIES)}
               handleChange={(property, value) => this.props.modifyUser({
                 category: 'userAddress',
                 property,

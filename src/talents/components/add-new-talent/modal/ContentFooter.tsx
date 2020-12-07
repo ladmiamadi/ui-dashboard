@@ -41,7 +41,7 @@ export class ContentModalFooter extends React.Component<Props> {
 
   render() {
     const isPostAvailable = this.isPostAvailable();
-    
+
     const colorButtonAdd = isPostAvailable ? 'success' : 'secondary';
 
     return (
@@ -57,7 +57,7 @@ export class ContentModalFooter extends React.Component<Props> {
           disabled={!isPostAvailable}
           onClick={() => this.postUserInDb(false)}>
           Ajouter
-        </Button>        
+        </Button>
         <Button
           color="warning"
           onClick={this.props.resetUserSignUp}>

@@ -3,6 +3,7 @@ import { Col, Row } from 'reactstrap';
 import { UserLanguage } from '../../../app';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { LANGUAGES_LEVEL } from '../../constants/language';
+import { mapToOptionValues } from '../../helpers/FormHelper';
 
 interface Props {
   userLanguages: UserLanguage[],
@@ -23,7 +24,7 @@ export class UserLanguagesDisplay extends React.Component<Props> {
                     keyName={language}
                     label={language}
                     className="large almost-large"
-                    options={LANGUAGES_LEVEL}
+                    options={mapToOptionValues(LANGUAGES_LEVEL)}
                     value={level}
                     handleChange={this.props.updateUserLanguage}
                   />

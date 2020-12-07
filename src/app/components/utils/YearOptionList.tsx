@@ -1,4 +1,5 @@
-import React  from 'react';
+import React from 'react';
+import { mapToOptionValue } from '../../../talents/helpers/FormHelper';
 import { OptionList } from './OptionList';
 
 interface Props {
@@ -15,7 +16,7 @@ export class YearOptionList extends React.Component<Props> {
 
     return (
       Array.from(Array(numberOfValues))
-        .map(() => String(currentYear += incrementOrder))
+        .map(() => mapToOptionValue(String(currentYear += incrementOrder)))
     );
   }
 

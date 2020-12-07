@@ -6,7 +6,7 @@ interface Props {
   className?: string,
   keyName: string,
   label: string,
-  options: string[] | OptionValue[],
+  options: OptionValue[],
   required?: boolean,
   size?: number,
   value: string,
