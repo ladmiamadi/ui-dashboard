@@ -126,6 +126,57 @@ export default class TalentFormInternship extends React.Component<Props> {
               />
             </Col>
           </Row>
+          <Row>
+            <Col md={12}>
+              <FieldForm
+                keyName="startInterview"
+                label="Entretien de début de stage: "
+                className="generic-field-form"
+                type="textarea"
+                handleChange={(value) => this.props.modifyUser({
+                  category: 'userJob',
+                  property: 'startInterview',
+                  value,
+                  index: -1,
+                })}
+                value={this.props.user.userJob?.startInterview || ''}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={12}>
+              <FieldForm
+                keyName="middleInterview"
+                label="Entretien de milieu de stage: "
+                className="generic-field-form"
+                type="textarea"
+                handleChange={(value) => this.props.modifyUser({
+                  category: 'userJob',
+                  property: 'middleInterview',
+                  value,
+                  index: -1,
+                })}
+                value={this.props.user.userJob?.middleInterview || ''}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={12}>
+              <FieldForm
+                keyName="endInterview"
+                label="Entretien de fin de stage: "
+                className="generic-field-form"
+                type="textarea"
+                handleChange={(value) => this.props.modifyUser({
+                  category: 'userJob',
+                  property: 'endInterview',
+                  value,
+                  index: -1,
+                })}
+                value={this.props.user.userJob?.endInterview || ''}
+              />
+            </Col>
+          </Row>
 
         </div>
       </div>

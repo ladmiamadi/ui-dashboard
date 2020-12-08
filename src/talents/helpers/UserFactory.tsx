@@ -79,6 +79,9 @@ export class UserFactory {
     isWorkingOnSunday: false,
     status: '',
     workingHours: '',
+    startInterview: '',
+    middleInterview: '',
+    endInterview: '',
   })
 
   public createEmptyJob = (): Job => ({
