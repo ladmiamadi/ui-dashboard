@@ -35,7 +35,7 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     platform: userSignUp.platform,
     mailboxHR: userSignUp.mailboxHR,
     recruitmentComments: userSignUp.recruitmentComments,
-    recruitedByUser: recruiter,
+    recruiter: recruiter,
   };
 
   const job: Job = jobCollection.filter((job: Job) => job.position === userSignUp.jobPosition)[0];

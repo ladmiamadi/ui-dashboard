@@ -53,7 +53,7 @@ export interface UserDesiredJob {
 export interface UserRecruitment {
   id?: number,
   platform: string,
-  recruitedByUser?: User,
+  recruiter?: User,
   mailboxHR: string,
   recruitmentComments: string,
 }

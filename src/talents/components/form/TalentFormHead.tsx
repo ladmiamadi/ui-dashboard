@@ -117,7 +117,7 @@ export class TalentFormHead extends React.Component<Props> {
             required={false}
           />
           <SelectFormField
-            keyName="recruitedByUser"
+            keyName="recruiter"
             label="Sourcé par: "
             options={recruiters}
             handleChange={(property, value) => this.props.modifyUser({
@@ -126,7 +126,7 @@ export class TalentFormHead extends React.Component<Props> {
               value: this.mapUsernameToUser(value),
               index: -1,
             })}
-            value={this.props.user.userRecruitment.recruitedByUser?.username || ''}
+            value={this.props.user.userRecruitment.recruiter?.username || ''}
             required={true}
           />
         </div>
