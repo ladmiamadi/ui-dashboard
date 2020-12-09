@@ -150,7 +150,7 @@ export interface UserJob {
   isWorkingOnSunday?: boolean,
   status?: string,
   workingHours?: string,
- startInterview?: string,
+  startInterview?: string,
   middleInterview?: string,
   endInterview?: string,
 }
