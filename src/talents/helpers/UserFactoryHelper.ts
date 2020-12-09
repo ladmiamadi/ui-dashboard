@@ -1,5 +1,5 @@
 import { UserSignUp } from '..';
-import { Job, User, UserAddress, UserDesiredJob, UserJob, UserProfile } from '../../app';
+import { INTERNSHIP_STATUS, Job, User, UserAddress, UserDesiredJob, UserJob, UserProfile } from '../../app/index.d';
 
 export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]): User => {
 
@@ -49,7 +49,7 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     isWorkingOnFriday: false,
     isWorkingOnSaturday: false,
     isWorkingOnSunday: false,
-    status: 'Aucun',
+    status: INTERNSHIP_STATUS.NONE,
     workingHours: '',
   };
 
