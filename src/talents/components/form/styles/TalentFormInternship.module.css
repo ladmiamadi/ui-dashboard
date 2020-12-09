@@ -1,20 +1,25 @@
 .ongoing-internship {
-  background-color: rgb(99, 143, 126);
+  background-color: rgb(186, 218, 130);
 }
 
 .notStarted-internship {
-  background-color: rgb(251, 177, 36);
+  background-color: rgb(255, 249, 128);
 }
 
 .abandoned-internship {
   background-color:rgb(78, 78, 78);
   color: rgb(255, 255, 255);
+  border-bottom: solid 0.1rem #ffffff;
 }
 
 .finished-internship {
-  background-color: rgb(174, 174, 174, 0.5);  
+  background-color: rgb(174, 174, 174, 0.5);
 }
 
 .none {
-  background-color:rgba(255, 255, 255);  
+  background-color:rgba(255, 255, 255);
+}
+
+.red{
+  background-color: rgb(255, 149, 128);
 }

@@ -2,10 +2,11 @@ import fr from 'date-fns/locale/fr';
 import React from 'react';
 import ReactDatePicker from 'react-datepicker';
 import { Col, FormGroup, Row } from 'reactstrap';
-import { Checkbox, INTERNSHIP_STATUS, User } from '../../../app/index.d';
 import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import { Checkbox, User } from '../../../app/index.d';
+import { getInternshipStatusClassname } from '../../constants/status-internship';
 import { STATUS_OPTIONS } from '../../constants/status-options';
 import { DAYS_TO_INTERSHIP_PROPERTIES } from '../../constants/week-days';
 import { UpdateUserPayload } from '../../state/models/user-selected';
@@ -16,19 +17,10 @@ interface Props {
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-const STATUS_INTERNSHIP_CLASS_NAMES: { [status in INTERNSHIP_STATUS]: string } = {
-  [INTERNSHIP_STATUS.NON_STARTED]: 'notStarted-internship',
-  [INTERNSHIP_STATUS.ONGOING]: 'ongoing-internship',
-  [INTERNSHIP_STATUS.ABANDONED]: 'abandoned-internship',
-  [INTERNSHIP_STATUS.FINISHED]: 'finished-internship',
-  [INTERNSHIP_STATUS.NONE]: 'none',
-};
-
 export default class TalentFormInternship extends React.Component<Props> {
   render() {
-    const statusInternship = this.props.user.userJob?.status || INTERNSHIP_STATUS.NONE;
 
-    const currentClassName = STATUS_INTERNSHIP_CLASS_NAMES[statusInternship];
+    const currentClassName = getInternshipStatusClassname(this.props.user.userJob?.status);
 
     const checkboxes: Checkbox[] = [
       { label: 'lundi', checked: this.props.user.userJob?.isWorkingOnMonday || false },
@@ -41,11 +33,11 @@ export default class TalentFormInternship extends React.Component<Props> {
     ];
 
     return (
-      <div className={classes[currentClassName]}>
-        <div className="form-section">
-          <div className="form-title">
-            <h6>Stage: </h6>
-          </div>
+      <div className="recruitment-section">
+        <div className="form-title">
+          <h6>Stage: </h6>
+        </div>
+        <div className={classes[currentClassName]}>
           <div className="form-elements">
             <Row>
               <Col md={6}>
