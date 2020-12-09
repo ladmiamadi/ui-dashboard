@@ -139,9 +139,9 @@ export interface UserSkill {
 
 export enum INTERNSHIP_STATUS {
   NON_STARTED = 'Non initié',
-  ONGOING ='En cours',
+  ONGOING = 'En cours',
   ABANDONED = 'Abandonné',
-  FINISHED = 'Fini',  
+  FINISHED = 'Fini',
   NONE = 'Aucun',
 }
 

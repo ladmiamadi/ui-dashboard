@@ -5,6 +5,7 @@ import { getInternshipStatusClassname } from '../constants/status-internship';
 import './styles/TalentModal.css';
 import './styles/TalentsList.css';
 import classes from '../components/form/styles/TalentFormInternship.module.css';
+import { isUserInternshipFinishing } from '../../app/helpers/user';
 
 interface Props {
   profile: UserProfile,
@@ -14,8 +15,8 @@ interface Props {
 export default class TalentsListElement extends React.Component<Props> {
   render() {
     const picture = UserProfileHelpers.getUserProfilePictureUrl(this.props.profile);
-
-    const currentClassName = getInternshipStatusClassname(this.props.user.userJob?.status);
+    const { nDiffDays, isInternshipFinishing } = isUserInternshipFinishing(this.props.user);
+    const currentClassName = getInternshipStatusClassname(this.props.user.userJob?.status, isInternshipFinishing);
 
     return (
       <div className={classes[currentClassName]}>
@@ -27,7 +28,7 @@ export default class TalentsListElement extends React.Component<Props> {
           />
           <div className="add-margin-top-modal">
             <p>
-              {this.props.profile.lastName}
+              {this.props.profile.lastName} {isInternshipFinishing && nDiffDays}
             </p>
             <p>
               {this.props.profile.firstName}

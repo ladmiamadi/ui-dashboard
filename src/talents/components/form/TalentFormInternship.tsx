@@ -1,10 +1,11 @@
-import fr from 'date-fns/locale/fr';
 import React from 'react';
+import fr from 'date-fns/locale/fr';
 import ReactDatePicker from 'react-datepicker';
 import { Col, FormGroup, Row } from 'reactstrap';
 import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
+import { isUserInternshipFinishing } from '../../../app/helpers/user';
 import { Checkbox, User } from '../../../app/index.d';
 import { getInternshipStatusClassname } from '../../constants/status-internship';
 import { STATUS_OPTIONS } from '../../constants/status-options';
@@ -18,8 +19,11 @@ interface Props {
 }
 
 export default class TalentFormInternship extends React.Component<Props> {
+
   render() {
-    const currentClassName = getInternshipStatusClassname(this.props.user.userJob?.status);
+    const { isInternshipFinishing } = isUserInternshipFinishing(this.props.user);
+
+    const currentClassName = getInternshipStatusClassname(this.props.user.userJob?.status, isInternshipFinishing);
 
     const checkboxes: Checkbox[] = [
       { label: 'lundi', checked: this.props.user.userJob?.isWorkingOnMonday || false },
