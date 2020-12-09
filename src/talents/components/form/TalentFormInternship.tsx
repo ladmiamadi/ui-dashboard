@@ -19,7 +19,6 @@ interface Props {
 
 export default class TalentFormInternship extends React.Component<Props> {
   render() {
-
     const currentClassName = getInternshipStatusClassname(this.props.user.userJob?.status);
 
     const checkboxes: Checkbox[] = [

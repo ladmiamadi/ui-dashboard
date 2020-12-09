@@ -59,6 +59,7 @@ export class TalentsList extends React.Component<Props, State> {
                     <Col key={index} className="element" xs={5} sm={3} xl={2} onClick={() => this.toggleModal(talent)}>
                       <React.Fragment key={talent.id}>
                         <TalentsListElement
+                          user={talent}
                           profile={userProfile}
                         />
                         <ModalCustom
