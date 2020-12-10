@@ -8,7 +8,7 @@ import { RootDispatch, RootState } from '../../../app/state/store';
 import { mapToOptionValues } from '../../helpers/FormHelper';
 import ProfileCollection from '../../helpers/ProfileCollection';
 import { UpdateUserPayload } from '../../state/models/user-selected';
-import { getUserByUsername } from '../../../app/helpers/user';
+import { getUserByUsername } from '../../../app/helpers/UserHelpers';
 
 interface Props {
   jobCollection: Job[],

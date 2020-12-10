@@ -1,6 +1,6 @@
 import { apiService } from '../../http/service';
 import { createModel } from '@rematch/core';
-import { createEmptyUser } from '../../helpers/user';
+import { createEmptyUser } from '../../helpers/UserHelpers';
 import { User } from '../../index';
 import { Toastify } from '../../../helpers/Toastify';
 
