@@ -15,6 +15,7 @@ export interface User {
   userProfiles?: UserProfile[],
   userAddress?: UserAddress,
   userDesiredJob?: UserDesiredJob,
+  userRecruitment: UserRecruitment,
   userAbsences?: UserAbsence[],
   userInterviews?: UserInterview[],
   userContracts?: UserContract[],
@@ -49,6 +50,14 @@ export interface UserDesiredJob {
   placementOptions: string,
 }
 
+export interface UserRecruitment {
+  id?: number,
+  platform: string,
+  recruiter?: User,
+  mailboxHR: string,
+  recruitmentComments: string,
+}
+
 export interface UserProfile {
   id?: number,
   lastName: string,
@@ -74,10 +83,6 @@ export interface UserProfile {
   environment: string
   picture?: MediaObject,
   position?: string,
-  platform?: string,
-  sourceByHR?: string,
-  mailboxHR?: string,
-  recruitmentComments?: string,
 }
 
 export interface MediaObject {
@@ -198,4 +203,9 @@ export interface UtilsDate {
 export interface Checkbox {
   label: string,
   checked: boolean,
+}
+
+export interface OptionValue {
+  value: string,
+  label: string,
 }

@@ -10,6 +10,7 @@ import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { STATUS_OPTIONS } from '../../constants/status-options';
 import { DAYS_TO_INTERSHIP_PROPERTIES } from '../../constants/week-days';
 import { UpdateUserPayload } from '../../state/models/user-selected';
+import { mapToOptionValues } from '../../helpers/FormHelper';
 
 interface Props {
   user: User,
@@ -60,7 +61,7 @@ export default class TalentFormInternship extends React.Component<Props, State> 
               <SelectFormField
                 keyName="status"
                 label="Status du stage: "
-                options={STATUS_OPTIONS}
+                options={mapToOptionValues(STATUS_OPTIONS)}
                 className="generic-field-form"
                 handleChange={(property, value) => this.props.modifyUser({
                   category: 'userJob',

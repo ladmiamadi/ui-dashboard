@@ -2,7 +2,7 @@ import { createModel } from '@rematch/core';
 import _ from 'lodash';
 import { User, UserExperience, UserLanguage, UserTraining } from '../../../app';
 import { UsersDatesFormatter } from '../../../app/formatter/usersDatesFormatter';
-import { createEmptyUser } from '../../../app/helpers/user';
+import { createEmptyUser } from '../../../app/helpers/UserHelpers';
 import { apiService } from '../../../app/http/service';
 import { Toastify } from '../../../helpers/Toastify';
 
@@ -15,7 +15,7 @@ export interface UpdateUserPayload {
   category: string,
   index: number,
   property: string,
-  value: number | string | Date | [Date, Date] | boolean | null,
+  value: any,
 }
 
 export const userSelected = createModel({

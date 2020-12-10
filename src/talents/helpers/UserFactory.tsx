@@ -11,6 +11,7 @@ export class UserFactory {
     userProfiles: user.userProfiles,
     userAddress: user.userAddress,
     userDesiredJob: user.userDesiredJob,
+    userRecruitment: user.userRecruitment,
     userAbsences: user.userAbsences,
     userInterviews: user.userInterviews,
     userContracts: user.userContracts,
@@ -29,6 +30,11 @@ export class UserFactory {
       password: '',
       isActive: false,
       createdDate: new Date(),
+      userRecruitment: {
+        platform: '',
+        mailboxHR: '',
+        recruitmentComments: '',
+      },
     };
 
     return dtoUser;

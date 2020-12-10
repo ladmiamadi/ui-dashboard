@@ -8,6 +8,12 @@ export const createEmptyUser = (): User => ({
   createdDate: new Date(),
   updatedDate: new Date(),
   userProfiles: [],
+  userRecruitment: {
+    platform: '',
+    mailboxHR: '',
+    recruitmentComments: '',
+    recruiter: undefined,
+  },
   userAbsences: [],
   userInterviews: [],
   userContracts: [],
@@ -16,3 +22,7 @@ export const createEmptyUser = (): User => ({
   userTrainings: [],
   userSkills: [],
 });
+
+export const getUserByUsername = (users: User[], username: string): User | null => {
+  return users.find(user => user.username === username) || null;
+};

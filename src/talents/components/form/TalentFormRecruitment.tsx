@@ -1,10 +1,10 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-import { User, UserProfile } from '../../../app';
+import { User, UserRecruitment } from '../../../app';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { RECRUITMENT_TRAY_OPTIONS } from '../../constants/recruitment-tray-options';
-import ProfileCollection from '../../helpers/ProfileCollection';
+import { mapToOptionValues } from '../../helpers/FormHelper';
 import { UpdateUserPayload } from '../../state/models/user-selected';
 
 interface Props {
@@ -14,11 +14,7 @@ interface Props {
 
 export default class TalentFormRecruitment extends React.Component<Props> {
   render() {
-    const indexLive: number = ProfileCollection.findLiveIndex(this.props.user.userProfiles);
-    const userProfileLive: UserProfile | undefined = ProfileCollection.filterByEnvironment(
-      this.props.user.userProfiles,
-      'live',
-    );
+    const userRecruitment: UserRecruitment = this.props.user.userRecruitment;
 
     return (
       <div className="recruitment-section">
@@ -34,11 +30,11 @@ export default class TalentFormRecruitment extends React.Component<Props> {
               type="text"
               handleChange={(value) => this.props.modifyUser({
                 value,
-                index: indexLive,
-                category: 'userProfiles',
+                index: -1,
+                category: 'userRecruitment',
                 property: 'platform',
               })}
-              value={userProfileLive?.platform || ''}
+              value={userRecruitment?.platform || ''}
               required={true}
             />
           </Col>
@@ -47,14 +43,14 @@ export default class TalentFormRecruitment extends React.Component<Props> {
               keyName="mailboxHR"
               className="generic-field-form"
               label="Boîte e-mail: "
-              options={RECRUITMENT_TRAY_OPTIONS}
+              options={mapToOptionValues(RECRUITMENT_TRAY_OPTIONS)}
               handleChange={(property, value) => this.props.modifyUser({
-                category: 'userProfiles',
+                category: 'userRecruitment',
                 property,
                 value,
-                index: indexLive,
+                index: -1,
               })}
-              value={userProfileLive?.mailboxHR || ''}
+              value={userRecruitment?.mailboxHR || ''}
               required={true}
             />
           </Col>
@@ -67,12 +63,12 @@ export default class TalentFormRecruitment extends React.Component<Props> {
               className="generic-field-form"
               type="textarea"
               handleChange={(value) => this.props.modifyUser({
-                category: 'userProfiles',
+                category: 'userRecruitment',
                 property: 'recruitmentComments',
                 value,
-                index: indexLive,
+                index: -1,
               })}
-              value={userProfileLive?.recruitmentComments || ''}
+              value={userRecruitment?.recruitmentComments || ''}
               required={true}
             />
           </Col>
