@@ -2,7 +2,6 @@ import { UserSignUp } from '..';
 import { Job, User, UserAddress, UserDesiredJob, UserJob, UserProfile, UserRecruitment } from '../../app';
 
 export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[], recruiter: User): User => {
-
   const userProfileLive: UserProfile = {
     environment: 'live',
     firstName: userSignUp.firstName,
@@ -84,9 +83,9 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     isActive: true,
     password: 'sosecure',
     username: userSignUp.username,
-    userAddress: userAddress,
+    userAddress,
     userProfiles: [userProfileLive, userProfileWorking],
-    userJob: userJob,
+    userJob,
     userDesiredJob,
     userRecruitment,
   };

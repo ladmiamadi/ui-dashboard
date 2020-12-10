@@ -8,6 +8,7 @@ import { RootDispatch, RootState } from '../../../app/state/store';
 import { mapToOptionValues } from '../../helpers/FormHelper';
 import ProfileCollection from '../../helpers/ProfileCollection';
 import { UpdateUserPayload } from '../../state/models/user-selected';
+import { getUserByUsername } from '../../../app/helpers/user';
 
 interface Props {
   jobCollection: Job[],
@@ -21,10 +22,6 @@ export class TalentFormHead extends React.Component<Props> {
 
   componentDidMount() {
     this.props.fetchJobsInDb();
-  }
-
-  mapUsernameToUser(username: string): User | null {
-    return this.props.users.find(user => user.username === username) || null;
   }
 
   render() {
@@ -123,7 +120,7 @@ export class TalentFormHead extends React.Component<Props> {
             handleChange={(property, value) => this.props.modifyUser({
               category: 'userRecruitment',
               property,
-              value: this.mapUsernameToUser(value),
+              value: getUserByUsername(this.props.users, value),
               index: -1,
             })}
             value={this.props.user.userRecruitment.recruiter?.username || ''}

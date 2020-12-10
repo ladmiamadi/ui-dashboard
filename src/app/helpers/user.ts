@@ -22,3 +22,7 @@ export const createEmptyUser = (): User => ({
   userTrainings: [],
   userSkills: [],
 });
+
+export const getUserByUsername = (users: User[], username: string): User | null => {
+  return users.find(user => user.username === username) || null;
+};

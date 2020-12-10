@@ -8,13 +8,14 @@ import { RootDispatch, RootState } from '../../../../app/state/store';
 import { FormValidator } from '../../../helpers/FormValidator';
 import { createDtoUserIntern } from '../../../helpers/UserFactoryHelper';
 import { IsFormValid, UserSignUp } from '../../../index.d';
+
 interface Props {
   isFormValid: IsFormValid,
   isRequesting: boolean,
   jobCollection: Job[],
   userSignUp: UserSignUp,
   defaultRecruiterUser: User,
-  postUserInDb: (userSentInDb: User, redirect: boolean) => Promise<User | null>,
+  postUserInDb: (userSentInDb: User) => Promise<User | null>,
   resetUserSignUp: () => void,
   toggleModal: () => void,
   updateUserSelected: (userSelected: User) => void,
@@ -25,23 +26,28 @@ export class ContentModalFooter extends React.Component<Props> {
     return this.props.isRequesting ? false : FormValidator.isAllFieldValidated<IsFormValid>(this.props.isFormValid);
   }
 
-  postUserInDb = async (redirect: boolean) => {
+  postUserInDb = async () => {
     const userSentInDb = createDtoUserIntern(
       this.props.userSignUp,
       this.props.jobCollection,
       this.props.defaultRecruiterUser,
     );
 
-    const newUser = await this.props.postUserInDb(userSentInDb, redirect);
-    if (newUser != null && redirect) {
-      this.props.updateUserSelected(_.cloneDeep(newUser));
-      history.push('/talent');
-    }
+    return await this.props.postUserInDb(userSentInDb);
+  }
+
+  redirectToProfileEdition = (newCreatedUser: Promise<User | null>) => {
+    newCreatedUser.then(user => {
+      if (user != null) {
+        this.props.updateUserSelected(_.cloneDeep(user));
+        history.push('/talent');
+      }
+    });
+
   }
 
   render() {
     const isPostAvailable = this.isPostAvailable();
-
     const colorButtonAdd = isPostAvailable ? 'success' : 'secondary';
 
     return (
@@ -49,13 +55,13 @@ export class ContentModalFooter extends React.Component<Props> {
         <Button
           color={colorButtonAdd}
           disabled={!isPostAvailable}
-          onClick={() => this.postUserInDb(true)}>
+          onClick={() => this.redirectToProfileEdition(this.postUserInDb())}>
           Ajouter et Editer
         </Button>
         <Button
           color={colorButtonAdd}
           disabled={!isPostAvailable}
-          onClick={() => this.postUserInDb(false)}>
+          onClick={() => this.postUserInDb()}>
           Ajouter
         </Button>
         <Button

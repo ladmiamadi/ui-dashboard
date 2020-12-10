@@ -1,7 +1,5 @@
 import { env } from '../../helpers/environment';
-import { POSITIONS } from '../../talents/index.d';
-import { OptionValue } from '../components/utils/OptionList';
-import { User, UserProfile } from '../index';
+import { OptionValue, User, UserProfile } from '../index';
 
 const DEFAULT_AVATAR_IMG = '/default_avatar.png';
 
@@ -69,6 +67,6 @@ export class UserProfileHelpers {
 
     const userProfileLive = user.userProfiles.find(up => up.environment === 'live');
 
-    return userProfileLive?.position === POSITIONS.RH.toString();
+    return userProfileLive?.position === 'RH';
   }
 }

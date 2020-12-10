@@ -204,3 +204,8 @@ export interface Checkbox {
   label: string,
   checked: boolean,
 }
+
+export interface OptionValue {
+  value: string,
+  label: string,
+}

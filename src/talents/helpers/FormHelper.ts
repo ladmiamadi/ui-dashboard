@@ -1,4 +1,4 @@
-import { OptionValue } from '../../app/components/utils/OptionList';
+import { OptionValue } from '../../app';
 
 export const mapToOptionValue =
   (value: string): OptionValue => ({ label: value, value });

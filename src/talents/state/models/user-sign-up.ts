@@ -7,8 +7,6 @@ import { Toastify } from '../../../helpers/Toastify';
 import { UserAdapterHelper } from '../../helpers/UserAdapterHelper';
 import { createEmptyIsFormValid, createEmptyUserSignUp } from '../../helpers/UserSignUpFactoryHelper';
 
-const DEFAULT_RECRUITER_EMAIL = 'test1@test.com';
-
 export interface UserSignUpState {
   isFormValid: IsFormValid,
   isJobsFetching: boolean,
@@ -95,15 +93,15 @@ export const userSignUp = createModel({
 
       try {
         const { data: users } = await apiService.get<User[]>('/api/users');
-
         const usernameCollection = users.map((user: User) => user.username);
-        this.updateUsernameCollection(usernameCollection);
+        const defaultRecruiterUser = users.find(user => user.username === 'test1@test.com');
 
-        const defaultRecruiterUser = users.find(user => user.username === DEFAULT_RECRUITER_EMAIL);
+        this.updateUsernameCollection(usernameCollection);
 
         if (defaultRecruiterUser === undefined) {
           throw new Error('Missing pre-defined recruiter');
         }
+
         this.updateDefaultRecruiterUser(defaultRecruiterUser);
       } catch (error) {
         (new Toastify()).error(`Unable to get the user from the database. ${error.message}`);
@@ -116,7 +114,6 @@ export const userSignUp = createModel({
 
       try {
         const { data } = await apiService.post('/api/users', userSentInDb);
-
         const newUser = data as User;
 
         this.concatUsername(newUser.username);
@@ -125,13 +122,12 @@ export const userSignUp = createModel({
         (new Toastify()).info('Success adding ' + newUser.username + ' in the database.');
 
         this.resetUserSignUp();
+        this.setIsRequesting(false);
 
         return newUser;
       } catch (error) {
         (new Toastify()).error(`Unable to post the user in the database. ${error.message}`);
         return null;
-      } finally {
-        this.setIsRequesting(false);
       }
     },
     async fetchJobsInDb() {
