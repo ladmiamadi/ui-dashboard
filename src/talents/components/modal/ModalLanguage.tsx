@@ -5,6 +5,7 @@ import { UserLanguage } from '../../../app';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { RootDispatch, RootState } from '../../../app/state/store';
 import { LANGUAGES_LEVEL } from '../../constants/language';
+import { mapToOptionValues } from '../../helpers/FormHelper';
 import { UserLanguageFactory } from '../../helpers/UserLanguageFactory';
 import { UpdateLanguagePayload } from '../../state/models/languages/add-language';
 
@@ -31,7 +32,7 @@ export class ModalLanguage extends React.Component<Props> {
           <SelectFormField
             keyName="language"
             label="Ajouter une nouvelle langue : "
-            options={this.props.languages}
+            options={mapToOptionValues(this.props.languages)}
             handleChange={this.updateLanguageTest}
             value={this.props.language.language}
           />
@@ -42,7 +43,7 @@ export class ModalLanguage extends React.Component<Props> {
             <SelectFormField
               label="Niveau : "
               keyName="level"
-              options={LANGUAGES_LEVEL}
+              options={mapToOptionValues(LANGUAGES_LEVEL)}
               handleChange={this.updateLanguageTest}
               value={this.props.language.level}
             />

@@ -1,7 +1,7 @@
 import { UserSignUp } from '..';
 import { Job, User, UserAddress, UserDesiredJob, UserJob, UserProfile, UserRecruitment } from '../../app';
 
-export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]): User => {
+export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[], recruiter: User): User => {
 
   const userProfileLive: UserProfile = {
     environment: 'live',
@@ -35,9 +35,11 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     platform: userSignUp.platform,
     mailboxHR: userSignUp.mailboxHR,
     recruitmentComments: userSignUp.recruitmentComments,
+    recruiter: recruiter,
   };
 
   const job: Job = jobCollection.filter((job: Job) => job.position === userSignUp.jobPosition)[0];
+  
   const userJob: UserJob = {
     job: job,
     startDate: new Date(),

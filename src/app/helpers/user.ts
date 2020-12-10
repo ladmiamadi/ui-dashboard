@@ -12,6 +12,7 @@ export const createEmptyUser = (): User => ({
     platform: '',
     mailboxHR: '',
     recruitmentComments: '',
+    recruiter: undefined,
   },
   userAbsences: [],
   userInterviews: [],

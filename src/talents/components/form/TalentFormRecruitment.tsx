@@ -4,6 +4,7 @@ import { User, UserRecruitment } from '../../../app';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { RECRUITMENT_TRAY_OPTIONS } from '../../constants/recruitment-tray-options';
+import { mapToOptionValues } from '../../helpers/FormHelper';
 import { UpdateUserPayload } from '../../state/models/user-selected';
 
 interface Props {
@@ -42,7 +43,7 @@ export default class TalentFormRecruitment extends React.Component<Props> {
               keyName="mailboxHR"
               className="generic-field-form"
               label="Boîte e-mail: "
-              options={RECRUITMENT_TRAY_OPTIONS}
+              options={mapToOptionValues(RECRUITMENT_TRAY_OPTIONS)}
               handleChange={(property, value) => this.props.modifyUser({
                 category: 'userRecruitment',
                 property,

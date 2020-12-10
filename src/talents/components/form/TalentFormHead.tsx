@@ -5,6 +5,7 @@ import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { UserProfileHelpers } from '../../../app/helpers/UserProfileHelpers';
 import { RootDispatch, RootState } from '../../../app/state/store';
+import { mapToOptionValues } from '../../helpers/FormHelper';
 import ProfileCollection from '../../helpers/ProfileCollection';
 import { UpdateUserPayload } from '../../state/models/user-selected';
 
@@ -22,6 +23,10 @@ export class TalentFormHead extends React.Component<Props> {
     this.props.fetchJobsInDb();
   }
 
+  mapUsernameToUser(username: string): User | null {
+    return this.props.users.find(user => user.username === username) || null;
+  }
+
   render() {
     const indexLive: number = ProfileCollection.findLiveIndex(this.props.user.userProfiles);
 
@@ -33,10 +38,9 @@ export class TalentFormHead extends React.Component<Props> {
 
     const jobPositions = this.props.jobCollection.map((job: Job) => job.position);
 
-    const sourceByHRItems = this.props.users
+    const recruiters = this.props.users
       .filter(user => UserProfileHelpers.isHR(user))
-      .map(user => UserProfileHelpers.getUsernameFromUser(user))
-      .filter(username => username !== '');
+      .map(user => UserProfileHelpers.buildOptionValueFromUser(user));
 
     return (
       <div className="form-head">
@@ -76,7 +80,7 @@ export class TalentFormHead extends React.Component<Props> {
           <SelectFormField
             keyName="position"
             label="Fonction: "
-            options={jobPositions}
+            options={mapToOptionValues(jobPositions)}
             handleChange={(property, value) => this.props.modifyUser({
               category: 'userProfiles',
               property,
@@ -113,16 +117,16 @@ export class TalentFormHead extends React.Component<Props> {
             required={false}
           />
           <SelectFormField
-            keyName="sourceByHR"
+            keyName="recruiter"
             label="Sourcé par: "
-            options={sourceByHRItems}
+            options={recruiters}
             handleChange={(property, value) => this.props.modifyUser({
               category: 'userRecruitment',
               property,
-              value,
+              value: this.mapUsernameToUser(value),
               index: -1,
             })}
-            value={this.props.user.userRecruitment?.sourceByHR || ''}
+            value={this.props.user.userRecruitment.recruiter?.username || ''}
             required={true}
           />
         </div>
