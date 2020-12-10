@@ -51,6 +51,9 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     isWorkingOnSunday: false,
     status: 'Aucun',
     workingHours: '',
+    startInterview: '',
+    middleInterview: '',
+    endInterview: '',
   };
 
   const userAddress: UserAddress = {

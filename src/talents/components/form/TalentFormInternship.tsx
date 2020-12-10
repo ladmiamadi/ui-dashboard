@@ -16,7 +16,26 @@ interface Props {
   modifyUser: (value: UpdateUserPayload) => void,
 }
 
-export default class TalentFormInternship extends React.Component<Props> {
+interface State {
+  showInterviewOptions: boolean,
+}
+
+export default class TalentFormInternship extends React.Component<Props, State> {
+
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      showInterviewOptions: false,
+    };
+  }
+
+  toggleInterview = (): void => {
+    this.setState({
+      showInterviewOptions: !this.state.showInterviewOptions,
+    });
+  }
+
   render() {
     const checkboxes: Checkbox[] = [
       { label: 'lundi', checked: this.props.user.userJob?.isWorkingOnMonday || false },
@@ -27,6 +46,8 @@ export default class TalentFormInternship extends React.Component<Props> {
       { label: 'samedi', checked: this.props.user.userJob?.isWorkingOnSaturday || false },
       { label: 'dimanche', checked: this.props.user.userJob?.isWorkingOnSunday || false },
     ];
+
+    const checkboxInterview: Checkbox[] = [{ label: '', checked: false }];
 
     return (
       <div className="form-section">
@@ -126,7 +147,72 @@ export default class TalentFormInternship extends React.Component<Props> {
               />
             </Col>
           </Row>
-
+          <Row>
+            <Col>
+              <CheckboxFormField
+                checkboxes={checkboxInterview}
+                className="large days"
+                keyName="internship-days"
+                label="Voir les commentaires de l'entrevue:"
+                handleOnChange={this.toggleInterview}
+              />
+            </Col>
+          </Row>
+          {this.state.showInterviewOptions && (
+            <div className="generic-field-form">
+              <Row>
+                <Col md={12}>
+                  <FieldForm
+                    keyName="startInterview"
+                    label="Entretien de début de stage: "
+                    className="generic-field-form"
+                    type="textarea"
+                    handleChange={(value) => this.props.modifyUser({
+                      category: 'userJob',
+                      property: 'startInterview',
+                      value,
+                      index: -1,
+                    })}
+                    value={this.props.user.userJob?.startInterview || ''}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col md={12}>
+                  <FieldForm
+                    keyName="middleInterview"
+                    label="Entretien de milieu de stage: "
+                    className="generic-field-form"
+                    type="textarea"
+                    handleChange={(value) => this.props.modifyUser({
+                      category: 'userJob',
+                      property: 'middleInterview',
+                      value,
+                      index: -1,
+                    })}
+                    value={this.props.user.userJob?.middleInterview || ''}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col md={12}>
+                  <FieldForm
+                    keyName="endInterview"
+                    label="Entretien de fin de stage: "
+                    className="generic-field-form"
+                    type="textarea"
+                    handleChange={(value) => this.props.modifyUser({
+                      category: 'userJob',
+                      property: 'endInterview',
+                      value,
+                      index: -1,
+                    })}
+                    value={this.props.user.userJob?.endInterview || ''}
+                  />
+                </Col>
+              </Row>
+            </div>
+          )}
         </div>
       </div>
     );

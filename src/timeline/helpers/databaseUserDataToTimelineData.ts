@@ -34,7 +34,7 @@ const capitalizeFirstLetter = (tocap: string) => {
   return tocap.charAt(0).toUpperCase() + tocap.slice(1);
 };
 
-export const convertDBDataToTimelineData = (users:User[]) => {
+export const convertDBDataToTimelineData = (users: User[]) => {
   let result: TimelineDataUsers;
 
   users.map((userdb: User) => {
@@ -56,7 +56,7 @@ export const convertDBDataToTimelineData = (users:User[]) => {
 
 const convertDBFonctionToTimelineFonction = (userdb: User) => {
   let copyBaseIntershipPerson = { ...internshipPersonBase[internshipPersonBase.length - 1] };
-  
+
   if (userdb.userJob && userdb.userProfiles && userdb.userJob.job) {
     copyBaseIntershipPerson = { ...internshipPersonBase[internshipPersonBase.length - 1] };
     copyBaseIntershipPerson.id += 1;
@@ -71,7 +71,7 @@ const convertDBFonctionToTimelineFonction = (userdb: User) => {
 const convertDBDaysToTimelineDays = (userdb: User) => {
   let copyBaseIntershipDate = { ...internshipDateBase[internshipDateBase.length - 1] };
   const hasWorkingHours = userdb?.userJob?.workingHours;
-  
+
   if (userdb.userJob && userdb.userProfiles && userdb.userJob.job) {
     copyBaseIntershipDate.id += 1;
     copyBaseIntershipDate.group += 1;
