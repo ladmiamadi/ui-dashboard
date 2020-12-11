@@ -1,19 +1,17 @@
 import { UserSignUp } from '..';
-import { INTERNSHIP_STATUS, Job, User, UserAddress, UserDesiredJob, UserJob, UserProfile } from '../../app/index.d';
+import {
+  INTERNSHIP_STATUS, Job, User, UserAddress, UserDesiredJob, UserJob, UserProfile, UserRecruitment,
+} from '../../app/index.d';
 
-export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]): User => {
-
+export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[], recruiter: User): User => {
   const userProfileLive: UserProfile = {
     environment: 'live',
     firstName: userSignUp.firstName,
     lastName: userSignUp.lastName,
-    platform: userSignUp.platform,
     email: userSignUp.username,
     status: 'VALIDATED',
     phone: userSignUp.phone,
     position: userSignUp.jobPosition,
-    mailboxHR: userSignUp.mailboxHR,
-    recruitmentComments: userSignUp.recruitmentComments,
     institution: userSignUp.institution,
     emailInstitution: userSignUp.emailInstitution,
     phoneInstitution: userSignUp.phoneInstitution,
@@ -24,20 +22,25 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     environment: 'working',
     firstName: userSignUp.firstName,
     lastName: userSignUp.lastName,
-    platform: userSignUp.platform,
     email: userSignUp.username,
     phone: userSignUp.phone,
     status: 'VALIDATED',
     position: userSignUp.jobPosition,
-    mailboxHR: userSignUp.mailboxHR,
-    recruitmentComments: userSignUp.recruitmentComments,
     institution: userSignUp.institution,
     emailInstitution: userSignUp.emailInstitution,
     phoneInstitution: userSignUp.phoneInstitution,
     personContactInstitution: userSignUp.personContactInstitution,
   };
 
+  const userRecruitment: UserRecruitment = {
+    platform: userSignUp.platform,
+    mailboxHR: userSignUp.mailboxHR,
+    recruitmentComments: userSignUp.recruitmentComments,
+    recruiter: recruiter,
+  };
+
   const job: Job = jobCollection.filter((job: Job) => job.position === userSignUp.jobPosition)[0];
+
   const userJob: UserJob = {
     job: job,
     startDate: new Date(),
@@ -51,6 +54,9 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     isWorkingOnSunday: false,
     status: INTERNSHIP_STATUS.NONE,
     workingHours: '',
+    startInterview: '',
+    middleInterview: '',
+    endInterview: '',
   };
 
   const userAddress: UserAddress = {
@@ -79,9 +85,10 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     isActive: true,
     password: 'sosecure',
     username: userSignUp.username,
-    userAddress: userAddress,
+    userAddress,
     userProfiles: [userProfileLive, userProfileWorking],
-    userJob: userJob,
+    userJob,
     userDesiredJob,
+    userRecruitment,
   };
 };

@@ -8,14 +8,14 @@ import ContentModalFooter from './ContentFooter';
 
 interface Props {
   fetchJobsInDb: () => Promise<void>,
-  fetchUserInDb: () => Promise<void>,
+  fetchUsersInDb: () => Promise<void>,
   location: Location,
   history: History,
 }
 
 export class ModalRegisterUser extends Component<Props> {
   componentDidMount() {
-    this.props.fetchUserInDb();
+    this.props.fetchUsersInDb();
     this.props.fetchJobsInDb();
   }
 
@@ -46,7 +46,7 @@ const mapState = () => ({});
 
 const mapDispatch = (dispatch: RootDispatch) => ({
   fetchJobsInDb: dispatch.userSignUp.fetchJobsInDb,
-  fetchUserInDb: dispatch.userSignUp.fetchUserInDb,
+  fetchUsersInDb: dispatch.userSignUp.fetchUsersInDb,
 });
 
 export default connect(mapState, mapDispatch)(ModalRegisterUser);

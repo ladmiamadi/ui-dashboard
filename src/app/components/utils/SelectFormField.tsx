@@ -1,12 +1,13 @@
 import React from 'react';
 import { FormGroup, Input, Label } from 'reactstrap';
 import { OptionList } from './OptionList';
+import { OptionValue } from '../../index';
 
 interface Props {
   className?: string,
   keyName: string,
   label: string,
-  options: string[],
+  options: OptionValue[],
   required?: boolean,
   size?: number,
   value: string,

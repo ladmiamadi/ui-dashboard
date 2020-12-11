@@ -1,8 +1,10 @@
 import { createModel } from '@rematch/core';
 import { FormValidPayload, IsFormValid, UserSignUp, UserSignUpPayload } from '../..';
 import { Job, User } from '../../../app';
+import { createEmptyUser } from '../../../app/helpers/UserHelpers';
 import { apiService } from '../../../app/http/service';
 import { Toastify } from '../../../helpers/Toastify';
+import { UserAdapterHelper } from '../../helpers/UserAdapterHelper';
 import { createEmptyIsFormValid, createEmptyUserSignUp } from '../../helpers/UserSignUpFactoryHelper';
 
 export interface UserSignUpState {
@@ -12,6 +14,7 @@ export interface UserSignUpState {
   jobCollection: Job[],
   usernameCollection: string[],
   userSignUp: UserSignUp,
+  defaultRecruiterUser: User,
 }
 
 export const userSignUp = createModel({
@@ -22,6 +25,7 @@ export const userSignUp = createModel({
     jobCollection: [],
     usernameCollection: [],
     userSignUp: createEmptyUserSignUp(),
+    defaultRecruiterUser: createEmptyUser(),
   } as UserSignUpState,
   reducers: {
     concatUsername: (state: UserSignUpState, payload: string) => {
@@ -78,37 +82,52 @@ export const userSignUp = createModel({
       ...state,
       jobCollection,
     }),
+    updateDefaultRecruiterUser: (state: UserSignUpState, defaultRecruiterUser: User) => ({
+      ...state,
+      defaultRecruiterUser,
+    }),
   },
   effects: {
-    async fetchUserInDb() {
+    async fetchUsersInDb() {
       this.setIsRequesting(true);
 
       try {
         const { data: users } = await apiService.get<User[]>('/api/users');
         const usernameCollection = users.map((user: User) => user.username);
+        const defaultRecruiterUser = users.find(user => user.username === 'test1@test.com');
 
         this.updateUsernameCollection(usernameCollection);
+
+        if (defaultRecruiterUser === undefined) {
+          throw new Error('Missing pre-defined recruiter');
+        }
+
+        this.updateDefaultRecruiterUser(defaultRecruiterUser);
       } catch (error) {
         (new Toastify()).error(`Unable to get the user from the database. ${error.message}`);
       } finally {
         this.setIsRequesting(false);
       }
     },
-    async postUserInDb(userSentInDb: User) {
+    async postUserInDb(userSentInDb: User): Promise<User | null> {
       this.setIsRequesting(true);
 
       try {
         const { data } = await apiService.post('/api/users', userSentInDb);
+        const newUser = data as User;
 
-        this.concatUsername(data.username);
+        this.concatUsername(newUser.username);
+        UserAdapterHelper.postprocessUser(newUser);
 
-        (new Toastify()).info('Success adding ' + data.username + ' in the database.');
+        (new Toastify()).info('Success adding ' + newUser.username + ' in the database.');
 
         this.resetUserSignUp();
+        this.setIsRequesting(false);
+
+        return newUser;
       } catch (error) {
         (new Toastify()).error(`Unable to post the user in the database. ${error.message}`);
-      } finally {
-        this.setIsRequesting(false);
+        return null;
       }
     },
     async fetchJobsInDb() {

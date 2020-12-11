@@ -19,3 +19,7 @@
 .add-margin-top-modal p {
     margin-bottom: 0;
 }
+
+.btn:disabled {
+    cursor: not-allowed;
+}

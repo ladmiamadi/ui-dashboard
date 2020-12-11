@@ -5,6 +5,7 @@ import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { COUNTRIES } from '../../constants/countries';
 import { INTERN_OPTIONS } from '../../constants/internship-options';
 import { PLACEMENT_OPTIONS } from '../../constants/placement-options';
+import { mapToOptionValues } from '../../helpers/FormHelper';
 import { UpdateUserPayload } from '../../state/models/user-selected';
 import classes from './styles/TalentFormJob.module.css';
 
@@ -28,7 +29,7 @@ export default class TalentFormJob extends React.Component<Props> {
           keyName="placementOptions"
           className={classes['job-field']}
           label="Placement "
-          options={PLACEMENT_OPTIONS}
+          options={mapToOptionValues(PLACEMENT_OPTIONS)}
           handleChange={(property, value) => this.props.modifyUser({
             category: 'userDesiredJob',
             property,
@@ -43,7 +44,7 @@ export default class TalentFormJob extends React.Component<Props> {
                 keyName="internOptions"
                 className={classes['job-field']}
                 label="Actuellement en recherche: "
-                options={INTERN_OPTIONS}
+                options={mapToOptionValues(INTERN_OPTIONS)}
                 handleChange={(property, value) => this.props.modifyUser({
                   category: 'userDesiredJob',
                   property,
@@ -79,7 +80,7 @@ export default class TalentFormJob extends React.Component<Props> {
                 keyName="desiredCountry"
                 className={classes['job-field']}
                 label="Pays souhaité: "
-                options={COUNTRIES}
+                options={mapToOptionValues(COUNTRIES)}
                 handleChange={(property, value) => this.props.modifyUser({
                   category: 'userDesiredJob',
                   property,

@@ -12,12 +12,6 @@ export enum InputState {
   UNDEFINED = undefined,
 }
 
-export enum LoggedUserStatus {
-  ADMIN,
-  RH,
-  GUEST,
-}
-
 export interface UserRegister<T> {
   jobPosition: T,
   firstName: T,
@@ -74,8 +68,4 @@ export interface PropsForInput {
   isSectionTitle?: boolean,
   updateUserSignUp: (property: keyof UserRegister<T>, idValue: string) => void,
   setIsFormValid: (property: keyof UserRegister<T>, regEx: string) => void,
-}
-
-export enum POSITIONS {
-  RH = 'RH',
 }

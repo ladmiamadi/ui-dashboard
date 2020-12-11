@@ -8,6 +8,12 @@ export const createEmptyUser = (): User => ({
   createdDate: new Date(),
   updatedDate: new Date(),
   userProfiles: [],
+  userRecruitment: {
+    platform: '',
+    mailboxHR: '',
+    recruitmentComments: '',
+    recruiter: undefined,
+  },
   userAbsences: [],
   userInterviews: [],
   userContracts: [],
@@ -44,3 +50,6 @@ export const isUserInternshipFinishing =
 
     return { nDiffDays, isInternshipFinishing };
   };
+export const getUserByUsername = (users: User[], username: string): User | null => {
+  return users.find(user => user.username === username) || null;
+};

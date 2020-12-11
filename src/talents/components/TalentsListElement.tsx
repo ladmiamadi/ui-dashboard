@@ -1,6 +1,6 @@
 import React from 'react';
 import { User, UserProfile } from '../../app';
-import { isUserInternshipFinishing } from '../../app/helpers/user';
+import { isUserInternshipFinishing } from '../../app/helpers/UserHelpers';
 import { UserProfileHelpers } from '../../app/helpers/UserProfileHelpers';
 import classes from '../components/form/styles/TalentFormInternship.module.css';
 import { getInternshipStatusClassname } from '../constants/status-internship';

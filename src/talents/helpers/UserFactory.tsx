@@ -1,4 +1,7 @@
-import { INTERNSHIP_STATUS, Job, MediaObject, Role, User, UserAddress, UserDesiredJob, UserJob, UserRole } from '../../app';
+import {
+  INTERNSHIP_STATUS, Job, MediaObject, Role, User, UserAddress, UserDesiredJob,
+  UserJob, UserRole,
+} from '../../app';
 
 export class UserFactory {
   public createDTOUser = (user: User): User => ({
@@ -11,6 +14,7 @@ export class UserFactory {
     userProfiles: user.userProfiles,
     userAddress: user.userAddress,
     userDesiredJob: user.userDesiredJob,
+    userRecruitment: user.userRecruitment,
     userAbsences: user.userAbsences,
     userInterviews: user.userInterviews,
     userContracts: user.userContracts,
@@ -29,6 +33,11 @@ export class UserFactory {
       password: '',
       isActive: false,
       createdDate: new Date(),
+      userRecruitment: {
+        platform: '',
+        mailboxHR: '',
+        recruitmentComments: '',
+      },
     };
 
     return dtoUser;
@@ -79,6 +88,9 @@ export class UserFactory {
     isWorkingOnSunday: false,
     status: INTERNSHIP_STATUS.NONE,
     workingHours: '',
+    startInterview: '',
+    middleInterview: '',
+    endInterview: '',
   })
 
   public createEmptyJob = (): Job => ({
