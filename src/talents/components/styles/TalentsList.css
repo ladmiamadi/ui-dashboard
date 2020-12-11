@@ -23,6 +23,8 @@
 
 #talents-list .element:hover {
   box-shadow: 0 0 10px -4px rgba(0,0,0,0.75);
+  cursor: pointer;
+	transform: scale(1.1);
 }
 
 #talents-list .search-bar {
@@ -40,7 +42,9 @@
 }
 
 .id-card {
-  word-wrap: break-word;
+  /* word-wrap: break-word; */
+  position: relative;
+	transition: transform 0.2s;
 }
 
 .talent-card {
@@ -49,4 +53,16 @@
 
 .no-user-found {
   text-align: center;
+}
+
+.overlay {
+	position: absolute;
+	background: rgba(0, 0, 0, 0.8);
+	width: 100%;
+	transition: 0.5s ease;
+	opacity: 0;
+	bottom: 0;
+	font-size: 20px;
+	padding: 20px;
+	text-align: center;
 }

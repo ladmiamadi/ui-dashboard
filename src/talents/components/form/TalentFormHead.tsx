@@ -128,7 +128,7 @@ export class TalentFormHead extends React.Component<Props> {
         </div>
         <div className="connection-box">
           <p>Envoyez un email pour configurer la connexion</p>
-          <button>Envoyer</button>
+          <button className="with-border">Envoyer</button>
         </div>
       </div>
     );

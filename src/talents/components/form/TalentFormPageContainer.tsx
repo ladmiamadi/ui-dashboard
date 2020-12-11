@@ -49,7 +49,7 @@ export class TalentFormPageContainer extends React.Component<Props> {
             <TalentFormExperience {...this.props} />
             <button
               type="submit"
-              className={classes.TalentFormButton}
+              className={classes.TalentFormButton + ' with-border'}
             >
               Sauvegarder les changements
             </button>
