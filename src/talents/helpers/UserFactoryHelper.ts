@@ -1,6 +1,13 @@
 import { UserSignUp } from '..';
 import {
-  INTERNSHIP_STATUS, Job, User, UserAddress, UserDesiredJob, UserJob, UserProfile, UserRecruitment,
+  INTERNSHIP_STATUS,
+  Job,
+  User,
+  UserAddress,
+  UserDesiredJob,
+  UserJob,
+  UserProfile,
+  UserRecruitment,
 } from '../../app/index.d';
 
 export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[], recruiter: User): User => {

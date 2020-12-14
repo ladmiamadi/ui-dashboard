@@ -1,6 +1,13 @@
 import {
-  INTERNSHIP_STATUS, Job, MediaObject, Role, User, UserAddress, UserDesiredJob,
-  UserJob, UserRole,
+  INTERNSHIP_STATUS,
+  Job,
+  MediaObject,
+  Role,
+  User,
+  UserAddress,
+  UserDesiredJob,
+  UserJob,
+  UserRole,
 } from '../../app';
 
 export class UserFactory {
