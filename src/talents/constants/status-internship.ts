@@ -13,8 +13,7 @@ export function getInternshipStatusClassname(
   status: INTERNSHIP_STATUS | undefined,
   isInternshipFinishing: boolean): string
 {
-  const statusInternship = status || INTERNSHIP_STATUS.NONE;
-  const uiStatusInternship = (isInternshipFinishing) ? 'IS_FINISHING' : statusInternship;
+  const uiStatusInternship = (isInternshipFinishing) ? 'IS_FINISHING' : status || INTERNSHIP_STATUS.NONE;
 
   return STATUS_INTERNSHIP_CLASS_NAMES[uiStatusInternship];
 }
