@@ -7,13 +7,13 @@ import { Checkbox } from '../../../app/';
 import { CheckboxFormField } from '../../../app/components/utils/CheckboxFormField';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
-import { isUserInternshipFinishing } from '../../../app/helpers/UserHelpers';
+import { getInternshipRemainingDays, isUserInternshipFinishing } from '../../../app/helpers/UserHelpers';
 import { getInternshipStatusClassname } from '../../constants/status-internship';
 import { STATUS_OPTIONS } from '../../constants/status-options';
 import { DAYS_TO_INTERSHIP_PROPERTIES } from '../../constants/week-days';
 import { mapToOptionValues } from '../../helpers/FormHelper';
 import { UpdateUserPayload } from '../../state/models/user-selected';
-import classes from './styles/TalentFormInternship.module.css';
+import './styles/TalentFormInternship.css';
 
 interface Props {
   user: User,
@@ -41,11 +41,8 @@ export default class TalentFormInternship extends React.Component<Props, State> 
   }
 
   render() {
-
-    const { isInternshipFinishing } = isUserInternshipFinishing(this.props.user);
-
+    const isInternshipFinishing = isUserInternshipFinishing(getInternshipRemainingDays(this.props.user));
     const currentClassName = getInternshipStatusClassname(this.props.user.userJob?.status, isInternshipFinishing);
-
     const checkboxes: Checkbox[] = [
       { label: 'lundi', checked: this.props.user.userJob?.isWorkingOnMonday || false },
       { label: 'mardi', checked: this.props.user.userJob?.isWorkingOnTuesday || false },
@@ -55,7 +52,6 @@ export default class TalentFormInternship extends React.Component<Props, State> 
       { label: 'samedi', checked: this.props.user.userJob?.isWorkingOnSaturday || false },
       { label: 'dimanche', checked: this.props.user.userJob?.isWorkingOnSunday || false },
     ];
-
     const checkboxInterview: Checkbox[] = [{ label: '', checked: false }];
 
     return (
@@ -63,7 +59,7 @@ export default class TalentFormInternship extends React.Component<Props, State> 
         <div className="form-title">
           <h6>Stage: </h6>
         </div>
-        <div className={classes[currentClassName]}>
+        <div className={currentClassName}>
           <div className="form-elements">
             <Row>
               <Col md={6}>

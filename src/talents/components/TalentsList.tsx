@@ -1,7 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { Col, Container, Row } from 'reactstrap';
 import { User } from '../../app';
 import { ModalCustom } from '../../app/components/utils/ModalCustom';
 import history from '../../app/helpers/history';
@@ -49,14 +48,14 @@ export class TalentsList extends React.Component<Props, State> {
     const filteredUsers = this.props.users.filter(user => this.userHasMatchingProfile(user));
 
     return (
-      <Container className={this.state.isModalOpen ? 'hide-card' : 'talent-card'}>
+      <div className={this.state.isModalOpen ? 'hide-card' : 'talent-card'}>
         { filteredUsers.length > 0 ? (
-          <Row className="talent-row">
+          <div className="talent-row">
             {
               filteredUsers.map((talent, index) => (
                 talent.userProfiles?.map(userProfile => userProfile.environment === 'live' ?
                   (
-                    <Col key={index} className="element" xs={5} sm={3} xl={2} onClick={() => this.toggleModal(talent)}>
+                    <div key={index} className="element" onClick={() => this.toggleModal(talent)}>
                       <React.Fragment key={talent.id}>
                         <TalentsListElement
                           user={talent}
@@ -70,17 +69,17 @@ export class TalentsList extends React.Component<Props, State> {
                           <TalentModal talent={talent}/>
                         </ModalCustom>
                       </React.Fragment>
-                    </Col>
+                    </div>
                   ) : null
                 )
               ))
             }
-          </Row>
+          </div>
         ) : (
           <h1 className="no-user-found">Aucun profil utilisateur correspondant n'a été trouvé.</h1>
         )
         }
-      </Container>
+      </div>
     );
   }
 }

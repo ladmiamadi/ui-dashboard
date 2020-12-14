@@ -23,33 +23,24 @@ export const createEmptyUser = (): User => ({
   userSkills: [],
 });
 
-export const isUserInternshipFinishing =
-  (
-    user: User,
-  ): {
-    nDiffDays?: number,
-    isInternshipFinishing: boolean,
-  } => {
-    const statusInternship = user.userJob?.status || INTERNSHIP_STATUS.NONE;
+export const getInternshipRemainingDays = (user: User): number => {
+  const statusInternship = user.userJob?.status || INTERNSHIP_STATUS.NONE;
+  const today = new Date();
+  const endDate = user.userJob?.endDate;
 
-    const today = new Date();
+  if (!endDate || (statusInternship !== INTERNSHIP_STATUS.ONGOING)) {
+    return -1;
+  }
 
-    const endDate = user.userJob?.endDate;
+  const dateDiffInMs = endDate.getTime() - today.getTime();
 
-    let nDiffDays: number | undefined = undefined;
-    let isInternshipFinishing: boolean = false;
+  return Math.round(dateDiffInMs / (1000 * 60 * 60 * 24));
+};
 
-    if (!endDate || (statusInternship !== INTERNSHIP_STATUS.ONGOING)) {
-      isInternshipFinishing = false;
-    } else {
-      const dateDiffInMs = endDate.getTime() - today.getTime();
+export const isUserInternshipFinishing = (remainingDays: number): boolean => {
+  return remainingDays >= 0 && remainingDays <= 14;
+};
 
-      nDiffDays = Math.round(dateDiffInMs / (1000 * 60 * 60 * 24));
-      isInternshipFinishing = nDiffDays <= 14;
-    }
-
-    return { nDiffDays, isInternshipFinishing };
-  };
 export const getUserByUsername = (users: User[], username: string): User | null => {
   return users.find(user => user.username === username) || null;
 };

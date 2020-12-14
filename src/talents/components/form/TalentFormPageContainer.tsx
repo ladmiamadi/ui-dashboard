@@ -32,6 +32,10 @@ export class TalentFormPageContainer extends React.Component<Props> {
   }
 
   render() {
+    if (this.props.user.id === -1) {
+      window.location.href = '/talents';
+    }
+
     return (
       <div className="talent-form-page">
         <Container>

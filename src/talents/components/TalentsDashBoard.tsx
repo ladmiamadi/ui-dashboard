@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container } from 'reactstrap';
 import { SearchBar } from '../../app/components/utils/SearchBar';
 import TalentsList from './TalentsList';
 import { User } from '../../app';
@@ -14,7 +13,7 @@ interface Props {
 export class TalentsDashBoard extends React.Component<Props> {
   render() {
     return (
-      <Container>
+      <div>
         <div className="search-bar">
           <SearchBar
             onSearch={(value) => {
@@ -28,7 +27,7 @@ export class TalentsDashBoard extends React.Component<Props> {
           searchTerm={this.props.searchTerm}
           users={this.props.users}
         />
-      </Container>
+      </div>
     );
   }
 }
