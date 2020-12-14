@@ -2,7 +2,7 @@ import { PropsForInput, UserRegister } from '..';
 import { Job } from '../../app';
 import { Toastify } from '../../helpers/Toastify';
 import { Props as FormRegisterProps } from '../components/add-new-talent/form/FormRegisterUser';
-import { FORM_REGISTER } from '../constant/form-register';
+import { FORM_REGISTER } from '../constants/form-register';
 import { RECRUITMENT_TRAY_OPTIONS } from '../constants/recruitment-tray-options';
 
 export const isUsernameAlreadyExists = (idValue: string, usernameCollection?: string[]): boolean => {

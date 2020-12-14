@@ -1,4 +1,4 @@
-import { FormRegister } from '..';
+import { FormRegister } from '../index';
 
 export const FORM_REGISTER: FormRegister = {
   firstName: {

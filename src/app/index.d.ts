@@ -142,6 +142,14 @@ export interface UserSkill {
   rating: number,
 }
 
+export enum INTERNSHIP_STATUS {
+  NON_STARTED = 'Non initié',
+  ONGOING = 'En cours',
+  ABANDONED = 'Abandonné',
+  FINISHED = 'Fini',
+  NONE = 'Aucun',
+}
+
 export interface UserJob {
   job: Job,
   startDate?: Date,
@@ -153,7 +161,7 @@ export interface UserJob {
   isWorkingOnFriday?: boolean,
   isWorkingOnSaturday?: boolean,
   isWorkingOnSunday?: boolean,
-  status?: string,
+  status?: INTERNSHIP_STATUS,
   workingHours?: string,
   startInterview?: string,
   middleInterview?: string,
@@ -172,21 +180,22 @@ export interface Skill {
 
 export interface Job {
   id: number,
-  titleInFrench: string,
-  titleInEnglish: string,
-  titleInDutch: string,
-  shortDescriptionInFrench: string,
-  shortDescriptionInEnglish: string,
-  shortDescriptionInDutch: string,
-  LongDescriptionInFrench: string,
-  LongDescriptionInEnglish: string,
-  LongDescriptionInDutch: string,
+  titleInFrench?: string,
+  titleInEnglish?: string,
+  titleInDutch?: string,
+  shortDescriptionInFrench?: string,
+  shortDescriptionInEnglish?: string,
+  shortDescriptionInDutch?: string,
+  longDescriptionInFrench?: string,
+  longDescriptionInEnglish?: string,
+  longDescriptionInDutch?: string,
   position: string,
-  link: string,
+  linkEnglish?: string,
+  linkFrench?: string,
   picture: MediaObject,
-  isOpen: boolean,
+  isOpen?: boolean,
   createdDate: Date,
-  updatedDate: Date,
+  updatedDate?: Date,
 }
 
 export interface YearSegment {

@@ -1,0 +1,33 @@
+.ongoing-internship {
+  background-color: rgb(171, 235, 198);
+}
+
+.not-started-internship {
+  background-color: rgb(255, 230, 181);
+}
+
+.abandoned-internship {
+  background-color:rgb(78, 80, 85);
+  color: rgb(250, 250, 250);
+  border-bottom: solid 0.1rem #ffffff;
+}
+
+.finished-internship {
+  background-color: rgba(174, 174, 174, 0.5);
+}
+
+.none {
+  background-color:rgb(255, 255, 255);
+}
+
+.is-finishing-internship {
+  background-color: rgb(252, 156, 152);
+  color: rgb(250, 250, 250);
+}
+
+.internship-status {
+  width: 100%;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  font-size: 100%;
+}

@@ -1,5 +1,14 @@
 import { UserSignUp } from '..';
-import { Job, User, UserAddress, UserDesiredJob, UserJob, UserProfile, UserRecruitment } from '../../app';
+import {
+  INTERNSHIP_STATUS,
+  Job,
+  User,
+  UserAddress,
+  UserDesiredJob,
+  UserJob,
+  UserProfile,
+  UserRecruitment,
+} from '../../app/index.d';
 
 export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[], recruiter: User): User => {
   const userProfileLive: UserProfile = {
@@ -38,7 +47,7 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
   };
 
   const job: Job = jobCollection.filter((job: Job) => job.position === userSignUp.jobPosition)[0];
-  
+
   const userJob: UserJob = {
     job: job,
     startDate: new Date(),
@@ -50,7 +59,7 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     isWorkingOnFriday: false,
     isWorkingOnSaturday: false,
     isWorkingOnSunday: false,
-    status: 'Aucun',
+    status: INTERNSHIP_STATUS.NONE,
     workingHours: '',
     startInterview: '',
     middleInterview: '',

@@ -18,6 +18,8 @@
 
 .add-margin-top-modal p {
     margin-bottom: 0;
+    overflow: hidden;
+    font-size: 1.75rem;
 }
 
 .btn:disabled {

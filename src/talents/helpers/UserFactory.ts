@@ -1,4 +1,14 @@
-import { Job, MediaObject, Role, User, UserAddress, UserDesiredJob, UserJob, UserRole } from '../../app';
+import {
+  INTERNSHIP_STATUS,
+  Job,
+  MediaObject,
+  Role,
+  User,
+  UserAddress,
+  UserDesiredJob,
+  UserJob,
+  UserRole,
+} from '../../app';
 
 export class UserFactory {
   public createDTOUser = (user: User): User => ({
@@ -83,7 +93,7 @@ export class UserFactory {
     isWorkingOnFriday: false,
     isWorkingOnSaturday: false,
     isWorkingOnSunday: false,
-    status: '',
+    status: INTERNSHIP_STATUS.NONE,
     workingHours: '',
     startInterview: '',
     middleInterview: '',
@@ -98,11 +108,12 @@ export class UserFactory {
     shortDescriptionInFrench: '',
     shortDescriptionInEnglish: '',
     shortDescriptionInDutch: '',
-    LongDescriptionInFrench: '',
-    LongDescriptionInEnglish: '',
-    LongDescriptionInDutch: '',
+    longDescriptionInFrench: '',
+    longDescriptionInEnglish: '',
+    longDescriptionInDutch: '',
     position: '',
-    link: '',
+    linkFrench: '',
+    linkEnglish: '',
     picture: this.createEmptyMediaObject(),
     isOpen: false,
     createdDate: new Date(),
