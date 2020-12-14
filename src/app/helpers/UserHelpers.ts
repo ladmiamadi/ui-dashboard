@@ -27,12 +27,13 @@ export const getInternshipRemainingDays = (user: User): number => {
   const statusInternship = user.userJob?.status || INTERNSHIP_STATUS.NONE;
   const today = new Date();
   const endDate = user.userJob?.endDate;
+  let dateDiffInMs = -1;
 
   if (!endDate || (statusInternship !== INTERNSHIP_STATUS.ONGOING)) {
-    return -1;
+    return dateDiffInMs;
   }
 
-  const dateDiffInMs = endDate.getTime() - today.getTime();
+  dateDiffInMs = endDate.getTime() - today.getTime();
 
   return Math.round(dateDiffInMs / (1000 * 60 * 60 * 24));
 };
