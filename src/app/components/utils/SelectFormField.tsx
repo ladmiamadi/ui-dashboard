@@ -11,6 +11,7 @@ interface Props {
   required?: boolean,
   size?: number,
   value: string,
+  showNoSelectionOption?: boolean,
   handleChange: (property: string, value: string) => void,
   updateModel?: (value: string, property: string) => void,
 }
@@ -23,6 +24,10 @@ export class SelectFormField extends React.Component<Props> {
   }
 
   render() {
+    const showNoSelectionOption = (this.props.showNoSelectionOption === undefined)
+      ? true
+      : this.props.showNoSelectionOption;
+
     return (
       <FormGroup className={this.props.className}>
         <Label className="form-label" htmlFor={this.props.label}>{this.props.label}{this.props.required && '*'}</Label>
@@ -35,7 +40,9 @@ export class SelectFormField extends React.Component<Props> {
           required={this.props.required}
           size={this.props.size}
         >
-          <option>Aucun</option>
+          {showNoSelectionOption &&
+            <option>Aucun</option>
+          }
           <OptionList options={this.props.options} />
         </Input>
       </FormGroup>
