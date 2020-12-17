@@ -6,7 +6,7 @@ export const STATUS_INTERNSHIP_CLASS_NAMES = {
   [INTERNSHIP_STATUS.ABANDONED]: 'abandoned-internship',
   [INTERNSHIP_STATUS.FINISHED]: 'finished-internship',
   [INTERNSHIP_STATUS.NONE]: 'none',
-  ['IS_FINISHING']: 'is-finishing-internship',
+  'IS_FINISHING': 'is-finishing-internship',
 };
 
 export function getInternshipStatusClassname(
