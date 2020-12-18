@@ -12,6 +12,7 @@ export interface User {
   isActive: boolean,
   createdDate: Date,
   updatedDate?: Date,
+  isAdmin: boolean,
   userProfiles?: UserProfile[],
   userAddress?: UserAddress,
   userDesiredJob?: UserDesiredJob,

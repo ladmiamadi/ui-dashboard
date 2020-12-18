@@ -18,6 +18,7 @@ export class UserFactory {
     isActive: user.isActive,
     createdDate: user.createdDate,
     updatedDate: user.updatedDate,
+    isAdmin: user.isAdmin,
     userProfiles: user.userProfiles,
     userAddress: user.userAddress,
     userDesiredJob: user.userDesiredJob,
@@ -40,6 +41,7 @@ export class UserFactory {
       password: '',
       isActive: false,
       createdDate: new Date(),
+      isAdmin: false,
       userRecruitment: {
         platform: '',
         mailboxHR: '',
