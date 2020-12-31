@@ -47,12 +47,14 @@ export const checkTimelineUserDataWithFilter = (timelineFilters: TimelineFilterD
   return newTimelineDisplay;
 };
 
-const renderThisGroup = (
-  displayData: TimelineGroup, fonctionData: GroupDisplay, timelineFilters: TimelineFilterData) => {
-  return fonctionData.display && fonctionData.groupname === displayData.rightTitle &&
-      isFonctionVisibleOnTimeline(timelineFilters, displayData) &&
-      (displayData.title.toLowerCase().includes(timelineFilters.searchName.toLowerCase()) ||
-          displayData.groupLabelKey.toLowerCase().includes(timelineFilters.searchName.toLowerCase()));
+const renderThisGroup = (dispData: TimelineGroup, fonctionData: GroupDisplay, timelineFilters: TimelineFilterData) => {
+  return fonctionData.display && fonctionData.groupname === dispData.rightTitle &&
+      isFonctionVisibleOnTimeline(timelineFilters, dispData) && (nameIsEqualToSearch(dispData, timelineFilters));
+};
+
+const nameIsEqualToSearch = (displayData: TimelineGroup, timelineFilters: TimelineFilterData) => {
+  return displayData.title.toLowerCase().includes(timelineFilters.searchName.toLowerCase()) ||
+      displayData.groupLabelKey.toLowerCase().includes(timelineFilters.searchName.toLowerCase());
 };
 
 const isFonctionVisibleOnTimeline = (timelineFilters: TimelineFilterData, currentFonction: TimelineGroup) => {

@@ -35,6 +35,7 @@ export const timeline = createModel({
       try {
         let newUsers = convertDBDataToTimelineData(users);
         let { newRenderDisplayTimeline, listOfFunction } = renderTimelineDisplaySeperateDays(newUsers);
+
         this.updateTimelineUsers(newRenderDisplayTimeline);
         this.updateTimelineFonctions(listOfFunction);
       } catch(error) {
