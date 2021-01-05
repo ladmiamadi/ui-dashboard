@@ -3,5 +3,5 @@ export const TIMELINE_PARAMETERS = {
   canMove: false,
   itemHeightRatio: 0.55,
   lineHeight: 55,
-  sidebarWidth: 150,
+  sidebarWidth: 175,
 };
