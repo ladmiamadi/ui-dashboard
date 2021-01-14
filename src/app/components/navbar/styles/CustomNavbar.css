@@ -10,9 +10,17 @@
     text-align: right;
     background-color: #F6F6F6;
     font-size: 1.7rem;
+    display: block;
+    margin: 0.5rem 0;
 }
 
-.nav-bar{
+.info-user img {
+    vertical-align: sub;
+    height: 2rem;
+    margin: 0 0.5rem
+}
+
+.nav-bar {
     box-shadow: 0 8px 20px -15px;
     height: auto;
     line-height: 70px;
@@ -141,15 +149,6 @@
 }
 
 @media only screen and (max-width: 576px) {
-    .info-user {
-        height: 10px;
-        text-align: left;
-    }
-
-    .user-box {
-        display: none;
-    }
-
     .burger {
         display: block;
         cursor: pointer;
@@ -253,14 +252,6 @@
 }
 
 @media only screen and (max-width: 370px) {
-    .info-user {
-        height: 10px;
-    }
-
-    .user-box {
-        display: none;
-    }
-
     .link-dashboard a {
         font-size: 1.8rem;
         margin-right: 2px;

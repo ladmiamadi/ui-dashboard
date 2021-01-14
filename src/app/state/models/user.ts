@@ -23,7 +23,7 @@ export const user = createModel({
     async fetchUser(id: number) {
       this.setIsFetching(true);
       try {
-        const { data: user } = await apiService.get<User>('api/users' + { id });
+        const { data: user } = await apiService.get<User>(`api/users/${id}`);
 
         this.updateUser(user);
       } catch (error) {

@@ -26,13 +26,10 @@ export class TalentFormHead extends React.Component<Props> {
 
   render() {
     const indexLive: number = ProfileCollection.findLiveIndex(this.props.user.userProfiles);
-
     const userProfileLive: UserProfile | undefined = ProfileCollection.filterByEnvironment(
       this.props.user.userProfiles, 'live',
     );
-
     const filePath = UserProfileHelpers.getUserProfilePictureUrl(userProfileLive);
-
     const jobPositions = this.props.jobCollection.map((job: Job) => job.position);
 
     const recruiters = this.props.users

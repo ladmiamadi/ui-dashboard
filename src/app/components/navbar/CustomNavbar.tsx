@@ -8,10 +8,13 @@ import { tokenManager } from '../../helpers/TokenManagement';
 import { Module, User } from '../../index.d';
 import { RootState } from '../../state/store';
 import './styles/CustomNavbar.css';
+import { UserProfileHelpers } from '../../helpers/UserProfileHelpers';
+import ProfileCollection from '../../../talents/helpers/ProfileCollection';
 
 interface Props {
   user: User,
   modules: Module[],
+  fetchUser: (id: number) => Promise<void>,
   updateUser: () => Promise<void>,
   updateModulesList: () => Promise<void>,
 }
@@ -31,6 +34,14 @@ export class CustomNavbar extends React.Component<Props, State> {
     };
   }
 
+  componentDidMount() {
+    const userId = localStorage.getItem('hdm:admin:current-user-id');
+
+    if (userId) {
+      this.props.fetchUser(JSON.parse(userId));
+    }
+  }
+
   private toggleClassName(): string {
     return this.state.isMenuOpened ? 'active' : '';
   }
@@ -38,12 +49,19 @@ export class CustomNavbar extends React.Component<Props, State> {
   showOrHide = () => this.setState({ isMenuOpened: !this.state.isMenuOpened });
 
   render() {
+    const userProfileLive = ProfileCollection.filterByEnvironment(
+      this.props.user.userProfiles, 'live',
+    );
+
     return (
       <div className="component-nav">
         <div className="info-user">
           <div className="container">
-            <div className="user-box">
-              ({this.props.user.username})
+            <div>
+              <img alt="User Profile" src={UserProfileHelpers.getUserProfilePictureUrl(userProfileLive)}/>
+              Bienvenue <b>
+                {UserProfileHelpers.getFullNameFromUser(this.props.user)}
+              </b> !
             </div>
           </div>
         </div>
@@ -69,7 +87,7 @@ export class CustomNavbar extends React.Component<Props, State> {
                 className="logo-out"
                 onClick={() => {
                   localStorage.clear();
-                  window.location.href = '/?logout';
+                  window.location.href = '?logout';
                 }}
               >
                 <FontAwesomeIcon className="icon-logout" icon={faSignOutAlt} />
@@ -89,6 +107,7 @@ const mapState = (state: RootState) => ({
 
 const mapDispatch = (dispatch: any) => ({
   updateUser: dispatch.user.updateUser,
+  fetchUser: dispatch.user.fetchUser,
   updateModulesList: dispatch.modules.updateModulesList,
 });
 
