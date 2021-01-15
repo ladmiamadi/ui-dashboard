@@ -17,18 +17,18 @@ export const tokenManager = async () => {
     }
   } catch (error) {
     //const { data } = await apiService.post('api/login_check', { 'username': 'antoine@test.com', 'password': 'test' });
-    // const { data } = await apiService.post('api/login_check', { 'username': 'test2@test1.com', 'password': 'test' });
-    //
-    // if (!data.token) {
-    //   throw new Error('No token in the response');
-    // }
-    //
-    // localStorage.setItem('hdm:admin:auth-token', data.token);
-    window.location.href = '/fr?logout';
+    const { data } = await apiService.post('api/login_check', { 'username': 'test2@test1.com', 'password': 'test' });
+
+    if (!data.token) {
+      throw new Error('No token in the response');
+    }
+
+    localStorage.setItem('hdm:admin:auth-token', data.token);
+    // window.location.href = '/fr?logout';
   }
 
   // localStorage.setItem('hdm:admin:current-user', 'antoine@test.com');
-  // localStorage.setItem('hdm:admin:current-user', 'test2@test1.com');
+  localStorage.setItem('hdm:admin:current-user', 'test2@test1.com');
 
   const user = await apiService.post('api/users/filter-username',
     { 'username': localStorage.getItem('hdm:admin:current-user') },

@@ -16,6 +16,7 @@ export class UserFactory {
     username: user.username,
     password: user.password,
     isActive: user.isActive,
+    isAdmin: user.isAdmin,
     createdDate: user.createdDate,
     updatedDate: user.updatedDate,
     userProfiles: user.userProfiles,
@@ -39,6 +40,7 @@ export class UserFactory {
       username: '',
       password: '',
       isActive: false,
+      isAdmin: false,
       createdDate: new Date(),
       userRecruitment: {
         platform: '',

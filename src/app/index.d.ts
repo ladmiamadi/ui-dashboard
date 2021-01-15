@@ -10,6 +10,7 @@ export interface User {
   username: string,
   password: string,
   isActive: boolean,
+  isAdmin: boolean,
   createdDate: Date,
   updatedDate?: Date,
   userProfiles?: UserProfile[],
