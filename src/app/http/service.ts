@@ -27,7 +27,7 @@ apiService.interceptors.response.use((response) => {
       'You will be disconnected in 5 seconds.');
 
     setTimeout(() => {
-      document.location.href = '/?logout';
+      document.location.href = '/fr/?logout';
     }, 5000);
   }
 
