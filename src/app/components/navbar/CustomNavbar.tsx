@@ -3,13 +3,12 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import logoHDM from '../../assets/LogoHDM.png';
 import { tokenManager } from '../../helpers/TokenManagement';
 import { Module, User } from '../../index.d';
 import { RootState } from '../../state/store';
-import './styles/CustomNavbar.css';
 import { UserProfileHelpers } from '../../helpers/UserProfileHelpers';
 import ProfileCollection from '../../../talents/helpers/ProfileCollection';
+import './styles/CustomNavbar.css';
 
 interface Props {
   user: User,
@@ -69,7 +68,7 @@ export class CustomNavbar extends React.Component<Props, State> {
           <div className="container container-nav">
             <div className="link-dashboard">
               <Link to="/dashboard">
-                <img className="logo-hdm" src={logoHDM} alt="logo HDM Network" />
+                <img className="logo-hdm" src={require('../../assets/LogoHDM.png')} alt="logo HDM Network" />
                 <span className="logo-title">ADMIN DASHBOARD</span>
               </Link>
             </div>
