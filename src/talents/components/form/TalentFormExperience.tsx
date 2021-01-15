@@ -16,6 +16,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 interface Props {
   user: User,
   modifyUser: (value: UpdateUserPayload) => void,
+  resetExperience: () => void;
   removeUserExperience: (experienceIndex: number) => void,
 }
 
@@ -34,6 +35,8 @@ export class TalentFormExperience extends React.Component<Props, State> {
 
   toggleModal = () => {
     this.setState({ isModalOpen: !this.state.isModalOpen });
+    if (!this.state.isModalOpen)
+      this.props.resetExperience();
   }
 
   handleClick = (experienceIndex: number) => {
@@ -157,7 +160,6 @@ export class TalentFormExperience extends React.Component<Props, State> {
                   </Col>
                 </Row>
               </>
-
             ))}
         </div>
         <ModalCustom
@@ -177,6 +179,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
 const mapState = () => ({});
 
 const mapDispatch = (dispatch: RootDispatch) => ({
+  resetExperience: dispatch.addExperience.resetExperience,
   removeUserExperience: dispatch.userSelected.removeUserExperience,
 });
 
