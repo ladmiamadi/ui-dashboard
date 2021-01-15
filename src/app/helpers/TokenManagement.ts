@@ -24,7 +24,7 @@ export const tokenManager = async () => {
     // }
     //
     // localStorage.setItem('hdm:admin:auth-token', data.token);
-    window.location.href = '/fr/?logout';
+    window.location.href = '/fr?logout';
   }
 
   // localStorage.setItem('hdm:admin:current-user', 'antoine@test.com');

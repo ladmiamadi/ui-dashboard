@@ -86,7 +86,7 @@ export class CustomNavbar extends React.Component<Props, State> {
                 className="logo-out"
                 onClick={() => {
                   localStorage.clear();
-                  window.location.href = '/fr/?logout';
+                  window.location.href = '/fr?logout';
                 }}
               >
                 <FontAwesomeIcon className="icon-logout" icon={faSignOutAlt} />
