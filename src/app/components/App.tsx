@@ -20,12 +20,12 @@ export class App extends React.Component {
         <Provider store={store}>
           <AppContainer>
             <CustomNavbar />
-            <Route path="/" exact component={Homepage} />
-            <Route path="/talent" exact component={TalentFormPage} />
-            <Route path="/talents" exact component={TalentsListPage} />
-            <Route path="/editprofile" exact component={ProfileEditValidation} />
-            <Route path="/" component={RegisterUser} history={history} />
-            <Route path="/timeline" exact component={TimelineContainer} />
+            <Route path="/dashboard" exact component={Homepage} />
+            <Route path="/dashboard/talent" exact component={TalentFormPage} />
+            <Route path="/dashboard/talents" exact component={TalentsListPage} />
+            <Route path="/dashboard/editprofile" exact component={ProfileEditValidation} />
+            <Route path="/dashboard" component={RegisterUser} history={history} />
+            <Route path="/dashboard/timeline" exact component={TimelineContainer} />
           </AppContainer>
         </Provider>
       </Router>

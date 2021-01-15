@@ -40,7 +40,7 @@ export class ContentModalFooter extends React.Component<Props> {
     newCreatedUser.then(user => {
       if (user != null) {
         this.props.updateUserSelected(_.cloneDeep(user));
-        history.push('/talent');
+        history.push('/dashboard/talent');
       }
     });
 

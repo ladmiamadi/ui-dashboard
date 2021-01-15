@@ -68,7 +68,7 @@ export class CustomNavbar extends React.Component<Props, State> {
         <div className="nav nav-bar">
           <div className="container container-nav">
             <div className="link-dashboard">
-              <Link to="/">
+              <Link to="/dashboard">
                 <img className="logo-hdm" src={logoHDM} alt="logo HDM Network" />
                 <span className="logo-title">ADMIN DASHBOARD</span>
               </Link>
@@ -87,7 +87,7 @@ export class CustomNavbar extends React.Component<Props, State> {
                 className="logo-out"
                 onClick={() => {
                   localStorage.clear();
-                  window.location.href = '?logout';
+                  window.location.href = '/?logout';
                 }}
               >
                 <FontAwesomeIcon className="icon-logout" icon={faSignOutAlt} />
