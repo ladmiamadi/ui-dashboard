@@ -73,6 +73,18 @@ export const userSelected = createModel({
 
       return { ...state, userSelected };
     },
+    removeUserTraining: (state: UserState, trainingIndex: number): UserState => {
+      const userSelected = _.cloneDeep(state.userSelected) as User;
+      userSelected.userTrainings?.splice(trainingIndex, 1);
+
+      return { ...state, userSelected };
+    },
+    removeUserExperience: (state: UserState, experienceIndex: number): UserState => {
+      const userSelected = _.cloneDeep(state.userSelected) as User;
+      userSelected.userExperiences?.splice(experienceIndex, 1);
+
+      return { ...state, userSelected };
+    },
     setIsRequesting: (state: UserState, isRequesting: boolean): UserState => ({
       ...state,
       isRequesting,
