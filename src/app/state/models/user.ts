@@ -22,6 +22,7 @@ export const user = createModel({
   effects: {
     async fetchUser(id: number) {
       this.setIsFetching(true);
+
       try {
         const { data: user } = await apiService.get<User>(`api/users/${id}`);
 
@@ -30,6 +31,22 @@ export const user = createModel({
         (new Toastify()).error(`User doesn't exist. ${error.message}`);
       } finally {
         this.setIsFetching(false);
+      }
+    },
+    async fetchUserByCache() {
+      try {
+        const user = await apiService.post('api/users/filter-username',
+          { 'username': localStorage.getItem('hdm:admin:current-user') },
+        );
+
+        if (!user.data) {
+          throw new Error('Couldn\'t fetch the user.');
+        }
+
+        this.fetchUser(user.data.id);
+
+      } catch (error) {
+        (new Toastify()).error(`User doesn't exist. ${error.message}`);
       }
     },
   },

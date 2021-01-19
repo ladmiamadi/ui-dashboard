@@ -42,8 +42,7 @@ export class ModalExperience extends React.Component<Props> {
           },
         ],
       });
-    }
-    else {
+    } else {
       this.props.addUserExperience({ ...this.props.experience });
       this.props.toggleModal();
     }

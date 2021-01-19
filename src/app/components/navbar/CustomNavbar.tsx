@@ -13,7 +13,7 @@ import './styles/CustomNavbar.css';
 interface Props {
   user: User,
   modules: Module[],
-  fetchUser: (id: number) => Promise<void>,
+  fetchUserByCache: () => Promise<void>,
   updateUser: () => Promise<void>,
   updateModulesList: () => Promise<void>,
 }
@@ -34,11 +34,7 @@ export class CustomNavbar extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    const userId = localStorage.getItem('hdm:admin:current-user-id');
-
-    if (userId) {
-      this.props.fetchUser(JSON.parse(userId));
-    }
+    this.props.fetchUserByCache();
   }
 
   private toggleClassName(): string {
@@ -106,7 +102,7 @@ const mapState = (state: RootState) => ({
 
 const mapDispatch = (dispatch: any) => ({
   updateUser: dispatch.user.updateUser,
-  fetchUser: dispatch.user.fetchUser,
+  fetchUserByCache: dispatch.user.fetchUserByCache,
   updateModulesList: dispatch.modules.updateModulesList,
 });
 

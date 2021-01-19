@@ -1,6 +1,5 @@
 import { createModel } from '@rematch/core';
 import { UserLanguage } from '../../../../app';
-import { apiService } from '../../../../app/http/service';
 import { Toastify } from '../../../../helpers/Toastify';
 import { UserLanguageFactory } from '../../../helpers/UserLanguageFactory';
 
@@ -20,9 +19,9 @@ export const addLanguage = createModel({
     language: UserLanguageFactory.createEmptyLanguage(),
   } as LanguageState,
   reducers: {
-    setIsPosting: (state: LanguageState, isPosting): LanguageState => ({ ...state, isPosting }),
     updateLanguage: (state: LanguageState, payload: UpdateLanguagePayload): LanguageState => {
       const language = { ...state.language } as any;
+
       language[payload.property] = payload.value;
 
       return {
@@ -32,24 +31,12 @@ export const addLanguage = createModel({
     resetLanguage: (state) => ({ ...state, language: UserLanguageFactory.createEmptyLanguage() }),
   },
   effects: (dispatch: any) => ({
-    async postLanguage({ userLanguage, userId }: { userLanguage: UserLanguage, userId: number | undefined }) {
+    async addLanguageToSelectedUser(userLanguage: UserLanguage) {
       try {
-        this.setIsPosting(true);
-
-        await apiService.post('/api/user_languages', {
-          user: `/api/users/${userId}`,
-          language: userLanguage.language,
-          level: userLanguage.level,
-        });
-
-        dispatch.userLanguages.addUserLanguages(userLanguage);
+        dispatch.userSelected.addUserLanguage(userLanguage);
         this.resetLanguage();
-
-        (new Toastify()).info('Language added successfully.');
       } catch (error) {
         (new Toastify()).info(`Unable to add a new language. ${error.message}`);
-      } finally {
-        this.setIsPosting(false);
       }
     },
   }),

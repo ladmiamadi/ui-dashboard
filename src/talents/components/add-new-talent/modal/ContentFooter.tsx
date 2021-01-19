@@ -14,7 +14,7 @@ interface Props {
   isRequesting: boolean,
   jobCollection: Job[],
   userSignUp: UserSignUp,
-  defaultRecruiterUser: User,
+  userRecruiter: User,
   postUserInDb: (userSentInDb: User) => Promise<User | null>,
   resetUserSignUp: () => void,
   toggleModal: () => void,
@@ -30,7 +30,7 @@ export class ContentModalFooter extends React.Component<Props> {
     const userSentInDb = createDtoUserIntern(
       this.props.userSignUp,
       this.props.jobCollection,
-      this.props.defaultRecruiterUser,
+      this.props.userRecruiter,
     );
 
     return await this.props.postUserInDb(userSentInDb);
@@ -84,7 +84,7 @@ const mapState = (state: RootState) => ({
   isRequesting: state.userSignUp.isRequesting,
   jobCollection: state.userSignUp.jobCollection,
   userSignUp: state.userSignUp.userSignUp,
-  defaultRecruiterUser: state.userSignUp.defaultRecruiterUser,
+  userRecruiter: state.user.user,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({
