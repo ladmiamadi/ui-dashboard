@@ -97,8 +97,8 @@ export class TalentFormTraining extends React.Component<Props, State> {
                   }),
                 }}
               />
-              <Button type="button" color="secondary" size="lg"
-                onClick={() => this.handleClick(index)}>Supprimer formation
+              <Button type="button" color="danger" size="lg"
+                onClick={() => this.handleClick(index)}>Supprimer
               </Button>
             </>
           ))

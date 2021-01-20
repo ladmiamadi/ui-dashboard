@@ -154,8 +154,8 @@ export class TalentFormExperience extends React.Component<Props, State> {
                 </Row>
                 <Row>
                   <Col>
-                    <Button type="button" color="secondary" size="lg"
-                      onClick={() => this.handleClick(index)}>Supprimer experience
+                    <Button type="button" color="danger" size="lg"
+                      onClick={() => this.handleClick(index)}>Supprimer
                     </Button>
                   </Col>
                 </Row>
