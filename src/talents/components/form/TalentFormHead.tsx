@@ -122,6 +122,7 @@ export class TalentFormHead extends React.Component<Props> {
             })}
             value={this.props.user.userRecruitment.recruiter?.username || ''}
             required={true}
+            showNoSelectionOption={false}
           />
         </div>
         <div className="connection-box">

@@ -49,19 +49,21 @@ export const renderTimelineDisplaySeperateDays = (stateDisplayData: TimelineData
   let listOfFunction: GroupDisplay[] = [];
   let newRenderDisplayTimeline: TimelineDataUsers = sortAndListOfFonctions(stateDisplayData, listOfFunction);
   let daysOfTimeline = newRenderDisplayTimeline.items;
-  let copyAndEditLastDisplayItem = { ...daysOfTimeline[0] };
-  let newDateOfLastItem;
-  let newArrayLenghtOfItem = 0;
 
+  separateDays(stateDisplayData, daysOfTimeline);
+
+  return { newRenderDisplayTimeline, listOfFunction };
+};
+
+const separateDays = (stateDisplayData: TimelineDataUsers, daysOfTimeline: TimelineItem[]) => {
   stateDisplayData.items.map((days: TimelineItem, index: number) => {
-
     if (days.group === -1) {
       return 1;
     }
 
-    newArrayLenghtOfItem = index + 1;
-    copyAndEditLastDisplayItem = { ...daysOfTimeline[index] };
-    newDateOfLastItem = copyAndEditLastDisplayItem.start_time;
+    let newArrayLenghtOfItem = index + 1;
+    let copyAndEditLastDisplayItem = { ...daysOfTimeline[index] };
+    let newDateOfLastItem = copyAndEditLastDisplayItem.start_time;
 
     while (newDateOfLastItem < moment(days.end_time).startOf('day').add(1, 'days').valueOf()) {
       copyAndEditLastDisplayItem = { ...daysOfTimeline[newArrayLenghtOfItem - 1] };
@@ -75,8 +77,6 @@ export const renderTimelineDisplaySeperateDays = (stateDisplayData: TimelineData
 
     return 0;
   });
-
-  return { newRenderDisplayTimeline, listOfFunction };
 };
 
 const editLastDisplayItem = (

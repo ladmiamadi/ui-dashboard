@@ -46,7 +46,9 @@ export class TalentsList extends React.Component<Props, State> {
   }
 
   render() {
-    const filteredUsers = this.props.users.filter(user => this.userHasMatchingProfile(user));
+    const filteredUsers = this.props.users
+      .filter(user => this.userHasMatchingProfile(user))
+      .filter(user => !user.isAdmin);
 
     return (
       <div className={this.state.isModalOpen ? 'hide-card' : 'talent-card'}>

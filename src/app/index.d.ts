@@ -13,6 +13,7 @@ export interface User {
   isAdmin: boolean,
   createdDate: Date,
   updatedDate?: Date,
+  isAdmin: boolean,
   userProfiles?: UserProfile[],
   userAddress?: UserAddress,
   userDesiredJob?: UserDesiredJob,

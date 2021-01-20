@@ -8,6 +8,7 @@ export const createEmptyUser = (): User => ({
   isAdmin: false,
   createdDate: new Date(),
   updatedDate: new Date(),
+  isAdmin: false,
   userProfiles: [],
   userRecruitment: {
     platform: '',
@@ -27,6 +28,7 @@ export const createEmptyUser = (): User => ({
 export const getInternshipRemainingDays = (user: User): number => {
   const statusInternship = user.userJob?.status || INTERNSHIP_STATUS.NONE;
   const today = new Date();
+  today.setHours(23, 59, 59, 999);
   const endDate = user.userJob?.endDate;
   let dateDiffInMs = -1;
 
