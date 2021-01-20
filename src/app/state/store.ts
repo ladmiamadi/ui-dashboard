@@ -1,7 +1,6 @@
 import { init, RematchRootState } from '@rematch/core';
 import * as experience from '../../talents/state/models/experiences/addExperience';
 import * as language from '../../talents/state/models/languages/add-language';
-import * as userLanguages from '../../talents/state/models/languages/user-languages';
 import * as userSelected from '../../talents/state/models/user-selected';
 import * as userSignUp from '../../talents/state/models/user-sign-up';
 import * as users from '../../talents/state/models/users';
@@ -14,7 +13,6 @@ const models = {
   ...language,
   ...modules,
   ...user,
-  ...userLanguages,
   ...users,
   ...userSelected,
   ...userSignUp,

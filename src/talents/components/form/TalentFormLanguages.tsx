@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
-import { UserLanguage } from '../../../app';
+import { User } from '../../../app';
 import { ModalCustom } from '../../../app/components/utils/ModalCustom';
 import { RootDispatch, RootState } from '../../../app/state/store';
 import { LANGUAGES } from '../../constants/language';
@@ -10,13 +10,10 @@ import ModalLanguage from '../modal/ModalLanguage';
 import { UserLanguagesDisplay } from './UserLanguagesDisplay';
 
 interface Props {
-  isFetching: boolean,
-  userId?: number,
-  userLanguages: UserLanguage[],
-  fetchLanguages: (userId: number | undefined) => Promise<void>,
+  user: User,
+  isRequesting: boolean,
   modifyUser: (payload: UpdateUserPayload) => void,
   resetLanguage: () => void,
-  updateUserLanguage: (language: UserLanguage) => void,
 }
 
 interface State {
@@ -35,8 +32,8 @@ export class TalentFormLanguages extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Readonly<Props>) {
-    if (this.props.userLanguages.length !== prevProps.userLanguages.length) {
-      const userLanguages = this.props.userLanguages.map(({ language }) => (language));
+    if (this.props.user.userLanguages?.length !== prevProps.user.userLanguages?.length) {
+      const userLanguages = this.props.user.userLanguages.map(({ language }) => (language));
 
       this.setState({
         unselectedLanguages: this.state.unselectedLanguages
@@ -45,20 +42,12 @@ export class TalentFormLanguages extends React.Component<Props, State> {
     }
   }
 
-  componentDidMount = async () => {
-    await this.props.fetchLanguages(this.props.userId);
-  }
-
   toggleModalAndResetModalOnQuit = () => {
     this.setState({ isModalShown: !this.state.isModalShown });
 
     if (!this.state.isModalShown) {
       this.props.resetLanguage();
     }
-  }
-
-  updateUserLanguage = (property: string, value: string) => {
-    this.props.updateUserLanguage({ language: property, level: value });
   }
 
   render() {
@@ -70,16 +59,16 @@ export class TalentFormLanguages extends React.Component<Props, State> {
             onClick={this.toggleModalAndResetModalOnQuit}
             className="form-add-button"
             color="default"
-            disabled={this.props.isFetching}
+            disabled={this.props.isRequesting}
           >
             Ajouter une langue
           </Button>
         </div>
         {
-          (this.props.userLanguages.length > 0) &&
+          (this.props.user.userLanguages && this.props.user.userLanguages.length > 0) &&
           <UserLanguagesDisplay
-            userLanguages={this.props.userLanguages}
-            updateUserLanguage={this.updateUserLanguage}
+            userLanguages={this.props.user.userLanguages}
+            modifyUser={this.props.modifyUser}
           />
         }
         <ModalCustom
@@ -97,15 +86,13 @@ export class TalentFormLanguages extends React.Component<Props, State> {
 }
 
 const mapState = (state: RootState) => ({
-  userLanguages: state.userLanguages.languages,
-  isFetching: state.userLanguages.isFetching,
-  userId: state.userSelected.userSelected.id,
+  user: state.userSelected.userSelected,
+  isRequesting: state.userSelected.isRequesting,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({
-  fetchLanguages: dispatch.userLanguages.fetchLanguages,
-  updateUserLanguage: dispatch.userLanguages.updateUserLanguage,
   resetLanguage: dispatch.addLanguage.resetLanguage,
+  modifyUser: dispatch.userSelected.modifyUser,
 });
 
 export default connect(mapState, mapDispatch)(TalentFormLanguages);
