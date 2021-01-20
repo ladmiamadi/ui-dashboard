@@ -44,7 +44,6 @@ export const user = createModel({
         }
 
         this.fetchUser(user.data.id);
-
       } catch (error) {
         (new Toastify()).error(`User doesn't exist. ${error.message}`);
       }
