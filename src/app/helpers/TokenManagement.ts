@@ -7,18 +7,29 @@ export const tokenManager = async () => {
     if (token) {
       addTokenToRequestInterceptor(token);
 
-      await apiService.post('api/token/verify', {});
+      const { data } = await apiService.post('api/token/verify', {});
+
+      if (data.message) {
+        throw new Error('Token Expired');
+      }
+
     } else {
       throw new Error('No token found');
     }
-
   } catch (error) {
-    const { data } = await apiService.post('api/login_check', { 'username': 'antoine@test.com', 'password': 'test' });
+    //const { data } = await apiService.post('api/login_check', { 'username': 'antoine@test.com', 'password': 'test' });
+    // const { data } = await apiService.post('api/login_check', { 'username': 'test2@test1.com', 'password': 'test' });
+    const { data } = await apiService.post('api/login_check', { 'username': 'test1@test.com', 'password': 'test' });
 
     if (!data.token) {
       throw new Error('No token in the response');
     }
 
     localStorage.setItem('hdm:admin:auth-token', data.token);
+    // window.location.href = '/fr?logout';
   }
+
+  // localStorage.setItem('hdm:admin:current-user', 'antoine@test.com');
+  // localStorage.setItem('hdm:admin:current-user', 'test2@test1.com');
+  localStorage.setItem('hdm:admin:current-user', 'test1@test.com');
 };

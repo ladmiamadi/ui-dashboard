@@ -90,10 +90,10 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
   return {
     createdDate: new Date(),
     isActive: true,
+    isAdmin: false,
     password: 'sosecure',
     username: userSignUp.username,
     userAddress,
-    isAdmin: false,
     userProfiles: [userProfileLive, userProfileWorking],
     userJob,
     userDesiredJob,

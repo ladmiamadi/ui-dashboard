@@ -33,7 +33,7 @@ export class TalentFormPageContainer extends React.Component<Props> {
 
   render() {
     if (this.props.user.id === -1) {
-      window.location.href = '/talents';
+      window.location.href = '/dashboard/talents';
     }
 
     return (

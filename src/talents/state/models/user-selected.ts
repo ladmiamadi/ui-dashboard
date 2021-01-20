@@ -24,16 +24,14 @@ export const userSelected = createModel({
     userSelected: createEmptyUser(),
   } as UserState,
   reducers: {
-    updateUserSelected: (state: UserState, userSelected: User): UserState => ({ ...state, userSelected: userSelected }),
+    updateUserSelected: (state: UserState, userSelected: User): UserState => ({ ...state, userSelected }),
     modifyUser: (state: UserState, payload: UpdateUserPayload): UserState => {
       const userSelected = _.cloneDeep(state.userSelected) as any;
 
       if (payload.index !== -1) {
         userSelected[payload.category][payload.index][payload.property] = payload.value;
-
       } else if (payload.property) {
         userSelected[payload.category][payload.property] = payload.value;
-
       } else {
         userSelected[payload.category] = payload.value;
       }
@@ -42,34 +40,30 @@ export const userSelected = createModel({
         ...state, userSelected,
       };
     },
-    addUserLanguage: (state: UserState, userLanguage: UserLanguage): UserState => {
-      const updatedLanguages = state.userSelected.userLanguages?.map(language => ({ ...language }))
-        .concat(userLanguage);
-      const copyUserSelected: User = { ...state.userSelected };
+    addUserLanguage: (state: UserState, payload: UserLanguage): UserState => {
+      const userSelected = _.cloneDeep(state.userSelected) as User;
 
-      copyUserSelected.userLanguages = updatedLanguages;
+      userSelected.userLanguages = userSelected.userLanguages ?
+        userSelected.userLanguages.concat(payload) :
+        [payload];
 
-      return { ...state, userSelected: copyUserSelected };
+      return { ...state, userSelected };
     },
     addUserExperience: (state: UserState, payload: UserExperience): UserState => {
       const userSelected = _.cloneDeep(state.userSelected) as User;
 
-      const userExperience = userSelected.userExperiences ?
+      userSelected.userExperiences = userSelected.userExperiences ?
         userSelected.userExperiences.concat(payload) :
         [payload];
-
-      userSelected.userExperiences = userExperience;
 
       return { ...state, userSelected };
     },
     addUserTraining: (state: UserState, payload: UserTraining): UserState => {
       const userSelected = _.cloneDeep(state.userSelected) as User;
 
-      const userTraining = userSelected.userTrainings ?
+      userSelected.userTrainings = userSelected.userTrainings ?
         userSelected.userTrainings.concat(payload) :
         [payload];
-
-      userSelected.userTrainings = userTraining;
 
       return { ...state, userSelected };
     },

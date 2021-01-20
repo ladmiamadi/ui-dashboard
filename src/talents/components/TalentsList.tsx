@@ -34,8 +34,9 @@ export class TalentsList extends React.Component<Props, State> {
       this.setState({
         isModalOpen: !this.state.isModalOpen,
       });
-    } else
-      history.push('/talent');
+    } else {
+      history.push('/dashboard/talent');
+    }
   }
 
   userHasMatchingProfile(user: User): boolean {
