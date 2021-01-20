@@ -44,8 +44,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
     if (this.props.user.userLanguages) {
       const userLanguages = this.props.user.userLanguages.map(({ language }) => (language));
 
-      return LANGUAGES
-        .filter((language) => !userLanguages?.includes(language));
+      return LANGUAGES.filter((language) => !userLanguages?.includes(language));
     }
 
     return [];
