@@ -35,7 +35,7 @@ export class TalentFormTraining extends React.Component<Props, State> {
   handleClick = (trainingIndex: number) => {
     confirmAlert({
       title: 'Confirmation',
-      message: 'Vous êtes sûr de vouloir supprimer ce formation?',
+      message: 'Êtes-vous sûr de bien vouloir supprimer cette Formation ?',
       buttons: [
         {
           label: 'Oui',

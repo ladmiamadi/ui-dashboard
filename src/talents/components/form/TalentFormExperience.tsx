@@ -42,7 +42,7 @@ export class TalentFormExperience extends React.Component<Props, State> {
   handleClick = (experienceIndex: number) => {
     confirmAlert({
       title: 'Confirmation',
-      message: 'Vous êtes sûr de vouloir supprimer ce Expérience?',
+      message: 'Êtes-vous sûr de bien vouloir supprimer cette Expérience ?',
       buttons: [
         {
           label: 'Oui',
