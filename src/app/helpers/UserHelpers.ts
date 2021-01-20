@@ -8,7 +8,6 @@ export const createEmptyUser = (): User => ({
   isAdmin: false,
   createdDate: new Date(),
   updatedDate: new Date(),
-  isAdmin: false,
   userProfiles: [],
   userRecruitment: {
     platform: '',

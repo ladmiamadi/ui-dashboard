@@ -94,7 +94,6 @@ export const createDtoUserIntern = (userSignUp: UserSignUp, jobCollection: Job[]
     password: 'sosecure',
     username: userSignUp.username,
     userAddress,
-    isAdmin: false,
     userProfiles: [userProfileLive, userProfileWorking],
     userJob,
     userDesiredJob,
