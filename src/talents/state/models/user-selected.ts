@@ -49,6 +49,13 @@ export const userSelected = createModel({
 
       return { ...state, userSelected };
     },
+    removeUserLanguage: (state: UserState, languageIndex: number): UserState => {
+      const userSelected = _.cloneDeep(state.userSelected) as User;
+
+      userSelected.userLanguages?.splice(languageIndex, 1);
+
+      return { ...state, userSelected };
+    },
     addUserExperience: (state: UserState, payload: UserExperience): UserState => {
       const userSelected = _.cloneDeep(state.userSelected) as User;
 
@@ -58,12 +65,26 @@ export const userSelected = createModel({
 
       return { ...state, userSelected };
     },
+    removeUserExperience: (state: UserState, experienceIndex: number): UserState => {
+      const userSelected = _.cloneDeep(state.userSelected) as User;
+
+      userSelected.userExperiences?.splice(experienceIndex, 1);
+
+      return { ...state, userSelected };
+    },
     addUserTraining: (state: UserState, payload: UserTraining): UserState => {
       const userSelected = _.cloneDeep(state.userSelected) as User;
 
       userSelected.userTrainings = userSelected.userTrainings ?
         userSelected.userTrainings.concat(payload) :
         [payload];
+
+      return { ...state, userSelected };
+    },
+    removeUserTraining: (state: UserState, trainingIndex: number): UserState => {
+      const userSelected = _.cloneDeep(state.userSelected) as User;
+
+      userSelected.userTrainings?.splice(trainingIndex, 1);
 
       return { ...state, userSelected };
     },

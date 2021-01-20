@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row } from 'reactstrap';
+import { Button, Col, Row } from 'reactstrap';
 import { UserLanguage } from '../../../app';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
 import { LANGUAGES_LEVEL } from '../../constants/language';
@@ -8,6 +8,7 @@ import { UpdateUserPayload } from '../../state/models/user-selected';
 
 interface Props {
   userLanguages: UserLanguage[] | undefined,
+  handleDeleteButtonClick: (index: number) => void,
   modifyUser: (payload: UpdateUserPayload) => void,
 }
 
@@ -19,7 +20,7 @@ export class UserLanguagesDisplay extends React.Component<Props> {
           {
             this.props.userLanguages?.map(({ language, level }, index) =>
               (
-                <Col key={index} lg={6} md={8}>
+                <Col className="col-flex" key={index} lg={6} md={8}>
                   <SelectFormField
                     key={index}
                     keyName={language}
@@ -35,6 +36,9 @@ export class UserLanguagesDisplay extends React.Component<Props> {
                     },
                     )}
                   />
+                  <Button className="remove-language-button" type="button" color="danger" size="lg"
+                    onClick={() => this.props.handleDeleteButtonClick(index)}>X
+                  </Button>
                 </Col>
               ),
             )

@@ -107,8 +107,13 @@
     border-top: solid 1px #151515;
 }
 
-.form-group.large {
-    width: 100%;
+.row-almost-large .col-flex {
+    display: flex;
+}
+
+.row-almost-large .remove-language-button {
+    height: fit-content;
+    margin: 2rem;
 }
 
 .form-section.almost-large {
@@ -122,8 +127,8 @@
 }
 
 .form-group.almost-large {
-    margin-top: 20px;
-    width: 95%;
+    margin-top: 2rem;
+    width: 80%;
 }
 
 .form-group.medium {

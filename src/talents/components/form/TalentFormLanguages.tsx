@@ -13,6 +13,7 @@ interface Props {
   user: User,
   isRequesting: boolean,
   modifyUser: (payload: UpdateUserPayload) => void,
+  removeUserLanguage: (index: number) => void,
   resetLanguage: () => void,
 }
 
@@ -27,19 +28,26 @@ export class TalentFormLanguages extends React.Component<Props, State> {
 
     this.state = {
       isModalShown: false,
-      unselectedLanguages: LANGUAGES,
+      unselectedLanguages: this.updateLanguageList(),
     };
   }
 
   componentDidUpdate(prevProps: Readonly<Props>) {
     if (this.props.user.userLanguages?.length !== prevProps.user.userLanguages?.length) {
-      const userLanguages = this.props.user.userLanguages.map(({ language }) => (language));
-
       this.setState({
-        unselectedLanguages: this.state.unselectedLanguages
-          .filter((language) => !userLanguages.includes(language)),
+        unselectedLanguages: this.updateLanguageList(),
       });
     }
+  }
+
+  updateLanguageList() {
+    if (this.props.user.userLanguages) {
+      const userLanguages = this.props.user.userLanguages.map(({ language }) => (language));
+
+      return LANGUAGES.filter((language) => !userLanguages?.includes(language));
+    }
+
+    return [];
   }
 
   toggleModalAndResetModalOnQuit = () => {
@@ -69,6 +77,7 @@ export class TalentFormLanguages extends React.Component<Props, State> {
           <UserLanguagesDisplay
             userLanguages={this.props.user.userLanguages}
             modifyUser={this.props.modifyUser}
+            handleDeleteButtonClick={this.props.removeUserLanguage}
           />
         }
         <ModalCustom
@@ -93,6 +102,7 @@ const mapState = (state: RootState) => ({
 const mapDispatch = (dispatch: RootDispatch) => ({
   resetLanguage: dispatch.addLanguage.resetLanguage,
   modifyUser: dispatch.userSelected.modifyUser,
+  removeUserLanguage: dispatch.userSelected.removeUserLanguage,
 });
 
 export default connect(mapState, mapDispatch)(TalentFormLanguages);
