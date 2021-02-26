@@ -5,8 +5,8 @@ import { User } from '../../index';
 import { Toastify } from '../../../helpers/Toastify';
 
 interface State {
-  user: User,
-  isFetching: boolean,
+  user: User;
+  isFetching: boolean;
 }
 
 export const user = createModel({
@@ -35,9 +35,7 @@ export const user = createModel({
     },
     async fetchUserByCache() {
       try {
-        const user = await apiService.post('api/users/filter-username',
-          { 'username': localStorage.getItem('hdm:admin:current-user') },
-        );
+        const user = await apiService.get('api/users/me');
 
         if (!user.data) {
           throw new Error('Couldn\'t fetch the user.');
