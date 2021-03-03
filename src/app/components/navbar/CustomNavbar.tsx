@@ -3,7 +3,7 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { tokenManager } from '../../helpers/TokenManagement';
+import { refreshToken } from '../../helpers/TokenManagement';
 import { Module, User } from '../../index.d';
 import { RootState } from '../../state/store';
 import { UserProfileHelpers } from '../../helpers/UserProfileHelpers';
@@ -26,8 +26,8 @@ export class CustomNavbar extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    tokenManager();
-
+    refreshToken();
+    
     this.state = {
       isMenuOpened: false,
     };

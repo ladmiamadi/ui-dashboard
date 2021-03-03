@@ -9,11 +9,11 @@ interface Props {
   locale?: Locale,
   required?: boolean,
   value?: Date,
-  handleChange: (value: Date | null) => void,
+  handleChange: (value: Date | [Date, Date] | null) => void,
 }
 
 export class DatePickerFieldForm extends React.Component<Props> {
-  handleChange(value: Date | null) {
+  handleChange(value: Date | [Date, Date] | null) {
     if (this.props.handleChange) {
       this.props.handleChange(value);
     }

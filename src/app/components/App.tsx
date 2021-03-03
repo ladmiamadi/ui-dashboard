@@ -11,6 +11,7 @@ import { store } from '../state/store';
 import AppContainer from './AppContainer';
 import Homepage from './homepage/Homepage';
 import CustomNavbar from './navbar/CustomNavbar';
+import ModalTimeout from './modal/ModalTimeout';
 import './styles/App.css';
 
 export class App extends React.Component {
@@ -20,6 +21,7 @@ export class App extends React.Component {
         <Provider store={store}>
           <AppContainer>
             <CustomNavbar />
+            <ModalTimeout />
             <Route path="/dashboard" exact component={Homepage} />
             <Route path="/dashboard/talent" exact component={TalentFormPage} />
             <Route path="/dashboard/talents" exact component={TalentsListPage} />
