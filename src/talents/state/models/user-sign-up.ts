@@ -8,6 +8,7 @@ import { UserAdapterHelper } from '../../helpers/UserAdapterHelper';
 import { createEmptyIsFormValid, createEmptyUserSignUp } from '../../helpers/UserSignUpFactoryHelper';
 
 export interface UserSignUpState {
+  isEmailSent: boolean,
   isFormValid: IsFormValid,
   isJobsFetching: boolean,
   isRequesting: boolean,
@@ -19,6 +20,7 @@ export interface UserSignUpState {
 
 export const userSignUp = createModel({
   state: {
+    isEmailSent: false,
     isFormValid: createEmptyIsFormValid(),
     isJobsFetching: false,
     isRequesting: false,
@@ -57,6 +59,10 @@ export const userSignUp = createModel({
     setIsJobsFetching: (state: UserSignUpState, isJobsFetching: boolean): UserSignUpState => ({
       ...state,
       isJobsFetching,
+    }),
+    setIsEmailSent: (state: UserSignUpState, isEmailSent: boolean): UserSignUpState => ({
+      ...state,
+      isEmailSent,
     }),
     setIsRequesting: (state: UserSignUpState, isRequesting: boolean): UserSignUpState => ({
       ...state,
@@ -142,6 +148,20 @@ export const userSignUp = createModel({
       } finally {
         this.setIsJobsFetching(false);
       }
+    },
+    async sendTalentConfigEmail(userEmail?: string) {
+      try {
+        const user = { username: userEmail };
+        const { data } = await apiService.post('/api/users/new-talent', user);
+
+        if(data.message) {
+          throw new Error(data.message);
+        } else {
+          this.setIsEmailSent(true);
+        }
+      } catch (error) {
+        (new Toastify()).error(`Unable to send the configuration email. ${error.message}`);
+      } 
     },
   },
 });
