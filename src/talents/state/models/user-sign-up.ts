@@ -154,7 +154,7 @@ export const userSignUp = createModel({
         const user = { username: userEmail };
         const { data } = await apiService.post('/api/users/new-talent', user);
 
-        if(data.message) {
+        if (data.message) {
           throw new Error(data.message);
         } else {
           this.setIsEmailSent(true);

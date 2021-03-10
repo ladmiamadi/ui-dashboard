@@ -7,7 +7,7 @@ interface Props {
   toggleModal: () => void,
 }
 
-export class ModalEmailConf extends React.Component<Props>{
+export class ModalConfirmationEmail extends React.Component<Props> {
   render() {
     return (
       <ModalCustom
@@ -24,4 +24,4 @@ export class ModalEmailConf extends React.Component<Props>{
   }
 }
 
-export default ModalEmailConf;
+export default ModalConfirmationEmail;

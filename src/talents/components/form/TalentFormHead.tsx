@@ -10,7 +10,7 @@ import { mapToOptionValues } from '../../helpers/FormHelper';
 import ProfileCollection from '../../helpers/ProfileCollection';
 import { UpdateUserPayload } from '../../state/models/user-selected';
 import { getUserByUsername } from '../../../app/helpers/UserHelpers';
-import ModalEmailConf from '../modal/modalEmailConf';
+import ModalConfirmationEmail from '../modal/ModalConfirmationEmail';
 
 interface Props {
   jobCollection: Job[],
@@ -29,12 +29,8 @@ export class TalentFormHead extends React.Component<Props> {
     this.props.fetchJobsInDb();
   }
   
-  toggleModal = () => {
-    this.props.setIsEmailSent(!this.props.showModal);
-  }
-
-  sendEmail = (talentEmail?: string) => {
-    this.props.sendEmail(talentEmail);
+  closeModal = () => {
+    this.props.setIsEmailSent(false);
   }
 
   render() {
@@ -51,9 +47,9 @@ export class TalentFormHead extends React.Component<Props> {
 
     return (
       <div className="form-head">
-        <ModalEmailConf 
+        <ModalConfirmationEmail 
           showModal={this.props.showModal} 
-          toggleModal={this.toggleModal}
+          toggleModal={this.closeModal}
         />
         <h1 className="talent-title">Gestion des talents: </h1>
         <img
@@ -144,7 +140,12 @@ export class TalentFormHead extends React.Component<Props> {
         </div>
         <div className="connection-box">
           <p>Envoyez un email pour configurer la connexion</p>
-          <Button color="default" onClick={() => this.sendEmail(userProfileLive?.email)}>Envoyer</Button>
+          <Button 
+            color="default" 
+            onClick={() => this.props.sendEmail(userProfileLive?.email)}
+          >
+            Envoyer
+          </Button>
         </div>
       </div>
     );
