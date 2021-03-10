@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Button } from 'reactstrap';
 import { Job, User, UserProfile } from '../../../app';
 import { FieldForm } from '../../../app/components/utils/FieldForm';
 import { SelectFormField } from '../../../app/components/utils/SelectFormField';
@@ -9,19 +10,27 @@ import { mapToOptionValues } from '../../helpers/FormHelper';
 import ProfileCollection from '../../helpers/ProfileCollection';
 import { UpdateUserPayload } from '../../state/models/user-selected';
 import { getUserByUsername } from '../../../app/helpers/UserHelpers';
+import ModalConfirmationEmail from '../modal/ModalConfirmationEmail';
 
 interface Props {
   jobCollection: Job[],
   user: User,
   users: User[],
+  showModal: boolean,
   fetchJobsInDb: () => Promise<void>,
   modifyUser: (payload: UpdateUserPayload) => void,
+  setIsEmailSent: (isEmailSent: boolean) => void,
+  sendEmail: (userEmail?: string) => void,
 }
 
 export class TalentFormHead extends React.Component<Props> {
 
   componentDidMount() {
     this.props.fetchJobsInDb();
+  }
+  
+  closeModal = () => {
+    this.props.setIsEmailSent(false);
   }
 
   render() {
@@ -38,6 +47,10 @@ export class TalentFormHead extends React.Component<Props> {
 
     return (
       <div className="form-head">
+        <ModalConfirmationEmail 
+          showModal={this.props.showModal} 
+          toggleModal={this.closeModal}
+        />
         <h1 className="talent-title">Gestion des talents: </h1>
         <img
           className="profile-picture"
@@ -127,7 +140,12 @@ export class TalentFormHead extends React.Component<Props> {
         </div>
         <div className="connection-box">
           <p>Envoyez un email pour configurer la connexion</p>
-          <button>Envoyer</button>
+          <Button 
+            color="default" 
+            onClick={() => this.props.sendEmail(userProfileLive?.email)}
+          >
+            Envoyer
+          </Button>
         </div>
       </div>
     );
@@ -136,10 +154,13 @@ export class TalentFormHead extends React.Component<Props> {
 
 const mapState = (state: RootState) => ({
   jobCollection: state.userSignUp.jobCollection,
+  showModal: state.userSignUp.isEmailSent,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({
   fetchJobsInDb: dispatch.userSignUp.fetchJobsInDb,
+  setIsEmailSent: dispatch.userSignUp.setIsEmailSent,
+  sendEmail: dispatch.userSignUp.sendTalentConfigEmail,
 });
 
 export default connect(mapState, mapDispatch)(TalentFormHead);
