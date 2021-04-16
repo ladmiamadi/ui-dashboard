@@ -1,0 +1,27 @@
+.talent-title .modal-title {
+    font-size: 2.2rem;
+}
+
+.talent-modal-content {
+    font-size: 2rem;
+}
+
+.button-talent-modal {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.add-margin-top-modal {
+    margin-top: 2.5rem;
+}
+
+.add-margin-top-modal p {
+    margin-bottom: 0;
+    overflow: hidden;
+    font-size: 1.75rem;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+}

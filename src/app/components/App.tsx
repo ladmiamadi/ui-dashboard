@@ -5,6 +5,7 @@ import RegisterUser from '../../talents/components/add-new-talent/modal/Register
 import TalentFormPage from '../../talents/components/form/TalentFormPage';
 import ProfileEditValidation from '../../talents/components/profileValidation/ProfileEditValidation';
 import { TalentsListPage } from '../../talents/components/TalentsListPage';
+import { OffersListPage } from '../../offers/components/OffersListPage';
 import TimelineContainer from '../../timeline/components/TimelineContainer';
 import history from '../helpers/history';
 import { store } from '../state/store';
@@ -25,6 +26,7 @@ export class App extends React.Component {
             <Route path="/dashboard" exact component={Homepage} />
             <Route path="/dashboard/talent" exact component={TalentFormPage} />
             <Route path="/dashboard/talents" exact component={TalentsListPage} />
+            <Route path="/dashboard/our-Offers" exact component={OffersListPage} />
             <Route path="/dashboard/editprofile" exact component={ProfileEditValidation} />
             <Route path="/dashboard" component={RegisterUser} history={history} />
             <Route path="/dashboard/timeline" exact component={TimelineContainer} />
