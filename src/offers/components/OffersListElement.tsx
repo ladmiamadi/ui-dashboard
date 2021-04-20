@@ -1,24 +1,28 @@
 import React from 'react';
 import { Job } from '../../app';
-import './form/styles/TalentFormInternship.css';
-import './styles/TalentModal.css';
-import './styles/TalentsList.css';
+import { OffersHelpers } from '../state/models/helpers/OffersHelpers';
+import './styles/offersList.css';
 
 interface Props {
-  jobs: Job,
+  job: Job,
 }
 
 export default class OffersListElement extends React.Component<Props> {
   render() {
-    return (
-      <div className="id-card">
+    const picture = OffersHelpers.getOfferPictureUrl(this.props.job)
+    console.log(this.props.job.shortDescriptionInFrench)
 
-        <div className="add-margin-top-modal">
+    return (
+      <div className="offer-card">
+        <img src={picture}
+          alt={this.props.job.titleInFrench}
+        />
+        <h3>
+          {this.props.job.titleInFrench}
+        </h3>
+        <div>
           <p>
-            {this.props.jobs.titleInFrench}
-          </p>
-          <p>
-            {this.props.jobs.shortDescriptionInFrench}
+            {this.props.job.shortDescriptionInFrench}
           </p>
         </div>
       </div>

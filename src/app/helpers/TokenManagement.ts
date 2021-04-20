@@ -22,7 +22,6 @@ export const refreshToken = async () => {
     }
   } catch (error) {
     //Revert commented/uncommented code for build
-    /*
     const { data } = await apiService.post('api/login_check', { username: 'test1@test.com', password: 'test' });
 
     if (!data.token) {
@@ -33,6 +32,5 @@ export const refreshToken = async () => {
     localStorage.setItem('hdm:admin:refresh-token', data.refresh_token);
 
     // window.location.href = '/fr?logout';
-    */
   }
 };

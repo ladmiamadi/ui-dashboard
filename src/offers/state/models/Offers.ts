@@ -1,5 +1,5 @@
 import { createModel } from '@rematch/core';
-import { Job, User } from '../../../app';
+import { Job } from '../../../app';
 import { apiService } from '../../../app/http/service';
 import { Toastify } from '../../../helpers/Toastify';
 
@@ -9,7 +9,7 @@ interface State {
   isFetching: boolean,
 }
 
-export const offers = createModel({
+export const jobs = createModel({
   state: {
     searchTerm: '',
     jobs: [],
@@ -23,12 +23,13 @@ export const offers = createModel({
   },
 
   effects: {
-    async fetchTalents() {
+    async fetchOffers() {
       try {
         this.setIsFetching(true);
         const { data: jobs } = await apiService.get<Job[]>('/api/jobs');
+        console.log(jobs)
 
-        // UserAdapterHelper.postprocessUsers(jobs);
+        //UserAdapterHelper.postprocessUsers(jobs);
 
         this.updateList(jobs);
       } catch (error) {

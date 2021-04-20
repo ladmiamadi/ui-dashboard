@@ -1,16 +1,13 @@
 import React from 'react';
-import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Job } from '../../app';
-
 import { RootDispatch } from '../../app/state/store';
-import './styles/TalentsList.css';
 import OffersListElement from './OffersListElement';
 
 interface Props {
-  searchTerm: string,
+  //searchTerm: string,
   jobs: Job[],
-  updateUserSelected: (offerSelected: Job) => void,
+  //updateUserSelected: (userSelected: User) => void,
 }
 
 interface State {
@@ -26,21 +23,31 @@ export class OffersList extends React.Component<Props, State> {
 
   render() {
     const filteredOffers = this.props.jobs
-    /*.filter(user => this.userHasMatchingProfile(user))
-    .filter(user => !user.isAdmin);*/
 
     return (
-      filteredOffers.map((offer, index) => {
-        <div className="talent-row" >
-          <React.Fragment key={offer.id}>
-            <OffersListElement
-              jobs={offer}
-            />
-          </React.Fragment>
-        </div >
-      })
-
-    )
+      <div>
+        { filteredOffers.length > 0 ? (
+          <div className="offer-container" >
+            {
+              filteredOffers.map((offer) => (
+                  <OffersListElement
+                    job={offer}
+                    key={offer.id}
+                  />
+                ))
+            }
+                </div>
+              ) : (
+            <h1 className="no-user-found">Aucune offre correspondante n'a été trouvée.</h1>
+        )
+        }
+          </div>
+        );
   }
 }
 
+const mapDispatch = (dispatch: RootDispatch) => ({
+
+});
+
+export default connect(() => {}, mapDispatch)(OffersList);

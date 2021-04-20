@@ -1,8 +1,7 @@
 import React from 'react';
 import { SearchBar } from '../../app/components/utils/SearchBar';
-import { OffersList } from './OffersList';
 import { Job } from '../../app';
-import './styles/TalentsList.css';
+import OffersList from './OffersList';
 
 interface Props {
   searchTerm: string,
@@ -19,12 +18,11 @@ export class OffersDashBoard extends React.Component<Props> {
             onSearch={(value) => {
               this.props.updateSearchTerm(value);
             }}
-            placeholder="Rechercher un talent..."
+            placeholder="Rechercher une offre..."
             value={this.props.searchTerm}
           />
         </div>
         <OffersList
-          searchTerm={this.props.searchTerm}
           jobs={this.props.jobs}
         />
       </div>

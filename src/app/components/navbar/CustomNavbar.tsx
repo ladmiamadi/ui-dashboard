@@ -27,7 +27,7 @@ export class CustomNavbar extends React.Component<Props, State> {
     super(props);
 
     refreshToken();
-    
+
     this.state = {
       isMenuOpened: false,
     };
@@ -53,7 +53,7 @@ export class CustomNavbar extends React.Component<Props, State> {
         <div className="info-user">
           <div className="container">
             <div>
-              <img alt="User Profile" src={UserProfileHelpers.getUserProfilePictureUrl(userProfileLive)}/>
+              <img alt="User Profile" src={UserProfileHelpers.getUserProfilePictureUrl(userProfileLive)} />
               Bienvenue <b>
                 {UserProfileHelpers.getFullNameFromUser(this.props.user)}
               </b> !
