@@ -8,6 +8,7 @@ import * as modules from './models/modules';
 import * as user from './models/user';
 import * as timeline from '../../timeline/state/models/timeline';
 import * as jobs from '../../offers/state/models/Offers';
+import * as selectedOffer from '../../offers/state/models/selectedOffer';
 
 const models = {
   ...experience,
@@ -17,6 +18,7 @@ const models = {
   ...users,
   ...jobs,
   ...userSelected,
+  ...selectedOffer,
   ...userSignUp,
   ...timeline,
 };

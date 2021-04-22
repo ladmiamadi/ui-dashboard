@@ -18,8 +18,11 @@ export const jobs = createModel({
 
   reducers: {
     updateList: (state: State, jobs: Job[]): State => ({ ...state, jobs }),
+
     setIsFetching: (state: State, isFetching: boolean): State => ({ ...state, isFetching }),
+
     updateSearchTerm: (state: State, searchTerm: string): State => ({ ...state, searchTerm }),
+
   },
 
   effects: {
@@ -27,9 +30,6 @@ export const jobs = createModel({
       try {
         this.setIsFetching(true);
         const { data: jobs } = await apiService.get<Job[]>('/api/jobs');
-        console.log(jobs)
-
-        //UserAdapterHelper.postprocessUsers(jobs);
 
         this.updateList(jobs);
       } catch (error) {
@@ -39,4 +39,5 @@ export const jobs = createModel({
       }
     },
   },
+
 });

@@ -5,18 +5,32 @@ import './styles/offersList.css';
 
 interface Props {
   job: Job,
+  ToggleOpenJob: (selectedOffer: Job) => void
 }
 
+
 export default class OffersListElement extends React.Component<Props> {
+
+
   render() {
     const picture = OffersHelpers.getOfferPictureUrl(this.props.job)
-    console.log(this.props.job.shortDescriptionInFrench)
 
     return (
       <div className="offer-card">
-        <img src={picture}
-          alt={this.props.job.titleInFrench}
-        />
+        <div className="onoffswitch">
+          <label className="switch">
+            <input type="checkbox" checked={this.props.job.isOpen}
+              onChange={(e) => this.props.ToggleOpenJob({ ...this.props.job, isOpen: e.target.checked })} />
+
+            <span className="slider round"></span>
+          </label>
+        </div>
+        <div>
+          <img src={picture}
+            alt={this.props.job.titleInFrench}
+          />
+        </div>
+
         <h3>
           {this.props.job.titleInFrench}
         </h3>

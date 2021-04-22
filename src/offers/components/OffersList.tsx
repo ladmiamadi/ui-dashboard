@@ -1,29 +1,41 @@
+import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Job } from '../../app';
-import { RootDispatch } from '../../app/state/store';
+import { RootDispatch, RootState } from '../../app/state/store';
 import OffersListElement from './OffersListElement';
 
 interface Props {
   //searchTerm: string,
   jobs: Job[],
-  //updateUserSelected: (userSelected: User) => void,
+  updateSelectedOffer: (selectedOffer: Job) => void,
 }
 
 interface State {
-  isModalOpen: boolean,
+jobs: Job[]
 }
 
 export class OffersList extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
+ constructor(props: Props){
+  super(props)
+   this.state = { jobs: this.props.jobs };
+ }
 
-    this.state = { isModalOpen: false };
-  }
+toggleOpenJob(job: Job){
+  
+  const jobs= this.state.jobs
 
+  jobs.map(item=>{
+    if(job.id===item.id){
+        job.isOpen=!job.isOpen
+      this.props.updateSelectedOffer(_.cloneDeep(item));
+        this.setState({jobs})
+    }
+  });
+
+}
   render() {
     const filteredOffers = this.props.jobs
-
     return (
       <div>
         { filteredOffers.length > 0 ? (
@@ -33,6 +45,7 @@ export class OffersList extends React.Component<Props, State> {
                   <OffersListElement
                     job={offer}
                     key={offer.id}
+                    ToggleOpenJob={()=>this.toggleOpenJob(offer)}
                   />
                 ))
             }
@@ -46,8 +59,11 @@ export class OffersList extends React.Component<Props, State> {
   }
 }
 
-const mapDispatch = (dispatch: RootDispatch) => ({
+const mapState = (state: RootState) => ({});
 
+const mapDispatch = (dispatch: RootDispatch) => ({
+  updateSelectedOffer: dispatch.selectedOffer.saveOfferInDb
+  
 });
 
-export default connect(() => {}, mapDispatch)(OffersList);
+export default connect(mapState, mapDispatch)(OffersList);
