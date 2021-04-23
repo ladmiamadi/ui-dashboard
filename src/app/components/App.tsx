@@ -14,6 +14,7 @@ import Homepage from './homepage/Homepage';
 import CustomNavbar from './navbar/CustomNavbar';
 import ModalTimeout from './modal/ModalTimeout';
 import './styles/App.css';
+import { OfferEditPage } from '../../offers/components/OfferEditPage'
 
 export class App extends React.Component {
   render() {
@@ -27,6 +28,7 @@ export class App extends React.Component {
             <Route path="/dashboard/talent" exact component={TalentFormPage} />
             <Route path="/dashboard/talents" exact component={TalentsListPage} />
             <Route path="/dashboard/our-Offers" exact component={OffersListPage} />
+            <Route path="/dashboard/our-offers/edit/:id" exact component={OfferEditPage} />
             <Route path="/dashboard/editprofile" exact component={ProfileEditValidation} />
             <Route path="/dashboard" component={RegisterUser} history={history} />
             <Route path="/dashboard/timeline" exact component={TimelineContainer} />

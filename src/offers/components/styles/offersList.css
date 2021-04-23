@@ -12,7 +12,8 @@ body {
     font-size: 30px;
     text-align: center;
     font-weight: bold;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    color: #2196F3;
 }
 
 .offer-container {
@@ -134,4 +135,23 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+.search-bar {
+    width: 50%;
+    height: 40px;
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.no-offer-found {
+    margin-top: 50px;
+    width: 60%;
+    background-color: #f1d1d0;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border: solid 1px #000;
 }

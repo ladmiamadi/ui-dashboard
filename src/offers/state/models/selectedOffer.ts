@@ -36,7 +36,7 @@ export const selectedOffer = createModel({
     },
     effects: {
 
-        async saveOfferInDb(job: Job) {
+        async switchActiveOffer(job: Job) {
             this.updateSelectedOffer(job)
             this.setIsRequesting(true);
 

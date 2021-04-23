@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Job } from '../../app';
 import { OffersHelpers } from '../state/models/helpers/OffersHelpers';
 import './styles/offersList.css';
@@ -25,14 +26,21 @@ export default class OffersListElement extends React.Component<Props> {
           </label>
         </div>
         <div>
-          <img src={picture}
-            alt={this.props.job.titleInFrench}
-          />
+          <Link to={`dashboard/our-offers/edit/${this.props.job.id}`}>
+            <img src={picture}
+              alt={this.props.job.titleInFrench}
+            />
+          </Link>
+
         </div>
 
-        <h3>
-          {this.props.job.titleInFrench}
-        </h3>
+
+        <Link to={`dashboard/our-offers/edit/${this.props.job.id}`}>
+          <h3>
+            {this.props.job.titleInFrench}
+          </h3>
+        </Link>
+
         <div>
           <p>
             {this.props.job.shortDescriptionInFrench}
