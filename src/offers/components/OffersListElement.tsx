@@ -11,7 +11,6 @@ interface Props {
 
 export default class OffersListElement extends React.Component<Props> {
 
-
   render() {
     const picture = OffersHelpers.getOfferPictureUrl(this.props.job)
 

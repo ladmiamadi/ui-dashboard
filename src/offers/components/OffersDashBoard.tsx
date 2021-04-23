@@ -24,6 +24,7 @@ export class OffersDashBoard extends React.Component<Props> {
         </div>
         <OffersList
           jobs={this.props.jobs}
+          searchTerm={this.props.searchTerm}
         />
       </div>
     );

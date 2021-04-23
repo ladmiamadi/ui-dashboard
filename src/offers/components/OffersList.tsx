@@ -6,7 +6,7 @@ import { RootDispatch, RootState } from '../../app/state/store';
 import OffersListElement from './OffersListElement';
 
 interface Props {
-  //searchTerm: string,
+  searchTerm: string,
   jobs: Job[],
   updateSelectedOffer: (selectedOffer: Job) => void,
 }
