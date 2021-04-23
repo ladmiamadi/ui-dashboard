@@ -22,13 +22,13 @@ export const jobs = createModel({
     setIsFetching: (state: State, isFetching: boolean): State => ({ ...state, isFetching }),
 
     updateSearchTerm: (state: State, searchTerm: string): State => ({ ...state, searchTerm }),
-
   },
 
   effects: {
     async fetchOffers() {
       try {
         this.setIsFetching(true);
+
         const { data: jobs } = await apiService.get<Job[]>('/api/jobs');
 
         this.updateList(jobs);
@@ -39,5 +39,4 @@ export const jobs = createModel({
       }
     },
   },
-
 });

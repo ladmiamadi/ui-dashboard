@@ -1,7 +1,7 @@
 import { Job } from "../../../../app";
 import { env } from "../../../../helpers/environment";
 
-const DEFAULT_JOB_IMG = '/job-search.jpg';
+export const DEFAULT_JOB_IMG = '/job-search.jpg';
 
 export class OffersHelpers {
     public static getOfferPictureUrl(offer: Job): string {
@@ -10,5 +10,4 @@ export class OffersHelpers {
                 ? `${offer.picture}`
                 : DEFAULT_JOB_IMG);
     }
-
 }

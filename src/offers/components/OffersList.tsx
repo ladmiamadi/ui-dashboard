@@ -12,12 +12,13 @@ interface Props {
 }
 
 interface State {
-  jobs: Job[]
+  jobs: Job[],
 }
 
 export class OffersList extends React.Component<Props, State> {
   constructor(props: Props) {
-    super(props)
+    super(props);
+
     this.state = { jobs: this.props.jobs };
   }
 
@@ -28,21 +29,21 @@ export class OffersList extends React.Component<Props, State> {
   }
 
   toggleOpenJob(job: Job) {
-
-    const jobs = this.state.jobs
+    const jobs = this.state.jobs;
 
     jobs.map(item => {
       if (job.id === item.id) {
-        job.isOpen = !job.isOpen
+        job.isOpen = !job.isOpen;
         this.props.updateSelectedOffer(_.cloneDeep(item));
-        this.setState({ jobs })
       }
+      return this.setState({ jobs });
     });
-
   }
+
   render() {
     const filteredOffers = this.props.jobs
-      .filter(job => this.isMatchingJob(job, this.props.searchTerm))
+      .filter(job => this.isMatchingJob(job, this.props.searchTerm));
+
     return (
       <div>
         { filteredOffers.length > 0 ? (
@@ -61,7 +62,6 @@ export class OffersList extends React.Component<Props, State> {
           <div className="no-offer-found">
             <h1>Aucune offre correspondante n'a été trouvée.</h1>
           </div>
-
         )
         }
       </div>
@@ -73,7 +73,6 @@ const mapState = (state: RootState) => ({});
 
 const mapDispatch = (dispatch: RootDispatch) => ({
   updateSelectedOffer: dispatch.selectedOffer.switchActiveOffer
-
 });
 
 export default connect(mapState, mapDispatch)(OffersList);

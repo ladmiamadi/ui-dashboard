@@ -1,4 +1,4 @@
-import { Job } from "..";
+import { Job } from "../../../../app";
 
 export const createEmptyJob = (): Job => ({
     id: -1,
@@ -18,7 +18,6 @@ export const createEmptyJob = (): Job => ({
         filePath: ''
     },
     isOpen: false,
-    createdDate: new Date,
-    updatedDate: new Date,
+    createdDate: new Date(),
+    updatedDate: new Date(),
 });
-

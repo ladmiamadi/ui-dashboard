@@ -5,7 +5,7 @@ import OffersList from './OffersList';
 
 interface Props {
   searchTerm: string,
-  jobs: Job[]
+  jobs: Job[],
   updateSearchTerm: (searchTerm: string) => void,
 }
 
@@ -15,9 +15,7 @@ export class OffersDashBoard extends React.Component<Props> {
       <div>
         <div className="search-bar">
           <SearchBar
-            onSearch={(value) => {
-              this.props.updateSearchTerm(value);
-            }}
+            onSearch={(value) => { this.props.updateSearchTerm(value); }}
             placeholder="Rechercher une offre..."
             value={this.props.searchTerm}
           />

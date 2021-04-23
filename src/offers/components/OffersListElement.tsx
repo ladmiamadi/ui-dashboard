@@ -6,14 +6,12 @@ import './styles/offersList.css';
 
 interface Props {
   job: Job,
-  ToggleOpenJob: (selectedOffer: Job) => void
+  ToggleOpenJob: (selectedOffer: Job) => void,
 }
 
-
 export default class OffersListElement extends React.Component<Props> {
-
   render() {
-    const picture = OffersHelpers.getOfferPictureUrl(this.props.job)
+    const picture = OffersHelpers.getOfferPictureUrl(this.props.job);
 
     return (
       <div className="offer-card">
@@ -21,30 +19,24 @@ export default class OffersListElement extends React.Component<Props> {
           <label className="switch">
             <input type="checkbox" checked={this.props.job.isOpen}
               onChange={(e) => this.props.ToggleOpenJob({ ...this.props.job, isOpen: e.target.checked })} />
-
             <span className="slider round"></span>
           </label>
         </div>
+
         <div>
           <Link to={`dashboard/our-offers/edit/${this.props.job.id}`}>
             <img src={picture}
               alt={this.props.job.titleInFrench}
             />
           </Link>
-
         </div>
 
-
         <Link to={`dashboard/our-offers/edit/${this.props.job.id}`}>
-          <h3>
-            {this.props.job.titleInFrench}
-          </h3>
+          <h3>{this.props.job.titleInFrench}</h3>
         </Link>
 
         <div>
-          <p>
-            {this.props.job.shortDescriptionInFrench}
-          </p>
+          <p>{this.props.job.shortDescriptionInFrench}</p>
         </div>
       </div>
     );
