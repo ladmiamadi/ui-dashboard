@@ -1,3 +1,4 @@
+import { CreateOffer, InputState, IsFormValid, OfferRegister } from "../../..";
 import { Job } from "../../../../app";
 
 export const createEmptyJob = (): Job => ({
@@ -14,10 +15,38 @@ export const createEmptyJob = (): Job => ({
     position: '',
     linkEnglish: '',
     linkFrench: '',
-    picture: {
-        filePath: ''
-    },
+    picture: "",
     isOpen: false,
     createdDate: new Date(),
     updatedDate: new Date(),
+});
+
+export const createEmptyNewOffer = (): CreateOffer => ({
+    titleInFrench: '',
+    titleInEnglish: '',
+    titleInDutch: '',
+    shortDescriptionInFrench: '',
+    shortDescriptionInEnglish: '',
+    shortDescriptionInDutch: '',
+    longDescriptionInFrench: '',
+    longDescriptionInEnglish: '',
+    longDescriptionInDutch: '',
+    position: '',
+    linkEnglish: '',
+    linkFrench: '',
+    picture: '',
+});
+
+
+export const createEmptyForm = (): IsFormValid => ({
+    titleInFrench: InputState.UNDEFINED,
+    titleInEnglish: InputState.UNDEFINED,
+    titleInDutch: InputState.TRUE,
+    shortDescriptionInFrench: InputState.UNDEFINED,
+    shortDescriptionInEnglish: InputState.UNDEFINED,
+    shortDescriptionInDutch: InputState.TRUE,
+    position: InputState.UNDEFINED,
+    linkEnglish: InputState.UNDEFINED,
+    linkFrench: InputState.UNDEFINED,
+    picture: InputState.UNDEFINED,
 });

@@ -1,0 +1,143 @@
+.add-offer button {
+    width: 200px;
+    font-size: 20px;
+    background-color: #237478;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: bold;
+    margin-right: 100px;
+}
+
+.add-offer {
+    display: flex;
+    justify-content: flex-end;
+    height: 50px;
+}
+
+.add-offer button:hover {
+    background-color: #fff;
+    color: #237478;
+    border: 1px solid #237478;
+}
+
+.form-container {
+    margin-top: 200px;
+}
+
+.title-form {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.title-form h1 {
+    font-size: 30px;
+    padding-top: 50px;
+    font-weight: bold;
+}
+
+.form {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 50px;
+    border: solid 1px #237478;
+}
+
+.textarea {
+    width: 100%;
+    height: 150px;
+    font-size: 18px;
+    padding: 10px;  
+}
+
+.input-form {
+    display: block;
+}
+
+.title-offer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title-offer .input-form {
+    width: 45%;
+}
+
+.form-input {
+    width: 100%;
+}
+
+.title-offer .form-group .form-input, .short-description-offer .form-group .form-input {
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #237478;
+}
+
+.input-form label {
+   margin-bottom: 20px;
+   margin-left: 0;
+}
+
+.short-description-offer .form-group .form-input {
+    width: 100%;
+    height: 30px;
+}
+
+.generic-field-form-tx-area-custum {
+    border: solid 1px #237478;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.Controls {
+    border : 1px solid #ced4da;
+    width: 100%;
+    padding: 10px;
+    display: block;
+}
+
+.Controls button {
+    font-size: calc(7px + 1.5vmin);
+    margin: 0 2px;
+    width: 50px;
+    background-color: white;
+    cursor: pointer;
+    padding: 2px;
+
+}
+
+.Controls button:focus {
+    outline: none;
+}
+
+.picture-position {
+    display: flex;
+    justify-content: space-between;
+}
+
+.picture-position .form-group .form-input {
+    width: 100%;
+}
+
+#position {
+    border: #237478 1px solid;
+}
+
+.picture-position .input-form{
+    width: 45%;
+}
+
+.form-footer {
+    margin-top: 90px;
+    display: flex;
+    justify-content: space-between;
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-footer .btn {
+    font-size: 20px;
+    box-shadow: -2px 4px 8px -2px #575757;
+}

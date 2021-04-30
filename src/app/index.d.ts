@@ -194,7 +194,7 @@ export interface Job {
   position: string,
   linkEnglish?: string,
   linkFrench?: string,
-  picture: MediaObject,
+  picture: string,
   isOpen?: boolean,
   createdDate: Date,
   updatedDate?: Date,

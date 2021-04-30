@@ -25,6 +25,7 @@
     "axios": "^0.19.2",
     "bootstrap": "4.4.1",
     "classnames": "^2.2.6",
+    "formik": "^2.2.6",
     "interactjs": "^1.10.0",
     "lodash": "^4.17.15",
     "moment": "^2.29.1",

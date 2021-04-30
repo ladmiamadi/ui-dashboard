@@ -116,7 +116,7 @@ export class UserFactory {
     position: '',
     linkFrench: '',
     linkEnglish: '',
-    picture: this.createEmptyMediaObject(),
+    picture: '',
     isOpen: false,
     createdDate: new Date(),
     updatedDate: new Date(),

@@ -69,3 +69,17 @@ export interface PropsForInput {
   updateUserSignUp: (property: keyof UserRegister<T>, idValue: string) => void,
   setIsFormValid: (property: keyof UserRegister<T>, regEx: string) => void,
 }
+
+export interface PropsForJobInput {
+  id: keyof UserRegister<T>,
+  idValue: string,
+  isInputValid: InputState,
+  options?: string[],
+  label: string,
+  type: InputType,
+  regEx: string,
+  required?: boolean,
+  isSectionTitle?: boolean,
+  updateJob: (property: keyof UserRegister<T>, idValue: string) => void,
+  setIsFormValid: (property: keyof UserRegister<T>, regEx: string) => void,
+}

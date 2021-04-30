@@ -1,39 +1,5 @@
 import { InputType } from 'reactstrap/lib/Input';
 
-export enum FormatDate {
-  YEAR,
-  MONTH,
-  DAY,
-}
-
-export enum InputState {
-  TRUE = true,
-  FALSE = false,
-  UNDEFINED = undefined,
-}
-
-export interface UserRegister<T> {
-  jobPosition: T,
-  firstName: T,
-  lastName: T,
-  username: T,
-  recrutementSection: T,
-  platform: T,
-  phone: T,
-  mailboxHR: T,
-  recruitmentComments: T,
-  institutionSection: T,
-  institution: T,
-  emailInstitution: T,
-  phoneInstitution: T,
-  personContactInstitution: T,
-}
-
-export type UserSignUp = UserRegister<string>;
-
-export type IsFormValid = UserRegister<InputState>;
-
-export type FormRegister = UserRegister<Field>;
 
 interface Field {
   id: keyof UserRegister<T>,
@@ -69,3 +35,39 @@ export interface PropsForInput {
   updateUserSignUp: (property: keyof UserRegister<T>, idValue: string) => void,
   setIsFormValid: (property: keyof UserRegister<T>, regEx: string) => void,
 }
+//////////////////////////////////////////////////////////
+
+// PARTIE OFFERS//
+
+
+export enum FormatDate {
+  YEAR,
+  MONTH,
+  DAY,
+}
+
+export enum InputState {
+  TRUE = true,
+  FALSE = false,
+  UNDEFINED = undefined,
+}
+
+export interface OfferRegister<T> {
+  titleInFrench: T,
+  titleInEnglish: T,
+  titleInDutch: T,
+  shortDescriptionInFrench: T,
+  shortDescriptionInEnglish: T,
+  shortDescriptionInDutch: T,
+  longDescriptionInFrench: T,
+  longDescriptionInEnglish: T,
+  longDescriptionInDutch: T,
+  position: T,
+  linkEnglish: T,
+  linkFrench: T,
+  picture: T,
+}
+
+export type CreateOffer = OfferRegister<string>;
+
+export type IsFormValid = OfferRegister<InputState>;

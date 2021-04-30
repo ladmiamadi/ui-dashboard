@@ -43,7 +43,7 @@ export class OffersList extends React.Component<Props, State> {
   render() {
     const filteredOffers = this.props.jobs
       .filter(job => this.isMatchingJob(job, this.props.searchTerm));
-
+    console.log(this.props.jobs)
     return (
       <div>
         { filteredOffers.length > 0 ? (

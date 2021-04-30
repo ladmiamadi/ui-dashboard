@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Job } from '../../app';
 import { OffersHelpers } from '../state/models/helpers/OffersHelpers';
-import './styles/offersList.css';
+import './styles/offers-list.css';
 
 interface Props {
   job: Job,

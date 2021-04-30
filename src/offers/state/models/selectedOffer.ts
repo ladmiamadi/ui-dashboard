@@ -22,6 +22,7 @@ export const selectedOffer = createModel({
             ...state,
             isRequesting,
         }),
+
     },
 
     effects: {
