@@ -1,133 +1,307 @@
-import React, { Component } from 'react';
-import { Job } from '../../../app';
-import { FieldForm } from '../../../app/components/utils/FieldForm';
-import { CustumTextArea } from './CustumTextArea';
+import { Grid, TextField } from '@material-ui/core';
+import { FormikErrors, FormikTouched, FormikValues } from 'formik';
+import React from 'react';
+import { IsFormValid } from '../..';
+import ImageUploader from './ImageUploader';
+import useStyles from './UseStyles';
 
 interface Props {
-    setNewJob(newJob: Job): void,
-    job: Job,
-    createOffer(job: Job): void,
+    handleChange(e: React.ChangeEvent<any>): void,
+    handleBlur(e: React.ChangeEvent<any>): void,
+    onImageChange(e: React.ChangeEvent<any>): void,
+    values: FormikValues,
+    errors: FormikErrors<IsFormValid>,
+    touched: FormikTouched<IsFormValid>,
+
 }
 
-class FormBody extends Component<Props> {
-    /* handleChange(e: React.FormEvent<HTMLInputElement>, keyName: String) {
-         let value = e.currentTarget.value;
-         this.props.postOfferInDb({ ...this.props.job, keyName: value });
-     }*/
-
-    render() {
-        return (
-            <React.Fragment>
-                <div className="title-offer">
-                    <FieldForm
-                        keyName="title_in_french"
-                        label="Titre Français *"
-                        type='text'
-                        className="input-form"
-                        value={""}
-                        handleChange={(value) => {
-                            this.props.setNewJob({ ...this.props.job, titleInFrench: value })
-                        }}
-                    />
-                    <FieldForm
-                        keyName="title_in_english"
-                        label="Titre Anglais *"
-                        type='text'
-                        className="input-form"
-                        value={""}
-                        handleChange={(value) => {
-                            this.props.setNewJob({ ...this.props.job, titleInEnglish: value })
-                        }}
-                    />
-                </div>
-                <div className="short-description-offer">
-                    <FieldForm
-                        keyName="short_description_in_french"
-                        label="Description Courte Français (Page Nos Offres) * "
-                        type='text'
-                        className="input-form"
-                        value={""}
-                        handleChange={(value) => {
-                            this.props.setNewJob({ ...this.props.job, shortDescriptionInFrench: value })
-                        }}
-                    />
-                    <FieldForm
-                        keyName="short_description_in_english"
-                        label="Description Courte Anglais (Page Nos Offres) * "
-                        type='text'
-                        className="input-form"
-                        value={""}
-                        handleChange={(value) => {
-                            this.props.setNewJob({ ...this.props.job, shortDescriptionInEnglish: value })
-                        }}
-                    />
-                </div>
-                <CustumTextArea
-                    keyName="long_description_in_french"
-                    label="Description Longue Français (Page Nos Offres) * "
-                    value={""}
-                    setNewJob={this.props.setNewJob}
-                    job={this.props.job}
-
-                />
-                <CustumTextArea
-                    keyName="long_description_in_english"
-                    label="Description Longue Anglais (Page Nos Offres) * "
-                    value={""}
-                    setNewJob={this.props.setNewJob}
-                    job={this.props.job}
-                />
-                <div className="title-offer">
-                    <FieldForm
-                        keyName="link_french"
-                        label="Lien Français (Pour le référencement) *"
-                        type='text'
-                        className="input-form"
-                        value={""}
-                        handleChange={(value) => {
-                            this.props.setNewJob({ ...this.props.job, linkFrench: value })
-                        }}
-                    />
-                    <FieldForm
-                        keyName="link_english"
-                        label="Lien Anglais * "
-                        type='text'
-                        className="input-form"
-                        value={""}
-                        handleChange={(value) => {
-                            this.props.setNewJob({ ...this.props.job, linkEnglish: value })
-                        }}
-                    />
-                </div>
-                <div className="picture-position">
-                    <FieldForm
-                        keyName="picture"
-                        label="Ajouter une photo * "
-                        type='file'
-                        //value={this.props.selectedOffer.picture.filePath}
-                        className="input-form"
-                        handleChange={(value) => {
-                            const picPath = {
-                                'filePath': value
+const FormBody = (props: Props) => {
+    const { handleChange, handleBlur, onImageChange, values, errors, touched } = props
+    const classes = useStyles();
+    return (
+        <React.Fragment>
+            <Grid container>
+                <Grid
+                    item
+                    xs={6}
+                >
+                    <TextField
+                        name="titleInFrench"
+                        id="titleInFrench"
+                        label="Titre Français*"
+                        value={values.titleInFrench}
+                        type="text"
+                        error={
+                            errors.titleInFrench && touched.titleInFrench
+                                ? true
+                                : false
+                        }
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className={classes.textField}
+                        helperText={
+                            errors.titleInFrench && touched.titleInFrench
+                                ? errors.titleInFrench
+                                : ''
+                        }
+                        InputProps={{
+                            classes: {
+                                input: classes.resize
                             }
-                            //this.props.modifyOffer({ ...this.props.selectedOffer, picture: picPath });
                         }}
+                        InputLabelProps={{ style: { fontSize: 20, marginLeft: '20px', color: 'black' } }}
                     />
-                    <FieldForm
-                        keyName="position"
-                        label="Position *"
-                        type='text'
-                        className="input-form"
-                        value={""}
-                        handleChange={(value) => {
-                            this.props.setNewJob({ ...this.props.job, position: value })
+                </Grid>
+                <Grid item
+                    xs={6}
+                >
+                    <TextField
+                        name="titleInEnglish"
+                        id="titleInEnglish"
+                        label="Titre Anglais"
+                        value={values.titleInEnglish}
+                        type="text"
+                        helperText={
+                            errors.titleInEnglish && touched.titleInEnglish
+                                ? 'Veuillez entrer un titre valide' : ''
+                        }
+                        error={
+                            errors.titleInEnglish && touched.titleInEnglish
+                                ? true
+                                : false
+                        }
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className={classes.textField}
+                        InputProps={{
+                            classes: {
+                                input: classes.resize
+                            }
                         }}
+                        InputLabelProps={{ style: { fontSize: 20, marginLeft: '20px', color: 'black' } }}
                     />
-                </div>
+                </Grid>
+            </Grid>
+            <Grid
+                item
+                xs={12}
+            >
+                <TextField
+                    name="shortDescriptionInFrench"
+                    id="shortDescriptionInFrench"
+                    label="Description Courte Français"
+                    value={values.shortDescriptionInFrench}
+                    type="text"
+                    helperText={
+                        errors.shortDescriptionInFrench &&
+                            touched.shortDescriptionInFrench
+                            ? errors.shortDescriptionInFrench
+                            : ''
+                    }
+                    error={
+                        errors.shortDescriptionInFrench &&
+                            touched.shortDescriptionInFrench
+                            ? true
+                            : false
+                    }
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={classes.textField}
+                    InputProps={{
+                        classes: {
+                            input: classes.resize
+                        }
+                    }}
+                    InputLabelProps={{ style: { fontSize: 20, marginLeft: '20px', color: 'black' } }}
+                />
+            </Grid>
+            <Grid
+                item
+                xs={12}
+            >
+                <TextField
+                    name="shortDescriptionInEnglish"
+                    id="shortDescriptionInFrench"
+                    label="Description Courte Anglais"
+                    value={values.shortDescriptionInEnglish}
+                    type="text"
+                    helperText={
+                        errors.shortDescriptionInEnglish &&
+                            touched.shortDescriptionInEnglish
+                            ? errors.shortDescriptionInEnglish
+                            : ''
+                    }
+                    error={
+                        errors.shortDescriptionInFrench &&
+                            touched.shortDescriptionInFrench
+                            ? true
+                            : false
+                    }
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={classes.textField}
+                    InputProps={{
+                        classes: {
+                            input: classes.resize
+                        }
+                    }}
+                    InputLabelProps={{ style: { fontSize: 20, marginLeft: '20px', color: 'black' } }}
+                />
+            </Grid>
+            <Grid item xs={12}>
+                <TextField
+                    name="longDescriptionInFrench"
+                    id="longDescriptionInFrench"
+                    label="Description longue Français"
+                    value={values.longDescriptionInFrench}
+                    rows={10}
+                    multiline
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={classes.textarea}
+                    InputProps={{
+                        classes: {
+                            input: classes.resize
+                        }
+                    }}
+                    variant='outlined'
+                    InputLabelProps={{ style: { fontSize: 20, marginLeft: '20px', color: 'black', padding: '10px' } }}
+                />
+            </Grid>
+            <Grid item xs={12}>
+                <TextField
+                    name="longDescriptionInEnglish"
+                    id="longDescriptionInenglish"
+                    label="Description longue Anglais"
+                    value={values.longDescriptionInEnglish}
+                    rows={10}
+                    multiline
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={classes.textarea}
+                    InputProps={{
+                        classes: {
+                            input: classes.resize
+                        }
+                    }}
+                    variant='outlined'
+                    InputLabelProps={{ style: { fontSize: 20, marginLeft: '20px', color: 'black', padding: '10px' } }}
+                />
+            </Grid>
+            <Grid
+                container
+                spacing={3}>
+                <Grid
+                    item
+                    xs={6}
+                >
+                    <TextField
+                        name="linkFrench"
+                        id="linkFrench"
+                        label="Lien Français"
+                        value={values.linkFrench}
+                        type="text"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className={classes.textField}
+                        helperText={
+                            errors.linkFrench && touched.linkFrench
+                                ? errors.linkFrench
+                                : ''
+                        }
+                        error={
+                            errors.linkFrench && touched.linkFrench
+                                ? true
+                                : false
+                        }
+                        InputProps={{
+                            classes: {
+                                input: classes.resize
+                            }
+                        }}
+                        InputLabelProps={{ style: { fontSize: 20, marginLeft: '20px', color: 'black' } }}
+                    />
+                </Grid>
+                <Grid item
+                    xs={6}
+                >
+                    <TextField
+                        name="linkEnglish"
+                        id="linkEnglish"
+                        label="Lien Anglais"
+                        value={values.linkEnglish}
+                        type="text"
+                        helperText={
+                            errors.linkEnglish && touched.linkEnglish
+                                ? errors.linkEnglish
+                                : ''
+                        }
+                        error={
+                            errors.linkEnglish && touched.linkEnglish
+                                ? true
+                                : false
+                        }
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className={classes.textField}
+                        InputProps={{
+                            classes: {
+                                input: classes.resize
+                            }
+                        }}
+                        InputLabelProps={{ style: { fontSize: 20, marginLeft: '20px', color: 'black' } }}
+                    />
+                </Grid>
+            </Grid>
+            <Grid
+                container
+                spacing={3}>
+                <Grid item
+                    xs={6}
+                >
+                    <TextField
+                        name="position"
+                        id="position"
+                        label="Position"
+                        value={values.position}
+                        type="text"
+                        helperText={
+                            errors.position && touched.position
+                                ? errors.position
+                                : ''
+                        }
+                        error={
+                            errors.position && touched.position
+                                ? true
+                                : false
+                        }
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className={classes.textField}
+                        InputProps={{
+                            classes: {
+                                input: classes.resize
+                            }
+                        }}
+                        InputLabelProps={{ style: { fontSize: 20, marginLeft: '20px', color: 'black' } }}
+                    />
+                </Grid>
+                <ImageUploader
 
-            </React.Fragment >
-        );
-    }
-}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    errors={errors.picture}
+                    touched={touched.picture}
+                    onImageChange={onImageChange}
+                    className={classes.textField}
+                    InputProps={{
+                        classes: {
+                            input: classes.resizeFile
+                        }
+                    }} />
+            </Grid>
+        </React.Fragment>
+    );
+};
 
 export default FormBody;

@@ -1,4 +1,5 @@
-import { CreateOffer, InputState, IsFormValid, OfferRegister } from "../../..";
+
+import { CreateOffer } from "../../..";
 import { Job } from "../../../../app";
 
 export const createEmptyJob = (): Job => ({
@@ -35,18 +36,4 @@ export const createEmptyNewOffer = (): CreateOffer => ({
     linkEnglish: '',
     linkFrench: '',
     picture: '',
-});
-
-
-export const createEmptyForm = (): IsFormValid => ({
-    titleInFrench: InputState.UNDEFINED,
-    titleInEnglish: InputState.UNDEFINED,
-    titleInDutch: InputState.TRUE,
-    shortDescriptionInFrench: InputState.UNDEFINED,
-    shortDescriptionInEnglish: InputState.UNDEFINED,
-    shortDescriptionInDutch: InputState.TRUE,
-    position: InputState.UNDEFINED,
-    linkEnglish: InputState.UNDEFINED,
-    linkFrench: InputState.UNDEFINED,
-    picture: InputState.UNDEFINED,
 });

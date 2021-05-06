@@ -17,6 +17,7 @@ import './styles/App.css';
 import { OfferEditPage } from '../../offers/components/OfferEditPage'
 import RegisterOffer from '../../offers/add-new-offer/components/RegisterOffer';
 
+
 export class App extends React.Component {
   render() {
     return (

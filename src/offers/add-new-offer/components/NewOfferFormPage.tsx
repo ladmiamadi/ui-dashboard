@@ -1,52 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'reactstrap';
-import { Job } from '../../../app';
 import { RootDispatch, RootState } from '../../../app/state/store';
-import FormBody from './FormBody';
+import NewOfferForm from './NewOfferForm';
 
 interface Props {
-    setNewJob(newJob: Job): void,
-    createOffer(job: Job): void,
-    job: Job,
-    isRequesting: boolean,
+    getPositionCollection: () => Promise<void>,
 }
 
+
 class NewOfferFormPage extends Component<Props> {
+    componentDidMount() {
+        this.props.getPositionCollection();
+    }
 
     render() {
         return (
             <div className="form">
-                <FormBody
-                    {...this.props}
-                />
-                <Button
-                    // color={colorButtonAdd}
-                    // disabled={!isPostAvailable}
-                    //onClick={() => this.props.setNewJob}
-                    onClick={() => this.props.createOffer(this.props.job)}
-                >
-                    Ajouter
-        </Button>
+                <NewOfferForm />
             </div>
         );
     }
 }
 
-const mapState = (state: RootState) => ({
-    //isFormValid: state.userSignUp.isFormValid,
-    isRequesting: state.userSignUp.isRequesting,
-    //jobCollection: state.userSignUp.jobCollection,
-    job: state.job.newJob,
-
-    //userRecruiter: state.user.user,
-});
+const mapState = (state: RootState) => ({});
 
 const mapDispatch = (dispatch: RootDispatch) => ({
-    createOffer: dispatch.job.postNewOfferInDb,
-    setNewJob: dispatch.job.setNewJob
-    //resetUserSignUp: dispatch.userSignUp.resetUserSignUp,
-    // updateUserSelected: dispatch.userSelected.updateUserSelected,
+    getPositionCollection: dispatch.job.fetchJobsFromDb,
+
 });
 
 export default connect(mapState, mapDispatch)(NewOfferFormPage);

@@ -23,6 +23,8 @@ export const selectedOffer = createModel({
             isRequesting,
         }),
 
+        updateSelectedOffer: (state: OfferState, selectedOffer: Job): OfferState => ({ ...state, selectedOffer }),
+
     },
 
     effects: {

@@ -1,43 +1,24 @@
-import _ from 'lodash';
 import React from 'react';
 import { Button } from 'reactstrap';
 import { Job } from '../../../app';
+import history from '../../../app/helpers/history';
 
 interface Props {
-    //isFormValid: IsFormValid,
-    isRequesting: boolean,
-    job: Job,
-    setNewJob: (offerSentInDb: Job) => void,
-    //resetUserSignUp: () => void,
-    //updateUserSelected: (userSelected: User) => void,
+    resetForm: () => void,
+    setAddEdit: () => void,
 }
 
-export class FormFooter extends React.Component<Props> {
+interface State {
+    addEdit: boolean,
+}
+
+export class FormFooter extends React.Component<Props, State> {
+
+
     /*isPostAvailable = (): boolean => {
         return this.props.isRequesting ? false : FormValidator.isAllFieldValidated<IsFormValid>(this.props.isFormValid);
     }*/
 
-    /*postOfferInDb = async () => {
-        const offerSentInDb = this.props.job;
-        /*const offerSentInDb = createDtoUserIntern(
-            this.props.userSignUp,
-            this.props.jobCollection,
-            this.props.userRecruiter,
-        );
-
-        return await this.props.postOfferInDb(offerSentInDb);
-    }
-
-
-/*redirectToProfileEdition = (newCreatedUser: Promise<User | null>) => {
-    newCreatedUser.then(user => {
-        if (user != null) {
-            this.props.updateUserSelected(_.cloneDeep(user));
-            history.push('/dashboard/talent');
-        }
-    });
-
-}*/
 
     render() {
         //const isPostAvailable = this.isPostAvailable();
@@ -47,8 +28,10 @@ export class FormFooter extends React.Component<Props> {
             <div className="form-footer">
                 <Button
                     color={"success"}
-                //disabled={!isPostAvailable}
-                //onClick={() => this.redirectToProfileEdition(this.postUserInDb())}
+
+                    //disabled={!isPostAvailable}
+                    onClick={this.props.setAddEdit}
+                    type='submit'
                 >
                     Ajouter et Editer
         </Button>
@@ -56,19 +39,19 @@ export class FormFooter extends React.Component<Props> {
                     // color={colorButtonAdd}
                     // disabled={!isPostAvailable}
                     //onClick={() => this.props.setNewJob}
-                    onClick={() => this.props.setNewJob(this.props.job)}
+                    type='submit'
                 >
                     Ajouter
         </Button>
                 <Button
                     color="warning"
-                // onClick={this.props.resetUserSignUp}
+                    onClick={this.props.resetForm}
                 >
                     Tout effacer
         </Button>
                 <Button
                     color="secondary"
-                // onClick={this.props.toggleModal}
+                    onClick={() => history.push('/dashboard/our-offers')}
                 >
                     Retour
         </Button>

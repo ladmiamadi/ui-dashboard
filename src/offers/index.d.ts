@@ -15,10 +15,7 @@ export interface UserSignUpPayload {
   value: string,
 }
 
-export interface FormValidPayload {
-  property: keyof UserRegister<T>,
-  isInputValid: InputState,
-}
+
 
 export interface PropsForInput {
   id: keyof UserRegister<T>,
@@ -70,4 +67,16 @@ export interface OfferRegister<T> {
 
 export type CreateOffer = OfferRegister<string>;
 
-export type IsFormValid = OfferRegister<InputState>;
+
+export interface IsFormValid {
+  titleInFrench: string,
+  titleInEnglish: string,
+  shortDescriptionInFrench: string,
+  shortDescriptionInEnglish: string,
+  longDescriptionInFrench: string,
+  longDescriptionInEnglish: string,
+  position: string,
+  linkEnglish: string,
+  linkFrench: string,
+  picture: string,
+}

@@ -11,3 +11,9 @@ export class OffersHelpers {
                 : DEFAULT_JOB_IMG);
     }
 }
+
+export const isValueExists = (idValue: string | undefined, collection: string[]): boolean => {
+    const isValueUnique = collection.includes(idValue!);
+
+    return isValueUnique;
+};

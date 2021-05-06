@@ -161,7 +161,7 @@ export const userSignUp = createModel({
         }
       } catch (error) {
         (new Toastify()).error(`Unable to send the configuration email. ${error.message}`);
-      } 
+      }
     },
   },
 });
