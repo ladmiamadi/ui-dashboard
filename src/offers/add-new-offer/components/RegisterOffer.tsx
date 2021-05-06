@@ -13,10 +13,7 @@ class RegisterOffer extends Component<Props> {
                 <div className="title-form">
                     <h1>Formulaire d'ajout d'une nouvelle offre</h1>
                 </div>
-
-                <NewOfferFormPage
-
-                />
+                <NewOfferFormPage />
             </div>
         );
     }

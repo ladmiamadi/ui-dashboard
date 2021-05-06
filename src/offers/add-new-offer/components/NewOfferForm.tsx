@@ -26,7 +26,7 @@ interface Props {
 
 interface State {
     addEdit: boolean,
-    imageError: boolean,
+    formErrors: boolean,
     imageFile: File,
 }
 
@@ -37,11 +37,12 @@ class NewOfferForm extends Component<Props, State> {
         this.state = {
             addEdit: false,
             imageFile: new File([''], ''),
-            imageError: false,
+            formErrors: false,
         };
 
         this.setAddEdit = this.setAddEdit.bind(this);
         this.onImageChange = this.onImageChange.bind(this);
+        this.setFormErrors = this.setFormErrors.bind(this);
     };
 
     setAddEdit() {
@@ -54,22 +55,14 @@ class NewOfferForm extends Component<Props, State> {
             this.setState({
                 imageFile: image
             });
-        } else {
-            this.setState({
-                imageError: true
-            })
         }
-    };
+    }
 
-    isEmptyImageField() {
-        if (this.state.imageError) {
-            return true;
-        }
-        return false;
+    setFormErrors() {
+        this.setState({ formErrors: true });
     }
 
     fileUploadHandler = async (file: File) => {
-
         const formData = new FormData();
 
         formData.append('uploadFile', file, file.name);
@@ -118,15 +111,15 @@ class NewOfferForm extends Component<Props, State> {
                         this.fileUploadHandler(this.state.imageFile);
 
                         if (this.state.addEdit) {
-                            this.redirectToOfferEdition(this.props.createOffer(this.props.job))
+                            this.redirectToOfferEdition(this.props.createOffer(this.props.job));
                         } else {
-                            this.props.createOffer(this.props.job)
-                            setTimeout(() => {
-                                actions.setSubmitting(false)
-                            }, 500)
+                            this.props.createOffer(this.props.job);
+                            setTimeout(() => { actions.setSubmitting(false) }, 500);
                             actions.resetForm();
+                            // history.push('/dashboard/our-offers/');
                         }
-                    }}
+                    }
+                    }
 
                     validationSchema={Yup.object().shape({
                         titleInFrench: Yup.string()
@@ -198,6 +191,8 @@ class NewOfferForm extends Component<Props, State> {
                                         setAddEdit={this.setAddEdit}
                                     />
                                 </Grid>
+
+                                <p>{this.state.formErrors ? 'le forumaire contient des erreurs' : ''}</p>
 
                             </Form>
                         )

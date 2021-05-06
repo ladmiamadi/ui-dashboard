@@ -12,12 +12,14 @@ interface Props {
     values: FormikValues,
     errors: FormikErrors<IsFormValid>,
     touched: FormikTouched<IsFormValid>,
-
+    //setFormErrors(): void,
 }
 
 const FormBody = (props: Props) => {
+
     const { handleChange, handleBlur, onImageChange, values, errors, touched } = props
     const classes = useStyles();
+
     return (
         <React.Fragment>
             <Grid container>

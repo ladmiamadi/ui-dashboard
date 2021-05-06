@@ -7,7 +7,6 @@ interface Props {
     getPositionCollection: () => Promise<void>,
 }
 
-
 class NewOfferFormPage extends Component<Props> {
     componentDidMount() {
         this.props.getPositionCollection();
@@ -26,7 +25,6 @@ const mapState = (state: RootState) => ({});
 
 const mapDispatch = (dispatch: RootDispatch) => ({
     getPositionCollection: dispatch.job.fetchJobsFromDb,
-
 });
 
 export default connect(mapState, mapDispatch)(NewOfferFormPage);

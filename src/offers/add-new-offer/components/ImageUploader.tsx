@@ -1,5 +1,4 @@
 import { Grid, TextField } from '@material-ui/core';
-import { FormikValues } from 'formik';
 import React, { Component } from 'react';
 
 interface Props {
@@ -13,11 +12,6 @@ interface Props {
 }
 
 class ImageUploader extends Component<Props> {
-
-    onChange() {
-        return [this.props.handleChange, this.props.onImageChange]
-    }
-
     render() {
         return (
             <Grid item
