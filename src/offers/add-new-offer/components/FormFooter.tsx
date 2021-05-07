@@ -51,4 +51,3 @@ export class FormFooter extends React.Component<Props, State> {
 }
 
 export default FormFooter;
-

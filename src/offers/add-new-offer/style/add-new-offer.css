@@ -131,7 +131,6 @@ label {
 
 #titleInFrench-helper-text, #titleInEnglish-helper-text, #shortDescriptionInFrench-helper-text,
 #shortDescriptionInEnglish-helper-text, #linkFrench-helper-text, #linkEnglish-helper-text,
-#position-helper-text, #picture-helper-text
-{
+#position-helper-text, #picture-helper-text {
     font-size: 14px;
 }

@@ -5,7 +5,6 @@ import RegisterUser from '../../talents/components/add-new-talent/modal/Register
 import TalentFormPage from '../../talents/components/form/TalentFormPage';
 import ProfileEditValidation from '../../talents/components/profileValidation/ProfileEditValidation';
 import { TalentsListPage } from '../../talents/components/TalentsListPage';
-import { OffersListPage } from '../../offers/components/OffersListPage';
 import TimelineContainer from '../../timeline/components/TimelineContainer';
 import history from '../helpers/history';
 import { store } from '../state/store';
@@ -16,7 +15,7 @@ import ModalTimeout from './modal/ModalTimeout';
 import './styles/App.css';
 import { OfferEditPage } from '../../offers/components/OfferEditPage'
 import RegisterOffer from '../../offers/add-new-offer/components/RegisterOffer';
-
+import OffersListPage from '../../offers/components/OffersListPage';
 
 export class App extends React.Component {
   render() {

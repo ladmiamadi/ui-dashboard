@@ -1,8 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Job } from '../../app';
+import { RootDispatch, RootState } from '../../app/state/store';
 import NewOfferButton from '../add-new-offer/components/NewOfferButton';
 import OffersListContainer from './OffersListContainer';
 
-export class OffersListPage extends React.Component {
+interface Props {
+  updateList(jobs: Job[]): void,
+  jobs: Job[],
+}
+
+class OffersListPage extends React.Component<Props> {
+  componentDidMount() {
+    this.props.updateList(this.props.jobs);
+  }
+
   render() {
     return (
       <div>
@@ -15,3 +27,13 @@ export class OffersListPage extends React.Component {
     );
   }
 }
+
+const mapState = (state: RootState) => ({
+  jobs: state.jobs.jobs,
+});
+
+const mapDispatch = (dispatch: RootDispatch) => ({
+  updateList: dispatch.jobs.updateList,
+});
+
+export default connect(mapState, mapDispatch)(OffersListPage);

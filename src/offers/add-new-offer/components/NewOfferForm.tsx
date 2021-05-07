@@ -116,7 +116,7 @@ class NewOfferForm extends Component<Props, State> {
                             this.props.createOffer(this.props.job);
                             setTimeout(() => { actions.setSubmitting(false) }, 500);
                             actions.resetForm();
-                            // history.push('/dashboard/our-offers/');
+                            history.push('/dashboard/our-offers/');
                         }
                     }
                     }
@@ -180,20 +180,19 @@ class NewOfferForm extends Component<Props, State> {
                                         touched={touched}
                                         values={values}
                                         onImageChange={this.onImageChange}
+
                                     />
                                 </Grid>
                                 <Grid
                                     item
-                                    xs={10}
+                                    xs={12}
                                 >
                                     <FormFooter
                                         resetForm={resetForm}
                                         setAddEdit={this.setAddEdit}
                                     />
                                 </Grid>
-
-                                <p>{this.state.formErrors ? 'le forumaire contient des erreurs' : ''}</p>
-
+                                <p>{this.state.formErrors ? 'Le forumaire contient des erreurs' : ''}</p>
                             </Form>
                         )
                     }}
