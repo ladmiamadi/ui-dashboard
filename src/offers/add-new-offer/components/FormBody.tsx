@@ -4,6 +4,8 @@ import React from 'react';
 import { IsFormValid } from '../..';
 import ImageUploader from './ImageUploader';
 import useStyles from './UseStyles';
+import { Editor } from '@tinymce/tinymce-react';
+import { Job } from '../../../app';
 
 interface Props {
     handleChange(e: React.ChangeEvent<any>): void,
@@ -12,12 +14,13 @@ interface Props {
     values: FormikValues,
     errors: FormikErrors<IsFormValid>,
     touched: FormikTouched<IsFormValid>,
+    setNewJob(newJob: Job): void,
     //setFormErrors(): void,
 }
 
 const FormBody = (props: Props) => {
 
-    const { handleChange, handleBlur, onImageChange, values, errors, touched } = props
+    const { handleChange, handleBlur, onImageChange, values, errors, touched, setNewJob } = props
     const classes = useStyles();
 
     return (
@@ -123,7 +126,7 @@ const FormBody = (props: Props) => {
             >
                 <TextField
                     name="shortDescriptionInEnglish"
-                    id="shortDescriptionInFrench"
+                    id="shortDescriptionInEnglish"
                     label="Description Courte Anglais"
                     value={values.shortDescriptionInEnglish}
                     type="text"
@@ -134,8 +137,8 @@ const FormBody = (props: Props) => {
                             : ''
                     }
                     error={
-                        errors.shortDescriptionInFrench &&
-                            touched.shortDescriptionInFrench
+                        errors.shortDescriptionInEnglish &&
+                            touched.shortDescriptionInEnglish
                             ? true
                             : false
                     }
@@ -149,45 +152,40 @@ const FormBody = (props: Props) => {
                     }}
                     InputLabelProps={{ style: { fontSize: 20, marginLeft: '20px', color: 'black' } }}
                 />
+
             </Grid>
             <Grid item xs={12}>
-                <TextField
-                    name="longDescriptionInFrench"
-                    id="longDescriptionInFrench"
-                    label="Description longue Français"
-                    value={values.longDescriptionInFrench}
-                    rows={10}
-                    multiline
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={classes.textarea}
-                    InputProps={{
-                        classes: {
-                            input: classes.resize
-                        }
+                <label className='description'>Description longue Français</label>
+                <Editor
+                    apiKey="don4t29heo2t22rdm0878kctdd1dhc1sinmdr0arnjfoaljf"
+                    initialValue={values.longDescriptionInFrench}
+                    init={{
+                        plugins: 'link image code',
+                        toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code',
+                        height: 400,
                     }}
-                    variant='outlined'
-                    InputLabelProps={{ style: { fontSize: 20, marginLeft: '20px', color: 'black', padding: '10px' } }}
+                    onChange={(e) => {
+                        setNewJob({ ...values.longDescriptionInFrench, longDescriptionInFrench: e.target.getContent() });
+                        console.log(e.target);
+                    }}
+
                 />
             </Grid>
             <Grid item xs={12}>
-                <TextField
-                    name="longDescriptionInEnglish"
-                    id="longDescriptionInenglish"
-                    label="Description longue Anglais"
-                    value={values.longDescriptionInEnglish}
-                    rows={10}
-                    multiline
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={classes.textarea}
-                    InputProps={{
-                        classes: {
-                            input: classes.resize
-                        }
+                <label className='description'>Description longue Anglais</label>
+                <Editor
+                    apiKey="don4t29heo2t22rdm0878kctdd1dhc1sinmdr0arnjfoaljf"
+                    initialValue={values.longDescriptionInEnglish}
+                    init={{
+                        plugins: 'link image code',
+                        toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code',
+                        height: 400,
                     }}
-                    variant='outlined'
-                    InputLabelProps={{ style: { fontSize: 20, marginLeft: '20px', color: 'black', padding: '10px' } }}
+                    onChange={(e) => {
+                        setNewJob({ ...values.longDescriptionInEnglish, longDescriptionInEnglish: e.target.getContent() });
+                        console.log(e.target);
+                    }}
+
                 />
             </Grid>
             <Grid

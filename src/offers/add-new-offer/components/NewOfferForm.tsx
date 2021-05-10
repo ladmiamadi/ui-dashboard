@@ -180,6 +180,7 @@ class NewOfferForm extends Component<Props, State> {
                                         touched={touched}
                                         values={values}
                                         onImageChange={this.onImageChange}
+                                        setNewJob={this.props.setNewJob}
 
                                     />
                                 </Grid>

@@ -134,3 +134,15 @@ label {
 #position-helper-text, #picture-helper-text {
     font-size: 14px;
 }
+
+.description {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #237478;
+    margin-left: 22px;
+}
+
+.tox {
+    margin-left: 22px;
+    margin-bottom: 20px;
+}
