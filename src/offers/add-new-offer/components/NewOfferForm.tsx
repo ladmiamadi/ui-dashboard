@@ -42,7 +42,6 @@ class NewOfferForm extends Component<Props, State> {
 
         this.setAddEdit = this.setAddEdit.bind(this);
         this.onImageChange = this.onImageChange.bind(this);
-        this.setFormErrors = this.setFormErrors.bind(this);
     };
 
     setAddEdit() {
@@ -56,10 +55,6 @@ class NewOfferForm extends Component<Props, State> {
                 imageFile: image
             });
         }
-    }
-
-    setFormErrors() {
-        this.setState({ formErrors: true });
     }
 
     fileUploadHandler = async (file: File) => {
@@ -193,7 +188,6 @@ class NewOfferForm extends Component<Props, State> {
                                         setAddEdit={this.setAddEdit}
                                     />
                                 </Grid>
-                                <p>{this.state.formErrors ? 'Le forumaire contient des erreurs' : ''}</p>
                             </Form>
                         )
                     }}

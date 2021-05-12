@@ -33,7 +33,7 @@ const FormBody = (props: Props) => {
                     <TextField
                         name="titleInFrench"
                         id="titleInFrench"
-                        label="Titre Français*"
+                        label="Titre en Français*"
                         value={values.titleInFrench}
                         type="text"
                         error={
@@ -63,7 +63,7 @@ const FormBody = (props: Props) => {
                     <TextField
                         name="titleInEnglish"
                         id="titleInEnglish"
-                        label="Titre Anglais"
+                        label="Titre en Anglais"
                         value={values.titleInEnglish}
                         type="text"
                         helperText={
@@ -94,7 +94,7 @@ const FormBody = (props: Props) => {
                 <TextField
                     name="shortDescriptionInFrench"
                     id="shortDescriptionInFrench"
-                    label="Description Courte Français"
+                    label="Description Courte en Français"
                     value={values.shortDescriptionInFrench}
                     type="text"
                     helperText={
@@ -127,7 +127,7 @@ const FormBody = (props: Props) => {
                 <TextField
                     name="shortDescriptionInEnglish"
                     id="shortDescriptionInEnglish"
-                    label="Description Courte Anglais"
+                    label="Description Courte en Anglais"
                     value={values.shortDescriptionInEnglish}
                     type="text"
                     helperText={
@@ -155,7 +155,7 @@ const FormBody = (props: Props) => {
 
             </Grid>
             <Grid item xs={12}>
-                <label className='description'>Description longue Français</label>
+                <label className='description'>Description longue en Français</label>
                 <Editor
                     apiKey="don4t29heo2t22rdm0878kctdd1dhc1sinmdr0arnjfoaljf"
                     initialValue={values.longDescriptionInFrench}
@@ -172,7 +172,7 @@ const FormBody = (props: Props) => {
                 />
             </Grid>
             <Grid item xs={12}>
-                <label className='description'>Description longue Anglais</label>
+                <label className='description'>Description longue en Anglais</label>
                 <Editor
                     apiKey="don4t29heo2t22rdm0878kctdd1dhc1sinmdr0arnjfoaljf"
                     initialValue={values.longDescriptionInEnglish}
@@ -198,7 +198,7 @@ const FormBody = (props: Props) => {
                     <TextField
                         name="linkFrench"
                         id="linkFrench"
-                        label="Lien Français"
+                        label="Lien en Français"
                         value={values.linkFrench}
                         type="text"
                         onChange={handleChange}
@@ -228,7 +228,7 @@ const FormBody = (props: Props) => {
                     <TextField
                         name="linkEnglish"
                         id="linkEnglish"
-                        label="Lien Anglais"
+                        label="Lien en Anglais"
                         value={values.linkEnglish}
                         type="text"
                         helperText={
