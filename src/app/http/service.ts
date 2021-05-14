@@ -35,9 +35,8 @@ apiService.interceptors.response.use((response) => {
 });
 
 export const clearTokenFromAxios = () => {
-  return new Promise((resolve) => {
+  return new Promise(() => {
     apiService.interceptors.request.eject(tokenInterceptor);
     tokenInterceptor = -1;
-    //resolve();
   });
 };

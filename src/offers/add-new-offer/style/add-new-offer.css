@@ -36,10 +36,6 @@
     font-weight: bold;
 }
 
-/*PARTIE FOOOOOOOOOOOOOOOOOOOOOORM */
-/*******************************************/
-/********************************************/
-
 .title-offer {
     display: flex;
     justify-content: space-between;
@@ -89,7 +85,6 @@
     background-color: white;
     cursor: pointer;
     padding: 2px;
-
 }
 
 .Controls button:focus {
@@ -104,8 +99,6 @@
 .picture-position .form-group .form-input {
     width: 100%;
 }
-
-
 
 .picture-position .input-form{
     width: 45%;

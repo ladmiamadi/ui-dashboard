@@ -20,7 +20,6 @@ export const job = createModel({
         positionCollection: [],
         linkFrenchCollection: [],
         linkEnglishCollection: [],
-
     } as NewJobState,
 
     reducers: {
@@ -28,13 +27,11 @@ export const job = createModel({
 
         setNewJob: (state: NewJobState, newJob: Job): NewJobState => ({ ...state, newJob }),
 
-        setFields: (state: NewJobState, newJob: Job): NewJobState => {
-            {
-                newJob.isOpen = false;
-                newJob.createdDate = new Date();
-                return { ...state, newJob }
-            }
-        },
+        // setFields: (state: NewJobState, newJob: Job): NewJobState => {
+        //   newJob.isOpen = false;
+        // newJob.createdDate = new Date();
+        //return { ...state, newJob };
+        //},
 
         updateOfferPositionCollection: (state: NewJobState, positionCollection: string[]) => ({ ...state, positionCollection }),
 
@@ -54,12 +51,9 @@ export const job = createModel({
                 const { data } = await apiService.post('/api/jobs', jobSentInDb);
                 const newJob = data as Job;
 
-                //UserAdapterHelper.postprocessUser(newUser);
-
                 (new Toastify()).info('Success adding ' + newJob.titleInFrench + ' in the database.');
 
                 this.fetchJobsFromDb();
-
                 this.setIsRequesting(false);
 
                 return newJob;

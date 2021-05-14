@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Grid } from '@material-ui/core'
-import { Formik, Form, FormikProps } from 'formik'
+import { Grid } from '@material-ui/core';
+import { Formik, Form, FormikProps } from 'formik';
 import useStyles from './UseStyles';
 import { Job } from '../../../app';
 import { RootDispatch, RootState } from '../../../app/state/store';
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
-import FormFooter from './FormFooter'
+import FormFooter from './FormFooter';
 import { isValueExists } from '../../state/models/helpers/OffersHelpers';
 import history from '../../../app/helpers/history';
 import _ from 'lodash';
@@ -31,183 +31,183 @@ interface State {
 }
 
 class NewOfferForm extends Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
+  constructor(props: Props) {
+    super(props);
 
-        this.state = {
-            addEdit: false,
-            imageFile: new File([''], ''),
-            formErrors: false,
-        };
-
-        this.setAddEdit = this.setAddEdit.bind(this);
-        this.onImageChange = this.onImageChange.bind(this);
+    this.state = {
+      addEdit: false,
+      imageFile: new File([''], ''),
+      formErrors: false,
     };
 
-    setAddEdit() {
-        this.setState({ addEdit: true });
-    }
+    this.setAddEdit = this.setAddEdit.bind(this);
+    this.onImageChange = this.onImageChange.bind(this);
+  }
 
-    onImageChange(event: React.ChangeEvent<HTMLInputElement>): void {
-        if (event.target.files && event.target.files[0]) {
-            let image = event.target.files[0];
-            this.setState({
-                imageFile: image
-            });
-        }
+  setAddEdit() {
+    this.setState({ addEdit: true });
+  }
+
+  onImageChange(event: React.ChangeEvent<HTMLInputElement>): void {
+    if (event.target.files && event.target.files[0]) {
+      let image = event.target.files[0];
+      this.setState({
+        imageFile: image,
+      });
     }
+  }
 
     fileUploadHandler = async (file: File) => {
-        const formData = new FormData();
+      const formData = new FormData();
 
-        formData.append('uploadFile', file, file.name);
+      formData.append('uploadFile', file, file.name);
 
-        const { data } = await apiService.post('/api/upload/images', formData)
+      const { data } = await apiService.post('/api/upload/images', formData);
+      return data;
     }
 
     redirectToOfferEdition(newCreatedOffer: Promise<Job | null>) {
-        newCreatedOffer.then(job => {
-            if (job != null) {
-                this.props.updateSelectedOffer(_.cloneDeep(job));
-                history.push('/dashboard/our-offers/edit/' + job.id);
-            }
-        });
+      newCreatedOffer.then(job => {
+        if (job != null) {
+          this.props.updateSelectedOffer(_.cloneDeep(job));
+          history.push('/dashboard/our-offers/edit/' + job.id);
+        }
+      });
     }
 
     render() {
-        return (
-            <div >
-                <Formik
-                    initialValues={{
-                        titleInFrench: '',
-                        titleInEnglish: '',
-                        shortDescriptionInFrench: '',
-                        shortDescriptionInEnglish: '',
-                        longDescriptionInFrench: '',
-                        longDescriptionInEnglish: '',
-                        position: '',
-                        linkEnglish: '',
-                        linkFrench: '',
-                        picture: '',
-                    }}
+      return (
+        <div >
+          <Formik
+            initialValues={{
+              titleInFrench: '',
+              titleInEnglish: '',
+              shortDescriptionInFrench: '',
+              shortDescriptionInEnglish: '',
+              longDescriptionInFrench: '',
+              longDescriptionInEnglish: '',
+              position: '',
+              linkEnglish: '',
+              linkFrench: '',
+              picture: '',
+            }}
 
-                    onSubmit={(values: IsFormValid, actions) => {
-                        this.props.setNewJob({
-                            ...this.props.job, titleInFrench: values.titleInFrench,
-                            titleInEnglish: values.titleInEnglish,
-                            shortDescriptionInFrench: values.shortDescriptionInFrench,
-                            shortDescriptionInEnglish: values.shortDescriptionInEnglish,
-                            linkFrench: values.linkFrench,
-                            linkEnglish: values.linkEnglish,
-                            position: values.position,
-                            picture: this.state.imageFile.name
-                        });
+            onSubmit={(values: IsFormValid, actions) => {
+              this.props.setNewJob({
+                ...this.props.job, titleInFrench: values.titleInFrench,
+                titleInEnglish: values.titleInEnglish,
+                shortDescriptionInFrench: values.shortDescriptionInFrench,
+                shortDescriptionInEnglish: values.shortDescriptionInEnglish,
+                linkFrench: values.linkFrench,
+                linkEnglish: values.linkEnglish,
+                position: values.position,
+                picture: this.state.imageFile.name,
+              });
 
-                        this.fileUploadHandler(this.state.imageFile);
+              this.fileUploadHandler(this.state.imageFile);
 
-                        if (this.state.addEdit) {
-                            this.redirectToOfferEdition(this.props.createOffer(this.props.job));
-                        } else {
-                            this.props.createOffer(this.props.job);
-                            setTimeout(() => { actions.setSubmitting(false) }, 500);
-                            actions.resetForm();
-                            history.push('/dashboard/our-offers/');
-                        }
-                    }
-                    }
+              if (this.state.addEdit) {
+                this.redirectToOfferEdition(this.props.createOffer(this.props.job));
+              } else {
+                this.props.createOffer(this.props.job);
+                setTimeout(() => { actions.setSubmitting(false); }, 500);
+                actions.resetForm();
+                history.push('/dashboard/our-offers/');
+              }
+            }}
 
-                    validationSchema={Yup.object().shape({
-                        titleInFrench: Yup.string()
-                            .required('Champs requis!')
-                            .matches(/^[a-zA-Z]+$/),
+            validationSchema={Yup.object().shape({
+              titleInFrench: Yup.string()
+                .required('Champs requis!')
+                .matches(/^[a-zA-Z]+$/),
 
-                        position: Yup.string()
-                            .test({
-                                name: "position test",
-                                message: "Cette Position existe déja!",
-                                test: value => {
-                                    return !isValueExists(value, this.props.positionCollection)
-                                }
-                            }),
+              position: Yup.string()
+                .test({
+                  name: 'position test',
+                  message: 'Cette Position existe déja!',
+                  test: value => {
+                    return !isValueExists(value, this.props.positionCollection);
+                  },
+                }),
 
-                        linkFrench: Yup.string()
-                            .test({
-                                name: "position test",
-                                message: "Ce lien existe déja!",
-                                test: value => {
-                                    return !isValueExists(value, this.props.linkFrenchCollection)
-                                }
-                            }),
+              linkFrench: Yup.string()
+                .test({
+                  name: 'position test',
+                  message: 'Ce lien existe déja!',
+                  test: value => {
+                    return !isValueExists(value, this.props.linkFrenchCollection);
+                  },
+                }),
 
-                        linkEnglish: Yup.string()
-                            .test({
-                                name: "position test",
-                                message: "Ce lien existe déja!",
-                                test: value => {
-                                    return !isValueExists(value, this.props.linkEnglishCollection)
-                                }
-                            }),
-                    })}
-                >
-                    {(props: FormikProps<IsFormValid>) => {
-                        const {
-                            values,
-                            touched,
-                            errors,
-                            handleBlur,
-                            handleChange,
-                            resetForm,
-                        } = props
-                        const classes = useStyles();
+              linkEnglish: Yup.string()
+                .test({
+                  name: 'position test',
+                  message: 'Ce lien existe déja!',
+                  test: value => {
+                    return !isValueExists(value, this.props.linkEnglishCollection);
+                  },
+                }),
+            })}
+          >
+            {(props: FormikProps<IsFormValid>) => {
+              const {
+                values,
+                touched,
+                errors,
+                handleBlur,
+                handleChange,
+                resetForm,
+              } = props;
 
-                        return (
-                            <Form
-                                className={classes.form}>
-                                <Grid
-                                    container
-                                    justify="space-around"
-                                    direction="row"
-                                >
-                                    <FormBody
-                                        handleChange={handleChange}
-                                        handleBlur={handleBlur}
-                                        errors={errors}
-                                        touched={touched}
-                                        values={values}
-                                        onImageChange={this.onImageChange}
-                                        setNewJob={this.props.setNewJob}
+              const classes = useStyles();
 
-                                    />
-                                </Grid>
-                                <Grid
-                                    item
-                                    xs={12}
-                                >
-                                    <FormFooter
-                                        resetForm={resetForm}
-                                        setAddEdit={this.setAddEdit}
-                                    />
-                                </Grid>
-                            </Form>
-                        )
-                    }}
-                </Formik>
-            </div >
-        );
+              return (
+                <Form
+                  className={classes.form}>
+                  <Grid
+                    container
+                    justify="space-around"
+                    direction="row"
+                  >
+                    <FormBody
+                      handleChange={handleChange}
+                      handleBlur={handleBlur}
+                      errors={errors}
+                      touched={touched}
+                      values={values}
+                      onImageChange={this.onImageChange}
+                      setNewJob={this.props.setNewJob}
+                    />
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                  >
+                    <FormFooter
+                      resetForm={resetForm}
+                      setAddEdit={this.setAddEdit}
+                    />
+                  </Grid>
+                </Form>
+              );
+            }}
+          </Formik>
+        </div >
+      );
     }
 }
 
 const mapState = (state: RootState) => ({
-    job: state.job.newJob,
-    positionCollection: state.job.positionCollection,
-    linkFrenchCollection: state.job.linkFrenchCollection,
-    linkEnglishCollection: state.job.linkEnglishCollection,
+  job: state.job.newJob,
+  positionCollection: state.job.positionCollection,
+  linkFrenchCollection: state.job.linkFrenchCollection,
+  linkEnglishCollection: state.job.linkEnglishCollection,
 });
 
 const mapDispatch = (dispatch: RootDispatch) => ({
-    createOffer: dispatch.job.postNewOfferInDb,
-    setNewJob: dispatch.job.setNewJob,
-    updateSelectedOffer: dispatch.selectedOffer.updateSelectedOffer
+  createOffer: dispatch.job.postNewOfferInDb,
+  setNewJob: dispatch.job.setNewJob,
+  updateSelectedOffer: dispatch.selectedOffer.updateSelectedOffer,
 });
 
 export default connect(mapState, mapDispatch)(NewOfferForm);

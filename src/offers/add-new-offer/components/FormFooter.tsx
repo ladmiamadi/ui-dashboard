@@ -12,42 +12,41 @@ interface State {
 }
 
 export class FormFooter extends React.Component<Props, State> {
+  render() {
+    return (
+      <div className="form-footer">
+        <Button
+          color={'success'}
 
-    render() {
-        return (
-            <div className="form-footer">
-                <Button
-                    color={"success"}
-
-                    //disabled={!isPostAvailable}
-                    onClick={this.props.setAddEdit}
-                    type='submit'
-                >
+          //disabled={!isPostAvailable}
+          onClick={this.props.setAddEdit}
+          type="submit"
+        >
                     Ajouter et Editer
-                </Button>
+        </Button>
 
-                <Button
-                    type='submit'
-                >
+        <Button
+          type="submit"
+        >
                     Ajouter
-                </Button>
+        </Button>
 
-                <Button
-                    color="warning"
-                    onClick={this.props.resetForm}
-                >
+        <Button
+          color="warning"
+          onClick={this.props.resetForm}
+        >
                     Tout effacer
-                </Button>
+        </Button>
 
-                <Button
-                    color="secondary"
-                    onClick={() => history.push('/dashboard/our-offers')}
-                >
+        <Button
+          color="secondary"
+          onClick={() => history.push('/dashboard/our-offers')}
+        >
                     Retour
-                </Button>
-            </div>
-        );
-    }
+        </Button>
+      </div>
+    );
+  }
 }
 
 export default FormFooter;

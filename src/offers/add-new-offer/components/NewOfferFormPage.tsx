@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { RootDispatch, RootState } from '../../../app/state/store';
+import { RootDispatch } from '../../../app/state/store';
 import NewOfferForm from './NewOfferForm';
 
 interface Props {
@@ -8,23 +8,23 @@ interface Props {
 }
 
 class NewOfferFormPage extends Component<Props> {
-    componentDidMount() {
-        this.props.getPositionCollection();
-    }
+  componentDidMount() {
+    this.props.getPositionCollection();
+  }
 
-    render() {
-        return (
-            <div className="form">
-                <NewOfferForm />
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="form">
+        <NewOfferForm />
+      </div>
+    );
+  }
 }
 
-const mapState = (state: RootState) => ({});
+const mapState = () => ({});
 
 const mapDispatch = (dispatch: RootDispatch) => ({
-    getPositionCollection: dispatch.job.fetchJobsFromDb,
+  getPositionCollection: dispatch.job.fetchJobsFromDb,
 });
 
 export default connect(mapState, mapDispatch)(NewOfferFormPage);
